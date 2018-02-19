@@ -21,17 +21,6 @@ import {
 } from "@angular/material";
 import { CommonModule } from "@angular/common";
 
-const template = `
-<form [formGroup]="formGroup" fxLayout="column">
-  <mat-card>
-    <mat-card-content>
-      <mat-form-field fxFlexFill>
-        <input type="text" matInput placeholder="پست الکترونیکی" formControlName="c1">
-      </mat-form-field>
-    </mat-card-content>
-  </mat-card>
-</form>
-`;
 const contorlTemplate = ({ placeholder, title, type = "text" }) => {
 	return `
       <mat-form-field fxFlexFill>
@@ -39,9 +28,9 @@ const contorlTemplate = ({ placeholder, title, type = "text" }) => {
       </mat-form-field>
 `;
 };
-const GroupOpenTemplate = ({ formGroupPath }) => {
+const GroupOpenTemplate = ({ title, path, parentType }) => {
 	return `
-  <div [formGroup]="${formGroupPath}" fxLayout="column">
+      <div [formGroup]="${path}" fxLayout="column">
   `;
 };
 const GroupCloseTemplate = () => {
@@ -49,10 +38,11 @@ const GroupCloseTemplate = () => {
   </div>
   `;
 };
-const ArrayOpenTemplate = ({ formArrayPath }) => {
+const ArrayOpenTemplate = ({ path }) => {
 	debugger;
+	//
 	return `
-  <div *ngFor="let item of ${formArrayPath}">
+    <div *ngFor="let item of ${path}.controls">
   `;
 };
 const ArrayCloseTemplate = () => {
@@ -96,7 +86,6 @@ export class DynamicformComponent {
 	}
 	createTemplate(control: AbstractControl) {
 		if (control instanceof FormArray) {
-			debugger;
 			var res = ArrayOpenTemplate((control as any).schema);
 			control.controls.map((item) => {
 				res += this.createTemplate(item);
@@ -146,30 +135,39 @@ export class DynamicformComponent {
 
 	createFrom(data: FormFieldSchema, parentPath = ""): AbstractControl {
 		if (data.type == "control") {
-			debugger;
 			var ctr = new FormControl(data.value);
 			(ctr as any).schema = data;
 			return ctr;
 		} else if (data.type == "group") {
 			var formGroup = new FormGroup({});
-			parentPath =
-				parentPath == ""
-					? (data as FormFieldSchema).title
-					: `${parentPath}.controls.${(data as FormFieldSchema).title}`;
+			if (data.parentType == undefined) {
+				parentPath = (data as FormFieldSchema).title;
+			} else if (data.parentType == "array") {
+				parentPath = `${parentPath}.controls[${(data as FormFieldSchema).title}]`;
+			} else if (data.parentType == "group") {
+				parentPath = `${parentPath}.controls.${(data as FormFieldSchema).title}`;
+			}
+
 			(formGroup as any).schema = data;
-			(formGroup as any).schema.formGroupPath = parentPath;
-			data.fields.forEach((item) => formGroup.addControl(item.title, this.createFrom(item, parentPath)));
+			(formGroup as any).schema.path = parentPath;
+			data.fields.forEach((item) => {
+				item.parentType = "group";
+				formGroup.addControl(item.title, this.createFrom(item, parentPath));
+			});
 			return formGroup;
 		} else {
 			var formArray: FormArray = new FormArray([]);
 			parentPath =
 				parentPath == ""
 					? (data as FormFieldSchema).title
-					: `${parentPath}.controls.${(data as FormFieldSchema).title}.controls`;
+					: `${parentPath}.controls.${(data as FormFieldSchema).title}`;
 			(formArray as any).schema = data;
-			(formArray as any).schema.formArrayPath = parentPath;
-			(formArray as any).schema.title = `${parentPath}[0]`;
-			data.fields.forEach((item) => formArray.controls.push(this.createFrom(item, parentPath)));
+			(formArray as any).schema.path = parentPath;
+			data.fields.forEach((item, idx) => {
+				item.parentType = "array";
+				item.title = idx.toString();
+				formArray.controls.push(this.createFrom(item, parentPath));
+			});
 			return formArray;
 		}
 	}
@@ -182,6 +180,8 @@ interface Validators {
 interface FormFieldSchema {
 	type: "group" | "array" | "control";
 	title: string;
+	parentType?: "array" | "group";
+	path?: string;
 	placeholder: string;
 	inputType: "select" | "input" | "radio";
 	value?: any;
@@ -265,14 +265,36 @@ const data: FormSchema = {
 						},
 						fields: [
 							{
-								type: "control",
-								title: "a11c1",
-								value: "a11c1",
-								placeholder: "a11c1",
+								type: "group",
+								title: "a11g1",
+								value: "a11g1",
+								placeholder: "a11g1",
 								inputType: "input",
 								validators: {
 									readonly: true
-								}
+								},
+								fields: [
+									{
+										type: "control",
+										title: "a11g1c1",
+										value: "a11g1c1",
+										placeholder: "a11g1c1",
+										inputType: "input",
+										validators: {
+											readonly: true
+										}
+									},
+									{
+										type: "control",
+										title: "a11g1c2",
+										value: "a11g1c2",
+										placeholder: "a11g1c2",
+										inputType: "input",
+										validators: {
+											readonly: true
+										}
+									}
+								]
 							}
 						]
 					}
