@@ -1,0 +1,30 @@
+﻿{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "target": "es5",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "sourceMap": false,
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "app/*": [
+        "src/app/*"
+      ]
+    },
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true
+  },
+  "files": [
+    "src/app/app.module.ts",
+    "src/main.ts"
+  ],
+  "angularCompilerOptions": {
+    "genDir": "./aot",
+    "preserveWhitespaces": false,
+    "skipMetadataEmit": true
+  }
+}

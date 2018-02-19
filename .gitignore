@@ -1,0 +1,61 @@
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.swp
+
+pids
+logs
+results
+tmp
+
+
+# IDE - VSCode
+.vs/
+.vs/slnx.sqlite
+.vs/*
+
+#Build
+public/css/main.css
+
+# API keys and secrets
+.env
+
+# Dependency directory
+node_modules
+*/node_modules
+bower_components
+
+# Editors
+.idea
+*.iml
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Ignore built ts files
+dist/**/*
+
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+aot/
+aot/*
+
+# System Files
+.DS_Store
+Thumbs.db
+/.vs/MyShatelUI/v15
+.vs/slnx.sqlite
+
+
+/e2e test report/
+/e2e test report/*
+*/e2e test report/*

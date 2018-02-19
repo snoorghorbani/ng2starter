@@ -1,0 +1,7 @@
+{
+  "open": true,
+  "logLevel": "silent",
+    "port": 5555,
+    "files": ["./dist/src/**/*.{html,htm,css,js}"],
+    "server": { "baseDir": "./dist/src" }
+  }

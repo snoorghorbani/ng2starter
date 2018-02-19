@@ -1,0 +1,35 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "outDir": "./dist/src",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "baseUrl": ".",
+    "paths": {
+      "app/*": [
+        "src/app/*"
+      ],
+      "environments/*": [
+        "src/environments/*"
+      ]
+    },
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ]
+  },
+  "include": [
+    "src/**/*",
+    // "node_modules/@ng2-starter/**/index.ts"
+  ],
+  "exclude": [
+    "server/**/*"
+  ]
+}

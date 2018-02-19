@@ -1,0 +1,56 @@
+{
+  "index": "/index.html",
+  "appData": {
+    "test": true,
+    "version": 1.0
+  },
+  "assetGroups": [
+    {
+      "name": "starter",
+      "installMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/**/*",
+          "!/ngsw-worker.js"
+        ],
+        "versionedFiles": [
+          "/**/*.html",
+          "/**/*.js",
+          "/**/*.css"
+        ],
+        "urls": [
+          "http://localhost:3000/",
+          "http://localhost:5555",
+          "https://fonts.googleapis.com/css?family=Material+Icons",
+          "https://fonts.gstatic.com/s/materialicons/v29/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2"
+        ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "api-freshness",
+      "urls": [
+        "/"
+      ],
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "3d",
+        "timeout": "1m",
+        "strategy": "freshness"
+      }
+    },
+    {
+      "name": "api-performance",
+      "urls": [
+        "/favorites"
+      ],
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "3d",
+        "timeout": "1m",
+        "strategy": "performance"
+      }
+    }
+  ]
+}

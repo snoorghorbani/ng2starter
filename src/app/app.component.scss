@@ -1,0 +1,35 @@
+#purchase-fab-button {
+    position: fixed;
+    bottom: 23px;
+    left: 31px;
+}
+
+md-progress-bar {
+    position: absolute !important;
+}
+.with-margin #app-main-container{
+    margin-top:25px;
+    padding-right:25px;
+    padding-left:25px;
+}
+
+.second_sidebar {
+  width: 380px;
+}
+
+.more-detail {
+  margin: 8px;
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: center;
+  width:96%;
+  border: 1px solid #dedede;
+  outline: 0;
+  cursor: pointer;
+  transition: all .3s ease;
+  &:hover {
+    background: #eee;
+  }
+}
+
+
