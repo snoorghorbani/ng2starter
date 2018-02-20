@@ -33,6 +33,10 @@ import * as FeatureReducer from "@soushians/config";
 import { SourceModule } from "@soushians/source";
 import { DynamicformComponent } from "./dynamicform/dynamicform.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AddformComponent } from "./addform/addform.component";
+import { FormGroupComponent } from "./form-group/form-group.component";
+import { FormArrayComponent } from "./form-array/form-array.component";
+import { FormControlComponent } from "./form-control/form-control.component";
 
 @NgModule({
 	imports: [
@@ -60,7 +64,14 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 		FormsModule,
 		ReactiveFormsModule
 	],
-	declarations: [ AppComponent, DynamicformComponent ],
+	declarations: [
+		AppComponent,
+		DynamicformComponent,
+		AddformComponent,
+		FormGroupComponent,
+		FormArrayComponent,
+		FormControlComponent
+	],
 	providers: [
 		// { provide: LOCALE_ID, useValue: 'fa-IR' },
 		EventHandlerService
