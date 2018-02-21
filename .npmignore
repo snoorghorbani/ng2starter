@@ -1,0 +1,15 @@
+# Ignored folders
+aot
+dist
+features
+node_modules
+production
+test
+views
+
+# Ignored files
+package.json
+npm-debug.log*
+Thumbs.db
+npm-debug.log
+.DS_Store

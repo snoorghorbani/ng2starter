@@ -1,6 +1,6 @@
 {
-	"name": "Front-End-Starter",
-	"version": "1.0.0",
+	"name": "@soushians/starter",
+	"version": "1.0.7",
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve",
@@ -29,9 +29,9 @@
 		"server_copy-static-assets": "node ./scripts/copyStaticAssets.js",
 		"server_debug": "npm run server_build && npm run server_watch-debug",
 		"server_serve-debug": "nodemon --inspect dist/server/server.js",
-		"server_watch-debug": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run server_watch-sass\" \"npm run server_watch-ts\" \"npm run server_serve-debug\""
+		"server_watch-debug": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run server_watch-sass\" \"npm run server_watch-ts\" \"npm run server_serve-debug\"",
+		"postinstall": "gulp copy_file_after_installed"
 	},
-	"private": true,
 	"dependencies": {
 		"@angular/animations": "^5.x.x",
 		"@angular/cdk": "^5.x.x",
@@ -116,9 +116,7 @@
 		"typescript": "^2.5.2",
 		"web-push": "^3.2.5",
 		"wmi-client": "^0.4.1",
-		"zone.js": "^0.8.14"
-	},
-	"devDependencies": {
+		"zone.js": "^0.8.14",
 		"@angular/cli": "^1.5.5",
 		"@types/async": "^2.0.40",
 		"@types/bcrypt-nodejs": "0.0.30",
@@ -143,12 +141,17 @@
 		"@types/supertest": "^2.0.0",
 		"concurrently": "^3.4.0",
 		"jest": "^19.0.2",
-		"node-sass": "^4.5.2",
 		"nodemon": "^1.11.0",
 		"shelljs": "^0.7.7",
 		"supertest": "^2.0.1",
 		"ts-jest": "^19.0.8",
 		"tslint": "^5.0.0",
-		"typescript": "^2.6.1"
+		"gulp": "^3.9.1",
+		"gulp-copy": "^1.1.0",
+		"streamfilter": "^1.0.7"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/snoorghorbani/ng2starter.git"
 	}
 }
