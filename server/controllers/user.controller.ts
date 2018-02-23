@@ -36,15 +36,15 @@ router.put("/:email", (req: Request, res: Response) => {
 });
 
 router.post("/signin", (req: Request, res: Response, next: NextFunction) => {
-	req.assert("Email", "Email is not valid").isEmail();
-	req.assert("Password", "Password cannot be blank").notEmpty();
-	req.sanitize("email").normalizeEmail({ gmail_remove_dots: false });
+	// req.assert("Email", "Email is not valid").isEmail();
+	// req.assert("Password", "Password cannot be blank").notEmpty();
+	// req.sanitize("email").normalizeEmail({ gmail_remove_dots: false });
 
 	const errors = req.validationErrors();
 
 	if (errors) {
 		debugger;
-		return res.redirect("/signin");
+		return res.sendStatus(401);
 	}
 
 	passport.authenticate("local", (err: Error, user: UserModel, info: any) => {

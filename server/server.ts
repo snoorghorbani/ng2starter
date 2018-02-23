@@ -28,53 +28,6 @@ dotenv.config({ path: ".env.example" });
 
 // import * as admin from "firebase-admin";
 
-// const serviceAccount = require("test-51334-firebase-adminsdk-vfi7v-5e768b1b23.json");
-const serviceAccount: any = {
-	type: "service_account",
-	project_id: "test-51334",
-	private_key_id: "5e768b1b23fa0658f642b4ce2bd1872dc0a582db",
-	private_key:
-		"-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC43mYraDMdRhoj\ncDi61hj2f3Li83A6+koNB7dLayZzy2achVn4aoIvHi8zS0ybE991QPN/kq5XUo/C\nGvaaH5YIdiMRKv7BzCsao+NkVuggZkz46D0469fUHTM4Tj3vHoR0fCp++e1oOHS7\nIc1zUWHqn6cooPV9+veefS4dr3wGYQ8L60WYJfo1QJdFisxUcnwFwpHfQMF6dtiq\nffH2TTj7zWvng+4NJMMwI4a6hXnafmznu6O0ZS7mT0Sd4PRVslm5yHRkS0cy3Xzn\neCMux+sDW+NezoHO7fVBfacqrf1wb48PoD5CzO/Kwy9yoLNaNO29kss4pIdFn5wx\nqE+3Z4PRAgMBAAECggEAGXTii8qi8z6CfevHnA68TEE7kD3mb/CkPswXtOZx2pMh\nM593Rqpf994HsOAHEfm4FRzXCvOnVzXyvs9YsttznQGrjYMmpogXTWlQ+DGxcDi2\nE7ZjK9HqG/bTZUb8508D/UhVz7tZsjbH+DbM5DrKKXVHnuQfOfRTobrqHUNbaEM7\n8EZT1qFaUiBiq9OxkAvD21AUuEVBuDw2h+p52ff9XibEFqHi42xBgFZATx50eyO1\n9jew3gpH65Cs8+UTiTDEkSysxNOy/FireDB9Zv6IAiFODe+fcS/7nEHD6JLGVE7f\nb4fCjHbw/5i4pITByzPj0gNq/UVBYdh7HlJOcWhZmwKBgQD0D68pz/RqbkE3OGcY\nMC1V3QjZTS3fSvqY7sMlGNRvwPnaoXCtrLqdo8/IpwVYxgRCVCAGv2WB88Sc3QFx\njTHGOdCiql8edDk/oBliopF3ohzb6ztDE9w4o5ax0IdEqTkXB0CYSqvEkZSgCSPr\nXWT2vCfpY1gZM1EawythVTgGgwKBgQDB6XZbfvjtiBZfYPCo9UyDW32J+01576k3\nt0adXaOyNK5fCcuqi95/On6kzf5KI4yH/eyDlxW30QJD4nWEyirUNQd3Iq79lSoN\ngytcwJSZ+AmYHhJDQrzW5GmVs9Q7kBqMche8M+nsurNMPvB/Fb3v1NTnknyfHZYl\n5WtzEK2cGwKBgQCZRQRG6N7gu+7ew+ASk6bU5mO5O7vUH90yj7cjo+09ZV5Di+Ec\nYH4to4NIyoMUFf70vKoEMsyHiNPvgud2LSqWBxbcIMxtbqXJLDzk8Z0TGU6wWZC0\n9lL1it6HOqLIXtGIgbhyK2qlnptMyZCyLcvLG6yg6A+ae9yyRuEGViNCCwKBgHe3\neDAC0xJq+00FX28gio1qlbXzZaDLetCAIWOUZTTnW2Qnewse8U3hQkDjQIRrMB7h\ngPy48Vqb+mcIz/8chZaf6qz9x8WdKupOuh24c8YfIWU9446NDGMrf5hB/tyLGijt\nY4P5FQnnNjzzeq0rMil4X71cbf4aWRGqc00F1flTAoGBAK+bmNdlPNM3bF9CmIFI\n1NNtaZmu2JRsQgEi2fl7e3X+xpGlU1kAqs2n6+Qw3qWwpG/GM/GCCKXUFjzji/+y\nOq7eri6PeZEiH/DedrazzgeDjHV3x/JQtm00tfmfVpNGs4kECzfqJzYHfefVB1xZ\nMXFoLzPRuz53ZtOTkVxsVDp/\n-----END PRIVATE KEY-----\n",
-	client_email: "firebase-adminsdk-vfi7v@test-51334.iam.gserviceaccount.com",
-	client_id: "110182129164645367787",
-	auth_uri: "https://accounts.google.com/o/oauth2/auth",
-	token_uri: "https://accounts.google.com/o/oauth2/token",
-	auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
-	client_x509_cert_url:
-		"https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-vfi7v%40test-51334.iam.gserviceaccount.com"
-};
-
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount),
-//   databaseURL: "https://test-51334.firebaseio.com/"
-// });
-
-// const messaging = admin.messaging();
-// messaging.sendToDeviceGroup("asdfasdf", {});
-
-// const webpush = require("web-push");
-
-// // VAPID keys should only be generated only once.
-// const vapidKeys = webpush.generateVAPIDKeys();
-
-// webpush.setGCMAPIKey("<Your GCM API Key Here>");
-// webpush.setVapidDetails(
-//   "mailto:example@yourdomain.org",
-//   vapidKeys.publicKey,
-//   vapidKeys.privateKey
-// );
-
-// // This is the same output of calling JSON.stringify on a PushSubscription
-// const pushSubscription = {
-//   endpoint: ".....",
-//   keys: {
-//     auth: ".....",
-//     p256dh: "....."
-//   }
-// };
-
-// webpush.sendNotification(pushSubscription, "Your Push Payload Text");
-
 /**
  * Controllers (route handlers).
  */
@@ -98,30 +51,6 @@ import * as passportConfig from "./config/passport";
  * Create Express server.
  */
 const app: express.Application = express();
-
-/**
- * Socket io
- */
-// debugger;
-// const http = require("http").Server(app);
-// import * as socketIo from "socket.io";
-// const io = socketIo(http);
-
-// io.on("connection", (socket) => {
-//   console.log("user connected");
-//   debugger;
-//   socket.on("disconnect", function () {
-//     debugger;
-//     console.log("user disconnected");
-//   });
-
-//   socket.on("add-message", (message: any) => {
-//     debugger;
-//     io.emit("message", { type: "new-message", text: message });
-//   });
-//   socket.emit("salam");
-// });
-
 /**
  * Connect to MongoDB.
  */
@@ -133,36 +62,18 @@ mongoose.connection.on("error", () => {
 	process.exit();
 });
 
-app.use(function(req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-	next();
-});
-app.options("*", function(req, res) {
-	res.setHeader("Access-Control-Allow-Origin", "http://localhost:4000");
-	res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-	res.setHeader("Access-Control-Allow-Credentials", "true");
-	res.setHeader("Content-Type", "application/json");
-	res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-	res.end();
-});
-
 /**
  * Express configuration.
  */
 app.set("port", process.env.PORT || 3000);
-app.set("views", path.join(__dirname, "../../views"));
-// app.set("views", path.join(__dirname, "../src"));
-// app.set("view engine", "ejs");
-// app.engine("html", require("ejs").renderFile);
-app.set("view engine", "pug");
+
 app.use(compression());
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 
-const originsWhitelist = [ "http://localhost:4000" ];
+const originsWhitelist = [ process.env.TEST_SERVER_ADDRESS, process.env.SERVER_ADDRESS ];
 const corsOptions = {
 	origin: function(origin: any, callback: any) {
 		const isWhitelisted = originsWhitelist.indexOf(origin) !== -1;
