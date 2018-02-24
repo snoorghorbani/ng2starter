@@ -36,7 +36,6 @@ import * as fakeController from "./controllers/fake.controller";
 import * as dataController from "./controllers/data-provider.controller";
 import * as eventController from "./controllers/event.controller";
 import * as sourceController from "./controllers/source.controller";
-import * as wmiController from "./controllers/wmi.controller";
 
 /**
  * API keys and Passport configuration.
@@ -131,7 +130,6 @@ app.use("/api/fake", fakeController.router);
 app.use("/api/data", dataController.router);
 app.use("/api/event", eventController.router);
 app.use("/api/source", sourceController.router);
-app.use("/api/wmi", wmiController.router);
 
 // app.get("/login", userController.getLogin);
 // app.post("/login", userController.postLogin);

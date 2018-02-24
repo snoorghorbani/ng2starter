@@ -1,7 +1,6 @@
 import * as express from "express";
 import * as async from "async";
 import * as crypto from "crypto";
-import * as nodemailer from "nodemailer";
 import * as passport from "passport";
 import { default as User, UserModel, AuthToken } from "../models/user.model";
 import { Request as OriginalRequest, Response, NextFunction } from "express";
@@ -300,23 +299,23 @@ export let postReset = (req: Request, res: Response, next: NextFunction) => {
 					});
 			},
 			function sendResetPasswordEmail(user: UserModel, done: Function) {
-				const transporter = nodemailer.createTransport({
-					service: "SendGrid",
-					auth: {
-						user: process.env.SENDGRID_USER,
-						pass: process.env.SENDGRID_PASSWORD
-					}
-				});
-				const mailOptions = {
-					to: user.Email,
-					from: "express-ts@starter.com",
-					subject: "Your password has been changed",
-					text: `Hello,\n\nThis is a confirmation that the password for your account ${user.Email} has just been changed.\n`
-				};
-				transporter.sendMail(mailOptions, (err) => {
-					// req.flash("success", { msg: "Success! Your password has been changed." });
-					done(err);
-				});
+				// const transporter = nodemailer.createTransport({
+				// 	service: "SendGrid",
+				// 	auth: {
+				// 		user: process.env.SENDGRID_USER,
+				// 		pass: process.env.SENDGRID_PASSWORD
+				// 	}
+				// });
+				// const mailOptions = {
+				// 	to: user.Email,
+				// 	from: "express-ts@starter.com",
+				// 	subject: "Your password has been changed",
+				// 	text: `Hello,\n\nThis is a confirmation that the password for your account ${user.Email} has just been changed.\n`
+				// };
+				// transporter.sendMail(mailOptions, (err) => {
+				// 	// req.flash("success", { msg: "Success! Your password has been changed." });
+				// 	done(err);
+				// });
 			}
 		],
 		(err) => {
@@ -368,26 +367,26 @@ export let postForgot = (req: Request, res: Response, next: NextFunction) => {
 				});
 			},
 			function sendForgotPasswordEmail(token: AuthToken, user: UserModel, done: Function) {
-				const transporter = nodemailer.createTransport({
-					service: "SendGrid",
-					auth: {
-						user: process.env.SENDGRID_USER,
-						pass: process.env.SENDGRID_PASSWORD
-					}
-				});
-				const mailOptions = {
-					to: user.Email,
-					from: "hackathon@starter.com",
-					subject: "Reset your password on Hackathon Starter",
-					text: `You are receiving this email because you (or someone else) have requested the reset of the password for your account.\n\n
-          Please click on the following link, or paste this into your browser to complete the process:\n\n
-          http://${req.headers.host}/reset/${token}\n\n
-          If you did not request this, please ignore this email and your password will remain unchanged.\n`
-				};
-				transporter.sendMail(mailOptions, (err) => {
-					// req.flash("info", { msg: `An e-mail has been sent to ${user.Email} with further instructions.` });
-					done(err);
-				});
+				// 		const transporter = nodemailer.createTransport({
+				// 			service: "SendGrid",
+				// 			auth: {
+				// 				user: process.env.SENDGRID_USER,
+				// 				pass: process.env.SENDGRID_PASSWORD
+				// 			}
+				// 		});
+				// 		const mailOptions = {
+				// 			to: user.Email,
+				// 			from: "hackathon@starter.com",
+				// 			subject: "Reset your password on Hackathon Starter",
+				// 			text: `You are receiving this email because you (or someone else) have requested the reset of the password for your account.\n\n
+				//   Please click on the following link, or paste this into your browser to complete the process:\n\n
+				//   http://${req.headers.host}/reset/${token}\n\n
+				//   If you did not request this, please ignore this email and your password will remain unchanged.\n`
+				// 		};
+				// 		transporter.sendMail(mailOptions, (err) => {
+				// 			// req.flash("info", { msg: `An e-mail has been sent to ${user.Email} with further instructions.` });
+				// 			done(err);
+				// 		});
 			}
 		],
 		(err) => {
