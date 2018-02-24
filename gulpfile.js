@@ -22,7 +22,6 @@ const copy_file_after_installed = [
 	"./tsconfig.json",
 	"./README.md",
 	"./karma.conf.js",
-	"./gulpfile.js",
 	"./.gitignore",
 	"./.env.example",
 	"./.angular-cli.json"

@@ -17,21 +17,22 @@ import {
 	MatTabsModule,
 	MatRadioModule
 } from "@angular/material";
-
 import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { EffectsModule, mergeEffects } from "@ngrx/effects";
 
 import { SharedModule } from "@soushians/shared";
-import { AuthenticationModule } from "@soushians/authentication";
+import { InfraModule } from "@soushians/infra";
 
 import { RoutingModule } from "./form-routing.module";
 import { FormModuleConfig, MODULE_CONFIG_TOKEN } from "./form.config";
-import { InfraModule } from "@soushians/infra";
-
-//import { PasswordService, UserService, UserConfigurationService } from "./services";
-//import { UserReducers } from "./feature";
-//import { UserEffects } from "./feature";
+import { MainContainerComponent } from "app/form/main-container";
+import { AddFormComponent, AddFormContainerComponent } from "app/form/add";
+import { FormService, FormConfigurationService } from "app/form/services";
+import { FormListComponent } from "app/form/list";
+import { EditFormComponent } from "app/form/edit";
+import { AddFormEffects } from "app/form/add/add-form.effects";
+import { EditFormEffects } from "app/form/edit/edit-form.effects";
 
 @NgModule({
 	imports: [
@@ -52,41 +53,28 @@ import { InfraModule } from "@soushians/infra";
 		FlexLayoutModule,
 		MatRadioModule,
 		ReactiveFormsModule,
-		AuthenticationModule,
-		BrowserAnimationsModule
+		BrowserAnimationsModule,
+		EffectsModule.forFeature([ AddFormEffects, EditFormEffects ])
 	],
 	declarations: [
-		//Components here
+		AddFormComponent,
+		EditFormComponent,
+		FormListComponent,
+		MainContainerComponent,
+		AddFormContainerComponent
 	],
 	exports: []
 })
-export class UserModule {
-	static forRoot(config: FormModuleConfig): ModuleWithProviders {
+export class FormModule {
+	static forRoot(config?: FormModuleConfig): ModuleWithProviders {
 		return {
 			ngModule: RootFormModule,
-			providers: [
-				{ provide: MODULE_CONFIG_TOKEN, useValue: config }
-				//UserConfigurationService,
-				//PasswordService,
-				//UserService
-			]
+			providers: [ { provide: MODULE_CONFIG_TOKEN, useValue: config }, FormService, FormConfigurationService ]
 		};
 	}
 }
 
 @NgModule({
-	imports: [
-		UserModule,
-		// StoreModule.forFeature("user", UserReducers),
-		// EffectsModule.forFeature([
-		// 	ResetPasswordRequestEffects,
-		// 	EditProfileEffects,
-		// 	ChangePasswordEffects,
-		// 	ProfileViewEffects,
-		// 	SearchEffects,
-		// 	UserEffects
-		// ]),
-		RoutingModule
-	]
+	imports: [ FormModule, RoutingModule ]
 })
 export class RootFormModule {}

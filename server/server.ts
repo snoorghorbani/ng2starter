@@ -6,12 +6,9 @@ import * as compression from "compression"; // compresses requests
 import * as session from "express-session";
 // import * as cookieSession from "cookie-session";
 import * as bodyParser from "body-parser";
-import * as logger from "morgan";
 import * as errorHandler from "errorhandler";
-import * as lusca from "lusca";
 import * as dotenv from "dotenv";
 import * as mongo from "connect-mongo";
-// import * as flash from "express-flash";
 import * as path from "path";
 import * as mongoose from "mongoose";
 import * as passport from "passport";
@@ -35,7 +32,6 @@ import * as homeController from "./controllers/home";
 import * as userController from "./controllers/user.controller";
 import * as configController from "./controllers/config.controller";
 // import * as apiController from "./controllers/api";
-// import * as contactController from "./controllers/contact";
 import * as fakeController from "./controllers/fake.controller";
 import * as dataController from "./controllers/data-provider.controller";
 import * as eventController from "./controllers/event.controller";
@@ -68,7 +64,6 @@ mongoose.connection.on("error", () => {
 app.set("port", process.env.PORT || 3000);
 
 app.use(compression());
-app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
@@ -102,9 +97,6 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-// app.use(flash());
-// app.use(lusca.xframe("SAMEORIGIN"));
-// app.use(lusca.xssProtection(true));
 app.use((req, res, next) => {
 	res.locals.user = req.user;
 	next();
@@ -150,8 +142,6 @@ app.use("/api/wmi", wmiController.router);
 // app.post("/reset/:token", userController.postReset);
 // app.get("/signup", userController.getSignup);
 // app.post("/signup", userController.postSignup);
-// app.get("/contact", contactController.getContact);
-// app.post("/contact", contactController.postContact);
 // app.get("api/account", passportConfig.isAuthenticated, userController.getAccount);
 
 app.post("/api/account/profile", userController.postUpdateProfile);
