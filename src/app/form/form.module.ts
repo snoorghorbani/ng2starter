@@ -26,18 +26,17 @@ import { InfraModule } from "@soushians/infra";
 
 import { RoutingModule } from "./form-routing.module";
 import { FormModuleConfig, MODULE_CONFIG_TOKEN } from "./form.config";
-import { MainContainerComponent } from "app/form/main-container";
-import { AddFormComponent, AddFormContainerComponent } from "app/form/add";
-import { FormService, FormConfigurationService } from "app/form/services";
-import { FormListComponent } from "app/form/list";
-import { EditFormComponent } from "app/form/edit";
-import { AddFormEffects } from "app/form/add/add-form.effects";
-import { EditFormEffects } from "app/form/edit/edit-form.effects";
-import { FormGroupComponent } from "app/form/form-group";
-import { FormArrayComponent } from "app/form/form-array";
-import { FormControlComponent } from "app/form/form-control";
-import { DynamicformComponent } from "app/form/dynamic-form";
-import { AddformComponent } from "app/form/add-form";
+import { MainContainerComponent } from "./main-container";
+import { AddFormComponent, AddFormContainerComponent } from "./add";
+import { FormService, FormConfigurationService } from "./services";
+import { FormListComponent } from "./list";
+import { EditFormComponent } from "./edit";
+import { AddFormEffects } from "./add/add-form.effects";
+import { EditFormEffects } from "./edit/edit-form.effects";
+import { FormGroupComponent } from "./form-group";
+import { FormArrayComponent } from "./form-array";
+import { FormControlComponent } from "./form-control";
+import { DynamicformComponent } from "./dynamic-form";
 
 @NgModule({
 	imports: [
@@ -58,17 +57,15 @@ import { AddformComponent } from "app/form/add-form";
 		FlexLayoutModule,
 		MatRadioModule,
 		ReactiveFormsModule,
-		BrowserAnimationsModule,
-		EffectsModule.forFeature([ AddFormEffects, EditFormEffects ])
+		BrowserAnimationsModule
 	],
 	declarations: [
-		AddFormComponent,
 		EditFormComponent,
 		FormListComponent,
 		MainContainerComponent,
 		AddFormContainerComponent,
 		DynamicformComponent,
-		AddformComponent,
+		AddFormComponent,
 		FormGroupComponent,
 		FormArrayComponent,
 		FormControlComponent
@@ -85,6 +82,6 @@ export class FormModule {
 }
 
 @NgModule({
-	imports: [ FormModule, RoutingModule ]
+	imports: [ EffectsModule.forFeature([ AddFormEffects, EditFormEffects ]), FormModule, RoutingModule ]
 })
 export class RootFormModule {}

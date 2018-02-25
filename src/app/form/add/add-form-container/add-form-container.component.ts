@@ -9,7 +9,7 @@ import { FormModel } from "../../models";
 import { AddFormAction } from "app/form/add/add-form.actions";
 
 @Component({
-	template: `<add-form (submited)=add($event)></add-form>`
+	template: `<ngs-form-add (submited)=add($event)></ngs-form-add>`
 })
 export class AddFormContainerComponent implements OnInit {
 	constructor(private store: Store<MainContainerReducer.MainContainerState>) {}

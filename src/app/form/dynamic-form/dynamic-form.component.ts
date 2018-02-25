@@ -31,7 +31,6 @@ import { FormSchema } from "app/form/models/form-schema.model";
 import { FormFieldTypesModule } from "app/form/form-field-types/form-field-types.module";
 
 const contorlTemplate = (schema: FormFieldSchema) => {
-	debugger;
 	switch (schema.inputType) {
 		case "text":
 			return `
@@ -65,14 +64,13 @@ const contorlTemplate = (schema: FormFieldSchema) => {
 		case "select":
 			debugger;
 			return `
-      {{${schema.path}.schema}}
       <app-select-form-control-ui [schema]="${schema.path}.schema"></app-select-form-control-ui>
     `;
 	}
 };
 const GroupOpenTemplate = ({ path }) => {
 	return `
-      <div [formGroup]="${path}" fxLayout="column">{{${path}.schema|json}}
+      <div [formGroup]="${path}" fxLayout="column">
   `;
 };
 const GroupCloseTemplate = () => {
