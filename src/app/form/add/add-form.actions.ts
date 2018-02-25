@@ -1,6 +1,6 @@
 import { Action } from "@ngrx/store";
 
-import { FormModel } from "app/models/form";
+import { FormModel } from "../models";
 
 export enum AddFormActionTypes {
 	ADD_FORM = "[FORM][ADD] ADD_FORM_PROFILE",

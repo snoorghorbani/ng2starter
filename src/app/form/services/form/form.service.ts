@@ -2,13 +2,11 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Rx";
 
-import { FormModel, AddFormApiModel, EditFormApiModel } from "app/models/form";
+import { FormModel, AddFormApiModel, EditFormApiModel, FormListApiModel } from "../../models";
 import { FormConfigurationService } from "app/form/services/form-module-configuration";
 import { Store } from "@ngrx/store";
 
 import * as mainContainerReducers from "../../main-container/main-container.reducers";
-import { stringTemplate } from "app/infra";
-import { FormListApiModel } from "app/models/form/form-list.api-model";
 
 @Injectable()
 export class FormService {
