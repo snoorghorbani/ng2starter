@@ -7,7 +7,7 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Store } from "@ngrx/store";
 import { SwPush } from "@angular/service-worker";
 
-import * as authReducer from "@soushians/authentication";
+import { getUserInfo } from "@soushians/user";
 import * as fromLayout from "@soushians/layout";
 
 import { State } from "./reducers";
@@ -35,7 +35,7 @@ export class AppComponent implements AfterViewInit {
 	progressStatus$: Observable<boolean>;
 	showSidebarMenu = new BehaviorSubject(true);
 	//user$: Observable<UserModel>;
-	user$: Observable<any>;
+	user$: Observable<UserModel>;
 	userType: string;
 	showMainSidenav: Observable<boolean>;
 	mainSidenavMode: Observable<"side" | "over" | "push">;
@@ -61,13 +61,11 @@ export class AppComponent implements AfterViewInit {
 
 		this.layoutMode = this.store.select(fromLayout.getLayoutMode);
 
-		this.user$ = this.store.select(authReducer.getUser);
-		this.userType = [ "admin-user", "agent-user", "user-user" ]
-			.filter(
-				(v, i) =>
-					[ this.signinService.is_admin(), this.signinService.is_agent(), this.signinService.is_user() ][i]
-			)
-			.pop();
+		this.user$ = this.store.select(getUserInfo);
+		this.user$
+			.filter((user) => user.Roles != undefined)
+			.subscribe((user) => (this.userType = `${user.Roles.pop()}-user`));
+
 		this.router.events.filter((data) => data instanceof NavigationEnd).subscribe((event) => {
 			var hideSituations = [
 				(event as NavigationEnd).urlAfterRedirects == "/auth/signin",

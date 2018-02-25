@@ -1,11 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { SocketService } from "app/infra/socket";
 import { Observable } from "rxjs/Observable";
 import { Store } from "@ngrx/store";
 
 import * as MainContainerReducer from "../../main-container/main-container.reducers";
 import { FormService } from "app/form/services";
-import { FormModel } from "app/models/form";
+import { FormModel } from "../../models";
 
 @Component({
 	template: `<form-list

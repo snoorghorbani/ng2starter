@@ -1,6 +1,6 @@
 import { Action } from "@ngrx/store";
 
-import { FormModel } from "app/models/form";
+import { FormModel } from "../models";
 
 export enum EditFormActionTypes {
 	EDIT_FORM = "[FORM][EDIT] EDIT_FORM_PROFILE",

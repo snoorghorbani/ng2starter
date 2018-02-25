@@ -5,7 +5,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Store } from "@ngrx/store";
 
 import * as MainContainerReducer from "../../main-container/main-container.reducers";
-import { FormModel } from "app/models/form";
+import { FormModel } from "../../models";
 import { AddFormAction } from "app/form/add/add-form.actions";
 
 @Component({

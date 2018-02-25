@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import * as MainContainerReducer from "../../main-container/main-container.reducers";
 import { Store } from "@ngrx/store";
 import { ActivatedRoute } from "@angular/router";
-import { FormModel } from "app/models/form";
+import { FormModel } from "../../models";
 
 @Component({
 	template: "<router-outlet></router-outlet>"

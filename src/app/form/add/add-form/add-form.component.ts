@@ -1,10 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 
-import { UserModel } from "app/models/user";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { FormModel, AddFormApiModel } from "app/models/form";
+import { FormModel, AddFormApiModel } from "../../models";
 
 @Component({
 	selector: "add-form",

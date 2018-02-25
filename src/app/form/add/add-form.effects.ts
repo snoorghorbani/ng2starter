@@ -11,7 +11,7 @@ import { of } from "rxjs/observable/of";
 import { Store } from "@ngrx/store";
 
 import { FormService } from "../services";
-import { AddFormApiModel } from "app/models/form";
+import { AddFormApiModel } from "../models";
 import { AddFormActionTypes, AddFormStartAction, AddFormSucceedAction, AddFormFailedAction } from "./add-form.actions";
 
 @Injectable()

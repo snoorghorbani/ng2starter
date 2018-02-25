@@ -11,7 +11,7 @@ import { of } from "rxjs/observable/of";
 import { Store } from "@ngrx/store";
 
 import { FormService } from "../services";
-import { EditFormApiModel } from "app/models/form";
+import { EditFormApiModel } from "../models";
 import {
 	EditFormActionTypes,
 	EditFormStartAction,
