@@ -33,6 +33,11 @@ import { FormListComponent } from "app/form/list";
 import { EditFormComponent } from "app/form/edit";
 import { AddFormEffects } from "app/form/add/add-form.effects";
 import { EditFormEffects } from "app/form/edit/edit-form.effects";
+import { FormGroupComponent } from "app/form/form-group";
+import { FormArrayComponent } from "app/form/form-array";
+import { FormControlComponent } from "app/form/form-control";
+import { DynamicformComponent } from "app/form/dynamic-form";
+import { AddformComponent } from "app/form/add-form";
 
 @NgModule({
 	imports: [
@@ -61,7 +66,12 @@ import { EditFormEffects } from "app/form/edit/edit-form.effects";
 		EditFormComponent,
 		FormListComponent,
 		MainContainerComponent,
-		AddFormContainerComponent
+		AddFormContainerComponent,
+		DynamicformComponent,
+		AddformComponent,
+		FormGroupComponent,
+		FormArrayComponent,
+		FormControlComponent
 	],
 	exports: []
 })

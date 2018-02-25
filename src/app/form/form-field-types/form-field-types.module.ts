@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { SelectFormControlUiComponent } from "app/form-field-types/select-form-control-ui/select-form-control-ui.component";
 import {
 	MatSidenavModule,
 	MatToolbarModule,
@@ -15,6 +14,7 @@ import {
 	MatSliderModule
 } from "@angular/material";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { SelectFormControlUiComponent } from "app/form/form-field-types/select-form-control-ui";
 
 @NgModule({
 	imports: [

@@ -4,7 +4,7 @@ import { Observable } from "rxjs/Observable";
 
 import { FormModuleConfig } from "../../form.config";
 import { MODULE_CONFIG_TOKEN, MODULE_DEFAULT_CONFIG } from "../../form.config";
-import { getFormModuleConfig } from "app/config/reducers";
+import { getFormModuleConfig } from "@soushians/config";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { FormState } from "app/form/main-container/main-container.reducers";
 

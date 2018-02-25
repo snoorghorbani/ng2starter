@@ -18,7 +18,7 @@
   <mat-sidenav-container [class]="userType">
     <mat-sidenav [mode]="mainSidenavMode | async" [opened]='showMainSidenav | async' #sidebar (closedStart)="onSidebarClosedStart()">
       <mat-nav-list>
-        <layout-main-menu [authenticated]='showSidebarMenu' (closeSidebar)="sidebar.close()" (click)="onSecondSidebarClosedStart()"></layout-main-menu>
+        <ngs-layout-main-menu [authenticated]='showSidebarMenu' (closeSidebar)="sidebar.close()" (click)="onSecondSidebarClosedStart()"></ngs-layout-main-menu>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav [mode]="secondSidenavMode | async" [opened]='showSecondSidenav | async' (closedStart)="onSecondSidebarClosedStart()"
@@ -29,8 +29,8 @@
 
     <div fxFlexLayout='column' id="app-main-container" fxLayoutAlign='center center'>
       <div fxFlex='0 0 100'>
-        <app-addform></app-addform>
-        <app-dynamicform></app-dynamicform>
+        <!-- <app-addform></app-addform>
+        <app-dynamicform></app-dynamicform> -->
         <router-outlet></router-outlet>
         <footer>
           <app-footer></app-footer>

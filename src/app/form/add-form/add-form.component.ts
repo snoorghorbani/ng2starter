@@ -4,9 +4,9 @@ import { FormFieldSchema } from "app/form/models/form-field-schema.model";
 import { FormSchema } from "app/form/models/form-schema.model";
 
 @Component({
-	selector: "app-addform",
-	templateUrl: "./addform.component.html",
-	styleUrls: [ "./addform.component.scss" ]
+	selector: "app-add-form",
+	templateUrl: "./add-form.component.html",
+	styleUrls: [ "./add-form.component.scss" ]
 })
 export class AddformComponent implements OnInit {
 	schema: FormSchema = new FormSchema();

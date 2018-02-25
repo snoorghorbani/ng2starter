@@ -26,9 +26,9 @@ import {
 import { CommonModule } from "@angular/common";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { ComponentRef } from "@angular/core/src/linker/component_factory";
-import { FormFieldTypesModule } from "app/form-field-types/form-field-types.module";
 import { FormFieldSchema } from "app/form/models/form-field-schema.model";
 import { FormSchema } from "app/form/models/form-schema.model";
+import { FormFieldTypesModule } from "app/form/form-field-types/form-field-types.module";
 
 const contorlTemplate = (schema: FormFieldSchema) => {
 	debugger;
@@ -92,9 +92,9 @@ const ArrayCloseTemplate = () => {
 };
 
 @Component({
-	selector: "app-dynamicform",
-	templateUrl: "./dynamicform.component.html",
-	styleUrls: [ "./dynamicform.component.scss" ]
+	selector: "app-dynamic-form",
+	templateUrl: "./dynamic-form.component.html",
+	styleUrls: [ "./dynamic-form.component.scss" ]
 })
 export class DynamicformComponent {
 	schema$: BehaviorSubject<FormSchema>;
@@ -249,110 +249,3 @@ export class DynamicformComponent {
 		}
 	}
 }
-
-// const data: FormSchema = {
-// 	_id: "asdfasdfasdfasdff",
-// 	name: "test",
-// 	description: "test desciption",
-// 	// type: "group",
-// 	form: {
-// 		type: "group",
-// 		name: "formGroup",
-// 		placeholder: "placeholer",
-// 		inputType: "input",
-// 		validators: {
-// 			readonly: true
-// 		},
-// 		fields: [
-// 			{
-// 				type: "control",
-// 				name: "c1",
-// 				value: "value_c1",
-// 				placeholder: "value_c1",
-// 				inputType: "input",
-// 				validators: {
-// 					readonly: true
-// 				},
-// 				fields: []
-// 			},
-// 			{
-// 				type: "control",
-// 				name: "c2",
-// 				value: "c2",
-// 				placeholder: "c2",
-// 				inputType: "input",
-// 				validators: {
-// 					readonly: true
-// 				},
-// 				fields: []
-// 			},
-// 			{
-// 				type: "group",
-// 				name: "g11",
-// 				value: "g11",
-// 				placeholder: "g11",
-// 				inputType: "input",
-// 				validators: {
-// 					readonly: true
-// 				},
-// 				fields: [
-// 					{
-// 						type: "control",
-// 						name: "a11",
-// 						value: "a11",
-// 						placeholder: "a11",
-// 						inputType: "input",
-// 						validators: {
-// 							readonly: true
-// 						},
-// 						fields: []
-// 					},
-// 					{
-// 						type: "array",
-// 						name: "a12",
-// 						value: "a12",
-// 						placeholder: "a12",
-// 						inputType: "input",
-// 						validators: {
-// 							readonly: true
-// 						},
-// 						fields: [
-// 							{
-// 								type: "group",
-// 								name: "a11g1",
-// 								value: "a11g1",
-// 								placeholder: "a11g1",
-// 								inputType: "input",
-// 								validators: {
-// 									readonly: true
-// 								},
-// 								fields: [
-// 									{
-// 										type: "control",
-// 										name: "a11g1c1",
-// 										value: "a11g1c1",
-// 										placeholder: "a11g1c1",
-// 										inputType: "input",
-// 										validators: {
-// 											readonly: true
-// 										}
-// 									},
-// 									{
-// 										type: "control",
-// 										name: "a11g1c2",
-// 										value: "a11g1c2",
-// 										placeholder: "a11g1c2",
-// 										inputType: "input",
-// 										validators: {
-// 											readonly: true
-// 										}
-// 									}
-// 								]
-// 							}
-// 						]
-// 					}
-// 				]
-// 			}
-// 		]
-// 	}
-// };

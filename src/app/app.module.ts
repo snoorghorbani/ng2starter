@@ -7,10 +7,11 @@ import { EffectsModule } from "@ngrx/effects";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import "hammerjs";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { environment } from "../environments/environment";
 
-import { CoreModule } from "./core";
 import { SharedModule } from "@soushians/shared";
 import { NgsAuthenticationModule } from "@soushians/authentication";
 import { InfraModule } from "@soushians/infra";
@@ -21,6 +22,7 @@ import { NgsConfigModule } from "@soushians/config";
 import { SourceModule } from "@soushians/source";
 import * as FeatureReducer from "@soushians/config";
 
+import { CoreModule } from "./core";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { reducers } from "./reducers";
@@ -28,15 +30,8 @@ import { AppEffects } from "./effects";
 
 //module configs
 import { DashboardModule } from "./dashboard";
-import { authenticationModuleConfig, userModuleConfig } from "./modules-config";
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { userModuleConfig } from "./modules-config";
 import { EventHandlerService } from "./services";
-import { DynamicformComponent } from "./dynamicform/dynamicform.component";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { AddformComponent } from "./addform/addform.component";
-import { FormGroupComponent } from "./form-group/form-group.component";
-import { FormArrayComponent } from "./form-array/form-array.component";
-import { FormControlComponent } from "./form-control/form-control.component";
 
 @NgModule({
 	imports: [
@@ -68,14 +63,7 @@ import { FormControlComponent } from "./form-control/form-control.component";
 		FormsModule,
 		ReactiveFormsModule
 	],
-	declarations: [
-		AppComponent,
-		DynamicformComponent,
-		AddformComponent,
-		FormGroupComponent,
-		FormArrayComponent,
-		FormControlComponent
-	],
+	declarations: [ AppComponent ],
 	providers: [
 		// { provide: LOCALE_ID, useValue: 'fa-IR' },
 		EventHandlerService
