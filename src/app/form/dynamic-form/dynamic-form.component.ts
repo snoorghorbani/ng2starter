@@ -34,27 +34,27 @@ const contorlTemplate = (schema: FormFieldSchema) => {
 	switch (schema.inputType) {
 		case "text":
 			return `
-			<app-text [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-text>
+				<app-text [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-text>
     `;
 		case "number":
 			return `
-			<app-number [schema]="${schema.path}.schema"></app-number>
+				<app-number [schema]="${schema.path}.schema"></app-number>
     `;
 		case "email":
 			return `
-			<app-email [schema]="${schema.path}.schema"></app-email>
+				<app-email [schema]="${schema.path}.schema"></app-email>
     `;
 		case "color":
 			return `
-			<app-color [schema]="${schema.path}.schema"></app-color>
+				<app-color [schema]="${schema.path}.schema"></app-color>
     `;
 		case "checkbox":
 			return `
-      		<app-checkbox [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-checkbox>
+      			<app-checkbox [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-checkbox>
     `;
 		case "select":
 			return `
-      <app-select [schema]="${schema.path}.schema"></app-select>
+      			<app-select [schema]="${schema.path}.schema"></app-select>
     `;
 	}
 };
