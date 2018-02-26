@@ -14,7 +14,6 @@ router.get("/", function(req, res) {
 });
 router.post("/", function(req, res) {
 	const model = new Model(req.body);
-	debugger;
 	model.save().then((Result) => res.json({ Result })).catch((err) => {
 		debugger;
 	});
