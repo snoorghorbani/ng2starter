@@ -32,7 +32,7 @@ import { AppEffects } from "./effects";
 import { DashboardModule } from "./dashboard";
 import { userModuleConfig } from "./modules-config";
 import { EventHandlerService } from "./services";
-import { FormModule } from "app/form";
+import { NgsFormModule } from "app/form";
 
 @NgModule({
 	imports: [
@@ -59,7 +59,7 @@ import { FormModule } from "app/form";
 		DashboardModule,
 		SourceModule,
 		StaticPageModule,
-		FormModule.forRoot(),
+		NgsFormModule.forRoot(),
 		AppRoutingModule,
 		MatFormFieldModule,
 		FormsModule,

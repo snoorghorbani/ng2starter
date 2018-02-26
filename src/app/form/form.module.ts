@@ -37,6 +37,7 @@ import { FormGroupComponent } from "./form-group";
 import { FormArrayComponent } from "./form-array";
 import { FormControlComponent } from "./form-control";
 import { DynamicformComponent } from "./dynamic-form";
+import { FormViewComponent } from "app/form/form-view/form-view.component";
 
 @NgModule({
 	imports: [
@@ -68,20 +69,22 @@ import { DynamicformComponent } from "./dynamic-form";
 		AddFormComponent,
 		FormGroupComponent,
 		FormArrayComponent,
-		FormControlComponent
+		FormControlComponent,
+		FormViewComponent
 	],
-	exports: []
+	exports: [ FormViewComponent ]
 })
-export class FormModule {
+export class NgsFormModule {
 	static forRoot(config?: FormModuleConfig): ModuleWithProviders {
 		return {
-			ngModule: RootFormModule,
+			ngModule: RootNgsFormModule,
 			providers: [ { provide: MODULE_CONFIG_TOKEN, useValue: config }, FormService, FormConfigurationService ]
 		};
 	}
 }
 
 @NgModule({
-	imports: [ EffectsModule.forFeature([ AddFormEffects, EditFormEffects ]), FormModule, RoutingModule ]
+	imports: [ EffectsModule.forFeature([ AddFormEffects, EditFormEffects ]), NgsFormModule, RoutingModule ],
+	exports: [ NgsFormModule ]
 })
-export class RootFormModule {}
+export class RootNgsFormModule {}
