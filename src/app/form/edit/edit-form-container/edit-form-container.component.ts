@@ -13,7 +13,7 @@ import { ActivatedRoute } from "@angular/router";
 
 @Component({
 	template: `<edit-form
-				[formGroup]="formGroup">
+					[formGroup]="formGroup">
 				</edit-form>`
 })
 export class EditFormContainerComponent implements OnInit {
@@ -43,8 +43,8 @@ export class EditFormContainerComponent implements OnInit {
 			.take(1)
 			.subscribe((data) => {
 				this.formGroup.patchValue({
-					Name: data.Name,
-					Controls: data.Controls
+					name: data.name,
+					form: data.form
 				});
 			});
 	}

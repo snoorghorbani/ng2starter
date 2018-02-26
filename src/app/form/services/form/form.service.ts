@@ -28,9 +28,9 @@ export class FormService {
 			.map((response: AddFormApiModel.Response) => response.Result);
 	}
 
-	get(name: string): Observable<FormModel> {
+	get(id: string): Observable<FormModel> {
 		return this.configurationService.config$
-			.filter((config) => config.endpoints.editForm != "")
+			.filter((config) => config.endpoints.getForm != "")
 			.take(1)
 			.switchMap((config) => this.http.get(config.endpoints.getForm))
 			.map((response: EditFormApiModel.Response) => response.Result);

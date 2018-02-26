@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from "@angular/core";
+import { FormService } from "../services";
+import { FormModel } from "../models";
+import { Observable } from "rxjs/Observable";
 
 @Component({
-  selector: 'app-form-view',
-  templateUrl: './form-view.component.html',
-  styleUrls: ['./form-view.component.scss']
+	selector: "ngs-form-view",
+	templateUrl: "./form-view.component.html"
 })
-export class FormViewComponent implements OnInit {
+export class FormViewComponent {
+	@Input()
+	set id(id: string) {
+		this.form = this.service.get(this.id);
+	}
+	form: Observable<FormModel>;
+	constructor(private service: FormService) {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+	ngOnInit() {}
 }
