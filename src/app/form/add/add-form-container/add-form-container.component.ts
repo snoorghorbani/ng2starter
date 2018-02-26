@@ -5,7 +5,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Store } from "@ngrx/store";
 
 import * as MainContainerReducer from "../../main-container/main-container.reducers";
-import { FormModel } from "../../models";
+import { FormSchemaModel } from "../../models";
 import { AddFormAction } from "app/form/add/add-form.actions";
 
 @Component({
@@ -14,7 +14,7 @@ import { AddFormAction } from "app/form/add/add-form.actions";
 export class AddFormContainerComponent implements OnInit {
 	constructor(private store: Store<MainContainerReducer.MainContainerState>) {}
 	ngOnInit() {}
-	add(form: FormModel) {
+	add(form: FormSchemaModel) {
 		debugger;
 		this.store.dispatch(new AddFormAction(form));
 	}

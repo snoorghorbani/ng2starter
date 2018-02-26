@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpRequestBaseModel } from "@soushians/shared";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { FormModel } from "../models";
+import { FormSchemaModel } from "../models";
 
 export namespace AddFormApiModel {
 	export class Request implements HttpRequestBaseModel<Request> {
@@ -26,7 +26,7 @@ export namespace AddFormApiModel {
 	}
 
 	export class Response {
-		Result: FormModel;
+		Result: FormSchemaModel;
 		constructor() {}
 	}
 }

@@ -1,12 +1,13 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Rx";
-
-import { FormModel, AddFormApiModel, EditFormApiModel, FormListApiModel } from "../../models";
-import { FormConfigurationService } from "app/form/services/form-module-configuration";
 import { Store } from "@ngrx/store";
 
-import * as mainContainerReducers from "../../main-container/main-container.reducers";
+import { stringTemplate } from "@soushians/infra";
+import { FormSchemaModel, AddFormApiModel, EditFormApiModel, FormListApiModel } from "../models";
+import { FormConfigurationService } from "./form-configuration.service";
+
+import * as mainContainerReducers from "../main-container/main-container.reducers";
 
 @Injectable()
 export class FormService {
@@ -17,33 +18,28 @@ export class FormService {
 		private configurationService: FormConfigurationService
 	) {}
 
-	add(data: AddFormApiModel.Request): Observable<FormModel> {
+	add(data: AddFormApiModel.Request): Observable<FormSchemaModel> {
 		const model = new AddFormApiModel.Request(data);
-		debugger;
-
 		return this.configurationService.config$
 			.filter((config) => config.endpoints.addForm != "")
 			.take(1)
 			.switchMap((config) => this.http.post(config.endpoints.addForm, model.getRequestBody()))
 			.map((response: AddFormApiModel.Response) => response.Result);
 	}
-
-	get(id: string): Observable<FormModel> {
+	get(_id: string): Observable<FormSchemaModel> {
 		return this.configurationService.config$
 			.filter((config) => config.endpoints.getForm != "")
 			.take(1)
-			.switchMap((config) => this.http.get(config.endpoints.getForm))
+			.switchMap((config) => this.http.get(stringTemplate(config.endpoints.getForm, { _id })))
 			.map((response: EditFormApiModel.Response) => response.Result);
 	}
-
-	getList(): Observable<FormModel[]> {
+	getList(): Observable<FormSchemaModel[]> {
 		return this.configurationService.config$
 			.filter((config) => config.endpoints.getList != "")
 			.switchMap((config) => this.http.get(config.endpoints.getList))
 			.map((response: FormListApiModel.Response) => response.Result);
 	}
-
-	update(data: AddFormApiModel.Request): Observable<FormModel> {
+	update(data: AddFormApiModel.Request): Observable<FormSchemaModel> {
 		const model = new AddFormApiModel.Request(data);
 		return this.configurationService.config$
 			.filter((config) => config.endpoints.editForm != "")

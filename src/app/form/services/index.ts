@@ -1,2 +1,2 @@
-export * from "./form-module-configuration";
-export * from "./form";
+export * from "./form-configuration.service";
+export * from "./form.service";

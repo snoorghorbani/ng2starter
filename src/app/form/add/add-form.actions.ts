@@ -1,6 +1,6 @@
 import { Action } from "@ngrx/store";
 
-import { FormModel } from "../models";
+import { FormSchemaModel } from "../models";
 
 export enum AddFormActionTypes {
 	ADD_FORM = "[FORM][ADD] ADD_FORM_PROFILE",
@@ -11,11 +11,11 @@ export enum AddFormActionTypes {
 
 export class AddFormAction implements Action {
 	readonly type = AddFormActionTypes.ADD_FORM;
-	constructor(public payload: FormModel) {}
+	constructor(public payload: FormSchemaModel) {}
 }
 export class AddFormStartAction implements Action {
 	readonly type = AddFormActionTypes.ADD_FORM_START;
-	constructor(public payload: FormModel) {}
+	constructor(public payload: FormSchemaModel) {}
 }
 export class AddFormSucceedAction implements Action {
 	readonly type = AddFormActionTypes.ADD_FORM_SUCCEED;

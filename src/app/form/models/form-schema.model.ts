@@ -4,7 +4,7 @@ export class Validators {
 	readonly: boolean;
 }
 
-export class FormSchema {
+export class FormSchemaModel {
 	_id: string;
 	name: string;
 	description: string;

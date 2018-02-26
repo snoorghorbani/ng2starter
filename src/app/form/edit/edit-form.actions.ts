@@ -1,6 +1,6 @@
 import { Action } from "@ngrx/store";
 
-import { FormModel } from "../models";
+import { FormSchemaModel } from "../models";
 
 export enum EditFormActionTypes {
 	EDIT_FORM = "[FORM][EDIT] EDIT_FORM_PROFILE",
@@ -11,11 +11,11 @@ export enum EditFormActionTypes {
 
 export class EditFormAction implements Action {
 	readonly type = EditFormActionTypes.EDIT_FORM;
-	constructor(public payload: FormModel) {}
+	constructor(public payload: FormSchemaModel) {}
 }
 export class EditFormStartAction implements Action {
 	readonly type = EditFormActionTypes.EDIT_FORM_START;
-	constructor(public payload: FormModel) {}
+	constructor(public payload: FormSchemaModel) {}
 }
 export class EditFormSucceedAction implements Action {
 	readonly type = EditFormActionTypes.EDIT_FORM_SUCCEED;

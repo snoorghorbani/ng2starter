@@ -1,15 +1,43 @@
-  <div fxFlex="450px">
-    <form [formGroup]="formGroup" (ngSubmit)="edit()" fxLayout="column">
-      <mat-card>
-        <mat-card-content>
-          <mat-form-field fxFlexFill>
-            <input type="text" matInput placeholder="نام" formControlName="Name">
-          </mat-form-field>
-        </mat-card-content>
-        <mat-card-actions fxLayoutAlign="center center">
-          <button fxFlex="nogrow" type="submit" mat-raised-button color="primary">ویرایش</button>
-          <button fxFlex="nogrow" type="button" routerLink="../list" mat-raised-button>بازگشت</button>
-        </mat-card-actions>
-      </mat-card>
-    </form>
-  </div>
+<div>
+  <form [formGroup]="formGroup">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>اطلاعات فرم</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class='list-item' fxFlexLayout='row'>
+          <p fxFlex='40'>نام</p>
+          <input fxFlex='60' formControlName="name" />
+        </div>
+        <div>
+          select schema root type : 
+          <mat-radio-group (change)="addRootControl($event.value)">
+              <mat-radio-button value="array">array</mat-radio-button>
+              <mat-radio-button value="group">group</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <div class="button-row">
+          <button mat-button color="primary" (click)="addFormGroup(schema.form)">addFormGroup</button>
+          <button mat-button color="primary" (click)="addFormArray(schema.form)">addFormArray</button>
+          <!-- <button mat-button color="primary" (click)="addFormControl(schema.form)">addFormControl</button> -->
+        </div>
+
+        <div [ngSwitch]="schema.form?.type">
+          <app-form-group *ngSwitchCase="'group'" [schema]="schema.form" (change)="changed($event)"></app-form-group>
+          <app-form-array *ngSwitchCase="'array'" [schema]="schema.form" (change)="changed($event)"></app-form-array>
+        </div>
+
+        <button mat-button color="primary" (click)="form.generate(schema)">generate</button>
+      </mat-card-content>
+      <mat-card-actions>
+        <button fxFlex mat-raised-button color="primary" (click)="add()" type="submit">ثبت</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>
+<mat-card>
+  <mat-card-content>
+    <ngs-form-view #form></ngs-form-view>
+  </mat-card-content>
+</mat-card>

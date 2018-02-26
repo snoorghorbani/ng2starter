@@ -6,7 +6,8 @@ import {
 	ComponentFactoryResolver,
 	Compiler,
 	ReflectiveInjector,
-	NgModule
+	NgModule,
+	Input
 } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { FormControl, FormGroup, FormArray, AbstractControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -27,8 +28,9 @@ import { CommonModule } from "@angular/common";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { ComponentRef } from "@angular/core/src/linker/component_factory";
 import { FormFieldSchema } from "app/form/models/form-field-schema.model";
-import { FormSchema } from "app/form/models/form-schema.model";
+import { FormSchemaModel } from "app/form/models/form-schema.model";
 import { FormControlsModule } from "app/form/form-controls";
+import { FormService } from "app/form/services";
 
 const contorlTemplate = (schema: FormFieldSchema) => {
 	switch (schema.inputType) {
@@ -80,12 +82,16 @@ const ArrayCloseTemplate = () => {
 };
 
 @Component({
-	selector: "app-dynamic-form",
-	templateUrl: "./dynamic-form.component.html",
-	styleUrls: [ "./dynamic-form.component.scss" ]
+	selector: "ngs-form-view",
+	templateUrl: "./form-view.component.html"
 })
-export class DynamicformComponent {
-	schema$: BehaviorSubject<FormSchema>;
+export class FormViewComponent {
+	@Input()
+	set id(id: string) {
+		debugger;
+		this.service.get(id).subscribe((schema) => this.schema$.next(schema));
+	}
+	@Input() schema$: BehaviorSubject<FormSchemaModel>;
 	formGroup: AbstractControl;
 	formGroupCreated = false;
 	template = "";
@@ -93,7 +99,7 @@ export class DynamicformComponent {
 	@ViewChild("contentFormGen", { read: ViewContainerRef })
 	private target: ViewContainerRef;
 
-	constructor(private compiler: Compiler, private resolver: ComponentFactoryResolver) {
+	constructor(private service: FormService, private compiler: Compiler, private resolver: ComponentFactoryResolver) {
 		this.schema$ = new BehaviorSubject(undefined);
 
 		this.schema$.subscribe((schema) => {
@@ -124,7 +130,7 @@ export class DynamicformComponent {
 			}, 10);
 		});
 	}
-	generate(schema: FormSchema) {
+	generate(schema: FormSchemaModel) {
 		this.schema$.next(schema);
 	}
 	createTemplate(control: AbstractControl) {
@@ -147,7 +153,7 @@ export class DynamicformComponent {
 		}
 	}
 	createModuleWithFormComponent(
-		schema: FormSchema,
+		schema: FormSchemaModel,
 		template: string,
 		formGroupName: string,
 		formGroup: AbstractControl

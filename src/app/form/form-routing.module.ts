@@ -16,7 +16,7 @@ const routes: Routes = [
 				component: AddFormContainerComponent
 			},
 			{
-				path: "edit",
+				path: "edit/:_id",
 				component: EditFormComponent
 			},
 			{

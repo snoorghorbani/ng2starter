@@ -5,7 +5,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Store } from "@ngrx/store";
 
 import * as MainContainerReducer from "../../main-container/main-container.reducers";
-import { FormModel, EditFormApiModel } from "../../models";
+import { FormSchemaModel, EditFormApiModel } from "../../models";
 import { FormService } from "app/form/services";
 import { AddFormAction } from "app/form/add/add-form.actions";
 import { EditFormAction } from "app/form/edit/edit-form.actions";
