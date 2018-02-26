@@ -38,15 +38,15 @@ const contorlTemplate = (schema: FormFieldSchema) => {
     `;
 		case "number":
 			return `
-				<app-number [schema]="${schema.path}.schema"></app-number>
+				<app-number [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-number>
     `;
 		case "email":
 			return `
-				<app-email [schema]="${schema.path}.schema"></app-email>
+				<app-email [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-email>
     `;
 		case "color":
 			return `
-				<app-color [schema]="${schema.path}.schema"></app-color>
+				<app-color [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-color>
     `;
 		case "checkbox":
 			return `
@@ -54,7 +54,7 @@ const contorlTemplate = (schema: FormFieldSchema) => {
     `;
 		case "select":
 			return `
-      			<app-select [schema]="${schema.path}.schema"></app-select>
+      			<app-select [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-select>
     `;
 	}
 };
