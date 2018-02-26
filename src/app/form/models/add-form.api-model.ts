@@ -5,22 +5,22 @@ import { FormModel } from "../models";
 
 export namespace AddFormApiModel {
 	export class Request implements HttpRequestBaseModel<Request> {
-		Name: string;
-		Controls: object[];
+		name: string;
+		form: object[];
 		constructor(initValue = {} as AddFormApiModel.Request) {
 			Object.keys(initValue).forEach((key) => (this[key] = initValue[key]));
 		}
 
 		getRequestBody() {
 			return {
-				Name: this.Name,
-				Controls: this.Controls
+				name: this.name,
+				form: this.form
 			};
 		}
 		static get formGroup() {
 			return new FormGroup({
-				Name: new FormControl("", [ Validators.required ]),
-				Controls: new FormGroup({})
+				name: new FormControl("", [ Validators.required ]),
+				form: new FormControl({})
 			});
 		}
 	}

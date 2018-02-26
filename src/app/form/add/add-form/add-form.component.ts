@@ -16,11 +16,15 @@ export class AddFormComponent {
 	constructor() {}
 
 	add() {
+		debugger;
+		this.formGroup.get("form").setValue(this.schema.form);
 		this.submited.emit(this.formGroup.value);
 	}
 	changed($event) {}
-	addRootControl(type: "array" | "group") {
+	changeOrder($event) {
 		debugger;
+	}
+	addRootControl(type: "array" | "group") {
 		this.schema.form = new FormFieldSchema(type);
 	}
 

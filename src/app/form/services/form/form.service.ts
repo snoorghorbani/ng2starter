@@ -19,6 +19,7 @@ export class FormService {
 
 	add(data: AddFormApiModel.Request): Observable<FormModel> {
 		const model = new AddFormApiModel.Request(data);
+		debugger;
 
 		return this.configurationService.config$
 			.filter((config) => config.endpoints.addForm != "")

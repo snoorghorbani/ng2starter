@@ -1,4 +1,4 @@
 export class FormModel {
-	Name: string;
-	Controls: object[];
+	name: string;
+	form: object[];
 }

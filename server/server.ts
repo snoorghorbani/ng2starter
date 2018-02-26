@@ -26,11 +26,17 @@ dotenv.config({ path: ".env" });
 // import * as admin from "firebase-admin";
 
 /**
+ * Models (route handlers).
+ */
+import "./models/form.model";
+
+/**
  * Controllers (route handlers).
  */
 import * as homeController from "./controllers/home";
 import * as userController from "./controllers/user.controller";
 import * as configController from "./controllers/config.controller";
+import * as formController from "./controllers/form.controller";
 // import * as apiController from "./controllers/api";
 import * as fakeController from "./controllers/fake.controller";
 import * as dataController from "./controllers/data-provider.controller";
@@ -126,6 +132,7 @@ app.use(express.static(path.join(__dirname, "../src"), { maxAge: 31557600000 }))
 app.get("/", homeController.index);
 app.use("/api/user", userController.router);
 app.use("/api/config", configController.router);
+app.use("/api/form", formController.router);
 app.use("/api/fake", fakeController.router);
 app.use("/api/data", dataController.router);
 app.use("/api/event", eventController.router);
