@@ -1,3 +1,5 @@
-<mat-form-field fxFlexFill>
+<div  [formGroup]="form">
+    <mat-form-field fxFlexFill>
         <input matInput [type]="schema.inputType" [placeholder]="schema.placeholder" [formControlName]="schema.name">
     </mat-form-field>
+</div>
