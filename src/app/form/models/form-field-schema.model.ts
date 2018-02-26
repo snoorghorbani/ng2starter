@@ -4,6 +4,7 @@ export class FormFieldSchema {
 	type: "group" | "array" | "control";
 	name: string;
 	parentType?: "array" | "group";
+	formGroupPath?: string;
 	path?: string;
 	placeholder: string;
 	inputType: "select" | "text" | "number" | "email" | "color" | "checkbox";

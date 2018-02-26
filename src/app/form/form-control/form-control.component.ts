@@ -20,7 +20,6 @@ export class FormControlComponent {
 	constructor() {}
 
 	changed($event) {
-		debugger;
 		this.change.emit($event);
 	}
 

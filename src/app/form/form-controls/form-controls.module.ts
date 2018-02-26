@@ -14,12 +14,13 @@ import {
 	MatSliderModule
 } from "@angular/material";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { SelectComponent } from "app/form/form-controls/select/select.component";
-import { CheckboxComponent } from "app/form/form-controls/checkbox/checkbox.component";
-import { EmailComponent } from "app/form/form-controls/email/email.component";
-import { ColorComponent } from "app/form/form-controls";
-import { TextComponent } from "app/form/form-controls/text";
-import { NumberComponent } from "app/form/form-controls/number";
+
+import { SelectComponent } from "./select";
+import { CheckboxComponent } from "./checkbox";
+import { EmailComponent } from "./email";
+import { ColorComponent } from "./color";
+import { TextComponent } from "./text";
+import { NumberComponent } from "./number";
 
 @NgModule({
 	imports: [

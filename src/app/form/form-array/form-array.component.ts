@@ -12,7 +12,6 @@ export class FormArrayComponent {
 	constructor() {}
 
 	changed($event) {
-		debugger;
 		this.change.emit($event);
 	}
 

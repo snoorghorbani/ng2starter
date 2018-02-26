@@ -34,7 +34,7 @@ const contorlTemplate = (schema: FormFieldSchema) => {
 	switch (schema.inputType) {
 		case "text":
 			return `
-			<app-text [schema]="${schema.path}.schema"></app-text>
+			<app-text [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-text>
     `;
 		case "number":
 			return `
@@ -50,7 +50,7 @@ const contorlTemplate = (schema: FormFieldSchema) => {
     `;
 		case "checkbox":
 			return `
-      		<app-checkbox [schema]="${schema.path}.schema"></app-checkbox>
+      		<app-checkbox [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-checkbox>
     `;
 		case "select":
 			return `
@@ -197,11 +197,13 @@ export class DynamicformComponent {
 				// parentPath = `${parentPath}.controls[${(data as FormFieldSchema).name}]`;
 			} else if (data.parentType == "group") {
 				debugger;
+				var formGroupPath = parentPath;
 				parentPath = `${parentPath}.controls.${(data as FormFieldSchema).name}`;
 			}
 			var ctr = new FormControl(data.value);
 			(ctr as any).schema = data;
 			(ctr as any).schema.path = parentPath;
+			(ctr as any).schema.formGroupPath = formGroupPath;
 			return ctr;
 		} else if (data.type == "group") {
 			var formGroup = new FormGroup({});

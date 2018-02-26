@@ -18,9 +18,7 @@ export class AddFormComponent {
 	add() {
 		this.submited.emit(this.formGroup.value);
 	}
-	changed($event) {
-		debugger;
-	}
+	changed($event) {}
 	addRootControl(type: "array" | "group") {
 		debugger;
 		this.schema.form = new FormFieldSchema(type);
