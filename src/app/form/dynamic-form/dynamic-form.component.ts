@@ -28,43 +28,33 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { ComponentRef } from "@angular/core/src/linker/component_factory";
 import { FormFieldSchema } from "app/form/models/form-field-schema.model";
 import { FormSchema } from "app/form/models/form-schema.model";
-import { FormFieldTypesModule } from "app/form/form-field-types/form-field-types.module";
+import { FormControlsModule } from "app/form/form-controls";
 
 const contorlTemplate = (schema: FormFieldSchema) => {
 	switch (schema.inputType) {
 		case "text":
 			return `
-        <mat-form-field fxFlexFill>
-        <input type="${schema.inputType}" matInput placeholder="${schema.placeholder}" formControlName="${schema.name}">
-        </mat-form-field>
+			<app-text [schema]="${schema.path}.schema"></app-text>
     `;
 		case "number":
 			return `
-        <mat-form-field fxFlexFill>
-        <input type="${schema.inputType}" matInput placeholder="${schema.placeholder}" formControlName="${schema.name}">
-        </mat-form-field>
+			<app-number [schema]="${schema.path}.schema"></app-number>
     `;
 		case "email":
 			return `
-        <mat-form-field fxFlexFill>
-        <input type="${schema.inputType}" matInput placeholder="${schema.placeholder}" formControlName="${schema.name}">
-        </mat-form-field>
+			<app-email [schema]="${schema.path}.schema"></app-email>
     `;
 		case "color":
 			return `
-        <mat-form-field fxFlexFill>
-        <input type="${schema.inputType}" matInput placeholder="${schema.placeholder}" formControlName="${schema.name}">
-        </mat-form-field>
+			<app-color [schema]="${schema.path}.schema"></app-color>
     `;
 		case "checkbox":
-			debugger;
 			return `
-      <mat-checkbox formControlName="${schema.name}">${schema.placeholder}</mat-checkbox>
+      		<app-checkbox [schema]="${schema.path}.schema"></app-checkbox>
     `;
 		case "select":
-			debugger;
 			return `
-      <app-select-form-control-ui [schema]="${schema.path}.schema"></app-select-form-control-ui>
+      <app-select [schema]="${schema.path}.schema"></app-select>
     `;
 	}
 };
@@ -190,7 +180,7 @@ export class DynamicformComponent {
 				MatIconModule,
 				MatButtonModule,
 				MatCardModule,
-				FormFieldTypesModule
+				FormControlsModule
 			],
 			declarations: [ CustomComponent ],
 			exports: [ CustomComponent ]
