@@ -10,6 +10,8 @@ export class FormFieldSchema {
 	inputType: "select" | "text" | "number" | "email" | "color" | "checkbox";
 	value?: any;
 	order?: number;
+	width?: number;
+	events: any[];
 	options: { [key: string]: string };
 	optionsEndpoint: string;
 	fields?: FormFieldSchema[];
