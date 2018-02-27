@@ -31,38 +31,39 @@ import { FormControlSchema } from "app/form/models/form-field-schema.model";
 import { FormSchemaModel } from "app/form/models/form-schema.model";
 import { FormControlsModule } from "app/form/form-controls";
 import { FormService } from "app/form/services";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 const contorlTemplate = (schema: FormControlSchema) => {
 	switch (schema.inputType) {
 		case "text":
 			return `
-				<app-text [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-text>
+				<app-text fxFlex="${schema.width} 0 auto" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-text>
     `;
 		case "number":
 			return `
-				<app-number [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-number>
+				<app-number fxFlex="${schema.width} 0 auto" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-number>
     `;
 		case "email":
 			return `
-				<app-email [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-email>
+				<app-email fxFlex="${schema.width} 0 auto" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-email>
     `;
 		case "color":
 			return `
-				<app-color [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-color>
+				<app-color fxFlex="${schema.width} 0 auto" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-color>
     `;
 		case "checkbox":
 			return `
-      			<app-checkbox [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-checkbox>
+      			<app-checkbox fxFlex="${schema.width} 0 auto" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-checkbox>
     `;
 		case "select":
 			return `
-      			<app-select [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-select>
+      			<app-select fxFlex="${schema.width} 0 auto" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-select>
     `;
 	}
 };
 const GroupOpenTemplate = ({ path }) => {
 	return `
-      <div [formGroup]="${path}" fxLayout="column">
+      <div [formGroup]="${path}" fxLayout="row">
   `;
 };
 const GroupCloseTemplate = () => {
@@ -83,7 +84,11 @@ const ArrayCloseTemplate = () => {
 
 @Component({
 	selector: "ngs-form-view",
-	templateUrl: "./form-view.component.html"
+	templateUrl: "./form-view.component.html",
+	styles: [
+		`
+		`
+	]
 })
 export class FormViewComponent {
 	@Input()
@@ -184,6 +189,7 @@ export class FormViewComponent {
 				MatIconModule,
 				MatButtonModule,
 				MatCardModule,
+				FlexLayoutModule,
 				FormControlsModule
 			],
 			declarations: [ CustomComponent ],
