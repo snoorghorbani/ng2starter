@@ -69,7 +69,7 @@ const contorlTemplate = (schema: FormControlSchema) => {
 };
 const GroupOpenTemplate = ({ path }) => {
 	return `
-    	<div [formGroup]="${path}" fxLayout="row">
+    	<div [formGroup]="${path}" fxLayout="row" fxLayoutWrap>
   	`;
 };
 const GroupCloseTemplate = () => {

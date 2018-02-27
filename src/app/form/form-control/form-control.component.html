@@ -32,7 +32,7 @@
         
           <mat-form-field>
             <mat-select [(ngModel)]="schema.width" placeholder="width">
-              <mat-option *ngFor="let item of width" value="item">{{item}}</mat-option>
+              <mat-option *ngFor="let item of width" [value]="item">{{item}}</mat-option>
             </mat-select>
           </mat-form-field>
 
