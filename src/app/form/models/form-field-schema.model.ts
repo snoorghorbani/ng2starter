@@ -19,5 +19,6 @@ export class FormControlSchema {
 	constructor(type: "group" | "array" | "control") {
 		this.type = type;
 		if (type != "control") this.fields = [];
+		this.width = 2;
 	}
 }
