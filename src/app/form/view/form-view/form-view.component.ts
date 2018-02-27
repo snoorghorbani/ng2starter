@@ -37,73 +37,55 @@ const contorlTemplate = (schema: FormControlSchema) => {
 	switch (schema.inputType) {
 		case "text":
 			return `
-<<<<<<< HEAD
-				<app-text fxFlex="${schema.width} 0 auto" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-text>
-    `;
+				<ngs-form-control-text fxFlex="${schema.width *
+					10}" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-text>
+		`;
 		case "number":
 			return `
-				<app-number fxFlex="${schema.width} 0 auto" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-number>
-    `;
+				<ngs-form-control-number fxFlex="${schema.width *
+					10}" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-number>
+		`;
 		case "email":
 			return `
-				<app-email fxFlex="${schema.width} 0 auto" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-email>
-    `;
+				<ngs-form-control-email fxFlex="${schema.width *
+					10}" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-email>
+    	`;
 		case "color":
 			return `
-				<app-color fxFlex="${schema.width} 0 auto" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-color>
-    `;
+				<ngs-form-control-color fxFlex="${schema.width *
+					10}" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-color>
+    	`;
 		case "checkbox":
 			return `
-      			<app-checkbox fxFlex="${schema.width} 0 auto" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-checkbox>
-    `;
+      			<ngs-form-control-checkbox fxFlex="${schema.width *
+					10}" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-checkbox>
+    	`;
 		case "select":
 			return `
-      			<app-select fxFlex="${schema.width} 0 auto" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-select>
-=======
-				<ngs-form-control-text [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-text>
-    `;
-		case "number":
-			return `
-				<ngs-form-control-number [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-number>
-    `;
-		case "email":
-			return `
-				<ngs-form-control-email [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-email>
-    `;
-		case "color":
-			return `
-				<ngs-form-control-color [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-color>
-    `;
-		case "checkbox":
-			return `
-      			<ngs-form-control-checkbox [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-checkbox>
-    `;
-		case "select":
-			return `
-      			<ngs-form-control-select [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-select>
->>>>>>> c2ba1d7561243e144178aeb26928beb48353d32b
-    `;
+      			<ngs-form-control-select fxFlex="${schema.width *
+					10}" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-select>
+    	`;
 	}
 };
 const GroupOpenTemplate = ({ path }) => {
 	return `
-      <div [formGroup]="${path}" fxLayout="row">
-  `;
+    	<div [formGroup]="${path}" fxLayout="row">
+  	`;
 };
 const GroupCloseTemplate = () => {
 	return `
-  </div>
-  `;
+		</div>
+	`;
 };
 const ArrayOpenTemplate = ({ path }) => {
 	return `
-    <div *ngFor="let item of ${path}.controls">
-  `;
+    	<div *ngFor="let item of ${path}.controls">
+  	`;
 };
 const ArrayCloseTemplate = () => {
 	return `
-  </div>
-  `;
+  		</div>
+  	`;
 };
 
 @Component({
