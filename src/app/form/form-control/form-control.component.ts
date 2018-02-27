@@ -4,13 +4,13 @@ import { FormControlSchema } from "app/form/models";
 
 @Component({
 	selector: "app-form-control",
-	templateUrl: "./form-control.component.html",
-	styleUrls: [ "./form-control.component.scss" ]
+	templateUrl: "./form-control.component.html"
 })
 export class FormControlComponent {
 	@Input() schema: FormControlSchema;
 	@Output() change = new EventEmitter();
 
+	width = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ];
 	options = new FormArray([
 		new FormGroup({
 			key: new FormControl(),

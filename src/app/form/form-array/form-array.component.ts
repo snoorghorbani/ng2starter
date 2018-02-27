@@ -3,8 +3,7 @@ import { FormControlSchema } from "app/form/models";
 
 @Component({
 	selector: "app-form-array",
-	templateUrl: "./form-array.component.html",
-	styleUrls: [ "./form-array.component.scss" ]
+	templateUrl: "./form-array.component.html"
 })
 export class FormArrayComponent {
 	@Input() schema: FormControlSchema;
