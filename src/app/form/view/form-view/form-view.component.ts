@@ -37,6 +37,7 @@ const contorlTemplate = (schema: FormControlSchema) => {
 	switch (schema.inputType) {
 		case "text":
 			return `
+<<<<<<< HEAD
 				<app-text fxFlex="${schema.width} 0 auto" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-text>
     `;
 		case "number":
@@ -58,6 +59,29 @@ const contorlTemplate = (schema: FormControlSchema) => {
 		case "select":
 			return `
       			<app-select fxFlex="${schema.width} 0 auto" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-select>
+=======
+				<ngs-form-control-text [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-text>
+    `;
+		case "number":
+			return `
+				<ngs-form-control-number [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-number>
+    `;
+		case "email":
+			return `
+				<ngs-form-control-email [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-email>
+    `;
+		case "color":
+			return `
+				<ngs-form-control-color [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-color>
+    `;
+		case "checkbox":
+			return `
+      			<ngs-form-control-checkbox [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-checkbox>
+    `;
+		case "select":
+			return `
+      			<ngs-form-control-select [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-select>
+>>>>>>> c2ba1d7561243e144178aeb26928beb48353d32b
     `;
 	}
 };
