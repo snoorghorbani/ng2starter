@@ -4,7 +4,8 @@ import { FormGroup } from "@angular/forms";
 
 @Component({
 	selector: "ngs-form-control-number",
-	templateUrl: "./number.component.html"
+	templateUrl: "./number.component.html",
+	styleUrls: [ "./number.component.scss" ]
 })
 export class NumberComponent implements OnInit {
 	@Input() form: FormGroup;

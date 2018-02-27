@@ -31,59 +31,70 @@ import { FormControlSchema } from "app/form/models/form-field-schema.model";
 import { FormSchemaModel } from "app/form/models/form-schema.model";
 import { FormControlsModule } from "app/form/form-controls";
 import { FormService } from "app/form/services";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 const contorlTemplate = (schema: FormControlSchema) => {
 	switch (schema.inputType) {
 		case "text":
 			return `
-				<ngs-form-control-text [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-text>
-    `;
+				<ngs-form-control-text fxFlex="${schema.width *
+					10}" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-text>
+		`;
 		case "number":
 			return `
-				<ngs-form-control-number [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-number>
-    `;
+				<ngs-form-control-number fxFlex="${schema.width *
+					10}" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-number>
+		`;
 		case "email":
 			return `
-				<ngs-form-control-email [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-email>
-    `;
+				<ngs-form-control-email fxFlex="${schema.width *
+					10}" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-email>
+    	`;
 		case "color":
 			return `
-				<ngs-form-control-color [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-color>
-    `;
+				<ngs-form-control-color fxFlex="${schema.width *
+					10}" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-color>
+    	`;
 		case "checkbox":
 			return `
-      			<ngs-form-control-checkbox [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-checkbox>
-    `;
+      			<ngs-form-control-checkbox fxFlex="${schema.width *
+					10}" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-checkbox>
+    	`;
 		case "select":
 			return `
-      			<ngs-form-control-select [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-select>
-    `;
+      			<ngs-form-control-select fxFlex="${schema.width *
+					10}" [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-select>
+    	`;
 	}
 };
 const GroupOpenTemplate = ({ path }) => {
 	return `
-      <div [formGroup]="${path}" fxLayout="column">
-  `;
+    	<div [formGroup]="${path}" fxLayout="row">
+  	`;
 };
 const GroupCloseTemplate = () => {
 	return `
-  </div>
-  `;
+		</div>
+	`;
 };
 const ArrayOpenTemplate = ({ path }) => {
 	return `
-    <div *ngFor="let item of ${path}.controls">
-  `;
+    	<div *ngFor="let item of ${path}.controls">
+  	`;
 };
 const ArrayCloseTemplate = () => {
 	return `
-  </div>
-  `;
+  		</div>
+  	`;
 };
 
 @Component({
 	selector: "ngs-form-view",
-	templateUrl: "./form-view.component.html"
+	templateUrl: "./form-view.component.html",
+	styles: [
+		`
+		`
+	]
 })
 export class FormViewComponent {
 	@Input()
@@ -184,6 +195,7 @@ export class FormViewComponent {
 				MatIconModule,
 				MatButtonModule,
 				MatCardModule,
+				FlexLayoutModule,
 				FormControlsModule
 			],
 			declarations: [ CustomComponent ],

@@ -4,7 +4,8 @@ import { FormGroup } from "@angular/forms";
 
 @Component({
 	selector: "ngs-form-control-checkbox",
-	templateUrl: "./checkbox.component.html"
+	templateUrl: "./checkbox.component.html",
+	styleUrls: [ "./checkbox.component.scss" ]
 })
 export class CheckboxComponent {
 	@Input() form: FormGroup;

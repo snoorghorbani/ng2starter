@@ -4,7 +4,8 @@ import { FormGroup } from "@angular/forms";
 
 @Component({
 	selector: "ngs-form-control-color",
-	templateUrl: "./color.component.html"
+	templateUrl: "./color.component.html",
+	styleUrls: [ "./color.component.scss" ]
 })
 export class ColorComponent implements OnInit {
 	@Input() form: FormGroup;
