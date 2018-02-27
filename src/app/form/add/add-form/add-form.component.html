@@ -11,10 +11,44 @@
           </mat-form-field>
         </mat-card-content>
       </mat-card>
-    
+      
       <mat-card>
         <mat-card-content>
-          
+            <mat-accordion fxFlexLayout="row">
+                <mat-expansion-panel [fxFlex]="50">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Personal data
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      Type your name and age
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+              
+                  <mat-form-field>
+                    <input matInput placeholder="First name">
+                  </mat-form-field>
+              
+                  <mat-form-field>
+                    <input matInput placeholder="Age">
+                  </mat-form-field>
+                </mat-expansion-panel>
+                <mat-expansion-panel  [fxFlex]="50">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Self aware panel
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <p>I'm visible because I am open</p>
+                </mat-expansion-panel>
+              </mat-accordion>
+
+
+
+
           <div class="button-row">
             <button mat-button color="primary" (click)="addFormGroup(schema.form)">addFormGroup</button>
             <button mat-button color="primary" (click)="addFormArray(schema.form)">addFormArray</button>
