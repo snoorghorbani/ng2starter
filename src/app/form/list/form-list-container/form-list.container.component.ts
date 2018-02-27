@@ -5,7 +5,7 @@ import { Store } from "@ngrx/store";
 import { MainContainerState, FormReducers } from "../../main-container";
 import { FormService } from "../../services";
 import { FormSchemaModel } from "../../models";
-import { FormsListAction } from "../../list";
+import { FormsListAction } from "../../list/list.actions";
 
 @Component({
 	template: `<form-list
