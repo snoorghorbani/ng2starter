@@ -18,7 +18,9 @@ export class AddFormComponent {
 		this.formGroup.get("form").setValue(this.schema.form);
 		this.submited.emit(this.formGroup.value);
 	}
-	changed($event) {}
+	changed($event) {
+		debugger;
+	}
 	changeOrder($event) {
 		debugger;
 	}
