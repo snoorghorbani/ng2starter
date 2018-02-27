@@ -1,43 +1,44 @@
-<div>
-  <form [formGroup]="formGroup">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>اطلاعات فرم</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <div class='list-item' fxFlexLayout='row'>
-          <p fxFlex='40'>نام</p>
-          <input fxFlex='60' formControlName="name" />
-        </div>
-        <div>
-          select schema root type : 
-          <mat-radio-group (change)="addRootControl($event.value)">
-              <mat-radio-button value="array">array</mat-radio-button>
-              <mat-radio-button value="group">group</mat-radio-button>
-            </mat-radio-group>
-        </div>
-
-        <div class="button-row">
-          <button mat-button color="primary" (click)="addFormGroup(schema.form)">addFormGroup</button>
-          <button mat-button color="primary" (click)="addFormArray(schema.form)">addFormArray</button>
-          <!-- <button mat-button color="primary" (click)="addFormControl(schema.form)">addFormControl</button> -->
-        </div>
-
-        <div [ngSwitch]="schema.form?.type">
-          <app-form-group *ngSwitchCase="'group'" [schema]="schema.form" (change)="changed($event)"></app-form-group>
-          <app-form-array *ngSwitchCase="'array'" [schema]="schema.form" (change)="changed($event)"></app-form-array>
-        </div>
-
-        <button mat-button color="primary" (click)="form.generate(schema)">generate</button>
-      </mat-card-content>
+<div fxFlexLayout="row" fxLayoutWrap fxLayoutAlign="center center">
+  <div [fxFlex]="30">
+    <form [formGroup]="formGroup">
+      <mat-card >
+        <mat-card-header>
+          <mat-card-title>ایجاد فرم جدید</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-form-field>
+              <input type="text"  matInput placeholder="نام فرم" formControlName="name">
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+    
+      <mat-card>
+        <mat-card-content>
+          
+          <div class="button-row">
+            <button mat-button color="primary" (click)="addFormGroup(schema.form)">addFormGroup</button>
+            <button mat-button color="primary" (click)="addFormArray(schema.form)">addFormArray</button>
+          </div>
+        
+          <div [ngSwitch]="schema.form?.type">
+            <app-form-group *ngSwitchCase="'group'" [schema]="schema.form" (change)="changed($event)"></app-form-group>
+            <app-form-array *ngSwitchCase="'array'" [schema]="schema.form" (change)="changed($event)"></app-form-array>
+          </div>
+        
+          <button mat-button color="primary" (click)="form.generate(schema)">generate</button>
+        </mat-card-content>
+      
       <mat-card-actions>
         <button fxFlex mat-raised-button color="primary" (click)="emit()" type="submit">ثبت</button>
       </mat-card-actions>
     </mat-card>
   </form>
 </div>
-<mat-card>
-  <mat-card-content>
-    <ngs-form-view #form></ngs-form-view>
-  </mat-card-content>
-</mat-card>
+  <div [fxFlex]="70">
+    <mat-card>
+      <mat-card-content>
+        <ngs-form-view #form></ngs-form-view>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

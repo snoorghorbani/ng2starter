@@ -27,12 +27,12 @@ import {
 import { CommonModule } from "@angular/common";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { ComponentRef } from "@angular/core/src/linker/component_factory";
-import { FormFieldSchema } from "app/form/models/form-field-schema.model";
+import { FormControlSchema } from "app/form/models/form-field-schema.model";
 import { FormSchemaModel } from "app/form/models/form-schema.model";
 import { FormControlsModule } from "app/form/form-controls";
 import { FormService } from "app/form/services";
 
-const contorlTemplate = (schema: FormFieldSchema) => {
+const contorlTemplate = (schema: FormControlSchema) => {
 	switch (schema.inputType) {
 		case "text":
 			return `
@@ -194,13 +194,13 @@ export class FormViewComponent {
 		return _module;
 	}
 
-	createFrom(data: FormFieldSchema, parentPath = ""): AbstractControl {
+	createFrom(data: FormControlSchema, parentPath = ""): AbstractControl {
 		if (data.type == "control") {
 			if (data.parentType == "array") {
-				// parentPath = `${parentPath}.controls[${(data as FormFieldSchema).name}]`;
+				// parentPath = `${parentPath}.controls[${(data as FormControlSchema).name}]`;
 			} else if (data.parentType == "group") {
 				var formGroupPath = parentPath;
-				parentPath = `${parentPath}.controls.${(data as FormFieldSchema).name}`;
+				parentPath = `${parentPath}.controls.${(data as FormControlSchema).name}`;
 			}
 			var ctr = new FormControl(data.value);
 			(ctr as any).schema = data;
@@ -210,11 +210,11 @@ export class FormViewComponent {
 		} else if (data.type == "group") {
 			var formGroup = new FormGroup({});
 			if (data.parentType == undefined) {
-				parentPath = (data as FormFieldSchema).name;
+				parentPath = (data as FormControlSchema).name;
 			} else if (data.parentType == "array") {
-				parentPath = `${parentPath}.controls[${(data as FormFieldSchema).name}]`;
+				parentPath = `${parentPath}.controls[${(data as FormControlSchema).name}]`;
 			} else if (data.parentType == "group") {
-				parentPath = `${parentPath}.controls.${(data as FormFieldSchema).name}`;
+				parentPath = `${parentPath}.controls.${(data as FormControlSchema).name}`;
 			}
 
 			(formGroup as any).schema = data;
@@ -228,8 +228,8 @@ export class FormViewComponent {
 			var formArray: FormArray = new FormArray([]);
 			parentPath =
 				parentPath == ""
-					? (data as FormFieldSchema).name
-					: `${parentPath}.controls.${(data as FormFieldSchema).name}`;
+					? (data as FormControlSchema).name
+					: `${parentPath}.controls.${(data as FormControlSchema).name}`;
 			(formArray as any).schema = data;
 			(formArray as any).schema.path = parentPath;
 			data.fields.forEach((item, idx) => {
