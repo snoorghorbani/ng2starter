@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, Input } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { FormFieldSchema } from "app/form/models/form-field-schema.model";
+import { FormControlSchema } from "app/form/models/form-field-schema.model";
 import { FormSchemaModel } from "app/form/models/form-schema.model";
 import { AddFormApiModel } from "../../models";
 
@@ -22,24 +22,21 @@ export class AddFormComponent {
 	changeOrder($event) {
 		debugger;
 	}
-	addRootControl(type: "array" | "group") {
-		this.schema.form = new FormFieldSchema(type);
-	}
 
-	addFormGroup(root: FormFieldSchema) {
-		const group = new FormFieldSchema("group");
+	addFormGroup(root: FormControlSchema) {
+		const group = new FormControlSchema("group");
 		group.fields = [];
 		root.fields.push(group);
 		return group;
 	}
-	addFormArray(root: FormFieldSchema) {
-		const array = new FormFieldSchema("array");
+	addFormArray(root: FormControlSchema) {
+		const array = new FormControlSchema("array");
 		array.fields = [];
 		root.fields.push(array);
 		return array;
 	}
-	addFormControl(root: FormFieldSchema) {
-		const control = new FormFieldSchema("control");
+	addFormControl(root: FormControlSchema) {
+		const control = new FormControlSchema("control");
 		root.fields.push(control);
 		return control;
 	}

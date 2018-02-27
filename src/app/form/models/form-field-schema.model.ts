@@ -1,6 +1,6 @@
 import { Validators } from "app/form/models/form-schema.model";
 
-export class FormFieldSchema {
+export class FormControlSchema {
 	type: "group" | "array" | "control";
 	name: string;
 	parentType?: "array" | "group";
@@ -14,7 +14,7 @@ export class FormFieldSchema {
 	events: any[];
 	options: { [key: string]: string };
 	optionsEndpoint: string;
-	fields?: FormFieldSchema[];
+	fields?: FormControlSchema[];
 	validators: Validators;
 	constructor(type: "group" | "array" | "control") {
 		this.type = type;

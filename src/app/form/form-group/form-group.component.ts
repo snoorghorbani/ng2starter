@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { FormFieldSchema } from "app/form/models";
+import { FormControlSchema } from "app/form/models";
 
 @Component({
 	selector: "app-form-group",
@@ -7,7 +7,7 @@ import { FormFieldSchema } from "app/form/models";
 	styleUrls: [ "./form-group.component.scss" ]
 })
 export class FormGroupComponent {
-	@Input() schema: FormFieldSchema;
+	@Input() schema: FormControlSchema;
 	@Output() change = new EventEmitter();
 	constructor() {}
 
@@ -15,20 +15,20 @@ export class FormGroupComponent {
 		this.change.emit($event);
 	}
 
-	addFormGroup(root: FormFieldSchema) {
-		const group = new FormFieldSchema("group");
+	addFormGroup(root: FormControlSchema) {
+		const group = new FormControlSchema("group");
 		group.fields = [];
 		root.fields.push(group);
 		return group;
 	}
-	addFormArray(root: FormFieldSchema) {
-		const array = new FormFieldSchema("array");
+	addFormArray(root: FormControlSchema) {
+		const array = new FormControlSchema("array");
 		array.fields = [];
 		root.fields.push(array);
 		return array;
 	}
-	addFormControl(root: FormFieldSchema) {
-		const control = new FormFieldSchema("control");
+	addFormControl(root: FormControlSchema) {
+		const control = new FormControlSchema("control");
 		root.fields.push(control);
 		return control;
 	}
