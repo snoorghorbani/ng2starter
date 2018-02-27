@@ -3,8 +3,8 @@ import { RouterModule, Routes } from "@angular/router";
 
 import { MainContainerComponent } from "./main-container";
 import { AddFormContainerComponent } from "./add";
-import { EditFormComponent } from "./edit";
-import { FormListComponent } from "./list";
+import { EditFormContainerComponent } from "./edit";
+import { FormListContainerComponent } from "./list";
 
 const routes: Routes = [
 	{
@@ -17,11 +17,11 @@ const routes: Routes = [
 			},
 			{
 				path: "edit/:_id",
-				component: EditFormComponent
+				component: EditFormContainerComponent
 			},
 			{
-				path: "list",
-				component: FormListComponent
+				path: "",
+				component: FormListContainerComponent
 			}
 		]
 	}

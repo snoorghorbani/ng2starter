@@ -88,8 +88,7 @@ const ArrayCloseTemplate = () => {
 export class FormViewComponent {
 	@Input()
 	set id(id: string) {
-		debugger;
-		this.service.get(id).subscribe((schema) => this.schema$.next(schema));
+		this.service.get(id).subscribe(schema => this.schema$.next(schema));
 	}
 	@Input() schema$: BehaviorSubject<FormSchemaModel>;
 	formGroup: AbstractControl;
@@ -102,13 +101,12 @@ export class FormViewComponent {
 	constructor(private service: FormService, private compiler: Compiler, private resolver: ComponentFactoryResolver) {
 		this.schema$ = new BehaviorSubject(undefined);
 
-		this.schema$.subscribe((schema) => {
+		this.schema$.subscribe(schema => {
 			if (!schema) return;
 
 			this.formGroup = this.createFrom(schema.form);
 			this.template = this.createTemplate(this.formGroup);
 			this.formGroupCreated = true;
-			debugger;
 
 			setTimeout(() => {
 				if (this.formCompnent) this.formCompnent.destroy();
@@ -120,9 +118,9 @@ export class FormViewComponent {
 					this.formGroup
 				);
 
-				this.compiler.compileModuleAndAllComponentsAsync(_module).then((factory) => {
+				this.compiler.compileModuleAndAllComponentsAsync(_module).then(factory => {
 					this.formCompnent = this.target.createComponent(
-						factory.componentFactories.find((item) => item.selector == "dynamic"),
+						factory.componentFactories.find(item => item.selector == "dynamic"),
 						0
 					);
 					this.target.insert(this.formCompnent.hostView);
@@ -136,14 +134,14 @@ export class FormViewComponent {
 	createTemplate(control: AbstractControl) {
 		if (control instanceof FormArray) {
 			var res = ArrayOpenTemplate((control as any).schema);
-			control.controls.map((item) => {
+			control.controls.map(item => {
 				res += this.createTemplate(item);
 			});
 			res += ArrayCloseTemplate();
 			return res;
 		} else if (control instanceof FormGroup) {
 			var res = GroupOpenTemplate((control as any).schema);
-			Object.keys(control.controls).forEach((key) => {
+			Object.keys(control.controls).forEach(key => {
 				res += this.createTemplate(control.controls[key]);
 			});
 			res += GroupCloseTemplate();
@@ -199,10 +197,8 @@ export class FormViewComponent {
 	createFrom(data: FormFieldSchema, parentPath = ""): AbstractControl {
 		if (data.type == "control") {
 			if (data.parentType == "array") {
-				debugger;
 				// parentPath = `${parentPath}.controls[${(data as FormFieldSchema).name}]`;
 			} else if (data.parentType == "group") {
-				debugger;
 				var formGroupPath = parentPath;
 				parentPath = `${parentPath}.controls.${(data as FormFieldSchema).name}`;
 			}
@@ -223,7 +219,7 @@ export class FormViewComponent {
 
 			(formGroup as any).schema = data;
 			(formGroup as any).schema.path = parentPath;
-			data.fields.forEach((item) => {
+			data.fields.forEach(item => {
 				item.parentType = "group";
 				formGroup.addControl(item.name, this.createFrom(item, parentPath));
 			});

@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from "@angular/core";
+import { Component, OnInit, EventEmitter, Output, Input } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { FormFieldSchema } from "app/form/models/form-field-schema.model";
 import { FormSchemaModel } from "app/form/models/form-schema.model";
@@ -9,13 +9,11 @@ import { AddFormApiModel } from "../../models";
 	templateUrl: "./add-form.component.html"
 })
 export class AddFormComponent {
-	schema: FormSchemaModel = new FormSchemaModel();
+	@Input() schema: FormSchemaModel = new FormSchemaModel();
+	@Input() formGroup = AddFormApiModel.Request.formGroup;
 	@Output() submited = new EventEmitter();
-	formGroup = AddFormApiModel.Request.formGroup;
 
-	constructor() {}
-
-	add() {
+	emit() {
 		debugger;
 		this.formGroup.get("form").setValue(this.schema.form);
 		this.submited.emit(this.formGroup.value);

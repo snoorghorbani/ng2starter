@@ -8,7 +8,7 @@ export namespace AddFormApiModel {
 		name: string;
 		form: object[];
 		constructor(initValue = {} as AddFormApiModel.Request) {
-			Object.keys(initValue).forEach((key) => (this[key] = initValue[key]));
+			Object.keys(initValue).forEach(key => (this[key] = initValue[key]));
 		}
 
 		getRequestBody() {

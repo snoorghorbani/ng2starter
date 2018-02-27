@@ -26,13 +26,12 @@ import { InfraModule } from "@soushians/infra";
 
 import { RoutingModule } from "./form-routing.module";
 import { FormModuleConfig, MODULE_CONFIG_TOKEN } from "./form.config";
-import { MainContainerComponent } from "./main-container";
+import { MainContainerComponent, FormReducers } from "./main-container";
 import { AddFormComponent, AddFormContainerComponent } from "./add";
 import { FormService, FormConfigurationService } from "./services";
-import { FormListComponent } from "./list";
-import { EditFormComponent } from "./edit";
+import { FormListComponent, FormsListEffects, FormListContainerComponent } from "./list";
+import { EditFormComponent, EditFormContainerComponent, EditFormEffects } from "./edit";
 import { AddFormEffects } from "./add/add-form.effects";
-import { EditFormEffects } from "./edit/edit-form.effects";
 import { FormGroupComponent } from "./form-group";
 import { FormArrayComponent } from "./form-array";
 import { FormControlComponent } from "./form-control";
@@ -60,10 +59,12 @@ import { FormViewComponent } from "./view";
 		BrowserAnimationsModule
 	],
 	declarations: [
+		EditFormContainerComponent,
 		EditFormComponent,
+		FormListContainerComponent,
 		FormListComponent,
-		MainContainerComponent,
 		AddFormContainerComponent,
+		MainContainerComponent,
 		AddFormComponent,
 		FormGroupComponent,
 		FormArrayComponent,
@@ -82,7 +83,12 @@ export class NgsFormModule {
 }
 
 @NgModule({
-	imports: [ EffectsModule.forFeature([ AddFormEffects, EditFormEffects ]), NgsFormModule, RoutingModule ],
+	imports: [
+		StoreModule.forFeature("form", FormReducers),
+		EffectsModule.forFeature([ AddFormEffects, EditFormEffects, FormsListEffects ]),
+		NgsFormModule,
+		RoutingModule
+	],
 	exports: [ NgsFormModule ]
 })
 export class RootNgsFormModule {}

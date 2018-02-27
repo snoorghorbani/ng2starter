@@ -2,19 +2,22 @@ import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { Store } from "@ngrx/store";
 
-import * as MainContainerReducer from "../../main-container/main-container.reducers";
-import { FormService } from "app/form/services";
+import { MainContainerState, FormReducers } from "../../main-container";
+import { FormService } from "../../services";
 import { FormSchemaModel } from "../../models";
+import { FormsListAction } from "../../list";
 
 @Component({
 	template: `<form-list
-				[data]="data$">
+					[data]="data$">
 				</form-list>`
 })
-export class FormListContainerComponent {
+export class FormListContainerComponent implements OnInit {
 	data$: Observable<FormSchemaModel[]>;
-	constructor(private service: FormService, private store: Store<MainContainerReducer.MainContainerState>) {}
+	constructor(public store: Store<MainContainerState>) {
+		this.data$ = this.store.select(state => state.form.list.data);
+	}
 	ngOnInit() {
-		this.data$ = this.service.getList();
+		this.store.dispatch(new FormsListAction());
 	}
 }

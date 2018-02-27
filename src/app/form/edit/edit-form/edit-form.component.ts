@@ -13,16 +13,8 @@ import { AddFormComponent } from "app/form/add";
 	templateUrl: "./edit-form.component.html"
 })
 export class EditFormComponent extends AddFormComponent {
-	constructor(private route: ActivatedRoute, private service: FormService) {
-		super();
-		this.route.params
-			.map((params) => params._id)
-			.switchMap((_id) => this.service.get(_id))
-			.subscribe((form) => this.formGroup.patchValue(form));
-	}
-
-	edit() {
+	emit() {
 		if (!this.formGroup.valid) return;
-		return this.submited.emit(this.formGroup);
+		return this.submited.emit(this.formGroup.value);
 	}
 }
