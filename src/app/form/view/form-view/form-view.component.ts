@@ -36,27 +36,27 @@ const contorlTemplate = (schema: FormControlSchema) => {
 	switch (schema.inputType) {
 		case "text":
 			return `
-				<app-text [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-text>
+				<ngs-form-control-text [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-text>
     `;
 		case "number":
 			return `
-				<app-number [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-number>
+				<ngs-form-control-number [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-number>
     `;
 		case "email":
 			return `
-				<app-email [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-email>
+				<ngs-form-control-email [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-email>
     `;
 		case "color":
 			return `
-				<app-color [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-color>
+				<ngs-form-control-color [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-color>
     `;
 		case "checkbox":
 			return `
-      			<app-checkbox [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-checkbox>
+      			<ngs-form-control-checkbox [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-checkbox>
     `;
 		case "select":
 			return `
-      			<app-select [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></app-select>
+      			<ngs-form-control-select [form]="${schema.formGroupPath}" [schema]="${schema.path}.schema"></ngs-form-control-select>
     `;
 	}
 };

@@ -3,7 +3,7 @@ import { FormControlSchema } from "app/form/models/form-field-schema.model";
 import { FormGroup } from "@angular/forms";
 
 @Component({
-	selector: "app-checkbox",
+	selector: "ngs-form-control-checkbox",
 	templateUrl: "./checkbox.component.html"
 })
 export class CheckboxComponent {
