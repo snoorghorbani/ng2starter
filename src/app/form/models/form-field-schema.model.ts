@@ -1,6 +1,7 @@
 import { Validators } from "app/form/models/form-schema.model";
 
 export class FormControlSchema {
+	id: number;
 	type: "group" | "array" | "control";
 	name: string;
 	parentType?: "array" | "group";

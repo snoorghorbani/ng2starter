@@ -28,4 +28,7 @@ router.put("/", function(req, res) {
 			debugger;
 		});
 });
+router.delete("/:id", function(req, res) {
+	Model.findByIdAndRemove(req.params.id);
+});
 export { router };
