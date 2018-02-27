@@ -47,4 +47,9 @@ export class FormService {
 			.switchMap(config => this.http.put(config.endpoints.editForm, model.getRequestBody()))
 			.map((response: EditFormApiModel.Response) => response.Result);
 	}
+	delete(_id: string) {
+		return this.configurationService.config$
+			.filter(config => config.endpoints.deleteForm != "")
+			.switchMap(config => this.http.get(config.endpoints.deleteForm));
+	}
 }

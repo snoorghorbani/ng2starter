@@ -6,6 +6,7 @@ export interface FormModuleConfig {
 		editForm: string;
 		getForm: string;
 		getList: string;
+		deleteForm: string;
 	};
 }
 export const MODULE_DEFAULT_CONFIG: FormModuleConfig = {
@@ -13,7 +14,8 @@ export const MODULE_DEFAULT_CONFIG: FormModuleConfig = {
 		addForm: "",
 		editForm: "",
 		getForm: "",
-		getList: ""
+		getList: "",
+		deleteForm: ""
 	}
 };
 export const MODULE_CONFIG_TOKEN = new InjectionToken<FormModuleConfig>("FormModuleConfig");
