@@ -13,4 +13,7 @@ export class FormSchemaModel {
 	constructor() {
 		this.form = new FormControlSchema("group");
 	}
+	init() {
+		this._id = (Math.random() * 10).toString();
+	}
 }

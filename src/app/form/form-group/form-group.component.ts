@@ -13,6 +13,7 @@ export class FormGroupComponent {
 	constructor() {}
 
 	changed($event) {
+		debugger;
 		this.change.emit($event);
 	}
 

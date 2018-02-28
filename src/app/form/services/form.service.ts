@@ -7,14 +7,14 @@ import { stringTemplate } from "@soushians/infra";
 import { FormSchemaModel, AddFormApiModel, EditFormApiModel, FormListApiModel } from "../models";
 import { FormConfigurationService } from "./form-configuration.service";
 
-import * as mainContainerReducers from "../main-container/main-container.reducers";
+import { FormState } from "../main-container/main-container.reducers";
 
 @Injectable()
 export class FormService {
 	responseCache: AddFormApiModel.Response;
 	constructor(
 		private http: HttpClient,
-		private store: Store<mainContainerReducers.FormState>,
+		private store: Store<FormState>,
 		private configurationService: FormConfigurationService
 	) {}
 
@@ -51,5 +51,11 @@ export class FormService {
 		return this.configurationService.config$
 			.filter(config => config.endpoints.deleteForm != "")
 			.switchMap(config => this.http.get(config.endpoints.deleteForm));
+	}
+	subscribe(_id: string): Observable<FormSchemaModel> {
+		return this.store
+			.select(state => state.list.data)
+			.map(forms => forms.find(form => form._id == _id))
+			.switchMap(FormSchemaModel => new Observable<FormSchemaModel>(observer => observer.next(FormSchemaModel)));
 	}
 }

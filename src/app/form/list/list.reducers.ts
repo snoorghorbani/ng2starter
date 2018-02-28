@@ -14,27 +14,39 @@ export function reducer(state = initialState, action: FormsListActions): State {
 	switch (action.type) {
 		case FormsListActionTypes.FORMS_LIST: {
 			return {
-				...initialState,
+				...state,
 				status: "dirty"
 			};
 		}
 		case FormsListActionTypes.FORMS_LIST_START: {
 			return {
-				...initialState,
+				...state,
 				status: "pending"
 			};
 		}
 		case FormsListActionTypes.FORMS_LIST_SUCCEED: {
 			return {
-				...initialState,
+				...state,
 				data: action.payload,
 				status: "succeed"
 			};
 		}
 		case FormsListActionTypes.FORMS_LIST_FAILED: {
 			return {
-				...initialState,
+				...state,
 				status: "failed"
+			};
+		}
+		case FormsListActionTypes.FORM_SCHEMA_UPDATE: {
+			return {
+				...state,
+				data: state.data.map(formSchema => (formSchema._id == action.payload._id ? action.payload : formSchema))
+			};
+		}
+		case FormsListActionTypes.ADD_FORM_SCHEMA: {
+			return {
+				...state,
+				data: state.data.concat([ action.payload ])
 			};
 		}
 

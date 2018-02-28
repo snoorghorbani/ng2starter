@@ -9,17 +9,19 @@ import { AddFormApiModel } from "../../models";
 	templateUrl: "./add-form.component.html"
 })
 export class AddFormComponent {
-	@Input() schema: FormSchemaModel = new FormSchemaModel();
+	@Input() schema: FormSchemaModel;
 	@Input() formGroup = AddFormApiModel.Request.formGroup;
 	@Output() submited = new EventEmitter();
+	@Output() change = new EventEmitter();
 
 	emit() {
-		debugger;
 		this.formGroup.get("form").setValue(this.schema.form);
 		this.submited.emit(this.formGroup.value);
 	}
 	changed($event) {
 		debugger;
+		this.formGroup.get("form").setValue(this.schema.form);
+		this.change.emit(this.formGroup.value);
 	}
 	changeOrder($event) {
 		debugger;

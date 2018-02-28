@@ -1,22 +1,17 @@
 import { ActionReducerMap, createSelector, createFeatureSelector, ActionReducer } from "@ngrx/store";
 
-import * as ConfigReducer from "./config.reducer";
-import * as fromEditConfig from "./edit-config.reducer";
+// import * as ConfigReducer from "./config.reducer";
+// import * as fromEditConfig from "./edit-config.reducer";
 
 import { environment } from "../../environments/environment";
-import * as fromRouter from "@ngrx/router-store";
 
-// import * as fromLayout from '../core/layout/reducers';
-import { AuthenticationReducers, AuthenticationState } from "@soushians/authentication";
 import * as progressReducer from "./progress.reducer";
 
 export interface State {
-	// layout: fromLayout.layoutState;
 	progress: progressReducer.State;
 }
 
 export const reducers: ActionReducerMap<State> = {
-	// layout: fromLayout.layoutReducer,
 	progress: progressReducer.Reducer
 };
 
