@@ -1,13 +1,13 @@
 import { createSelector, createFeatureSelector, MemoizedSelector } from "@ngrx/store";
 
-import * as listReducer from "../list/list.reducers";
+import * as list from "../list/list.reducers";
 
 export interface FormState {
-	list: listReducer.State;
+	list: list.State;
 }
 
 export const FormReducers = {
-	list: listReducer.reducer
+	list: list.reducer
 };
 
 export interface MainContainerState {

@@ -84,9 +84,9 @@ export class NgsFormModule {
 
 @NgModule({
 	imports: [
+		NgsFormModule,
 		StoreModule.forFeature("form", FormReducers),
 		EffectsModule.forFeature([ AddFormEffects, EditFormEffects, FormsListEffects ]),
-		NgsFormModule,
 		RoutingModule
 	],
 	exports: [ NgsFormModule ]

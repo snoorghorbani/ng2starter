@@ -52,10 +52,10 @@ export class FormService {
 			.filter(config => config.endpoints.deleteForm != "")
 			.switchMap(config => this.http.get(config.endpoints.deleteForm));
 	}
-	subscribe(_id: string): Observable<FormSchemaModel> {
-		return this.store
-			.select(state => state.list.data)
-			.map(forms => forms.find(form => form._id == _id))
-			.switchMap(FormSchemaModel => new Observable<FormSchemaModel>(observer => observer.next(FormSchemaModel)));
-	}
+	// subscribe(_id: string): Observable<FormSchemaModel> {
+	// 	return this.store
+	// 		.select(state => state.list.data)
+	// 		.map(forms => forms.find(form => form._id == _id))
+	// 		.switchMap(FormSchemaModel => new Observable<FormSchemaModel>(observer => observer.next(FormSchemaModel)));
+	// }
 }

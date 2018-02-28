@@ -12,11 +12,15 @@ import { AddFormSchemaAction, UpdateFormSchemaAction } from "../../list";
 @Component({
 	template: `<ngs-form-add [schema]="schema" (change)="update_schema($event)" (submited)=add($event)></ngs-form-add>`
 })
-export class AddFormContainerComponent {
+export class AddFormContainerComponent implements OnInit {
 	schema: FormSchemaModel;
 	constructor(public store: Store<MainContainerState>) {
 		this.schema = new FormSchemaModel();
 		this.schema.init();
+		// 	setTimeout(() => {
+		// }, 1000);
+	}
+	ngOnInit() {
 		this.store.dispatch(new AddFormSchemaAction(this.schema));
 	}
 	add(form: FormSchemaModel) {

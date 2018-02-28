@@ -51,7 +51,7 @@ export function reducer(state = initialState, action: FormsListActions): State {
 		}
 
 		default: {
-			return initialState;
+			return state;
 		}
 	}
 }
