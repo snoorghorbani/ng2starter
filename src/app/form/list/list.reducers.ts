@@ -38,9 +38,12 @@ export function reducer(state = initialState, action: FormsListActions): State {
 			};
 		}
 		case FormsListActionTypes.FORM_SCHEMA_UPDATE: {
+			var data = state.data.map(
+				formSchema => (formSchema._id == action.payload._id ? Object.assign({}, action.payload) : formSchema)
+			);
 			return {
 				...state,
-				data: state.data.map(formSchema => (formSchema._id == action.payload._id ? action.payload : formSchema))
+				data: data
 			};
 		}
 		case FormsListActionTypes.ADD_FORM_SCHEMA: {

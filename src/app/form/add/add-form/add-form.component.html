@@ -18,8 +18,8 @@
       <mat-card >
         <mat-card-content>
           <div [ngSwitch]="schema.form?.type">
-            <app-form-group *ngSwitchCase="'group'" [schema]="schema.form" (change)="changed($event)"></app-form-group>
-            <app-form-array *ngSwitchCase="'array'" [schema]="schema.form" (change)="changed($event)"></app-form-array>
+            <app-form-group *ngSwitchCase="'group'" [schema]="schema.form" (changes)="changed($event)"></app-form-group>
+            <app-form-array *ngSwitchCase="'array'" [schema]="schema.form" (changes)="changed($event)"></app-form-array>
           </div>
         </mat-card-content>
         <mat-card-actions>
@@ -32,7 +32,7 @@
   <div [fxFlex]="50">
     <mat-card>
       <mat-card-content>
-        <ngs-form-view #form></ngs-form-view>
+        <ngs-form-view [local]='true' [id]="schema._id"></ngs-form-view>
       </mat-card-content>
     </mat-card>
   </div>

@@ -5,6 +5,7 @@ import { FormSchemaModel } from "../models";
 
 export namespace AddFormApiModel {
 	export class Request implements HttpRequestBaseModel<Request> {
+		_id: string;
 		name: string;
 		form: object[];
 		constructor(initValue = {} as AddFormApiModel.Request) {
@@ -19,6 +20,7 @@ export namespace AddFormApiModel {
 		}
 		static get formGroup() {
 			return new FormGroup({
+				_id: new FormControl("", [ Validators.required ]),
 				name: new FormControl("", [ Validators.required ]),
 				form: new FormControl({})
 			});

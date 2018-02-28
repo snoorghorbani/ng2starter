@@ -7,11 +7,11 @@ import { FormControlSchema } from "app/form/models";
 })
 export class FormArrayComponent {
 	@Input() schema: FormControlSchema;
-	@Output() change = new EventEmitter();
+	@Output() changes = new EventEmitter();
 	constructor() {}
 
-	changed($event) {
-		this.change.emit($event);
+	changed() {
+		this.changes.emit();
 	}
 
 	addFormGroup(root: FormControlSchema) {

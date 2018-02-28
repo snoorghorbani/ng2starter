@@ -16,14 +16,14 @@ import { AddFormContainerComponent } from "app/form/add";
 	template: `<edit-form
 					[formGroup]="formGroup"
 					[schema]="schema"
+					(changes)="update_schema($event)"
 					(submited)="update($event)">
 				</edit-form>`
 })
 export class EditFormContainerComponent extends AddFormContainerComponent {
 	formGroup = EditFormApiModel.Request.formGroup;
-	schema: FormSchemaModel = new FormSchemaModel();
-	constructor(private service: FormService, private route: ActivatedRoute, public store: Store<MainContainerState>) {
-		super(store);
+	constructor(public service: FormService, private route: ActivatedRoute, public store: Store<MainContainerState>) {
+		super(store, service);
 	}
 
 	ngOnInit() {

@@ -12,16 +12,16 @@ export class AddFormComponent {
 	@Input() schema: FormSchemaModel;
 	@Input() formGroup = AddFormApiModel.Request.formGroup;
 	@Output() submited = new EventEmitter();
-	@Output() change = new EventEmitter();
+	@Output() changes = new EventEmitter();
 
 	emit() {
-		this.formGroup.get("form").setValue(this.schema.form);
+		this.formGroup.patchValue(this.schema);
 		this.submited.emit(this.formGroup.value);
 	}
 	changed($event) {
 		debugger;
-		this.formGroup.get("form").setValue(this.schema.form);
-		this.change.emit(this.formGroup.value);
+		this.formGroup.patchValue(this.schema);
+		this.changes.emit(this.formGroup.value);
 	}
 	changeOrder($event) {
 		debugger;
