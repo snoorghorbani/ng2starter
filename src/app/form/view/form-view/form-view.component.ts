@@ -32,7 +32,7 @@ import { Store } from "@ngrx/store";
 
 import { FormControlSchema } from "../../models/form-field-schema.model";
 import { FormSchemaModel } from "../../models/form-schema.model";
-import { FormControlsModule } from "../../form-controls";
+import { FormControlsModule } from "../form-controls";
 import { FormService } from "../../services";
 import { MainContainerState } from "../../main-container";
 
