@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { FormGroup, FormControl, FormArray } from "@angular/forms";
-import { FormControlSchema } from "app/form/models";
+import { FormControlSchema } from "../../models";
 
 @Component({
 	selector: "app-form-control",
