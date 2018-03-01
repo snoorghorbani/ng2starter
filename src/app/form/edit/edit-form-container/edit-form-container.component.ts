@@ -1,16 +1,16 @@
 import { Component, OnInit } from "@angular/core";
-import { Observable } from "rxjs/Observable";
-
+import { ActivatedRoute } from "@angular/router";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Store } from "@ngrx/store";
+import { Observable } from "rxjs/Observable";
 
 import { MainContainerState } from "../../main-container";
 import { FormSchemaModel, EditFormApiModel } from "../../models";
-import { FormService } from "app/form/services";
-import { AddFormAction } from "app/form/add/add-form.actions";
-import { EditFormAction } from "app/form/edit/edit-form.actions";
-import { ActivatedRoute } from "@angular/router";
-import { AddFormContainerComponent } from "app/form/add";
+import { FormService } from "../../services";
+import { AddFormAction } from "../../add/add-form.actions";
+import { EditFormAction } from "../../edit/edit-form.actions";
+import { AddFormContainerComponent } from "../../add";
+import { GetFormSchemaAction } from "../../list";
 
 @Component({
 	template: `<edit-form
@@ -29,10 +29,15 @@ export class EditFormContainerComponent extends AddFormContainerComponent {
 	ngOnInit() {
 		this.route.params
 			.map(params => params["_id"])
-			.switchMap(_id => this.service.get(_id))
+			.subscribe(id => this.store.dispatch(new GetFormSchemaAction(id)));
+
+		this.route.params
+			.map(params => params["_id"])
+			.switchMap(id => this.service.selectFormById(id))
 			.filter(data => data != null)
 			.take(1)
 			.subscribe(formSchema => {
+				debugger;
 				this.schema = formSchema;
 				this.formGroup.patchValue(formSchema);
 			});

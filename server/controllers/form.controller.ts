@@ -23,7 +23,7 @@ router.post("/", function(req, res) {
 });
 router.put("/", function(req, res) {
 	Model.findByIdAndUpdate(req.body._id, req.body, { upsert: true, new: true })
-		.then(config => res.send(config))
+		.then(Result => res.send({ Result }))
 		.catch(err => {
 			debugger;
 		});

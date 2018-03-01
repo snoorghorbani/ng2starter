@@ -54,10 +54,11 @@ export class FormService {
 			.filter(config => config.endpoints.deleteForm != "")
 			.switchMap(config => this.http.get(config.endpoints.deleteForm));
 	}
-	subscribe(_id: string): Observable<FormSchemaModel> {
+	selectFormById(_id: string): Observable<FormSchemaModel> {
 		const subject = new BehaviorSubject<FormSchemaModel>(undefined);
 		this.store
 			.select(state => state.form.list.data)
+			.filter(forms => forms != null)
 			.map(forms => {
 				debugger;
 				return forms.find(form => form._id == _id);

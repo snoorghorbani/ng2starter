@@ -106,7 +106,7 @@ export class FormViewComponent {
 		debugger;
 		if (this.local) {
 			debugger;
-			this.service.subscribe(id).subscribe(schema => this.schema$.next(schema));
+			this.service.selectFormById(id).subscribe(schema => this.schema$.next(schema));
 		} else {
 			this.service.get(id).subscribe(schema => this.schema$.next(schema));
 		}
