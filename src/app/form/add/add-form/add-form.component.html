@@ -3,11 +3,11 @@
     <form [formGroup]="formGroup">
       <mat-card >
         <mat-card-header>
-          <mat-card-title>ایجاد فرم جدید</mat-card-title>
+          <mat-card-title>new form</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <mat-form-field>
-              <input type="text" matInput placeholder="نام فرم*" formControlName="name">
+              <input type="text" matInput placeholder="Name*" formControlName="name">
           </mat-form-field>
           <div class="button-row">
               <button mat-button color="primary" (click)="addFormGroup(schema.form)">Add form group</button>
