@@ -18,8 +18,9 @@ import { InfraModule } from "@soushians/infra";
 import { NgsLayoutModule } from "@soushians/layout";
 import { NgsUserModule, NgsUserRoutingModule } from "@soushians/user";
 import { NgsConfigModule } from "@soushians/config";
-import { SourceModule } from "@soushians/source";
 import * as FeatureReducer from "@soushians/config";
+import { SourceModule } from "@soushians/source";
+import { NgsDiagramModule } from "@soushians/diagram";
 
 import { StaticPageModule } from "app/static-page";
 
@@ -32,9 +33,9 @@ import { AppEffects } from "./effects";
 //module configs
 import { DashboardModule } from "./dashboard";
 import { EventHandlerService } from "./services";
-// import { NgsFormModule } from "@soushians/form";
-import { NgsFormModule } from "app/form";
+import { NgsFormModule } from "@soushians/form";
 
+debugger;
 @NgModule({
 	imports: [
 		CoreModule,
@@ -54,6 +55,7 @@ import { NgsFormModule } from "app/form";
 		NgsConfigModule.forRoot({
 			env: environment as any
 		}),
+		NgsDiagramModule.forRoot(),
 		NgsUserModule.forRoot(),
 		NgsUserRoutingModule,
 		InfraModule,
