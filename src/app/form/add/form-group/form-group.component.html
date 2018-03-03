@@ -1,0 +1,24 @@
+<mat-card>
+    <mat-card-content>
+
+      <mat-form-field>
+          <input matInput [(ngModel)]="schema.name" placeholder="Name">
+      </mat-form-field>
+        
+      <div class="button-row">
+        <button mat-button color="primary" (click)="addFormGroup(schema)">  addFormGroup  </button>
+        <button mat-button color="primary" (click)="addFormArray(schema)">  addFormArray  </button>
+        <button mat-button color="primary" (click)="addFormControl(schema)">addFormControl</button>
+      </div>
+
+      <div *ngFor="let field of schema.fields;let i = index">
+        <button mat-button color="primary" (click)="deleteFormGroup(i)">delete</button>
+        <div [ngSwitch]="field.type">
+          <app-form-group   *ngSwitchCase="'group'"   [schema]="field" (change)="changes()"></app-form-group>
+          <app-form-array   *ngSwitchCase="'array'"   [schema]="field" (change)="changes()"></app-form-array>
+          <app-form-control *ngSwitchCase="'control'" [schema]="field" (changes)="changed()"></app-form-control>
+        </div>
+      </div>
+
+  </mat-card-content>
+</mat-card>

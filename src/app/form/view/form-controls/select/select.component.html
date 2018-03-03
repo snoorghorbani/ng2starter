@@ -1,0 +1,7 @@
+<div  [formGroup]="form">
+<mat-form-field>
+    <mat-select [formControlName]="schema.name" [placeholder]="schema.placeholder">
+      <mat-option *ngFor="let option of schema.options" [value]="option.value">{{option.key}}</mat-option>
+    </mat-select>
+</mat-form-field>
+</div>

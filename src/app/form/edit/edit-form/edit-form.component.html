@@ -1,0 +1,39 @@
+<div fxFlexLayout="row" fxLayoutWrap fxLayoutAlign="center center" *ngIf="schema">
+  <div [fxFlex]="50">
+    <form [formGroup]="formGroup">
+      <mat-card >
+        <mat-card-header>
+          <mat-card-title>ایجاد فرم جدید</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-form-field>
+              <input type="text" matInput placeholder="نام فرم*" formControlName="name">
+          </mat-form-field>
+          <div class="button-row">
+              <button mat-button color="primary" (click)="addFormGroup(schema.form)">Add form group</button>
+              <button mat-button color="primary" (click)="addFormArray(schema.form)">Add form array</button>
+            </div>
+        </mat-card-content>
+      </mat-card>
+      <mat-card >
+        <mat-card-content>
+          <div [ngSwitch]="schema.form?.type">
+            <app-form-group *ngSwitchCase="'group'" [schema]="schema.form" (changes)="changed($event)"></app-form-group>
+            <app-form-array *ngSwitchCase="'array'" [schema]="schema.form" (changes)="changed($event)"></app-form-array>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="form.generate(schema)">ایجاد فرم</button>
+          <button mat-raised-button color="primary" (click)="emit()" type="submit">ثبت</button>
+         </mat-card-actions>
+    </mat-card>
+  </form>
+</div>
+  <div [fxFlex]="50">
+    <mat-card>
+      <mat-card-content>
+        <ngs-form-view [local]='true' [id]="schema._id"></ngs-form-view>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -32,7 +32,8 @@ import { AppEffects } from "./effects";
 //module configs
 import { DashboardModule } from "./dashboard";
 import { EventHandlerService } from "./services";
-import { NgsFormModule } from "@soushians/form";
+// import { NgsFormModule } from "@soushians/form";
+import { NgsFormModule } from "app/form";
 
 @NgModule({
 	imports: [
