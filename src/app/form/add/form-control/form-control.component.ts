@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { FormGroup, FormControl, FormArray } from "@angular/forms";
-import { FormControlSchema } from "app/form/models";
+import { FormControlSchema } from "../../models";
 
 @Component({
 	selector: "app-form-control",
@@ -8,7 +8,7 @@ import { FormControlSchema } from "app/form/models";
 })
 export class FormControlComponent {
 	@Input() schema: FormControlSchema;
-	@Output() change = new EventEmitter();
+	@Output() changes = new EventEmitter();
 
 	width = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ];
 	options = new FormArray([
@@ -19,9 +19,10 @@ export class FormControlComponent {
 	]);
 	constructor() {}
 
-	changed($event) {
+	changed() {
 		debugger;
-		this.change.emit($event);
+		if ([ this.schema.name, this.schema.placeholder, this.schema.inputType ].some(item => !item)) return true;
+		this.changes.emit();
 	}
 
 	addOption() {

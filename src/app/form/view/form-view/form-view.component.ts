@@ -27,11 +27,15 @@ import {
 import { CommonModule } from "@angular/common";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { ComponentRef } from "@angular/core/src/linker/component_factory";
-import { FormControlSchema } from "app/form/models/form-field-schema.model";
-import { FormSchemaModel } from "app/form/models/form-schema.model";
-import { FormControlsModule } from "app/form/form-controls";
-import { FormService } from "app/form/services";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { Store } from "@ngrx/store";
+
+import { FormControlSchema } from "../../models/form-field-schema.model";
+import { FormSchemaModel } from "../../models/form-schema.model";
+import { FormControlsModule } from "../form-controls";
+import { FormService } from "../../services";
+import { MainContainerState } from "../../main-container";
+import { GetFormSchemaAction } from "../../list";
 
 const contorlTemplate = (schema: FormControlSchema) => {
 	switch (schema.inputType) {
@@ -90,16 +94,17 @@ const ArrayCloseTemplate = () => {
 
 @Component({
 	selector: "ngs-form-view",
-	templateUrl: "./form-view.component.html",
-	styles: [
-		`
-		`
-	]
+	templateUrl: "./form-view.component.html"
 })
 export class FormViewComponent {
+	@Input() local;
+	_id: string;
 	@Input()
 	set id(id: string) {
-		this.service.get(id).subscribe(schema => this.schema$.next(schema));
+		if (!this.local) {
+			this.store.dispatch(new GetFormSchemaAction(id));
+		}
+		this.service.selectFormById(id).subscribe(schema => this.schema$.next(schema));
 	}
 	@Input() schema$: BehaviorSubject<FormSchemaModel>;
 	formGroup: AbstractControl;
@@ -109,13 +114,18 @@ export class FormViewComponent {
 	@ViewChild("contentFormGen", { read: ViewContainerRef })
 	private target: ViewContainerRef;
 
-	constructor(private service: FormService, private compiler: Compiler, private resolver: ComponentFactoryResolver) {
+	constructor(
+		private service: FormService,
+		private compiler: Compiler,
+		private resolver: ComponentFactoryResolver,
+		private store: Store<MainContainerState>
+	) {
 		this.schema$ = new BehaviorSubject(undefined);
 
 		this.schema$.subscribe(schema => {
 			if (!schema) return;
-
 			this.formGroup = this.createFrom(schema.form);
+			if (!schema.form.name) return;
 			this.template = this.createTemplate(this.formGroup);
 			this.formGroupCreated = true;
 

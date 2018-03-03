@@ -18,6 +18,7 @@ import {
 	EditFormSucceedAction,
 	EditFormFailedAction
 } from "./edit-form.actions";
+import { UpdateFormSchemaAction } from "../list";
 
 @Injectable()
 export class EditFormEffects {
@@ -27,13 +28,19 @@ export class EditFormEffects {
 	EditForm$ = this.actions$
 		.ofType(EditFormActionTypes.EDIT_FORM)
 		.map(toPayload)
-		.map((data) => new EditFormStartAction(data));
+		.map(data => new EditFormStartAction(data));
 
 	@Effect()
 	EditFormStart$ = this.actions$
 		.ofType(EditFormActionTypes.EDIT_FORM_START)
 		.map(toPayload)
 		.switchMap((data: EditFormApiModel.Request) => this.service.update(data))
-		.map((res) => new EditFormSucceedAction())
+		.map(formSchema => new EditFormSucceedAction(formSchema))
 		.catch(() => Observable.of(new EditFormFailedAction()));
+
+	@Effect()
+	UpdateFormsListStart$ = this.actions$
+		.ofType(EditFormActionTypes.EDIT_FORM_SUCCEED)
+		.map(toPayload)
+		.map(formSchema => new UpdateFormSchemaAction(formSchema));
 }

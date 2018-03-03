@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, Input } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { FormControlSchema } from "app/form/models/form-field-schema.model";
-import { FormSchemaModel } from "app/form/models/form-schema.model";
+import { FormControlSchema } from "../../models/form-field-schema.model";
+import { FormSchemaModel } from "../../models/form-schema.model";
 import { AddFormApiModel } from "../../models";
 
 @Component({
@@ -12,16 +12,16 @@ export class AddFormComponent {
 	@Input() schema: FormSchemaModel;
 	@Input() formGroup = AddFormApiModel.Request.formGroup;
 	@Output() submited = new EventEmitter();
-	@Output() change = new EventEmitter();
+	@Output() changes = new EventEmitter();
 
 	emit() {
-		this.formGroup.get("form").setValue(this.schema.form);
+		this.formGroup.patchValue(this.schema);
 		this.submited.emit(this.formGroup.value);
 	}
 	changed($event) {
 		debugger;
-		this.formGroup.get("form").setValue(this.schema.form);
-		this.change.emit(this.formGroup.value);
+		this.formGroup.patchValue(this.schema);
+		this.changes.emit(this.formGroup.value);
 	}
 	changeOrder($event) {
 		debugger;

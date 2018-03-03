@@ -1,4 +1,4 @@
-import { Validators } from "app/form/models/form-schema.model";
+import { Validators } from "./form-schema.model";
 
 export class FormControlSchema {
 	id: number;

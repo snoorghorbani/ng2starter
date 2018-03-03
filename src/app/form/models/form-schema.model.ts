@@ -1,4 +1,4 @@
-import { FormControlSchema } from "app/form/models/form-field-schema.model";
+import { FormControlSchema } from "./form-field-schema.model";
 
 export class Validators {
 	readonly: boolean;

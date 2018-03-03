@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { FormControlSchema } from "app/form/models/form-field-schema.model";
 import { FormGroup } from "@angular/forms";
+
+import { FormControlSchema } from "../../../models";
 
 @Component({
 	selector: "ngs-form-control-number",

@@ -38,15 +38,43 @@ export function reducer(state = initialState, action: FormsListActions): State {
 			};
 		}
 		case FormsListActionTypes.FORM_SCHEMA_UPDATE: {
+			debugger;
+			const data = state.data.concat();
+			var entityIdx = state.data.findIndex(form => form._id == action.payload._id);
+			if (entityIdx > -1) {
+				data[entityIdx] = Object.assign({}, data[entityIdx], action.payload);
+			} else {
+				data.push(action.payload);
+			}
 			return {
 				...state,
-				data: state.data.map(formSchema => (formSchema._id == action.payload._id ? action.payload : formSchema))
+				data: data
 			};
 		}
 		case FormsListActionTypes.ADD_FORM_SCHEMA: {
+			const data = state.data.concat();
+			var entityIdx = state.data.findIndex(form => form._id == action.payload._id);
+			if (entityIdx > -1) {
+				data[entityIdx] = Object.assign({}, data[entityIdx], action.payload);
+			} else {
+				data.push(action.payload);
+			}
 			return {
 				...state,
-				data: state.data.concat([ action.payload ])
+				data: data
+			};
+		}
+		case FormsListActionTypes.FORM_SCHEMA_FETCHED: {
+			const data = state.data.concat();
+			var entityIdx = state.data.findIndex(form => form._id == action.payload._id);
+			if (entityIdx > -1) {
+				data[entityIdx] = Object.assign({}, data[entityIdx], action.payload);
+			} else {
+				data.push(action.payload);
+			}
+			return {
+				...state,
+				data: data
 			};
 		}
 

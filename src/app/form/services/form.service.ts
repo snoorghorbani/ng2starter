@@ -7,14 +7,16 @@ import { stringTemplate } from "@soushians/infra";
 import { FormSchemaModel, AddFormApiModel, EditFormApiModel, FormListApiModel } from "../models";
 import { FormConfigurationService } from "./form-configuration.service";
 
-import { FormState } from "../main-container/main-container.reducers";
+import { MainContainerState } from "../main-container/main-container.reducers";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 @Injectable()
 export class FormService {
 	responseCache: AddFormApiModel.Response;
+
 	constructor(
 		private http: HttpClient,
-		private store: Store<FormState>,
+		private store: Store<MainContainerState>,
 		private configurationService: FormConfigurationService
 	) {}
 
@@ -52,10 +54,13 @@ export class FormService {
 			.filter(config => config.endpoints.deleteForm != "")
 			.switchMap(config => this.http.get(config.endpoints.deleteForm));
 	}
-	// subscribe(_id: string): Observable<FormSchemaModel> {
-	// 	return this.store
-	// 		.select(state => state.list.data)
-	// 		.map(forms => forms.find(form => form._id == _id))
-	// 		.switchMap(FormSchemaModel => new Observable<FormSchemaModel>(observer => observer.next(FormSchemaModel)));
-	// }
+	selectFormById(_id: string): Observable<FormSchemaModel> {
+		const subject = new BehaviorSubject<FormSchemaModel>(undefined);
+		this.store
+			.select(state => state.form.list.data)
+			.filter(forms => forms != null)
+			.map(forms => forms.find(form => form._id == _id))
+			.subscribe(FormSchemaModel => subject.next(FormSchemaModel));
+		return subject.asObservable();
+	}
 }

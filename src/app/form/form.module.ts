@@ -32,10 +32,10 @@ import { FormService, FormConfigurationService } from "./services";
 import { FormListComponent, FormsListEffects, FormListContainerComponent } from "./list";
 import { EditFormComponent, EditFormContainerComponent, EditFormEffects } from "./edit";
 import { AddFormEffects } from "./add/add-form.effects";
-import { FormGroupComponent } from "./form-group";
-import { FormArrayComponent } from "./form-array";
-import { FormControlComponent } from "./form-control";
 import { FormViewComponent } from "./view";
+import { FormGroupComponent } from "./add/form-group";
+import { FormArrayComponent } from "./add/form-array";
+import { FormControlComponent } from "./add/form-control";
 
 @NgModule({
 	imports: [

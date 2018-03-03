@@ -19,7 +19,8 @@ import {
 	FormsListActions,
 	FormsListFailedAction,
 	FormsListStartAction,
-	FormsListSucceedAction
+	FormsListSucceedAction,
+	FormSchemaFechedAction
 } from "./list.actions";
 
 @Injectable()
@@ -28,6 +29,13 @@ export class FormsListEffects {
 
 	@Effect()
 	EditProfileRequest$ = this.actions$.ofType(FormsListActionTypes.FORMS_LIST).map(data => new FormsListStartAction());
+
+	@Effect()
+	GetForm$ = this.actions$
+		.ofType(FormsListActionTypes.GET_FORM_SCHEMA)
+		.map(toPayload)
+		.switchMap(id => this.service.get(id))
+		.map(formSchema => new FormSchemaFechedAction(formSchema));
 
 	@Effect()
 	get_forms_list$ = this.actions$

@@ -1,4 +1,4 @@
-<div fxFlexLayout="row" fxLayoutWrap fxLayoutAlign="center center">
+<div fxFlexLayout="row" fxLayoutWrap fxLayoutAlign="center center" *ngIf="schema">
   <div [fxFlex]="50">
     <form [formGroup]="formGroup">
       <mat-card >
@@ -7,7 +7,7 @@
         </mat-card-header>
         <mat-card-content>
           <mat-form-field>
-              <input type="text"  matInput placeholder="نام فرم*" formControlName="name">
+              <input type="text" matInput placeholder="نام فرم*" formControlName="name">
           </mat-form-field>
           <div class="button-row">
               <button mat-button color="primary" (click)="addFormGroup(schema.form)">Add form group</button>
@@ -18,8 +18,8 @@
       <mat-card >
         <mat-card-content>
           <div [ngSwitch]="schema.form?.type">
-            <app-form-group *ngSwitchCase="'group'" [schema]="schema.form" (change)="changed($event)"></app-form-group>
-            <app-form-array *ngSwitchCase="'array'" [schema]="schema.form" (change)="changed($event)"></app-form-array>
+            <app-form-group *ngSwitchCase="'group'" [schema]="schema.form" (changes)="changed($event)"></app-form-group>
+            <app-form-array *ngSwitchCase="'array'" [schema]="schema.form" (changes)="changed($event)"></app-form-array>
           </div>
         </mat-card-content>
         <mat-card-actions>
@@ -32,7 +32,7 @@
   <div [fxFlex]="50">
     <mat-card>
       <mat-card-content>
-        <ngs-form-view #form></ngs-form-view>
+        <ngs-form-view [local]='true' [id]="schema._id"></ngs-form-view>
       </mat-card-content>
     </mat-card>
   </div>

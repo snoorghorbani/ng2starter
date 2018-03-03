@@ -7,15 +7,15 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
         <mat-form-field>
-          <input matInput [(ngModel)]="schema.name" placeholder="Name">
+          <input matInput [(ngModel)]="schema.name" (change)="changed()" placeholder="Name">
         </mat-form-field>
         
         <mat-form-field>
-          <input matInput [(ngModel)]="schema.placeholder" placeholder="Placeholder"/>
+          <input matInput [(ngModel)]="schema.placeholder" (change)="changed()" placeholder="Placeholder"/>
         </mat-form-field>
         
         <mat-form-field>
-          <mat-select [(ngModel)]="schema.inputType" placeholder="Input Type">
+          <mat-select [(ngModel)]="schema.inputType" (change)="changed()" placeholder="Input Type">
             <mat-option value="select">select</mat-option>
             <mat-option value="text">text</mat-option>
             <mat-option value="number">number</mat-option>
@@ -27,11 +27,11 @@
         </mat-form-field>
   
         <mat-form-field>
-            <input matInput [(ngModel)]="schema.value" placeholder="Value"/>
+            <input matInput [(ngModel)]="schema.value" (change)="changed()" placeholder="Value"/>
         </mat-form-field>
         
           <mat-form-field>
-            <mat-select [(ngModel)]="schema.width" placeholder="width">
+            <mat-select [(ngModel)]="schema.width" (change)="changed()" placeholder="width">
               <mat-option *ngFor="let item of width" [value]="item">{{item}}</mat-option>
             </mat-select>
           </mat-form-field>
@@ -44,10 +44,10 @@
             {{i}}
             <div [formGroup]="options.controls[i]">
               <mat-form-field>
-                <input matInput formControlName="key" placeholder="key"/>
+                <input matInput (change)="changed()" formControlName="key" placeholder="key"/>
               </mat-form-field>
               <mat-form-field>
-                <input matInput formControlName="value" placeholder="value"/>
+                <input matInput (change)="changed()" formControlName="value" placeholder="value"/>
               </mat-form-field>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { FormControlSchema } from "app/form/models/form-field-schema.model";
+import { FormControlSchema } from "../../../models";
 import { FormGroup } from "@angular/forms";
 
 @Component({

@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Observable } from "rxjs/Observable";
-
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { FormSchemaModel, EditFormApiModel } from "../../models";
 import { ActivatedRoute } from "@angular/router";
-import { FormService } from "app/form/services";
-import { AddFormComponent } from "app/form/add";
+
+import { FormSchemaModel, EditFormApiModel } from "../../models";
+import { FormService } from "../../services";
+import { AddFormComponent } from "../../add";
 
 @Component({
 	selector: "edit-form",
