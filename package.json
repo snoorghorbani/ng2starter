@@ -1,6 +1,6 @@
 {
 	"name": "@soushians/starter",
-	"version": "2.0.41",
+	"version": "2.0.42",
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve",
@@ -31,7 +31,7 @@
 		"server_serve-debug": "nodemon --inspect dist/server/server.js",
 		"server_watch-debug": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run server_watch-sass\" \"npm run server_watch-ts\" \"npm run server_serve-debug\"",
 		"postinstall": "gulp copy_file_after_installed",
-		"update": "npm i @soushians/shared @soushians/infra @soushians/config @soushians/layout @soushians/user @soushians/authentication @soushians/source"
+		"update": "npm i @soushians/shared @soushians/infra @soushians/config @soushians/layout @soushians/user @soushians/authentication @soushians/source @soushians/form @soushians/diagram"
 	},
 	"dependencies": {
 		"@angular/animations": "^5.2.6",
