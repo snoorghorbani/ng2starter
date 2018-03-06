@@ -53,9 +53,9 @@ router.post("/signin", (req: Request, res: Response, next: NextFunction) => {
 		if (!user) {
 			debugger;
 			// req.flash("errors", info.message);
-			return res.redirect("/signin");
+			return res.sendStatus(404);
 		}
-		req.logIn(user, (err) => {
+		req.logIn(user, err => {
 			if (err) {
 				return next(err);
 			}
@@ -111,11 +111,11 @@ router.post("/", (req: Request, res: Response, next: NextFunction) => {
 			// req.flash("errors", { msg: "Account with that email address already exists." });
 			return res.redirect("/signup");
 		}
-		user.save((err) => {
+		user.save(err => {
 			if (err) {
 				return next(err);
 			}
-			req.logIn(user, (err) => {
+			req.logIn(user, err => {
 				if (err) {
 					return next(err);
 				}
@@ -145,11 +145,10 @@ export let postUpdateProfile = (req: Request, res: Response, next: NextFunction)
 		if (err) {
 			return next(err);
 		}
-		user.Email = req.body.Email || "";
-		user.profile.name = req.body.name || "";
-		user.profile.gender = req.body.gender || "";
-		user.profile.location = req.body.location || "";
-		user.profile.website = req.body.website || "";
+		user.profile.Name = req.body.name || "";
+		user.profile.Gender = req.body.gender || "";
+		user.profile.Location = req.body.location || "";
+		user.profile.Website = req.body.website || "";
 		user.save((err: WriteError) => {
 			if (err) {
 				if (err.code === 11000) {
@@ -199,7 +198,7 @@ export let postUpdatePassword = (req: Request, res: Response, next: NextFunction
  * Delete user account.
  */
 export let postDeleteAccount = (req: Request, res: Response, next: NextFunction) => {
-	User.remove({ _id: req.user.id }, (err) => {
+	User.remove({ _id: req.user.id }, err => {
 		if (err) {
 			return next(err);
 		}
@@ -292,7 +291,7 @@ export let postReset = (req: Request, res: Response, next: NextFunction) => {
 							if (err) {
 								return next(err);
 							}
-							req.logIn(user, (err) => {
+							req.logIn(user, err => {
 								done(err, user);
 							});
 						});
@@ -318,7 +317,7 @@ export let postReset = (req: Request, res: Response, next: NextFunction) => {
 				// });
 			}
 		],
-		(err) => {
+		err => {
 			if (err) {
 				return next(err);
 			}
@@ -389,7 +388,7 @@ export let postForgot = (req: Request, res: Response, next: NextFunction) => {
 				// 		});
 			}
 		],
-		(err) => {
+		err => {
 			if (err) {
 				return next(err);
 			}

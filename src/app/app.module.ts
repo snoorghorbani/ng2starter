@@ -35,7 +35,6 @@ import { DashboardModule } from "./dashboard";
 import { EventHandlerService } from "./services";
 import { NgsFormModule } from "@soushians/form";
 
-debugger;
 @NgModule({
 	imports: [
 		CoreModule,

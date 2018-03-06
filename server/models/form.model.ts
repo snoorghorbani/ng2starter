@@ -6,7 +6,17 @@ import { ObjectId } from "mongodb";
 const formSchema = new mongoose.Schema(
 	{
 		name: { type: String },
-		form: {}
+		form: {},
+		events: {
+			accept: {
+				show: { type: Boolean, default: true },
+				text: { type: String, default: "ثبت" }
+			},
+			cancel: {
+				show: { type: Boolean, default: true },
+				text: { type: String, default: "انصراف" }
+			}
+		}
 	},
 	{ timestamps: true }
 );
