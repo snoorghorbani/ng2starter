@@ -1,0 +1,14 @@
+<ngs-bpmn-view #bpmnView
+  [flow]="flow$"
+  (submit)="upsert($event)"
+  (elementHover)="elementHover($event)"
+  (elementOut)="elementOut($event)"
+  (elementClick)="elementClick($event)"
+  (elementDblclick)="flow($event)"
+  (elementMousedown)="elementMousedown($event)"
+  (elementMouseup)="elementMouseup($event)"
+></ngs-bpmn-view>
+
+<button mat-fab color="primary" (click)="bpmnView.getFlow()">
+  <mat-icon aria-label="icon-button">add</mat-icon>
+</button>

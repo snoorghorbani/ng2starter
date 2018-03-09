@@ -26,9 +26,10 @@ dotenv.config({ path: ".env" });
 // import * as admin from "firebase-admin";
 
 /**
- * Models (route handlers).
+ * Models
  */
 import "./models/form.model";
+import "./models/bpmn.model";
 
 /**
  * Controllers (route handlers).
@@ -37,6 +38,7 @@ import * as homeController from "./controllers/home";
 import * as userController from "./controllers/user.controller";
 import * as configController from "./controllers/config.controller";
 import * as formController from "./controllers/form.controller";
+import * as bpmnController from "./controllers/bpmn.controller";
 import * as diagramController from "./controllers/diagram.controller";
 // import * as apiController from "./controllers/api";
 import * as fakeController from "./controllers/fake.controller";
@@ -134,6 +136,7 @@ app.get("/", homeController.index);
 app.use("/api/user", userController.router);
 app.use("/api/config", configController.router);
 app.use("/api/form", formController.router);
+app.use("/api/bpmn", bpmnController.router);
 app.use("/api/diagram", diagramController.router);
 app.use("/api/fake", fakeController.router);
 app.use("/api/data", dataController.router);

@@ -21,11 +21,11 @@
         <ngs-layout-main-menu [authenticated]='showSidebarMenu' (closeSidebar)="sidebar.close()" (click)="onSecondSidebarClosedStart()"></ngs-layout-main-menu>
       </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav [mode]="secondSidenavMode | async" [opened]='showSecondSidenav | async' (closedStart)="onSecondSidebarClosedStart()"
+    <!-- <mat-sidenav [mode]="secondSidenavMode | async" [opened]='showSecondSidenav | async' (closedStart)="onSecondSidebarClosedStart()"
       position="end" #second_sidebar class="second_sidebar">
       <mat-nav-list fxLayout='column'>
       </mat-nav-list>
-    </mat-sidenav>
+    </mat-sidenav> -->
     <div fxFlexLayout='column' id="app-main-container" fxLayoutAlign='center center'>
       <div fxFlex='0 0 100'>
         <router-outlet></router-outlet>

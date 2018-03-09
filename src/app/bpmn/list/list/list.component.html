@@ -1,0 +1,10 @@
+<div fxFlexLayout="row" fxLayoutWrap fxLayoutAlign="center center">
+    <mat-card class="config-box" *ngFor="let item of (data$ | async)" [fxFlex]="100">
+      <h3>
+        <a [routerLink]="['upsert' ,  item._id]">
+          <mat-icon aria-label="edit config">edit</mat-icon>
+        </a>
+        {{item.name}}
+      </h3>
+    </mat-card>
+  </div>
