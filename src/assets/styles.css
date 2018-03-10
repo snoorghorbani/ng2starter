@@ -58,7 +58,7 @@
 html,
 body,
 .mat-sidenav-container {
-	background-color: rgb(244, 244, 244) !important;
+	/* background-color: rgb(244, 244, 244) !important; */
 	/*filter: grayscale();*/
 }
 
@@ -300,8 +300,8 @@ a.ng-trigger-menuItem .mat-list-item-content {
 }
 
 mat-toolbar.mat-toolbar {
-	background: #fff;
-	border-bottom: 1px solid #eaeaea;
+	/* background: #fff;
+	border-bottom: 1px solid #eaeaea; */
 	color: #202020;
 	z-index: 4;
 	position: fixed;
@@ -333,7 +333,7 @@ mat-toolbar.mat-toolbar {
 }
 
 mat-sidenav-content {
-	padding-top: 50px;
+	padding-top: 67px;
 }
 
 mat-sidenav-content mat-sidenav-content {
@@ -393,4 +393,11 @@ mat-sidenav-content mat-sidenav-content {
 diagram-add dynamic-component-selector .mat-card {
 	height: 100%;
 	margin-top: 0 !important;
+}
+.bjs-powered-by {
+	display: none;
+}
+
+.cards-item {
+	margin-bottom: 20px;
 }

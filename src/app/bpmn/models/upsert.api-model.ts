@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { FlowModel, StateModel, EventModel, GatewayModel } from "./flow.model";
 
 export namespace UpsertApiModel {
-	export class Request extends HttpRequestBaseModel<Request> {
+	export class Request implements HttpRequestBaseModel<Request> {
 		_id: string;
 		Name: string;
 		States: StateModel[];
@@ -12,14 +12,14 @@ export namespace UpsertApiModel {
 		Gateways: GatewayModel[];
 		XML: string;
 
+		getRequestBody() {
+			return this;
+		}
 		constructor(initValue = {} as UpsertApiModel.Request) {
-			super(initValue);
+			Object.keys(initValue).forEach(key => (this[key] = initValue[key]));
 		}
 		static get formGroup() {
-			return new FormGroup({
-				_id: new FormControl("", [ Validators.required ]),
-				name: new FormControl("", [ Validators.required ])
-			});
+			return;
 		}
 	}
 

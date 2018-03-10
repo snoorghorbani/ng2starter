@@ -8,14 +8,28 @@ export enum BpmnShapesType {
 	TASK = "TASK",
 	GATEWAY = "GATEWAY"
 }
+export enum StateType {
+	FORM = "FORM"
+}
+export enum GatewayType {
+	CONFIRM = "CONFIRM"
+}
+
+export class FormStateParams {
+	FormId: string;
+	constructor() {}
+}
 
 export class TransitionModel {
 	Name: string;
 	FromState: string;
 	ToState: string;
 	Actions: Actions[];
-	constructor() {
-		this.Actions = [];
+	constructor(init: TransitionModel = {} as TransitionModel) {
+		this.Name = init.Name || "";
+		this.FromState = init.FromState || "";
+		this.ToState = init.ToState || "";
+		this.Actions = init.Actions || [];
 	}
 }
 
@@ -23,16 +37,29 @@ export class ParticipantModel {
 	ParticipantId: string;
 	LaneId: string;
 	UserId: string;
+	constructor(init: ParticipantModel) {
+		this.ParticipantId = init.ParticipantId || "";
+		this.LaneId = init.LaneId || "";
+		this.UserId = init.UserId || "";
+	}
 }
 
-export class StateModel {
+export class TaskModel {
+	Id: string;
 	Name: string;
 	Transitions: TransitionModel[];
 	bpmnEl: any;
 	Participants: ParticipantModel[];
-	constructor() {
-		this.Transitions = [];
-		this.Participants = [];
+	properties?: {
+		Type?: StateType;
+		fields?: FormStateParams;
+	};
+	constructor(init: TaskModel = {} as TaskModel) {
+		this.Id = init.Id || "";
+		this.Name = init.Name || "";
+		this.Transitions = init.Transitions.map(t => new TransitionModel(t)) || [];
+		this.Participants = init.Participants.map(p => new ParticipantModel(p)) || [];
+		this.properties = init.properties || {};
 	}
 }
 
@@ -66,13 +93,16 @@ export class GatewayModel {
 export class FlowModel {
 	_id: string;
 	Name: string;
-	States: StateModel[];
+	States: TaskModel[];
 	Events: EventModel[];
 	Gateways: GatewayModel[];
 	XML: string;
-	constructor(flow?: FlowModel) {
-		this.States = [];
+	constructor(flow: FlowModel = {} as FlowModel) {
 		this._id = flow._id;
+		this.Name = flow.Name;
+		this.States = flow.States.map(s => new TaskModel(s)) || [];
+		this.Events = flow.Events || [];
+		this.Gateways = flow.Gateways || [];
 		this.XML = flow.XML || initaleXML;
 	}
 }

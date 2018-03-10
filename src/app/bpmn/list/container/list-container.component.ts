@@ -8,9 +8,7 @@ import { FlowModel } from "../../models";
 import { BpmnsListAction } from "../../list/list.actions";
 
 @Component({
-	template: `<bpmn-list
-					[data]="data$">
-				</bpmn-list>`
+	templateUrl: "./list-container.html"
 })
 export class BpmnListContainerComponent implements OnInit {
 	data$: Observable<FlowModel[]>;

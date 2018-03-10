@@ -19,7 +19,9 @@ import {
 	MatTabsModule,
 	MatRadioModule,
 	MatSlideToggleModule,
-	MatDividerModule
+	MatDividerModule,
+	MatGridListModule,
+	MatSidenavModule
 } from "@angular/material";
 import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
@@ -46,7 +48,9 @@ import { UpsertComponent, UpsertContainerComponent, UpsertBpmnEffects } from "./
 		MatExpansionModule,
 		MatSnackBarModule,
 		MatIconModule,
+		MatGridListModule,
 		MatButtonModule,
+		MatSidenavModule,
 		MatCardModule,
 		MatSelectModule,
 		MatInputModule,

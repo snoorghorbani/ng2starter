@@ -5,9 +5,6 @@ import { MainContainerComponent } from "./main-container";
 import { ModelerComponent } from "./modeler";
 import { BpmnListContainerComponent } from "./list";
 import { UpsertContainerComponent } from "app/bpmn/upsert";
-// import { AddBpmnContainerComponent } from "./add";
-// import { EditBpmnContainerComponent } from "./edit";
-// import { BpmnListContainerComponent } from "./list";
 
 const routes: Routes = [
 	{
@@ -19,13 +16,13 @@ const routes: Routes = [
 				component: ModelerComponent
 			},
 			{
+				path: "upsert",
+				component: UpsertContainerComponent
+			},
+			{
 				path: "upsert/:_id",
 				component: UpsertContainerComponent
 			},
-			// {
-			// 	path: "edit/:_id",
-			// 	component: EditBpmnContainerComponent
-			// },
 			{
 				path: "",
 				component: BpmnListContainerComponent

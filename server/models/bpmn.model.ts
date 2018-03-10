@@ -6,7 +6,21 @@ import { ObjectId } from "mongodb";
 const bpmnSchema = new mongoose.Schema(
 	{
 		Name: String,
-		States: {},
+		States: {
+			Id: String,
+			Name: String,
+			Participants: {
+				type: [ {} ],
+				default: []
+			},
+			Properties: {
+				type: {
+					Type: String,
+					fields: [ {} ]
+				},
+				default: {}
+			}
+		},
 		Events: {},
 		Gateways: {},
 		XML: String

@@ -1,10 +1,11 @@
 <mat-drawer-container class="example-container">
     <mat-drawer #drawer mode="side" opened="true">
-        <mat-card *ngIf="activeEl?.type == shapesType.TASK" [formGroup]="formGroup"  fxFlexAlign="start" >
-          {{activeEl.id}}
+        <mat-card [formGroup]="formGroup"  fxFlexAlign="start">
             <mat-form-field>
-              <mat-select placeholder="Task Type" (change)="setProperty($event.value, 'Type')">
-                <mat-option *ngFor="let item of stateTypes" [value]="item">{{ item }}</mat-option>
+              <mat-select placeholder="Favorite food">
+                <mat-option *ngFor="let item of stateTypes" [value]="item">
+                  {{ item }}
+                </mat-option>
               </mat-select>
             </mat-form-field>
           <mat-form-field>

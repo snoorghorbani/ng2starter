@@ -16,18 +16,18 @@ router.get("/:id", function(req, res) {
 	Model.findById(req.params.id).then(Result => res.json({ Result }));
 });
 router.post("/", function(req, res) {
-	const model = new Model(req.body);
-	if (model._id) {
-		debugger;
+	if (req.body._id == undefined) {
+		delete req.body._id;
+		const model = new Model(req.body);
+		model.save().then(Result => res.send({ Result })).catch(err => {
+			debugger;
+		});
+	} else {
 		Model.findByIdAndUpdate(req.body._id, req.body, { upsert: true, new: true })
-			.then(Result => res.send({ Result }))
+			.then(Result => res.json({ Result }))
 			.catch(err => {
 				debugger;
 			});
-	} else {
-		model.save().then(Result => res.json({ Result })).catch(err => {
-			debugger;
-		});
 	}
 });
 router.put("/", function(req, res) {});

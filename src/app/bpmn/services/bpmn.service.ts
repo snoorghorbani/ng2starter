@@ -18,35 +18,27 @@ export class BpmnService {
 		private configurationService: BpmnConfigurationService
 	) {}
 
+	get(_id: string): Observable<FlowModel> {
+		return this.configurationService.config$
+			.filter(config => config.endpoints.get != "")
+			.take(1)
+			.switchMap(config => this.http.get(stringTemplate(config.endpoints.get, { _id })))
+			.map((response: GetApiModel.Response) => new FlowModel(response.Result));
+	}
+	getList(): Observable<FlowModel[]> {
+		return this.configurationService.config$
+			.filter(config => config.endpoints.getList != "")
+			.switchMap(config => this.http.get(config.endpoints.getList))
+			.map((response: GetAllApiModel.Response) => response.Result.map(i => new FlowModel(i)));
+	}
 	upsert(data: UpsertApiModel.Request): Observable<FlowModel> {
 		debugger;
 		const request = new UpsertApiModel.Request(data);
 		return this.configurationService.config$
 			.filter(config => config.endpoints.upsert != "")
 			.take(1)
-			.switchMap(config => this.http.post(config.endpoints.upsert, request.body))
-			.map((response: UpsertApiModel.Response) => response.Result);
-	}
-	get(_id: string): Observable<FlowModel> {
-		return this.configurationService.config$
-			.filter(config => config.endpoints.get != "")
-			.take(1)
-			.switchMap(config => this.http.get(stringTemplate(config.endpoints.get, { _id })))
-			.map((response: GetApiModel.Response) => response.Result);
-	}
-	getList(): Observable<FlowModel[]> {
-		return this.configurationService.config$
-			.filter(config => config.endpoints.getList != "")
-			.switchMap(config => this.http.get(config.endpoints.getList))
-			.map((response: GetAllApiModel.Response) => response.Result);
-	}
-	update(data: EditApiModel.Request): Observable<FlowModel> {
-		const model = new EditApiModel.Request(data);
-		return this.configurationService.config$
-			.filter(config => config.endpoints.upsert != "")
-			.take(1)
-			.switchMap(config => this.http.put(config.endpoints.upsert, model.getRequestBody()))
-			.map((response: EditApiModel.Response) => response.Result);
+			.switchMap(config => this.http.post(config.endpoints.upsert, request.getRequestBody()))
+			.map((response: UpsertApiModel.Response) => new FlowModel(response.Result));
 	}
 	delete(_id: string) {
 		return this.configurationService.config$
@@ -55,12 +47,14 @@ export class BpmnService {
 	}
 	selectById(_id: string): Observable<FlowModel> {
 		const subject = new BehaviorSubject<FlowModel>(undefined);
+		if (!_id) subject.next(new FlowModel());
+
 		this.store
 			.select(state => state.bpmn.list.data)
 			.filter(entities => entities != null)
 			.map(entities => entities.find(entity => entity._id == _id))
 			.filter(entities => entities != null)
-			.subscribe(FlowModel => subject.next(FlowModel));
+			.subscribe(enitity => subject.next(new FlowModel(enitity)));
 		return subject.asObservable().filter(flow => flow != null);
 	}
 

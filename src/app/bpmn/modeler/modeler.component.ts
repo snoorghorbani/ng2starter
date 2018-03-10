@@ -3,7 +3,7 @@ import { Observable, Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import {
 	FlowModel,
-	StateModel,
+	TaskModel,
 	ParticipantModel,
 	TransitionModel,
 	EventModel,
@@ -52,12 +52,10 @@ export class ModelerComponent implements AfterViewInit {
          * 
          */
 		this.flow$.subscribe(flow => {
-			this.flow = new FlowModel(flow);
+			this.flow = flow;
 			this.modeler.importXML(this.flow.XML, err => {
-				debugger;
 				if (!err) {
-					console.log("success!");
-					this.modeler.get("canvas").zoom("fit-viewport");
+					this.modeler.get("canvas").zoom(0.8);
 				} else {
 					console.log("something went wrong:", err);
 				}
@@ -68,8 +66,9 @@ export class ModelerComponent implements AfterViewInit {
 	extractFlowModel() {
 		var planeEls: MoodleElement[] = this.modeler._definitions.diagrams[0].plane.planeElement;
 		this.flow.States = planeEls.filter(el => el.bpmnElement.$type == MoodleTypes.BpmnTask).map(el => {
-			const state = new StateModel();
+			const state = new TaskModel();
 			// state.bpmnEl = el;
+			state.Id = el.bpmnElement.id;
 			state.Name = el.bpmnElement.name;
 			state.Participants = this.getParticipant(el);
 			state.Transitions = this.getTransactions(el);
