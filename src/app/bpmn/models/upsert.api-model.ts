@@ -7,7 +7,7 @@ export namespace UpsertApiModel {
 	export class Request implements HttpRequestBaseModel<Request> {
 		_id: string;
 		Name: string;
-		States: TaskModel[];
+		Tasks: TaskModel[];
 		Events: EventModel[];
 		Gateways: GatewayModel[];
 		XML: string;

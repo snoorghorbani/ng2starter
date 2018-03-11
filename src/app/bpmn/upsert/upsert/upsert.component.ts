@@ -52,13 +52,13 @@ export class UpsertComponent implements OnInit {
 		this.activeEl = undefined;
 		if ($event.businessObject.$type.includes("Flow")) {
 			this.activeEl = [
-				this.flow.States.find(item => item.Id == $event.source.id),
+				this.flow.Tasks.find(item => item.Id == $event.source.id),
 				this.flow.Gateways.find(item => item.Id == $event.source.id),
 				this.flow.Events.find(item => item.Id == $event.source.id)
 			].find(item => item != undefined);
 			this.activeFlowIdx = this.activeEl.Flows.findIndex(f => f.Id == $event.id);
 		} else if ($event.businessObject.$type.includes("Task")) {
-			this.activeEl = this.flow.States.find(item => item.Id == $event.id);
+			this.activeEl = this.flow.Tasks.find(item => item.Id == $event.id);
 		} else if ($event.businessObject.$type.includes("Gateway")) {
 			this.activeEl = this.flow.Gateways.find(item => item.Id == $event.id);
 		} else if ($event.businessObject.$type.includes("Event")) {
@@ -80,7 +80,7 @@ export class UpsertComponent implements OnInit {
 	// 	this.flow$
 	// 		.last(flow => {
 	// 			debugger;
-	// 			const task = flow.States.find(state => state.Id == this.activeEl.Id);
+	// 			const task = flow.Tasks.find(state => state.Id == this.activeEl.Id);
 	// 			// task.Properties.Type = this.activeEl.el.Properties.Type;
 	// 			return true;
 	// 		})

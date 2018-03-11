@@ -172,7 +172,7 @@ export class BpmnModel {
 	Name: string;
 	ActiveStateId: string; //current state Id
 	Status: FlowStatus; //current state Id
-	States: TaskModel[];
+	Tasks: TaskModel[];
 	Events: EventModel[];
 	Gateways: GatewayModel[];
 	XML: string;
@@ -182,7 +182,7 @@ export class BpmnModel {
 			Name = "",
 			Status = FlowStatus.START,
 			ActiveStateId = "",
-			States = [],
+			Tasks = [],
 			Events = [],
 			Gateways = [],
 			XML = initaleXML
@@ -191,7 +191,7 @@ export class BpmnModel {
 		this._id = _id;
 		this.Name = Name;
 		this.Status = Status;
-		this.States = States.map(s => new TaskModel(s));
+		this.Tasks = Tasks.map(s => new TaskModel(s));
 		this.Events = Events.map(e => new EventModel(e));
 		this.Gateways = Gateways.map(g => new GatewayModel(g));
 		this.ActiveStateId = ActiveStateId || this.Events.find(i => i.MoodleType == MoodleTypes.BpmnStartEvent).Id;
@@ -202,7 +202,7 @@ export class BpmnModel {
 	}
 	get currentState(): BpmnElement {
 		debugger;
-		return [ ...this.States, ...this.Events, ...this.Gateways ].find(i => i.Id == this.ActiveStateId);
+		return [ ...this.Tasks, ...this.Events, ...this.Gateways ].find(i => i.Id == this.ActiveStateId);
 	}
 	update(State: TaskModel | GatewayModel | EventModel) {
 		// TODO
@@ -214,9 +214,7 @@ export class BpmnModel {
 		debugger;
 		// TODO
 		flows.forEach(flow => {
-			this.ActiveStateId = [ ...this.States, ...this.Events, ...this.Gateways ].find(
-				i => i.Id == flow.ToState
-			).Id;
+			this.ActiveStateId = [ ...this.Tasks, ...this.Events, ...this.Gateways ].find(i => i.Id == flow.ToState).Id;
 		});
 	}
 }

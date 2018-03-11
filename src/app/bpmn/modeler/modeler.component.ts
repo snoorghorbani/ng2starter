@@ -68,8 +68,8 @@ export class ModelerComponent implements AfterViewInit {
 	}
 	extractBpmnModel() {
 		var planeEls: MoodleElement[] = this.modeler._definitions.diagrams[0].plane.planeElement;
-		this.flow.States = planeEls.filter(el => el.bpmnElement.$type == MoodleTypes.BpmnTask).map(el => {
-			var task: TaskModel = this.flow.States.find(s => s.Id == el.bpmnElement.id);
+		this.flow.Tasks = planeEls.filter(el => el.bpmnElement.$type == MoodleTypes.BpmnTask).map(el => {
+			var task: TaskModel = this.flow.Tasks.find(s => s.Id == el.bpmnElement.id);
 			if (!task) task = new TaskModel();
 			// state.bpmnEl = el;
 			task.Id = el.bpmnElement.id;
