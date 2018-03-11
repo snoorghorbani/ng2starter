@@ -1,4 +1,4 @@
-import { MoodleTypes } from "app/bpmn/models";
+import { MoodleTypes } from "./bpmnjs.interface";
 
 export enum FlowStatus {
 	START = "START",
@@ -208,7 +208,7 @@ export class ProcessModel {
 		return this.Events.find(i => i.MoodleType == MoodleTypes.BpmnStartEvent);
 	}
 	get currentState(): BpmnElement {
-		debugger;
+		// debugger;
 		return [ ...this.Tasks, ...this.Events, ...this.Gateways ].find(i => i.Id == this.ActiveStateId);
 	}
 	update(State: TaskModel | GatewayModel | EventModel) {

@@ -1,6 +1,7 @@
 ﻿import { Component, Output, EventEmitter, Injector, OnInit, AfterViewInit } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { BpmnElement } from "../../models";
+import { FormGroup } from "@angular/forms";
 
 @Component({
 	selector: "form-task",
@@ -14,7 +15,7 @@ export class FormTaskComponent {
 		debugger;
 		this.State = this.injector.get("State");
 	}
-	done() {
+	done(formGroup: FormGroup) {
 		debugger;
 		this.State.Flows.find(f => true).traverse();
 		this.change.next({});
