@@ -1,13 +1,22 @@
-export enum Actions {
+import { MoodleTypes } from "app/bpmn/models";
+
+export enum FlowStatus {
+	START = "START",
+	IN_PROGRESS = "IN_PROGRESS",
+	FINISHED = "FINISHED"
+}
+export enum ActionTypes {
 	ACCEPT = "ACCEPT",
-	REJECT = "APPROVE",
-	SUBMIT = "SUBMIT"
+	REJECT = "REJECT",
+	SUBMIT = "SUBMIT",
+	EXP = "EXP"
 }
 export enum BpmnShapesType {
 	NONE = "NONE",
 	EVENT = "EVENT",
 	TASK = "TASK",
-	GATEWAY = "GATEWAY"
+	GATEWAY = "GATEWAY",
+	SEQUENCE_FLOW = "SEQUENCE_FLOW"
 }
 export enum StateType {
 	FORM = "FORM",
@@ -17,21 +26,55 @@ export enum GatewayType {
 	CONFIRM = "CONFIRM"
 }
 
+export class BpmnElement {
+	Id: string;
+	Name: string;
+	MoodleType: MoodleTypes;
+	Flows: FlowModel[];
+	Participants: ParticipantModel[];
+	Properties?: {};
+	constructor({ Id = "", Name = "", MoodleType = MoodleTypes.None, Flows = [], Participants = [], Properties = {} }) {
+		this.Id = Id;
+		this.Name = Name;
+		this.Flows = Flows.map(t => new FlowModel(t));
+		this.Participants = Participants.map(p => new ParticipantModel(p));
+		this.Properties = Properties;
+	}
+}
 export class FormStateParams {
 	FormId: string;
 	constructor() {}
 }
 
-export class TransitionModel {
+export class FlowModel {
+	Id: string;
+	MoodleType: MoodleTypes;
 	Name: string;
 	FromState: string;
 	ToState: string;
-	Actions: Actions[];
-	constructor({ Name = "", FromState = "", ToState = "", Actions = [] } = {}) {
+	Action: ActionTypes;
+	traversed: boolean;
+	constructor(
+		{
+			Id = "",
+			Name = "",
+			FromState = "",
+			ToState = "",
+			Action = ActionTypes.ACCEPT,
+			MoodleType = MoodleTypes.None,
+			Properties = {}
+		} = {}
+	) {
+		this.Id = Id;
 		this.Name = Name;
+		this.MoodleType = MoodleType;
 		this.FromState = FromState;
 		this.ToState = ToState;
-		this.Actions = Actions;
+		this.Action = Action;
+	}
+	traverse() {
+		debugger;
+		this.traversed = true;
 	}
 }
 
@@ -46,70 +89,135 @@ export class ParticipantModel {
 	}
 }
 
-export class TaskModel {
-	Id: string;
-	Name: string;
-	Transitions: TransitionModel[];
+export class TaskModel extends BpmnElement {
+	bpmnEl: any;
+	ShapeType: BpmnShapesType;
+	Properties?: {
+		Type?: StateType;
+		FormId?: String;
+	};
+	constructor(
+		{ Id = "", MoodleType = MoodleTypes.None, Name = "", Flows = [], Participants = [], Properties = {} } = {}
+	) {
+		super({ Id, Name, MoodleType, Flows, Participants, Properties });
+		this.ShapeType = BpmnShapesType.TASK;
+	}
+}
+
+export class EventModel extends BpmnElement {
+	ShapeType: BpmnShapesType;
+	MoodleType: MoodleTypes;
+	Flows: FlowModel[];
 	bpmnEl: any;
 	Participants: ParticipantModel[];
 	Properties?: {
 		Type?: StateType;
 		FormId?: String;
 	};
-	constructor({ Id = "", Name = "", Transitions = [], Participants = [], Properties = {} } = {}) {
-		this.Id = Id;
-		this.Name = Name;
-		this.Transitions = Transitions.map(t => new TransitionModel(t));
+	constructor(
+		{
+			Id = "",
+			Name = "",
+			MoodleType = MoodleTypes.None,
+			Flows = [],
+			bpmnEl = {},
+			Participants = [],
+			Properties = {}
+		} = {}
+	) {
+		super({ Id, Name, MoodleType, Flows, Participants, Properties });
+		this.ShapeType = BpmnShapesType.EVENT;
+		this.MoodleType = MoodleType;
+		this.Flows = Flows.map(t => new FlowModel(t));
 		this.Participants = Participants.map(p => new ParticipantModel(p));
 		this.Properties = Properties;
 	}
 }
 
-export class EventModel {
+export class GatewayModel extends BpmnElement {
 	Id: string;
 	Name: string;
 	shapeType: BpmnShapesType;
-	Transitions: TransitionModel[];
+	MoodleType: MoodleTypes;
+	Flows: FlowModel[];
 	bpmnEl: any;
 	Participants: ParticipantModel[];
-	constructor({ Id = "", Transitions = [], bpmnEl = {}, Participants = [] } = {}) {
-		this.shapeType = BpmnShapesType.EVENT;
-		this.Id = Id;
-		this.Transitions = Transitions.map(t => new TransitionModel(t));
-		this.Participants = Participants.map(p => new ParticipantModel(p));
-	}
-}
-
-export class GatewayModel {
-	Id: string;
-	Name: string;
-	shapeType: BpmnShapesType;
-	BpmnType: string;
-	Transitions: TransitionModel[];
-	bpmnEl: any;
-	Participants: ParticipantModel[];
-	constructor({ Id = "", Name = "", shapeType = "", Transitions = [], bpmnEl = {}, Participants = [] } = {}) {
+	Properties?: {
+		Type?: StateType;
+		FormId?: String;
+	};
+	constructor(
+		{
+			Id = "",
+			MoodleType = MoodleTypes.None,
+			Name = "",
+			shapeType = "",
+			Flows = [],
+			bpmnEl = {},
+			Participants = [],
+			Properties = {}
+		} = {}
+	) {
+		super({ Id, Name, MoodleType, Flows, Participants, Properties });
 		this.shapeType = BpmnShapesType.GATEWAY;
-		this.Id = Id;
-		this.Transitions = Transitions.map(t => new TransitionModel(t));
+		this.MoodleType = MoodleType;
+		this.Flows = Flows.map(t => new FlowModel(t));
 		this.Participants = Participants.map(p => new ParticipantModel(p));
+		this.Properties = Properties;
 	}
 }
 
-export class FlowModel {
+export class BpmnModel {
 	_id: string;
 	Name: string;
+	ActiveStateId: string; //current state Id
+	Status: FlowStatus; //current state Id
 	States: TaskModel[];
 	Events: EventModel[];
 	Gateways: GatewayModel[];
 	XML: string;
-	constructor({ _id = "", Name = "", States = [], Events = [], Gateways = [], XML = initaleXML } = {}) {
+	constructor(
+		{
+			_id = "",
+			Name = "",
+			Status = FlowStatus.START,
+			ActiveStateId = "",
+			States = [],
+			Events = [],
+			Gateways = [],
+			XML = initaleXML
+		} = {}
+	) {
 		this._id = _id;
 		this.Name = Name;
+		this.Status = Status;
 		this.States = States.map(s => new TaskModel(s));
 		this.Events = Events.map(e => new EventModel(e));
 		this.Gateways = Gateways.map(g => new GatewayModel(g));
+		this.ActiveStateId = ActiveStateId || this.Events.find(i => i.MoodleType == MoodleTypes.BpmnStartEvent).Id;
 		this.XML = XML;
+	}
+	start() {
+		return this.Events.find(i => i.MoodleType == MoodleTypes.BpmnStartEvent);
+	}
+	get currentState(): BpmnElement {
+		debugger;
+		return [ ...this.States, ...this.Events, ...this.Gateways ].find(i => i.Id == this.ActiveStateId);
+	}
+	update(State: TaskModel | GatewayModel | EventModel) {
+		// TODO
+		debugger;
+		this.currentState.Flows;
+		return "";
+	}
+	traverse(flows: FlowModel[]) {
+		debugger;
+		// TODO
+		flows.forEach(flow => {
+			this.ActiveStateId = [ ...this.States, ...this.Events, ...this.Gateways ].find(
+				i => i.Id == flow.ToState
+			).Id;
+		});
 	}
 }
 

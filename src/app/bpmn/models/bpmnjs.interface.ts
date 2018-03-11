@@ -1,10 +1,13 @@
 export enum MoodleTypes {
+	None = "None",
 	BpmnParticipant = "bpmn:Participant",
 	BpmnSequenceFlow = "bpmn:SequenceFlow",
 	BpmnTask = "bpmn:Task",
 	BpmnLane = "bpmn:Lane",
 	BpmnIntermediateCatchEvent = "bpmn:IntermediateCatchEvent",
+	BpmnStartEvent = "bpmn:StartEvent",
 	BpmnParallelGateway = "bpmn:ParallelGateway",
+	BpmnExclusiveGateway = "bpmn:ExclusiveGateway",
 	BpmnEventBasedGateway = "bpmn:EventBasedGateway",
 	BpmnDiParticipant = "bpmndi:BPMNShape"
 }

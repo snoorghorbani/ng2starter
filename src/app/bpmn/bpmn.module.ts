@@ -37,6 +37,14 @@ import { BpmnService, BpmnConfigurationService } from "./services";
 import { ModelerComponent } from "./modeler";
 import { BpmnsListEffects, BpmnListContainerComponent, BpmnListComponent } from "./list";
 import { UpsertComponent, UpsertContainerComponent, UpsertBpmnEffects } from "./upsert";
+import {
+	FlowViewComponent,
+	FlowViewContainerComponent,
+	StartEventComponent,
+	DynamicStateComponent,
+	AcceptFlowComponent
+} from "./view";
+import { FlowTestComponent } from "./test";
 
 @NgModule({
 	imports: [
@@ -69,9 +77,15 @@ import { UpsertComponent, UpsertContainerComponent, UpsertBpmnEffects } from "./
 		BpmnListContainerComponent,
 		BpmnListComponent,
 		UpsertComponent,
-		UpsertContainerComponent
+		UpsertContainerComponent,
+		FlowViewContainerComponent,
+		FlowViewComponent,
+		FlowTestComponent,
+		DynamicStateComponent,
+		StartEventComponent,
+		AcceptFlowComponent
 	],
-	exports: []
+	exports: [ FlowViewContainerComponent ]
 })
 export class NgsBpmnModule {
 	static forRoot(config?: BpmnModuleConfig): ModuleWithProviders {

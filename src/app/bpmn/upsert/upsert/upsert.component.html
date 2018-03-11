@@ -1,17 +1,40 @@
 <mat-drawer-container class="example-container">
-    <mat-drawer #drawer mode="side">
-      <mat-card fxLayout="column" *ngIf="activeEl?.type == shapesType.TASK" fxFlexAlign="start" >
+  <mat-drawer #drawer mode="side">
+      <!-- Task -->
+      <mat-card fxLayout="column" *ngIf="activeEl?.ShapeType == shapesType.TASK" fxFlexAlign="start" >
         <mat-form-field fxFlex>
-            <input type="text" matInput placeholder="formId"  [(ngModel)]="activeEl.id">
+            <input type="text" matInput placeholder="Element Id" [(ngModel)]="activeEl.Id" (change)="bpmnView.updateId(activeEl._id,activeEl.Id)">
         </mat-form-field>
         <mat-form-field fxFlex>
-          <mat-select placeholder="Task Type" [(ngModel)]="activeEl.el.Properties.Type">
+          <mat-select placeholder="Task Type" [(ngModel)]="activeEl.Properties.Type">
             <mat-option *ngFor="let item of stateTypes" [value]="item">{{ item }}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field fxFlex>
-          <input type="text" matInput placeholder="formId"  [(ngModel)]="activeEl.el.Properties.FormId">
+          <input type="text" matInput placeholder="formId" [(ngModel)]="activeEl.Properties.FormId">
         </mat-form-field>
+      </mat-card>
+      <!-- Event -->
+      <mat-card fxLayout="column" *ngIf="activeEl?.ShapeType == shapesType.EVENT" fxFlexAlign="start" >
+        <mat-form-field fxFlex>
+            <input type="text" matInput placeholder="formId" [(ngModel)]="activeEl.Id" (change)="bpmnView.updateId(activeEl._id,activeEl.Id)">
+        </mat-form-field>
+      </mat-card>
+      <!-- Flows -->
+      <mat-card fxLayout="column" *ngIf="activeFlowIdx!==undefined" fxFlexAlign="start" >
+        <mat-form-field fxFlex>
+            <input type="text" matInput placeholder="Flow Id"  [(ngModel)]="activeEl.Flows[activeFlowIdx].Id" (change)="bpmnView.updateId(activeEl._id,activeEl.Id)">
+        </mat-form-field>
+        <!-- <div *ngFor="let transition of activeEl.Flows;let i = index"> -->
+          <mat-form-field fxFlex>
+            <mat-select placeholder="Task Type" [(ngModel)]="activeEl.Flows[activeFlowIdx].Action">
+              <mat-option *ngFor="let item of actionTypes" [value]="item">{{ item }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <input type="text" matInput placeholder="Condition" [(ngModel)]="activeEl.Flows[activeFlowIdx].Condition">
+          </mat-form-field>
+        <!-- </div> -->
       </mat-card>
     </mat-drawer>
     <mat-drawer-content>

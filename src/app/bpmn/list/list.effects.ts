@@ -12,7 +12,7 @@ import { of } from "rxjs/observable/of";
 import { Store } from "@ngrx/store";
 
 import { BpmnService } from "../services";
-import { FlowModel } from "../models";
+import { BpmnModel } from "../models";
 import {
 	BpmnsListAction,
 	BpmnsListActionTypes,

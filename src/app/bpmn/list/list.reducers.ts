@@ -1,10 +1,10 @@
 import { responseStatusTypes } from "@soushians/shared";
-import { FlowModel } from "../models";
+import { BpmnModel } from "../models";
 import { BpmnsListActionTypes, BpmnsListActions } from "./list.actions";
 
 export interface State {
 	status: responseStatusTypes;
-	data: FlowModel[];
+	data: BpmnModel[];
 }
 export const initialState: State = {
 	status: "pristine",

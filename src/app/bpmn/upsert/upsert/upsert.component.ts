@@ -1,8 +1,19 @@
 import { Component, OnInit, EventEmitter, Output, Input, ViewChild } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { UpsertApiModel, FlowModel, StateType, BpmnShapesType, TaskModel } from "../../models";
 import { Observable } from "rxjs/Observable";
 import { MatDrawer } from "@angular/material";
+
+import {
+	UpsertApiModel,
+	BpmnModel,
+	StateType,
+	BpmnShapesType,
+	TaskModel,
+	EventModel,
+	GatewayModel,
+	ActionTypes,
+	FlowModel
+} from "../../models";
 
 @Component({
 	selector: "ngs-bpmn-upsert",
@@ -10,20 +21,19 @@ import { MatDrawer } from "@angular/material";
 	styleUrls: [ "./upsert.component.css" ]
 })
 export class UpsertComponent implements OnInit {
-	@Input("flow") flow$: Observable<FlowModel>;
+	@Input("flow") flow$: Observable<BpmnModel>;
 	@Output() submited = new EventEmitter();
 	@ViewChild("drawer") sidenave: MatDrawer;
-	flow: FlowModel;
+	flow: BpmnModel;
 	formGroup: FormGroup;
 	stateTypes: string[];
-	activeEl: {
-		type: BpmnShapesType;
-		id: string;
-		el: Partial<TaskModel>;
-	};
+	activeEl: TaskModel | EventModel | GatewayModel;
+	activeFlowIdx: number;
 	shapesType: any;
+	actionTypes: any;
 	constructor() {
 		this.shapesType = BpmnShapesType;
+		this.actionTypes = Object.keys(ActionTypes);
 		this.stateTypes = Object.keys(StateType);
 	}
 	ngOnInit() {
@@ -38,53 +48,44 @@ export class UpsertComponent implements OnInit {
 	elementHover($event) {}
 	elementOut($event) {}
 	elementClick($event) {
-		if ($event.businessObject.$type.includes("Task")) {
-			const task = this.flow.States.find(task => task.Id == $event.id);
-			this.activeEl = {
-				type: BpmnShapesType.TASK,
-				id: $event.id,
-				el: {
-					Properties: task.Properties
-				}
-			};
+		this.activeFlowIdx = undefined;
+		this.activeEl = undefined;
+		if ($event.businessObject.$type.includes("Flow")) {
+			this.activeEl = [
+				this.flow.States.find(item => item.Id == $event.source.id),
+				this.flow.Gateways.find(item => item.Id == $event.source.id),
+				this.flow.Events.find(item => item.Id == $event.source.id)
+			].find(item => item != undefined);
+			this.activeFlowIdx = this.activeEl.Flows.findIndex(f => f.Id == $event.id);
+		} else if ($event.businessObject.$type.includes("Task")) {
+			this.activeEl = this.flow.States.find(item => item.Id == $event.id);
 		} else if ($event.businessObject.$type.includes("Gateway")) {
-			const task = this.flow.States.find(task => task.Id == $event.id);
-			this.activeEl = {
-				type: BpmnShapesType.GATEWAY,
-				id: $event.id,
-				el: {
-					Properties: task.Properties
-				}
-			};
+			this.activeEl = this.flow.Gateways.find(item => item.Id == $event.id);
 		} else if ($event.businessObject.$type.includes("Event")) {
-			const task = this.flow.States.find(task => task.Id == $event.id);
-			this.activeEl = {
-				type: BpmnShapesType.EVENT,
-				id: $event.id,
-				el: {
-					Properties: task.Properties
-				}
-			};
+			this.activeEl = this.flow.Events.find(item => item.Id == $event.id);
 		}
+		(this.activeEl as any)._id = this.activeEl.Id;
 		this.sidenave.open();
 	}
 	elementDblclick($event) {}
 	elementMousedown($event) {}
 	elementMouseup($event) {}
+
 	upsert() {
+		debugger;
 		this.submited.emit(this.flow);
 	}
-	setActiveElProperties() {
-		debugger;
-		this.flow$
-			.last(flow => {
-				debugger;
-				const task = flow.States.find(state => state.Id == this.activeEl.id);
-				// task.Properties.Type = this.activeEl.el.Properties.Type;
-				return true;
-			})
-			.subscribe(data => {
-				debugger;
-			});
-	}
+	// setActiveElProperties() {
+	// 	debugger;
+	// 	this.flow$
+	// 		.last(flow => {
+	// 			debugger;
+	// 			const task = flow.States.find(state => state.Id == this.activeEl.Id);
+	// 			// task.Properties.Type = this.activeEl.el.Properties.Type;
+	// 			return true;
+	// 		})
+	// 		.subscribe(data => {
+	// 			debugger;
+	// 		});
+	// }
 }

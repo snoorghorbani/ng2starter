@@ -4,14 +4,14 @@ import { Store } from "@ngrx/store";
 
 import { MainContainerState, BpmnReducers } from "../../main-container";
 import { BpmnService } from "../../services";
-import { FlowModel } from "../../models";
+import { BpmnModel } from "../../models";
 import { BpmnsListAction } from "../../list/list.actions";
 
 @Component({
 	templateUrl: "./list-container.html"
 })
 export class BpmnListContainerComponent implements OnInit {
-	data$: Observable<FlowModel[]>;
+	data$: Observable<BpmnModel[]>;
 	constructor(public store: Store<MainContainerState>) {
 		this.data$ = this.store.select(state => state.bpmn.list.data);
 	}

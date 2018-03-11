@@ -4,7 +4,8 @@ import { RouterModule, Routes } from "@angular/router";
 import { MainContainerComponent } from "./main-container";
 import { ModelerComponent } from "./modeler";
 import { BpmnListContainerComponent } from "./list";
-import { UpsertContainerComponent } from "app/bpmn/upsert";
+import { UpsertContainerComponent } from "./upsert";
+import { FlowTestComponent } from "./test";
 
 const routes: Routes = [
 	{
@@ -26,6 +27,10 @@ const routes: Routes = [
 			{
 				path: "",
 				component: BpmnListContainerComponent
+			},
+			{
+				path: "test",
+				component: FlowTestComponent
 			}
 		]
 	}

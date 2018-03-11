@@ -1,0 +1,9 @@
+<div *ngIf="flow">
+  {{flow?.ActiveStateId}}
+
+  <dynamic-state
+    [State]="flow.currentState"
+    (done)="traverse($event)"
+  ></dynamic-state>
+
+</div>

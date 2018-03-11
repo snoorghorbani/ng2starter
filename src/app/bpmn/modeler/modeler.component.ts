@@ -2,10 +2,10 @@ import { Component, OnInit, AfterViewInit, EventEmitter, Output, Input } from "@
 import { Observable, Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import {
-	FlowModel,
+	BpmnModel,
 	TaskModel,
 	ParticipantModel,
-	TransitionModel,
+	FlowModel,
 	EventModel,
 	GatewayModel
 } from "app/bpmn/models/flow.model";
@@ -21,9 +21,9 @@ const BpmnModeler = require("bpmn-js/lib/Modeler.js");
 	styleUrls: [ "./modeler.component.less" ]
 })
 export class ModelerComponent implements AfterViewInit {
-	private _flow: FlowModel;
+	private _flow: BpmnModel;
 	@Input("flow")
-	set flow(flow: FlowModel) {
+	set flow(flow: BpmnModel) {
 		if (!flow) return;
 		this._flow = flow;
 		this.modeler.importXML(flow.XML, err => {
@@ -66,46 +66,55 @@ export class ModelerComponent implements AfterViewInit {
          * 
          */
 	}
-	extractFlowModel() {
+	extractBpmnModel() {
 		var planeEls: MoodleElement[] = this.modeler._definitions.diagrams[0].plane.planeElement;
 		this.flow.States = planeEls.filter(el => el.bpmnElement.$type == MoodleTypes.BpmnTask).map(el => {
-			var task: TaskModel;
-			if ((task = this.flow.States.find(s => s.Id == el.bpmnElement.id))) return task;
-
-			const state = new TaskModel();
+			var task: TaskModel = this.flow.States.find(s => s.Id == el.bpmnElement.id);
+			if (!task) task = new TaskModel();
 			// state.bpmnEl = el;
-			state.Id = el.bpmnElement.id;
-			state.Name = el.bpmnElement.name;
-			state.Participants = this.getParticipant(el);
-			state.Transitions = this.getTransactions(el);
-			return state;
+			task.Id = el.bpmnElement.id;
+			task.MoodleType = el.bpmnElement.$type;
+			task.Name = el.bpmnElement.name;
+			task.Participants = this.getParticipant(el);
+			task.Flows = this.updateFlows(el, task.Flows);
+			return task;
 		});
 
 		this.flow.Events = planeEls
-			.filter(el => el.bpmnElement.$type == MoodleTypes.BpmnIntermediateCatchEvent)
+			.filter(el =>
+				[
+					el.bpmnElement.$type == MoodleTypes.BpmnIntermediateCatchEvent,
+					el.bpmnElement.$type == MoodleTypes.BpmnStartEvent
+				].some(value => value)
+			)
 			.map(el => {
-				const event = new EventModel();
+				var event: EventModel = this.flow.Events.find(s => s.Id == el.bpmnElement.id);
+				if (!event) event = new EventModel();
 				// event.bpmnEl = el;
+				event.Id = el.bpmnElement.id;
 				event.Name = el.bpmnElement.name;
+				event.MoodleType = el.bpmnElement.$type;
 				event.Participants = this.getParticipant(el);
-				event.Transitions = this.getTransactions(el);
+				event.Flows = this.updateFlows(el, event.Flows);
 				return event;
 			});
 
 		this.flow.Gateways = planeEls
-			.filter(el => {
-				return [
+			.filter(el =>
+				[
 					el.bpmnElement.$type == MoodleTypes.BpmnParallelGateway,
+					el.bpmnElement.$type == MoodleTypes.BpmnExclusiveGateway,
 					el.bpmnElement.$type == MoodleTypes.BpmnEventBasedGateway
-				].some(state => state);
-			})
+				].some(state => state)
+			)
 			.map(el => {
 				const gateway = new GatewayModel();
 				// gateway.bpmnEl = el;
-				gateway.BpmnType = el.$type;
+				gateway.Id = el.bpmnElement.id;
+				gateway.MoodleType = el.bpmnElement.$type;
 				gateway.Name = el.bpmnElement.name;
 				gateway.Participants = this.getParticipant(el);
-				gateway.Transitions = this.getTransactions(el);
+				gateway.Flows = this.updateFlows(el, gateway.Flows);
 				return gateway;
 			});
 
@@ -121,21 +130,31 @@ export class ModelerComponent implements AfterViewInit {
 			return participant;
 		});
 	}
-	getTransactions(el: MoodleElement) {
+	updateFlows(el: MoodleElement, flows: FlowModel[]) {
 		if (!el.bpmnElement.outgoing) return [];
 
 		return el.bpmnElement.outgoing.map(outgoing => {
-			const transaction = new TransitionModel();
-			transaction.Name = outgoing.name;
-			transaction.FromState = outgoing.sourceRef.name;
-			transaction.ToState = outgoing.targetRef.name;
-			return transaction;
+			var flow: FlowModel = flows.find(s => s.Id == outgoing.id);
+			if (!flow) flow = new FlowModel();
+			flow.Name = outgoing.name;
+			flow.Id = outgoing.id;
+			flow.FromState = outgoing.sourceRef.id;
+			flow.ToState = outgoing.targetRef.id;
+			return flow;
 		});
 	}
+	updateId(oldId, newId) {
+		this.modeler.invoke(function(elementRegistry, modeling) {
+			var serviceTaskShape = elementRegistry.get(oldId);
 
+			modeling.updateProperties(serviceTaskShape, {
+				id: newId
+			});
+		});
+	}
 	getFlow() {
 		this.modeler.saveXML((a: any, XML: string) => {
-			this.extractFlowModel();
+			this.extractBpmnModel();
 			this.flow.XML = XML;
 			this.submit.emit(this.flow);
 		});
