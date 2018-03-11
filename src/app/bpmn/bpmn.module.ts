@@ -29,6 +29,7 @@ import { EffectsModule, mergeEffects } from "@ngrx/effects";
 
 import { SharedModule } from "@soushians/shared";
 import { InfraModule } from "@soushians/infra";
+import { NgsFormModule } from "@soushians/form";
 
 import { RoutingModule } from "./bpmn-routing.module";
 import { BpmnModuleConfig, MODULE_CONFIG_TOKEN } from "./bpmn.config";
@@ -42,7 +43,9 @@ import {
 	FlowViewContainerComponent,
 	StartEventComponent,
 	DynamicStateComponent,
-	AcceptFlowComponent
+	AcceptFlowComponent,
+	NotificationTaskComponent,
+	FormTaskComponent
 } from "./view";
 import { FlowTestComponent } from "./test";
 
@@ -69,7 +72,8 @@ import { FlowTestComponent } from "./test";
 		MatRadioModule,
 		MatSlideToggleModule,
 		ReactiveFormsModule,
-		BrowserAnimationsModule
+		BrowserAnimationsModule,
+		NgsFormModule
 	],
 	declarations: [
 		MainContainerComponent,
@@ -83,7 +87,9 @@ import { FlowTestComponent } from "./test";
 		FlowTestComponent,
 		DynamicStateComponent,
 		StartEventComponent,
-		AcceptFlowComponent
+		AcceptFlowComponent,
+		NotificationTaskComponent,
+		FormTaskComponent
 	],
 	exports: [ FlowViewContainerComponent ]
 })

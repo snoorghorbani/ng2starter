@@ -1,26 +1,31 @@
 <mat-drawer-container class="example-container">
   <mat-drawer #drawer mode="side">
-      <!-- Task -->
+      <!-- Task BPMN Type-->
       <mat-card fxLayout="column" *ngIf="activeEl?.ShapeType == shapesType.TASK" fxFlexAlign="start" >
         <mat-form-field fxFlex>
             <input type="text" matInput placeholder="Element Id" [(ngModel)]="activeEl.Id" (change)="bpmnView.updateId(activeEl._id,activeEl.Id)">
         </mat-form-field>
         <mat-form-field fxFlex>
           <mat-select placeholder="Task Type" [(ngModel)]="activeEl.Properties.Type">
-            <mat-option *ngFor="let item of stateTypes" [value]="item">{{ item }}</mat-option>
+            <mat-option *ngFor="let item of taskTypes" [value]="item">{{ item }}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field fxFlex>
           <input type="text" matInput placeholder="formId" [(ngModel)]="activeEl.Properties.FormId">
         </mat-form-field>
       </mat-card>
-      <!-- Event -->
+      <!-- Event BPMN Type-->
       <mat-card fxLayout="column" *ngIf="activeEl?.ShapeType == shapesType.EVENT" fxFlexAlign="start" >
         <mat-form-field fxFlex>
             <input type="text" matInput placeholder="formId" [(ngModel)]="activeEl.Id" (change)="bpmnView.updateId(activeEl._id,activeEl.Id)">
         </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-select placeholder="Event Type" [(ngModel)]="activeEl.Properties.Type">
+            <mat-option *ngFor="let item of eventTypes" [value]="item">{{ item }}</mat-option>
+          </mat-select>
+        </mat-form-field>
       </mat-card>
-      <!-- Flows -->
+      <!-- Flows BPMN Type-->
       <mat-card fxLayout="column" *ngIf="activeFlowIdx!==undefined" fxFlexAlign="start" >
         <mat-form-field fxFlex>
             <input type="text" matInput placeholder="Flow Id"  [(ngModel)]="activeEl.Flows[activeFlowIdx].Id" (change)="bpmnView.updateId(activeEl._id,activeEl.Id)">

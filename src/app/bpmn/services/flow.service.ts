@@ -4,7 +4,7 @@ import { Observable } from "rxjs/Rx";
 import { Store } from "@ngrx/store";
 
 import { stringTemplate } from "@soushians/infra";
-import { UpsertApiModel, BpmnModel, GetApiModel, GetAllApiModel, EditApiModel } from "../models";
+import { UpsertApiModel, ProcessModel, GetApiModel, GetAllApiModel, EditApiModel } from "../models";
 import { BpmnConfigurationService } from "./bpmn-configuration.service";
 
 import { MainContainerState } from "../main-container/main-container.reducers";
@@ -18,11 +18,11 @@ export class FlowService {
 		private configurationService: BpmnConfigurationService
 	) {}
 
-	get(_id: string): Observable<BpmnModel> {
+	get(_id: string): Observable<ProcessModel> {
 		return this.configurationService.config$
 			.filter(config => config.endpoints.get != "")
 			.take(1)
 			.switchMap(config => this.http.get(stringTemplate(config.endpoints.get, { _id })))
-			.map((response: GetApiModel.Response) => new BpmnModel(response.Result));
+			.map((response: GetApiModel.Response) => new ProcessModel(response.Result));
 	}
 }

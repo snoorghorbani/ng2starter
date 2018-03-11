@@ -5,14 +5,15 @@ import { MatDrawer } from "@angular/material";
 
 import {
 	UpsertApiModel,
-	BpmnModel,
-	StateType,
+	ProcessModel,
+	TaskTypes,
 	BpmnShapesType,
 	TaskModel,
 	EventModel,
 	GatewayModel,
 	ActionTypes,
-	FlowModel
+	FlowModel,
+	EventTypes
 } from "../../models";
 
 @Component({
@@ -21,12 +22,13 @@ import {
 	styleUrls: [ "./upsert.component.css" ]
 })
 export class UpsertComponent implements OnInit {
-	@Input("flow") flow$: Observable<BpmnModel>;
+	@Input("flow") flow$: Observable<ProcessModel>;
 	@Output() submited = new EventEmitter();
 	@ViewChild("drawer") sidenave: MatDrawer;
-	flow: BpmnModel;
+	flow: ProcessModel;
 	formGroup: FormGroup;
-	stateTypes: string[];
+	taskTypes: string[];
+	eventTypes: string[];
 	activeEl: TaskModel | EventModel | GatewayModel;
 	activeFlowIdx: number;
 	shapesType: any;
@@ -34,7 +36,8 @@ export class UpsertComponent implements OnInit {
 	constructor() {
 		this.shapesType = BpmnShapesType;
 		this.actionTypes = Object.keys(ActionTypes);
-		this.stateTypes = Object.keys(StateType);
+		this.taskTypes = Object.keys(TaskTypes);
+		this.eventTypes = Object.keys(EventTypes);
 	}
 	ngOnInit() {
 		this.flow$.subscribe(flow => (this.flow = flow));

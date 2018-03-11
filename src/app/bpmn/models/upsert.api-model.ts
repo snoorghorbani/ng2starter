@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpRequestBaseModel } from "@soushians/shared";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { BpmnModel, TaskModel, EventModel, GatewayModel } from "./flow.model";
+import { ProcessModel, TaskModel, EventModel, GatewayModel } from "./flow.model";
 
 export namespace UpsertApiModel {
 	export class Request implements HttpRequestBaseModel<Request> {
@@ -24,7 +24,7 @@ export namespace UpsertApiModel {
 	}
 
 	export class Response {
-		Result: BpmnModel;
+		Result: ProcessModel;
 		constructor() {}
 	}
 }

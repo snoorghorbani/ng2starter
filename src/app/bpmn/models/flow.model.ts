@@ -18,21 +18,28 @@ export enum BpmnShapesType {
 	GATEWAY = "GATEWAY",
 	SEQUENCE_FLOW = "SEQUENCE_FLOW"
 }
-export enum StateType {
+export enum EventTypes {
+	START = "START",
+	END = "END"
+}
+export enum TaskTypes {
 	FORM = "FORM",
+	CONFIRM = "CONFIRM",
 	NOTIFICATION = "NOTIFICATION"
 }
-export enum GatewayType {
+export enum GatewayTypes {
 	CONFIRM = "CONFIRM"
 }
-
+export type BpmElementTypes = EventTypes | TaskTypes | GatewayTypes;
 export class BpmnElement {
 	Id: string;
 	Name: string;
 	MoodleType: MoodleTypes;
 	Flows: FlowModel[];
 	Participants: ParticipantModel[];
-	Properties?: {};
+	Properties?: {
+		Type?: TaskTypes | GatewayTypes | EventTypes;
+	};
 	constructor({ Id = "", Name = "", MoodleType = MoodleTypes.None, Flows = [], Participants = [], Properties = {} }) {
 		this.Id = Id;
 		this.Name = Name;
@@ -73,7 +80,7 @@ export class FlowModel {
 		this.Action = Action;
 	}
 	traverse() {
-		debugger;
+		// debugger;
 		this.traversed = true;
 	}
 }
@@ -93,7 +100,7 @@ export class TaskModel extends BpmnElement {
 	bpmnEl: any;
 	ShapeType: BpmnShapesType;
 	Properties?: {
-		Type?: StateType;
+		Type?: TaskTypes;
 		FormId?: String;
 	};
 	constructor(
@@ -111,7 +118,7 @@ export class EventModel extends BpmnElement {
 	bpmnEl: any;
 	Participants: ParticipantModel[];
 	Properties?: {
-		Type?: StateType;
+		Type?: EventTypes;
 		FormId?: String;
 	};
 	constructor(
@@ -143,7 +150,7 @@ export class GatewayModel extends BpmnElement {
 	bpmnEl: any;
 	Participants: ParticipantModel[];
 	Properties?: {
-		Type?: StateType;
+		Type?: GatewayTypes;
 		FormId?: String;
 	};
 	constructor(
@@ -167,7 +174,7 @@ export class GatewayModel extends BpmnElement {
 	}
 }
 
-export class BpmnModel {
+export class ProcessModel {
 	_id: string;
 	Name: string;
 	ActiveStateId: string; //current state Id

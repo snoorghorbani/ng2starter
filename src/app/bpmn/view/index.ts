@@ -5,4 +5,6 @@ export * from "./start-event";
 export * from "./view.actions";
 export * from "./view.effects";
 export * from "./accept-flow";
+export * from "./notification-task";
+export * from "./form-task";
 // export * from "./add-form.reducer";

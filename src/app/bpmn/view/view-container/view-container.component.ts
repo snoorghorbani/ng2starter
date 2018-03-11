@@ -5,7 +5,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Store } from "@ngrx/store";
 
 import { MainContainerState } from "../../main-container";
-import { BpmnModel } from "../../models";
+import { ProcessModel } from "../../models";
 import { ViewBpmnAction } from "../view.actions";
 import { AddBpmnSchemaAction, UpdateBpmnSchemaAction, GetBpmnSchemaAction } from "../../list";
 import { BpmnService } from "../../services";
@@ -20,7 +20,7 @@ import { BehaviorSubject } from "rxjs";
 })
 export class FlowViewContainerComponent implements OnInit {
 	@Input() id: string;
-	flow$: Observable<BpmnModel>;
+	flow$: Observable<ProcessModel>;
 	constructor(public store: Store<MainContainerState>, private route: ActivatedRoute, public service: BpmnService) {}
 	ngOnInit() {
 		this.store.dispatch(new GetBpmnSchemaAction(this.id));

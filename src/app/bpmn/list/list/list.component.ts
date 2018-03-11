@@ -4,7 +4,7 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { FormGroup, FormControl } from "@angular/forms";
 import { Store } from "@ngrx/store";
 
-import { BpmnModel } from "../../models";
+import { ProcessModel } from "../../models";
 
 import { MainContainerState, BpmnReducers } from "../../main-container";
 
@@ -13,7 +13,7 @@ import { MainContainerState, BpmnReducers } from "../../main-container";
 	templateUrl: "./list.component.html"
 })
 export class BpmnListComponent {
-	@Input("data") data$: Observable<BpmnModel[]>;
+	@Input("data") data$: Observable<ProcessModel[]>;
 	addNewFlow() {
 		debugger;
 	}

@@ -4,7 +4,7 @@ import { Observable } from "rxjs/Rx";
 import { Store } from "@ngrx/store";
 
 import { stringTemplate } from "@soushians/infra";
-import { UpsertApiModel, BpmnModel, GetApiModel, GetAllApiModel, EditApiModel } from "../models";
+import { UpsertApiModel, ProcessModel, GetApiModel, GetAllApiModel, EditApiModel } from "../models";
 import { BpmnConfigurationService } from "./bpmn-configuration.service";
 
 import { MainContainerState } from "../main-container/main-container.reducers";
@@ -18,43 +18,43 @@ export class BpmnService {
 		private configurationService: BpmnConfigurationService
 	) {}
 
-	get(_id: string): Observable<BpmnModel> {
+	get(_id: string): Observable<ProcessModel> {
 		return this.configurationService.config$
 			.filter(config => config.endpoints.get != "")
 			.take(1)
 			.switchMap(config => this.http.get(stringTemplate(config.endpoints.get, { _id })))
-			.map((response: GetApiModel.Response) => new BpmnModel(response.Result));
+			.map((response: GetApiModel.Response) => new ProcessModel(response.Result));
 	}
-	getList(): Observable<BpmnModel[]> {
+	getList(): Observable<ProcessModel[]> {
 		return this.configurationService.config$
 			.filter(config => config.endpoints.getList != "")
 			.switchMap(config => this.http.get(config.endpoints.getList))
-			.map((response: GetAllApiModel.Response) => response.Result.map(i => new BpmnModel(i)));
+			.map((response: GetAllApiModel.Response) => response.Result.map(i => new ProcessModel(i)));
 	}
-	upsert(data: UpsertApiModel.Request): Observable<BpmnModel> {
+	upsert(data: UpsertApiModel.Request): Observable<ProcessModel> {
 		debugger;
 		const request = new UpsertApiModel.Request(data);
 		return this.configurationService.config$
 			.filter(config => config.endpoints.upsert != "")
 			.take(1)
 			.switchMap(config => this.http.post(config.endpoints.upsert, request.getRequestBody()))
-			.map((response: UpsertApiModel.Response) => new BpmnModel(response.Result));
+			.map((response: UpsertApiModel.Response) => new ProcessModel(response.Result));
 	}
 	delete(_id: string) {
 		return this.configurationService.config$
 			.filter(config => config.endpoints.delete != "")
 			.switchMap(config => this.http.get(config.endpoints.delete));
 	}
-	selectById(_id: string): Observable<BpmnModel> {
-		const subject = new BehaviorSubject<BpmnModel>(undefined);
-		if (!_id) subject.next(new BpmnModel());
+	selectById(_id: string): Observable<ProcessModel> {
+		const subject = new BehaviorSubject<ProcessModel>(undefined);
+		if (!_id) subject.next(new ProcessModel());
 
 		this.store
 			.select(state => state.bpmn.list.data)
 			.filter(entities => entities != null)
 			.map(entities => entities.find(entity => entity._id == _id))
 			.filter(entities => entities != null)
-			.subscribe(enitity => subject.next(new BpmnModel(enitity)));
+			.subscribe(enitity => subject.next(new ProcessModel(enitity)));
 		return subject.asObservable().filter(flow => flow != null);
 	}
 

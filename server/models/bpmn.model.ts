@@ -6,7 +6,7 @@ import { ObjectId } from "mongodb";
 const bpmnSchema = new mongoose.Schema(
 	{
 		Name: String,
-		States: {
+		Tasks: {
 			Id: String,
 			Name: String,
 			Participants: {

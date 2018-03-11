@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit, EventEmitter, Output, Input } from "@
 import { Observable, Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import {
-	BpmnModel,
+	ProcessModel,
 	TaskModel,
 	ParticipantModel,
 	FlowModel,
@@ -13,7 +13,7 @@ import { MoodleElement, MoodleTypes } from "app/bpmn/models/bpmnjs.interface";
 import { BpmnjsEvents } from "../models";
 
 var BpmnViewer = require("bpmn-js");
-const BpmnModeler = require("bpmn-js/lib/Modeler.js");
+const ProcessModeler = require("bpmn-js/lib/Modeler.js");
 
 @Component({
 	selector: "ngs-bpmn-view",
@@ -21,9 +21,9 @@ const BpmnModeler = require("bpmn-js/lib/Modeler.js");
 	styleUrls: [ "./modeler.component.less" ]
 })
 export class ModelerComponent implements AfterViewInit {
-	private _flow: BpmnModel;
+	private _flow: ProcessModel;
 	@Input("flow")
-	set flow(flow: BpmnModel) {
+	set flow(flow: ProcessModel) {
 		if (!flow) return;
 		this._flow = flow;
 		this.modeler.importXML(flow.XML, err => {
@@ -47,7 +47,7 @@ export class ModelerComponent implements AfterViewInit {
 	modeler;
 	constructor() {}
 	ngAfterViewInit() {
-		this.modeler = new BpmnModeler({
+		this.modeler = new ProcessModeler({
 			container: "#canvas"
 		});
 
@@ -66,7 +66,7 @@ export class ModelerComponent implements AfterViewInit {
          * 
          */
 	}
-	extractBpmnModel() {
+	extractProcessModel() {
 		var planeEls: MoodleElement[] = this.modeler._definitions.diagrams[0].plane.planeElement;
 		this.flow.Tasks = planeEls.filter(el => el.bpmnElement.$type == MoodleTypes.BpmnTask).map(el => {
 			var task: TaskModel = this.flow.Tasks.find(s => s.Id == el.bpmnElement.id);
@@ -154,7 +154,7 @@ export class ModelerComponent implements AfterViewInit {
 	}
 	getFlow() {
 		this.modeler.saveXML((a: any, XML: string) => {
-			this.extractBpmnModel();
+			this.extractProcessModel();
 			this.flow.XML = XML;
 			this.submit.emit(this.flow);
 		});

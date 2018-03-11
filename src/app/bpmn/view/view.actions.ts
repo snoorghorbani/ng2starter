@@ -1,6 +1,6 @@
 import { Action } from "@ngrx/store";
 
-import { BpmnModel } from "../models";
+import { ProcessModel } from "../models";
 
 export enum ViewBpmnActionTypes {
 	VIEW = "[BPMN][VIEW] VIEW_BPMN_PROFILE",
@@ -11,11 +11,11 @@ export enum ViewBpmnActionTypes {
 
 export class ViewBpmnAction implements Action {
 	readonly type = ViewBpmnActionTypes.VIEW;
-	constructor(public payload: BpmnModel) {}
+	constructor(public payload: ProcessModel) {}
 }
 export class ViewBpmnStartAction implements Action {
 	readonly type = ViewBpmnActionTypes.VIEW_START;
-	constructor(public payload: BpmnModel) {}
+	constructor(public payload: ProcessModel) {}
 }
 export class ViewBpmnSucceedAction implements Action {
 	readonly type = ViewBpmnActionTypes.VIEW_SUCCEED;

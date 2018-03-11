@@ -5,7 +5,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Store } from "@ngrx/store";
 
 import { MainContainerState } from "../../main-container";
-import { BpmnModel, UpsertApiModel } from "../../models";
+import { ProcessModel, UpsertApiModel } from "../../models";
 import { UpsertBpmnAction } from "../upsert.actions";
 import { AddBpmnSchemaAction, UpdateBpmnSchemaAction, GetBpmnSchemaAction } from "../../list";
 import { BpmnService } from "../../services";
@@ -19,7 +19,7 @@ import { BehaviorSubject } from "rxjs";
 				></ngs-bpmn-upsert>`
 })
 export class UpsertContainerComponent implements OnInit {
-	flow$: Observable<BpmnModel>;
+	flow$: Observable<ProcessModel>;
 	upsertMode: boolean;
 	constructor(public store: Store<MainContainerState>, private route: ActivatedRoute, public service: BpmnService) {
 		this.upsertMode = false;
@@ -30,7 +30,7 @@ export class UpsertContainerComponent implements OnInit {
 		this.flow$ = this.route.params.map(params => params["_id"]).switchMap(id => this.service.selectById(id));
 	}
 	ngOnInit() {}
-	upsert(form: BpmnModel) {
+	upsert(form: ProcessModel) {
 		this.store.dispatch(new UpsertBpmnAction(form));
 	}
 }

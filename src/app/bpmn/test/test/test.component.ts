@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, Input, ViewChild } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { BpmnModel, StateType } from "../../models";
+import { ProcessModel, TaskType } from "../../models";
 import { Observable } from "rxjs/Observable";
 import { MatDrawer } from "@angular/material";
 

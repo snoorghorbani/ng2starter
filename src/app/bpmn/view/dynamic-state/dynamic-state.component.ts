@@ -12,32 +12,36 @@
 	EventEmitter
 } from "@angular/core";
 import { StartEventComponent } from "../start-event";
-import { MoodleTypes, GatewayModel, EventModel, TaskModel } from "../../models";
+import { MoodleTypes, GatewayModel, EventModel, TaskModel, BpmnElement, TaskTypes, EventTypes } from "../../models";
+import { NotificationTaskComponent } from "../notification-task";
+import { FormTaskComponent } from "../form-task";
 
 @Component({
 	selector: "dynamic-state",
 	templateUrl: "./dynamic-state.component.html",
 	styleUrls: [ "./dynamic-state.component.scss" ],
-	entryComponents: [ StartEventComponent ]
+	entryComponents: [ StartEventComponent, NotificationTaskComponent, FormTaskComponent ]
 })
 export class DynamicStateComponent implements AfterViewInit {
 	@Output() done = new EventEmitter();
 	typeMapToDiagram = {
-		[MoodleTypes.BpmnStartEvent]: StartEventComponent
+		[EventTypes.START]: StartEventComponent,
+		[TaskTypes.NOTIFICATION]: NotificationTaskComponent,
+		[TaskTypes.FORM]: FormTaskComponent
 	};
 	@ViewChild("DC", { read: ViewContainerRef })
 	dynamicComponentContainer: ViewContainerRef;
 	// @Output() ConfigChanged = new EventEmitter();
 	currentComponent: any = null;
 	@Input()
-	set State(data: TaskModel | EventModel | GatewayModel) {
+	set State(data: BpmnElement) {
 		debugger;
 		if (!data || Object.keys(data).length == 0) return;
-		if (!(data.MoodleType in this.typeMapToDiagram)) {
+		if (!(data.Properties.Type in this.typeMapToDiagram)) {
 			if (this.currentComponent) this.currentComponent.destroy();
 			return;
 		}
-		let _component = this.typeMapToDiagram[data.MoodleType];
+		let _component = this.typeMapToDiagram[data.Properties.Type];
 		let inputProviders = [ { provide: "State", useValue: data } ];
 		let resolvedInputs = ReflectiveInjector.resolve(inputProviders);
 

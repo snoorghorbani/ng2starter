@@ -1,6 +1,6 @@
 import { Action } from "@ngrx/store";
 
-import { BpmnModel } from "../models";
+import { ProcessModel } from "../models";
 
 export enum UpsertBpmnActionTypes {
 	UPSERT = "[BPMN][UPSERT] UPSERT_BPMN_PROFILE",
@@ -11,11 +11,11 @@ export enum UpsertBpmnActionTypes {
 
 export class UpsertBpmnAction implements Action {
 	readonly type = UpsertBpmnActionTypes.UPSERT;
-	constructor(public payload: BpmnModel) {}
+	constructor(public payload: ProcessModel) {}
 }
 export class UpsertBpmnStartAction implements Action {
 	readonly type = UpsertBpmnActionTypes.UPSERT_START;
-	constructor(public payload: BpmnModel) {}
+	constructor(public payload: ProcessModel) {}
 }
 export class UpsertBpmnSucceedAction implements Action {
 	readonly type = UpsertBpmnActionTypes.UPSERT_SUCCEED;

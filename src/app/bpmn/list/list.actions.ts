@@ -1,6 +1,6 @@
 import { Action } from "@ngrx/store";
 
-import { BpmnModel } from "../models";
+import { ProcessModel } from "../models";
 
 export enum BpmnsListActionTypes {
 	BPMN_LIST = "[BPMN][LIST]		BPMN_LIST",
@@ -21,18 +21,18 @@ export class BpmnsListStartAction implements Action {
 }
 export class BpmnsListSucceedAction implements Action {
 	readonly type = BpmnsListActionTypes.BPMN_LIST_SUCCEED;
-	constructor(public payload: BpmnModel[]) {}
+	constructor(public payload: ProcessModel[]) {}
 }
 export class BpmnsListFailedAction implements Action {
 	readonly type = BpmnsListActionTypes.BPMN_LIST_FAILED;
 }
 export class UpdateBpmnSchemaAction implements Action {
 	readonly type = BpmnsListActionTypes.BPMN_SCHEMA_UPDATE;
-	constructor(public payload: BpmnModel) {}
+	constructor(public payload: ProcessModel) {}
 }
 export class AddBpmnSchemaAction implements Action {
 	readonly type = BpmnsListActionTypes.ADD_BPMN_SCHEMA;
-	constructor(public payload: BpmnModel) {}
+	constructor(public payload: ProcessModel) {}
 }
 export class GetBpmnSchemaAction implements Action {
 	readonly type = BpmnsListActionTypes.GET_BPMN_SCHEMA;
@@ -40,7 +40,7 @@ export class GetBpmnSchemaAction implements Action {
 }
 export class BpmnSchemaFechedAction implements Action {
 	readonly type = BpmnsListActionTypes.BPMN_SCHEMA_FETCHED;
-	constructor(public payload: BpmnModel) {}
+	constructor(public payload: ProcessModel) {}
 }
 
 export type BpmnsListActions =

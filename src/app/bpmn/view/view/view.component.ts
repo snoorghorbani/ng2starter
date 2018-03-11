@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, Input, ViewChild } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { BpmnModel, StateType, TaskModel, EventModel, GatewayModel, BpmnElement } from "../../models";
+import { ProcessModel, BpmnElement } from "../../models";
 import { Observable } from "rxjs/Observable";
 import { MatDrawer } from "@angular/material";
 
@@ -10,9 +10,9 @@ import { MatDrawer } from "@angular/material";
 	styleUrls: [ "./view.component.css" ]
 })
 export class FlowViewComponent implements OnInit {
-	_flow: BpmnModel;
+	_flow: ProcessModel;
 	@Input()
-	set flow(flow: BpmnModel) {
+	set flow(flow: ProcessModel) {
 		if (!flow) return;
 		this._flow = flow;
 		flow.currentState;
@@ -23,7 +23,7 @@ export class FlowViewComponent implements OnInit {
 	constructor() {}
 	ngOnInit() {}
 	traverse(State: BpmnElement) {
-		debugger;
+		// debugger;
 		this.flow.traverse(State.Flows.filter(f => f.traversed == true));
 	}
 }

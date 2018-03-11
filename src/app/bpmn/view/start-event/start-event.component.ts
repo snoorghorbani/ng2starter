@@ -33,7 +33,7 @@ export class StartEventComponent implements AfterViewInit {
 	}
 	ngAfterViewInit() {}
 	accepted() {
-		debugger;
+		// debugger;
 		this.State.Flows.find(f => f.Action == ActionTypes.ACCEPT).traverse();
 		this.change.next({ a: 1 });
 	}
