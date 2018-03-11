@@ -4,12 +4,14 @@ export enum Actions {
 	SUBMIT = "SUBMIT"
 }
 export enum BpmnShapesType {
+	NONE = "NONE",
 	EVENT = "EVENT",
 	TASK = "TASK",
 	GATEWAY = "GATEWAY"
 }
 export enum StateType {
-	FORM = "FORM"
+	FORM = "FORM",
+	NOTIFICATION = "NOTIFICATION"
 }
 export enum GatewayType {
 	CONFIRM = "CONFIRM"
@@ -25,11 +27,11 @@ export class TransitionModel {
 	FromState: string;
 	ToState: string;
 	Actions: Actions[];
-	constructor(init: TransitionModel = {} as TransitionModel) {
-		this.Name = init.Name || "";
-		this.FromState = init.FromState || "";
-		this.ToState = init.ToState || "";
-		this.Actions = init.Actions || [];
+	constructor({ Name = "", FromState = "", ToState = "", Actions = [] } = {}) {
+		this.Name = Name;
+		this.FromState = FromState;
+		this.ToState = ToState;
+		this.Actions = Actions;
 	}
 }
 
@@ -37,10 +39,10 @@ export class ParticipantModel {
 	ParticipantId: string;
 	LaneId: string;
 	UserId: string;
-	constructor(init: ParticipantModel) {
-		this.ParticipantId = init.ParticipantId || "";
-		this.LaneId = init.LaneId || "";
-		this.UserId = init.UserId || "";
+	constructor({ ParticipantId = "", LaneId = "", UserId = "" } = {}) {
+		this.ParticipantId = ParticipantId;
+		this.LaneId = LaneId;
+		this.UserId = UserId;
 	}
 }
 
@@ -50,43 +52,47 @@ export class TaskModel {
 	Transitions: TransitionModel[];
 	bpmnEl: any;
 	Participants: ParticipantModel[];
-	properties?: {
+	Properties?: {
 		Type?: StateType;
-		fields?: FormStateParams;
+		FormId?: String;
 	};
-	constructor(init: TaskModel = {} as TaskModel) {
-		this.Id = init.Id || "";
-		this.Name = init.Name || "";
-		this.Transitions = init.Transitions.map(t => new TransitionModel(t)) || [];
-		this.Participants = init.Participants.map(p => new ParticipantModel(p)) || [];
-		this.properties = init.properties || {};
+	constructor({ Id = "", Name = "", Transitions = [], Participants = [], Properties = {} } = {}) {
+		this.Id = Id;
+		this.Name = Name;
+		this.Transitions = Transitions.map(t => new TransitionModel(t));
+		this.Participants = Participants.map(p => new ParticipantModel(p));
+		this.Properties = Properties;
 	}
 }
 
 export class EventModel {
+	Id: string;
 	Name: string;
 	shapeType: BpmnShapesType;
 	Transitions: TransitionModel[];
 	bpmnEl: any;
 	Participants: ParticipantModel[];
-	constructor() {
+	constructor({ Id = "", Transitions = [], bpmnEl = {}, Participants = [] } = {}) {
 		this.shapeType = BpmnShapesType.EVENT;
-		this.Transitions = [];
-		this.Participants = [];
+		this.Id = Id;
+		this.Transitions = Transitions.map(t => new TransitionModel(t));
+		this.Participants = Participants.map(p => new ParticipantModel(p));
 	}
 }
 
 export class GatewayModel {
+	Id: string;
 	Name: string;
 	shapeType: BpmnShapesType;
 	BpmnType: string;
 	Transitions: TransitionModel[];
 	bpmnEl: any;
 	Participants: ParticipantModel[];
-	constructor() {
+	constructor({ Id = "", Name = "", shapeType = "", Transitions = [], bpmnEl = {}, Participants = [] } = {}) {
 		this.shapeType = BpmnShapesType.GATEWAY;
-		this.Transitions = [];
-		this.Participants = [];
+		this.Id = Id;
+		this.Transitions = Transitions.map(t => new TransitionModel(t));
+		this.Participants = Participants.map(p => new ParticipantModel(p));
 	}
 }
 
@@ -97,13 +103,13 @@ export class FlowModel {
 	Events: EventModel[];
 	Gateways: GatewayModel[];
 	XML: string;
-	constructor(flow: FlowModel = {} as FlowModel) {
-		this._id = flow._id;
-		this.Name = flow.Name;
-		this.States = flow.States.map(s => new TaskModel(s)) || [];
-		this.Events = flow.Events || [];
-		this.Gateways = flow.Gateways || [];
-		this.XML = flow.XML || initaleXML;
+	constructor({ _id = "", Name = "", States = [], Events = [], Gateways = [], XML = initaleXML } = {}) {
+		this._id = _id;
+		this.Name = Name;
+		this.States = States.map(s => new TaskModel(s));
+		this.Events = Events.map(e => new EventModel(e));
+		this.Gateways = Gateways.map(g => new GatewayModel(g));
+		this.XML = XML;
 	}
 }
 

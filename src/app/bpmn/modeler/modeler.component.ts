@@ -21,7 +21,22 @@ const BpmnModeler = require("bpmn-js/lib/Modeler.js");
 	styleUrls: [ "./modeler.component.less" ]
 })
 export class ModelerComponent implements AfterViewInit {
-	@Input("flow") flow$: Observable<FlowModel>;
+	private _flow: FlowModel;
+	@Input("flow")
+	set flow(flow: FlowModel) {
+		if (!flow) return;
+		this._flow = flow;
+		this.modeler.importXML(flow.XML, err => {
+			if (!err) {
+				this.modeler.get("canvas").zoom(0.8);
+			} else {
+				console.log("something went wrong:", err);
+			}
+		});
+	}
+	get flow() {
+		return this._flow;
+	}
 	@Output() submit = new EventEmitter();
 	@Output() elementHover = new EventEmitter();
 	@Output() elementOut = new EventEmitter();
@@ -29,7 +44,6 @@ export class ModelerComponent implements AfterViewInit {
 	@Output() elementDblclick = new EventEmitter();
 	@Output() elementMousedown = new EventEmitter();
 	@Output() elementMouseup = new EventEmitter();
-	flow: FlowModel;
 	modeler;
 	constructor() {}
 	ngAfterViewInit() {
@@ -51,21 +65,13 @@ export class ModelerComponent implements AfterViewInit {
 		/**
          * 
          */
-		this.flow$.subscribe(flow => {
-			this.flow = flow;
-			this.modeler.importXML(this.flow.XML, err => {
-				if (!err) {
-					this.modeler.get("canvas").zoom(0.8);
-				} else {
-					console.log("something went wrong:", err);
-				}
-				this.extractFlowModel();
-			});
-		});
 	}
 	extractFlowModel() {
 		var planeEls: MoodleElement[] = this.modeler._definitions.diagrams[0].plane.planeElement;
 		this.flow.States = planeEls.filter(el => el.bpmnElement.$type == MoodleTypes.BpmnTask).map(el => {
+			var task: TaskModel;
+			if ((task = this.flow.States.find(s => s.Id == el.bpmnElement.id))) return task;
+
 			const state = new TaskModel();
 			// state.bpmnEl = el;
 			state.Id = el.bpmnElement.id;
@@ -129,6 +135,7 @@ export class ModelerComponent implements AfterViewInit {
 
 	getFlow() {
 		this.modeler.saveXML((a: any, XML: string) => {
+			this.extractFlowModel();
 			this.flow.XML = XML;
 			this.submit.emit(this.flow);
 		});

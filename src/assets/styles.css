@@ -58,10 +58,8 @@
 html,
 body,
 .mat-sidenav-container {
-	/* background-color: rgb(244, 244, 244) !important; */
-	/*filter: grayscale();*/
+	background-color: rgb(244, 244, 244) !important;
 }
-
 body {
 	font-family: 'iran-sans', sans-serif;
 	font-size: 12px;
@@ -333,7 +331,7 @@ mat-toolbar.mat-toolbar {
 }
 
 mat-sidenav-content {
-	padding-top: 67px;
+	padding-top: 64px;
 }
 
 mat-sidenav-content mat-sidenav-content {
@@ -400,4 +398,7 @@ diagram-add dynamic-component-selector .mat-card {
 
 .cards-item {
 	margin-bottom: 20px;
+}
+.mat-drawer-container {
+	background-color: inherit;
 }

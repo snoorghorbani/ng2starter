@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, Input, ViewChild } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { UpsertApiModel, FlowModel, StateType, BpmnShapesType } from "../../models";
+import { UpsertApiModel, FlowModel, StateType, BpmnShapesType, TaskModel } from "../../models";
 import { Observable } from "rxjs/Observable";
 import { MatDrawer } from "@angular/material";
 
@@ -13,11 +13,13 @@ export class UpsertComponent implements OnInit {
 	@Input("flow") flow$: Observable<FlowModel>;
 	@Output() submited = new EventEmitter();
 	@ViewChild("drawer") sidenave: MatDrawer;
+	flow: FlowModel;
 	formGroup: FormGroup;
 	stateTypes: string[];
 	activeEl: {
 		type: BpmnShapesType;
 		id: string;
+		el: Partial<TaskModel>;
 	};
 	shapesType: any;
 	constructor() {
@@ -25,6 +27,7 @@ export class UpsertComponent implements OnInit {
 		this.stateTypes = Object.keys(StateType);
 	}
 	ngOnInit() {
+		this.flow$.subscribe(flow => (this.flow = flow));
 		this.formGroup = new FormGroup({
 			_id: new FormControl("", [ Validators.required ]),
 			Name: new FormControl("", [ Validators.required ])
@@ -36,19 +39,31 @@ export class UpsertComponent implements OnInit {
 	elementOut($event) {}
 	elementClick($event) {
 		if ($event.businessObject.$type.includes("Task")) {
+			const task = this.flow.States.find(task => task.Id == $event.id);
 			this.activeEl = {
 				type: BpmnShapesType.TASK,
-				id: $event.id
+				id: $event.id,
+				el: {
+					Properties: task.Properties
+				}
 			};
 		} else if ($event.businessObject.$type.includes("Gateway")) {
+			const task = this.flow.States.find(task => task.Id == $event.id);
 			this.activeEl = {
 				type: BpmnShapesType.GATEWAY,
-				id: $event.id
+				id: $event.id,
+				el: {
+					Properties: task.Properties
+				}
 			};
 		} else if ($event.businessObject.$type.includes("Event")) {
+			const task = this.flow.States.find(task => task.Id == $event.id);
 			this.activeEl = {
 				type: BpmnShapesType.EVENT,
-				id: $event.id
+				id: $event.id,
+				el: {
+					Properties: task.Properties
+				}
 			};
 		}
 		this.sidenave.open();
@@ -56,16 +71,16 @@ export class UpsertComponent implements OnInit {
 	elementDblclick($event) {}
 	elementMousedown($event) {}
 	elementMouseup($event) {}
-	upsert(flow: FlowModel) {
-		this.submited.emit(Object.assign({}, flow, this.formGroup.value));
+	upsert() {
+		this.submited.emit(this.flow);
 	}
-	setProperty(value, field) {
+	setActiveElProperties() {
 		debugger;
 		this.flow$
 			.last(flow => {
 				debugger;
 				const task = flow.States.find(state => state.Id == this.activeEl.id);
-				task.properties.Type = value;
+				// task.Properties.Type = this.activeEl.el.Properties.Type;
 				return true;
 			})
 			.subscribe(data => {

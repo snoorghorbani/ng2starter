@@ -1,15 +1,17 @@
 <mat-drawer-container class="example-container">
-    <mat-drawer #drawer mode="side" opened="true">
-        <mat-card *ngIf="activeEl?.type == shapesType.TASK" [formGroup]="formGroup"  fxFlexAlign="start" >
-          {{activeEl.id}}
-            <mat-form-field>
-              <mat-select placeholder="Task Type" (change)="setProperty($event.value, 'Type')">
-                <mat-option *ngFor="let item of stateTypes" [value]="item">{{ item }}</mat-option>
-              </mat-select>
-            </mat-form-field>
-          <mat-form-field>
-            <input type="text" matInput placeholder="formId">
-          </mat-form-field>
+    <mat-drawer #drawer mode="side">
+      <mat-card fxLayout="column" *ngIf="activeEl?.type == shapesType.TASK" fxFlexAlign="start" >
+        <mat-form-field fxFlex>
+            <input type="text" matInput placeholder="formId"  [(ngModel)]="activeEl.id">
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-select placeholder="Task Type" [(ngModel)]="activeEl.el.Properties.Type">
+            <mat-option *ngFor="let item of stateTypes" [value]="item">{{ item }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input type="text" matInput placeholder="formId"  [(ngModel)]="activeEl.el.Properties.FormId">
+        </mat-form-field>
       </mat-card>
     </mat-drawer>
     <mat-drawer-content>
@@ -30,7 +32,7 @@
         <mat-grid-tile colspan="3"rowspan="1">
           <div fxFlex="1 1 auto" fxFlexAlign="stretch">
             <ngs-bpmn-view #bpmnView
-              [flow]="flow$"
+              [flow]="flow"
               (submit)="upsert($event)"
               (elementHover)="elementHover($event)"
               (elementOut)="elementOut($event)"
