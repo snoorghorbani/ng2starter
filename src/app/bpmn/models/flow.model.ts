@@ -201,7 +201,8 @@ export class ProcessModel {
 		this.Tasks = Tasks.map(s => new TaskModel(s));
 		this.Events = Events.map(e => new EventModel(e));
 		this.Gateways = Gateways.map(g => new GatewayModel(g));
-		this.ActiveStateId = ActiveStateId || this.Events.find(i => i.MoodleType == MoodleTypes.BpmnStartEvent).Id;
+		this.ActiveStateId =
+			ActiveStateId || (this.Events.find(i => i.MoodleType == MoodleTypes.BpmnStartEvent) || ({} as any)).Id;
 		this.XML = XML;
 	}
 	start() {

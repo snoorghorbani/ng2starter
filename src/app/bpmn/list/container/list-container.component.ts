@@ -14,6 +14,7 @@ export class BpmnListContainerComponent implements OnInit {
 	data$: Observable<ProcessModel[]>;
 	constructor(public store: Store<MainContainerState>) {
 		this.data$ = this.store.select(state => state.bpmn.list.data);
+		debugger;
 	}
 	ngOnInit() {
 		this.store.dispatch(new BpmnsListAction());

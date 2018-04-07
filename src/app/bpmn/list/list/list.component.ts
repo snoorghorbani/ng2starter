@@ -14,7 +14,8 @@ import { MainContainerState, BpmnReducers } from "../../main-container";
 })
 export class BpmnListComponent {
 	@Input("data") data$: Observable<ProcessModel[]>;
-	addNewFlow() {
+	constructor() {
 		debugger;
 	}
+	addNewFlow() {}
 }

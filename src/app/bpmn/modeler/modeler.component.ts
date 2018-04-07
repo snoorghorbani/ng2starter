@@ -12,8 +12,10 @@ import {
 import { MoodleElement, MoodleTypes } from "app/bpmn/models/bpmnjs.interface";
 import { BpmnjsEvents } from "../models";
 
-var BpmnViewer = require("bpmn-js");
-const ProcessModeler = require("bpmn-js/lib/Modeler.js");
+// var BpmnViewer = require("bpmn-js");
+import * as BpmnViewer from "bpmn-js";
+// const ProcessModeler = require("bpmn-js/lib/Modeler.js");
+import * as ProcessModeler from "bpmn-js/lib/Modeler.js";
 
 @Component({
 	selector: "ngs-bpmn-view",
