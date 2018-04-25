@@ -1,7 +1,7 @@
 import "hammerjs";
 import { NgModule, LOCALE_ID } from "@angular/core";
 import { MatSidenavModule, MatToolbarModule, MatFormFieldModule } from "@angular/material";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+// import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { StoreModule, Store } from "@ngrx/store";
 import { StoreRouterConnectingModule, routerReducer } from "@ngrx/router-store";
 import { EffectsModule } from "@ngrx/effects";
@@ -34,7 +34,7 @@ import { AppEffects } from "./effects";
 //module configs
 import { DashboardModule } from "./dashboard";
 import { EventHandlerService } from "./services";
-import { NgsBpmnModule } from "./bpmn";
+// import { NgsBpmnModule } from "./bpmn";
 
 @NgModule({
 	imports: [
@@ -47,7 +47,7 @@ import { NgsBpmnModule } from "./bpmn";
 		StoreDevtoolsModule.instrument({
 			maxAge: 25
 		}),
-		EffectsModule.forRoot([ AppEffects ]),
+		EffectsModule.forRoot([AppEffects]),
 		NgsLayoutModule.forRoot(),
 		NgsAuthenticationModule.forRoot({
 			env: environment as any
@@ -55,10 +55,10 @@ import { NgsBpmnModule } from "./bpmn";
 		NgsConfigModule.forRoot({
 			env: environment as any
 		}),
-		// NgsDiagramModule.forRoot(),
+		NgsDiagramModule.forRoot(),
 		NgsUserModule.forRoot(),
 		NgsUserRoutingModule,
-		NgsBpmnModule.forRoot(),
+		// NgsBpmnModule.forRoot(),
 		InfraModule,
 		SharedModule,
 		DashboardModule,
@@ -70,11 +70,11 @@ import { NgsBpmnModule } from "./bpmn";
 		FormsModule,
 		ReactiveFormsModule
 	],
-	declarations: [ AppComponent ],
+	declarations: [AppComponent],
 	providers: [
 		// { provide: LOCALE_ID, useValue: 'fa-IR' },
 		EventHandlerService
 	],
-	bootstrap: [ AppComponent ]
+	bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

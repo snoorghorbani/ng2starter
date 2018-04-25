@@ -13,7 +13,7 @@ import {
         MatToolbarModule, MatDatepickerModule, MatProgressBarModule
 } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RoutingModule } from './static-page.routing-module';
 
 import {
@@ -38,7 +38,7 @@ import {
                 MatToolbarModule, MatDatepickerModule, MatProgressBarModule,
                 BrowserModule,
                 RouterModule,
-                BrowserAnimationsModule,
+                // BrowserAnimationsModule,
                 RoutingModule
         ],
         declarations: [

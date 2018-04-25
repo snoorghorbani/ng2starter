@@ -13,7 +13,7 @@ const sourceSchema = new mongoose.Schema({
       Formula: { type: String },
       Message: { type: String },
       Type: { type: String, enum: ["goal", "critical"], default: "critical" },
-      ComputedFormula: {type: String}
+      ComputedFormula: { type: String }
     }
   ]
 }, { timestamps: true });
@@ -22,8 +22,8 @@ const sourceSchema = new mongoose.Schema({
  * pre save source middleware.
  */
 sourceSchema.pre("save", function save(next) {
-  const source = this;
-  if (!this.Thresholds) this.Thresholds = [];
+  const source: any = this;
+  if (!source.Thresholds) source.Thresholds = [];
   next();
 });
 

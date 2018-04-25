@@ -62,7 +62,7 @@ const userSchema = new mongoose.Schema(
  * Password hash middleware.
  */
 userSchema.pre("save", function save(next) {
-	const user = this;
+	const user: any = this;
 	if (!user.isModified("Password")) {
 		return next();
 	}
@@ -80,7 +80,7 @@ userSchema.pre("save", function save(next) {
 	});
 });
 
-userSchema.methods.comparePassword = function(candidatePassword: string, cb: (err: any, isMatch: any) => {}) {
+userSchema.methods.comparePassword = function (candidatePassword: string, cb: (err: any, isMatch: any) => {}) {
 	bcrypt.compare(candidatePassword, this.Password, (err: mongoose.Error, isMatch: boolean) => {
 		cb(err, isMatch);
 	});
@@ -89,7 +89,7 @@ userSchema.methods.comparePassword = function(candidatePassword: string, cb: (er
 /**
  * Helper method for getting user's gravatar.
  */
-userSchema.methods.gravatar = function(size: number) {
+userSchema.methods.gravatar = function (size: number) {
 	if (!size) {
 		size = 200;
 	}

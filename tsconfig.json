@@ -31,5 +31,9 @@
   ],
   "exclude": [
     "server/**/*"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "preserveWhitespaces": false,
+    "fullTemplateTypeCheck": true
+  }
 }

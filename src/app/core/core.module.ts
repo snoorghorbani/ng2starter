@@ -1,6 +1,6 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { BrowserModule } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from "@ngrx/store";
 import { CommonModule } from '@angular/common';
@@ -32,7 +32,7 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
         MatToolbarModule, MatDatepickerModule, MatProgressBarModule,
         BrowserModule,
         RouterModule,
-        BrowserAnimationsModule
+        // BrowserAnimationsModule
     ],
     declarations: [
     ],
@@ -40,7 +40,7 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
     exports: []
 })
 export class CoreModule {
-    constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
+    constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
         throwIfAlreadyLoaded(parentModule, 'CoreModule');
     }
 }

@@ -23,7 +23,7 @@ const copy_file_after_installed = [
 	"./README.md",
 	"./karma.conf.js",
 	"./.gitignore",
-	"./.env.example",
+	"./.env",
 	"./.angular-cli.json"
 ];
 

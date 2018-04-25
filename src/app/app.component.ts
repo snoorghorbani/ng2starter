@@ -3,16 +3,16 @@
 import { Observable } from "rxjs/Observable";
 import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy } from "@angular/core";
 import { Router, NavigationEnd } from "@angular/router";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
+// import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Store } from "@ngrx/store";
 import { SwPush } from "@angular/service-worker";
+import { BehaviorSubject } from "rxjs";
 
 import { getUserInfo } from "@soushians/user";
 import * as fromLayout from "@soushians/layout";
 
 import { State } from "./reducers";
 import { UserModel } from "@soushians/user";
-import { SigninService } from "@soushians/authentication";
 import { debounce } from "rxjs/operator/debounce";
 import { MatSidenav, MatSidenavContainer } from "@angular/material";
 import { ConfigModel, GetConfigsApiModel } from "@soushians/config";
@@ -29,7 +29,7 @@ import {
 @Component({
 	selector: "app-root",
 	templateUrl: "./app.component.html",
-	styleUrls: [ "./app.component.scss" ]
+	styleUrls: ["./app.component.scss"]
 })
 export class AppComponent implements AfterViewInit {
 	progressStatus$: Observable<boolean>;
@@ -46,7 +46,7 @@ export class AppComponent implements AfterViewInit {
 	secondSidenavMode: Observable<"side" | "over" | "push">;
 	@ViewChild("mainSideNav") mainSideNav: ElementRef;
 
-	constructor(private store: Store<State>, private router: Router, public signinService: SigninService) {
+	constructor(private store: Store<State>, private router: Router) {
 		this.app_config = this.store.select(getAppConfig);
 
 		this.store.dispatch(new ChangeSideNavMode("push"));
