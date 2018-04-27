@@ -1,6 +1,6 @@
 {
   "name": "@soushians/starter",
-  "version": "6.0.101",
+  "version": "6.0.103",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,14 +8,14 @@
     "lint": "ng lint",
     "ngsw": "node_modules/.bin/ngsw-config dist ./src/ngsw-config.json && cp node_modules/@angular/service-worker/ngsw-worker.js ./dist/ngsw-worker.js",
     "build": "ng build",
-    "build:prod": "ng build --prod && node ./scripts/copyBuildJsToDistFolder.js",
+    "build:prod": "ng build --prod",
     "build:prod:ngsw": "npm run build:prod && npm run ngsw",
     "serve:prod": "npm run build:prod && lite-server -c configs/bs-config.aot.json",
     "rollup": "node_modules/.bin/rollup -c configs/rollup-config.js",
     "build:aot": "ngc -p tsconfig-aot.json && npm run rollup",
     "serve:aot": "lite-server -c configs/bs-config.aot.json",
     "aot": "npm run build:aot && npm run serve:aot",
-    "sme": "node_modules/.bin/source-map-explorer ./dist/client-aot/build.js",
+    "sme": "node_modules/.bin/source-map-explorer ./dist/src/main.7d0c37c5a0479f5a8677.js",
     "doc": "compodoc -p ./tsconfig.json",
     "pretest": "webdriver-manager update",
     "e2e": "ng e2e",
@@ -38,6 +38,7 @@
     "update": "npm i @soushians/shared @soushians/infra @soushians/config @soushians/layout @soushians/user @soushians/authentication @soushians/source @soushians/form @soushians/diagram"
   },
   "dependencies": {
+    "@angular-devkit/build-optimizer": "^0.5.8",
     "@angular/animation": "^4.0.0-beta.8",
     "@angular/animations": "^6.0.0-rc.5",
     "@angular/cdk": "^6.0.0-rc.12",
@@ -62,7 +63,7 @@
     "@soushians/authentication": "6.0.x",
     "@soushians/config": "6.0.x",
     "@soushians/diagram": "6.0.x",
-    "@soushians/form": "6.0.x",
+    "@soushians/form": "^6.0.103",
     "@soushians/infra": "6.0.x",
     "@soushians/layout": "6.0.x",
     "@soushians/shared": "6.0.x",

@@ -39,10 +39,12 @@ import { EventHandlerService } from "./services";
 @NgModule({
 	imports: [
 		CoreModule,
-		ServiceWorkerModule.register("/ngsw-worker.js", { enabled: environment.production }),
+		// ServiceWorkerModule.register("/ngsw-worker.js", { enabled: environment.production }),
 		// ServiceWorkerModule.register('/ngsw-worker.js', {enabled: true}),
 		MatSidenavModule,
 		MatToolbarModule,
+		FormsModule,
+		ReactiveFormsModule,
 		StoreModule.forRoot(reducers),
 		StoreDevtoolsModule.instrument({
 			maxAge: 25
@@ -53,7 +55,10 @@ import { EventHandlerService } from "./services";
 			env: environment as any
 		}),
 		NgsConfigModule.forRoot({
-			env: environment as any
+			env: environment as any,
+			dev_api_host: 'http://localhost:3000',
+			prod_api_host: 'http://localhost:3000'
+			// prod_api_host: 'http://192.168.11.121:3000'
 		}),
 		NgsDiagramModule.forRoot(),
 		NgsUserModule.forRoot(),
@@ -61,14 +66,12 @@ import { EventHandlerService } from "./services";
 		// NgsBpmnModule.forRoot(),
 		InfraModule,
 		SharedModule,
-		DashboardModule,
 		SourceModule,
 		StaticPageModule,
 		NgsFormModule.forRoot(),
 		AppRoutingModule,
 		MatFormFieldModule,
-		FormsModule,
-		ReactiveFormsModule
+		DashboardModule,
 	],
 	declarations: [AppComponent],
 	providers: [
