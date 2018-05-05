@@ -14,8 +14,6 @@ import * as mongoose from "mongoose";
 import * as passport from "passport";
 import * as cors from "cors";
 import expressValidator = require("express-validator");
-debugger;
-
 const MongoStore = mongo(session);
 
 /**
@@ -76,9 +74,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 
-const originsWhitelist = [ process.env.TEST_SERVER_ADDRESS, process.env.SERVER_ADDRESS ];
+const originsWhitelist = [process.env.TEST_SERVER_ADDRESS, process.env.SERVER_ADDRESS];
 const corsOptions = {
-	origin: function(origin: any, callback: any) {
+	origin: function (origin: any, callback: any) {
 		const isWhitelisted = originsWhitelist.indexOf(origin) !== -1;
 		callback(undefined, isWhitelisted);
 	},
@@ -142,6 +140,7 @@ app.use("/api/fake", fakeController.router);
 app.use("/api/data", dataController.router);
 app.use("/api/event", eventController.router);
 app.use("/api/source", sourceController.router);
+
 
 // app.get("/login", userController.getLogin);
 // app.post("/login", userController.postLogin);

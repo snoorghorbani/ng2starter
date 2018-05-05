@@ -3,7 +3,7 @@
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
-    "configurations": [        
+    "configurations": [
         {
             "type": "node",
             "request": "attach",
@@ -14,14 +14,13 @@
             "type": "node",
             "request": "launch",
             "name": "Debug",
-            "program": "${workspaceRoot}/dist/server.js",
+            "program": "${workspaceRoot}/dist/server/server.js",
             "smartStep": true,
             "outFiles": [
                 "../dist/**/*.js"
             ],
-            "preLaunchTask": "npm: build",
+            // "preLaunchTask": "npm: build",
             "protocol": "inspector"
         }
     ]
 }
-
