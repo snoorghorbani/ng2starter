@@ -15,6 +15,41 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@soushians/layout": [
+        "dist/@soushians/layout"
+      ],
+      "@soushians/config": [
+        "dist/@soushians/config"
+      ],
+      "@soushians/user": [
+        "dist/@soushians/user"
+      ],
+      "@soushians/infra": [
+        "dist/@soushians/infra"
+      ],
+      "@soushians/shared": [
+        "dist/@soushians/shared"
+      ],
+      "@soushians/authentication": [
+        "dist/@soushians/authentication"
+      ],
+      "@soushians/form": [
+        "dist/@soushians/form"
+      ],
+      "@soushians/diagram": [
+        "dist/@soushians/diagram"
+      ],
+      "@soushians/source": [
+        "dist/@soushians/source"
+      ],
+      "@soushians/socket": [
+        "dist/@soushians/socket"
+      ],
+      "@soushians/test": [
+        "dist/soushians/test"
+      ]
+    }
   }
 }
