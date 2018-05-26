@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sources": [
+    "ng://@soushians/source/projects/soushians/source/src/lib/models/index.ts"
+  ],
+  "sourcesContent": [
+    "export * from \"./source.model\";\r\nexport * from \"./get-sources-api.model\";\r\nexport * from \"./upsert-source-api.model\";\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,4BAAc,gBAAgB,CAAC;AAC/B,mCAAc,yBAAyB,CAAC;AACxC,qCAAc,2BAA2B,CAAC"
+}

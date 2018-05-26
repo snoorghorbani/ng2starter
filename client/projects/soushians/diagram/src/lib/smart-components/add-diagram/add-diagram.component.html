@@ -1,0 +1,159 @@
+<div fxLayout="column" fxFlex="100">
+  <div fxLayout="row" fxLayout.lt-md="column">
+    <mat-card fxFlex="60">
+      <form [formGroup]="formGroup" fxLayout='column'>
+        <mat-card-header>
+          <mat-card-title>افزودن نمودار جدید</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-form-field>
+            <input matInput placeholder="عنوان نمودار" formControlName="Name">
+          </mat-form-field>
+          <mat-form-field fxFlexFill>
+            <mat-select placeholder="نام مسیر" formControlName="Source" (change)="routeEntered($event)">
+              <mat-option *ngFor="let item of sources | async" [value]="item">
+                {{item.Endpoint}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlexFill>
+            <input matInput placeholder="sync time" formControlName="Sync">
+          </mat-form-field>
+          <div>
+            <mat-radio-group (change)="typeChanged()" formControlName="Type" fxFlexFill>
+              <label>نوع نمودار :</label>
+              <mat-radio-button (change)="typeChanged()" *ngFor="let item of diagramTypes" [value]="item" class="form-element-margin">
+                {{item}}
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <mat-form-field>
+            <mat-select placeholder="Groups" formControlName="Groups" multiple>
+              <mat-select-trigger>
+                {{formGroup.controls.Groups.value ? formGroup.controls.Groups.value[0] : ''}}
+                <span *ngIf="formGroup.controls.Groups.value?.length > 1">
+                  (+{{formGroup.controls.Groups.value.length - 1}} others)
+                </span>
+              </mat-select-trigger>
+              <mat-option *ngFor="let item of groups | async" [value]="item">{{item}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <mat-checkbox (change)="configChanged()" formControlName="IsActive" fxFlexFill>وضعیت</mat-checkbox>
+          </div>
+          <dynamic-config-component-selector (ConfigChanged)="configChanged()" [data]="diagramPartialConfig"></dynamic-config-component-selector>
+        </mat-card-content>
+      </form>
+    </mat-card>
+    <dynamic-component-selector id="modify-diagram" fxFlex="40" [data]="diagramModel"></dynamic-component-selector>
+  </div>
+
+  <div fxLayout="row" fxLayout.lt-md="column">
+    <mat-card fxFlex="25">
+      <mat-card-header>
+        <mat-card-title> ساختار دیتا </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="item-margin">
+          <data-mapper destination="value" [data]="data"></data-mapper>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card fxLayout="column" fxFlex="25">
+      <mat-card-header>
+        <mat-card-title>نگاشت داده</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div fxLayout="column" fxLayoutGap="5px">
+          <div *ngFor="let column of columnsMappings; let i=index" fxFlex="100" fxLayout="column">
+            <div fxLayout="column">
+              <div [formGroup]="columnsMappings[i]" fxLayout="row" fxLayout.xs="column">
+                <mat-form-field fxFlex="50" fxFlex.xs="100">
+                  <mat-select placeholder="نام مسیر" formControlName="NamePath">
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let item of pathOptions" [value]="item.path" [class]="'mat-option depth_' + item.depts">
+                      <!-- <mat-option *ngFor="let item of pathOptions" [value]="item.path" [class]="'mat-option depth_' + item.depts" [disabled]="!item.isLastNode"> -->
+                      {{item.path}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex="50" fxFlex.xs="100">
+                  <mat-select placeholder="مقدار مسیر" formControlName="ValuePath">
+                    <mat-option>--</mat-option>
+                    <!-- <mat-option *ngFor="let item of pathOptions" [value]="item.path" [class]="'mat-option depth_' + item.depts" [disabled]="!item.isLastNode"> -->
+                    <mat-option *ngFor="let item of pathOptions" [value]="item.path" [class]="'mat-option depth_' + item.depts">
+                      {{item.path}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <button (click)="removeColumn(i)" fxFlex mat-button color="primary" type="button">پاک کردن</button>
+              </div>
+              <br />
+            </div>
+          </div>
+        </div>
+        <div>
+          <button (click)="addColumn()" fxFlex mat-raised-button color="primary" type="button">افزودن ستون</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card fxFlex="25">
+      <mat-card-header>
+        <mat-card-title>نتایج داده ها</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="item-margin">
+          <div class="list-item" *ngFor="let item of formGroup.controls.columns.value; let i=index" fxLayoutAlign="space-between center">
+            <span>{{item[0]}} : {{item[1]}}</span>
+            <span [formGroup]="formGroup.controls.Colors" *ngIf="$any(formGroup.controls.Colors).controls[item[0]]">
+              <input placeholder="رنگ نمودار" (change)="configChanged()" [formControlName]="item[0]" type="color">
+            </span>
+            <mat-form-field [formGroup]="formGroup.controls.Types" *ngIf="$any(formGroup.controls.Types).controls[item[0]]">
+              <!-- <input placeholder="tipo" (change)="configChanged()" > -->
+              <mat-select placeholder="tipo" [formControlName]="item[0]">
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let item of diagramTypes" [value]="item">
+                  {{item}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card fxLayout="column" fxFlex="25">
+      <mat-card-header>
+        <mat-card-title>تنظیمات ظاهری</mat-card-title>
+      </mat-card-header>
+      <mat-card-content [formGroup]="formGroup">
+        <mat-form-field>
+          <input matInput placeholder="تعداد سطر" formControlName="Cols">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="تعداد ستون" formControlName="Rows">
+        </mat-form-field>
+        <div>
+          <label fxFlex="50">رنگ متن :</label>
+          <span>
+            <input (change)="configChanged()" formControlName="TextColor" type="color">
+          </span>
+        </div>
+        <div>
+          <label fxFlex="50">رنگ پس زمینه :</label>
+          <span>
+            <input formControlName="BackgroundColor" type="color">
+          </span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div>
+    <mat-card fxLayoutAlign="end center" fxLayout="row" fxFlex="100">
+      <mat-card-content>
+        <button (click)="add($event)" fxFlex mat-raised-button color="primary" type="submit">ثبت</button>
+        <button fxFlex='nogrow' mat-button routerLink='/diagrams'>انصراف</button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

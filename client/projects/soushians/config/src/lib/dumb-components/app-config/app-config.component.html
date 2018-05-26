@@ -1,0 +1,5 @@
+<div [formGroup]="formGroup">
+    <mat-form-field>
+        <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="نام پروژه" formControlName="AppTitle">
+    </mat-form-field>
+</div>

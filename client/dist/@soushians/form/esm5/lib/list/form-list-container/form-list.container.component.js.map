@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "form-list.container.component.js",
+  "sources": [
+    "ng://@soushians/form/projects/soushians/form/src/lib/list/form-list-container/form-list.container.component.ts"
+  ],
+  "sourcesContent": [
+    "import { Component, OnInit } from \"@angular/core\";\r\nimport { Observable } from \"rxjs/Observable\";\r\nimport { Store } from \"@ngrx/store\";\r\n\r\nimport { MainContainerState, FormReducers } from \"../../main-container\";\r\nimport { FormService } from \"../../services\";\r\nimport { FormSchemaModel } from \"../../models\";\r\nimport { FormsListAction } from \"../../list/list.actions\";\r\n\r\n@Component({\r\n\ttemplate: `<form-list\r\n\t\t\t\t\t[data]=\"data$\">\r\n\t\t\t\t</form-list>`\r\n})\r\nexport class FormListContainerComponent implements OnInit {\r\n\tdata$: Observable<FormSchemaModel[]>;\r\n\tconstructor(public store: Store<MainContainerState>) {\r\n\t\tthis.data$ = this.store.select(state => state.form.list.data);\r\n\t}\r\n\tngOnInit() {\r\n\t\tthis.store.dispatch(new FormsListAction());\r\n\t}\r\n}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,SAAS,EAAU,MAAM,eAAe,CAAC;AAElD,OAAO,EAAE,KAAK,EAAE,MAAM,aAAa,CAAC;AAKpC,OAAO,EAAE,eAAe,EAAE,MAAM,yBAAyB,CAAC;AAO1D,MAAM;;;;IAEL,YAAmB,KAAgC;QAAhC,UAAK,GAAL,KAAK,CAA2B;QAClD,IAAI,CAAC,KAAK,GAAG,IAAI,CAAC,KAAK,CAAC,MAAM,CAAC,KAAK,CAAC,EAAE,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,IAAI,CAAC,CAAC;KAC9D;;;;IACD,QAAQ;QACP,IAAI,CAAC,KAAK,CAAC,QAAQ,CAAC,IAAI,eAAe,EAAE,CAAC,CAAC;KAC3C;;;YAZD,SAAS,SAAC;gBACV,QAAQ,EAAE;;iBAEM;aAChB;;;;YAXQ,KAAK"
+}

@@ -1,0 +1,10 @@
+<div fxLayout="row" fxLayoutWrap fxLayoutAlign="center center" >
+    <mat-card class="cards-item" *ngFor="let item of (data$ | async)" fxFlex="51">
+      <h3>
+        <a [routerLink]="['edit' ,  item._id]">
+          <mat-icon aria-label="edit form">edit</mat-icon>
+        </a>
+        {{item.name}}
+      </h3>
+  </mat-card>
+</div>

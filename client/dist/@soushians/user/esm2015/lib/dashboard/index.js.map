@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sources": [
+    "ng://@soushians/user/projects/soushians/user/src/lib/dashboard/index.ts"
+  ],
+  "sourcesContent": [
+    "export * from \"./user.actions\";\r\nexport * from \"./user.reducer\";\r\nexport * from \"./dashboard-container\";\r\nexport * from \"./dashboard-links\";\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,2EAAc,gBAAgB,CAAC;AAC/B,mDAAc,gBAAgB,CAAC;AAC/B,4CAAc,uBAAuB,CAAC;AACtC,wCAAc,mBAAmB,CAAC"
+}

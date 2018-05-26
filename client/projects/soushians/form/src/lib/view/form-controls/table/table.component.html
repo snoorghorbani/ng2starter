@@ -1,0 +1,58 @@
+<div class="example-container mat-elevation-z8" *ngIf="ready">
+    <mat-table #table [dataSource]="dataSource">
+  
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? masterToggle() : null"
+            [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()">
+          </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()"
+            (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)">
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
+      <div *ngFor="let col of filedDisplayedColumns">
+        <ng-container  [matColumnDef]="col">
+          <mat-header-cell *matHeaderCellDef> {{col}} </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element[col]}} </mat-cell>
+        </ng-container>
+      </div>
+        
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell class='left-align' *matCellDef="let row">
+          <button mat-icon-button>
+            <mat-icon aria-label="انتخاب">arrow_back</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+    
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></mat-row>
+
+    </mat-table>
+  </div>
+
+
+<!-- <mat-form-field fxFlexFill [formGroup]="form">
+  
+  <input matInput [id]="schema.name" [type]="schema.inputType" [placeholder]="schema.title" [formControlName]="schema.name">
+  
+  <mat-error *ngIf="form.get(schema.name).errors?.required">
+    {{schema.validator.required.message}}
+  </mat-error>
+  <mat-error *ngIf="form.get(schema.name).errors?.minlength">
+    {{schema.validator.minlength.message}}
+  </mat-error>
+  <mat-error *ngIf="form.get(schema.name).email?.minlength">
+    {{schema.validator.email.message}}
+  </mat-error>
+</mat-form-field> -->
+  
+  <!-- <div *ngIf="form.get(schema.name).invalid && (form.get(schema.name).dirty || form.get(schema.name).touched)" class="alert alert-danger">
+  </div> -->

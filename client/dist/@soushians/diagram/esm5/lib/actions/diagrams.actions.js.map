@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "diagrams.actions.js",
+  "sources": [
+    "ng://@soushians/diagram/projects/soushians/diagram/src/lib/actions/diagrams.actions.ts"
+  ],
+  "sourcesContent": [
+    "import { Action } from '@ngrx/store';\r\n\r\nimport { GetDiagramsApiModel } from \"../models\";\r\n\r\nexport enum DiagramsActionTypes {\r\n  GET_DIAGRAM = '[DIAGRAM] GET_DIAGRAM',\r\n  GET_DIAGRAM_START = '[DIAGRAM] GET_DIAGRAM_START',\r\n  GET_DIAGRAM_SUCCEED = '[DIAGRAM] GET_DIAGRAM_SUCCEED',\r\n  GET_DIAGRAM_FAILED = '[DIAGRAM] GET_DIAGRAM_FAILED'\r\n}\r\n\r\nexport class GetDiagrams implements Action {\r\n  readonly type = DiagramsActionTypes.GET_DIAGRAM;\r\n}\r\nexport class GetDiagramsStart implements Action {\r\n  readonly type = DiagramsActionTypes.GET_DIAGRAM_START;\r\n}\r\nexport class GetDiagramsSucceed implements Action {\r\n  readonly type = DiagramsActionTypes.GET_DIAGRAM_SUCCEED;\r\n  constructor(public payload: GetDiagramsApiModel.Response) { }\r\n}\r\nexport class GetDiagramsFailed implements Action {\r\n  readonly type = DiagramsActionTypes.GET_DIAGRAM_FAILED;\r\n}\r\n\r\n\r\nexport type DiagramsAction =\r\n  GetDiagrams\r\n  | GetDiagramsStart\r\n  | GetDiagramsSucceed\r\n  | GetDiagramsFailed;\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;;;iBAKgB,uBAAuB;uBACjB,6BAA6B;yBAC3B,+BAA+B;wBAChC,8BAA8B;;;AAGrD,MAAM;;oBACY,mBAAmB,CAAC,WAAW;;CAChD;;;;;AACD,MAAM;;oBACY,mBAAmB,CAAC,iBAAiB;;CACtD;;;;;AACD,MAAM;;;;IAEJ,YAAmB,OAAqC;QAArC,YAAO,GAAP,OAAO,CAA8B;oBADxC,mBAAmB,CAAC,mBAAmB;KACM;CAC9D;;;;;;;AACD,MAAM;;oBACY,mBAAmB,CAAC,kBAAkB;;CACvD"
+}

@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "config-module-container.component.js",
+  "sources": [
+    "ng://@soushians/config/projects/soushians/config/src/lib/smart-components/config-module-container/config-module-container.component.ts"
+  ],
+  "sourcesContent": [
+    "import { Component, OnInit } from \"@angular/core\";\r\nimport { Observable } from \"rxjs/Observable\";\r\nimport { Store } from \"@ngrx/store\";\r\n\r\n@Component({\r\n\tselector: \"config-module-container\",\r\n\ttemplate: `<div fxLayoutAlign=\"\" fxflex=\"100\" fxLayout=\"column\">\r\n    <router-outlet></router-outlet>\r\n</div>\r\n`\r\n})\r\nexport class ConfigModuleContainerComponent implements OnInit {\r\n\tconstructor() {}\r\n\r\n\tngOnInit() {}\r\n}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,SAAS,EAAU,MAAM,eAAe,CAAC;AAWlD,MAAM;IACL,iBAAgB;;;;IAEhB,QAAQ,MAAK;;;YAVb,SAAS,SAAC;gBACV,QAAQ,EAAE,yBAAyB;gBACnC,QAAQ,EAAE;;;CAGV;aACA"
+}

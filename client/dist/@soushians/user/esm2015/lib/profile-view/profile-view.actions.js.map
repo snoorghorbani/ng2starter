@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "profile-view.actions.js",
+  "sources": [
+    "ng://@soushians/user/projects/soushians/user/src/lib/profile-view/profile-view.actions.ts"
+  ],
+  "sourcesContent": [
+    "import { Action } from \"@ngrx/store\";\r\n\r\nimport { ChangePasswordModel } from \"../models\";\r\nimport { ProfileViewModel } from \"../models\";\r\n\r\nexport enum ProfileViewActionTypes {\r\n\tGET_PROFILE = \"[USER][PROFILE] GET_PROFILE\",\r\n\tGET_PROFILE_START = \"[USER][PROFILE] GET_PROFILE_START\",\r\n\tGET_PROFILE_SUCCEED = \"[USER][PROFILE] GET_PROFILE_SUCCEED\",\r\n\tGET_PROFILE_FAILED = \"[USER][PROFILE] GET_PROFILE_FAILED\"\r\n}\r\n\r\nexport class GetProfile implements Action {\r\n\treadonly type = ProfileViewActionTypes.GET_PROFILE;\r\n}\r\nexport class GetProfileStart implements Action {\r\n\treadonly type = ProfileViewActionTypes.GET_PROFILE_START;\r\n}\r\nexport class GetProfileSucceed implements Action {\r\n\treadonly type = ProfileViewActionTypes.GET_PROFILE_SUCCEED;\r\n\tconstructor(public payload: ProfileViewModel.Response) {}\r\n}\r\nexport class GetProfileFailed implements Action {\r\n\treadonly type = ProfileViewActionTypes.GET_PROFILE_FAILED;\r\n}\r\n\r\nexport type ProfileViewAction = GetProfile | GetProfileStart | GetProfileSucceed | GetProfileFailed;\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;;;iBAMe,6BAA6B;uBACvB,mCAAmC;yBACjC,qCAAqC;wBACtC,oCAAoC;;;AAG1D,MAAM;;oBACW,sBAAsB,CAAC,WAAW;;CAClD;;;;;AACD,MAAM;;oBACW,sBAAsB,CAAC,iBAAiB;;CACxD;;;;;AACD,MAAM;;;;IAEL,YAAmB,OAAkC;QAAlC,YAAO,GAAP,OAAO,CAA2B;oBADrC,sBAAsB,CAAC,mBAAmB;KACD;CACzD;;;;;;;AACD,MAAM;;oBACW,sBAAsB,CAAC,kBAAkB;;CACzD"
+}

@@ -1,0 +1,15 @@
+﻿<div fxFlex="450px">
+
+  
+  <form [formGroup]="formGroup" (ngSubmit)="editProfile()" fxLayout="column">
+    <mat-card>
+      <mat-card-content>
+          <!-- <ngs-form-view [id]="formId"></ngs-form-view> -->
+      </mat-card-content>
+      <mat-card-actions fxLayoutAlign="center center">
+        <button fxFlex="nogrow" type="submit" mat-raised-button color="primary">ویرایش</button>
+        <button fxFlex="nogrow" type="button" routerLink="/user/panel/profile" mat-raised-button>بازگشت</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

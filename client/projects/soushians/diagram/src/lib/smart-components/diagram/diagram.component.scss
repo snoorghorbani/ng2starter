@@ -1,0 +1,28 @@
+:host {
+	width: 100%;
+}
+
+.diagram-box .c3 {
+	direction: ltr;
+}
+
+mat-slider {
+	width: 100%;
+}
+
+.data-time {
+	direction: ltr;
+	text-align: center;
+}
+
+.over {
+	visibility: hidden;
+	opacity: 0;
+	position: absolute;
+	top: 35px;
+	left: 0;
+	right: 0;
+	background: #fff;
+	z-index: 3;
+	transition: all .4s ease-in-out;
+}

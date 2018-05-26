@@ -1,0 +1,13 @@
+<form *ngIf="formGroupCreated" class="dynamic-form" [formGroup]="formGroup" (ngSubmit)="accepted()">
+  <mat-card>
+    <mat-card-content fxLayout="row wrap" fxLayoutGap="25px">
+      <div  *ngFor="let field of (schema$ | async)?.form.fields;" [fxFlex]="field.width * 10">
+        <ng-container dynamicField  [config]="field" [group]="formGroup"></ng-container>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button fxFlex type="submit" *ngIf="(schema$ | async)?.events.accept.show" mat-raised-button color="primary">{{(schema$ | async)?.events.accept.text}}</button>
+      <button fxFlex type="button" *ngIf="(schema$ | async)?.events.cancel.show" (click)="cancel.emit()" mat-raised-button color="primary">{{(schema$ | async)?.events.cancel.text}</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

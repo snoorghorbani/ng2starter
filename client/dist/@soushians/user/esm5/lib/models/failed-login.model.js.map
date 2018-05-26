@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "failed-login.model.js",
+  "sources": [
+    "ng://@soushians/user/projects/soushians/user/src/lib/models/failed-login.model.ts"
+  ],
+  "sourcesContent": [
+    "export class FailedLoginModel {\r\n    Username: string;\r\n    Password: string;\r\n    TryDate: Date;\r\n    MacAddress: string;\r\n    IpAddress: string;\r\n    Reason: string;\r\n}"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,MAAM;CAOL"
+}

@@ -1,0 +1,10 @@
+<div fxFlexLayout="row" fxLayoutWrap fxLayoutAlign="center center">
+  <mat-card class="config-box" *ngFor="let config of (configs | async)" [fxFlex]="50">
+      <h3>
+        <a [routerLink]="['edit' ,  config.Name]">
+          <mat-icon aria-label="edit config">edit</mat-icon>
+        </a>
+        {{config.Name}}
+      </h3>
+  </mat-card>
+</div>

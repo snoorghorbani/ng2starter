@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "form-list.api-model.js",
+  "sources": [
+    "ng://@soushians/form/projects/soushians/form/src/lib/models/form-list.api-model.ts"
+  ],
+  "sourcesContent": [
+    "import { Injectable } from \"@angular/core\";\r\nimport { HttpRequestBaseModel } from \"@soushians/shared\";\r\nimport { FormGroup, FormControl, Validators } from \"@angular/forms\";\r\nimport { FormSchemaModel } from \"../models\";\r\n\r\nexport namespace FormListApiModel {\r\n\texport class Request implements HttpRequestBaseModel<Request> {\r\n\t\tName: string;\r\n\t\tControls: object[];\r\n\t\tconstructor(initValue = {} as FormListApiModel.Request) {\r\n\t\t\tObject.keys(initValue).forEach((key) => (this[key] = initValue[key]));\r\n\t\t}\r\n\r\n\t\tgetRequestBody() {\r\n\t\t\treturn {\r\n\t\t\t\tName: this.Name,\r\n\t\t\t\tControls: this.Controls\r\n\t\t\t};\r\n\t\t}\r\n\t\tstatic get formGroup() {\r\n\t\t\treturn new FormGroup({\r\n\t\t\t\tName: new FormControl(\"\", [ Validators.required ]),\r\n\t\t\t\tControls: new FormGroup({})\r\n\t\t\t});\r\n\t\t}\r\n\t}\r\n\r\n\texport class Response {\r\n\t\tResult: FormSchemaModel[];\r\n\t\tconstructor() {}\r\n\t}\r\n}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAEA,OAAO,EAAE,SAAS,EAAE,WAAW,EAAE,UAAU,EAAE,MAAM,gBAAgB,CAAC;AAGpE,MAAM,KAAW,gBAAgB;AAAjC,WAAiB,gBAAgB;IAChC;;;;QAGC,YAAY,SAAS,qBAAG,EAA8B,CAAA;YACrD,MAAM,CAAC,IAAI,CAAC,SAAS,CAAC,CAAC,OAAO,CAAC,CAAC,GAAG,EAAE,EAAE,CAAC,CAAC,IAAI,CAAC,GAAG,CAAC,GAAG,SAAS,CAAC,GAAG,CAAC,CAAC,CAAC,CAAC;SACtE;;;;QAED,cAAc;YACb,MAAM,CAAC;gBACN,IAAI,EAAE,IAAI,CAAC,IAAI;gBACf,QAAQ,EAAE,IAAI,CAAC,QAAQ;aACvB,CAAC;SACF;;;;QACD,MAAM,KAAK,SAAS;YACnB,MAAM,CAAC,IAAI,SAAS,CAAC;gBACpB,IAAI,EAAE,IAAI,WAAW,CAAC,EAAE,EAAE,CAAE,UAAU,CAAC,QAAQ,CAAE,CAAC;gBAClD,QAAQ,EAAE,IAAI,SAAS,CAAC,EAAE,CAAC;aAC3B,CAAC,CAAC;SACH;KACD;IAnBY,wBAAO;;;;;;;IAqBpB;QAEC,iBAAgB;KAChB;IAHY,yBAAQ;;;;;GAtBL,gBAAgB,KAAhB,gBAAgB,QA0BhC"
+}

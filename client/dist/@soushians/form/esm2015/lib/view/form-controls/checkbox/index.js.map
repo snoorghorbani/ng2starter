@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sources": [
+    "ng://@soushians/form/projects/soushians/form/src/lib/view/form-controls/checkbox/index.ts"
+  ],
+  "sourcesContent": [
+    "export * from \"./checkbox.component\";\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,kCAAc,sBAAsB,CAAC"
+}

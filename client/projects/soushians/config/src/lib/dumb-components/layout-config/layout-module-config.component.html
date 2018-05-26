@@ -1,0 +1,50 @@
+<div fxFlexLayout="row" fxLayoutWrap fxLayoutAlign="center center">
+    <div fxFlex="100" fxFlexLayout="row">
+        <div [formGroup]="formGroup">
+            <mat-form-field>
+                <mat-select (change)="configChanged.emit(formGroup.value)" placeholder="layout mode" formControlName="layoutMode" >
+                    <mat-option *ngFor="let item of layoutModes" [value]="item">{{item}}</mat-option>
+                </mat-select> 
+            </mat-form-field>
+            <mat-slide-toggle  (change)="configChanged.emit(formGroup.value)"  formControlName="showLeftNavBar">show left navbar</mat-slide-toggle>
+            <mat-form-field>
+                <mat-select (change)="configChanged.emit(formGroup.value)" placeholder="main side nav mode" formControlName="mainSideNavMode" >
+                    <mat-option *ngFor="let item of sideNavModes" [value]="item">{{item}}</mat-option>
+                </mat-select> 
+            </mat-form-field>
+            <mat-slide-toggle  (change)="configChanged.emit(formGroup.value)"  formControlName="showMainSidenav">show main side nav</mat-slide-toggle>
+            <mat-slide-toggle  (change)="configChanged.emit(formGroup.value)"  formControlName="stickyLeftNavBar">sticky left navbar</mat-slide-toggle>
+            <mat-slide-toggle  (change)="configChanged.emit(formGroup.value)"  formControlName="showSecondSideNav">show second side nav</mat-slide-toggle>
+            <mat-form-field>
+                <mat-select (change)="configChanged.emit(formGroup.value)" placeholder="second side nav mode" formControlName="secondSideNavMode" >
+                    <mat-option *ngFor="let item of sideNavModes" [value]="item">{{item}}</mat-option>
+                </mat-select> 
+            </mat-form-field>
+        </div>
+    </div>
+
+    <h2 fxFlex="100">
+        Menu Items
+        <button mat-icon-button color="primary" (click)="addMenu()">
+            <mat-icon aria-label="icon-button icon">add</mat-icon>
+        </button>
+    </h2>
+    <div fxFlex="100" *ngFor="let item of formGroup.controls.menuItems.controls">
+        <div [formGroup]="item">
+            <mat-form-field>
+                <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="route" formControlName="route">
+            </mat-form-field>
+            <mat-form-field>
+                <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="icon" formControlName="icon">
+            </mat-form-field>
+            <mat-form-field>
+                <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="title" formControlName="title">
+            </mat-form-field>
+            <mat-form-field> 
+                <mat-select (change)="configChanged.emit(formGroup.value)" placeholder="roles" formControlName="roles" multiple>
+                    <mat-option *ngFor="let role of roleItems" [value]="role">{{role}}</mat-option>
+                </mat-select> 
+            </mat-form-field>
+        </div>
+    </div>
+</div>

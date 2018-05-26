@@ -1,0 +1,1 @@
+export type responseStatusTypes ="pristine" | "dirty" | 'pending' | 'succeed' | 'failed';

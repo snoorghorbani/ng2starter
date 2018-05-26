@@ -1,0 +1,13 @@
+<div >
+  <form [formGroup]="formGroup" (ngSubmit)="edit()" fxLayout="column">
+    <mat-card>
+      <mat-card-content>
+          <dynamic-config-component-selector (configChanged)="configChanged($event)" [data]="partialConfigModel"></dynamic-config-component-selector>
+      </mat-card-content>
+      <mat-card-actions fxLayoutAlign="center center">
+        <button fxFlex="nogrow" type="submit" mat-raised-button color="primary" (click)="edit">ویرایش</button>
+        <button fxFlex="nogrow" type="button" routerLink="/configs" mat-raised-button>بازگشت</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

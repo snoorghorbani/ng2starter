@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "file": "soushians-shared.js",
+  "sources": [
+    "ng://@soushians/shared/projects/soushians/shared/src/lib/validators/match.validator.ts",
+    "ng://@soushians/shared/projects/soushians/shared/src/lib/helpers/string-template.ts",
+    "ng://@soushians/shared/projects/soushians/shared/src/lib/http-request-base-model.ts",
+    "ng://@soushians/shared/projects/soushians/shared/src/lib/http-response-base-model.ts",
+    "ng://@soushians/shared/projects/soushians/shared/src/lib/shared.module.ts"
+  ],
+  "sourcesContent": [
+    "import { ValidatorFn, AbstractControl } from \"@angular/forms\";\r\n\r\nexport function MatchValidator(destination: string): ValidatorFn {\r\n    return (control: AbstractControl): { [key: string]: any } => {\r\n        if (!control.root.value) return;\r\n        let destinationValue = control.root.value[destination];\r\n\r\n        return (destinationValue == control.value)\r\n            ? null\r\n            : { key: \"don't matched\" };\r\n    };\r\n}",
+    "export const stringTemplate = (template: any, model: any) => {\r\n\treturn eval('`' + template + '`');\r\n};\r\n",
+    "import { FormGroup, FormControl, Validators } from \"@angular/forms\";\r\nimport { HttpParams } from \"@angular/common/http\";\r\n\r\nexport abstract class HttpRequestBaseModel<T> {\r\n\tconstructor() {}\r\n\r\n\tabstract getRequestBody?<K extends keyof T>(keys: any): { [key: string]: any };\r\n\tabstract getRequestQueryParams?<K extends keyof T>(keys: any): HttpParams;\r\n\r\n\t// static get formGroup(): FormGroup | null {\r\n\t// \treturn;\r\n\t// }\r\n}\r\n",
+    "import { FormGroup, FormControl, Validators } from '@angular/forms';\r\nimport { HttpParams } from '@angular/common/http';\r\n\r\nexport abstract class HttpResponseBaseModel<T> {\r\n    Result: any;\r\n    constructor() { }\r\n    abstract extractData?(): any;\r\n}",
+    "import { NgModule } from \"@angular/core\";\r\n\r\n// import {\r\n// \tDataUnitPipe,\r\n// \tTimeUnitPipe,\r\n// \tPersianDatePipe,\r\n// \tCurrencyUnitPipe,\r\n// \tPersianNumberPipe,\r\n// \tTimeCounterPipe\r\n// } from \"./pipes\";\r\n\r\n// import { DataUnitPipe } from \"./pipes/data-unit.pipe\";\r\n\r\n@NgModule(\r\n\t{\r\n\t\t// declarations: [ DataUnitPipe, TimeUnitPipe, PersianDatePipe, CurrencyUnitPipe, PersianNumberPipe, TimeCounterPipe ]\r\n\t\t// declarations: [ DataUnitPipe ]\r\n\t\t// exports: [ DataUnitPipe, TimeUnitPipe, PersianDatePipe, CurrencyUnitPipe, PersianNumberPipe, TimeCounterPipe ]\r\n\t}\r\n)\r\nexport class SharedModule {}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;;;AIAA,AAoBA,IAAA,YAAA,kBAAA,YAAA;;;IAPA,OAAA,YAAA,CAAA;;;;;;;;;;;;;;ADVA,AAAA,IAAA,qBAAA,kBAAA,YAAA;IAEI,SAAJ,qBAAA,GAAA;KAEA;;;;;;;;;;;;ADJA,AAAA,IAAA,oBAAA,kBAAA,YAAA;IACC,SAAD,oBAAA,GAAA;KAQA;;;;;;;;ADZA,AAAA,IAAA,iBAAA,cAAA,GAAA,UAAA,QAAwD,EAAE,KAA1D,EAAA;IACC,OAAO,IAAI,CAAC,GAAG,GAAG,QAAQ,GAAG,GAAG,CAAC,CAAC;CAClC;;;;;;;;;;;;;;;ADAD,AAAA,SAAA,cAAA,CAA+B,WAAmB,EAAlD;IACI,OAAO,UAAmD,OAA9D,EAAA;QACQ,IAAI,CAAC,OAAO,CAAC,IAAI,CAAC,KAAK;YAAE,OAAO;QAChC,qBAAI,gBAAgB,GAAG,OAAO,CAAC,IAAI,CAAC,KAAK,CAAC,WAAW,CAAC,CAAC;QAEvD,OAAO,CAAC,gBAAgB,IAAI,OAAO,CAAC,KAAK;cACnC,IAAI;cACJ,EAAE,GAAG,EAAE,eAAe,EAAE,CAAC;KAClC,CAAC;CACL;;;;;;;;;;;;;;;;;;;"
+}

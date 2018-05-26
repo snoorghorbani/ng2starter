@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "add-diagram.component.ngfactory.js",
+  "sourceRoot": "",
+  "sources": [
+    "ng://@soushians/diagram/projects/soushians/diagram/src/lib/smart-components/add-diagram/add-diagram.component.ngfactory.ts"
+  ],
+  "names": [],
+  "mappings": "",
+  "sourcesContent": [
+    "import * as i0 from '@angular/core';\ni0.ComponentFactory;\n"
+  ]
+}

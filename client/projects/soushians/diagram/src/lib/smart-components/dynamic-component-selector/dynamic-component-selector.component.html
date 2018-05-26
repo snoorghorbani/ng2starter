@@ -1,0 +1,17 @@
+<mat-card class="diagram-box" [style.background]="backgroundColor" fxLayout="column" fxLayoutAlign="space-between stretch">
+    <div fxFlex="0 0 auto" *ngIf="_data" fxLayoutAlign="space-between center">
+        <span fxLayoutAlign="start center" class="widget-title">
+            {{_data.Name}}
+        </span>
+        <a [routerLink]="['edit' ,  _data._id]" fxLayoutAlign="center center" mat-icon-button color="primary">
+            <mat-icon aria-label="edit diagram">edit</mat-icon>
+        </a>
+    </div>
+    <!-- <mat-card-content> -->
+    <!-- <mat-slider invert [(ngModel)]="time" (change)="timeChange($event)"></mat-slider> -->
+    <mat-slider class="over" fxFlex="0 0 auto" invert min='1' max='1000' value="1000" (change)="timeChange($event)"></mat-slider>
+    <div fxFlex="1 1 auto" class="widget-container">
+        <div #dynamicComponentContainer></div>
+    </div>
+    <!-- </mat-card-content> -->
+</mat-card>

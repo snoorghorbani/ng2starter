@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "public_api.js",
+  "sources": [
+    "ng://@soushians/authentication/projects/soushians/authentication/src/public_api.ts"
+  ],
+  "sourcesContent": [
+    "/*\n * Public API Surface of authentication\n */\n\n// export * from \"./lib/authentication.config\";\nexport { UserModel } from \"./lib/models\";\nexport { SignInActionTypes, SignoutAction, AuthenticationActionTypes } from \"./lib/actions\";\n// export * from \"./lib/reducers\";\n// export * from \"./lib/services/signin.service\";\nexport * from \"./lib/authentication.module\";\n"
+  ],
+  "names": [],
+  "mappings": ";;;;;;;AAKA,OAAO,EAAE,SAAS,EAAE,MAAM,cAAc,CAAC;AACzC,OAAO,EAAE,iBAAiB,EAAE,aAAa,EAA6B,MAAM,eAAe,CAAC;;;AAG5F,qEAAc,6BAA6B,CAAC"
+}

@@ -1,0 +1,5 @@
+<div *ngIf="dataLoaded | async">
+  <div fxLayoutAlign="center center" class="numeric title">{{data.Description}}</div>
+  <!-- <div fxLayoutAlign="center center" class="numeric">{{time | timeCounter}}</div> -->
+  <div [id]="'diagram_' + data._id"></div>
+</div>

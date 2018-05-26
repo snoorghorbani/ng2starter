@@ -1,0 +1,17 @@
+<form [formGroup]="formGroup" fxLayout='column'>
+  <div>
+    <mat-checkbox (change)="configChanged()" formControlName="Legend" fxFlexFill>نمایش توضیحات</mat-checkbox>
+  </div>
+  <div>
+    <mat-checkbox (change)="configChanged()" formControlName="Zoom" fxFlexFill>بزرگنمایی</mat-checkbox>
+  </div>
+  <div>
+    <mat-checkbox (change)="configChanged()" formControlName="Subchart" fxFlexFill>نمایش بزرگنمایی در زیر نمودار</mat-checkbox>
+  </div>
+  <div>
+    <mat-checkbox (change)="configChanged()" formControlName="Tooltip" fxFlexFill>نمایش توضیحات به صورت گروهی</mat-checkbox>
+  </div>
+  <div>
+    <mat-checkbox (change)="configChanged()" formControlName="Flow" fxFlexFill>Flow</mat-checkbox>
+  </div>
+</form>

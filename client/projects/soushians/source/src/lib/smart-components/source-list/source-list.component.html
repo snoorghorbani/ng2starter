@@ -1,0 +1,20 @@
+<div fxFlexLayout="row" fxLayoutWrap fxLayoutAlign="start center">
+  <mat-card class="source-box" *ngFor="let source of (sources | async)?.Result" [fxFlex]="32">
+      <mat-card-title fxFlexLayout="row" flexLayoutAlign="space-between center">
+        
+        <a [routerLink]="['edit' ,  source._id]" fxFlex="40px">
+          <mat-icon fxLayoutAlign="start center" aria-label="edit source">edit</mat-icon>
+        </a>
+        <span fxFlex fxLayoutAlign="end center" fxFlexAlign="center">{{source.Endpoint}}</span>
+      </mat-card-title>
+    
+  </mat-card>
+
+  <div fxLayoutAlign='end center'>
+    <button mat-fab routerLink="../source/add" class="add-btn">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
+
+

@@ -1,0 +1,46 @@
+<mat-toolbar [@toolbarAnimation]="toolbarAnimationState | async">
+  <mat-toolbar-row>
+    <app-logo-container fxFlex="none" fxLayoutAlign="end center"></app-logo-container>
+
+    <button type="button" *ngIf='showSidebarMenu' (click)="toggleMainSidebar()" mat-icon-button fxFlex="nogrow" fxLayoutAlign="center center">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span id='app-name'>
+      {{app_config?.Config.AppTitle}}
+    </span>
+    <app-title fxFlex fxLayoutAlign="start center"></app-title>
+    <app-search-box fxFlex fxLayoutAlign="end center"></app-search-box>
+    
+    <button mat-icon-button type="button" (click)="toggleSecondSidebar()" fxFlex="nogrow" fxLayoutAlign="center center">
+      <mat-icon>notifications</mat-icon>
+    </button>
+    <button *ngIf="user" mat-icon-button [matMenuTriggerFor]="toolbarMenu1">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+        <mat-menu #toolbarMenu1>
+          <button routerLink='/user/panel' mat-menu-item>
+            <mat-icon>fingerprint</mat-icon>
+            <span>{{user?.Username}}</span>
+          </button>
+          
+          <button (click)='signout()' mat-menu-item>
+            <mat-icon>exit_to_app</mat-icon>
+            <span>خروج</span>
+          </button>
+        </mat-menu>
+    <button mat-icon-button (click)='goback()'>
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <button mat-button 
+    *ngFor="let menu of menuItems$ | async"
+    routerLinkActive="active"
+    [routerLink]="[menu.route]" 
+    >
+    <!-- <mat-icon mat-list-icon>{{menu.icon}}</mat-icon> -->
+    <span>{{menu.title}}</span>
+  </button>
+</mat-toolbar-row>
+</mat-toolbar>

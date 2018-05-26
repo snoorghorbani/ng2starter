@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "profile-container.component.js",
+  "sources": [
+    "ng://@soushians/user/projects/soushians/user/src/lib/profile-view/profile-container/profile-container.component.ts"
+  ],
+  "sourcesContent": [
+    "import { Component, OnInit } from \"@angular/core\";\r\nimport { Observable } from \"rxjs/Observable\";\r\n\r\nimport { FormGroup, FormControl, Validators } from \"@angular/forms\";\r\nimport { Store } from \"@ngrx/store\";\r\n\r\nimport * as FeatureReducer from \"../../feature/feature.reducers\";\r\nimport { UserModel } from \"../../models\";\r\n\r\n@Component({\r\n\ttemplate: `<user-profile\r\n                [information]=\"data$\"\r\n                [dataStatus$]='dataStatus$'\r\n            ></user-profile>`\r\n})\r\nexport class ProfileContainerComponent implements OnInit {\r\n\tdata$: Observable<UserModel>;\r\n\tdataStatus$: Observable<boolean>;\r\n\r\n\tconstructor(private store: Store<FeatureReducer.FeatureState>) {\r\n\t\tthis.data$ = this.store.select(FeatureReducer.getUser);\r\n\t\tthis.dataStatus$ = this.store.select(FeatureReducer.getUserInforamtionStatus);\r\n\t}\r\n\r\n\tngOnInit() {}\r\n}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,SAAS,EAAU,MAAM,eAAe,CAAC;AAIlD,OAAO,EAAE,KAAK,EAAE,MAAM,aAAa,CAAC;AAEpC,OAAO,KAAK,cAAc,MAAM,gCAAgC,CAAC;AASjE,MAAM;;;;IAIL,YAAoB,KAAyC;QAAzC,UAAK,GAAL,KAAK,CAAoC;QAC5D,IAAI,CAAC,KAAK,GAAG,IAAI,CAAC,KAAK,CAAC,MAAM,CAAC,cAAc,CAAC,OAAO,CAAC,CAAC;QACvD,IAAI,CAAC,WAAW,GAAG,IAAI,CAAC,KAAK,CAAC,MAAM,CAAC,cAAc,CAAC,wBAAwB,CAAC,CAAC;KAC9E;;;;IAED,QAAQ,MAAK;;;YAfb,SAAS,SAAC;gBACV,QAAQ,EAAE;;;6BAGkB;aAC5B;;;;YAVQ,KAAK"
+}

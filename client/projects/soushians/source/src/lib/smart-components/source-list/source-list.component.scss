@@ -1,0 +1,16 @@
+:host{
+    width: 100%;
+}
+
+.source-box{
+    margin : 5px;
+}
+.source-box a {
+  text-decoration: none;
+}
+.add-btn {
+  position: fixed;
+  bottom: 50px;
+  left: 25px;
+  z-index:1;
+}

@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "source-upsert.component.ngfactory.js",
+  "sourceRoot": "",
+  "sources": [
+    "ng://@soushians/source/projects/soushians/source/src/lib/smart-components/source-upsert/source-upsert.component.ngfactory.ts"
+  ],
+  "names": [],
+  "mappings": "",
+  "sourcesContent": [
+    "import * as i0 from '@angular/core';\ni0.ComponentFactory;\n"
+  ]
+}

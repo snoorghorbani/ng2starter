@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sources": [
+    "ng://@soushians/form/projects/soushians/form/src/lib/main-container/index.ts"
+  ],
+  "sourcesContent": [
+    "// export * from \"./main-container.component\";\r\nexport * from \"./main-container.effects\";\r\nexport * from \"./main-container.reducers\";\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;;AACA,4BAAc,0BAA0B,CAAC;AACzC,6BAAc,2BAA2B,CAAC"
+}

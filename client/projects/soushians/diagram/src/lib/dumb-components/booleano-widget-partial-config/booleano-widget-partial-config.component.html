@@ -1,0 +1,10 @@
+<div *ngIf="dataLoaded | async" class="diagram-box">
+  <form [formGroup]="booleanoFormGroup">
+    <mat-form-field>
+      <input matInput placeholder="عنوان" formControlName="SuccessMessage">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="عنوان" formControlName="FailureMessage">
+    </mat-form-field>
+  </form>
+</div>

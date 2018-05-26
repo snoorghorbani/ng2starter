@@ -1,0 +1,43 @@
+<h2>Endpoints</h2>
+<div [formGroup]="formGroup.get('endpoints')" fxLayout="column">
+        <mat-form-field>
+            <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="change password" formControlName="changePassword">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="edit profile" formControlName="editProfile">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="get user info" formControlName="getUserInfo">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="Profile Information Endpoint" formControlName="profileInformation">
+        </mat-form-field>
+</div>
+<h2>Forms</h2>
+<div [formGroup]="formGroup.get('forms')" fxLayout="column">
+    <mat-form-field>
+        <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="profile edit" formControlName="profile_edit">
+    </mat-form-field>
+            <!-- <ngs-form-selector (select)="setFormId($event,'signIn')"></ngs-form-selector> -->
+</div>
+
+
+<h2 fxFlex="100">
+    Dashobard Links
+    <button mat-icon-button color="primary" (click)="addMenu()">
+        <mat-icon aria-label="icon-button icon">add</mat-icon>
+    </button>
+</h2>
+<div fxFlex="100" *ngFor="let item of $any(formGroup.get('dashboardLinks')).controls">
+    <div [formGroup]="item">
+        <mat-form-field>
+            <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="route" formControlName="route">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="icon" formControlName="icon">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="title" formControlName="title">
+        </mat-form-field>
+    </div>
+</div>

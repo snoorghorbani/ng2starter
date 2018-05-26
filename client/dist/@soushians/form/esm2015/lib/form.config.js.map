@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "form.config.js",
+  "sources": [
+    "ng://@soushians/form/projects/soushians/form/src/lib/form.config.ts"
+  ],
+  "sourcesContent": [
+    "import { InjectionToken } from \"@angular/core\";\r\n\r\nexport interface FormModuleConfig {\r\n\tendpoints: {\r\n\t\taddForm: string;\r\n\t\teditForm: string;\r\n\t\tgetForm: string;\r\n\t\tgetList: string;\r\n\t\tdeleteForm: string;\r\n\t};\r\n}\r\nexport const MODULE_DEFAULT_CONFIG: FormModuleConfig = {\r\n\tendpoints: {\r\n\t\taddForm: \"\",\r\n\t\teditForm: \"\",\r\n\t\tgetForm: \"\",\r\n\t\tgetList: \"\",\r\n\t\tdeleteForm: \"\"\r\n\t}\r\n};\r\nexport const MODULE_CONFIG_TOKEN = new InjectionToken<FormModuleConfig>(\"FormModuleConfig\");\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,cAAc,EAAE,MAAM,eAAe,CAAC;;;;;;;;;AAW/C,MAAM,CAAC,uBAAM,qBAAqB,GAAqB;IACtD,SAAS,EAAE;QACV,OAAO,EAAE,EAAE;QACX,QAAQ,EAAE,EAAE;QACZ,OAAO,EAAE,EAAE;QACX,OAAO,EAAE,EAAE;QACX,UAAU,EAAE,EAAE;KACd;CACD,CAAC;AACF,MAAM,CAAC,uBAAM,mBAAmB,GAAG,IAAI,cAAc,CAAmB,kBAAkB,CAAC,CAAC"
+}

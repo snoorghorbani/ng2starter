@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sources": [
+    "ng://@soushians/form/projects/soushians/form/src/lib/view/form-controls/number/index.ts"
+  ],
+  "sourcesContent": [
+    "export * from \"./number.component\";\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,gCAAc,oBAAoB,CAAC"
+}

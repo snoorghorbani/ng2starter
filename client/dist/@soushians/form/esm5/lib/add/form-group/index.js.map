@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sources": [
+    "ng://@soushians/form/projects/soushians/form/src/lib/add/form-group/index.ts"
+  ],
+  "sourcesContent": [
+    "export * from \"./form-group.component\";\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,mCAAc,wBAAwB,CAAC"
+}

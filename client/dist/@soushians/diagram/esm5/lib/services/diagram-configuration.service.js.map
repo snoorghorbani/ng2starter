@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "diagram-configuration.service.js",
+  "sources": [
+    "ng://@soushians/diagram/projects/soushians/diagram/src/lib/services/diagram-configuration.service.ts"
+  ],
+  "sourcesContent": [
+    "import { Injectable, Inject } from \"@angular/core\";\r\n\r\nimport { MODULE_CONFIG_TOKEN, DiagramModuleConfig, MODULE_DEFAULT_CONFIG } from \"../diagram.config\";\r\n\r\n@Injectable()\r\nexport class DiagramConfigurationService {\r\n\tprivate _config: DiagramModuleConfig;\r\n\tget config() {\r\n\t\treturn this._config;\r\n\t}\r\n\r\n\tconstructor(@Inject(MODULE_CONFIG_TOKEN) config) {\r\n\t\tthis._config = Object.assign({}, MODULE_DEFAULT_CONFIG, config);\r\n\t}\r\n}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,EAAE,MAAM,eAAe,CAAC;AAEnD,OAAO,EAAE,mBAAmB,EAAuB,qBAAqB,EAAE,MAAM,mBAAmB,CAAC;AAGpG,MAAM;;;;IAML,YAAyC,MAAM;QAC9C,IAAI,CAAC,OAAO,GAAG,MAAM,CAAC,MAAM,CAAC,EAAE,EAAE,qBAAqB,EAAE,MAAM,CAAC,CAAC;KAChE;;;;IAND,IAAI,MAAM;QACT,MAAM,CAAC,IAAI,CAAC,OAAO,CAAC;KACpB;;;YALD,UAAU;;;;4CAOG,MAAM,SAAC,mBAAmB"
+}

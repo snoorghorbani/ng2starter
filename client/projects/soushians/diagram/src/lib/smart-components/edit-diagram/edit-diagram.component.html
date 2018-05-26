@@ -1,0 +1,24 @@
+<mat-card fxLayout="column" fxFlex="400px">
+    <form [formGroup]="formGroup" fxLayout='column' (ngSubmit)="add($event)">
+
+        <mat-card-header>
+            <mat-card-title>افزودن نمودار جدید</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <mat-form-field fxFlexFill>
+                <input matInput placeholder="عنوان نمودار" formControlName="Name">
+            </mat-form-field>
+            <mat-form-field fxFlexFill>
+                <input matInput placeholder="آدرس نمودار" formControlName="Route">
+            </mat-form-field>
+
+            <mat-checkbox formControlName="IsActive">وضعیت</mat-checkbox>
+
+        </mat-card-content>
+        <mat-card-actions>
+            <button fxFlex mat-raised-button color="primary" type="submit">ثبت</button>
+            <button fxFlex='nogrow' mat-button routerLink='/diagrams'>انصراف</button>
+        </mat-card-actions>
+    </form>
+</mat-card>

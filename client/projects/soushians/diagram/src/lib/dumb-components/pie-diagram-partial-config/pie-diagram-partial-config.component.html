@@ -1,0 +1,21 @@
+<div *ngIf="dataLoaded | async" class="diagram-box">
+  <form [formGroup]="formGroup" fxLayout='column'>
+    <div>
+      <mat-checkbox (change)="configChanged()" formControlName="Legend" fxFlexFill>نمایش توضیحات</mat-checkbox>
+    </div>
+    <div>
+      <mat-checkbox (change)="configChanged()" formControlName="IsActive" fxFlexFill>وضعیت</mat-checkbox>
+    </div>
+    <div>
+      <mat-checkbox (change)="configChanged()" formControlName="Legend" fxFlexFill>نمایش توضیحات</mat-checkbox>
+    </div>
+    <div>
+      <mat-checkbox (change)="configChanged()" formControlName="IsActive" fxFlexFill>وضعیت</mat-checkbox>
+    </div>
+  </form>
+  <form [formGroup]="donutFormGroup">
+    <mat-form-field>
+      <input matInput placeholder="عنوان" formControlName="title">
+    </mat-form-field>
+  </form>
+</div>

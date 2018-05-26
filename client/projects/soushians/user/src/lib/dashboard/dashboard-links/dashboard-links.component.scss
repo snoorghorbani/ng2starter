@@ -1,0 +1,33 @@
+#con{
+    // padding-top:25px;
+    // padding-left:25px;
+    [fxflex] {
+        margin-right: 25px;
+    }
+}
+:host{
+    width:100%;
+}
+
+button mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+}
+
+button.link {
+    padding: 25px 15px;
+    margin-bottom:25px;
+}
+
+.title {
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 90%;
+}

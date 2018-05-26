@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sources": [
+    "ng://@soushians/config/projects/soushians/config/src/lib/models/index.ts"
+  ],
+  "sourcesContent": [
+    "export * from \"./config.model\";\r\nexport * from \"./get-configs-api.model\";\r\nexport * from \"./edit-config-api.model\";\r\nexport * from \"./layout-config.model\";\r\nexport * from \"./partial-config.interface\";"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,4BAAc,gBAAgB,CAAC;AAC/B,mCAAc,yBAAyB,CAAC;AACxC,mCAAc,yBAAyB,CAAC"
+}

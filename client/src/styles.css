@@ -60,7 +60,14 @@
 		url("assets/fonts/IRANSansWeb_Bold.woff2") format("woff2"),
 		url("assets/fonts/IRANSansWeb_Bold.ttf") format("truetype");
 }
-
+html {
+	overflow: hidden;
+}
+body {
+	overflow-y: auto;
+	height: 100vh;
+	overflow-x: hidden;
+}
 html,
 body,
 .mat-sidenav-container {
@@ -182,10 +189,12 @@ mat-sidenav-container mat-sidenav-content {
 }
 
 mat-sidenav {
-	padding-top: 60px;
-}
-mat-sidenav {
+	transition: padding-top 400ms;
 	width: 300px;
+}
+
+.comfortable mat-sidenav {
+	padding-top: 220px;
 }
 
 #fakeToolbar {
@@ -281,7 +290,7 @@ mat-datepicker-toggle mat-icon {
 
 #app-name {
 	z-index: 2 !important;
-	color: #222;
+	/* color: #222; */
 	margin-right: 37px;
 }
 
@@ -407,4 +416,14 @@ diagram-add dynamic-component-selector .mat-card {
 }
 .mat-drawer-container {
 	background-color: inherit;
+}
+.mat-drawer-content {
+	box-sizing: border-box;
+	/* height: 100vh !important; */
+}
+mat-sidenav-content {
+	transition: all 400ms;
+}
+.comfortable mat-sidenav-content {
+	padding-top: 220px;
 }

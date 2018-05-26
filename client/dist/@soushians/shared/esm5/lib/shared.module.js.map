@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "shared.module.js",
+  "sources": [
+    "ng://@soushians/shared/projects/soushians/shared/src/lib/shared.module.ts"
+  ],
+  "sourcesContent": [
+    "import { NgModule } from \"@angular/core\";\r\n\r\n// import {\r\n// \tDataUnitPipe,\r\n// \tTimeUnitPipe,\r\n// \tPersianDatePipe,\r\n// \tCurrencyUnitPipe,\r\n// \tPersianNumberPipe,\r\n// \tTimeCounterPipe\r\n// } from \"./pipes\";\r\n\r\n// import { DataUnitPipe } from \"./pipes/data-unit.pipe\";\r\n\r\n@NgModule(\r\n\t{\r\n\t\t// declarations: [ DataUnitPipe, TimeUnitPipe, PersianDatePipe, CurrencyUnitPipe, PersianNumberPipe, TimeCounterPipe ]\r\n\t\t// declarations: [ DataUnitPipe ]\r\n\t\t// exports: [ DataUnitPipe, TimeUnitPipe, PersianDatePipe, CurrencyUnitPipe, PersianNumberPipe, TimeCounterPipe ]\r\n\t}\r\n)\r\nexport class SharedModule {}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,eAAe,CAAC;AAoBzC,MAAM;;;YAPL,QAAQ,SACR,EAIC"
+}

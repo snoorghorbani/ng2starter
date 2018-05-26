@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "diagram.model.js",
+  "sources": [
+    "ng://@soushians/diagram/projects/soushians/diagram/src/lib/models/diagram.model.ts"
+  ],
+  "sourcesContent": [
+    "import { SourceModel } from \"./source.model\";\r\n\r\nexport class DiagramModel {\r\n\t_id: string;\r\n\tName: string;\r\n\tIsActive: boolean;\r\n\tDescription: string;\r\n\tGroups: string[];\r\n\tBox: {\r\n\t\tNumberOfColumns: number;\r\n\t\tOrder: number;\r\n\t\tBackgroundColor: string;\r\n\t};\r\n\tSource: SourceModel;\r\n\tWidget: {\r\n\t\t\"booleano\": {\r\n\t\t\t\"SuccessMessage\": string;\r\n\t\t\t\"FailureMessage\": string;\r\n\t\t};\r\n\t};\r\n\r\n\tChart: {\r\n\t\tdata: {\r\n\t\t\ttype: \"pie\" | \"linear\" | \"scatter\" | \"bar\" | \"line\";\r\n\t\t\ttypes: { [key: string]: string };\r\n\t\t\tcolumns: any[];\r\n\t\t\tcolors: any[];\r\n\t\t};\r\n\t\tFlow: boolean;\r\n\t\tColumnMappings: {\r\n\t\t\tNamePath: string;\r\n\t\t\tValuePath: string;\r\n\t\t}[];\r\n\t\tlegend: {\r\n\t\t\tshow: boolean;\r\n\t\t};\r\n\t\tsubchart: {\r\n\t\t\tshow: boolean;\r\n\t\t};\r\n\t\tzoom: {\r\n\t\t\tenabled: boolean;\r\n\t\t};\r\n\t\ttooltip: {\r\n\t\t\tgrouped: boolean;\r\n\t\t};\r\n\t};\r\n}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAEA,MAAM;CA4CL"
+}

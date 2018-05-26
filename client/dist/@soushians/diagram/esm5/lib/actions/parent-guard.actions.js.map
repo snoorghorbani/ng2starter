@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "parent-guard.actions.js",
+  "sources": [
+    "ng://@soushians/diagram/projects/soushians/diagram/src/lib/actions/parent-guard.actions.ts"
+  ],
+  "sourcesContent": [
+    "import { Action } from \"@ngrx/store\";\r\n\r\nexport enum ParentGuardActionTypes {\r\n\t\"ASK_FROM_PARENT_GUARD\" = \"[USER][GUARD] ASK_FROM_PARENT_GUARD\",\r\n\t\"PARENT_GUARD_APPROVED\" = \"[USER][GUARD] PARENT_GUARD_APPROVED\",\r\n\t\"PARENT_GUARD_REJECTED\" = \"[USER][GUARD] PARENT_GUARD_REJECTED\"\r\n}\r\n\r\nexport class AskFromParentGuardAction implements Action {\r\n\treadonly type = ParentGuardActionTypes.ASK_FROM_PARENT_GUARD;\r\n\t// constructor(public payload: ChangePasswordLinkRequest) { }\r\n}\r\nexport class ParentGuardApprovedAction implements Action {\r\n\treadonly type = ParentGuardActionTypes.PARENT_GUARD_APPROVED;\r\n}\r\nexport class ParentGuardRejectedAction implements Action {\r\n\treadonly type = ParentGuardActionTypes.PARENT_GUARD_REJECTED;\r\n}\r\n\r\nexport type ParentGuardAction = AskFromParentGuardAction | ParentGuardApprovedAction | ParentGuardRejectedAction;\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;;;6BAG2B,qCAAqC;6BACrC,qCAAqC;6BACrC,qCAAqC;;;AAGhE,MAAM;;oBACW,sBAAsB,CAAC,qBAAqB;;CAE5D;;;;;AACD,MAAM;;oBACW,sBAAsB,CAAC,qBAAqB;;CAC5D;;;;;AACD,MAAM;;oBACW,sBAAsB,CAAC,qBAAqB;;CAC5D"
+}
