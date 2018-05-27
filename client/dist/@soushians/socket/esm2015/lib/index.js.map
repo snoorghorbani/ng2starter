@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sources": [
+    "ng://@soushians/socket/projects/soushians/socket/src/lib/index.ts"
+  ],
+  "sourcesContent": [
+    "export * from \"./socket.module\";\r\nexport * from \"./socket.config\";\r\nexport * from \"./socket.actions\";\r\nexport * from \"./services/socket.service\";\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,qDAAc,iBAAiB,CAAC;AAChC,2DAAc,iBAAiB,CAAC;AAChC,iGAAc,kBAAkB,CAAC;AACjC,8BAAc,2BAA2B,CAAC"
+}

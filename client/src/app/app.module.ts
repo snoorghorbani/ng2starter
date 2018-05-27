@@ -16,8 +16,8 @@ import { NgsAuthenticationModule } from "@soushians/authentication";
 import { NgsLayoutModule } from "@soushians/layout";
 import { NgsUserModule, NgsUserRoutingModule } from "@soushians/user";
 import { NgsConfigModule } from "@soushians/config";
-import * as FeatureReducer from "@soushians/config";
 import { SourceModule } from "@soushians/source";
+import { NgsSocketModule } from "@soushians/socket";
 import { NgsDiagramModule } from "@soushians/diagram";
 import { NgsFormModule } from "@soushians/form";
 
@@ -61,6 +61,7 @@ import { CommonModule } from "@angular/common";
 		NgsUserModule.forRoot(),
 		NgsUserRoutingModule,
 		// NgsBpmnModule.forRoot(),
+		NgsSocketModule.forRoot(),
 		SharedModule,
 		SourceModule,
 		StaticPageModule,

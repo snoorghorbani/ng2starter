@@ -2,7 +2,12 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { Store } from "@ngrx/store";
-import { connect, Socket } from "socket.io-client";
+// import * as socketIo from "socket.io-client";
+// const socketIo = require("socket.io-client");
+// tslint:disable-next-line:no-debugger
+debugger;
+import * as _io from "socket.io-client";
+const io = _io;
 import { AppState } from "../socket.reducer";
 
 import { getSocketModuleConfig } from "@soushians/config";
@@ -14,19 +19,19 @@ import { SocketRunSuccessfullyAction } from "../socket.actions";
 	providedIn: "root"
 })
 export class SocketService {
-	socket: SocketIOClient.Socket;
+	socket: any;
 	uri: string;
 	constructor(private configService: SocketConfigurationService, private store: Store<AppState>) {
 		this.configService.config$
 			.pipe(
-				map((config) => (config.env.production ? config.production_uri : config.development_uri)),
-				map((uri) => {
-					this.socket = connect(uri);
+				map(config => (config.env.production ? config.production_uri : config.development_uri)),
+				map(uri => {
+					this.socket = io(uri);
 					return this.store.dispatch(new SocketRunSuccessfullyAction());
 				})
 			)
 			.subscribe(() => {
-				this.socket.on("DISPATCH_ACTION", (data) => {
+				this.socket.on("DISPATCH_ACTION", data => {
 					this.store.dispatch({
 						type: data.type,
 						payload: data.payload
@@ -41,7 +46,7 @@ export class SocketService {
 	 * Observable<T>
 	 */
 	on<T>(message): Observable<T> {
-		const observer$ = new Observable<T>((observer) => {
+		const observer$ = new Observable<T>(observer => {
 			this.socket.on(message, (data: T) => {
 				observer.next(data);
 			});

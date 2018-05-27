@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "socket.module.js",
+  "sources": [
+    "ng://@soushians/socket/projects/soushians/socket/src/lib/socket.module.ts"
+  ],
+  "sourcesContent": [
+    "import { NgModule, ModuleWithProviders } from \"@angular/core\";\r\nimport { CommonModule } from \"@angular/common\";\r\nimport { StoreModule } from \"@ngrx/store\";\r\n\r\nimport { SocketService, SocketConfigurationService } from \"./services\";\r\nimport { SocketReducer } from \"./socket.reducer\";\r\nimport { SocketModuleConfig, MODULE_CONFIG_TOKEN } from \"./socket.config\";\r\n\r\n@NgModule({\r\n\timports: [ CommonModule ]\r\n})\r\nexport class NgsSocketModule {\r\n\tstatic forRoot(config?: SocketModuleConfig): ModuleWithProviders {\r\n\t\treturn {\r\n\t\t\tngModule: NgsSocketRootModule,\r\n\t\t\tproviders: [ { provide: MODULE_CONFIG_TOKEN, useValue: config }, SocketConfigurationService, SocketService ]\r\n\t\t};\r\n\t}\r\n}\r\n\r\n@NgModule({\r\n\timports: [ NgsSocketModule, StoreModule.forFeature(\"socket\", SocketReducer) ]\r\n})\r\nexport class NgsSocketRootModule {}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,QAAQ,EAAuB,MAAM,eAAe,CAAC;AAC9D,OAAO,EAAE,YAAY,EAAE,MAAM,iBAAiB,CAAC;AAC/C,OAAO,EAAE,WAAW,EAAE,MAAM,aAAa,CAAC;AAE1C,OAAO,EAAE,aAAa,EAAE,0BAA0B,EAAE,MAAM,YAAY,CAAC;AACvE,OAAO,EAAE,aAAa,EAAE,MAAM,kBAAkB,CAAC;AACjD,OAAO,EAAsB,mBAAmB,EAAE,MAAM,iBAAiB,CAAC;AAK1E,MAAM;;;;;IACL,MAAM,CAAC,OAAO,CAAC,MAA2B;QACzC,MAAM,CAAC;YACN,QAAQ,EAAE,mBAAmB;YAC7B,SAAS,EAAE,CAAE,EAAE,OAAO,EAAE,mBAAmB,EAAE,QAAQ,EAAE,MAAM,EAAE,EAAE,0BAA0B,EAAE,aAAa,CAAE;SAC5G,CAAC;KACF;;;YATD,QAAQ,SAAC;gBACT,OAAO,EAAE,CAAE,YAAY,CAAE;aACzB;;AAaD,MAAM;;;YAHL,QAAQ,SAAC;gBACT,OAAO,EAAE,CAAE,eAAe,EAAE,WAAW,CAAC,UAAU,CAAC,QAAQ,EAAE,aAAa,CAAC,CAAE;aAC7E"
+}

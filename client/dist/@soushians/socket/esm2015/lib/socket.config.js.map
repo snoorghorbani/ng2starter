@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "socket.config.js",
+  "sources": [
+    "ng://@soushians/socket/projects/soushians/socket/src/lib/socket.config.ts"
+  ],
+  "sourcesContent": [
+    "import { InjectionToken } from \"@angular/core\";\r\n\r\nexport interface SocketModuleConfig {\r\n\tdevelopment_uri: string;\r\n\tproduction_uri: string;\r\n\tenv?: {\r\n\t\tproduction: boolean;\r\n\t};\r\n}\r\nexport const MODULE_DEFAULT_CONFIG: SocketModuleConfig = {\r\n\tdevelopment_uri: \"http://localhost:3000\",\r\n\tproduction_uri: \"\",\r\n\tenv: {\r\n\t\tproduction: false\r\n\t}\r\n};\r\nexport const MODULE_CONFIG_TOKEN = new InjectionToken<SocketModuleConfig>(\"SocketModuleConfig\");\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,cAAc,EAAE,MAAM,eAAe,CAAC;;;;;;;;;;;;;AAS/C,MAAM,CAAC,uBAAM,qBAAqB,GAAuB;IACxD,eAAe,EAAE,uBAAuB;IACxC,cAAc,EAAE,EAAE;IAClB,GAAG,EAAE;QACJ,UAAU,EAAE,KAAK;KACjB;CACD,CAAC;AACF,MAAM,CAAC,uBAAM,mBAAmB,GAAG,IAAI,cAAc,CAAqB,oBAAoB,CAAC,CAAC"
+}
