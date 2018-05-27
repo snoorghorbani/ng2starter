@@ -6,7 +6,7 @@ import { Actions, Effect } from "@ngrx/effects";
 import { of } from "rxjs/observable/of";
 import { Store } from "@ngrx/store";
 
-import { FormService } from "../services";
+import { FormService } from "../services/form.service";
 import { EditFormApiModel } from "../models";
 import {
 	EditFormActionTypes,
@@ -19,15 +19,12 @@ import { map, switchMap, catchError } from "rxjs/operators";
 
 @Injectable()
 export class EditFormEffects {
-	constructor(private actions$: Actions<any>, private router: Router, private service: FormService) { }
+	constructor(private actions$: Actions<any>, private router: Router, private service: FormService) {}
 
 	@Effect()
 	EditForm$ = this.actions$
 		.ofType(EditFormActionTypes.EDIT_FORM)
-		.pipe(
-			map(action => action.payload),
-			map(data => new EditFormStartAction(data))
-		)
+		.pipe(map(action => action.payload), map(data => new EditFormStartAction(data)));
 
 	@Effect()
 	EditFormStart$ = this.actions$
@@ -36,13 +33,11 @@ export class EditFormEffects {
 			map(action => action.payload),
 			switchMap((data: EditFormApiModel.Request) => this.service.update(data)),
 			map(formSchema => new EditFormSucceedAction(formSchema)),
-			catchError(() => Observable.of(new EditFormFailedAction())))
+			catchError(() => Observable.of(new EditFormFailedAction()))
+		);
 
 	@Effect()
 	UpdateFormsListStart$ = this.actions$
 		.ofType(EditFormActionTypes.EDIT_FORM_SUCCEED)
-		.pipe(
-			map(action => action.payload),
-			map(formSchema => new UpdateFormSchemaAction(formSchema))
-		)
+		.pipe(map(action => action.payload), map(formSchema => new UpdateFormSchemaAction(formSchema)));
 }

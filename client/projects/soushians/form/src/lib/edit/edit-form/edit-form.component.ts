@@ -5,8 +5,8 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 
 import { FormSchemaModel, EditFormApiModel } from "../../models";
-import { FormService } from "../../services";
-import { AddFormComponent } from "../../add";
+import { FormService } from "../../services/form.service";
+import { AddFormComponent } from "../../add/add-form";
 
 @Component({
 	selector: "edit-form",

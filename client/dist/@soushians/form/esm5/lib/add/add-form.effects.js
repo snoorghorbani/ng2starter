@@ -10,7 +10,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import { Actions, Effect } from "@ngrx/effects";
-import { FormService } from "../services";
+import { FormService } from "../services/form.service";
 import { AddFormActionTypes, AddFormStartAction, AddFormSucceedAction, AddFormFailedAction } from "./add-form.actions";
 import { map, switchMap, catchError } from "rxjs/operators";
 var AddFormEffects = /** @class */ (function () {

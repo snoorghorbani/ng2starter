@@ -7,6 +7,9 @@ import { Store } from "@ngrx/store";
 import { BehaviorSubject } from "rxjs";
 import { getAuthenticationModuleConfig } from "@soushians/config";
 import { MODULE_CONFIG_TOKEN, MODULE_DEFAULT_CONFIG } from "../authentication.config";
+import * as i0 from "@angular/core";
+import * as i1 from "../authentication.config";
+import * as i2 from "@ngrx/store";
 var AuthenticationConfigurationService = /** @class */ (function () {
     /**
      * @param {?} configFile
@@ -39,13 +42,16 @@ var AuthenticationConfigurationService = /** @class */ (function () {
 }());
 export { AuthenticationConfigurationService };
 AuthenticationConfigurationService.decorators = [
-    { type: Injectable },
+    { type: Injectable, args: [{
+                providedIn: "root"
+            },] },
 ];
 /** @nocollapse */
 AuthenticationConfigurationService.ctorParameters = function () { return [
     { type: undefined, decorators: [{ type: Inject, args: [MODULE_CONFIG_TOKEN,] }] },
     { type: Store }
 ]; };
+/** @nocollapse */ AuthenticationConfigurationService.ngInjectableDef = i0.defineInjectable({ factory: function AuthenticationConfigurationService_Factory() { return new AuthenticationConfigurationService(i0.inject(i1.MODULE_CONFIG_TOKEN), i0.inject(i2.Store)); }, token: AuthenticationConfigurationService, providedIn: "root" });
 function AuthenticationConfigurationService_tsickle_Closure_declarations() {
     /** @type {?} */
     AuthenticationConfigurationService.prototype._config;

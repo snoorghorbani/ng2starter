@@ -8,6 +8,6 @@
 export { UserModel } from "./lib/models";
 export { SignInActionTypes, SignoutAction } from "./lib/actions";
 // export * from "./lib/reducers";
-// export * from "./lib/services/signin.service";
+export { SigninService, SigninServiceStub } from "./lib/services/signin.service";
 export { NgsAuthenticationModule, RootNgsAuthenticationModule } from "./lib/authentication.module";
 //# sourceMappingURL=public_api.js.map

@@ -10,7 +10,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import { Actions, Effect } from "@ngrx/effects";
-import { FormService } from "../services";
+import { FormService } from "../services/form.service";
 import { AddFormActionTypes, AddFormStartAction, AddFormSucceedAction, AddFormFailedAction } from "./add-form.actions";
 import { map, switchMap, catchError } from "rxjs/operators";
 export class AddFormEffects {
@@ -25,10 +25,10 @@ export class AddFormEffects {
         this.service = service;
         this.AddForm$ = this.actions$
             .ofType(AddFormActionTypes.ADD_FORM)
-            .pipe(map(action => action.payload), map((data) => new AddFormStartAction(data)));
+            .pipe(map(action => action.payload), map(data => new AddFormStartAction(data)));
         this.AddFormStart$ = this.actions$
             .ofType(AddFormActionTypes.ADD_FORM_START)
-            .pipe(map(action => action.payload), switchMap((data) => this.service.add(data)), map((res) => new AddFormSucceedAction()), catchError(() => Observable.of(new AddFormFailedAction())));
+            .pipe(map(action => action.payload), switchMap((data) => this.service.add(data)), map(res => new AddFormSucceedAction()), catchError(() => Observable.of(new AddFormFailedAction())));
     }
 }
 AddFormEffects.decorators = [

@@ -10,7 +10,9 @@ import { FeatureState } from "../reducers";
 
 declare var _: any;
 
-@Injectable()
+@Injectable({
+	providedIn: "root"
+})
 export class DiagramService {
 	constructor(
 		private http: HttpClient,

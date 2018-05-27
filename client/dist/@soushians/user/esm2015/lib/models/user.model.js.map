@@ -5,8 +5,8 @@
     "ng://@soushians/user/projects/soushians/user/src/lib/models/user.model.ts"
   ],
   "sourcesContent": [
-    "export class UserModel {\r\n\t_id: string;\r\n\tFirstName: string;\r\n\tLastName: string;\r\n\tUsername: string;\r\n\t// Username: string;\r\n\t// MobileNumber: string;\r\n\t// Sex: string;\r\n\t// Birthdate: string;\r\n\tEmail: string;\r\n\t// IdentificationNo: string;\r\n\t// IdentifierType: string;\r\n\t// RegisterDate: string;\r\n\t// UserType: string;\r\n\tRoles: string[];\r\n\tGroups: string[];\r\n}\r\n"
+    "export class UserModel {\r\n\t_id: string;\r\n\tFirstName: string;\r\n\tLastName: string;\r\n\tUsername: string;\r\n\tDisplayName: string;\r\n\t// Username: string;\r\n\t// MobileNumber: string;\r\n\t// Sex: string;\r\n\t// Birthdate: string;\r\n\tEmail: string;\r\n\t// IdentificationNo: string;\r\n\t// IdentifierType: string;\r\n\t// RegisterDate: string;\r\n\t// UserType: string;\r\n\tRoles: string[];\r\n\tGroups: string[];\r\n}\r\n"
   ],
   "names": [],
-  "mappings": ";;;;AAAA,MAAM;CAgBL"
+  "mappings": ";;;;AAAA,MAAM;CAiBL"
 }

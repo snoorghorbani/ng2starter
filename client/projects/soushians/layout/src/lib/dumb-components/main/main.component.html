@@ -16,8 +16,10 @@
     <div fxFlexLayout='column' id="app-main-container" fxLayoutAlign='center center'>
       <div fxFlex='0 0 100'>
         <router-outlet></router-outlet>
+        <router-outlet name="footer_A"></router-outlet>
+        <router-outlet name="footer_B"></router-outlet>
         <footer>
-          <app-footer></app-footer>
+          <app-footer [app-config]="app_config"></app-footer>
         </footer>
       </div>
     </div>

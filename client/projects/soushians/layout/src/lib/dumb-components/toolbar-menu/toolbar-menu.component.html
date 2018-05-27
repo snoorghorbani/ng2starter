@@ -11,23 +11,30 @@
     <app-title fxFlex fxLayoutAlign="start center"></app-title>
     <app-search-box fxFlex fxLayoutAlign="end center"></app-search-box>
     
+    <button *ngIf="!user.DisplayName" mat-button routerLink="auth/signin">
+      ورود
+    </button>
+    <button *ngIf="user.Username" mat-button [matMenuTriggerFor]="toolbarMenu1">
+      <mat-icon>account_circle</mat-icon>
+      <span>
+        {{user?.Username}}
+      </span>
+    </button>
+    <mat-menu #toolbarMenu1>
+      <button routerLink='/user/panel' mat-menu-item>
+        <mat-icon>fingerprint</mat-icon>
+        <span>
+          مدیریت کاربری
+        </span>
+      </button>
+      <button (click)='signout()' mat-menu-item>
+        <mat-icon>exit_to_app</mat-icon>
+        <span>خروج</span>
+      </button>
+    </mat-menu>
     <button mat-icon-button type="button" (click)="toggleSecondSidebar()" fxFlex="nogrow" fxLayoutAlign="center center">
       <mat-icon>notifications</mat-icon>
     </button>
-    <button *ngIf="user" mat-icon-button [matMenuTriggerFor]="toolbarMenu1">
-      <mat-icon>account_circle</mat-icon>
-    </button>
-        <mat-menu #toolbarMenu1>
-          <button routerLink='/user/panel' mat-menu-item>
-            <mat-icon>fingerprint</mat-icon>
-            <span>{{user?.Username}}</span>
-          </button>
-          
-          <button (click)='signout()' mat-menu-item>
-            <mat-icon>exit_to_app</mat-icon>
-            <span>خروج</span>
-          </button>
-        </mat-menu>
     <button mat-icon-button (click)='goback()'>
       <mat-icon>arrow_back</mat-icon>
     </button>

@@ -9,7 +9,7 @@ import { Actions, Effect } from "@ngrx/effects";
 import { map } from "rxjs/operators";
 import { SignInActionTypes } from "@soushians/authentication";
 import { UserService } from "../services/user.service";
-import { GetProfile } from "../profile-view/profile-view.actions";
+import { GetProfile, GetProfileSucceed } from "../profile-view/profile-view.actions";
 var UserEffects = /** @class */ (function () {
     /**
      * @param {?} actions$
@@ -20,6 +20,10 @@ var UserEffects = /** @class */ (function () {
         this.actions$ = actions$;
         this.router = router;
         this.service = service;
+        this.updateProfileInformation$ = this.actions$.ofType(SignInActionTypes.SIGNIN_SUCCEED).pipe(map(function (action) { return action.payload; }), map(function (user) {
+            debugger;
+            return new GetProfileSucceed(user);
+        }));
         this.getProfileInformation$ = this.actions$.ofType(SignInActionTypes.SIGNIN_SUCCEED).pipe(map(function () {
             return new GetProfile();
         }));
@@ -39,8 +43,14 @@ UserEffects.ctorParameters = function () { return [
 tslib_1.__decorate([
     Effect(),
     tslib_1.__metadata("design:type", Object)
+], UserEffects.prototype, "updateProfileInformation$", void 0);
+tslib_1.__decorate([
+    Effect(),
+    tslib_1.__metadata("design:type", Object)
 ], UserEffects.prototype, "getProfileInformation$", void 0);
 function UserEffects_tsickle_Closure_declarations() {
+    /** @type {?} */
+    UserEffects.prototype.updateProfileInformation$;
     /** @type {?} */
     UserEffects.prototype.getProfileInformation$;
     /** @type {?} */

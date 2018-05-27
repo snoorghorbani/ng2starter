@@ -3,7 +3,7 @@
   "file": "form-utility.service.ngfactory.js",
   "sourceRoot": "",
   "sources": [
-    "ng://@soushians/form/projects/soushians/form/src/lib/services/form-utility.service.ngfactory.ts"
+    "ng://@soushians/form/ng://@soushians/form/projects/soushians/form/src/lib/services/form-utility.service.ngfactory.ts"
   ],
   "names": [],
   "mappings": "",

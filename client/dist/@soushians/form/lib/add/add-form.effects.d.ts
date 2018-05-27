@@ -4,7 +4,7 @@ import "rxjs/add/operator/switchMap";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import { Actions } from "@ngrx/effects";
-import { FormService } from "../services";
+import { FormService } from "../services/form.service";
 import { AddFormStartAction, AddFormSucceedAction, AddFormFailedAction } from "./add-form.actions";
 export declare class AddFormEffects {
     private actions$;

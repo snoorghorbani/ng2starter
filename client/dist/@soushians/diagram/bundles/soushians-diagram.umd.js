@@ -1028,7 +1028,9 @@
         return DiagramConfigurationService;
     }());
     DiagramConfigurationService.decorators = [
-        { type: core.Injectable },
+        { type: core.Injectable, args: [{
+                    providedIn: "root"
+                },] },
     ];
     /** @nocollapse */
     DiagramConfigurationService.ctorParameters = function () {
@@ -1036,6 +1038,7 @@
             { type: undefined, decorators: [{ type: core.Inject, args: [MODULE_CONFIG_TOKEN,] }] }
         ];
     };
+    /** @nocollapse */ DiagramConfigurationService.ngInjectableDef = core.defineInjectable({ factory: function DiagramConfigurationService_Factory() { return new DiagramConfigurationService(core.inject(MODULE_CONFIG_TOKEN)); }, token: DiagramConfigurationService, providedIn: "root" });
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes} checked by tsc
@@ -1262,7 +1265,9 @@
         return DiagramService;
     }());
     DiagramService.decorators = [
-        { type: core.Injectable },
+        { type: core.Injectable, args: [{
+                    providedIn: "root"
+                },] },
     ];
     /** @nocollapse */
     DiagramService.ctorParameters = function () {
@@ -1272,6 +1277,7 @@
             { type: DiagramConfigurationService }
         ];
     };
+    /** @nocollapse */ DiagramService.ngInjectableDef = core.defineInjectable({ factory: function DiagramService_Factory() { return new DiagramService(core.inject(http.HttpClient), core.inject(store.Store), core.inject(DiagramConfigurationService)); }, token: DiagramService, providedIn: "root" });
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes} checked by tsc

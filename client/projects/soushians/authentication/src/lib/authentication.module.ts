@@ -40,6 +40,7 @@ import { AuthenticationReducers } from "./reducers";
 
 import { SigninEffects } from "./effects/signin.effects";
 import { AuthenticationEffects } from "./effects/authentication.effects";
+import { SigninService } from "./services/signin.service";
 
 @NgModule({
 	imports: [
@@ -69,6 +70,7 @@ import { AuthenticationEffects } from "./effects/authentication.effects";
 		NgsFormModule
 	],
 	declarations: [ SigninContainerComponent, SigninComponent, AuthenticationContainerComponent ],
+	providers: [],
 	exports: []
 })
 export class NgsAuthenticationModule {
@@ -86,7 +88,8 @@ export class NgsAuthenticationModule {
 					provide: HTTP_INTERCEPTORS,
 					useClass: WithCredentialInterceptor,
 					multi: true
-				}
+				},
+				SigninService
 			]
 		};
 	}

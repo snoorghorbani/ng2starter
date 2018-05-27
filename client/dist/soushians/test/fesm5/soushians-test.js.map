@@ -1,0 +1,16 @@
+{
+  "version": 3,
+  "file": "soushians-test.js",
+  "sources": [
+    "ng://@soushians/test/projects/soushians/test/src/lib/test.module.ts",
+    "ng://@soushians/test/projects/soushians/test/src/lib/test.component.ts",
+    "ng://@soushians/test/projects/soushians/test/src/lib/test.service.ts"
+  ],
+  "sourcesContent": [
+    "import { NgModule } from \"@angular/core\";\nimport { TestComponent } from \"./test.component\";\n\nimport { NgsAuthenticationModule } from \"@soushians/authentication\";\nimport { NgsConfigModule } from \"@soushians/config\";\nimport { NgsDiagramModule } from \"@soushians/diagram\";\nimport { NgsFormModule } from \"@soushians/form\";\nimport { NgsLayoutModule } from \"@soushians/layout\";\nimport { SharedModule } from \"@soushians/shared\";\nimport { SourceModule } from \"@soushians/source\";\nimport { NgsUserModule } from \"@soushians/user\";\n\n@NgModule({\n\timports: [\n\t\tNgsAuthenticationModule,\n\t\tNgsConfigModule,\n\t\tNgsDiagramModule,\n\t\tNgsFormModule,\n\t\tNgsLayoutModule,\n\t\tSharedModule,\n\t\tSourceModule,\n\t\tNgsUserModule\n\t],\n\tdeclarations: [ TestComponent ],\n\texports: [ TestComponent ]\n})\nexport class TestModule {}\n",
+    "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'lib-test',\n  template: `\n    <p>\n      test works!\n    </p>\n  `,\n  styles: []\n})\nexport class TestComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n}\n",
+    "import { Injectable } from '@angular/core';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class TestService {\n\n  constructor() { }\n}\n"
+  ],
+  "names": [],
+  "mappings": ";;;;;;;;;;;;;;AEAA,AAKA,IAAA,WAAA,kBAAA,YAAA;IAEE,SAAF,WAAA,GAAA;;;CALA,EAAA,CAAA,CAAA;AACA,AACA,WAAA,CAAA,UAAA,GAAA;;;;;;;;;;;;;ADJA,AAWA,IAAA,aAAA,kBAAA,YAAA;IAEE,SAAF,aAAA,GAAA;;;;;IAGA,aAAA,CAAA,SAAA,CAAA,QAAA,GAAA,YAAA;;;CAdA,EAAA,CAAA,CAAA;AACA,AACA,aAAA,CAAA,UAAU,GAAV;;;;gBAIA,MAAA,EAAA,EAAA;aACA,EAAA,EAAA;CACA,CAAA;;;;;;;;ADVA,AA0BA,IAAA,UAAA,kBAAA,YAAA;;;IAdA,OAAA,UAAA,CAAA;CACA,EAAA,CAAA,CAAA;AACA,AACA,UAAA,CAAA,UAAA,GAAA;IACA,EAAA,IAAA,EAAA,QAAE,EAAF,IAAA,EAAA,CAAA;gBACA,OAAA,EAAA;oBACE,uBAAF;oBACE,eAAF;oBACE,gBAAF;oBACE,aAAa;oBACf,eAAA;oBACA,YAAA;oBACA,YAAA;oBACA,aAAA;;;;;;;;;;;;;;;;;;;"
+}

@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "footer.component.js",
+  "sources": [
+    "ng://@soushians/layout/projects/soushians/layout/src/lib/dumb-components/footer/footer.component.ts"
+  ],
+  "sourcesContent": [
+    "import { Component, OnInit, Input } from \"@angular/core\";\r\n\r\n@Component({\r\n\tselector: \"app-footer\",\r\n\ttemplate: `<div fxLayoutAlign=\"center center\" class=\"footer-text\">\r\n    {{app_config?.Config.FooterCopyright}}\r\n</div>`,\r\n\tstyles: [`:host{position:absolute;bottom:0;left:0;right:0;border-top:1px solid #e5e5e5;padding:8px;overflow:hidden}.footer-text{position:relative;top:12px}`]\r\n})\r\nexport class FooterComponent implements OnInit {\r\n\t@Input(\"app-config\") app_config;\r\n\r\n\tconstructor() {}\r\n\r\n\tngOnInit() {}\r\n}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,SAAS,EAAU,KAAK,EAAE,MAAM,eAAe,CAAC;AASzD,MAAM;IAGL,iBAAgB;;;;IAEhB,QAAQ,MAAK;;;YAZb,SAAS,SAAC;gBACV,QAAQ,EAAE,YAAY;gBACtB,QAAQ,EAAE;;OAEJ;gBACN,MAAM,EAAE,CAAC,mJAAmJ,CAAC;aAC7J;;;;;yBAEC,KAAK,SAAC,YAAY"
+}

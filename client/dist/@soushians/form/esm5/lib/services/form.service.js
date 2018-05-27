@@ -5,11 +5,11 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Store } from "@ngrx/store";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { filter, map } from "rxjs/operators";
 import { stringTemplate } from "@soushians/shared";
 import { AddFormApiModel, EditFormApiModel } from "../models";
 import { FormConfigurationService } from "./form-configuration.service";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { filter, map } from "rxjs/operators";
 import * as i0 from "@angular/core";
 import * as i1 from "@angular/common/http";
 import * as i2 from "@ngrx/store";

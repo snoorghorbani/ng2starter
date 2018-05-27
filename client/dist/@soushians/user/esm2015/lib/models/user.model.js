@@ -14,6 +14,8 @@ function UserModel_tsickle_Closure_declarations() {
     /** @type {?} */
     UserModel.prototype.Username;
     /** @type {?} */
+    UserModel.prototype.DisplayName;
+    /** @type {?} */
     UserModel.prototype.Email;
     /** @type {?} */
     UserModel.prototype.Roles;

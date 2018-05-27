@@ -8,6 +8,10 @@ import { MatSnackBar } from "@angular/material";
 import { map, switchMap, take, filter } from "rxjs/operators";
 import { Signin_ApiModel } from "../models";
 import { AuthenticationConfigurationService } from "./authentication-configuration.service";
+import * as i0 from "@angular/core";
+import * as i1 from "@angular/common/http";
+import * as i2 from "./authentication-configuration.service";
+import * as i3 from "@angular/material/snack-bar";
 var /** @type {?} */ SIGNIN_RESPONSE = "[APP] SIGNIN_RESPONSE";
 var SigninService = /** @class */ (function () {
     /**
@@ -59,7 +63,9 @@ var SigninService = /** @class */ (function () {
 }());
 export { SigninService };
 SigninService.decorators = [
-    { type: Injectable },
+    { type: Injectable, args: [{
+                providedIn: "root"
+            },] },
 ];
 /** @nocollapse */
 SigninService.ctorParameters = function () { return [
@@ -67,6 +73,7 @@ SigninService.ctorParameters = function () { return [
     { type: AuthenticationConfigurationService },
     { type: MatSnackBar }
 ]; };
+/** @nocollapse */ SigninService.ngInjectableDef = i0.defineInjectable({ factory: function SigninService_Factory() { return new SigninService(i0.inject(i1.HttpClient), i0.inject(i2.AuthenticationConfigurationService), i0.inject(i3.MatSnackBar)); }, token: SigninService, providedIn: "root" });
 function SigninService_tsickle_Closure_declarations() {
     /** @type {?} */
     SigninService.prototype.http;

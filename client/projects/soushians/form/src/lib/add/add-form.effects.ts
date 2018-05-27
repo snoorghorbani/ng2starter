@@ -10,22 +10,19 @@ import { Actions, Effect } from "@ngrx/effects";
 import { of } from "rxjs/observable/of";
 import { Store } from "@ngrx/store";
 
-import { FormService } from "../services";
+import { FormService } from "../services/form.service";
 import { AddFormApiModel } from "../models";
 import { AddFormActionTypes, AddFormStartAction, AddFormSucceedAction, AddFormFailedAction } from "./add-form.actions";
 import { map, switchMap, catchError } from "rxjs/operators";
 
 @Injectable()
 export class AddFormEffects {
-	constructor(private actions$: Actions<any>, private router: Router, private service: FormService) { }
+	constructor(private actions$: Actions<any>, private router: Router, private service: FormService) {}
 
 	@Effect()
 	AddForm$ = this.actions$
 		.ofType(AddFormActionTypes.ADD_FORM)
-		.pipe(
-			map(action => action.payload),
-			map((data) => new AddFormStartAction(data))
-		);
+		.pipe(map(action => action.payload), map(data => new AddFormStartAction(data)));
 
 	@Effect()
 	AddFormStart$ = this.actions$
@@ -33,7 +30,7 @@ export class AddFormEffects {
 		.pipe(
 			map(action => action.payload),
 			switchMap((data: AddFormApiModel.Request) => this.service.add(data)),
-			map((res) => new AddFormSucceedAction()),
+			map(res => new AddFormSucceedAction()),
 			catchError(() => Observable.of(new AddFormFailedAction()))
 		);
 }

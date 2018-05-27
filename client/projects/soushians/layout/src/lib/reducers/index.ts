@@ -2,9 +2,6 @@ import { createSelector, createFeatureSelector, MemoizedSelector } from "@ngrx/s
 
 import * as layout from "./layout.reducer";
 import * as fromToolbar from "./toolbar.reducer";
-import { State } from "./layout.reducer";
-
-export { State };
 
 export interface LayoutState {
 	layout: layout.State;

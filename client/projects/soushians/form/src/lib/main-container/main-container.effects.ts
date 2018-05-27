@@ -7,7 +7,7 @@ import "rxjs/add/operator/mergeMap";
 import { Action } from "@ngrx/store";
 import { Actions, Effect } from "@ngrx/effects";
 
-import { FormService } from "../services";
+import { FormService } from "../services/form.service";
 
 @Injectable()
 export class FormEffects {

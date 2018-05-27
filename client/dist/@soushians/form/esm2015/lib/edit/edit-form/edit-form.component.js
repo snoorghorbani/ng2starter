@@ -3,7 +3,7 @@
  * @suppress {checkTypes} checked by tsc
  */
 import { Component } from "@angular/core";
-import { AddFormComponent } from "../../add";
+import { AddFormComponent } from "../../add/add-form";
 export class EditFormComponent extends AddFormComponent {
     /**
      * @return {?}

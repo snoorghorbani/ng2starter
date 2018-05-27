@@ -1,4 +1,4 @@
-import { InjectionToken, Component, Input, Injector, Output, EventEmitter, Injectable, Inject, ComponentFactoryResolver, ViewChild, ViewContainerRef, ReflectiveInjector, NgModule } from '@angular/core';
+import { InjectionToken, Component, Input, Injector, Output, EventEmitter, Injectable, Inject, ComponentFactoryResolver, ViewChild, ViewContainerRef, ReflectiveInjector, NgModule, defineInjectable, inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { createSelector, createFeatureSelector, Store, StoreModule } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
@@ -1031,12 +1031,15 @@ class DiagramConfigurationService {
     }
 }
 DiagramConfigurationService.decorators = [
-    { type: Injectable },
+    { type: Injectable, args: [{
+                providedIn: "root"
+            },] },
 ];
 /** @nocollapse */
 DiagramConfigurationService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [MODULE_CONFIG_TOKEN,] }] }
 ];
+/** @nocollapse */ DiagramConfigurationService.ngInjectableDef = defineInjectable({ factory: function DiagramConfigurationService_Factory() { return new DiagramConfigurationService(inject(MODULE_CONFIG_TOKEN)); }, token: DiagramConfigurationService, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
@@ -1247,7 +1250,9 @@ class DiagramService {
     }
 }
 DiagramService.decorators = [
-    { type: Injectable },
+    { type: Injectable, args: [{
+                providedIn: "root"
+            },] },
 ];
 /** @nocollapse */
 DiagramService.ctorParameters = () => [
@@ -1255,6 +1260,7 @@ DiagramService.ctorParameters = () => [
     { type: Store },
     { type: DiagramConfigurationService }
 ];
+/** @nocollapse */ DiagramService.ngInjectableDef = defineInjectable({ factory: function DiagramService_Factory() { return new DiagramService(inject(HttpClient), inject(Store), inject(DiagramConfigurationService)); }, token: DiagramService, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle

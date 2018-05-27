@@ -25,7 +25,7 @@ import {
 } from "../../actions";
 import { FeatureState, getShowSecondSidebarStatus, getLayoutToolbar } from "../../reducers";
 
-import { LayoutConfigurationService } from "../../services";
+import { LayoutConfigurationService } from "../../services/layout-configuration.service";
 import { State as toolbarState } from "../../reducers/toolbar.reducer";
 
 @Component({
@@ -98,8 +98,9 @@ export class ToolbarMenuComponent {
 		this.menuItems$ = this.configurationService.config$.map(config => config.menuItems);
 		fromEvent(this.document.body, "scroll").subscribe(() => {
 			let scrolledAmount = this.document.body.scrollTop;
-			// let scrollToTop = (scrolledAmount - this.lastScroll < 0) && (this.document.body.scrollHeight - ) ;
-			let scrollToTop = scrolledAmount - this.lastScroll < 0;
+			let scrollToTop =
+				scrolledAmount - this.lastScroll < 0 && this.document.body.scrollHeight - scrolledAmount < 100;
+			// let scrollToTop = scrolledAmount - this.lastScroll < 0;
 			this.lastScroll = this.document.body.scrollTop;
 			if (scrolledAmount == 0) {
 				if (this.config.mode == "comfortable") return;

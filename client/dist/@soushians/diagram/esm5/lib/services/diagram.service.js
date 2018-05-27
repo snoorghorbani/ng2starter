@@ -6,6 +6,10 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Rx";
 import { Store } from "@ngrx/store";
+import * as i0 from "@angular/core";
+import * as i1 from "@angular/common/http";
+import * as i2 from "@ngrx/store";
+import * as i3 from "./diagram-configuration.service";
 import { AddDiagramApiModel } from "../models";
 import { DiagramConfigurationService } from "./diagram-configuration.service";
 var DiagramService = /** @class */ (function () {
@@ -221,7 +225,9 @@ var DiagramService = /** @class */ (function () {
 }());
 export { DiagramService };
 DiagramService.decorators = [
-    { type: Injectable },
+    { type: Injectable, args: [{
+                providedIn: "root"
+            },] },
 ];
 /** @nocollapse */
 DiagramService.ctorParameters = function () { return [
@@ -229,6 +235,7 @@ DiagramService.ctorParameters = function () { return [
     { type: Store },
     { type: DiagramConfigurationService }
 ]; };
+/** @nocollapse */ DiagramService.ngInjectableDef = i0.defineInjectable({ factory: function DiagramService_Factory() { return new DiagramService(i0.inject(i1.HttpClient), i0.inject(i2.Store), i0.inject(i3.DiagramConfigurationService)); }, token: DiagramService, providedIn: "root" });
 function DiagramService_tsickle_Closure_declarations() {
     /** @type {?} */
     DiagramService.prototype.charts;

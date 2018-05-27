@@ -1,13 +1,14 @@
 import { InjectionToken, Injectable, Inject, Component, Input, Output, EventEmitter, NgModule, defineInjectable, inject } from '@angular/core';
-import { createSelector, createFeatureSelector, Store, StoreModule } from '@ngrx/store';
+import { Store, createSelector, createFeatureSelector, StoreModule } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
 import { getAuthenticationModuleConfig } from '@soushians/config';
+import { HttpClient, HttpResponse, HttpErrorResponse, HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { MatSnackBar, MatIconModule, MatButtonModule, MatCardModule, MatSnackBarModule, MatSidenavModule, MatExpansionModule, MatSelectModule, MatFormFieldModule, MatListModule, MatMenuModule, MatRadioModule, MatInputModule, MatToolbarModule, MatDatepickerModule, MatProgressBarModule } from '@angular/material';
+import { map, switchMap, take, filter, catchError, tap } from 'rxjs/operators';
+import { MatSnackBar as MatSnackBar$1 } from '@angular/material/snack-bar';
 import { RouterModule, Router } from '@angular/router';
 import 'rxjs/add/operator/do';
 import { Observable } from 'rxjs/Observable';
-import { HttpResponse, HttpErrorResponse, HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { MatSnackBar, MatIconModule, MatButtonModule, MatCardModule, MatSnackBarModule, MatSidenavModule, MatExpansionModule, MatSelectModule, MatFormFieldModule, MatListModule, MatMenuModule, MatRadioModule, MatInputModule, MatToolbarModule, MatDatepickerModule, MatProgressBarModule } from '@angular/material';
-import { map, switchMap, take, filter, catchError, tap } from 'rxjs/operators';
 import { __decorate, __metadata } from 'tslib';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
@@ -172,6 +173,111 @@ const /** @type {?} */ MODULE_DEFAULT_CONFIG = {
     }
 };
 const /** @type {?} */ MODULE_CONFIG_TOKEN = new InjectionToken("ModuleConfig");
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+class AuthenticationConfigurationService {
+    /**
+     * @param {?} configFile
+     * @param {?} store
+     */
+    constructor(configFile, store) {
+        this.store = store;
+        this.config$ = new BehaviorSubject(this._config);
+        this._config = Object.assign({}, MODULE_DEFAULT_CONFIG, configFile);
+        this.config$.next(this._config);
+        this.store.select(getAuthenticationModuleConfig).subscribe(storeConfig => {
+            if (!storeConfig)
+                return;
+            this._config = Object.assign({}, this._config, storeConfig.Config);
+            this.config$.next(this._config);
+        });
+    }
+    /**
+     * @return {?}
+     */
+    get config() {
+        return this._config;
+    }
+}
+AuthenticationConfigurationService.decorators = [
+    { type: Injectable, args: [{
+                providedIn: "root"
+            },] },
+];
+/** @nocollapse */
+AuthenticationConfigurationService.ctorParameters = () => [
+    { type: undefined, decorators: [{ type: Inject, args: [MODULE_CONFIG_TOKEN,] }] },
+    { type: Store }
+];
+/** @nocollapse */ AuthenticationConfigurationService.ngInjectableDef = defineInjectable({ factory: function AuthenticationConfigurationService_Factory() { return new AuthenticationConfigurationService(inject(MODULE_CONFIG_TOKEN), inject(Store)); }, token: AuthenticationConfigurationService, providedIn: "root" });
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+const /** @type {?} */ SIGNIN_RESPONSE = "[APP] SIGNIN_RESPONSE";
+class SigninService {
+    /**
+     * @param {?} http
+     * @param {?} configurationService
+     * @param {?} snackBar
+     */
+    constructor(http, configurationService, snackBar) {
+        this.http = http;
+        this.configurationService = configurationService;
+        this.snackBar = snackBar;
+    }
+    /**
+     * @param {?} model
+     * @return {?}
+     */
+    signin(model) {
+        return this.configurationService.config$.pipe(filter(config => config.endpoints.signIn != ""), take(1), switchMap(config => this.http.post(this.configurationService.config.endpoints.signIn, model)), map(response => {
+            const /** @type {?} */ userModel = new Signin_ApiModel.Response(response).extractData();
+            // this.SigninResponse.next(userModel);
+            return userModel;
+        }));
+        // .catch(err => {
+        // 	if (err.status == 400) {
+        // 		this.snackBar.open("کد امنیتی اشتباه است", null, {
+        // 			duration: 5000
+        // 		});
+        // 	} else if (err.status == 403) {
+        // 		this.snackBar.open(" شماره موبایل و یا کلمه عبور اشتباه است", null, {
+        // 			duration: 5000
+        // 		});
+        // 	}
+        // 	return Observable.throw(err);
+        // });
+    }
+    /**
+     * @return {?}
+     */
+    signout() {
+        localStorage.removeItem(SIGNIN_RESPONSE);
+        return this.http
+            .get(this.configurationService.config.endpoints.signOut, {
+            withCredentials: true
+        })
+            .map(response => response);
+    }
+}
+SigninService.decorators = [
+    { type: Injectable, args: [{
+                providedIn: "root"
+            },] },
+];
+/** @nocollapse */
+SigninService.ctorParameters = () => [
+    { type: HttpClient },
+    { type: AuthenticationConfigurationService },
+    { type: MatSnackBar }
+];
+/** @nocollapse */ SigninService.ngInjectableDef = defineInjectable({ factory: function SigninService_Factory() { return new SigninService(inject(HttpClient), inject(AuthenticationConfigurationService), inject(MatSnackBar$1)); }, token: SigninService, providedIn: "root" });
+var /** @type {?} */ SigninServiceStub = {};
 
 /**
  * @fileoverview added by tsickle
@@ -376,43 +482,6 @@ AuthenticationContainerComponent.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
-class AuthenticationConfigurationService {
-    /**
-     * @param {?} configFile
-     * @param {?} store
-     */
-    constructor(configFile, store) {
-        this.store = store;
-        this.config$ = new BehaviorSubject(this._config);
-        this._config = Object.assign({}, MODULE_DEFAULT_CONFIG, configFile);
-        this.config$.next(this._config);
-        this.store.select(getAuthenticationModuleConfig).subscribe(storeConfig => {
-            if (!storeConfig)
-                return;
-            this._config = Object.assign({}, this._config, storeConfig.Config);
-            this.config$.next(this._config);
-        });
-    }
-    /**
-     * @return {?}
-     */
-    get config() {
-        return this._config;
-    }
-}
-AuthenticationConfigurationService.decorators = [
-    { type: Injectable },
-];
-/** @nocollapse */
-AuthenticationConfigurationService.ctorParameters = () => [
-    { type: undefined, decorators: [{ type: Inject, args: [MODULE_CONFIG_TOKEN,] }] },
-    { type: Store }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
 class SigninContainerComponent {
     /**
      * @param {?} configurationService
@@ -587,67 +656,6 @@ UnauthorizedInterceptor.ctorParameters = () => [
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
-const /** @type {?} */ SIGNIN_RESPONSE = "[APP] SIGNIN_RESPONSE";
-class SigninService {
-    /**
-     * @param {?} http
-     * @param {?} configurationService
-     * @param {?} snackBar
-     */
-    constructor(http, configurationService, snackBar) {
-        this.http = http;
-        this.configurationService = configurationService;
-        this.snackBar = snackBar;
-    }
-    /**
-     * @param {?} model
-     * @return {?}
-     */
-    signin(model) {
-        return this.configurationService.config$.pipe(filter(config => config.endpoints.signIn != ""), take(1), switchMap(config => this.http.post(this.configurationService.config.endpoints.signIn, model)), map(response => {
-            const /** @type {?} */ userModel = new Signin_ApiModel.Response(response).extractData();
-            // this.SigninResponse.next(userModel);
-            return userModel;
-        }));
-        // .catch(err => {
-        // 	if (err.status == 400) {
-        // 		this.snackBar.open("کد امنیتی اشتباه است", null, {
-        // 			duration: 5000
-        // 		});
-        // 	} else if (err.status == 403) {
-        // 		this.snackBar.open(" شماره موبایل و یا کلمه عبور اشتباه است", null, {
-        // 			duration: 5000
-        // 		});
-        // 	}
-        // 	return Observable.throw(err);
-        // });
-    }
-    /**
-     * @return {?}
-     */
-    signout() {
-        localStorage.removeItem(SIGNIN_RESPONSE);
-        return this.http
-            .get(this.configurationService.config.endpoints.signOut, {
-            withCredentials: true
-        })
-            .map(response => response);
-    }
-}
-SigninService.decorators = [
-    { type: Injectable },
-];
-/** @nocollapse */
-SigninService.ctorParameters = () => [
-    { type: HttpClient },
-    { type: AuthenticationConfigurationService },
-    { type: MatSnackBar }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
 class SigninEffects {
     /**
      * @param {?} actions$
@@ -756,7 +764,8 @@ class NgsAuthenticationModule {
                     provide: HTTP_INTERCEPTORS,
                     useClass: WithCredentialInterceptor,
                     multi: true
-                }
+                },
+                SigninService
             ]
         };
     }
@@ -790,6 +799,7 @@ NgsAuthenticationModule.decorators = [
                     NgsFormModule
                 ],
                 declarations: [SigninContainerComponent, SigninComponent, AuthenticationContainerComponent],
+                providers: [],
                 exports: []
             },] },
 ];
@@ -816,5 +826,5 @@ RootNgsAuthenticationModule.decorators = [
  * @suppress {checkTypes} checked by tsc
  */
 
-export { UserModel, SignInActionTypes, SignoutAction, NgsAuthenticationModule, RootNgsAuthenticationModule, AuthenticationRoutingModule as ɵl, MODULE_CONFIG_TOKEN as ɵc, SigninComponent as ɵf, AuthenticationEffects as ɵk, SigninEffects as ɵi, UnauthorizedInterceptor as ɵn, WithCredentialInterceptor as ɵo, AuthenticationReducers as ɵh, SigninGuard as ɵm, AuthenticationConfigurationService as ɵb, SigninService as ɵj, AuthenticationContainerComponent as ɵg, SigninContainerComponent as ɵa };
+export { UserModel, SignInActionTypes, SignoutAction, SigninService, SigninServiceStub, NgsAuthenticationModule, RootNgsAuthenticationModule, AuthenticationRoutingModule as ɵk, MODULE_CONFIG_TOKEN as ɵb, SigninComponent as ɵf, AuthenticationEffects as ɵj, SigninEffects as ɵi, UnauthorizedInterceptor as ɵm, WithCredentialInterceptor as ɵn, AuthenticationReducers as ɵh, SigninGuard as ɵl, AuthenticationConfigurationService as ɵa, AuthenticationContainerComponent as ɵg, SigninContainerComponent as ɵd };
 //# sourceMappingURL=soushians-authentication.js.map

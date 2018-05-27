@@ -2,14 +2,15 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Rx";
 import { Store } from "@ngrx/store";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { filter, map, withLatestFrom } from "rxjs/operators";
 
 import { stringTemplate } from "@soushians/shared";
+
 import { FormSchemaModel, AddFormApiModel, EditFormApiModel, FormListApiModel } from "../models";
 import { FormConfigurationService } from "./form-configuration.service";
 
 import { MainContainerState } from "../main-container/main-container.reducers";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { filter, map, withLatestFrom } from "rxjs/operators";
 
 @Injectable({
 	providedIn: "root"

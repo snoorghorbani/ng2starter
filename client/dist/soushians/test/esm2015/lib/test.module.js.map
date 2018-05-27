@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "test.module.js",
+  "sources": [
+    "ng://@soushians/test/projects/soushians/test/src/lib/test.module.ts"
+  ],
+  "sourcesContent": [
+    "import { NgModule } from \"@angular/core\";\nimport { TestComponent } from \"./test.component\";\n\nimport { NgsAuthenticationModule } from \"@soushians/authentication\";\nimport { NgsConfigModule } from \"@soushians/config\";\nimport { NgsDiagramModule } from \"@soushians/diagram\";\nimport { NgsFormModule } from \"@soushians/form\";\nimport { NgsLayoutModule } from \"@soushians/layout\";\nimport { SharedModule } from \"@soushians/shared\";\nimport { SourceModule } from \"@soushians/source\";\nimport { NgsUserModule } from \"@soushians/user\";\n\n@NgModule({\n\timports: [\n\t\tNgsAuthenticationModule,\n\t\tNgsConfigModule,\n\t\tNgsDiagramModule,\n\t\tNgsFormModule,\n\t\tNgsLayoutModule,\n\t\tSharedModule,\n\t\tSourceModule,\n\t\tNgsUserModule\n\t],\n\tdeclarations: [ TestComponent ],\n\texports: [ TestComponent ]\n})\nexport class TestModule {}\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,eAAe,CAAC;AACzC,OAAO,EAAE,aAAa,EAAE,MAAM,kBAAkB,CAAC;AAEjD,OAAO,EAAE,uBAAuB,EAAE,MAAM,2BAA2B,CAAC;AACpE,OAAO,EAAE,eAAe,EAAE,MAAM,mBAAmB,CAAC;AACpD,OAAO,EAAE,gBAAgB,EAAE,MAAM,oBAAoB,CAAC;AACtD,OAAO,EAAE,aAAa,EAAE,MAAM,iBAAiB,CAAC;AAChD,OAAO,EAAE,eAAe,EAAE,MAAM,mBAAmB,CAAC;AACpD,OAAO,EAAE,YAAY,EAAE,MAAM,mBAAmB,CAAC;AACjD,OAAO,EAAE,YAAY,EAAE,MAAM,mBAAmB,CAAC;AACjD,OAAO,EAAE,aAAa,EAAE,MAAM,iBAAiB,CAAC;AAgBhD,MAAM;;;YAdL,QAAQ,SAAC;gBACT,OAAO,EAAE;oBACR,uBAAuB;oBACvB,eAAe;oBACf,gBAAgB;oBAChB,aAAa;oBACb,eAAe;oBACf,YAAY;oBACZ,YAAY;oBACZ,aAAa;iBACb;gBACD,YAAY,EAAE,CAAE,aAAa,CAAE;gBAC/B,OAAO,EAAE,CAAE,aAAa,CAAE;aAC1B"
+}

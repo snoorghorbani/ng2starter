@@ -3,6 +3,7 @@ export class UserModel {
 	FirstName: string;
 	LastName: string;
 	Username: string;
+	DisplayName: string;
 	// Username: string;
 	// MobileNumber: string;
 	// Sex: string;

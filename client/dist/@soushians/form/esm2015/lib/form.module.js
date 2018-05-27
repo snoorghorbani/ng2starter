@@ -10,6 +10,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatRadioModule, MatSlideToggleModule, MatDividerModule, MatCheckboxModule, MatTableModule } from "@angular/material";
 import { StoreModule } from "@ngrx/store";
+import { EffectsModule } from "@ngrx/effects";
 import { MODULE_CONFIG_TOKEN } from "./form.config";
 import { FormReducers } from "./main-container/main-container.reducers";
 import { SelectComponent } from "./view/form-controls/select/select.component";
@@ -30,6 +31,10 @@ import { FormListComponent } from "./list/form-list/form-list.component";
 import { AddFormContainerComponent } from "./add/add-form-container/add-form-container.component";
 import { MainContainerComponent } from "./main-container/main-container.component/main-container.component";
 import { AddFormComponent } from "./add/add-form/add-form.component";
+import { AddFormEffects } from "./add/add-form.effects";
+import { EditFormEffects } from "./edit/edit-form.effects";
+import { FormsListEffects } from "./list/list.effects";
+import { RoutingModule } from "./form-routing.module";
 export class NgsFormModule {
     /**
      * @param {?=} config
@@ -105,7 +110,9 @@ RootNgsFormModule.decorators = [
     { type: NgModule, args: [{
                 imports: [
                     NgsFormModule,
-                    StoreModule.forFeature("form", FormReducers)
+                    StoreModule.forFeature("form", FormReducers),
+                    EffectsModule.forFeature([AddFormEffects, EditFormEffects, FormsListEffects]),
+                    RoutingModule
                 ],
                 exports: [NgsFormModule]
             },] },

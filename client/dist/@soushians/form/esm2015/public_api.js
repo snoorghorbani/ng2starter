@@ -7,9 +7,9 @@
  */
 export { MODULE_DEFAULT_CONFIG, MODULE_CONFIG_TOKEN } from "./lib/form.config";
 //services
-export { FormConfigurationService, FormService, FormUtilityService } from "./lib/services";
+export { FormService } from "./lib/services/form.service";
 //components and actions
-// export * from "./lib/view/form-view";
+export { FormViewComponent, DynamicFieldDirective } from "./lib/view/form-view/form-view.component";
 //models
 export { AddFormApiModel, EditFormApiModel, FormListApiModel, FormSchemaModel, FieldConfig } from "./lib/models";
 export { NgsFormModule, RootNgsFormModule } from "./lib/form.module";

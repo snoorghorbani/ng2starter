@@ -653,6 +653,10 @@ class UserEffects {
         this.actions$ = actions$;
         this.router = router;
         this.service = service;
+        this.updateProfileInformation$ = this.actions$.ofType(SignInActionTypes.SIGNIN_SUCCEED).pipe(map(action => action.payload), map(user => {
+            debugger;
+            return new GetProfileSucceed(user);
+        }));
         this.getProfileInformation$ = this.actions$.ofType(SignInActionTypes.SIGNIN_SUCCEED).pipe(map(() => {
             return new GetProfile();
         }));
@@ -667,6 +671,10 @@ UserEffects.ctorParameters = () => [
     { type: Router },
     { type: UserService }
 ];
+__decorate([
+    Effect(),
+    __metadata("design:type", Object)
+], UserEffects.prototype, "updateProfileInformation$", void 0);
 __decorate([
     Effect(),
     __metadata("design:type", Object)

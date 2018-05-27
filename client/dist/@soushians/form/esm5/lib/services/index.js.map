@@ -2,7 +2,7 @@
   "version": 3,
   "file": "index.js",
   "sources": [
-    "ng://@soushians/form/projects/soushians/form/src/lib/services/index.ts"
+    "ng://@soushians/form/ng:/@soushians/form/projects/soushians/form/src/lib/services/index.ts"
   ],
   "sourcesContent": [
     "export * from \"./form-configuration.service\";\r\nexport * from \"./form.service\";\r\nexport * from \"./form-utility.service\";\r\n"

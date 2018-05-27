@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@ngrx/store'), require('rxjs'), require('@soushians/config'), require('@angular/router'), require('rxjs/add/operator/do'), require('rxjs/Observable'), require('@angular/common/http'), require('@angular/material'), require('rxjs/operators'), require('tslib'), require('rxjs/add/operator/map'), require('rxjs/add/operator/mergeMap'), require('rxjs/add/operator/catch'), require('rxjs/add/observable/empty'), require('@ngrx/effects'), require('@angular/common'), require('@angular/flex-layout'), require('@angular/platform-browser/animations'), require('@angular/forms'), require('@soushians/form')) :
-    typeof define === 'function' && define.amd ? define('@soushians/authentication', ['exports', '@angular/core', '@ngrx/store', 'rxjs', '@soushians/config', '@angular/router', 'rxjs/add/operator/do', 'rxjs/Observable', '@angular/common/http', '@angular/material', 'rxjs/operators', 'tslib', 'rxjs/add/operator/map', 'rxjs/add/operator/mergeMap', 'rxjs/add/operator/catch', 'rxjs/add/observable/empty', '@ngrx/effects', '@angular/common', '@angular/flex-layout', '@angular/platform-browser/animations', '@angular/forms', '@soushians/form'], factory) :
-    (factory((global.soushians = global.soushians || {}, global.soushians.authentication = {}),global.ng.core,null,null,null,global.ng.router,global.Rx.Observable.prototype,global.Rx,global.ng.common.http,global.ng.material,global.Rx.Observable.prototype,global.tslib,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.Rx.Observable,null,global.ng.common,global.ng['flex-layout'],global.ng.platformBrowser.animations,global.ng.forms,null));
-}(this, (function (exports,core,store,rxjs,config,router,_do,Observable,http,material,operators,tslib,map,mergeMap,_catch,empty,effects,common,flexLayout,animations,forms,form) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@ngrx/store'), require('rxjs'), require('@soushians/config'), require('@angular/common/http'), require('@angular/material'), require('rxjs/operators'), require('@angular/material/snack-bar'), require('@angular/router'), require('rxjs/add/operator/do'), require('rxjs/Observable'), require('tslib'), require('rxjs/add/operator/map'), require('rxjs/add/operator/mergeMap'), require('rxjs/add/operator/catch'), require('rxjs/add/observable/empty'), require('@ngrx/effects'), require('@angular/common'), require('@angular/flex-layout'), require('@angular/platform-browser/animations'), require('@angular/forms'), require('@soushians/form')) :
+    typeof define === 'function' && define.amd ? define('@soushians/authentication', ['exports', '@angular/core', '@ngrx/store', 'rxjs', '@soushians/config', '@angular/common/http', '@angular/material', 'rxjs/operators', '@angular/material/snack-bar', '@angular/router', 'rxjs/add/operator/do', 'rxjs/Observable', 'tslib', 'rxjs/add/operator/map', 'rxjs/add/operator/mergeMap', 'rxjs/add/operator/catch', 'rxjs/add/observable/empty', '@ngrx/effects', '@angular/common', '@angular/flex-layout', '@angular/platform-browser/animations', '@angular/forms', '@soushians/form'], factory) :
+    (factory((global.soushians = global.soushians || {}, global.soushians.authentication = {}),global.ng.core,null,null,null,global.ng.common.http,global.ng.material,global.Rx.Observable.prototype,global.ng.material['snack-bar'],global.ng.router,global.Rx.Observable.prototype,global.Rx,global.tslib,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.Rx.Observable,null,global.ng.common,global.ng['flex-layout'],global.ng.platformBrowser.animations,global.ng.forms,null));
+}(this, (function (exports,core,store,rxjs,config,http,material,operators,snackBar,router,_do,Observable,tslib,map,mergeMap,_catch,empty,effects,common,flexLayout,animations,forms,form) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -162,6 +162,121 @@
         }
     };
     var /** @type {?} */ MODULE_CONFIG_TOKEN = new core.InjectionToken("ModuleConfig");
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes} checked by tsc
+     */
+    var AuthenticationConfigurationService = (function () {
+        /**
+         * @param {?} configFile
+         * @param {?} store
+         */
+        function AuthenticationConfigurationService(configFile, store$$1) {
+            var _this = this;
+            this.store = store$$1;
+            this.config$ = new rxjs.BehaviorSubject(this._config);
+            this._config = Object.assign({}, MODULE_DEFAULT_CONFIG, configFile);
+            this.config$.next(this._config);
+            this.store.select(config.getAuthenticationModuleConfig).subscribe(function (storeConfig) {
+                if (!storeConfig)
+                    return;
+                _this._config = Object.assign({}, _this._config, storeConfig.Config);
+                _this.config$.next(_this._config);
+            });
+        }
+        Object.defineProperty(AuthenticationConfigurationService.prototype, "config", {
+            /**
+             * @return {?}
+             */
+            get: function () {
+                return this._config;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        return AuthenticationConfigurationService;
+    }());
+    AuthenticationConfigurationService.decorators = [
+        { type: core.Injectable, args: [{
+                    providedIn: "root"
+                },] },
+    ];
+    /** @nocollapse */
+    AuthenticationConfigurationService.ctorParameters = function () {
+        return [
+            { type: undefined, decorators: [{ type: core.Inject, args: [MODULE_CONFIG_TOKEN,] }] },
+            { type: store.Store }
+        ];
+    };
+    /** @nocollapse */ AuthenticationConfigurationService.ngInjectableDef = core.defineInjectable({ factory: function AuthenticationConfigurationService_Factory() { return new AuthenticationConfigurationService(core.inject(MODULE_CONFIG_TOKEN), core.inject(store.Store)); }, token: AuthenticationConfigurationService, providedIn: "root" });
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes} checked by tsc
+     */
+    var /** @type {?} */ SIGNIN_RESPONSE = "[APP] SIGNIN_RESPONSE";
+    var SigninService = (function () {
+        /**
+         * @param {?} http
+         * @param {?} configurationService
+         * @param {?} snackBar
+         */
+        function SigninService(http$$1, configurationService, snackBar$$1) {
+            this.http = http$$1;
+            this.configurationService = configurationService;
+            this.snackBar = snackBar$$1;
+        }
+        /**
+         * @param {?} model
+         * @return {?}
+         */
+        SigninService.prototype.signin = function (model) {
+            var _this = this;
+            return this.configurationService.config$.pipe(operators.filter(function (config$$1) { return config$$1.endpoints.signIn != ""; }), operators.take(1), operators.switchMap(function (config$$1) { return _this.http.post(_this.configurationService.config.endpoints.signIn, model); }), operators.map(function (response) {
+                var /** @type {?} */ userModel = new Signin_ApiModel.Response(response).extractData();
+                // this.SigninResponse.next(userModel);
+                return userModel;
+            }));
+            // .catch(err => {
+            // 	if (err.status == 400) {
+            // 		this.snackBar.open("کد امنیتی اشتباه است", null, {
+            // 			duration: 5000
+            // 		});
+            // 	} else if (err.status == 403) {
+            // 		this.snackBar.open(" شماره موبایل و یا کلمه عبور اشتباه است", null, {
+            // 			duration: 5000
+            // 		});
+            // 	}
+            // 	return Observable.throw(err);
+            // });
+        };
+        /**
+         * @return {?}
+         */
+        SigninService.prototype.signout = function () {
+            localStorage.removeItem(SIGNIN_RESPONSE);
+            return this.http
+                .get(this.configurationService.config.endpoints.signOut, {
+                withCredentials: true
+            })
+                .map(function (response) { return response; });
+        };
+        return SigninService;
+    }());
+    SigninService.decorators = [
+        { type: core.Injectable, args: [{
+                    providedIn: "root"
+                },] },
+    ];
+    /** @nocollapse */
+    SigninService.ctorParameters = function () {
+        return [
+            { type: http.HttpClient },
+            { type: AuthenticationConfigurationService },
+            { type: material.MatSnackBar }
+        ];
+    };
+    /** @nocollapse */ SigninService.ngInjectableDef = core.defineInjectable({ factory: function SigninService_Factory() { return new SigninService(core.inject(http.HttpClient), core.inject(AuthenticationConfigurationService), core.inject(snackBar.MatSnackBar)); }, token: SigninService, providedIn: "root" });
+    var /** @type {?} */ SigninServiceStub = {};
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes} checked by tsc
@@ -373,50 +488,6 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes} checked by tsc
      */
-    var AuthenticationConfigurationService = (function () {
-        /**
-         * @param {?} configFile
-         * @param {?} store
-         */
-        function AuthenticationConfigurationService(configFile, store$$1) {
-            var _this = this;
-            this.store = store$$1;
-            this.config$ = new rxjs.BehaviorSubject(this._config);
-            this._config = Object.assign({}, MODULE_DEFAULT_CONFIG, configFile);
-            this.config$.next(this._config);
-            this.store.select(config.getAuthenticationModuleConfig).subscribe(function (storeConfig) {
-                if (!storeConfig)
-                    return;
-                _this._config = Object.assign({}, _this._config, storeConfig.Config);
-                _this.config$.next(_this._config);
-            });
-        }
-        Object.defineProperty(AuthenticationConfigurationService.prototype, "config", {
-            /**
-             * @return {?}
-             */
-            get: function () {
-                return this._config;
-            },
-            enumerable: true,
-            configurable: true
-        });
-        return AuthenticationConfigurationService;
-    }());
-    AuthenticationConfigurationService.decorators = [
-        { type: core.Injectable },
-    ];
-    /** @nocollapse */
-    AuthenticationConfigurationService.ctorParameters = function () {
-        return [
-            { type: undefined, decorators: [{ type: core.Inject, args: [MODULE_CONFIG_TOKEN,] }] },
-            { type: store.Store }
-        ];
-    };
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes} checked by tsc
-     */
     var SigninContainerComponent = (function () {
         /**
          * @param {?} configurationService
@@ -584,70 +655,6 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes} checked by tsc
      */
-    var /** @type {?} */ SIGNIN_RESPONSE = "[APP] SIGNIN_RESPONSE";
-    var SigninService = (function () {
-        /**
-         * @param {?} http
-         * @param {?} configurationService
-         * @param {?} snackBar
-         */
-        function SigninService(http$$1, configurationService, snackBar) {
-            this.http = http$$1;
-            this.configurationService = configurationService;
-            this.snackBar = snackBar;
-        }
-        /**
-         * @param {?} model
-         * @return {?}
-         */
-        SigninService.prototype.signin = function (model) {
-            var _this = this;
-            return this.configurationService.config$.pipe(operators.filter(function (config$$1) { return config$$1.endpoints.signIn != ""; }), operators.take(1), operators.switchMap(function (config$$1) { return _this.http.post(_this.configurationService.config.endpoints.signIn, model); }), operators.map(function (response) {
-                var /** @type {?} */ userModel = new Signin_ApiModel.Response(response).extractData();
-                // this.SigninResponse.next(userModel);
-                return userModel;
-            }));
-            // .catch(err => {
-            // 	if (err.status == 400) {
-            // 		this.snackBar.open("کد امنیتی اشتباه است", null, {
-            // 			duration: 5000
-            // 		});
-            // 	} else if (err.status == 403) {
-            // 		this.snackBar.open(" شماره موبایل و یا کلمه عبور اشتباه است", null, {
-            // 			duration: 5000
-            // 		});
-            // 	}
-            // 	return Observable.throw(err);
-            // });
-        };
-        /**
-         * @return {?}
-         */
-        SigninService.prototype.signout = function () {
-            localStorage.removeItem(SIGNIN_RESPONSE);
-            return this.http
-                .get(this.configurationService.config.endpoints.signOut, {
-                withCredentials: true
-            })
-                .map(function (response) { return response; });
-        };
-        return SigninService;
-    }());
-    SigninService.decorators = [
-        { type: core.Injectable },
-    ];
-    /** @nocollapse */
-    SigninService.ctorParameters = function () {
-        return [
-            { type: http.HttpClient },
-            { type: AuthenticationConfigurationService },
-            { type: material.MatSnackBar }
-        ];
-    };
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes} checked by tsc
-     */
     var SigninEffects = (function () {
         /**
          * @param {?} actions$
@@ -766,7 +773,8 @@
                         provide: http.HTTP_INTERCEPTORS,
                         useClass: WithCredentialInterceptor,
                         multi: true
-                    }
+                    },
+                    SigninService
                 ]
             };
         };
@@ -801,6 +809,7 @@
                         form.NgsFormModule
                     ],
                     declarations: [SigninContainerComponent, SigninComponent, AuthenticationContainerComponent],
+                    providers: [],
                     exports: []
                 },] },
     ];
@@ -823,21 +832,22 @@
     exports.UserModel = UserModel;
     exports.SignInActionTypes = SignInActionTypes;
     exports.SignoutAction = SignoutAction;
+    exports.SigninService = SigninService;
+    exports.SigninServiceStub = SigninServiceStub;
     exports.NgsAuthenticationModule = NgsAuthenticationModule;
     exports.RootNgsAuthenticationModule = RootNgsAuthenticationModule;
-    exports.ɵl = AuthenticationRoutingModule;
-    exports.ɵc = MODULE_CONFIG_TOKEN;
+    exports.ɵk = AuthenticationRoutingModule;
+    exports.ɵb = MODULE_CONFIG_TOKEN;
     exports.ɵf = SigninComponent;
-    exports.ɵk = AuthenticationEffects;
+    exports.ɵj = AuthenticationEffects;
     exports.ɵi = SigninEffects;
-    exports.ɵn = UnauthorizedInterceptor;
-    exports.ɵo = WithCredentialInterceptor;
+    exports.ɵm = UnauthorizedInterceptor;
+    exports.ɵn = WithCredentialInterceptor;
     exports.ɵh = AuthenticationReducers;
-    exports.ɵm = SigninGuard;
-    exports.ɵb = AuthenticationConfigurationService;
-    exports.ɵj = SigninService;
+    exports.ɵl = SigninGuard;
+    exports.ɵa = AuthenticationConfigurationService;
     exports.ɵg = AuthenticationContainerComponent;
-    exports.ɵa = SigninContainerComponent;
+    exports.ɵd = SigninContainerComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

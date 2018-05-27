@@ -728,6 +728,10 @@ var UserEffects = /** @class */ (function () {
         this.actions$ = actions$;
         this.router = router;
         this.service = service;
+        this.updateProfileInformation$ = this.actions$.ofType(SignInActionTypes.SIGNIN_SUCCEED).pipe(map(function (action) { return action.payload; }), map(function (user) {
+            debugger;
+            return new GetProfileSucceed(user);
+        }));
         this.getProfileInformation$ = this.actions$.ofType(SignInActionTypes.SIGNIN_SUCCEED).pipe(map(function () {
             return new GetProfile();
         }));
@@ -743,6 +747,10 @@ UserEffects.ctorParameters = function () { return [
     { type: Router },
     { type: UserService }
 ]; };
+__decorate([
+    Effect(),
+    __metadata("design:type", Object)
+], UserEffects.prototype, "updateProfileInformation$", void 0);
 __decorate([
     Effect(),
     __metadata("design:type", Object)

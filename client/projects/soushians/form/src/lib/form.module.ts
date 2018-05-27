@@ -45,6 +45,10 @@ import { FormListComponent } from "./list/form-list/form-list.component";
 import { AddFormContainerComponent } from "./add/add-form-container/add-form-container.component";
 import { MainContainerComponent } from "./main-container/main-container.component/main-container.component";
 import { AddFormComponent } from "./add/add-form/add-form.component";
+import { AddFormEffects } from "./add/add-form.effects";
+import { EditFormEffects } from "./edit/edit-form.effects";
+import { FormsListEffects } from "./list/list.effects";
+import { RoutingModule } from "./form-routing.module";
 
 @NgModule({
 	imports: [
@@ -115,9 +119,9 @@ export class NgsFormModule {
 @NgModule({
 	imports: [
 		NgsFormModule,
-		StoreModule.forFeature("form", FormReducers)
-		// EffectsModule.forFeature([ AddFormEffects, EditFormEffects, FormsListEffects ]),
-		// RoutingModule
+		StoreModule.forFeature("form", FormReducers),
+		EffectsModule.forFeature([ AddFormEffects, EditFormEffects, FormsListEffects ]),
+		RoutingModule
 	],
 	exports: [ NgsFormModule ]
 })

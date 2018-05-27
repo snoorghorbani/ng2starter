@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "test.service.js",
+  "sources": [
+    "ng://@soushians/test/projects/soushians/test/src/lib/test.service.ts"
+  ],
+  "sourcesContent": [
+    "import { Injectable } from '@angular/core';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class TestService {\n\n  constructor() { }\n}\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,eAAe,CAAC;;AAK3C,MAAM;IAEJ,iBAAiB;;;YALlB,UAAU,SAAC;gBACV,UAAU,EAAE,MAAM;aACnB"
+}

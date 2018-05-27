@@ -3,7 +3,7 @@ import { Observable } from "rxjs/Observable";
 import { Store } from "@ngrx/store";
 
 import { MainContainerState, FormReducers } from "../../main-container";
-import { FormService } from "../../services";
+import { FormService } from "../../services/form.service";
 import { FormSchemaModel } from "../../models";
 import { FormsListAction } from "../../list/list.actions";
 

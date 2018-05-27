@@ -23,6 +23,7 @@ import { UnauthorizedInterceptor } from "./interceptors/unauthorized.interceptor
 import { AuthenticationReducers } from "./reducers";
 import { SigninEffects } from "./effects/signin.effects";
 import { AuthenticationEffects } from "./effects/authentication.effects";
+import { SigninService } from "./services/signin.service";
 var NgsAuthenticationModule = /** @class */ (function () {
     function NgsAuthenticationModule() {
     }
@@ -45,7 +46,8 @@ var NgsAuthenticationModule = /** @class */ (function () {
                     provide: HTTP_INTERCEPTORS,
                     useClass: WithCredentialInterceptor,
                     multi: true
-                }
+                },
+                SigninService
             ]
         };
     };
@@ -81,6 +83,7 @@ NgsAuthenticationModule.decorators = [
                     NgsFormModule
                 ],
                 declarations: [SigninContainerComponent, SigninComponent, AuthenticationContainerComponent],
+                providers: [],
                 exports: []
             },] },
 ];

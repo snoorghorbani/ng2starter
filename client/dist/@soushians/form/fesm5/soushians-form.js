@@ -1,21 +1,21 @@
-import { InjectionToken, Inject, Injectable, Component, EventEmitter, Output, Input, ViewContainerRef, ComponentFactoryResolver, Compiler, Directive, NgModule, defineInjectable, inject } from '@angular/core';
+import { InjectionToken, Inject, Injectable, Component, EventEmitter, Output, Input, NgModule, ViewContainerRef, ComponentFactoryResolver, Compiler, Directive, defineInjectable, inject } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormArray, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Store, StoreModule } from '@ngrx/store';
 import { getFormModuleConfig } from '@soushians/config';
-import { FormGroup, FormControl, Validators, FormArray, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { stringTemplate } from '@soushians/shared';
 import { BehaviorSubject as BehaviorSubject$1 } from 'rxjs/BehaviorSubject';
 import { filter, map, takeUntil, switchMap, catchError } from 'rxjs/operators';
+import { stringTemplate } from '@soushians/shared';
 import { MatTableDataSource, MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatRadioModule, MatSlideToggleModule, MatDividerModule, MatCheckboxModule, MatTableModule } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
-import { __extends, __decorate, __metadata } from 'tslib';
+import { __decorate, __metadata, __extends } from 'tslib';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
-import { Actions, Effect } from '@ngrx/effects';
+import { Actions, Effect, EffectsModule } from '@ngrx/effects';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -33,52 +33,6 @@ var /** @type {?} */ MODULE_DEFAULT_CONFIG = {
     }
 };
 var /** @type {?} */ MODULE_CONFIG_TOKEN = new InjectionToken("FormModuleConfig");
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
-var FormConfigurationService = /** @class */ (function () {
-    /**
-     * @param {?} configFile
-     * @param {?} store
-     */
-    function FormConfigurationService(configFile, store) {
-        var _this = this;
-        this.store = store;
-        this.config$ = new BehaviorSubject(MODULE_DEFAULT_CONFIG);
-        this._config = Object.assign({}, MODULE_DEFAULT_CONFIG, configFile);
-        this.config$.next(this._config);
-        this.store.select(getFormModuleConfig).subscribe(function (userConfig) {
-            if (!userConfig)
-                return;
-            _this._config = Object.assign({}, _this._config, userConfig.Config);
-            _this.config$.next(_this._config);
-        });
-    }
-    Object.defineProperty(FormConfigurationService.prototype, "config", {
-        /**
-         * @return {?}
-         */
-        get: function () {
-            return this._config;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return FormConfigurationService;
-}());
-FormConfigurationService.decorators = [
-    { type: Injectable, args: [{
-                providedIn: "root"
-            },] },
-];
-/** @nocollapse */
-FormConfigurationService.ctorParameters = function () { return [
-    { type: undefined, decorators: [{ type: Inject, args: [MODULE_CONFIG_TOKEN,] }] },
-    { type: Store }
-]; };
-/** @nocollapse */ FormConfigurationService.ngInjectableDef = defineInjectable({ factory: function FormConfigurationService_Factory() { return new FormConfigurationService(inject(MODULE_CONFIG_TOKEN), inject(Store)); }, token: FormConfigurationService, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
@@ -327,6 +281,52 @@ var FormSchemaModel = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+var FormConfigurationService = /** @class */ (function () {
+    /**
+     * @param {?} configFile
+     * @param {?} store
+     */
+    function FormConfigurationService(configFile, store) {
+        var _this = this;
+        this.store = store;
+        this.config$ = new BehaviorSubject(MODULE_DEFAULT_CONFIG);
+        this._config = Object.assign({}, MODULE_DEFAULT_CONFIG, configFile);
+        this.config$.next(this._config);
+        this.store.select(getFormModuleConfig).subscribe(function (userConfig) {
+            if (!userConfig)
+                return;
+            _this._config = Object.assign({}, _this._config, userConfig.Config);
+            _this.config$.next(_this._config);
+        });
+    }
+    Object.defineProperty(FormConfigurationService.prototype, "config", {
+        /**
+         * @return {?}
+         */
+        get: function () {
+            return this._config;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return FormConfigurationService;
+}());
+FormConfigurationService.decorators = [
+    { type: Injectable, args: [{
+                providedIn: "root"
+            },] },
+];
+/** @nocollapse */
+FormConfigurationService.ctorParameters = function () { return [
+    { type: undefined, decorators: [{ type: Inject, args: [MODULE_CONFIG_TOKEN,] }] },
+    { type: Store }
+]; };
+/** @nocollapse */ FormConfigurationService.ngInjectableDef = defineInjectable({ factory: function FormConfigurationService_Factory() { return new FormConfigurationService(inject(MODULE_CONFIG_TOKEN), inject(Store)); }, token: FormConfigurationService, providedIn: "root" });
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
 var FormService = /** @class */ (function () {
     /**
      * @param {?} http
@@ -427,165 +427,6 @@ FormService.ctorParameters = function () { return [
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
-var FormUtilityService = /** @class */ (function () {
-    /**
-     * @param {?} http
-     * @param {?} store
-     * @param {?} configurationService
-     */
-    function FormUtilityService(http, store, configurationService) {
-        this.http = http;
-        this.store = store;
-        this.configurationService = configurationService;
-    }
-    return FormUtilityService;
-}());
-FormUtilityService.decorators = [
-    { type: Injectable },
-];
-/** @nocollapse */
-FormUtilityService.ctorParameters = function () { return [
-    { type: HttpClient },
-    { type: Store },
-    { type: FormConfigurationService }
-]; };
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
-/** @enum {string} */
-var FormsListActionTypes = {
-    FORMS_LIST: "[FORM][LIST] FORMS_LIST",
-    FORMS_LIST_START: "[FORM][LIST] FORMS_LIST_START",
-    FORMS_LIST_SUCCEED: "[FORM][LIST] FORMS_LIST_SUCCEED",
-    FORMS_LIST_FAILED: "[FORM][LIST] FORMS_LIST_FAILED",
-    ADD_FORM_SCHEMA: "[FORM][LIST] ADD_FORM_SCHEMA",
-    FORM_SCHEMA_UPDATE: "[FORM][LIST] FORM_SCHEMA_UPDATE",
-    GET_FORM_SCHEMA: "[FORM][LIST] GET_FORM_SCHEMA",
-    FORM_SCHEMA_FETCHED: "[FORM][LIST] FORM_SCHEMA_FETCHED",
-};
-var FormsListAction = /** @class */ (function () {
-    function FormsListAction() {
-        this.type = FormsListActionTypes.FORMS_LIST;
-    }
-    return FormsListAction;
-}());
-var UpdateFormSchemaAction = /** @class */ (function () {
-    /**
-     * @param {?} payload
-     */
-    function UpdateFormSchemaAction(payload) {
-        this.payload = payload;
-        this.type = FormsListActionTypes.FORM_SCHEMA_UPDATE;
-    }
-    return UpdateFormSchemaAction;
-}());
-var AddFormSchemaAction = /** @class */ (function () {
-    /**
-     * @param {?} payload
-     */
-    function AddFormSchemaAction(payload) {
-        this.payload = payload;
-        this.type = FormsListActionTypes.ADD_FORM_SCHEMA;
-    }
-    return AddFormSchemaAction;
-}());
-var GetFormSchemaAction = /** @class */ (function () {
-    /**
-     * @param {?} payload
-     */
-    function GetFormSchemaAction(payload) {
-        this.payload = payload;
-        this.type = FormsListActionTypes.GET_FORM_SCHEMA;
-    }
-    return GetFormSchemaAction;
-}());
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
-var /** @type {?} */ initialState = {
-    status: "pristine",
-    data: []
-};
-/**
- * @param {?=} state
- * @param {?=} action
- * @return {?}
- */
-function reducer(state, action) {
-    if (state === void 0) { state = initialState; }
-    switch (action.type) {
-        case FormsListActionTypes.FORMS_LIST: {
-            return Object.assign({}, state, { status: "dirty" });
-        }
-        case FormsListActionTypes.FORMS_LIST_START: {
-            return Object.assign({}, state, { status: "pending" });
-        }
-        case FormsListActionTypes.FORMS_LIST_SUCCEED: {
-            return Object.assign({}, state, { data: action.payload, status: "succeed" });
-        }
-        case FormsListActionTypes.FORMS_LIST_FAILED: {
-            return Object.assign({}, state, { status: "failed" });
-        }
-        case FormsListActionTypes.FORM_SCHEMA_UPDATE: {
-            var /** @type {?} */ data = state.data.concat();
-            var /** @type {?} */ entityIdx = state.data.findIndex(function (form) { return form._id == action.payload._id; });
-            if (entityIdx > -1) {
-                data[entityIdx] = Object.assign({}, data[entityIdx], action.payload);
-            }
-            else {
-                data.push(action.payload);
-            }
-            return Object.assign({}, state, { data: data });
-        }
-        case FormsListActionTypes.ADD_FORM_SCHEMA: {
-            var /** @type {?} */ data = state.data.concat();
-            var /** @type {?} */ entityIdx = state.data.findIndex(function (form) { return form._id == action.payload._id; });
-            if (entityIdx > -1) {
-                data[entityIdx] = Object.assign({}, data[entityIdx], action.payload);
-            }
-            else {
-                data.push(action.payload);
-            }
-            return Object.assign({}, state, { data: data });
-        }
-        case FormsListActionTypes.FORM_SCHEMA_FETCHED: {
-            var /** @type {?} */ data = state.data.concat();
-            var /** @type {?} */ entityIdx = state.data.findIndex(function (form) { return form._id == action.payload._id; });
-            if (entityIdx > -1) {
-                data[entityIdx] = Object.assign({}, data[entityIdx], action.payload);
-            }
-            else {
-                data.push(action.payload);
-            }
-            return Object.assign({}, state, { data: data });
-        }
-        default: {
-            return state;
-        }
-    }
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
-var /** @type {?} */ FormReducers = {
-    list: reducer
-};
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
 var SelectComponent = /** @class */ (function () {
     function SelectComponent() {
     }
@@ -600,207 +441,6 @@ SelectComponent.decorators = [
 ];
 /** @nocollapse */
 SelectComponent.ctorParameters = function () { return []; };
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
-var FormGroupComponent = /** @class */ (function () {
-    function FormGroupComponent() {
-        this.noHeader = false;
-        this.changes = new EventEmitter();
-        this.delete = new EventEmitter();
-        debugger;
-    }
-    /**
-     * @return {?}
-     */
-    FormGroupComponent.prototype.changed = function () {
-        this.changes.emit();
-    };
-    /**
-     * @param {?} root
-     * @return {?}
-     */
-    FormGroupComponent.prototype.addFormGroup = function (root) {
-        var /** @type {?} */ group = new FieldConfig("group");
-        group.fields = [];
-        root.fields.push(group);
-        this.schema.id = this.schema.id + 1;
-        return group;
-    };
-    /**
-     * @param {?} root
-     * @return {?}
-     */
-    FormGroupComponent.prototype.addFormArray = function (root) {
-        var /** @type {?} */ array = new FieldConfig("array");
-        array.fields = [];
-        root.fields.push(array);
-        return array;
-    };
-    /**
-     * @param {?} root
-     * @return {?}
-     */
-    FormGroupComponent.prototype.addFormControl = function (root) {
-        var /** @type {?} */ control = new FieldConfig("control");
-        root.fields.push(control);
-        return control;
-    };
-    /**
-     * @param {?} idx
-     * @return {?}
-     */
-    FormGroupComponent.prototype.deleteFormGroup = function (idx) {
-        this.schema.fields.splice(idx, 1);
-    };
-    return FormGroupComponent;
-}());
-FormGroupComponent.decorators = [
-    { type: Component, args: [{
-                selector: "app-form-group",
-                template: "<mat-card>\n  <mat-card-content>\n\n    <mat-form-field *ngIf=\"!noHeader\">\n      <input matInput [(ngModel)]=\"schema.name\" placeholder=\"Name\">\n    </mat-form-field>\n\n    <mat-form-field *ngIf=\"!noHeader\">\n      <input matInput [(ngModel)]=\"schema.title\" placeholder=\"\u0639\u0646\u0648\u0627\u0646\">\n    </mat-form-field>\n\n    <div class=\"button-row\">\n      <button mat-button color=\"primary\" (click)=\"addFormGroup(schema)\"> addFormGroup </button>\n      <button mat-button color=\"primary\" (click)=\"addFormArray(schema)\"> addFormArray </button>\n      <button mat-button color=\"primary\" (click)=\"addFormControl(schema)\">addFormControl</button>\n    </div>\n\n    <div *ngFor=\"let field of schema.fields;let i = index\">\n      <div [ngSwitch]=\"field.type\">\n        <app-form-group *ngSwitchCase=\"'group'\" [schema]=\"field\" (change)=\"changed()\"></app-form-group>\n        <app-form-array *ngSwitchCase=\"'array'\" [schema]=\"field\" (change)=\"changed()\"></app-form-array>\n        <app-form-control *ngSwitchCase=\"'control'\" [schema]=\"field\" (changes)=\"changed()\" (delete)=\"deleteFormGroup(i)\"></app-form-control>\n      </div>\n    </div>\n\n  </mat-card-content>\n</mat-card>"
-            },] },
-];
-/** @nocollapse */
-FormGroupComponent.ctorParameters = function () { return []; };
-FormGroupComponent.propDecorators = {
-    schema: [{ type: Input }],
-    noHeader: [{ type: Input }],
-    changes: [{ type: Output }],
-    delete: [{ type: Output }]
-};
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
-var FormArrayComponent = /** @class */ (function () {
-    function FormArrayComponent() {
-        this.changes = new EventEmitter();
-    }
-    /**
-     * @return {?}
-     */
-    FormArrayComponent.prototype.changed = function () {
-        this.changes.emit();
-    };
-    /**
-     * @param {?} root
-     * @return {?}
-     */
-    FormArrayComponent.prototype.addFormGroup = function (root) {
-        var /** @type {?} */ group = new FieldConfig("group");
-        group.fields = [];
-        root.fields.push(group);
-        return group;
-    };
-    /**
-     * @param {?} root
-     * @return {?}
-     */
-    FormArrayComponent.prototype.addFormArray = function (root) {
-        var /** @type {?} */ array = new FieldConfig("array");
-        array.fields = [];
-        root.fields.push(array);
-        return array;
-    };
-    /**
-     * @param {?} root
-     * @return {?}
-     */
-    FormArrayComponent.prototype.addFormControl = function (root) {
-        var /** @type {?} */ control = new FieldConfig("control");
-        root.fields.push(control);
-        return control;
-    };
-    return FormArrayComponent;
-}());
-FormArrayComponent.decorators = [
-    { type: Component, args: [{
-                selector: "app-form-array",
-                template: "<mat-card>\n  <mat-card-content>\n    <mat-form-field>\n        <input matInput [(ngModel)]=\"schema.name\" placeholder=\"Name\">\n    </mat-form-field>\n      \n    <div class=\"button-row\">\n      <button mat-button color=\"primary\" (click)=\"addFormGroup(schema)\">addFormGroup</button>\n      <button mat-button color=\"primary\" (click)=\"addFormArray(schema)\">addFormArray</button>\n      <!-- <button mat-button color=\"primary\" (click)=\"addFormControl(schema)\">addFormControl</button> -->\n    </div>\n    \n    <div *ngFor=\"let field of schema.fields\">\n      <div [ngSwitch]=\"field.type\">\n        <app-form-group *ngSwitchCase=\"'group'\" [schema]=\"field\" (changes)=\"changed()\"></app-form-group>\n        <app-form-array *ngSwitchCase=\"'array'\" [schema]=\"field\" (changes)=\"changed()\"></app-form-array>\n        <!-- <app-form-control *ngSwitchCase=\"'control'\" [schema]=\"field\" (change)=\"changed($event)\"></app-form-control> -->\n      </div>\n    </div>\n    \n  </mat-card-content>\n</mat-card>"
-            },] },
-];
-/** @nocollapse */
-FormArrayComponent.ctorParameters = function () { return []; };
-FormArrayComponent.propDecorators = {
-    schema: [{ type: Input }],
-    changes: [{ type: Output }]
-};
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
-var FormControlComponent = /** @class */ (function () {
-    function FormControlComponent() {
-        this.changes = new EventEmitter();
-        this.delete = new EventEmitter();
-        this.width = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-        this.options = new FormArray([
-            new FormGroup({
-                key: new FormControl(),
-                value: new FormControl()
-            })
-        ]);
-        this.tableOptions = new FormGroup({
-            dataEndpoint: new FormControl("http://localhost:3000/api/fake/packgeCompareSimpleList")
-        });
-        debugger;
-    }
-    /**
-     * @return {?}
-     */
-    FormControlComponent.prototype.changed = function () {
-        if ([this.schema.name, this.schema.title, this.schema.inputType].some(function (item) { return !item; }))
-            return true;
-        if (this.schema.inputType == "table") {
-            this.schema.options = this.tableOptions.value;
-        }
-        else if (this.schema.inputType == "select") {
-            this.schema.options = this.options.value;
-        }
-        this.changes.emit();
-    };
-    /**
-     * @return {?}
-     */
-    FormControlComponent.prototype.addOption = function () {
-        this.options.push(new FormGroup({
-            key: new FormControl(),
-            value: new FormControl()
-        }));
-    };
-    /**
-     * @param {?} i
-     * @return {?}
-     */
-    FormControlComponent.prototype.removeOption = function (i) {
-        this.options.controls.splice(i, 1);
-    };
-    /**
-     * @return {?}
-     */
-    FormControlComponent.prototype.insertOptions = function () {
-        this.schema.options = this.options.value;
-    };
-    return FormControlComponent;
-}());
-FormControlComponent.decorators = [
-    { type: Component, args: [{
-                selector: "app-form-control",
-                template: "  <mat-expansion-panel>\n    <mat-expansion-panel-header>\n      <mat-panel-title>\n        <button mat-icon-button (click)=\"delete.emit()\">\n            <mat-icon aria-label=\" icon-button\">delete_forever</mat-icon>\n          </button>\n        {{schema.name}}\n      </mat-panel-title>\n    </mat-expansion-panel-header>\n      <mat-form-field>\n        <input matInput [(ngModel)]=\"schema.name\" (change)=\"changed()\" placeholder=\"Name\">\n      </mat-form-field>\n      \n      <mat-form-field>\n        <input matInput [(ngModel)]=\"schema.title\" (change)=\"changed()\" placeholder=\"Placeholder\"/>\n      </mat-form-field>\n      \n      <mat-form-field>\n        <mat-select [(ngModel)]=\"schema.inputType\" (change)=\"changed()\" placeholder=\"Input Type\">\n          <mat-option value=\"table\">table</mat-option>\n          <mat-option value=\"select\">select</mat-option>\n          <mat-option value=\"text\">text</mat-option>\n          <mat-option value=\"number\">number</mat-option>\n          <mat-option value=\"email\">email</mat-option>\n          <mat-option value=\"color\">color</mat-option>\n          <mat-option value=\"radio\">radio</mat-option>\n          <mat-option value=\"checkbox\">checkbox</mat-option>\n        </mat-select>\n      </mat-form-field>\n\n      <mat-form-field>\n          <input matInput [(ngModel)]=\"schema.value\" (change)=\"changed()\" placeholder=\"Value\"/>\n      </mat-form-field>\n      \n        <mat-form-field>\n          <mat-select [(ngModel)]=\"schema.width\" (change)=\"changed()\" placeholder=\"width\">\n            <mat-option *ngFor=\"let item of width\" [value]=\"item\">{{item}}</mat-option>\n          </mat-select>\n        </mat-form-field>\n\n      <div *ngIf=\"schema.inputType=='table'\" [formGroup]=\"tableOptions\">\n        <mat-form-field>\n          <input matInput (change)=\"changed()\" formControlName=\"dataEndpoint\" placeholder=\"dataEndpoint\"/>\n        </mat-form-field>\n      </div>\n\n      <div *ngIf=\"schema.inputType=='select'\">\n        [options]\n        <button (click)=\"addOption()\">+</button>\n        <button (click)=\"insertOptions()\">insert</button>\n        <div *ngFor=\"let option of options.controls;index as i\">\n          {{i}}\n          <div [formGroup]=\"options.controls[i]\">\n            <mat-form-field>\n              <input matInput (change)=\"changed()\" formControlName=\"key\" placeholder=\"key\"/>\n            </mat-form-field>\n            <mat-form-field>\n              <input matInput (change)=\"changed()\" formControlName=\"value\" placeholder=\"value\"/>\n            </mat-form-field>\n          </div>\n        </div>\n      </div>\n      <br/>\n      <div>\n        <mat-slide-toggle (change)=\"changed()\"  [(ngModel)]=\"schema.validator.required.active\">\u0627\u062C\u0628\u0627\u0631\u06CC</mat-slide-toggle>\n        <mat-form-field>\n          <input matInput (change)=\"changed()\" [(ngModel)]=\"schema.validator.required.message\"  placeholder=\"\u067E\u06CC\u063A\u0627\u0645\"/>\n        </mat-form-field>\n        </div>\n      <div>\n        <mat-slide-toggle (change)=\"changed()\"  [(ngModel)]=\"schema.validator.email.active\">\u0627\u06CC\u0645\u06CC\u0644</mat-slide-toggle>\n        <mat-form-field>\n          <input matInput (change)=\"changed()\" [(ngModel)]=\"schema.validator.email.message\"  placeholder=\"\u067E\u06CC\u063A\u0627\u0645\"/>\n        </mat-form-field>\n      </div>\n      <div>\n        <mat-slide-toggle (change)=\"changed()\"  [(ngModel)]=\"schema.validator.minlength.active\">\u062D\u062F\u0627\u0642\u0644 \u062A\u0639\u062F\u0627\u062F \u06A9\u0627\u0631\u0627\u06A9\u062A\u0631</mat-slide-toggle>\n        <mat-form-field>\n          <input matInput (change)=\"changed()\" [(ngModel)]=\"schema.validator.minlength.message\"  placeholder=\"\u067E\u06CC\u063A\u0627\u0645\"/>\n        </mat-form-field>\n        <mat-form-field>\n          <input matInput (change)=\"changed()\" [(ngModel)]=\"schema.validator.minlength.value\"  placeholder=\"\u062A\u0639\u062F\u0627\u062F \u062D\u062F\u0627\u0642\u0644 \u06A9\u0627\u0631\u0627\u06A9\u062A\u0631\"/>\n        </mat-form-field>\n    </div>\n      \n  </mat-expansion-panel>"
-            },] },
-];
-/** @nocollapse */
-FormControlComponent.ctorParameters = function () { return []; };
-FormControlComponent.propDecorators = {
-    schema: [{ type: Input }],
-    changes: [{ type: Output }],
-    delete: [{ type: Output }]
-};
 
 /**
  * @fileoverview added by tsickle
@@ -1021,6 +661,90 @@ TextComponent.ctorParameters = function () { return []; };
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+/** @enum {string} */
+var FormsListActionTypes = {
+    FORMS_LIST: "[FORM][LIST] FORMS_LIST",
+    FORMS_LIST_START: "[FORM][LIST] FORMS_LIST_START",
+    FORMS_LIST_SUCCEED: "[FORM][LIST] FORMS_LIST_SUCCEED",
+    FORMS_LIST_FAILED: "[FORM][LIST] FORMS_LIST_FAILED",
+    ADD_FORM_SCHEMA: "[FORM][LIST] ADD_FORM_SCHEMA",
+    FORM_SCHEMA_UPDATE: "[FORM][LIST] FORM_SCHEMA_UPDATE",
+    GET_FORM_SCHEMA: "[FORM][LIST] GET_FORM_SCHEMA",
+    FORM_SCHEMA_FETCHED: "[FORM][LIST] FORM_SCHEMA_FETCHED",
+};
+var FormsListAction = /** @class */ (function () {
+    function FormsListAction() {
+        this.type = FormsListActionTypes.FORMS_LIST;
+    }
+    return FormsListAction;
+}());
+var FormsListStartAction = /** @class */ (function () {
+    function FormsListStartAction() {
+        this.type = FormsListActionTypes.FORMS_LIST_START;
+    }
+    return FormsListStartAction;
+}());
+var FormsListSucceedAction = /** @class */ (function () {
+    /**
+     * @param {?} payload
+     */
+    function FormsListSucceedAction(payload) {
+        this.payload = payload;
+        this.type = FormsListActionTypes.FORMS_LIST_SUCCEED;
+    }
+    return FormsListSucceedAction;
+}());
+var FormsListFailedAction = /** @class */ (function () {
+    function FormsListFailedAction() {
+        this.type = FormsListActionTypes.FORMS_LIST_FAILED;
+    }
+    return FormsListFailedAction;
+}());
+var UpdateFormSchemaAction = /** @class */ (function () {
+    /**
+     * @param {?} payload
+     */
+    function UpdateFormSchemaAction(payload) {
+        this.payload = payload;
+        this.type = FormsListActionTypes.FORM_SCHEMA_UPDATE;
+    }
+    return UpdateFormSchemaAction;
+}());
+var AddFormSchemaAction = /** @class */ (function () {
+    /**
+     * @param {?} payload
+     */
+    function AddFormSchemaAction(payload) {
+        this.payload = payload;
+        this.type = FormsListActionTypes.ADD_FORM_SCHEMA;
+    }
+    return AddFormSchemaAction;
+}());
+var GetFormSchemaAction = /** @class */ (function () {
+    /**
+     * @param {?} payload
+     */
+    function GetFormSchemaAction(payload) {
+        this.payload = payload;
+        this.type = FormsListActionTypes.GET_FORM_SCHEMA;
+    }
+    return GetFormSchemaAction;
+}());
+var FormSchemaFechedAction = /** @class */ (function () {
+    /**
+     * @param {?} payload
+     */
+    function FormSchemaFechedAction(payload) {
+        this.payload = payload;
+        this.type = FormsListActionTypes.FORM_SCHEMA_FETCHED;
+    }
+    return FormSchemaFechedAction;
+}());
 
 /**
  * @fileoverview added by tsickle
@@ -1252,6 +976,282 @@ DynamicFieldDirective.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+var /** @type {?} */ initialState = {
+    status: "pristine",
+    data: []
+};
+/**
+ * @param {?=} state
+ * @param {?=} action
+ * @return {?}
+ */
+function reducer(state, action) {
+    if (state === void 0) { state = initialState; }
+    switch (action.type) {
+        case FormsListActionTypes.FORMS_LIST: {
+            return Object.assign({}, state, { status: "dirty" });
+        }
+        case FormsListActionTypes.FORMS_LIST_START: {
+            return Object.assign({}, state, { status: "pending" });
+        }
+        case FormsListActionTypes.FORMS_LIST_SUCCEED: {
+            return Object.assign({}, state, { data: action.payload, status: "succeed" });
+        }
+        case FormsListActionTypes.FORMS_LIST_FAILED: {
+            return Object.assign({}, state, { status: "failed" });
+        }
+        case FormsListActionTypes.FORM_SCHEMA_UPDATE: {
+            var /** @type {?} */ data = state.data.concat();
+            var /** @type {?} */ entityIdx = state.data.findIndex(function (form) { return form._id == action.payload._id; });
+            if (entityIdx > -1) {
+                data[entityIdx] = Object.assign({}, data[entityIdx], action.payload);
+            }
+            else {
+                data.push(action.payload);
+            }
+            return Object.assign({}, state, { data: data });
+        }
+        case FormsListActionTypes.ADD_FORM_SCHEMA: {
+            var /** @type {?} */ data = state.data.concat();
+            var /** @type {?} */ entityIdx = state.data.findIndex(function (form) { return form._id == action.payload._id; });
+            if (entityIdx > -1) {
+                data[entityIdx] = Object.assign({}, data[entityIdx], action.payload);
+            }
+            else {
+                data.push(action.payload);
+            }
+            return Object.assign({}, state, { data: data });
+        }
+        case FormsListActionTypes.FORM_SCHEMA_FETCHED: {
+            var /** @type {?} */ data = state.data.concat();
+            var /** @type {?} */ entityIdx = state.data.findIndex(function (form) { return form._id == action.payload._id; });
+            if (entityIdx > -1) {
+                data[entityIdx] = Object.assign({}, data[entityIdx], action.payload);
+            }
+            else {
+                data.push(action.payload);
+            }
+            return Object.assign({}, state, { data: data });
+        }
+        default: {
+            return state;
+        }
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+var /** @type {?} */ FormReducers = {
+    list: reducer
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+var FormGroupComponent = /** @class */ (function () {
+    function FormGroupComponent() {
+        this.noHeader = false;
+        this.changes = new EventEmitter();
+        this.delete = new EventEmitter();
+        debugger;
+    }
+    /**
+     * @return {?}
+     */
+    FormGroupComponent.prototype.changed = function () {
+        this.changes.emit();
+    };
+    /**
+     * @param {?} root
+     * @return {?}
+     */
+    FormGroupComponent.prototype.addFormGroup = function (root) {
+        var /** @type {?} */ group = new FieldConfig("group");
+        group.fields = [];
+        root.fields.push(group);
+        this.schema.id = this.schema.id + 1;
+        return group;
+    };
+    /**
+     * @param {?} root
+     * @return {?}
+     */
+    FormGroupComponent.prototype.addFormArray = function (root) {
+        var /** @type {?} */ array = new FieldConfig("array");
+        array.fields = [];
+        root.fields.push(array);
+        return array;
+    };
+    /**
+     * @param {?} root
+     * @return {?}
+     */
+    FormGroupComponent.prototype.addFormControl = function (root) {
+        var /** @type {?} */ control = new FieldConfig("control");
+        root.fields.push(control);
+        return control;
+    };
+    /**
+     * @param {?} idx
+     * @return {?}
+     */
+    FormGroupComponent.prototype.deleteFormGroup = function (idx) {
+        this.schema.fields.splice(idx, 1);
+    };
+    return FormGroupComponent;
+}());
+FormGroupComponent.decorators = [
+    { type: Component, args: [{
+                selector: "app-form-group",
+                template: "<mat-card>\n  <mat-card-content>\n\n    <mat-form-field *ngIf=\"!noHeader\">\n      <input matInput [(ngModel)]=\"schema.name\" placeholder=\"Name\">\n    </mat-form-field>\n\n    <mat-form-field *ngIf=\"!noHeader\">\n      <input matInput [(ngModel)]=\"schema.title\" placeholder=\"\u0639\u0646\u0648\u0627\u0646\">\n    </mat-form-field>\n\n    <div class=\"button-row\">\n      <button mat-button color=\"primary\" (click)=\"addFormGroup(schema)\"> addFormGroup </button>\n      <button mat-button color=\"primary\" (click)=\"addFormArray(schema)\"> addFormArray </button>\n      <button mat-button color=\"primary\" (click)=\"addFormControl(schema)\">addFormControl</button>\n    </div>\n\n    <div *ngFor=\"let field of schema.fields;let i = index\">\n      <div [ngSwitch]=\"field.type\">\n        <app-form-group *ngSwitchCase=\"'group'\" [schema]=\"field\" (change)=\"changed()\"></app-form-group>\n        <app-form-array *ngSwitchCase=\"'array'\" [schema]=\"field\" (change)=\"changed()\"></app-form-array>\n        <app-form-control *ngSwitchCase=\"'control'\" [schema]=\"field\" (changes)=\"changed()\" (delete)=\"deleteFormGroup(i)\"></app-form-control>\n      </div>\n    </div>\n\n  </mat-card-content>\n</mat-card>"
+            },] },
+];
+/** @nocollapse */
+FormGroupComponent.ctorParameters = function () { return []; };
+FormGroupComponent.propDecorators = {
+    schema: [{ type: Input }],
+    noHeader: [{ type: Input }],
+    changes: [{ type: Output }],
+    delete: [{ type: Output }]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+var FormArrayComponent = /** @class */ (function () {
+    function FormArrayComponent() {
+        this.changes = new EventEmitter();
+    }
+    /**
+     * @return {?}
+     */
+    FormArrayComponent.prototype.changed = function () {
+        this.changes.emit();
+    };
+    /**
+     * @param {?} root
+     * @return {?}
+     */
+    FormArrayComponent.prototype.addFormGroup = function (root) {
+        var /** @type {?} */ group = new FieldConfig("group");
+        group.fields = [];
+        root.fields.push(group);
+        return group;
+    };
+    /**
+     * @param {?} root
+     * @return {?}
+     */
+    FormArrayComponent.prototype.addFormArray = function (root) {
+        var /** @type {?} */ array = new FieldConfig("array");
+        array.fields = [];
+        root.fields.push(array);
+        return array;
+    };
+    /**
+     * @param {?} root
+     * @return {?}
+     */
+    FormArrayComponent.prototype.addFormControl = function (root) {
+        var /** @type {?} */ control = new FieldConfig("control");
+        root.fields.push(control);
+        return control;
+    };
+    return FormArrayComponent;
+}());
+FormArrayComponent.decorators = [
+    { type: Component, args: [{
+                selector: "app-form-array",
+                template: "<mat-card>\n  <mat-card-content>\n    <mat-form-field>\n        <input matInput [(ngModel)]=\"schema.name\" placeholder=\"Name\">\n    </mat-form-field>\n      \n    <div class=\"button-row\">\n      <button mat-button color=\"primary\" (click)=\"addFormGroup(schema)\">addFormGroup</button>\n      <button mat-button color=\"primary\" (click)=\"addFormArray(schema)\">addFormArray</button>\n      <!-- <button mat-button color=\"primary\" (click)=\"addFormControl(schema)\">addFormControl</button> -->\n    </div>\n    \n    <div *ngFor=\"let field of schema.fields\">\n      <div [ngSwitch]=\"field.type\">\n        <app-form-group *ngSwitchCase=\"'group'\" [schema]=\"field\" (changes)=\"changed()\"></app-form-group>\n        <app-form-array *ngSwitchCase=\"'array'\" [schema]=\"field\" (changes)=\"changed()\"></app-form-array>\n        <!-- <app-form-control *ngSwitchCase=\"'control'\" [schema]=\"field\" (change)=\"changed($event)\"></app-form-control> -->\n      </div>\n    </div>\n    \n  </mat-card-content>\n</mat-card>"
+            },] },
+];
+/** @nocollapse */
+FormArrayComponent.ctorParameters = function () { return []; };
+FormArrayComponent.propDecorators = {
+    schema: [{ type: Input }],
+    changes: [{ type: Output }]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+var FormControlComponent = /** @class */ (function () {
+    function FormControlComponent() {
+        this.changes = new EventEmitter();
+        this.delete = new EventEmitter();
+        this.width = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        this.options = new FormArray([
+            new FormGroup({
+                key: new FormControl(),
+                value: new FormControl()
+            })
+        ]);
+        this.tableOptions = new FormGroup({
+            dataEndpoint: new FormControl("http://localhost:3000/api/fake/packgeCompareSimpleList")
+        });
+        debugger;
+    }
+    /**
+     * @return {?}
+     */
+    FormControlComponent.prototype.changed = function () {
+        if ([this.schema.name, this.schema.title, this.schema.inputType].some(function (item) { return !item; }))
+            return true;
+        if (this.schema.inputType == "table") {
+            this.schema.options = this.tableOptions.value;
+        }
+        else if (this.schema.inputType == "select") {
+            this.schema.options = this.options.value;
+        }
+        this.changes.emit();
+    };
+    /**
+     * @return {?}
+     */
+    FormControlComponent.prototype.addOption = function () {
+        this.options.push(new FormGroup({
+            key: new FormControl(),
+            value: new FormControl()
+        }));
+    };
+    /**
+     * @param {?} i
+     * @return {?}
+     */
+    FormControlComponent.prototype.removeOption = function (i) {
+        this.options.controls.splice(i, 1);
+    };
+    /**
+     * @return {?}
+     */
+    FormControlComponent.prototype.insertOptions = function () {
+        this.schema.options = this.options.value;
+    };
+    return FormControlComponent;
+}());
+FormControlComponent.decorators = [
+    { type: Component, args: [{
+                selector: "app-form-control",
+                template: "  <mat-expansion-panel>\n    <mat-expansion-panel-header>\n      <mat-panel-title>\n        <button mat-icon-button (click)=\"delete.emit()\">\n            <mat-icon aria-label=\" icon-button\">delete_forever</mat-icon>\n          </button>\n        {{schema.name}}\n      </mat-panel-title>\n    </mat-expansion-panel-header>\n      <mat-form-field>\n        <input matInput [(ngModel)]=\"schema.name\" (change)=\"changed()\" placeholder=\"Name\">\n      </mat-form-field>\n      \n      <mat-form-field>\n        <input matInput [(ngModel)]=\"schema.title\" (change)=\"changed()\" placeholder=\"Placeholder\"/>\n      </mat-form-field>\n      \n      <mat-form-field>\n        <mat-select [(ngModel)]=\"schema.inputType\" (change)=\"changed()\" placeholder=\"Input Type\">\n          <mat-option value=\"table\">table</mat-option>\n          <mat-option value=\"select\">select</mat-option>\n          <mat-option value=\"text\">text</mat-option>\n          <mat-option value=\"number\">number</mat-option>\n          <mat-option value=\"email\">email</mat-option>\n          <mat-option value=\"color\">color</mat-option>\n          <mat-option value=\"radio\">radio</mat-option>\n          <mat-option value=\"checkbox\">checkbox</mat-option>\n        </mat-select>\n      </mat-form-field>\n\n      <mat-form-field>\n          <input matInput [(ngModel)]=\"schema.value\" (change)=\"changed()\" placeholder=\"Value\"/>\n      </mat-form-field>\n      \n        <mat-form-field>\n          <mat-select [(ngModel)]=\"schema.width\" (change)=\"changed()\" placeholder=\"width\">\n            <mat-option *ngFor=\"let item of width\" [value]=\"item\">{{item}}</mat-option>\n          </mat-select>\n        </mat-form-field>\n\n      <div *ngIf=\"schema.inputType=='table'\" [formGroup]=\"tableOptions\">\n        <mat-form-field>\n          <input matInput (change)=\"changed()\" formControlName=\"dataEndpoint\" placeholder=\"dataEndpoint\"/>\n        </mat-form-field>\n      </div>\n\n      <div *ngIf=\"schema.inputType=='select'\">\n        [options]\n        <button (click)=\"addOption()\">+</button>\n        <button (click)=\"insertOptions()\">insert</button>\n        <div *ngFor=\"let option of options.controls;index as i\">\n          {{i}}\n          <div [formGroup]=\"options.controls[i]\">\n            <mat-form-field>\n              <input matInput (change)=\"changed()\" formControlName=\"key\" placeholder=\"key\"/>\n            </mat-form-field>\n            <mat-form-field>\n              <input matInput (change)=\"changed()\" formControlName=\"value\" placeholder=\"value\"/>\n            </mat-form-field>\n          </div>\n        </div>\n      </div>\n      <br/>\n      <div>\n        <mat-slide-toggle (change)=\"changed()\"  [(ngModel)]=\"schema.validator.required.active\">\u0627\u062C\u0628\u0627\u0631\u06CC</mat-slide-toggle>\n        <mat-form-field>\n          <input matInput (change)=\"changed()\" [(ngModel)]=\"schema.validator.required.message\"  placeholder=\"\u067E\u06CC\u063A\u0627\u0645\"/>\n        </mat-form-field>\n        </div>\n      <div>\n        <mat-slide-toggle (change)=\"changed()\"  [(ngModel)]=\"schema.validator.email.active\">\u0627\u06CC\u0645\u06CC\u0644</mat-slide-toggle>\n        <mat-form-field>\n          <input matInput (change)=\"changed()\" [(ngModel)]=\"schema.validator.email.message\"  placeholder=\"\u067E\u06CC\u063A\u0627\u0645\"/>\n        </mat-form-field>\n      </div>\n      <div>\n        <mat-slide-toggle (change)=\"changed()\"  [(ngModel)]=\"schema.validator.minlength.active\">\u062D\u062F\u0627\u0642\u0644 \u062A\u0639\u062F\u0627\u062F \u06A9\u0627\u0631\u0627\u06A9\u062A\u0631</mat-slide-toggle>\n        <mat-form-field>\n          <input matInput (change)=\"changed()\" [(ngModel)]=\"schema.validator.minlength.message\"  placeholder=\"\u067E\u06CC\u063A\u0627\u0645\"/>\n        </mat-form-field>\n        <mat-form-field>\n          <input matInput (change)=\"changed()\" [(ngModel)]=\"schema.validator.minlength.value\"  placeholder=\"\u062A\u0639\u062F\u0627\u062F \u062D\u062F\u0627\u0642\u0644 \u06A9\u0627\u0631\u0627\u06A9\u062A\u0631\"/>\n        </mat-form-field>\n    </div>\n      \n  </mat-expansion-panel>"
+            },] },
+];
+/** @nocollapse */
+FormControlComponent.ctorParameters = function () { return []; };
+FormControlComponent.propDecorators = {
+    schema: [{ type: Input }],
+    changes: [{ type: Output }],
+    delete: [{ type: Output }]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
 /** @enum {string} */
 var EditFormActionTypes = {
     EDIT_FORM: "[FORM][EDIT] EDIT_FORM",
@@ -1268,6 +1268,32 @@ var EditFormAction = /** @class */ (function () {
         this.type = EditFormActionTypes.EDIT_FORM;
     }
     return EditFormAction;
+}());
+var EditFormStartAction = /** @class */ (function () {
+    /**
+     * @param {?} payload
+     */
+    function EditFormStartAction(payload) {
+        this.payload = payload;
+        this.type = EditFormActionTypes.EDIT_FORM_START;
+    }
+    return EditFormStartAction;
+}());
+var EditFormSucceedAction = /** @class */ (function () {
+    /**
+     * @param {?} payload
+     */
+    function EditFormSucceedAction(payload) {
+        this.payload = payload;
+        this.type = EditFormActionTypes.EDIT_FORM_SUCCEED;
+    }
+    return EditFormSucceedAction;
+}());
+var EditFormFailedAction = /** @class */ (function () {
+    function EditFormFailedAction() {
+        this.type = EditFormActionTypes.EDIT_FORM_FAILED;
+    }
+    return EditFormFailedAction;
 }());
 
 /**
@@ -1503,69 +1529,6 @@ AddFormComponent.propDecorators = {
  * @suppress {checkTypes} checked by tsc
  */
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
-var AddFormEffects = /** @class */ (function () {
-    /**
-     * @param {?} actions$
-     * @param {?} router
-     * @param {?} service
-     */
-    function AddFormEffects(actions$, router, service) {
-        var _this = this;
-        this.actions$ = actions$;
-        this.router = router;
-        this.service = service;
-        this.AddForm$ = this.actions$
-            .ofType(AddFormActionTypes.ADD_FORM)
-            .pipe(map(function (action) { return action.payload; }), map(function (data) { return new AddFormStartAction(data); }));
-        this.AddFormStart$ = this.actions$
-            .ofType(AddFormActionTypes.ADD_FORM_START)
-            .pipe(map(function (action) { return action.payload; }), switchMap(function (data) { return _this.service.add(data); }), map(function (res) { return new AddFormSucceedAction(); }), catchError(function () { return Observable.of(new AddFormFailedAction()); }));
-    }
-    return AddFormEffects;
-}());
-AddFormEffects.decorators = [
-    { type: Injectable },
-];
-/** @nocollapse */
-AddFormEffects.ctorParameters = function () { return [
-    { type: Actions },
-    { type: Router },
-    { type: FormService }
-]; };
-__decorate([
-    Effect(),
-    __metadata("design:type", Object)
-], AddFormEffects.prototype, "AddForm$", void 0);
-__decorate([
-    Effect(),
-    __metadata("design:type", Object)
-], AddFormEffects.prototype, "AddFormStart$", void 0);
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
-// export * from "./add-form.reducer";
-
 var EditFormComponent = /** @class */ (function (_super) {
     __extends(EditFormComponent, _super);
     function EditFormComponent() {
@@ -1667,6 +1630,201 @@ MainContainerComponent.ctorParameters = function () { return [
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+var AddFormEffects = /** @class */ (function () {
+    /**
+     * @param {?} actions$
+     * @param {?} router
+     * @param {?} service
+     */
+    function AddFormEffects(actions$, router, service) {
+        var _this = this;
+        this.actions$ = actions$;
+        this.router = router;
+        this.service = service;
+        this.AddForm$ = this.actions$
+            .ofType(AddFormActionTypes.ADD_FORM)
+            .pipe(map(function (action) { return action.payload; }), map(function (data) { return new AddFormStartAction(data); }));
+        this.AddFormStart$ = this.actions$
+            .ofType(AddFormActionTypes.ADD_FORM_START)
+            .pipe(map(function (action) { return action.payload; }), switchMap(function (data) { return _this.service.add(data); }), map(function (res) { return new AddFormSucceedAction(); }), catchError(function () { return Observable.of(new AddFormFailedAction()); }));
+    }
+    return AddFormEffects;
+}());
+AddFormEffects.decorators = [
+    { type: Injectable },
+];
+/** @nocollapse */
+AddFormEffects.ctorParameters = function () { return [
+    { type: Actions },
+    { type: Router },
+    { type: FormService }
+]; };
+__decorate([
+    Effect(),
+    __metadata("design:type", Object)
+], AddFormEffects.prototype, "AddForm$", void 0);
+__decorate([
+    Effect(),
+    __metadata("design:type", Object)
+], AddFormEffects.prototype, "AddFormStart$", void 0);
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+var FormsListEffects = /** @class */ (function () {
+    /**
+     * @param {?} actions$
+     * @param {?} router
+     * @param {?} service
+     */
+    function FormsListEffects(actions$, router, service) {
+        var _this = this;
+        this.actions$ = actions$;
+        this.router = router;
+        this.service = service;
+        this.EditProfileRequest$ = this.actions$.ofType(FormsListActionTypes.FORMS_LIST).map(function (data) { return new FormsListStartAction(); });
+        this.GetForm$ = this.actions$
+            .ofType(FormsListActionTypes.GET_FORM_SCHEMA)
+            .pipe(map(function (action) { return action.payload; }), switchMap(function (id) { return _this.service.get(id); }), map(function (formSchema) { return new FormSchemaFechedAction(formSchema); }));
+        this.get_forms_list$ = this.actions$
+            .ofType(FormsListActionTypes.FORMS_LIST_START)
+            .pipe(switchMap(function (data) { return _this.service.getList(); }), map(function (res) { return new FormsListSucceedAction(res); }), catchError(function () { return Observable.of(new FormsListFailedAction()); }));
+    }
+    return FormsListEffects;
+}());
+FormsListEffects.decorators = [
+    { type: Injectable },
+];
+/** @nocollapse */
+FormsListEffects.ctorParameters = function () { return [
+    { type: Actions },
+    { type: Router },
+    { type: FormService }
+]; };
+__decorate([
+    Effect(),
+    __metadata("design:type", Object)
+], FormsListEffects.prototype, "EditProfileRequest$", void 0);
+__decorate([
+    Effect(),
+    __metadata("design:type", Object)
+], FormsListEffects.prototype, "GetForm$", void 0);
+__decorate([
+    Effect(),
+    __metadata("design:type", Object)
+], FormsListEffects.prototype, "get_forms_list$", void 0);
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+var EditFormEffects = /** @class */ (function () {
+    /**
+     * @param {?} actions$
+     * @param {?} router
+     * @param {?} service
+     */
+    function EditFormEffects(actions$, router, service) {
+        var _this = this;
+        this.actions$ = actions$;
+        this.router = router;
+        this.service = service;
+        this.EditForm$ = this.actions$
+            .ofType(EditFormActionTypes.EDIT_FORM)
+            .pipe(map(function (action) { return action.payload; }), map(function (data) { return new EditFormStartAction(data); }));
+        this.EditFormStart$ = this.actions$
+            .ofType(EditFormActionTypes.EDIT_FORM_START)
+            .pipe(map(function (action) { return action.payload; }), switchMap(function (data) { return _this.service.update(data); }), map(function (formSchema) { return new EditFormSucceedAction(formSchema); }), catchError(function () { return Observable.of(new EditFormFailedAction()); }));
+        this.UpdateFormsListStart$ = this.actions$
+            .ofType(EditFormActionTypes.EDIT_FORM_SUCCEED)
+            .pipe(map(function (action) { return action.payload; }), map(function (formSchema) { return new UpdateFormSchemaAction(formSchema); }));
+    }
+    return EditFormEffects;
+}());
+EditFormEffects.decorators = [
+    { type: Injectable },
+];
+/** @nocollapse */
+EditFormEffects.ctorParameters = function () { return [
+    { type: Actions },
+    { type: Router },
+    { type: FormService }
+]; };
+__decorate([
+    Effect(),
+    __metadata("design:type", Object)
+], EditFormEffects.prototype, "EditForm$", void 0);
+__decorate([
+    Effect(),
+    __metadata("design:type", Object)
+], EditFormEffects.prototype, "EditFormStart$", void 0);
+__decorate([
+    Effect(),
+    __metadata("design:type", Object)
+], EditFormEffects.prototype, "UpdateFormsListStart$", void 0);
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+// export * from "./edit-form.reducer";
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+var /** @type {?} */ routes = [
+    {
+        path: "form",
+        component: MainContainerComponent,
+        children: [
+            {
+                path: "add",
+                component: AddFormContainerComponent
+            },
+            {
+                path: "edit/:_id",
+                component: EditFormContainerComponent
+            },
+            {
+                path: "",
+                component: FormListContainerComponent
+            }
+        ]
+    }
+];
+var /** @type {?} */ RoutingModule = RouterModule.forChild(routes);
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
 var NgsFormModule = /** @class */ (function () {
     function NgsFormModule() {
     }
@@ -1748,7 +1906,9 @@ RootNgsFormModule.decorators = [
     { type: NgModule, args: [{
                 imports: [
                     NgsFormModule,
-                    StoreModule.forFeature("form", FormReducers)
+                    StoreModule.forFeature("form", FormReducers),
+                    EffectsModule.forFeature([AddFormEffects, EditFormEffects, FormsListEffects]),
+                    RoutingModule
                 ],
                 exports: [NgsFormModule]
             },] },
@@ -1764,5 +1924,5 @@ RootNgsFormModule.decorators = [
  * @suppress {checkTypes} checked by tsc
  */
 
-export { MODULE_DEFAULT_CONFIG, MODULE_CONFIG_TOKEN, FormConfigurationService, FormService, FormUtilityService, AddFormApiModel, EditFormApiModel, FormListApiModel, FormSchemaModel, FieldConfig, NgsFormModule, RootNgsFormModule, AddFormComponent as ɵi, AddFormContainerComponent as ɵb, AddFormContainerComponent as ɵl, AddFormComponent as ɵn, FormArrayComponent as ɵp, FormControlComponent as ɵq, FormGroupComponent as ɵo, EditFormContainerComponent as ɵa, EditFormComponent as ɵh, FormListContainerComponent as ɵj, FormListComponent as ɵk, reducer as ɵba, MainContainerComponent as ɵm, FormReducers as ɵd, FormConfigurationService as ɵf, FormService as ɵc, CheckboxComponent as ɵu, ColorComponent as ɵw, EmailComponent as ɵv, NumberComponent as ɵy, SelectComponent as ɵt, TableComponent as ɵz, TextComponent as ɵx, DynamicFieldDirective as ɵs, FormViewComponent as ɵr };
+export { MODULE_DEFAULT_CONFIG, MODULE_CONFIG_TOKEN, FormService, FormViewComponent, DynamicFieldDirective, AddFormApiModel, EditFormApiModel, FormListApiModel, FormSchemaModel, FieldConfig, NgsFormModule, RootNgsFormModule, AddFormComponent as ɵh, AddFormContainerComponent as ɵf, AddFormContainerComponent as ɵk, AddFormEffects as ɵy, AddFormComponent as ɵm, FormArrayComponent as ɵo, FormControlComponent as ɵp, FormGroupComponent as ɵn, EditFormContainerComponent as ɵbc, EditFormContainerComponent as ɵe, EditFormEffects as ɵz, EditFormComponent as ɵg, RoutingModule as ɵbb, FormListContainerComponent as ɵbd, FormListContainerComponent as ɵi, FormListComponent as ɵj, FormsListEffects as ɵba, reducer as ɵx, MainContainerComponent as ɵl, FormReducers as ɵa, FormConfigurationService as ɵc, CheckboxComponent as ɵr, ColorComponent as ɵt, EmailComponent as ɵs, NumberComponent as ɵv, SelectComponent as ɵq, TableComponent as ɵw, TextComponent as ɵu };
 //# sourceMappingURL=soushians-form.js.map

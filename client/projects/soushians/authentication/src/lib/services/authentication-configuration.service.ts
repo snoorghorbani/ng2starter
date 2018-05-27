@@ -8,7 +8,9 @@ import { getAuthenticationModuleConfig } from "@soushians/config";
 import { MODULE_CONFIG_TOKEN, AuthenticationModuleConfig, MODULE_DEFAULT_CONFIG } from "../authentication.config";
 import { AuthenticationState } from "../reducers";
 
-@Injectable()
+@Injectable({
+	providedIn: "root"
+})
 export class AuthenticationConfigurationService {
 	private _config: AuthenticationModuleConfig;
 	get config() {

@@ -1,4 +1,4 @@
-import { InjectionToken, Component, Input, Injector, Output, EventEmitter, Injectable, Inject, ComponentFactoryResolver, ViewChild, ViewContainerRef, ReflectiveInjector, NgModule } from '@angular/core';
+import { InjectionToken, Component, Input, Injector, Output, EventEmitter, Injectable, Inject, ComponentFactoryResolver, ViewChild, ViewContainerRef, ReflectiveInjector, NgModule, defineInjectable, inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { createSelector, createFeatureSelector, Store, StoreModule } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
@@ -1038,12 +1038,15 @@ var DiagramConfigurationService = /** @class */ (function () {
     return DiagramConfigurationService;
 }());
 DiagramConfigurationService.decorators = [
-    { type: Injectable },
+    { type: Injectable, args: [{
+                providedIn: "root"
+            },] },
 ];
 /** @nocollapse */
 DiagramConfigurationService.ctorParameters = function () { return [
     { type: undefined, decorators: [{ type: Inject, args: [MODULE_CONFIG_TOKEN,] }] }
 ]; };
+/** @nocollapse */ DiagramConfigurationService.ngInjectableDef = defineInjectable({ factory: function DiagramConfigurationService_Factory() { return new DiagramConfigurationService(inject(MODULE_CONFIG_TOKEN)); }, token: DiagramConfigurationService, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
@@ -1261,7 +1264,9 @@ var DiagramService = /** @class */ (function () {
     return DiagramService;
 }());
 DiagramService.decorators = [
-    { type: Injectable },
+    { type: Injectable, args: [{
+                providedIn: "root"
+            },] },
 ];
 /** @nocollapse */
 DiagramService.ctorParameters = function () { return [
@@ -1269,6 +1274,7 @@ DiagramService.ctorParameters = function () { return [
     { type: Store },
     { type: DiagramConfigurationService }
 ]; };
+/** @nocollapse */ DiagramService.ngInjectableDef = defineInjectable({ factory: function DiagramService_Factory() { return new DiagramService(inject(HttpClient), inject(Store), inject(DiagramConfigurationService)); }, token: DiagramService, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle

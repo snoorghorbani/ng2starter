@@ -710,6 +710,10 @@
             this.actions$ = actions$;
             this.router = router$$1;
             this.service = service;
+            this.updateProfileInformation$ = this.actions$.ofType(authentication.SignInActionTypes.SIGNIN_SUCCEED).pipe(operators.map(function (action) { return action.payload; }), operators.map(function (user) {
+                debugger;
+                return new GetProfileSucceed(user);
+            }));
             this.getProfileInformation$ = this.actions$.ofType(authentication.SignInActionTypes.SIGNIN_SUCCEED).pipe(operators.map(function () {
                 return new GetProfile();
             }));
@@ -727,6 +731,10 @@
             { type: UserService }
         ];
     };
+    tslib.__decorate([
+        effects.Effect(),
+        tslib.__metadata("design:type", Object)
+    ], UserEffects.prototype, "updateProfileInformation$", void 0);
     tslib.__decorate([
         effects.Effect(),
         tslib.__metadata("design:type", Object)

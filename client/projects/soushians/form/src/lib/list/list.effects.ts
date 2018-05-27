@@ -7,7 +7,7 @@ import { of } from "rxjs/observable/of";
 import { Store } from "@ngrx/store";
 import { switchMap, map, catchError } from "rxjs/operators";
 
-import { FormService } from "../services";
+import { FormService } from "../services/form.service";
 import { FormSchemaModel } from "../models";
 import {
 	FormsListAction,
@@ -21,7 +21,7 @@ import {
 
 @Injectable()
 export class FormsListEffects {
-	constructor(private actions$: Actions<any>, private router: Router, private service: FormService) { }
+	constructor(private actions$: Actions<any>, private router: Router, private service: FormService) {}
 
 	@Effect()
 	EditProfileRequest$ = this.actions$.ofType(FormsListActionTypes.FORMS_LIST).map(data => new FormsListStartAction());

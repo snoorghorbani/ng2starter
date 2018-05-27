@@ -4,7 +4,7 @@ import * as tslib_1 from "tslib";
  * @suppress {checkTypes} checked by tsc
  */
 import { Component } from "@angular/core";
-import { AddFormComponent } from "../../add";
+import { AddFormComponent } from "../../add/add-form";
 var EditFormComponent = /** @class */ (function (_super) {
     tslib_1.__extends(EditFormComponent, _super);
     function EditFormComponent() {
