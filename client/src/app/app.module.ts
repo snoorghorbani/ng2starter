@@ -30,11 +30,13 @@ import { reducers } from "./app.reducers";
 
 // module configs
 import { DashboardModule } from "./dashboard";
+import { CommonModule } from "@angular/common";
 // import { NgsBpmnModule } from "./bpmn";
 
 @NgModule({
 	imports: [
 		CoreModule,
+		CommonModule,
 		// ServiceWorkerModule.register("/ngsw-worker.js", { enabled: environment.production }),
 		// ServiceWorkerModule.register('/ngsw-worker.js', {enabled: true}),
 		MatSidenavModule,
