@@ -14,7 +14,7 @@ import { environment } from "../environments/environment";
 import { SharedModule } from "@soushians/shared";
 import { NgsAuthenticationModule } from "@soushians/authentication";
 import { NgsLayoutModule } from "@soushians/layout";
-import { NgsUserModule, NgsUserRoutingModule } from '@soushians/user';
+import { NgsUserModule, NgsUserRoutingModule } from "@soushians/user";
 import { NgsConfigModule } from "@soushians/config";
 import * as FeatureReducer from "@soushians/config";
 import { SourceModule } from "@soushians/source";
@@ -29,7 +29,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { reducers } from "./app.reducers";
 
 // module configs
-import { DashboardModule } from './dashboard';
+import { DashboardModule } from "./dashboard";
 // import { NgsBpmnModule } from "./bpmn";
 
 @NgModule({
@@ -52,8 +52,8 @@ import { DashboardModule } from './dashboard';
 		}),
 		NgsConfigModule.forRoot({
 			env: environment as any,
-			dev_api_host: 'http://localhost:3000',
-			prod_api_host: 'http://localhost:3000'
+			dev_api_host: "http://localhost:3000",
+			prod_api_host: "http://localhost:3000"
 		}),
 		NgsDiagramModule.forRoot(),
 		NgsUserModule.forRoot(),
