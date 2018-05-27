@@ -1,5 +1,4 @@
 ﻿import { Component, OnInit } from "@angular/core";
-import { SocketService } from "@soushians/infra";
 
 @Component({
 	selector: "app-dashboard",
@@ -7,7 +6,7 @@ import { SocketService } from "@soushians/infra";
 	styleUrls: [ "./dashboard.component.css" ]
 })
 export class DashboardComponent implements OnInit {
-	constructor(private socketService: SocketService) {}
+	constructor() {}
 
 	ngOnInit() {
 		// this.socketService.initSocket();

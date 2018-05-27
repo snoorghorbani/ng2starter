@@ -13,7 +13,6 @@ import { environment } from "../environments/environment";
 
 import { SharedModule } from "@soushians/shared";
 import { NgsAuthenticationModule } from "@soushians/authentication";
-import { InfraModule } from "@soushians/infra";
 import { NgsLayoutModule } from "@soushians/layout";
 import { NgsUserModule, NgsUserRoutingModule } from "@soushians/user";
 import { NgsConfigModule } from "@soushians/config";
@@ -29,7 +28,7 @@ import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { reducers } from "./app.reducers";
 
-//module configs
+// module configs
 import { DashboardModule } from "./dashboard";
 // import { NgsBpmnModule } from "./bpmn";
 
@@ -60,7 +59,6 @@ import { DashboardModule } from "./dashboard";
 		NgsUserModule.forRoot(),
 		NgsUserRoutingModule,
 		// NgsBpmnModule.forRoot(),
-		InfraModule,
 		SharedModule,
 		SourceModule,
 		StaticPageModule,
