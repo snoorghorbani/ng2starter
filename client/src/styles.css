@@ -112,6 +112,7 @@ body .mat-card mat-card-subtitle,
 .mat-checkbox-label,
 .mat-toolbar,
 .mat-tab-label,
+.mat-form-field-autofill-control,
 .mat-select,
 .mat-calendar,
 .mat-card-title,
@@ -121,11 +122,12 @@ body .mat-card mat-card-subtitle,
 .mat-slide-toggle-content,
 mat-list-item,
 mat-card,
+mat-select,
 mat-card-content,
 .mat-list-item,
 mat-radio-button,
-.mat-select,
 .mat-option,
+.mat-form-field-label,
 .mat-table,
 .mat-step-label,
 .mat-tab-body,
@@ -190,11 +192,13 @@ mat-sidenav-container mat-sidenav-content {
 
 mat-sidenav {
 	transition: padding-top 400ms;
-	width: 300px;
 }
 
 .comfortable mat-sidenav {
 	padding-top: 220px;
+}
+mat-sidenav {
+	width: 300px;
 }
 
 #fakeToolbar {
@@ -421,9 +425,15 @@ diagram-add dynamic-component-selector .mat-card {
 	box-sizing: border-box;
 	/* height: 100vh !important; */
 }
-mat-sidenav-content {
+#layout-sidnav > mat-sidenav-content {
 	transition: all 400ms;
 }
-.comfortable mat-sidenav-content {
-	padding-top: 220px;
+.comfortable #layout-sidnav > mat-sidenav-content {
+	padding-top: 33vh;
+}
+.compact #layout-sidnav > mat-sidenav-content {
+	padding-top: 128px;
+}
+.summary #layout-sidnav > mat-sidenav-content {
+	padding-top: 64px;
 }
