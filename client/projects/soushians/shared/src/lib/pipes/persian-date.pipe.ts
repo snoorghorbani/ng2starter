@@ -1,4 +1,4 @@
-import { PipeTransform, Pipe } from '@angular/core';
+import { PipeTransform, Pipe } from "@angular/core";
 
 interface PersianDateExtractor {
 	count: number;
@@ -6,18 +6,19 @@ interface PersianDateExtractor {
 	remaining: number;
 }
 
-@Pipe({ name: 'persianDate' })
+@Pipe({ name: "persianDate" })
 export class PersianDatePipe implements PipeTransform {
-	transform(value: Date | string, exponent: string): string {
-		if (!value) return '';
-		let date = new Date(value as string);
+	transform(value: string, exponent: string): string {
+		if (!value) return "";
+		let date = new Date(parseInt(value.replace("/Date(", "").replace(")/", ""), 10));
+		debugger;
 		var persianDate = _.date.georgian.to.persian(date.getFullYear(), date.getMonth() + 1, date.getDate());
 
 		return [
-			parseInt(persianDate[0]).toLocaleString('fa-IR', { useGrouping: false }),
-			parseInt(persianDate[1]).toLocaleString('fa-IR', { useGrouping: false }),
-			parseInt(persianDate[2]).toLocaleString('fa-IR', { useGrouping: false })
-		].join('/');
+			parseInt(persianDate[0]).toLocaleString("fa-IR", { useGrouping: false }),
+			parseInt(persianDate[1]).toLocaleString("fa-IR", { useGrouping: false }),
+			parseInt(persianDate[2]).toLocaleString("fa-IR", { useGrouping: false })
+		].join("/");
 	}
 }
 
@@ -30,10 +31,10 @@ var _ = {
 		};
 
 		is.object = function(_var: any) {
-			return Object.prototype.toString.call(_var) === '[object Object]';
+			return Object.prototype.toString.call(_var) === "[object Object]";
 		};
 		is.nodeList = function(obj: any) {
-			if (_.is.not.ie()) return Object.prototype.toString.call(obj) === '[object NodeList]';
+			if (_.is.not.ie()) return Object.prototype.toString.call(obj) === "[object NodeList]";
 			else
 				return (
 					obj.length !== undefined &&
@@ -42,33 +43,33 @@ var _ = {
 				);
 		};
 		is.element = function(obj: any) {
-			return Object.prototype.toString.call(obj).search('Element') > -1;
+			return Object.prototype.toString.call(obj).search("Element") > -1;
 			//return !!Object.prototype.toString.call(_var).toLowerCase().search('element');;
 		};
 		is.HTMLCollection = function(obj: any) {
-			return Object.prototype.toString.call(obj) === '[object HTMLCollection]';
+			return Object.prototype.toString.call(obj) === "[object HTMLCollection]";
 		};
 		is.array = function(_var: any) {
-			return Object.prototype.toString.call(_var) === '[object Array]';
+			return Object.prototype.toString.call(_var) === "[object Array]";
 		};
 		is.number = function(_var: any) {
-			return Object.prototype.toString.call(_var) === '[object Number]';
+			return Object.prototype.toString.call(_var) === "[object Number]";
 		};
-		is['function'] = function(_var: any) {
-			return Object.prototype.toString.call(_var) === '[object Function]';
+		is["function"] = function(_var: any) {
+			return Object.prototype.toString.call(_var) === "[object Function]";
 		};
 		is.string = function(_var: any) {
-			return Object.prototype.toString.call(_var) === '[object String]'; //&& ((isEmpty));
+			return Object.prototype.toString.call(_var) === "[object String]"; //&& ((isEmpty));
 		};
 		is.undefined = function(_var: any) {
-			return Object.prototype.toString.call(_var) === '[object Undefined]';
+			return Object.prototype.toString.call(_var) === "[object Undefined]";
 		};
 		is.event = function(_var: any) {
-			return Object.prototype.toString.call(_var).toLowerCase().search('event') > -1;
+			return Object.prototype.toString.call(_var).toLowerCase().search("event") > -1;
 		};
 		is.defined = function(_var: any) {
 			//return Object.prototype.toString.call(_var) !== '[object Undefined]' && Object.prototype.toString.call(_var) !== '[object Null]' && Object !== '';
-			return _var !== undefined && _var !== null && _var !== '';
+			return _var !== undefined && _var !== null && _var !== "";
 		};
 		is.json = function() {};
 		is.error = function() {};
@@ -89,7 +90,7 @@ var _ = {
 		is.truthy = function() {};
 		is.scalar = function(_var: any) {
 			//TODO : improve
-			return is.defined(_var) && is.not.array(_var) && is.not.object(_var) && is.not['function'](_var);
+			return is.defined(_var) && is.not.array(_var) && is.not.object(_var) && is.not["function"](_var);
 		};
 		is.prototypeProp = function(obj: any, prop: any) {
 			return obj[prop] && !obj.hasOwnProperty(prop);
@@ -107,11 +108,11 @@ var _ = {
 			return _.is.equal(_.partial(fo, _.report.skeleton(so)), so);
 		};
 		is.contain = function(str: any, searchStr: any) {
-			var reg = _.is.regex(searchStr) ? searchStr : new RegExp(searchStr, 'g');
+			var reg = _.is.regex(searchStr) ? searchStr : new RegExp(searchStr, "g");
 			return str.match(reg) && str.match(reg).length > 0;
 		};
 		is.regex = function(r: any) {
-			return r.constructor.name === 'RegExp';
+			return r.constructor.name === "RegExp";
 		};
 		is.same = function(fv: any, sv: any) {
 			//if (!fv) that.warn('equal function :' + fv + ' is Not Object');
@@ -177,7 +178,7 @@ var _ = {
 
 		var insertZero = function(i: any) {
 			i = i.toString();
-			return i.length == 1 ? '0' + i : i;
+			return i.length == 1 ? "0" + i : i;
 		};
 
 		date.persian.to.julian = function(year: any, month: any, day: any) {

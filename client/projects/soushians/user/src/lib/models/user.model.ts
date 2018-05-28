@@ -15,4 +15,5 @@ export class UserModel {
 	// UserType: string;
 	Roles: string[];
 	Groups: string[];
+	constructor() {}
 }

@@ -13,6 +13,7 @@ import { AddFormComponent } from "../../add/add-form";
 	templateUrl: "./edit-form.component.html"
 })
 export class EditFormComponent extends AddFormComponent {
+	@Input() schema: any;
 	emit() {
 		if (!this.formGroup.valid) return;
 		return this.submited.emit(this.formGroup.value);

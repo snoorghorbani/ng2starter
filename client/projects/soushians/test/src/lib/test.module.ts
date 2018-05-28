@@ -9,7 +9,6 @@ import { NgsLayoutModule } from "@soushians/layout";
 import { SharedModule } from "@soushians/shared";
 import { SourceModule } from "@soushians/source";
 import { NgsUserModule } from "@soushians/user";
-import { NgsSocketModule } from "@soushians/socket";
 
 @NgModule({
 	imports: [
@@ -20,8 +19,7 @@ import { NgsSocketModule } from "@soushians/socket";
 		NgsLayoutModule,
 		SharedModule,
 		SourceModule,
-		NgsUserModule,
-		NgsSocketModule.forRoot()
+		NgsUserModule
 	],
 	declarations: [ TestComponent ],
 	exports: [ TestComponent ]
