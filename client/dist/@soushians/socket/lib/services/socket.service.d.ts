@@ -5,7 +5,7 @@ import { SocketConfigurationService } from "./socket-configuration.service";
 export declare class SocketService {
     private configService;
     private store;
-    socket: SocketIOClient.Socket;
+    socket: any;
     uri: string;
     constructor(configService: SocketConfigurationService, store: Store<AppState>);
     /**

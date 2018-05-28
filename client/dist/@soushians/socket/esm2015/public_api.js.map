@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "public_api.js",
+  "sources": [
+    "ng://@soushians/socket/projects/soushians/socket/src/public_api.ts"
+  ],
+  "sourcesContent": [
+    "/*\n * Public API Surface of socket\n */\n\nexport * from \"./lib\";\n\n"
+  ],
+  "names": [],
+  "mappings": ";;;;;;;AAIA,kMAAc,OAAO,CAAC"
+}
