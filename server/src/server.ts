@@ -14,6 +14,8 @@ import * as mongoose from "mongoose";
 import * as passport from "passport";
 import * as cors from "cors";
 import expressValidator = require("express-validator");
+debugger;
+
 const MongoStore = mongo(session);
 
 /**
@@ -29,6 +31,8 @@ dotenv.config({ path: ".env" });
 import "./models/form.model";
 import "./models/bpmn.model";
 
+// import * as socketController from "./controllers/socket.controller";
+import { SocketMiddleware } from "./controllers/socket.controller";
 /**
  * Controllers (route handlers).
  */
@@ -48,11 +52,14 @@ import * as sourceController from "./controllers/source.controller";
  * API keys and Passport configuration.
  */
 import * as passportConfig from "./config/passport";
+import { EXDEV } from "constants";
+import { IncomingMessage } from "http";
 
 /**
  * Create Express server.
  */
 const app: express.Application = express();
+
 /**
  * Connect to MongoDB.
  */
@@ -84,15 +91,16 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+const sessionStore = new MongoStore({
+	url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
+	autoReconnect: true
+});
 app.use(
 	session({
 		resave: true,
 		saveUninitialized: true,
 		secret: process.env.SESSION_SECRET,
-		store: new MongoStore({
-			url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
-			autoReconnect: true
-		})
+		store: sessionStore
 	})
 );
 // app.use(cookieSession({
@@ -140,6 +148,7 @@ app.use("/api/fake", fakeController.router);
 app.use("/api/data", dataController.router);
 app.use("/api/event", eventController.router);
 app.use("/api/source", sourceController.router);
+// app.use("/api/socket", socketController.router);
 
 // app.get("/login", userController.getLogin);
 // app.post("/login", userController.postLogin);
@@ -164,10 +173,12 @@ app.get("/account/unlink/:provider", passportConfig.isAuthenticated, userControl
  */
 app.use(errorHandler());
 
-app.listen(app.get("port"), () => {
+const server = app.listen(app.get("port"), () => {
 	console.log("  App is running at http://localhost:%d in %s mode", app.get("port"), app.get("env"));
 	console.log("  Press CTRL-C to stop\n");
 	sourceController.sourceJob();
 });
+
+SocketMiddleware.init(server, sessionStore, passport);
 
 module.exports = app;

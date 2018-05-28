@@ -16,6 +16,7 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const cors = require("cors");
 const expressValidator = require("express-validator");
+debugger;
 const MongoStore = mongo(session);
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -27,6 +28,8 @@ dotenv.config({ path: ".env" });
  */
 require("./models/form.model");
 require("./models/bpmn.model");
+// import * as socketController from "./controllers/socket.controller";
+const socket_controller_1 = require("./controllers/socket.controller");
 /**
  * Controllers (route handlers).
  */
@@ -75,14 +78,15 @@ const corsOptions = {
     credentials: true
 };
 app.use(cors(corsOptions));
+const sessionStore = new MongoStore({
+    url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
+    autoReconnect: true
+});
 app.use(session({
     resave: true,
     saveUninitialized: true,
     secret: process.env.SESSION_SECRET,
-    store: new MongoStore({
-        url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
-        autoReconnect: true
-    })
+    store: sessionStore
 }));
 // app.use(cookieSession({
 //   name: "session",
@@ -126,6 +130,7 @@ app.use("/api/fake", fakeController.router);
 app.use("/api/data", dataController.router);
 app.use("/api/event", eventController.router);
 app.use("/api/source", sourceController.router);
+// app.use("/api/socket", socketController.router);
 // app.get("/login", userController.getLogin);
 // app.post("/login", userController.postLogin);
 // app.get("/logout", userController.logout);
@@ -145,10 +150,11 @@ app.get("/account/unlink/:provider", passportConfig.isAuthenticated, userControl
  * Error Handler. Provides full stack - remove for production
  */
 app.use(errorHandler());
-app.listen(app.get("port"), () => {
+const server = app.listen(app.get("port"), () => {
     console.log("  App is running at http://localhost:%d in %s mode", app.get("port"), app.get("env"));
     console.log("  Press CTRL-C to stop\n");
     sourceController.sourceJob();
 });
+socket_controller_1.SocketMiddleware.init(server, sessionStore, passport);
 module.exports = app;
 //# sourceMappingURL=server.js.map

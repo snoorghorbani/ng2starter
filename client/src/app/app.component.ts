@@ -10,6 +10,7 @@ import { ConfigModel, getAppConfig } from "@soushians/config";
 import { ChangeToolbatToComfortableModeAction } from "@soushians/layout";
 
 import { State } from "./app.reducers";
+import { SocketService } from "@soushians/socket";
 
 @Component({
 	selector: "app-root",
@@ -19,7 +20,7 @@ import { State } from "./app.reducers";
 export class AppComponent {
 	app_config: Observable<ConfigModel<any>>;
 
-	constructor(private store: Store<State>, private router: Router) {
+	constructor(private store: Store<State>, private router: Router, private socketService: SocketService) {
 		this.app_config = this.store.select(getAppConfig);
 
 		setTimeout(() => {
