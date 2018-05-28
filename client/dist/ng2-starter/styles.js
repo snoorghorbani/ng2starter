@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* #region order */\r\n.policy-compare-card .mat-drawer-backdrop.mat-drawer-shown {\r\n\tbackground-color: transparent !important;\r\n}\r\n.policy-compare-card mat-sidenav-content {\r\n\ttransition: -webkit-filter 0.5s;\r\n\ttransition: filter 0.5s;\r\n\ttransition: filter 0.5s, -webkit-filter 0.5s;\r\n\t-webkit-filter: blur(0px) !important;\r\n\t        filter: blur(0px) !important;\r\n}\r\n.policy-compare-card .mat-drawer-transition.mat-drawer-opened mat-sidenav-content {\r\n\t-webkit-filter: blur(2px) !important;\r\n\t        filter: blur(2px) !important;\r\n}\r\n/* #endregion */\r\n.review-component figure.mat-figure {\r\n\tjustify-content: right !important;\r\n\tpadding: 10px;\r\n\tbox-sizing: border-box;\r\n}\r\n.drop-zone {\r\n\tborder-radius: 0 !important;\r\n\tborder: 1px solid #ddd !important;\r\n\ttext-align: center;\r\n\tfont-size: smaller;\r\n\t/* margin: 0 17.5px 0 17.5px; */\r\n\tbackground: #f5f5f5;\r\n\tcolor: #333 !important;\r\n}\r\n.drop-zone * {\r\n\tcolor: #333 !important;\r\n}\r\n"
+module.exports = "\n"
 
 /***/ }),
 
@@ -580,8 +580,8 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\OnlineInsurance\client\src\styles.css */"./src/styles.css");
-module.exports = __webpack_require__(/*! E:\OnlineInsurance\client\src\custom.css */"./src/custom.css");
+__webpack_require__(/*! E:\@ng2-starter\starter\client\src\styles.css */"./src/styles.css");
+module.exports = __webpack_require__(/*! E:\@ng2-starter\starter\client\src\custom.css */"./src/custom.css");
 
 
 /***/ })
