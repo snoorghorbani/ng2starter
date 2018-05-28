@@ -45,8 +45,8 @@
         "dist/@soushians/source"
       ],
       "@soushians/socket": [
-        // "dist/@soushians/socket",
-        "projects/soushians/socket/src/public_api"
+        "dist/@soushians/socket",
+        // "projects/soushians/socket/src/public_api"
       ],
       "@soushians/test": [
         "dist/soushians/test"

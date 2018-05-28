@@ -11,11 +11,6 @@ import { SignInActionTypes } from "@soushians/authentication";
 import { UserService } from "../services/user.service";
 import { GetProfile, GetProfileSucceed } from "../profile-view/profile-view.actions";
 var UserEffects = /** @class */ (function () {
-    /**
-     * @param {?} actions$
-     * @param {?} router
-     * @param {?} service
-     */
     function UserEffects(actions$, router, service) {
         this.actions$ = actions$;
         this.router = router;
@@ -28,26 +23,26 @@ var UserEffects = /** @class */ (function () {
             return new GetProfile();
         }));
     }
+    UserEffects.decorators = [
+        { type: Injectable },
+    ];
+    /** @nocollapse */
+    UserEffects.ctorParameters = function () { return [
+        { type: Actions },
+        { type: Router },
+        { type: UserService }
+    ]; };
+    tslib_1.__decorate([
+        Effect(),
+        tslib_1.__metadata("design:type", Object)
+    ], UserEffects.prototype, "updateProfileInformation$", void 0);
+    tslib_1.__decorate([
+        Effect(),
+        tslib_1.__metadata("design:type", Object)
+    ], UserEffects.prototype, "getProfileInformation$", void 0);
     return UserEffects;
 }());
 export { UserEffects };
-UserEffects.decorators = [
-    { type: Injectable },
-];
-/** @nocollapse */
-UserEffects.ctorParameters = function () { return [
-    { type: Actions },
-    { type: Router },
-    { type: UserService }
-]; };
-tslib_1.__decorate([
-    Effect(),
-    tslib_1.__metadata("design:type", Object)
-], UserEffects.prototype, "updateProfileInformation$", void 0);
-tslib_1.__decorate([
-    Effect(),
-    tslib_1.__metadata("design:type", Object)
-], UserEffects.prototype, "getProfileInformation$", void 0);
 function UserEffects_tsickle_Closure_declarations() {
     /** @type {?} */
     UserEffects.prototype.updateProfileInformation$;
@@ -60,4 +55,5 @@ function UserEffects_tsickle_Closure_declarations() {
     /** @type {?} */
     UserEffects.prototype.service;
 }
-//# sourceMappingURL=feature.effects.js.map
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZmVhdHVyZS5lZmZlY3RzLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQHNvdXNoaWFucy91c2VyLyIsInNvdXJjZXMiOlsibGliL2ZlYXR1cmUvZmVhdHVyZS5lZmZlY3RzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUEsT0FBTyxFQUFFLFVBQVUsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUMzQyxPQUFPLEVBQUUsTUFBTSxFQUFFLE1BQU0saUJBQWlCLENBQUM7QUFJekMsT0FBTyxFQUFFLE9BQU8sRUFBRSxNQUFNLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFDaEQsT0FBTyxFQUFFLEdBQUcsRUFBRSxNQUFNLGdCQUFnQixDQUFDO0FBRXJDLE9BQU8sRUFBRSxpQkFBaUIsRUFBRSxNQUFNLDJCQUEyQixDQUFDO0FBRTlELE9BQU8sRUFBRSxXQUFXLEVBQUUsTUFBTSwwQkFBMEIsQ0FBQztBQUN2RCxPQUFPLEVBQUUsVUFBVSxFQUFFLGlCQUFpQixFQUFFLE1BQU0sc0NBQXNDLENBQUM7O0lBSXBGLHFCQUFvQixRQUFzQixFQUFVLE1BQWMsRUFBVSxPQUFvQjtRQUE1RSxhQUFRLEdBQVIsUUFBUSxDQUFjO1FBQVUsV0FBTSxHQUFOLE1BQU0sQ0FBUTtRQUFVLFlBQU8sR0FBUCxPQUFPLENBQWE7eUNBR3BFLElBQUksQ0FBQyxRQUFRLENBQUMsTUFBTSxDQUFDLGlCQUFpQixDQUFDLGNBQWMsQ0FBQyxDQUFDLElBQUksQ0FDdEYsR0FBRyxDQUFDLFVBQUEsTUFBTSxJQUFJLE9BQUEsTUFBTSxDQUFDLE9BQU8sRUFBZCxDQUFjLENBQUMsRUFDN0IsR0FBRyxDQUFDLFVBQUEsSUFBSTtZQUNQLFFBQVEsQ0FBQztZQUNULE1BQU0sQ0FBQyxJQUFJLGlCQUFpQixDQUFDLElBQUksQ0FBQyxDQUFDO1NBQ25DLENBQUMsQ0FDRjtzQ0FFd0IsSUFBSSxDQUFDLFFBQVEsQ0FBQyxNQUFNLENBQUMsaUJBQWlCLENBQUMsY0FBYyxDQUFDLENBQUMsSUFBSSxDQUNuRixHQUFHLENBQUM7WUFDSCxNQUFNLENBQUMsSUFBSSxVQUFVLEVBQUUsQ0FBQztTQUN4QixDQUFDLENBQ0Y7S0FmbUc7O2dCQUZwRyxVQUFVOzs7O2dCQVJGLE9BQU87Z0JBSlAsTUFBTTtnQkFTTixXQUFXOzs7UUFPbEIsTUFBTSxFQUFFOzs7O1FBUVIsTUFBTSxFQUFFOzs7c0JBekJWOztTQWNhLFdBQVciLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJbmplY3RhYmxlIH0gZnJvbSBcIkBhbmd1bGFyL2NvcmVcIjtcclxuaW1wb3J0IHsgUm91dGVyIH0gZnJvbSBcIkBhbmd1bGFyL3JvdXRlclwiO1xyXG5pbXBvcnQgeyBPYnNlcnZhYmxlIH0gZnJvbSBcInJ4anMvT2JzZXJ2YWJsZVwiO1xyXG5pbXBvcnQgeyBvZiB9IGZyb20gXCJyeGpzL29ic2VydmFibGUvb2ZcIjtcclxuaW1wb3J0IHsgQWN0aW9uIH0gZnJvbSBcIkBuZ3J4L3N0b3JlXCI7XHJcbmltcG9ydCB7IEFjdGlvbnMsIEVmZmVjdCB9IGZyb20gXCJAbmdyeC9lZmZlY3RzXCI7XHJcbmltcG9ydCB7IG1hcCB9IGZyb20gXCJyeGpzL29wZXJhdG9yc1wiO1xyXG5cclxuaW1wb3J0IHsgU2lnbkluQWN0aW9uVHlwZXMgfSBmcm9tIFwiQHNvdXNoaWFucy9hdXRoZW50aWNhdGlvblwiO1xyXG5cclxuaW1wb3J0IHsgVXNlclNlcnZpY2UgfSBmcm9tIFwiLi4vc2VydmljZXMvdXNlci5zZXJ2aWNlXCI7XHJcbmltcG9ydCB7IEdldFByb2ZpbGUsIEdldFByb2ZpbGVTdWNjZWVkIH0gZnJvbSBcIi4uL3Byb2ZpbGUtdmlldy9wcm9maWxlLXZpZXcuYWN0aW9uc1wiO1xyXG5cclxuQEluamVjdGFibGUoKVxyXG5leHBvcnQgY2xhc3MgVXNlckVmZmVjdHMge1xyXG5cdGNvbnN0cnVjdG9yKHByaXZhdGUgYWN0aW9ucyQ6IEFjdGlvbnM8YW55PiwgcHJpdmF0ZSByb3V0ZXI6IFJvdXRlciwgcHJpdmF0ZSBzZXJ2aWNlOiBVc2VyU2VydmljZSkge31cclxuXHJcblx0QEVmZmVjdCgpXHJcblx0dXBkYXRlUHJvZmlsZUluZm9ybWF0aW9uJCA9IHRoaXMuYWN0aW9ucyQub2ZUeXBlKFNpZ25JbkFjdGlvblR5cGVzLlNJR05JTl9TVUNDRUVEKS5waXBlKFxyXG5cdFx0bWFwKGFjdGlvbiA9PiBhY3Rpb24ucGF5bG9hZCksXHJcblx0XHRtYXAodXNlciA9PiB7XHJcblx0XHRcdGRlYnVnZ2VyO1xyXG5cdFx0XHRyZXR1cm4gbmV3IEdldFByb2ZpbGVTdWNjZWVkKHVzZXIpO1xyXG5cdFx0fSlcclxuXHQpO1xyXG5cdEBFZmZlY3QoKVxyXG5cdGdldFByb2ZpbGVJbmZvcm1hdGlvbiQgPSB0aGlzLmFjdGlvbnMkLm9mVHlwZShTaWduSW5BY3Rpb25UeXBlcy5TSUdOSU5fU1VDQ0VFRCkucGlwZShcclxuXHRcdG1hcCgoKSA9PiB7XHJcblx0XHRcdHJldHVybiBuZXcgR2V0UHJvZmlsZSgpO1xyXG5cdFx0fSlcclxuXHQpO1xyXG59XHJcbiJdfQ==
