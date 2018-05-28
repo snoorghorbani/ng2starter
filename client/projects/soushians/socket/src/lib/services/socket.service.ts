@@ -32,6 +32,7 @@ export class SocketService {
 			)
 			.subscribe(() => {
 				this.socket.on("DISPATCH_ACTION", data => {
+					debugger;
 					this.store.dispatch({
 						type: data.type,
 						payload: data.payload
