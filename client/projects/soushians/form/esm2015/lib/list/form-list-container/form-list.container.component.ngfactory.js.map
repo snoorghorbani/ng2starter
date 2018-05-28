@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "form-list.container.component.ngfactory.js",
+  "sourceRoot": "",
+  "sources": [
+    "ng://@soushians/form/projects/soushians/form/src/lib/list/form-list-container/form-list.container.component.ngfactory.ts"
+  ],
+  "names": [],
+  "mappings": "",
+  "sourcesContent": [
+    "import * as i0 from '@angular/core';\ni0.ComponentFactory;\n"
+  ]
+}

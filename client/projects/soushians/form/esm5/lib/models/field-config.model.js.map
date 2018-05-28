@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "field-config.model.js",
+  "sources": [
+    "ng://@soushians/form/projects/soushians/form/src/lib/models/field-config.model.ts"
+  ],
+  "sourcesContent": [
+    "import { Validator } from \"./form-field-validator.model\";\r\n\r\nexport class FieldConfig {\r\n\tid: number;\r\n\ttype: \"group\" | \"array\" | \"control\";\r\n\tname: string;\r\n\tsubtype: string;\r\n\tdisabled?: boolean;\r\n\ttitle: string;\r\n\tparentType?: \"array\" | \"group\";\r\n\tformGroupPath?: string;\r\n\tpath?: string;\r\n\tinputType: \"select\" | \"text\" | \"number\" | \"email\" | \"color\" | \"checkbox\" | \"table\";\r\n\tvalue?: any;\r\n\torder?: number;\r\n\twidth?: number;\r\n\toptions: {\r\n\t\t[key: string]: string | number | boolean;\r\n\t}[];\r\n\tdataEndpoint?: string;\r\n\toptionsEndpoint: string;\r\n\tfields?: FieldConfig[];\r\n\tvalidator: Validator;\r\n\tconstructor(type: \"group\" | \"array\" | \"control\") {\r\n\t\tthis.type = type;\r\n\t\tif (type != \"control\") this.fields = [];\r\n\t\tthis.width = 3;\r\n\t\tthis.validator = new Validator();\r\n\t}\r\n}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,SAAS,EAAE,MAAM,8BAA8B,CAAC;AAEzD,MAAM;;;;IAqBL,YAAY,IAAmC;QAC9C,IAAI,CAAC,IAAI,GAAG,IAAI,CAAC;QACjB,EAAE,CAAC,CAAC,IAAI,IAAI,SAAS,CAAC;YAAC,IAAI,CAAC,MAAM,GAAG,EAAE,CAAC;QACxC,IAAI,CAAC,KAAK,GAAG,CAAC,CAAC;QACf,IAAI,CAAC,SAAS,GAAG,IAAI,SAAS,EAAE,CAAC;KACjC;CACD"
+}

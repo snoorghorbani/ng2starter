@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "form-array.component.ngfactory.js",
+  "sourceRoot": "",
+  "sources": [
+    "ng://@soushians/form/projects/soushians/form/src/lib/add/form-array/form-array.component.ngfactory.ts"
+  ],
+  "names": [],
+  "mappings": "",
+  "sourcesContent": [
+    "import * as i0 from '@angular/core';\ni0.ComponentFactory;\n"
+  ]
+}

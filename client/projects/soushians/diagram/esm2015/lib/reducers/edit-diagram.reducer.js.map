@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "edit-diagram.reducer.js",
+  "sources": [
+    "ng://@soushians/diagram/projects/soushians/diagram/src/lib/reducers/edit-diagram.reducer.ts"
+  ],
+  "sourcesContent": [
+    "import { responseStatusTypes } from \"@soushians/shared\";\r\n\r\nimport { EditDiagramActionTypes, EditDiagramActions } from \"../actions\";\r\nimport { EditDiagramApiModel } from \"../models\";\r\n\r\nexport interface State {\r\n\tstatus: responseStatusTypes;\r\n\tdata: EditDiagramApiModel.Response;\r\n}\r\nexport const initialState: State = {\r\n\tstatus: \"pristine\",\r\n\tdata: new EditDiagramApiModel.Response()\r\n};\r\n\r\nexport function Reducer(state = initialState, action: EditDiagramActions): State {\r\n\tswitch (action.type) {\r\n\t\tcase EditDiagramActionTypes.EDIT_DIAGRAM: {\r\n\t\t\treturn {\r\n\t\t\t\t...state,\r\n\t\t\t\tstatus: \"dirty\",\r\n\t\t\t\tdata: new EditDiagramApiModel.Response()\r\n\t\t\t};\r\n\t\t}\r\n\t\tcase EditDiagramActionTypes.EDIT_DIAGRAM_START: {\r\n\t\t\treturn {\r\n\t\t\t\t...state,\r\n\t\t\t\tstatus: \"pending\",\r\n\t\t\t\tdata: new EditDiagramApiModel.Response()\r\n\t\t\t};\r\n\t\t}\r\n\t\tcase EditDiagramActionTypes.EDIT_DIAGRAM_SUCCEED: {\r\n\t\t\treturn {\r\n\t\t\t\t...state,\r\n\t\t\t\tstatus: \"succeed\"\r\n\t\t\t};\r\n\t\t}\r\n\t\tcase EditDiagramActionTypes.EDIT_DIAGRAM_FAILED: {\r\n\t\t\treturn {\r\n\t\t\t\t...state,\r\n\t\t\t\tstatus: \"failed\"\r\n\t\t\t};\r\n\t\t}\r\n\r\n\t\tdefault: {\r\n\t\t\treturn state;\r\n\t\t}\r\n\t}\r\n}\r\n\r\nexport const EditDiagramInfo = (state: State) => state.data;\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAEA,OAAO,EAAE,sBAAsB,EAAsB,MAAM,YAAY,CAAC;AACxE,OAAO,EAAE,mBAAmB,EAAE,MAAM,WAAW,CAAC;;;;;;;;;;;AAMhD,MAAM,CAAC,uBAAM,YAAY,GAAU;IAClC,MAAM,EAAE,UAAU;IAClB,IAAI,EAAE,IAAI,mBAAmB,CAAC,QAAQ,EAAE;CACxC,CAAC;;;;;;AAEF,MAAM,kBAAkB,KAAK,GAAG,YAAY,EAAE,MAA0B;IACvE,MAAM,CAAC,CAAC,MAAM,CAAC,IAAI,CAAC,CAAC,CAAC;QACrB,KAAK,sBAAsB,CAAC,YAAY,EAAE,CAAC;YAC1C,MAAM,mBACF,KAAK,IACR,MAAM,EAAE,OAAO,EACf,IAAI,EAAE,IAAI,mBAAmB,CAAC,QAAQ,EAAE,IACvC;SACF;QACD,KAAK,sBAAsB,CAAC,kBAAkB,EAAE,CAAC;YAChD,MAAM,mBACF,KAAK,IACR,MAAM,EAAE,SAAS,EACjB,IAAI,EAAE,IAAI,mBAAmB,CAAC,QAAQ,EAAE,IACvC;SACF;QACD,KAAK,sBAAsB,CAAC,oBAAoB,EAAE,CAAC;YAClD,MAAM,mBACF,KAAK,IACR,MAAM,EAAE,SAAS,IAChB;SACF;QACD,KAAK,sBAAsB,CAAC,mBAAmB,EAAE,CAAC;YACjD,MAAM,mBACF,KAAK,IACR,MAAM,EAAE,QAAQ,IACf;SACF;QAED,SAAS,CAAC;YACT,MAAM,CAAC,KAAK,CAAC;SACb;KACD;CACD;AAED,MAAM,CAAC,uBAAM,eAAe,GAAG,CAAC,KAAY,EAAE,EAAE,CAAC,KAAK,CAAC,IAAI,CAAC"
+}

@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "authentication-container.component.js",
+  "sources": [
+    "ng://@soushians/authentication/projects/soushians/authentication/src/lib/smart-components/authentication-container/authentication-container.component.ts"
+  ],
+  "sourcesContent": [
+    "import { Component } from \"@angular/core\";\r\n\r\n@Component({\r\n\ttemplate: `\r\n          <router-outlet></router-outlet>\r\n        `\r\n})\r\nexport class AuthenticationContainerComponent {}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,SAAS,EAAE,MAAM,eAAe,CAAC;AAO1C,MAAM;;;YALL,SAAS,SAAC;gBACV,QAAQ,EAAE;;SAEF;aACR"
+}

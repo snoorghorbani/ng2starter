@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sources": [
+    "ng://@soushians/form/projects/soushians/form/src/lib/add/add-form-container/index.ts"
+  ],
+  "sourcesContent": [
+    "export * from \"./add-form-container.component\";\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,0CAAc,gCAAgC,CAAC"
+}

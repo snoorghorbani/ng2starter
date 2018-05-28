@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "match.validator.js",
+  "sources": [
+    "ng://@soushians/shared/projects/soushians/shared/src/lib/validators/match.validator.ts"
+  ],
+  "sourcesContent": [
+    "import { ValidatorFn, AbstractControl } from \"@angular/forms\";\r\n\r\nexport function MatchValidator(destination: string): ValidatorFn {\r\n    return (control: AbstractControl): { [key: string]: any } => {\r\n        if (!control.root.value) return;\r\n        let destinationValue = control.root.value[destination];\r\n\r\n        return (destinationValue == control.value)\r\n            ? null\r\n            : { key: \"don't matched\" };\r\n    };\r\n}"
+  ],
+  "names": [],
+  "mappings": ";;;;;;;;AAEA,MAAM,yBAAyB,WAAmB;IAC9C,MAAM,CAAC,CAAC,OAAwB,EAA0B,EAAE;QACxD,EAAE,CAAC,CAAC,CAAC,OAAO,CAAC,IAAI,CAAC,KAAK,CAAC;YAAC,MAAM,CAAC;QAChC,qBAAI,gBAAgB,GAAG,OAAO,CAAC,IAAI,CAAC,KAAK,CAAC,WAAW,CAAC,CAAC;QAEvD,MAAM,CAAC,CAAC,gBAAgB,IAAI,OAAO,CAAC,KAAK,CAAC;YACtC,CAAC,CAAC,IAAI;YACN,CAAC,CAAC,EAAE,GAAG,EAAE,eAAe,EAAE,CAAC;KAClC,CAAC;CACL"
+}

@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "captcha.actions.js",
+  "sources": [
+    "ng://@soushians/authentication/projects/soushians/authentication/src/lib/actions/captcha.actions.ts"
+  ],
+  "sourcesContent": [
+    "import { Action } from '@ngrx/store';\r\n\r\nimport { TokenModel } from '../models';\r\n\r\nexport const NEW_CAPTCHA = '[captcha] new captcha';\r\nexport const TOKEN_REQUESTED = '[captcha] token_requested';\r\nexport const TOKEN_RECEIVED = '[captcha] token_received';\r\nexport const CAPTCHA_IMAGE_REQUESTED = '[captcha] captcha_image_requested';\r\nexport const CAPTCHA_IMAGE_LOADED = '[captcha] captcha_image_loaded';\r\nexport const CAPTCHA_ENTERED = '[captcha] CAPTCHA_ENTERED';\r\nexport const CLEAR_CAPTCHA = '[captcha] CLEAR_CAPTCHA';\r\n\r\nexport class NewCaptcha implements Action {\r\n        readonly type = NEW_CAPTCHA;\r\n}\r\nexport class TokenRequested implements Action {\r\n        readonly type = TOKEN_REQUESTED;\r\n}\r\nexport class TokenReceived implements Action {\r\n        readonly type = TOKEN_RECEIVED;\r\n        constructor(public payload: TokenModel) { }\r\n}\r\nexport class CaptchaImageRequested implements Action {\r\n        readonly type = CAPTCHA_IMAGE_REQUESTED;\r\n}\r\nexport class CaptchaImageLoaded implements Action {\r\n        readonly type = CAPTCHA_IMAGE_LOADED;\r\n}\r\nexport class CaptchaEntered implements Action {\r\n        readonly type = CAPTCHA_ENTERED;\r\n        constructor(public payload: string) { }\r\n}\r\nexport class ClearCaptcha implements Action {\r\n        readonly type = CLEAR_CAPTCHA;\r\n}\r\nexport type CaptchaAction =\r\n        | NewCaptcha\r\n        | TokenRequested\r\n        | TokenReceived\r\n        | CaptchaImageRequested\r\n        | CaptchaImageLoaded\r\n        | CaptchaEntered\r\n        | ClearCaptcha;"
+  ],
+  "names": [],
+  "mappings": ";;;;AAIA,MAAM,CAAC,uBAAM,WAAW,GAAG,uBAAuB,CAAC;AACnD,MAAM,CAAC,uBAAM,eAAe,GAAG,2BAA2B,CAAC;AAC3D,MAAM,CAAC,uBAAM,cAAc,GAAG,0BAA0B,CAAC;AACzD,MAAM,CAAC,uBAAM,uBAAuB,GAAG,mCAAmC,CAAC;AAC3E,MAAM,CAAC,uBAAM,oBAAoB,GAAG,gCAAgC,CAAC;AACrE,MAAM,CAAC,uBAAM,eAAe,GAAG,2BAA2B,CAAC;AAC3D,MAAM,CAAC,uBAAM,aAAa,GAAG,yBAAyB,CAAC;AAEvD,MAAM;;oBACkB,WAAW;;CAClC;;;;;AACD,MAAM;;oBACkB,eAAe;;CACtC;;;;;AACD,MAAM;;;;IAEE,YAAmB,OAAmB;QAAnB,YAAO,GAAP,OAAO,CAAY;oBADtB,cAAc;KACa;CAClD;;;;;;;AACD,MAAM;;oBACkB,uBAAuB;;CAC9C;;;;;AACD,MAAM;;oBACkB,oBAAoB;;CAC3C;;;;;AACD,MAAM;;;;IAEE,YAAmB,OAAe;QAAf,YAAO,GAAP,OAAO,CAAQ;oBADlB,eAAe;KACQ;CAC9C;;;;;;;AACD,MAAM;;oBACkB,aAAa;;CACpC"
+}

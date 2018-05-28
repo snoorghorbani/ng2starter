@@ -1,12 +1,23 @@
 {
-	"name": "@soushians/form",
-	"version": "6.1.0",
-	"peerDependencies": {
-		"@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-		"@angular/core": "^6.0.0-rc.0 || ^6.0.0"
-	},
-	"dependencies": {
-		"@soushians/shared": "*",
-		"@soushians/config": "*"
-	}
+  "name": "@soushians/form",
+  "version": "6.1.0",
+  "peerDependencies": {
+    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+  },
+  "dependencies": {
+    "@soushians/shared": "*",
+    "@soushians/config": "*",
+    "tslib": "^1.9.0"
+  },
+  "main": "bundles/soushians-form.umd.js",
+  "module": "fesm5/soushians-form.js",
+  "es2015": "fesm2015/soushians-form.js",
+  "esm5": "esm5/soushians-form.js",
+  "esm2015": "esm2015/soushians-form.js",
+  "fesm5": "fesm5/soushians-form.js",
+  "fesm2015": "fesm2015/soushians-form.js",
+  "typings": "soushians-form.d.ts",
+  "metadata": "soushians-form.metadata.json",
+  "sideEffects": false
 }

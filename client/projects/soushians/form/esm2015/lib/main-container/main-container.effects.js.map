@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "main-container.effects.js",
+  "sources": [
+    "ng://@soushians/form/projects/soushians/form/src/lib/main-container/main-container.effects.ts"
+  ],
+  "sourcesContent": [
+    "import { Injectable } from \"@angular/core\";\r\nimport { Router } from \"@angular/router\";\r\nimport { Observable } from \"rxjs/Observable\";\r\nimport { of } from \"rxjs/observable/of\";\r\nimport \"rxjs/add/operator/map\";\r\nimport \"rxjs/add/operator/mergeMap\";\r\nimport { Action } from \"@ngrx/store\";\r\nimport { Actions, Effect } from \"@ngrx/effects\";\r\n\r\nimport { FormService } from \"../services/form.service\";\r\n\r\n@Injectable()\r\nexport class FormEffects {\r\n\tconstructor(private actions$: Actions<any>, private router: Router, private service: FormService) {}\r\n}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,eAAe,CAAC;AAC3C,OAAO,EAAE,MAAM,EAAE,MAAM,iBAAiB,CAAC;AAGzC,OAAO,uBAAuB,CAAC;AAC/B,OAAO,4BAA4B,CAAC;AAEpC,OAAO,EAAE,OAAO,EAAU,MAAM,eAAe,CAAC;AAEhD,OAAO,EAAE,WAAW,EAAE,MAAM,0BAA0B,CAAC;AAGvD,MAAM;;;;;;IACL,YAAoB,QAAsB,EAAU,MAAc,EAAU,OAAoB;QAA5E,aAAQ,GAAR,QAAQ,CAAc;QAAU,WAAM,GAAN,MAAM,CAAQ;QAAU,YAAO,GAAP,OAAO,CAAa;KAAI;;;YAFpG,UAAU;;;;YAJF,OAAO;YANP,MAAM;YAQN,WAAW"
+}

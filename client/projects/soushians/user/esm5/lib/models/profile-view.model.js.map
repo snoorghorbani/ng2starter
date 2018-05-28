@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "profile-view.model.js",
+  "sources": [
+    "ng://@soushians/user/projects/soushians/user/src/lib/models/profile-view.model.ts"
+  ],
+  "sourcesContent": [
+    "import { Injectable } from \"@angular/core\";\r\nimport { HttpRequestBaseModel } from \"@soushians/shared\";\r\nimport { FormGroup, FormControl, Validators } from \"@angular/forms\";\r\nimport { UserModel } from \"./user.model\";\r\n\r\nexport namespace ProfileViewModel {\r\n\texport class Request implements HttpRequestBaseModel<Request> {\r\n\t\tEmail: string;\r\n\r\n\t\tconstructor(initValue?: ProfileViewModel.Request) {\r\n\t\t\tObject.keys(initValue).forEach(key => (this[key] = initValue[key]));\r\n\t\t}\r\n\r\n\t\tgetRequestBody() {\r\n\t\t\treturn {};\r\n\t\t}\r\n\r\n\t\tstatic get formGroup() {\r\n\t\t\treturn new FormGroup({\r\n\t\t\t\tUsername: new FormControl(\"\", [ Validators.minLength(8), Validators.required ])\r\n\t\t\t});\r\n\t\t}\r\n\t}\r\n\r\n\texport class Response extends UserModel {\r\n\t\tconstructor() {\r\n\t\t\tsuper();\r\n\t\t}\r\n\t}\r\n}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAEA,OAAO,EAAE,SAAS,EAAE,WAAW,EAAE,UAAU,EAAE,MAAM,gBAAgB,CAAC;AACpE,OAAO,EAAE,SAAS,EAAE,MAAM,cAAc,CAAC;AAEzC,MAAM,KAAW,gBAAgB;AAAjC,WAAiB,gBAAgB;IAChC;;;;QAGC,YAAY,SAAoC;YAC/C,MAAM,CAAC,IAAI,CAAC,SAAS,CAAC,CAAC,OAAO,CAAC,GAAG,CAAC,EAAE,CAAC,CAAC,IAAI,CAAC,GAAG,CAAC,GAAG,SAAS,CAAC,GAAG,CAAC,CAAC,CAAC,CAAC;SACpE;;;;QAED,cAAc;YACb,MAAM,CAAC,EAAE,CAAC;SACV;;;;QAED,MAAM,KAAK,SAAS;YACnB,MAAM,CAAC,IAAI,SAAS,CAAC;gBACpB,QAAQ,EAAE,IAAI,WAAW,CAAC,EAAE,EAAE,CAAE,UAAU,CAAC,SAAS,CAAC,CAAC,CAAC,EAAE,UAAU,CAAC,QAAQ,CAAE,CAAC;aAC/E,CAAC,CAAC;SACH;KACD;IAhBY,wBAAO;;;;;IAkBpB,cAAsB,SAAQ,SAAS;QACtC;YACC,KAAK,EAAE,CAAC;SACR;KACD;IAJY,yBAAQ;GAnBL,gBAAgB,KAAhB,gBAAgB,QAwBhC"
+}

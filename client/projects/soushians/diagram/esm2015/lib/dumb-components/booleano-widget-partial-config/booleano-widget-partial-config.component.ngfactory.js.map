@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "booleano-widget-partial-config.component.ngfactory.js",
+  "sourceRoot": "",
+  "sources": [
+    "ng://@soushians/diagram/projects/soushians/diagram/src/lib/dumb-components/booleano-widget-partial-config/booleano-widget-partial-config.component.ngfactory.ts"
+  ],
+  "names": [],
+  "mappings": "",
+  "sourcesContent": [
+    "import * as i0 from '@angular/core';\ni0.ComponentFactory;\n"
+  ]
+}

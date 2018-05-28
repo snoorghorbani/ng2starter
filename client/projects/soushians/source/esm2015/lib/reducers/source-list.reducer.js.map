@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "source-list.reducer.js",
+  "sources": [
+    "ng://@soushians/source/projects/soushians/source/src/lib/reducers/source-list.reducer.ts"
+  ],
+  "sourcesContent": [
+    "import * as source from \"../actions/source.action\";\r\nimport { SourceModel, UpsertSourceApiModel } from \"../models\";\r\n\r\nexport interface State {\r\n\tdata: SourceModel[];\r\n}\r\n\r\nconst initialState: State = {\r\n\tdata: []\r\n};\r\n\r\nexport function Reducer(state = initialState, action: source.Actions): State {\r\n\tswitch (action.type) {\r\n\t\tcase source.SourceActionTypes.SOURCE_SUBMIT:\r\n\t\t\treturn {\r\n\t\t\t\t...state\r\n\t\t\t};\r\n\t\tcase source.SourceActionTypes.SOURCE_SUBMIT_SUCCEED:\r\n\t\t\treturn {\r\n\t\t\t\t...state\r\n\t\t\t};\r\n\t\tcase source.SourceActionTypes.SOURCE_SUBMIT_FAILED:\r\n\t\t\treturn {\r\n\t\t\t\t...state\r\n\t\t\t};\r\n\r\n\t\tdefault:\r\n\t\t\treturn state;\r\n\t}\r\n}\r\n\r\nexport const getSourceListData = (state: State) => state.data;\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,KAAK,MAAM,MAAM,0BAA0B,CAAC;;;;;;;;;WAQ5C,EAAE;AADT,uBAAM,YAAY,GAAU;IAC3B,IAAI,IAAI;CACR,CAAC;;;;;;AAEF,MAAM,kBAAkB,KAAK,GAAG,YAAY,EAAE,MAAsB;IACnE,MAAM,CAAC,CAAC,MAAM,CAAC,IAAI,CAAC,CAAC,CAAC;QACrB,KAAK,MAAM,CAAC,iBAAiB,CAAC,aAAa;YAC1C,MAAM,mBACF,KAAK,EACP;QACH,KAAK,MAAM,CAAC,iBAAiB,CAAC,qBAAqB;YAClD,MAAM,mBACF,KAAK,EACP;QACH,KAAK,MAAM,CAAC,iBAAiB,CAAC,oBAAoB;YACjD,MAAM,mBACF,KAAK,EACP;QAEH;YACC,MAAM,CAAC,KAAK,CAAC;KACd;CACD;AAED,MAAM,CAAC,uBAAM,iBAAiB,GAAG,CAAC,KAAY,EAAE,EAAE,CAAC,KAAK,CAAC,IAAI,CAAC"
+}

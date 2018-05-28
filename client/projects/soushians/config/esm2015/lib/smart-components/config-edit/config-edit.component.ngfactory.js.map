@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "config-edit.component.ngfactory.js",
+  "sourceRoot": "",
+  "sources": [
+    "ng://@soushians/config/projects/soushians/config/src/lib/smart-components/config-edit/config-edit.component.ngfactory.ts"
+  ],
+  "names": [],
+  "mappings": "",
+  "sourcesContent": [
+    "import * as i0 from '@angular/core';\ni0.ComponentFactory;\n"
+  ]
+}

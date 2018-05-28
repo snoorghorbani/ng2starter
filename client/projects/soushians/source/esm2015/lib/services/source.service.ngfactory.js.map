@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "source.service.ngfactory.js",
+  "sourceRoot": "",
+  "sources": [
+    "ng://@soushians/source/projects/soushians/source/src/lib/services/source.service.ngfactory.ts"
+  ],
+  "names": [],
+  "mappings": "",
+  "sourcesContent": [
+    "import * as i0 from '@angular/core';\ni0.ComponentFactory;\n"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sources": [
+    "ng://@soushians/user/projects/soushians/user/src/lib/dashboard/dashboard-links/index.ts"
+  ],
+  "sourcesContent": [
+    "export * from './dashboard-links.component'"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,wCAAc,6BAA6B,CAAA"
+}

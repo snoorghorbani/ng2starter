@@ -2,7 +2,7 @@
   "version": 3,
   "file": "index.js",
   "sources": [
-    "ng://@soushians/form/ng:/@soushians/form/projects/soushians/form/src/lib/add/form-group/index.ts"
+    "ng://@soushians/form/ng:/@soushians/form/ng:/@soushians/form/projects/soushians/form/src/lib/add/form-group/index.ts"
   ],
   "sourcesContent": [
     "export * from \"./form-group.component\";\r\n"

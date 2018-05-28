@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "source-module-container.component.js",
+  "sources": [
+    "ng://@soushians/source/projects/soushians/source/src/lib/smart-components/source-module-container/source-module-container.component.ts"
+  ],
+  "sourcesContent": [
+    "import { Component, OnInit } from \"@angular/core\";\r\nimport { Observable } from \"rxjs/Observable\";\r\nimport { Store } from \"@ngrx/store\";\r\nimport { SourceService } from \"../../services/source.service\";\r\n\r\n@Component({\r\n\tselector: \"source-module-container\",\r\n\ttemplate: `<div fxLayoutAlign=\"\" fxflex=\"100\" fxLayout=\"column\">\r\n    <router-outlet></router-outlet>\r\n</div>\r\n`\r\n})\r\nexport class SourceModuleContainerComponent implements OnInit {\r\n\tconstructor(private service: SourceService) {}\r\n\r\n\tngOnInit() {}\r\n}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,SAAS,EAAU,MAAM,eAAe,CAAC;AAGlD,OAAO,EAAE,aAAa,EAAE,MAAM,+BAA+B,CAAC;AAS9D,MAAM;;;;IACL,YAAoB,OAAsB;QAAtB,YAAO,GAAP,OAAO,CAAe;KAAI;;;;IAE9C,QAAQ,MAAK;;;YAVb,SAAS,SAAC;gBACV,QAAQ,EAAE,yBAAyB;gBACnC,QAAQ,EAAE;;;CAGV;aACA;;;;YARQ,aAAa"
+}

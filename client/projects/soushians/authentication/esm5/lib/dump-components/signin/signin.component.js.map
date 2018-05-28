@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "signin.component.js",
+  "sources": [
+    "ng://@soushians/authentication/projects/soushians/authentication/src/lib/dump-components/signin/signin.component.ts"
+  ],
+  "sourcesContent": [
+    "import { Component, Input, Output, EventEmitter } from \"@angular/core\";\r\nimport { FormGroup } from \"@angular/forms\";\r\nimport { Observable } from \"rxjs/Rx\";\r\n\r\n@Component({\r\n\tselector: \"auth-signin\",\r\n\ttemplate: `<div fxLayout='row' fxLayoutAlign=\"center center\">\r\n    <ngs-form-view \r\n        [id]=\"formId\"\r\n        (accept)=\"signin($event)\"\r\n    ></ngs-form-view>\r\n</div>\r\n<!-- <div>\r\n    <a fxFlex=\"nogrow\" routerLink=\"/user/password/reset\" mat-raised-button fxFlexFill>کلمه عبور خود را فراموش کرده اید؟</a>\r\n</div> -->`,\r\n\tstyles: [``]\r\n})\r\nexport class SigninComponent {\r\n\t@Output() signedin = new EventEmitter();\r\n\r\n\t@Input() formId: string;\r\n\r\n\tsignin(formGroup: FormGroup) {\r\n\t\tif (!formGroup.valid) return;\r\n\t\tthis.signedin.emit(formGroup.value);\r\n\t}\r\n\r\n\tconstructor() {}\r\n}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,SAAS,EAAE,KAAK,EAAE,MAAM,EAAE,YAAY,EAAE,MAAM,eAAe,CAAC;AAiBvE,MAAM;IAUL;wBATqB,IAAI,YAAY,EAAE;KASvB;;;;;IALhB,MAAM,CAAC,SAAoB;QAC1B,EAAE,CAAC,CAAC,CAAC,SAAS,CAAC,KAAK,CAAC;YAAC,MAAM,CAAC;QAC7B,IAAI,CAAC,QAAQ,CAAC,IAAI,CAAC,SAAS,CAAC,KAAK,CAAC,CAAC;KACpC;;;YArBD,SAAS,SAAC;gBACV,QAAQ,EAAE,aAAa;gBACvB,QAAQ,EAAE;;;;;;;;WAQA;gBACV,MAAM,EAAE,CAAC,EAAE,CAAC;aACZ;;;;;uBAEC,MAAM;qBAEN,KAAK"
+}

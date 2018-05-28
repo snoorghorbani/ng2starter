@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "data-unit.service.js",
+  "sources": [
+    "ng://@soushians/shared/ng:/@soushians/shared/projects/soushians/shared/src/lib/pipes/data-unit.service.ts"
+  ],
+  "sourcesContent": [
+    "import { Injectable } from \"@angular/core\";\r\n\r\n@Injectable()\r\nexport class DataUnitService {\r\n    transform(value: number, exponent?: string): string {\r\n        debugger;\r\n        if (value == 0) return '0 B';\r\n        if (value == null) return 'نامحدود'\r\n\r\n        let B = 1;\r\n        let KB = B * 1024;\r\n        let MB = KB * 1024;\r\n        let GB = MB * 1024;\r\n\r\n\r\n        let convertedValue;\r\n        let suffix = 'B';\r\n\r\n        if (value >= GB) {\r\n            suffix = 'GB';\r\n            convertedValue = (value / GB).toPrecision(3)\r\n        }\r\n        else if (value >= MB) {\r\n            suffix = 'MG';\r\n            convertedValue = (value / MB).toPrecision(3)\r\n        }\r\n        else if (value >= KB) {\r\n            suffix = 'KB';\r\n            convertedValue = (value / KB).toPrecision(3)\r\n        } else {\r\n            suffix = 'B';\r\n            convertedValue = (value).toPrecision(3)\r\n\r\n        }\r\n\r\n        return convertedValue + ' ' + suffix;\r\n    }\r\n}"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,eAAe,CAAC;AAG3C,MAAM;;;;;;IACF,SAAS,CAAC,KAAa,EAAE,QAAiB;QACtC,QAAQ,CAAC;QACT,EAAE,CAAC,CAAC,KAAK,IAAI,CAAC,CAAC;YAAC,MAAM,CAAC,KAAK,CAAC;QAC7B,EAAE,CAAC,CAAC,KAAK,IAAI,IAAI,CAAC;YAAC,MAAM,CAAC,SAAS,CAAA;QAEnC,qBAAI,CAAC,GAAG,CAAC,CAAC;QACV,qBAAI,EAAE,GAAG,CAAC,GAAG,IAAI,CAAC;QAClB,qBAAI,EAAE,GAAG,EAAE,GAAG,IAAI,CAAC;QACnB,qBAAI,EAAE,GAAG,EAAE,GAAG,IAAI,CAAC;QAGnB,qBAAI,cAAc,CAAC;QACnB,qBAAI,MAAM,GAAG,GAAG,CAAC;QAEjB,EAAE,CAAC,CAAC,KAAK,IAAI,EAAE,CAAC,CAAC,CAAC;YACd,MAAM,GAAG,IAAI,CAAC;YACd,cAAc,GAAG,CAAC,KAAK,GAAG,EAAE,CAAC,CAAC,WAAW,CAAC,CAAC,CAAC,CAAA;SAC/C;QACD,IAAI,CAAC,EAAE,CAAC,CAAC,KAAK,IAAI,EAAE,CAAC,CAAC,CAAC;YACnB,MAAM,GAAG,IAAI,CAAC;YACd,cAAc,GAAG,CAAC,KAAK,GAAG,EAAE,CAAC,CAAC,WAAW,CAAC,CAAC,CAAC,CAAA;SAC/C;QACD,IAAI,CAAC,EAAE,CAAC,CAAC,KAAK,IAAI,EAAE,CAAC,CAAC,CAAC;YACnB,MAAM,GAAG,IAAI,CAAC;YACd,cAAc,GAAG,CAAC,KAAK,GAAG,EAAE,CAAC,CAAC,WAAW,CAAC,CAAC,CAAC,CAAA;SAC/C;QAAC,IAAI,CAAC,CAAC;YACJ,MAAM,GAAG,GAAG,CAAC;YACb,cAAc,GAAG,CAAC,KAAK,CAAC,CAAC,WAAW,CAAC,CAAC,CAAC,CAAA;SAE1C;QAED,MAAM,CAAC,cAAc,GAAG,GAAG,GAAG,MAAM,CAAC;KACxC;;;YAlCJ,UAAU"
+}

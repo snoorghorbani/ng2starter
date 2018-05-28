@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "edit-profile.actions.js",
+  "sources": [
+    "ng://@soushians/user/projects/soushians/user/src/lib/profile-edit/edit-profile.actions.ts"
+  ],
+  "sourcesContent": [
+    "import { Action } from \"@ngrx/store\";\r\n\r\nimport { EditProfile_ApiModel, UserModel } from \"../models\";\r\n\r\nexport enum EditProfileActionTypes {\r\n\tEDIT_PROFILE = \"[USER][PASSWORD] EDIT_PROFILE\",\r\n\tEDIT_PROFILE_START = \"[USER][PASSWORD] EDIT_PROFILE_START\",\r\n\tEDIT_PROFILE_SUCCEED = \"[USER][PASSWORD] EDIT_PROFILE_SUCCEED\",\r\n\tEDIT_PROFILE_FAILED = \"[USER][PASSWORD] EDIT_PROFILE_FAILED\"\r\n}\r\n\r\nexport class EditProfile implements Action {\r\n\treadonly type = EditProfileActionTypes.EDIT_PROFILE;\r\n\tconstructor(public payload: EditProfile_ApiModel.Request) { }\r\n}\r\nexport class EditProfileStart implements Action {\r\n\treadonly type = EditProfileActionTypes.EDIT_PROFILE_START;\r\n\tconstructor(public payload: EditProfile_ApiModel.Request) { }\r\n}\r\nexport class EditProfileSucceed implements Action {\r\n\treadonly type = EditProfileActionTypes.EDIT_PROFILE_SUCCEED;\r\n\tconstructor(public payload: UserModel) { }\r\n}\r\nexport class EditProfileFailed implements Action {\r\n\treadonly type = EditProfileActionTypes.EDIT_PROFILE_FAILED;\r\n}\r\n\r\nexport type EditProfileAction =\r\n\t| EditProfile\r\n\t| EditProfileStart\r\n\t| EditProfileSucceed\r\n\t| EditProfileFailed;\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;;;kBAKgB,+BAA+B;wBACzB,qCAAqC;0BACnC,uCAAuC;yBACxC,sCAAsC;;;AAG7D,MAAM;;;;IAEL,YAAmB,OAAqC;QAArC,YAAO,GAAP,OAAO,CAA8B;oBADxC,sBAAsB,CAAC,YAAY;KACU;CAC7D;;;;;;;AACD,MAAM;;;;IAEL,YAAmB,OAAqC;QAArC,YAAO,GAAP,OAAO,CAA8B;oBADxC,sBAAsB,CAAC,kBAAkB;KACI;CAC7D;;;;;;;AACD,MAAM;;;;IAEL,YAAmB,OAAkB;QAAlB,YAAO,GAAP,OAAO,CAAW;oBADrB,sBAAsB,CAAC,oBAAoB;KACjB;CAC1C;;;;;;;AACD,MAAM;;oBACW,sBAAsB,CAAC,mBAAmB;;CAC1D"
+}

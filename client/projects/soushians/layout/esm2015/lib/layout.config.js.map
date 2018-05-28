@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "layout.config.js",
+  "sources": [
+    "ng://@soushians/layout/projects/soushians/layout/src/lib/layout.config.ts"
+  ],
+  "sourcesContent": [
+    "import { InjectionToken } from \"@angular/core\";\r\n\r\nimport { LayoutConfigModel } from \"@soushians/config\";\r\n\r\nexport interface LayoutModuleConfig extends LayoutConfigModel {}\r\n\r\nexport const MODULE_DEFAULT_CONFIG: LayoutModuleConfig = {\r\n\tshowMainSidenav: false,\r\n\tshowSecondSideNav: true,\r\n\tsecondSideNavMode: \"over\", //| \"push\" | \"side\",\r\n\tmainSideNavMode: \"over\", //| \"push\" | \"side\",\r\n\tshowLeftNavBar: false,\r\n\tstickyLeftNavBar: false,\r\n\tlayoutMode: \"with-margin\", // | \"without-margin\" | \"default\",\r\n\ttitle: \"\",\r\n\tmenuItems: [\r\n\t\t{\r\n\t\t\troute: \"/\",\r\n\t\t\ticon: \"multiline_chart\",\r\n\t\t\troles: [ \"Admin\", \"User\" ],\r\n\t\t\ttitle: \"صفحه اصلی\"\r\n\t\t},\r\n\t\t{\r\n\t\t\troute: \"/configs\",\r\n\t\t\ticon: \"settings\",\r\n\t\t\troles: [ \"Admin\" ],\r\n\t\t\ttitle: \"تنظیمات\"\r\n\t\t},\r\n\t\t{\r\n\t\t\troute: \"/source\",\r\n\t\t\ticon: \"device_hub\",\r\n\t\t\troles: [ \"Admin\" ],\r\n\t\t\ttitle: \"آدرس سرویس ها\"\r\n\t\t}\r\n\t]\r\n};\r\n\r\nexport const MODULE_CONFIG_TOKEN = new InjectionToken<LayoutModuleConfig>(\"LayoutModuleConfig\");\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,cAAc,EAAE,MAAM,eAAe,CAAC;;;;;;;AAM/C,MAAM,CAAC,uBAAM,qBAAqB,GAAuB;IACxD,eAAe,EAAE,KAAK;IACtB,iBAAiB,EAAE,IAAI;IACvB,iBAAiB,EAAE,MAAM;;IACzB,eAAe,EAAE,MAAM;;IACvB,cAAc,EAAE,KAAK;IACrB,gBAAgB,EAAE,KAAK;IACvB,UAAU,EAAE,aAAa;;IACzB,KAAK,EAAE,EAAE;IACT,SAAS,EAAE;QACV;YACC,KAAK,EAAE,GAAG;YACV,IAAI,EAAE,iBAAiB;YACvB,KAAK,EAAE,CAAE,OAAO,EAAE,MAAM,CAAE;YAC1B,KAAK,EAAE,WAAW;SAClB;QACD;YACC,KAAK,EAAE,UAAU;YACjB,IAAI,EAAE,UAAU;YAChB,KAAK,EAAE,CAAE,OAAO,CAAE;YAClB,KAAK,EAAE,SAAS;SAChB;QACD;YACC,KAAK,EAAE,SAAS;YAChB,IAAI,EAAE,YAAY;YAClB,KAAK,EAAE,CAAE,OAAO,CAAE;YAClB,KAAK,EAAE,eAAe;SACtB;KACD;CACD,CAAC;AAEF,MAAM,CAAC,uBAAM,mBAAmB,GAAG,IAAI,cAAc,CAAqB,oBAAoB,CAAC,CAAC"
+}

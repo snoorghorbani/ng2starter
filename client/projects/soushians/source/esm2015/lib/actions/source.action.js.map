@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "source.action.js",
+  "sources": [
+    "ng://@soushians/source/projects/soushians/source/src/lib/actions/source.action.ts"
+  ],
+  "sourcesContent": [
+    "import { Action } from \"@ngrx/store\";\r\nimport { SourceModel, UpsertSourceApiModel } from \"../models\";\r\n\r\nexport enum SourceActionTypes {\r\n\tSOURCE_SUBMIT = \"[SOURCE] source submit\",\r\n\tSOURCE_SUBMIT_SUCCEED = \"[SOURCE] source submit succeed\",\r\n\tSOURCE_SUBMIT_FAILED = \"[SOURCE] source submit failed\"\r\n}\r\n\r\nexport class SourceSubmit implements Action {\r\n\treadonly type = SourceActionTypes.SOURCE_SUBMIT;\r\n\tconstructor(public payload: UpsertSourceApiModel.Request) {}\r\n}\r\nexport class SourceSubmitSucceed implements Action {\r\n\treadonly type = SourceActionTypes.SOURCE_SUBMIT_SUCCEED;\r\n}\r\nexport class SourceSubmitFailed implements Action {\r\n\treadonly type = SourceActionTypes.SOURCE_SUBMIT_FAILED;\r\n}\r\nexport type Actions = SourceSubmit | SourceSubmitSucceed | SourceSubmitFailed;\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;;;mBAIiB,wBAAwB;2BAChB,gCAAgC;0BACjC,+BAA+B;;;AAGvD,MAAM;;;;IAEL,YAAmB,OAAqC;QAArC,YAAO,GAAP,OAAO,CAA8B;oBADxC,iBAAiB,CAAC,aAAa;KACa;CAC5D;;;;;;;AACD,MAAM;;oBACW,iBAAiB,CAAC,qBAAqB;;CACvD;;;;;AACD,MAAM;;oBACW,iBAAiB,CAAC,oBAAoB;;CACtD"
+}

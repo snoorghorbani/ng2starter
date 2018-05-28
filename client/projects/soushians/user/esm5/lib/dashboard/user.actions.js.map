@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "user.actions.js",
+  "sources": [
+    "ng://@soushians/user/projects/soushians/user/src/lib/dashboard/user.actions.ts"
+  ],
+  "sourcesContent": [
+    "import { Action } from \"@ngrx/store\";\r\n\r\nimport { UserModel } from \"../models\";\r\n\r\nexport enum UserActionTypes {\r\n\tUSER_SELECTED = \"[USER] USER_SELECTED\",\r\n\tREFRESH_USER_INFO = \"[USER] REFRESH_USER_INFO\"\r\n}\r\n\r\nexport class UserSelectedAction implements Action {\r\n\treadonly type = UserActionTypes.USER_SELECTED;\r\n\tconstructor(public payload: UserModel) {}\r\n}\r\n\r\nexport class RefreshUserInfoAction implements Action {\r\n\treadonly type = UserActionTypes.REFRESH_USER_INFO;\r\n\tconstructor(public payload: UserModel) {}\r\n}\r\n\r\nexport type UserAction = UserSelectedAction | RefreshUserInfoAction;\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;;;mBAKiB,sBAAsB;uBAClB,0BAA0B;;;AAG/C,MAAM;;;;IAEL,YAAmB,OAAkB;QAAlB,YAAO,GAAP,OAAO,CAAW;oBADrB,eAAe,CAAC,aAAa;KACJ;CACzC;;;;;;;AAED,MAAM;;;;IAEL,YAAmB,OAAkB;QAAlB,YAAO,GAAP,OAAO,CAAW;oBADrB,eAAe,CAAC,iBAAiB;KACR;CACzC"
+}

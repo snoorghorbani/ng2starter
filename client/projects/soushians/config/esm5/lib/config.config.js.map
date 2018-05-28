@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "config.config.js",
+  "sources": [
+    "ng://@soushians/config/projects/soushians/config/src/lib/config.config.ts"
+  ],
+  "sourcesContent": [
+    "import { InjectionToken } from '@angular/core';\r\n\r\nexport interface ConfigModuleConfig {\r\n\tdev_api_host?: string;\r\n\tprod_api_host?: string;\r\n\tenv?: {\r\n\t\tproduction: boolean;\r\n\t};\r\n}\r\n\r\nexport const MODULE_DEFAULT_CONFIG: ConfigModuleConfig = {\r\n\tdev_api_host: 'http://localhost:3000',\r\n\tprod_api_host: 'http://5.196.149.107:3000',\r\n\tenv: {\r\n\t\tproduction: false\r\n\t}\r\n};\r\n\r\nexport const MODULE_CONFIG_TOKEN = new InjectionToken<ConfigModuleConfig>('UserModuleConfig');\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,cAAc,EAAE,MAAM,eAAe,CAAC;;;;;;;;;;;;;AAU/C,MAAM,CAAC,uBAAM,qBAAqB,GAAuB;IACxD,YAAY,EAAE,uBAAuB;IACrC,aAAa,EAAE,2BAA2B;IAC1C,GAAG,EAAE;QACJ,UAAU,EAAE,KAAK;KACjB;CACD,CAAC;AAEF,MAAM,CAAC,uBAAM,mBAAmB,GAAG,IAAI,cAAc,CAAqB,kBAAkB,CAAC,CAAC"
+}

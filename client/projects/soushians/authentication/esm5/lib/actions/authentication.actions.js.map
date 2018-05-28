@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "authentication.actions.js",
+  "sources": [
+    "ng://@soushians/authentication/projects/soushians/authentication/src/lib/actions/authentication.actions.ts"
+  ],
+  "sourcesContent": [
+    "import { Action } from '@ngrx/store';\r\n\r\nexport const enum AuthenticationActionTypes {\r\n\tPROGRESSING_STARTED = '[AUTHENTICATION] PROGRESSING_STARTED',\r\n\tPROGRESSING_FINISHED = '[AUTHENTICATION] PROGRESSING_FINISHED',\r\n\tFAILED_HAPPENED = '[AUTHENTICATION] FAILED_HAPPENED'\r\n}\r\n\r\nexport class ProgressingStarted implements Action {\r\n\treadonly type = AuthenticationActionTypes.PROGRESSING_STARTED;\r\n}\r\nexport class ProgressingFinished implements Action {\r\n\treadonly type = AuthenticationActionTypes.PROGRESSING_FINISHED;\r\n}\r\nexport class FailedHappened implements Action {\r\n\treadonly type = AuthenticationActionTypes.FAILED_HAPPENED;\r\n\tconstructor(public payload: any) {}\r\n}\r\n\r\nexport type AuthenticationAction = ProgressingStarted | ProgressingFinished | FailedHappened;\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;;;yBAGuB,sCAAsC;0BACrC,uCAAuC;qBAC5C,kCAAkC;;;AAGrD,MAAM;;;;CAEL;;;;;AACD,MAAM;;;;CAEL;;;;;AACD,MAAM;;;;IAEL,YAAmB,OAAY;QAAZ,YAAO,GAAP,OAAO,CAAK;;KAAI;CACnC"
+}

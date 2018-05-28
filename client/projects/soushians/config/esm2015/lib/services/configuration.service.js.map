@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "configuration.service.js",
+  "sources": [
+    "ng://@soushians/config/projects/soushians/config/src/lib/services/configuration.service.ts"
+  ],
+  "sourcesContent": [
+    "import { Injectable, Inject } from \"@angular/core\";\r\nimport { Store } from \"@ngrx/store\";\r\nimport { Observable } from \"rxjs/Observable\";\r\n\r\nimport { ConfigModuleConfig, MODULE_CONFIG_TOKEN, MODULE_DEFAULT_CONFIG } from \"../config.config\";\r\nimport { getConfigModuleConfig } from \"../reducers\";\r\nimport { BehaviorSubject } from \"rxjs/BehaviorSubject\";\r\n\r\n@Injectable({\r\n\tprovidedIn: \"root\"\r\n})\r\nexport class ConfigurationService {\r\n\tprivate _config: ConfigModuleConfig;\r\n\tget config() {\r\n\t\treturn this._config;\r\n\t}\r\n\tconfig$ = new BehaviorSubject(this._config);\r\n\r\n\tconstructor(@Inject(MODULE_CONFIG_TOKEN) configFile: ConfigModuleConfig, private store: Store<any>) {\r\n\t\tthis._config = Object.assign({}, MODULE_DEFAULT_CONFIG, configFile);\r\n\t\tthis.config$.next(this._config);\r\n\t\tthis.store.select(getConfigModuleConfig).subscribe(configConfig => {\r\n\t\t\tif (!configConfig) return;\r\n\t\t\tthis._config = Object.assign({}, this._config, configConfig.Config);\r\n\t\t\tthis.config$.next(this._config);\r\n\t\t});\r\n\t}\r\n}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,EAAE,MAAM,eAAe,CAAC;AACnD,OAAO,EAAE,KAAK,EAAE,MAAM,aAAa,CAAC;AAGpC,OAAO,EAAsB,mBAAmB,EAAE,qBAAqB,EAAE,MAAM,kBAAkB,CAAC;AAClG,OAAO,EAAE,qBAAqB,EAAE,MAAM,aAAa,CAAC;AACpD,OAAO,EAAE,eAAe,EAAE,MAAM,sBAAsB,CAAC;;;;AAKvD,MAAM;;;;;IAOL,YAAyC,UAA8B,EAAU,KAAiB;QAAjB,UAAK,GAAL,KAAK,CAAY;uBAFxF,IAAI,eAAe,CAAC,IAAI,CAAC,OAAO,CAAC;QAG1C,IAAI,CAAC,OAAO,GAAG,MAAM,CAAC,MAAM,CAAC,EAAE,EAAE,qBAAqB,EAAE,UAAU,CAAC,CAAC;QACpE,IAAI,CAAC,OAAO,CAAC,IAAI,CAAC,IAAI,CAAC,OAAO,CAAC,CAAC;QAChC,IAAI,CAAC,KAAK,CAAC,MAAM,CAAC,qBAAqB,CAAC,CAAC,SAAS,CAAC,YAAY,CAAC,EAAE;YACjE,EAAE,CAAC,CAAC,CAAC,YAAY,CAAC;gBAAC,MAAM,CAAC;YAC1B,IAAI,CAAC,OAAO,GAAG,MAAM,CAAC,MAAM,CAAC,EAAE,EAAE,IAAI,CAAC,OAAO,EAAE,YAAY,CAAC,MAAM,CAAC,CAAC;YACpE,IAAI,CAAC,OAAO,CAAC,IAAI,CAAC,IAAI,CAAC,OAAO,CAAC,CAAC;SAChC,CAAC,CAAC;KACH;;;;IAbD,IAAI,MAAM;QACT,MAAM,CAAC,IAAI,CAAC,OAAO,CAAC;KACpB;;;YAPD,UAAU,SAAC;gBACX,UAAU,EAAE,MAAM;aAClB;;;;4CAQa,MAAM,SAAC,mBAAmB;YAjB/B,KAAK"
+}

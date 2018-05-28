@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "edit-diagram-api.model.js",
+  "sources": [
+    "ng://@soushians/diagram/projects/soushians/diagram/src/lib/models/edit-diagram-api.model.ts"
+  ],
+  "sourcesContent": [
+    "import { FormGroup, FormControl, Validators } from \"@angular/forms\";\r\nimport { Injectable } from \"@angular/core\";\r\n\r\nimport { HttpRequestBaseModel } from \"@soushians/shared\";\r\n\r\nimport { DiagramModel } from \"./diagram.model\";\r\n\r\nexport namespace EditDiagramApiModel {\r\n\texport class Request {\r\n\t\tconstructor(params: Request) {}\r\n\t\tgetRequestQueryParams() {\r\n\t\t\treturn {};\r\n\t\t}\r\n\t\t// TODO:\r\n\t\tstatic get formGroup() {\r\n\t\t\treturn new FormGroup({\r\n\t\t\t\tName: new FormControl(\"\", [ Validators.required ]),\r\n\t\t\t\tIsActive: new FormControl(\"true\", [ Validators.required ]),\r\n\t\t\t\tRoute: new FormControl(\"\", [ Validators.required ])\r\n\t\t\t});\r\n\t\t}\r\n\t}\r\n\r\n\texport class Response {\r\n\t\tResult: DiagramModel;\r\n\t\tconstructor() {}\r\n\t}\r\n}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,SAAS,EAAE,WAAW,EAAE,UAAU,EAAE,MAAM,gBAAgB,CAAC;AAOpE,MAAM,KAAW,mBAAmB;AAApC,WAAiB,mBAAmB;IACnC;;;;QACC,YAAY,MAAe,KAAI;;;;QAC/B,qBAAqB;YACpB,MAAM,CAAC,EAAE,CAAC;SACV;;;;QAED,MAAM,KAAK,SAAS;YACnB,MAAM,CAAC,IAAI,SAAS,CAAC;gBACpB,IAAI,EAAE,IAAI,WAAW,CAAC,EAAE,EAAE,CAAE,UAAU,CAAC,QAAQ,CAAE,CAAC;gBAClD,QAAQ,EAAE,IAAI,WAAW,CAAC,MAAM,EAAE,CAAE,UAAU,CAAC,QAAQ,CAAE,CAAC;gBAC1D,KAAK,EAAE,IAAI,WAAW,CAAC,EAAE,EAAE,CAAE,UAAU,CAAC,QAAQ,CAAE,CAAC;aACnD,CAAC,CAAC;SACH;KACD;IAbY,2BAAO;IAepB;QAEC,iBAAgB;KAChB;IAHY,4BAAQ;;;;;GAhBL,mBAAmB,KAAnB,mBAAmB,QAoBnC"
+}

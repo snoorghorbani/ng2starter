@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "signin-container.component.js",
+  "sources": [
+    "ng://@soushians/authentication/projects/soushians/authentication/src/lib/smart-components/signin-container/signin-container.component.ts"
+  ],
+  "sourcesContent": [
+    "import { Component, OnInit, OnDestroy } from \"@angular/core\";\r\nimport { Observable } from \"rxjs/Observable\";\r\nimport { Store } from \"@ngrx/store\";\r\n\r\nimport { Signin } from \"../../actions\";\r\nimport { CaptchaModel } from \"../../models\";\r\nimport { AuthenticationConfigurationService } from \"../../services/authentication-configuration.service\";\r\nimport { FeatureState } from \"../../reducers\";\r\n\r\n@Component({\r\n\ttemplate: `\r\n        <auth-signin \r\n                [formId]='(formId$ | async)'\r\n                (signedin)=\"signIn($event)\"\r\n        ></auth-signin>\r\n  `\r\n})\r\nexport class SigninContainerComponent {\r\n\tformId$: Observable<string>;\r\n\tconstructor(private configurationService: AuthenticationConfigurationService, private store: Store<FeatureState>) {\r\n\t\tthis.formId$ = this.configurationService.config$.map(config => config.forms.signIn);\r\n\t}\r\n\r\n\tsignIn(formValue: any) {\r\n\t\tthis.store.dispatch(new Signin(formValue));\r\n\t}\r\n}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,SAAS,EAAqB,MAAM,eAAe,CAAC;AAE7D,OAAO,EAAE,KAAK,EAAE,MAAM,aAAa,CAAC;AAEpC,OAAO,EAAE,MAAM,EAAE,MAAM,eAAe,CAAC;AAEvC,OAAO,EAAE,kCAAkC,EAAE,MAAM,qDAAqD,CAAC;AAWzG,MAAM;;;;;IAEL,YAAoB,oBAAwD,EAAU,KAA0B;QAA5F,yBAAoB,GAApB,oBAAoB,CAAoC;QAAU,UAAK,GAAL,KAAK,CAAqB;QAC/G,IAAI,CAAC,OAAO,GAAG,IAAI,CAAC,oBAAoB,CAAC,OAAO,CAAC,GAAG,CAAC,MAAM,CAAC,EAAE,CAAC,MAAM,CAAC,KAAK,CAAC,MAAM,CAAC,CAAC;KACpF;;;;;IAED,MAAM,CAAC,SAAc;QACpB,IAAI,CAAC,KAAK,CAAC,QAAQ,CAAC,IAAI,MAAM,CAAC,SAAS,CAAC,CAAC,CAAC;KAC3C;;;YAhBD,SAAS,SAAC;gBACV,QAAQ,EAAE;;;;;GAKR;aACF;;;;YAVQ,kCAAkC;YAJlC,KAAK"
+}

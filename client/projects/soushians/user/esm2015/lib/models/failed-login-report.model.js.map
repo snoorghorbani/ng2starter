@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "failed-login-report.model.js",
+  "sources": [
+    "ng://@soushians/user/projects/soushians/user/src/lib/models/failed-login-report.model.ts"
+  ],
+  "sourcesContent": [
+    "import { Injectable } from \"@angular/core\";\r\nimport { HttpRequestBaseModel } from \"@soushians/shared\";\r\nimport { FormGroup, FormControl, Validators } from \"@angular/forms\";\r\nimport { FailedLoginModel } from './failed-login.model';\r\n\r\nexport module FailedLoginReportModel {\r\n    export class Request implements HttpRequestBaseModel<Request>{\r\n        Username: string;\r\n\r\n        constructor(initValue?: FailedLoginReportModel.Request) {\r\n            Object.keys(initValue).forEach(key => this[key] = initValue[key]);\r\n        }\r\n\r\n        getRequestBody() {\r\n            return {\r\n            }\r\n        }\r\n\r\n        static get formGroup() {\r\n            return \r\n        }\r\n    }\r\n\r\n    export class Response  {\r\n        data: FailedLoginModel[] = [];\r\n\r\n        constructor() {\r\n            \r\n        }\r\n    }\r\n}"
+  ],
+  "names": [],
+  "mappings": ";;;;AAKA,MAAM,KAAQ,sBAAsB;AAApC,WAAc,sBAAsB;IAChC;;;;QAGI,YAAY,SAA0C;YAClD,MAAM,CAAC,IAAI,CAAC,SAAS,CAAC,CAAC,OAAO,CAAC,GAAG,CAAC,EAAE,CAAC,IAAI,CAAC,GAAG,CAAC,GAAG,SAAS,CAAC,GAAG,CAAC,CAAC,CAAC;SACrE;;;;QAED,cAAc;YACV,MAAM,CAAC,EACN,CAAA;SACJ;;;;QAED,MAAM,KAAK,SAAS;YAChB,MAAM,CAAA;SACT;KACJ;IAfY,8BAAO;;;;;IAiBpB;QAGI;wBAF2B,EAAE;SAI5B;KACJ;IANY,+BAAQ;;;;;GAlBX,sBAAsB,KAAtB,sBAAsB,QAyBnC"
+}

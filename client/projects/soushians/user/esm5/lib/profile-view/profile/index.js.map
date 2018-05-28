@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sources": [
+    "ng://@soushians/user/projects/soushians/user/src/lib/profile-view/profile/index.ts"
+  ],
+  "sourcesContent": [
+    "export * from \"./profile.component\";"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,iCAAc,qBAAqB,CAAC"
+}

@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "agent.guard.ngfactory.js",
+  "sourceRoot": "",
+  "sources": [
+    "ng://@soushians/authentication/projects/soushians/authentication/src/lib/routing-guards/agent.guard.ngfactory.ts"
+  ],
+  "names": [],
+  "mappings": "",
+  "sourcesContent": [
+    "import * as i0 from '@angular/core';\ni0.ComponentFactory;\n"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "form-routing.module.js",
+  "sources": [
+    "ng://@soushians/form/projects/soushians/form/src/lib/form-routing.module.ts"
+  ],
+  "sourcesContent": [
+    "import { ModuleWithProviders } from \"@angular/core\";\r\nimport { RouterModule, Routes } from \"@angular/router\";\r\n\r\nimport { MainContainerComponent } from \"./main-container/main-container.component/main-container.component\";\r\nimport { AddFormContainerComponent } from \"./add/add-form-container/add-form-container.component\";\r\nimport { EditFormContainerComponent } from \"./edit\";\r\nimport { FormListContainerComponent } from \"./list\";\r\n\r\nconst routes: Routes = [\r\n\t{\r\n\t\tpath: \"form\",\r\n\t\tcomponent: MainContainerComponent,\r\n\t\tchildren: [\r\n\t\t\t{\r\n\t\t\t\tpath: \"add\",\r\n\t\t\t\tcomponent: AddFormContainerComponent\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\tpath: \"edit/:_id\",\r\n\t\t\t\tcomponent: EditFormContainerComponent\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\tpath: \"\",\r\n\t\t\t\tcomponent: FormListContainerComponent\r\n\t\t\t}\r\n\t\t]\r\n\t}\r\n];\r\n\r\nexport const RoutingModule: ModuleWithProviders = RouterModule.forChild(routes);\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AACA,OAAO,EAAE,YAAY,EAAU,MAAM,iBAAiB,CAAC;AAEvD,OAAO,EAAE,sBAAsB,EAAE,MAAM,oEAAoE,CAAC;AAC5G,OAAO,EAAE,yBAAyB,EAAE,MAAM,uDAAuD,CAAC;AAClG,OAAO,EAAE,0BAA0B,EAAE,MAAM,QAAQ,CAAC;AACpD,OAAO,EAAE,0BAA0B,EAAE,MAAM,QAAQ,CAAC;AAEpD,uBAAM,MAAM,GAAW;IACtB;QACC,IAAI,EAAE,MAAM;QACZ,SAAS,EAAE,sBAAsB;QACjC,QAAQ,EAAE;YACT;gBACC,IAAI,EAAE,KAAK;gBACX,SAAS,EAAE,yBAAyB;aACpC;YACD;gBACC,IAAI,EAAE,WAAW;gBACjB,SAAS,EAAE,0BAA0B;aACrC;YACD;gBACC,IAAI,EAAE,EAAE;gBACR,SAAS,EAAE,0BAA0B;aACrC;SACD;KACD;CACD,CAAC;AAEF,MAAM,CAAC,uBAAM,aAAa,GAAwB,YAAY,CAAC,QAAQ,CAAC,MAAM,CAAC,CAAC"
+}

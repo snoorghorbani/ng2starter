@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "diagram-module-container.component.js",
+  "sources": [
+    "ng://@soushians/diagram/projects/soushians/diagram/src/lib/smart-components/diagram-module-container/diagram-module-container.component.ts"
+  ],
+  "sourcesContent": [
+    "import { Component, OnInit } from \"@angular/core\";\r\nimport { Observable } from \"rxjs/Observable\";\r\n// import { UserModel } from 'app/models/authentication';\r\nimport { Store } from \"@ngrx/store\";\r\n\r\nimport { DiagramService } from \"../../services/diagram.service\";\r\n\r\n// import * as appReducer from 'app/reducers';\r\n\r\n@Component({\r\n\tselector: \"diagram-module-container\",\r\n\ttemplate: `<div fxflex=\"100\" fxLayout=\"column\">\r\n    <router-outlet></router-outlet>\r\n</div>\r\n`\r\n})\r\nexport class DiagramModuleContainerComponent implements OnInit {\r\n\tconstructor(private service: DiagramService) {}\r\n\r\n\tngOnInit() {}\r\n}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,SAAS,EAAU,MAAM,eAAe,CAAC;AAKlD,OAAO,EAAE,cAAc,EAAE,MAAM,gCAAgC,CAAC;AAWhE,MAAM;;;;IACL,YAAoB,OAAuB;QAAvB,YAAO,GAAP,OAAO,CAAgB;KAAI;;;;IAE/C,QAAQ,MAAK;;;YAVb,SAAS,SAAC;gBACV,QAAQ,EAAE,0BAA0B;gBACpC,QAAQ,EAAE;;;CAGV;aACA;;;;YAVQ,cAAc"
+}

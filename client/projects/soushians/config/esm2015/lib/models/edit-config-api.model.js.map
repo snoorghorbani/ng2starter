@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "edit-config-api.model.js",
+  "sources": [
+    "ng://@soushians/config/projects/soushians/config/src/lib/models/edit-config-api.model.ts"
+  ],
+  "sourcesContent": [
+    "import { Injectable } from \"@angular/core\";\r\nimport { HttpRequestBaseModel } from \"@soushians/shared\";\r\nimport { FormGroup, FormControl, Validators } from \"@angular/forms\";\r\nimport { ConfigModel } from \"../models\";\r\n\r\nexport module EditConfigApiModel {\r\n\r\n    export class Request implements HttpRequestBaseModel<Request>{\r\n        Name: string;\r\n        Config: {};\r\n        constructor(initValue = {} as EditConfigApiModel.Request) {\r\n            Object.keys(initValue).forEach(key => (this as any)[key] = (initValue as any)[key]);\r\n        }\r\n\r\n        getRequestBody() {\r\n            debugger;\r\n            return {\r\n                Name: this.Name,\r\n                Config: this.Config\r\n            }\r\n        }\r\n        static get formGroup() {\r\n            return new FormGroup({\r\n                Name: new FormControl('', [Validators.required]),\r\n                Config: new FormGroup({}),\r\n            })\r\n        }\r\n\r\n    }\r\n\r\n    export class Response {\r\n        Result: ConfigModel<any>;\r\n        constructor() {\r\n        }\r\n    }\r\n\r\n}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAEA,OAAO,EAAE,SAAS,EAAE,WAAW,EAAE,UAAU,EAAE,MAAM,gBAAgB,CAAC;AAGpE,MAAM,KAAQ,kBAAkB;AAAhC,WAAc,kBAAkB;IAE5B;;;;QAGI,YAAY,SAAS,qBAAG,EAAgC,CAAA;YACpD,MAAM,CAAC,IAAI,CAAC,SAAS,CAAC,CAAC,OAAO,CAAC,GAAG,CAAC,EAAE,CAAC,mBAAC,IAAW,EAAC,CAAC,GAAG,CAAC,GAAG,mBAAC,SAAgB,EAAC,CAAC,GAAG,CAAC,CAAC,CAAC;SACvF;;;;QAED,cAAc;YACV,QAAQ,CAAC;YACT,MAAM,CAAC;gBACH,IAAI,EAAE,IAAI,CAAC,IAAI;gBACf,MAAM,EAAE,IAAI,CAAC,MAAM;aACtB,CAAA;SACJ;;;;QACD,MAAM,KAAK,SAAS;YAChB,MAAM,CAAC,IAAI,SAAS,CAAC;gBACjB,IAAI,EAAE,IAAI,WAAW,CAAC,EAAE,EAAE,CAAC,UAAU,CAAC,QAAQ,CAAC,CAAC;gBAChD,MAAM,EAAE,IAAI,SAAS,CAAC,EAAE,CAAC;aAC5B,CAAC,CAAA;SACL;KAEJ;IArBY,0BAAO;;;;;;;IAuBpB;QAEI;SACC;KACJ;IAJY,2BAAQ;;;;;GAzBX,kBAAkB,KAAlB,kBAAkB,QA+B/B"
+}

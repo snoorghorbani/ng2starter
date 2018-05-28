@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "diagrams.reducer.js",
+  "sources": [
+    "ng://@soushians/diagram/projects/soushians/diagram/src/lib/reducers/diagrams.reducer.ts"
+  ],
+  "sourcesContent": [
+    "import { DiagramsActionTypes, DiagramsAction } from \"../actions\";\r\nimport { GetDiagramsApiModel } from \"../models\";\r\n\r\nexport interface State {\r\n\tloaded: boolean;\r\n\tdiagram: GetDiagramsApiModel.Response;\r\n}\r\nexport const initialState: State = {\r\n\tloaded: false,\r\n\tdiagram: new GetDiagramsApiModel.Response()\r\n};\r\n\r\nexport function diagramReducer(state = initialState, action: DiagramsAction): State {\r\n\tswitch (action.type) {\r\n\t\tcase DiagramsActionTypes.GET_DIAGRAM: {\r\n\t\t\treturn {\r\n\t\t\t\t...state,\r\n\t\t\t\tloaded: true\r\n\t\t\t\t// diagram: action.payload,\r\n\t\t\t};\r\n\t\t}\r\n\t\tcase DiagramsActionTypes.GET_DIAGRAM_START: {\r\n\t\t\treturn {\r\n\t\t\t\t...state,\r\n\t\t\t\tloaded: true\r\n\t\t\t\t//  diagram: action.payload,\r\n\t\t\t};\r\n\t\t}\r\n\r\n\t\tdefault: {\r\n\t\t\treturn state;\r\n\t\t}\r\n\t}\r\n}\r\n\r\nexport const DiagramInfo = (state: State) => state.diagram;\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,mBAAmB,EAAkB,MAAM,YAAY,CAAC;AACjE,OAAO,EAAE,mBAAmB,EAAE,MAAM,WAAW,CAAC;;;;;;;;;;;AAMhD,MAAM,CAAC,uBAAM,YAAY,GAAU;IAClC,MAAM,EAAE,KAAK;IACb,OAAO,EAAE,IAAI,mBAAmB,CAAC,QAAQ,EAAE;CAC3C,CAAC;;;;;;AAEF,MAAM,yBAAyB,KAAK,GAAG,YAAY,EAAE,MAAsB;IAC1E,MAAM,CAAC,CAAC,MAAM,CAAC,IAAI,CAAC,CAAC,CAAC;QACrB,KAAK,mBAAmB,CAAC,WAAW,EAAE,CAAC;YACtC,MAAM,mBACF,KAAK,IACR,MAAM,EAAE,IAAI,IAEX;SACF;QACD,KAAK,mBAAmB,CAAC,iBAAiB,EAAE,CAAC;YAC5C,MAAM,mBACF,KAAK,IACR,MAAM,EAAE,IAAI,IAEX;SACF;QAED,SAAS,CAAC;YACT,MAAM,CAAC,KAAK,CAAC;SACb;KACD;CACD;AAED,MAAM,CAAC,uBAAM,WAAW,GAAG,CAAC,KAAY,EAAE,EAAE,CAAC,KAAK,CAAC,OAAO,CAAC"
+}

@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sources": [
+    "ng://@soushians/form/projects/soushians/form/src/lib/view/form-controls/email/index.ts"
+  ],
+  "sourcesContent": [
+    "export * from \"./email.component\";\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,+BAAc,mBAAmB,CAAC"
+}

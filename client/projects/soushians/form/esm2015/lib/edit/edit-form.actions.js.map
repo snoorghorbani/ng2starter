@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "edit-form.actions.js",
+  "sources": [
+    "ng://@soushians/form/projects/soushians/form/src/lib/edit/edit-form.actions.ts"
+  ],
+  "sourcesContent": [
+    "import { Action } from \"@ngrx/store\";\r\n\r\nimport { FormSchemaModel } from \"../models\";\r\n\r\nexport enum EditFormActionTypes {\r\n\tEDIT_FORM = \"[FORM][EDIT] EDIT_FORM\",\r\n\tEDIT_FORM_START = \"[FORM][EDIT] EDIT_FORM_START\",\r\n\tEDIT_FORM_SUCCEED = \"[FORM][EDIT] EDIT_FORM_SUCCEED\",\r\n\tEDIT_FORM_FAILED = \"[FORM][EDIT] EDIT_FORM_FAILED\"\r\n}\r\n\r\nexport class EditFormAction implements Action {\r\n\treadonly type = EditFormActionTypes.EDIT_FORM;\r\n\tconstructor(public payload: FormSchemaModel) {}\r\n}\r\nexport class EditFormStartAction implements Action {\r\n\treadonly type = EditFormActionTypes.EDIT_FORM_START;\r\n\tconstructor(public payload: FormSchemaModel) {}\r\n}\r\nexport class EditFormSucceedAction implements Action {\r\n\treadonly type = EditFormActionTypes.EDIT_FORM_SUCCEED;\r\n\tconstructor(public payload: FormSchemaModel) {}\r\n}\r\nexport class EditFormFailedAction implements Action {\r\n\treadonly type = EditFormActionTypes.EDIT_FORM_FAILED;\r\n}\r\n\r\nexport type EditFormActions = EditFormAction | EditFormStartAction | EditFormSucceedAction | EditFormFailedAction;\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;;;eAKa,wBAAwB;qBAClB,8BAA8B;uBAC5B,gCAAgC;sBACjC,+BAA+B;;;AAGnD,MAAM;;;;IAEL,YAAmB,OAAwB;QAAxB,YAAO,GAAP,OAAO,CAAiB;oBAD3B,mBAAmB,CAAC,SAAS;KACE;CAC/C;;;;;;;AACD,MAAM;;;;IAEL,YAAmB,OAAwB;QAAxB,YAAO,GAAP,OAAO,CAAiB;oBAD3B,mBAAmB,CAAC,eAAe;KACJ;CAC/C;;;;;;;AACD,MAAM;;;;IAEL,YAAmB,OAAwB;QAAxB,YAAO,GAAP,OAAO,CAAiB;oBAD3B,mBAAmB,CAAC,iBAAiB;KACN;CAC/C;;;;;;;AACD,MAAM;;oBACW,mBAAmB,CAAC,gBAAgB;;CACpD"
+}
