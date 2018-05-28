@@ -17,7 +17,6 @@ router.put("/:name", function (req, res) {
     ConfigModel.Config
         .findOneAndUpdate({ Name: req.params.name }, req.body, { upsert: true, new: true })
         .then(config => {
-        debugger;
         socket_controller_1.SocketMiddleware.server.dispatchActionToClients("[CONFIG] update config", config);
         res.send(config);
     })

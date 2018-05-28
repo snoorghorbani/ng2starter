@@ -18,14 +18,20 @@ router.get("/:id", function(req, res) {
 });
 router.post("/", function(req, res) {
 	const model = new Model(req.body);
-	model.save().then(Result => res.json({ Result })).catch(err => {
-		debugger;
-	});
+	model
+		.save()
+		.then(Result => {
+			SocketMiddleware.server.dispatchActionToClients("[FORM][ADD] ADD_FORM_SUCCEED", Result);
+			res.json({ Result });
+		})
+		.catch(err => {
+			debugger;
+		});
 });
 router.put("/", function(req, res) {
 	Model.findByIdAndUpdate(req.body._id, req.body, { upsert: true, new: true })
 		.then(Result => {
-			SocketMiddleware.server.dispatchActionToClients("xxx", Result);
+			SocketMiddleware.server.dispatchActionToClients("[FORM][LIST] FORM_SCHEMA_UPDATE", Result);
 			res.send({ Result });
 		})
 		.catch(err => {
