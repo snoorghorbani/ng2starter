@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "add-diagram.reducer.js",
+  "sources": [
+    "ng://@soushians/diagram/projects/soushians/diagram/src/lib/reducers/add-diagram.reducer.ts"
+  ],
+  "sourcesContent": [
+    "import { responseStatusTypes } from \"@soushians/shared\";\r\n\r\nimport { AddDiagramActionTypes, AddDiagramActions } from \"../actions\";\r\nimport { AddDiagramApiModel } from \"../models\";\r\n\r\nexport interface State {\r\n\tstatus: responseStatusTypes;\r\n\tdata: AddDiagramApiModel.Request;\r\n}\r\nexport const initialState: State = {\r\n\tstatus: \"pristine\",\r\n\tdata: new AddDiagramApiModel.Request()\r\n};\r\n\r\nexport function addDiagramReducer(state = initialState, action: AddDiagramActions): State {\r\n\tswitch (action.type) {\r\n\t\tcase AddDiagramActionTypes.ADD_DIAGRAM: {\r\n\t\t\treturn {\r\n\t\t\t\t...state,\r\n\t\t\t\tstatus: \"dirty\",\r\n\t\t\t\tdata: new AddDiagramApiModel.Request()\r\n\t\t\t};\r\n\t\t}\r\n\t\tcase AddDiagramActionTypes.ADD_DIAGRAM_START: {\r\n\t\t\treturn {\r\n\t\t\t\t...state,\r\n\t\t\t\tstatus: \"pending\",\r\n\t\t\t\tdata: new AddDiagramApiModel.Request()\r\n\t\t\t};\r\n\t\t}\r\n\t\tcase AddDiagramActionTypes.ADD_DIAGRAM_SUCCEED: {\r\n\t\t\treturn {\r\n\t\t\t\t...state,\r\n\t\t\t\tstatus: \"succeed\"\r\n\t\t\t\t// data: action.payload,\r\n\t\t\t};\r\n\t\t}\r\n\t\tcase AddDiagramActionTypes.ADD_DIAGRAM_FAILED: {\r\n\t\t\treturn {\r\n\t\t\t\t...state,\r\n\t\t\t\tstatus: \"failed\"\r\n\t\t\t\t//  diagram: action.payload,\r\n\t\t\t};\r\n\t\t}\r\n\r\n\t\tdefault: {\r\n\t\t\treturn state;\r\n\t\t}\r\n\t}\r\n}\r\n\r\nexport const AddDiagramInfo = (state: State) => state.data;\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAEA,OAAO,EAAE,qBAAqB,EAAqB,MAAM,YAAY,CAAC;AACtE,OAAO,EAAE,kBAAkB,EAAE,MAAM,WAAW,CAAC;;;;;;;;;;;AAM/C,MAAM,CAAC,uBAAM,YAAY,GAAU;IAClC,MAAM,EAAE,UAAU;IAClB,IAAI,EAAE,IAAI,kBAAkB,CAAC,OAAO,EAAE;CACtC,CAAC;;;;;;AAEF,MAAM,4BAA4B,KAAK,GAAG,YAAY,EAAE,MAAyB;IAChF,MAAM,CAAC,CAAC,MAAM,CAAC,IAAI,CAAC,CAAC,CAAC;QACrB,KAAK,qBAAqB,CAAC,WAAW,EAAE,CAAC;YACxC,MAAM,mBACF,KAAK,IACR,MAAM,EAAE,OAAO,EACf,IAAI,EAAE,IAAI,kBAAkB,CAAC,OAAO,EAAE,IACrC;SACF;QACD,KAAK,qBAAqB,CAAC,iBAAiB,EAAE,CAAC;YAC9C,MAAM,mBACF,KAAK,IACR,MAAM,EAAE,SAAS,EACjB,IAAI,EAAE,IAAI,kBAAkB,CAAC,OAAO,EAAE,IACrC;SACF;QACD,KAAK,qBAAqB,CAAC,mBAAmB,EAAE,CAAC;YAChD,MAAM,mBACF,KAAK,IACR,MAAM,EAAE,SAAS,IAEhB;SACF;QACD,KAAK,qBAAqB,CAAC,kBAAkB,EAAE,CAAC;YAC/C,MAAM,mBACF,KAAK,IACR,MAAM,EAAE,QAAQ,IAEf;SACF;QAED,SAAS,CAAC;YACT,MAAM,CAAC,KAAK,CAAC;SACb;KACD;CACD;AAED,MAAM,CAAC,uBAAM,cAAc,GAAG,CAAC,KAAY,EAAE,EAAE,CAAC,KAAK,CAAC,IAAI,CAAC"
+}

@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "numeric-edit-diagram.component.ngfactory.js",
+  "sourceRoot": "",
+  "sources": [
+    "ng://@soushians/diagram/projects/soushians/diagram/src/lib/dumb-components/numeric-edit-diagram/numeric-edit-diagram.component.ngfactory.ts"
+  ],
+  "names": [],
+  "mappings": "",
+  "sourcesContent": [
+    "import * as i0 from '@angular/core';\ni0.ComponentFactory;\n"
+  ]
+}

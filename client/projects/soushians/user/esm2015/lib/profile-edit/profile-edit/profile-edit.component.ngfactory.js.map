@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "profile-edit.component.ngfactory.js",
+  "sourceRoot": "",
+  "sources": [
+    "ng://@soushians/user/projects/soushians/user/src/lib/profile-edit/profile-edit/profile-edit.component.ngfactory.ts"
+  ],
+  "names": [],
+  "mappings": "",
+  "sourcesContent": [
+    "import * as i0 from '@angular/core';\ni0.ComponentFactory;\n"
+  ]
+}

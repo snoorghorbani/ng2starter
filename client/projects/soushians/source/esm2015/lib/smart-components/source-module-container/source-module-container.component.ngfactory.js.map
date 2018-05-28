@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "source-module-container.component.ngfactory.js",
+  "sourceRoot": "",
+  "sources": [
+    "ng://@soushians/source/projects/soushians/source/src/lib/smart-components/source-module-container/source-module-container.component.ngfactory.ts"
+  ],
+  "names": [],
+  "mappings": "",
+  "sourcesContent": [
+    "import * as i0 from '@angular/core';\ni0.ComponentFactory;\n"
+  ]
+}

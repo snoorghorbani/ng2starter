@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "config.model.js",
+  "sources": [
+    "ng://@soushians/config/projects/soushians/config/src/lib/models/config.model.ts"
+  ],
+  "sourcesContent": [
+    "export class ConfigModel<T> {\r\n\t_id: string;\r\n\tName: string;\r\n\tConfig: T;\r\n}"
+  ],
+  "names": [],
+  "mappings": ";;;;;;;AAAA,MAAM;CAIL"
+}

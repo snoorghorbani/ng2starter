@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sources": [
+    "ng://@soushians/user/projects/soushians/user/src/lib/feature/index.ts"
+  ],
+  "sourcesContent": [
+    "export * from \"./feature.effects\";\r\nexport * from \"./feature.reducers\";\r\nexport * from \"./feature-container\";\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,4BAAc,mBAAmB,CAAC;AAClC,mQAAc,oBAAoB,CAAC;AACnC,0CAAc,qBAAqB,CAAC"
+}

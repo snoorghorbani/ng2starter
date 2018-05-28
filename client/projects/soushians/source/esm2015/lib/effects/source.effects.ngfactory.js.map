@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "source.effects.ngfactory.js",
+  "sourceRoot": "",
+  "sources": [
+    "ng://@soushians/source/projects/soushians/source/src/lib/effects/source.effects.ngfactory.ts"
+  ],
+  "names": [],
+  "mappings": "",
+  "sourcesContent": [
+    "import * as i0 from '@angular/core';\ni0.ComponentFactory;\n"
+  ]
+}

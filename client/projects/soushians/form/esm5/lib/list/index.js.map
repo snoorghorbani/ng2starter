@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sources": [
+    "ng://@soushians/form/projects/soushians/form/src/lib/list/index.ts"
+  ],
+  "sourcesContent": [
+    "export * from \"./form-list\";\r\nexport * from \"./form-list-container\";\r\nexport * from \"./list.actions\";\r\nexport * from \"./list.effects\";\r\nexport * from \"./list.reducers\";\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,kCAAc,aAAa,CAAC;AAC5B,2CAAc,uBAAuB,CAAC;AACtC,qNAAc,gBAAgB,CAAC;AAC/B,iCAAc,gBAAgB,CAAC;AAC/B,iDAAc,iBAAiB,CAAC"
+}

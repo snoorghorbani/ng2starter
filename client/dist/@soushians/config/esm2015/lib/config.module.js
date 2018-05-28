@@ -61,7 +61,8 @@ NgsConfigModule.decorators = [
                     MatToolbarModule,
                     MatDatepickerModule,
                     MatProgressBarModule,
-                    BrowserAnimationsModule
+                    BrowserAnimationsModule,
+                    RoutingModule
                 ],
                 declarations: [
                     ConfigsComponent,

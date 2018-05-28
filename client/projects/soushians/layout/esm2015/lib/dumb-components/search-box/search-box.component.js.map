@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "search-box.component.js",
+  "sources": [
+    "ng://@soushians/layout/projects/soushians/layout/src/lib/dumb-components/search-box/search-box.component.ts"
+  ],
+  "sourcesContent": [
+    "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n        selector: 'app-search-box',\r\n        template: `<div class=\"search-box\">\r\n  <!--<td-search-box class=\"search-box-container\" backIcon=\"arrow_back\" placeholder=\"جستجو\" [showUnderline]=\"false\" [debounce]=\"500\" [alwaysVisible]=\"false\"\r\n                 (searchDebounce)=\"searchInputTerm = $event\" (search)=\"searchInputTerm = $event\" (clear)=\"searchInputTerm = ''\">\r\n  </td-search-box>-->\r\n</div>`,\r\n        styles: [``]\r\n})\r\nexport class SearchBoxComponent implements OnInit {\r\n\r\n        constructor() { }\r\n\r\n        ngOnInit() {\r\n        }\r\n\r\n}"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,SAAS,EAAU,MAAM,eAAe,CAAC;AAWlD,MAAM;IAEE,iBAAiB;;;;IAEjB,QAAQ;KACP;;;YAdR,SAAS,SAAC;gBACH,QAAQ,EAAE,gBAAgB;gBAC1B,QAAQ,EAAE;;;;OAIX;gBACC,MAAM,EAAE,CAAC,EAAE,CAAC;aACnB"
+}

@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "pie-diagram-partial-config.component.ngfactory.js",
+  "sourceRoot": "",
+  "sources": [
+    "ng://@soushians/diagram/projects/soushians/diagram/src/lib/dumb-components/pie-diagram-partial-config/pie-diagram-partial-config.component.ngfactory.ts"
+  ],
+  "names": [],
+  "mappings": "",
+  "sourcesContent": [
+    "import * as i0 from '@angular/core';\ni0.ComponentFactory;\n"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sources": [
+    "ng://@soushians/config/projects/soushians/config/src/lib/smart-components/config-module-container/index.ts"
+  ],
+  "sourcesContent": [
+    "export * from './config-module-container.component'\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,+CAAc,qCAAqC,CAAA"
+}

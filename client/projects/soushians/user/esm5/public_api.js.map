@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "public_api.js",
+  "sources": [
+    "ng://@soushians/user/projects/soushians/user/src/public_api.ts"
+  ],
+  "sourcesContent": [
+    "/*\n* Public API Surface of user\n*/\n\nexport * from \"./lib/user.config\";\nexport * from \"./lib/models\";\n\n//actions\nexport * from \"./lib/user.module\";\nexport * from \"./lib/user.routing-module\";\n//services\nexport { UserService } from \"./lib/services/user.service\";\n\nexport { getUserInfo } from \"./lib/feature/feature.reducers\";\n"
+  ],
+  "names": [],
+  "mappings": ";;;;;;;AAIA,2DAAc,mBAAmB,CAAC;AAClC,gLAAc,cAAc,CAAC;;AAG7B,iDAAc,mBAAmB,CAAC;AAClC,6CAAc,2BAA2B,CAAC;AAE1C,OAAO,EAAE,WAAW,EAAE,MAAM,6BAA6B,CAAC;AAE1D,OAAO,EAAE,WAAW,EAAE,MAAM,gCAAgC,CAAC"
+}

@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "signin.actions.js",
+  "sources": [
+    "ng://@soushians/authentication/projects/soushians/authentication/src/lib/actions/signin.actions.ts"
+  ],
+  "sourcesContent": [
+    "import { Action } from \"@ngrx/store\";\r\nimport { Signin_ApiModel } from \"../models\";\r\n\r\nexport enum SignInActionTypes {\r\n\tSIGNIN = \"[Auth] Signin\",\r\n\tSIGNOUT = \"[Auth] Signout\",\r\n\tSIGNIN_SUCCEED = \"[Auth] Signin Success\",\r\n\tSIGNIN_FAILURE = \"[Auth] Signin Failure\",\r\n\tSIGNIN_REDIRECT = \"[Auth] Signin Redirect\"\r\n}\r\n\r\nexport class Signin implements Action {\r\n\treadonly type = SignInActionTypes.SIGNIN;\r\n\tconstructor(public payload: Signin_ApiModel.Request) {}\r\n}\r\n\r\nexport class SigninSecceed implements Action {\r\n\treadonly type = SignInActionTypes.SIGNIN_SUCCEED;\r\n\tconstructor(public payload: any) {}\r\n}\r\n\r\nexport class SigninFailed implements Action {\r\n\treadonly type = SignInActionTypes.SIGNIN_FAILURE;\r\n\tconstructor(public payload: any) {}\r\n}\r\n\r\nexport class SigninRedirect implements Action {\r\n\treadonly type = SignInActionTypes.SIGNIN_REDIRECT;\r\n}\r\n\r\nexport class SignoutAction implements Action {\r\n\treadonly type = SignInActionTypes.SIGNOUT;\r\n}\r\n\r\nexport type SigninAction = Signin | SigninSecceed | SigninFailed | SigninRedirect | SignoutAction;\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;;;YAIU,eAAe;aACd,gBAAgB;oBACT,uBAAuB;oBACvB,uBAAuB;qBACtB,wBAAwB;;;AAG3C,MAAM;;;;IAEL,YAAmB,OAAgC;QAAhC,YAAO,GAAP,OAAO,CAAyB;oBADnC,iBAAiB,CAAC,MAAM;KACe;CACvD;;;;;;;AAED,MAAM;;;;IAEL,YAAmB,OAAY;QAAZ,YAAO,GAAP,OAAO,CAAK;oBADf,iBAAiB,CAAC,cAAc;KACb;CACnC;;;;;;;AAED,MAAM;;;;IAEL,YAAmB,OAAY;QAAZ,YAAO,GAAP,OAAO,CAAK;oBADf,iBAAiB,CAAC,cAAc;KACb;CACnC;;;;;;;AAED,MAAM;;oBACW,iBAAiB,CAAC,eAAe;;CACjD;;;;;AAED,MAAM;;oBACW,iBAAiB,CAAC,OAAO;;CACzC"
+}

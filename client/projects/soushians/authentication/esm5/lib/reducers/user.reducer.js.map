@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "user.reducer.js",
+  "sources": [
+    "ng://@soushians/authentication/projects/soushians/authentication/src/lib/reducers/user.reducer.ts"
+  ],
+  "sourcesContent": [
+    "import { SigninAction, SignInActionTypes } from \"../actions/signin.actions\";\r\nimport { UserModel } from \"../models/user.model\";\r\n\r\nexport interface State {\r\n\tloggedIn: boolean;\r\n\tuser: UserModel;\r\n}\r\n\r\nexport const initialState: State = {\r\n\tloggedIn: false,\r\n\tuser: new UserModel({ Id: 1 })\r\n};\r\n\r\nexport function UserReducer(state = initialState, action: SigninAction): State {\r\n\tswitch (action.type) {\r\n\t\tcase SignInActionTypes.SIGNIN_SUCCEED: {\r\n\t\t\treturn {\r\n\t\t\t\t...state,\r\n\t\t\t\tloggedIn: true,\r\n\t\t\t\tuser: action.payload\r\n\t\t\t};\r\n\t\t}\r\n\r\n\t\tcase SignInActionTypes.SIGNOUT: {\r\n\t\t\treturn initialState;\r\n\t\t}\r\n\r\n\t\tdefault: {\r\n\t\t\treturn state;\r\n\t\t}\r\n\t}\r\n}\r\n\r\n//#region  selectors\r\nexport const getLoggedIn = (state: State) => state.loggedIn;\r\nexport const getUser = (state: State) => state.user;\r\n//#endregion\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAgB,iBAAiB,EAAE,MAAM,2BAA2B,CAAC;AAC5E,OAAO,EAAE,SAAS,EAAE,MAAM,sBAAsB,CAAC;;;;;;;;;;;AAOjD,MAAM,CAAC,uBAAM,YAAY,GAAU;IAClC,QAAQ,EAAE,KAAK;IACf,IAAI,EAAE,IAAI,SAAS,CAAC,EAAE,EAAE,EAAE,CAAC,EAAE,CAAC;CAC9B,CAAC;;;;;;AAEF,MAAM,sBAAsB,KAAK,GAAG,YAAY,EAAE,MAAoB;IACrE,MAAM,CAAC,CAAC,MAAM,CAAC,IAAI,CAAC,CAAC,CAAC;QACrB,KAAK,iBAAiB,CAAC,cAAc,EAAE,CAAC;YACvC,MAAM,mBACF,KAAK,IACR,QAAQ,EAAE,IAAI,EACd,IAAI,EAAE,MAAM,CAAC,OAAO,IACnB;SACF;QAED,KAAK,iBAAiB,CAAC,OAAO,EAAE,CAAC;YAChC,MAAM,CAAC,YAAY,CAAC;SACpB;QAED,SAAS,CAAC;YACT,MAAM,CAAC,KAAK,CAAC;SACb;KACD;CACD;;AAGD,MAAM,CAAC,uBAAM,WAAW,GAAG,CAAC,KAAY,EAAE,EAAE,CAAC,KAAK,CAAC,QAAQ,CAAC;AAC5D,MAAM,CAAC,uBAAM,OAAO,GAAG,CAAC,KAAY,EAAE,EAAE,CAAC,KAAK,CAAC,IAAI,CAAC"
+}

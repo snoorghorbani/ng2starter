@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "logo-container.component.js",
+  "sources": [
+    "ng://@soushians/layout/projects/soushians/layout/src/lib/dumb-components/logo-container/logo-container.component.ts"
+  ],
+  "sourcesContent": [
+    "import { Component, ViewChild, AfterViewInit, ElementRef } from \"@angular/core\";\r\nimport { BehaviorSubject } from \"rxjs/BehaviorSubject\";\r\nimport { LayoutConfigurationService } from \"../../services/layout-configuration.service\";\r\n\r\n@Component({\r\n\tselector: \"app-logo-container\",\r\n\ttemplate: `<div id=\"background\"></div>\r\n  <img class=\"shatelLogoAnimation\" routerLink='/' src='../../../assets/images/shatel-logo.png' />\r\n<!--<img class=\"logoTypeAnimation\" src='../../../assets/images/logo-type.png' />-->`,\r\n\tstyles: [`.shatelLogoAnimation{height:35px;cursor:pointer;z-index:2}#background{position:absolute;top:0;right:0;width:300px;height:70px}`]\r\n})\r\nexport class LogoContainerComponent {\r\n\ttoolbarAnimationState: string;\r\n\r\n\tconstructor(private sdf: LayoutConfigurationService) {}\r\n}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,SAAS,EAAwC,MAAM,eAAe,CAAC;AAEhF,OAAO,EAAE,0BAA0B,EAAE,MAAM,6CAA6C,CAAC;AASzF,MAAM;;;;IAGL,YAAoB,GAA+B;QAA/B,QAAG,GAAH,GAAG,CAA4B;KAAI;;;YAVvD,SAAS,SAAC;gBACV,QAAQ,EAAE,oBAAoB;gBAC9B,QAAQ,EAAE;;oFAEyE;gBACnF,MAAM,EAAE,CAAC,gIAAgI,CAAC;aAC1I;;;;YARQ,0BAA0B"
+}

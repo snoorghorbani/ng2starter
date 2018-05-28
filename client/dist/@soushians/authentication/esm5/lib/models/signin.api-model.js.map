@@ -5,8 +5,8 @@
     "ng://@soushians/authentication/projects/soushians/authentication/src/lib/models/signin.api-model.ts"
   ],
   "sourcesContent": [
-    "import { FormGroup, FormControl, Validators } from \"@angular/forms\";\r\nimport { HttpRequestBaseModel, HttpResponseBaseModel } from \"@soushians/shared\";\r\nimport { UserModel } from \"../models\";\r\nexport namespace Signin_ApiModel {\r\n\texport class Request implements HttpRequestBaseModel<Request> {}\r\n\r\n\texport class Response implements HttpResponseBaseModel<Response> {\r\n\t\tResult: {\r\n\t\t\tUser: UserModel;\r\n\t\t};\r\n\r\n\t\tconstructor(params: Response) {\r\n\t\t\tObject.keys(params).forEach(key => ((<any>this)[key] = (<any>params)[key]));\r\n\t\t}\r\n\t\textractData(): UserModel {\r\n\t\t\treturn this.Result.User;\r\n\t\t}\r\n\t}\r\n}\r\n"
+    "import { FormGroup, FormControl, Validators } from \"@angular/forms\";\r\nimport { HttpRequestBaseModel, HttpResponseBaseModel } from \"@soushians/shared\";\r\nimport { UserModel } from \"../models\";\r\nexport namespace Signin_ApiModel {\r\n\texport class Request implements HttpRequestBaseModel<Request> {}\r\n\r\n\texport class Response implements HttpResponseBaseModel<Response> {\r\n\t\tResult: UserModel;\r\n\t}\r\n}\r\n"
   ],
   "names": [],
-  "mappings": ";;;;AAGA,MAAM,KAAW,eAAe;AAAhC,WAAiB,eAAe;IAC/B;KAAgE;IAAnD,uBAAO;IAEpB;;;;QAKC,YAAY,MAAgB;YAC3B,MAAM,CAAC,IAAI,CAAC,MAAM,CAAC,CAAC,OAAO,CAAC,GAAG,CAAC,EAAE,CAAC,CAAC,mBAAM,IAAI,EAAC,CAAC,GAAG,CAAC,GAAG,mBAAM,MAAM,EAAC,CAAC,GAAG,CAAC,CAAC,CAAC,CAAC;SAC5E;;;;QACD,WAAW;YACV,MAAM,CAAC,IAAI,CAAC,MAAM,CAAC,IAAI,CAAC;SACxB;KACD;IAXY,wBAAQ;;;;;GAHL,eAAe,KAAf,eAAe,QAe/B"
+  "mappings": ";;;;AAGA,MAAM,KAAW,eAAe;AAAhC,WAAiB,eAAe;IAC/B;KAAgE;IAAnD,uBAAO;IAEpB;KAEC;IAFY,wBAAQ;;;;;GAHL,eAAe,KAAf,eAAe,QAM/B"
 }

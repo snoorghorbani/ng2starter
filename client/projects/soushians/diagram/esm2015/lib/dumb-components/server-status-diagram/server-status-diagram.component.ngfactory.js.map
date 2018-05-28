@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "server-status-diagram.component.ngfactory.js",
+  "sourceRoot": "",
+  "sources": [
+    "ng://@soushians/diagram/projects/soushians/diagram/src/lib/dumb-components/server-status-diagram/server-status-diagram.component.ngfactory.ts"
+  ],
+  "names": [],
+  "mappings": "",
+  "sourcesContent": [
+    "import * as i0 from '@angular/core';\ni0.ComponentFactory;\n"
+  ]
+}

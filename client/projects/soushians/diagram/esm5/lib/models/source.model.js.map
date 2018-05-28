@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "source.model.js",
+  "sources": [
+    "ng://@soushians/diagram/projects/soushians/diagram/src/lib/models/source.model.ts"
+  ],
+  "sourcesContent": [
+    "export class SourceModel {\r\n\t_id: string;\r\n\tEndpoint: string;\r\n\tInterval: number;\r\n}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,MAAM;CAIL"
+}

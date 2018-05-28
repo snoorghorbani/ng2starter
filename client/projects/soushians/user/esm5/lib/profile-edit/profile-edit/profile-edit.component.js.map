@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "profile-edit.component.js",
+  "sources": [
+    "ng://@soushians/user/projects/soushians/user/src/lib/profile-edit/profile-edit/profile-edit.component.ts"
+  ],
+  "sourcesContent": [
+    "import { Component, OnInit, Output, EventEmitter, Input } from \"@angular/core\";\r\n\r\nimport { FormGroup } from \"@angular/forms\";\r\nimport { ChangePasswordModel } from \"../../models\";\r\nimport { ConfigModel } from \"@soushians/config\";\r\nimport { Observable } from \"rxjs/Observable\";\r\n\r\n@Component({\r\n\tselector: \"profile-edit\",\r\n\ttemplate: `<div fxFlex=\"450px\">\r\n\r\n  \r\n  <form [formGroup]=\"formGroup\" (ngSubmit)=\"editProfile()\" fxLayout=\"column\">\r\n    <mat-card>\r\n      <mat-card-content>\r\n          <!-- <ngs-form-view [id]=\"formId\"></ngs-form-view> -->\r\n      </mat-card-content>\r\n      <mat-card-actions fxLayoutAlign=\"center center\">\r\n        <button fxFlex=\"nogrow\" type=\"submit\" mat-raised-button color=\"primary\">ویرایش</button>\r\n        <button fxFlex=\"nogrow\" type=\"button\" routerLink=\"/user/panel/profile\" mat-raised-button>بازگشت</button>\r\n      </mat-card-actions>\r\n    </mat-card>\r\n  </form>\r\n</div>`\r\n})\r\nexport class ProfileEditComponent implements OnInit {\r\n\t@Output() submited = new EventEmitter();\r\n\r\n\t@Input() formId: string;\r\n\t@Input() formGroup: FormGroup;\r\n\t@Input(\"roles\") roles$: Observable<string[]>;\r\n\t@Input() groups: string[];\r\n\tconstructor() {}\r\n\r\n\tngOnInit() {}\r\n\teditProfile() {\r\n\t\tif (!this.formGroup.valid) return;\r\n\t\tthis.submited.emit(this.formGroup.value);\r\n\t}\r\n}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,SAAS,EAAU,MAAM,EAAE,YAAY,EAAE,KAAK,EAAE,MAAM,eAAe,CAAC;AAE/E,OAAO,EAAE,SAAS,EAAE,MAAM,gBAAgB,CAAC;AAG3C,OAAO,EAAE,UAAU,EAAE,MAAM,iBAAiB,CAAC;AAoB7C,MAAM;IAOL;wBANqB,IAAI,YAAY,EAAE;KAMvB;;;;IAEhB,QAAQ,MAAK;;;;IACb,WAAW;QACV,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,SAAS,CAAC,KAAK,CAAC;YAAC,MAAM,CAAC;QAClC,IAAI,CAAC,QAAQ,CAAC,IAAI,CAAC,IAAI,CAAC,SAAS,CAAC,KAAK,CAAC,CAAC;KACzC;;;YA/BD,SAAS,SAAC;gBACV,QAAQ,EAAE,cAAc;gBACxB,QAAQ,EAAE;;;;;;;;;;;;;;OAcJ;aACN;;;;;uBAEC,MAAM;qBAEN,KAAK;wBACL,KAAK;qBACL,KAAK,SAAC,OAAO;qBACb,KAAK"
+}

@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "http-response-base-model.js",
+  "sources": [
+    "ng://@soushians/shared/projects/soushians/shared/src/lib/http-response-base-model.ts"
+  ],
+  "sourcesContent": [
+    "import { FormGroup, FormControl, Validators } from '@angular/forms';\r\nimport { HttpParams } from '@angular/common/http';\r\n\r\nexport abstract class HttpResponseBaseModel<T> {\r\n    Result: any;\r\n    constructor() { }\r\n    abstract extractData?(): any;\r\n}"
+  ],
+  "names": [],
+  "mappings": ";;;;;;;;AAGA,MAAM;IAEF,iBAAiB;CAEpB"
+}

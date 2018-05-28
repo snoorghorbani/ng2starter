@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "persian-number.pipe.js",
+  "sources": [
+    "ng://@soushians/shared/projects/soushians/shared/src/lib/pipes/persian-number.pipe.ts"
+  ],
+  "sourcesContent": [
+    "import { PipeTransform, Pipe } from \"@angular/core\";\r\n\r\n@Pipe({ name: 'persianNumber' })\r\nexport class PersianNumberPipe implements PipeTransform {\r\n    transform(value: string, exponent: string): string {\r\n        if (!value) return '';\r\n        var res = '';\r\n\r\n        for (var index = 0; index < value.length; index++) {\r\n            res += (+value[index]).toLocaleString('fa-IR', {\r\n                useGrouping: false\r\n            });\r\n        }\r\n\r\n        return res;\r\n    }\r\n}"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAiB,IAAI,EAAE,MAAM,eAAe,CAAC;AAGpD,MAAM;;;;;;IACF,SAAS,CAAC,KAAa,EAAE,QAAgB;QACrC,EAAE,CAAC,CAAC,CAAC,KAAK,CAAC;YAAC,MAAM,CAAC,EAAE,CAAC;QACtB,qBAAI,GAAG,GAAG,EAAE,CAAC;QAEb,GAAG,CAAC,CAAC,qBAAI,KAAK,GAAG,CAAC,EAAE,KAAK,GAAG,KAAK,CAAC,MAAM,EAAE,KAAK,EAAE,EAAE,CAAC;YAChD,GAAG,IAAI,CAAC,CAAC,KAAK,CAAC,KAAK,CAAC,CAAC,CAAC,cAAc,CAAC,OAAO,EAAE;gBAC3C,WAAW,EAAE,KAAK;aACrB,CAAC,CAAC;SACN;QAED,MAAM,CAAC,GAAG,CAAC;KACd;;;YAbJ,IAAI,SAAC,EAAE,IAAI,EAAE,eAAe,EAAE"
+}

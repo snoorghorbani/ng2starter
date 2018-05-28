@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sources": [
+    "ng://@soushians/source/projects/soushians/source/src/lib/smart-components/source-upsert/index.ts"
+  ],
+  "sourcesContent": [
+    "export * from \"./source-upsert.component\";\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,sCAAc,2BAA2B,CAAC"
+}

@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sources": [
+    "ng://@soushians/form/projects/soushians/form/src/lib/edit/edit-form/index.ts"
+  ],
+  "sourcesContent": [
+    "export * from \"./edit-form.component\";\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,kCAAc,uBAAuB,CAAC"
+}

@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "diagram-view.component.js",
+  "sources": [
+    "ng://@soushians/diagram/projects/soushians/diagram/src/lib/smart-components/diagram-view/diagram-view.component.ts"
+  ],
+  "sourcesContent": [
+    "import { Component, OnInit, Input } from \"@angular/core\";\r\nimport { Observable } from \"rxjs/Observable\";\r\n\r\nimport { DiagramService } from \"../../services/diagram.service\";\r\nimport { GetDiagramsApiModel } from \"../../models\";\r\n\r\n@Component({\r\n\tselector: \"diagram-view\",\r\n\ttemplate: `<div *ngIf=\"diagramData$ | async\" [style.color]=\"(diagramData$ | async)?.Box.Color\">\r\n    <dynamic-component-selector class=\"diagram-box\" [data]=\"(diagramData$ | async)\"></dynamic-component-selector>\r\n</div>`,\r\n\tstyles: [`:host{width:100%;margin:12.5px}.diagram-box{margin:15px}.diagram-box .c3{direction:ltr}.widget-title{font:1.3em IRANSans,tahoma}`]\r\n})\r\nexport class diagramViewComponent implements OnInit {\r\n\tdiagrams: Observable<GetDiagramsApiModel.Response>;\r\n\twidth = 100;\r\n\r\n\tdiagramData$: any;\r\n\t@Input(\"id\") diagramId: string;\r\n\r\n\tconstructor(private diagramService: DiagramService) {\r\n\t\tthis.diagrams = this.diagramService.getDiagrams();\r\n\t}\r\n\r\n\tngOnInit() {\r\n\t\tthis.diagramData$ = this.diagramService.getDiagram(this.diagramId);\r\n\t}\r\n}\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,SAAS,EAAU,KAAK,EAAE,MAAM,eAAe,CAAC;AAGzD,OAAO,EAAE,cAAc,EAAE,MAAM,gCAAgC,CAAC;AAUhE,MAAM;;;;IAOL,YAAoB,cAA8B;QAA9B,mBAAc,GAAd,cAAc,CAAgB;qBAL1C,GAAG;QAMV,IAAI,CAAC,QAAQ,GAAG,IAAI,CAAC,cAAc,CAAC,WAAW,EAAE,CAAC;KAClD;;;;IAED,QAAQ;QACP,IAAI,CAAC,YAAY,GAAG,IAAI,CAAC,cAAc,CAAC,UAAU,CAAC,IAAI,CAAC,SAAS,CAAC,CAAC;KACnE;;;YApBD,SAAS,SAAC;gBACV,QAAQ,EAAE,cAAc;gBACxB,QAAQ,EAAE;;OAEJ;gBACN,MAAM,EAAE,CAAC,kIAAkI,CAAC;aAC5I;;;;YATQ,cAAc;;;wBAerB,KAAK,SAAC,IAAI"
+}

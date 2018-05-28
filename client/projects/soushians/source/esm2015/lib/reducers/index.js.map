@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sources": [
+    "ng://@soushians/source/projects/soushians/source/src/lib/reducers/index.ts"
+  ],
+  "sourcesContent": [
+    "import { createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';\r\n\r\nimport * as sourceList from './source-list.reducer';\r\n\r\nexport interface SourceState {\r\n        list: sourceList.State\r\n}\r\n\r\nexport const SourceReducers = {\r\n      sources: sourceList.Reducer\r\n};\r\n\r\nexport interface FeatureState {\r\n        'sources': SourceState;\r\n}\r\n\r\n\r\n\r\n//#region selectors\r\n\r\nexport const selectSourceState = createFeatureSelector<SourceState>(\"source\");\r\n\r\n//#endregion\r\n\r\nexport const getSourceList = createSelector(\r\n        selectSourceState,\r\n        (state: SourceState) => state.list\r\n);\r\n//export const getSourceListData = createSelector(\r\n//        getSourceList,\r\n//        sourceList.getSourceListData\r\n//);\r\n"
+  ],
+  "names": [],
+  "mappings": ";;;;AAAA,OAAO,EAAE,cAAc,EAAE,qBAAqB,EAAoB,MAAM,aAAa,CAAC;AAEtF,OAAO,KAAK,UAAU,MAAM,uBAAuB,CAAC;;;;;;;;;AAMpD,MAAM,CAAC,uBAAM,cAAc,GAAG;IACxB,OAAO,EAAE,UAAU,CAAC,OAAO;CAChC,CAAC;;;;;;;;;;AAUF,MAAM,CAAC,uBAAM,iBAAiB,GAAG,qBAAqB,CAAc,QAAQ,CAAC,CAAC;;AAI9E,MAAM,CAAC,uBAAM,aAAa,GAAG,cAAc,CACnC,iBAAiB,EACjB,CAAC,KAAkB,EAAE,EAAE,CAAC,KAAK,CAAC,IAAI,CACzC,CAAC"
+}

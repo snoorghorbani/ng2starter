@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "public_api.js",
+  "sources": [
+    "ng://@soushians/form/projects/soushians/form/src/public_api.ts"
+  ],
+  "sourcesContent": [
+    "/*\n * Public API Surface of form\n */\n\nexport * from \"./lib/form.config\";\n//services\nexport * from \"./lib/services/form.service\";\n\n//components and actions\nexport * from \"./lib/view/form-view/form-view.component\";\n//models\nexport * from \"./lib/models\";\n\nexport * from \"./lib/form.module\";\n"
+  ],
+  "names": [],
+  "mappings": ";;;;;;;AAIA,2DAAc,mBAAmB,CAAC;;AAElC,4BAAc,6BAA6B,CAAC;;AAG5C,yDAAc,0CAA0C,CAAC;;AAEzD,kGAAc,cAAc,CAAC;AAE7B,iDAAc,mBAAmB,CAAC"
+}

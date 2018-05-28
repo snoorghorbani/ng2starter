@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "persian-date.pipe.ngfactory.js",
+  "sourceRoot": "",
+  "sources": [
+    "ng://@soushians/shared/ng://@soushians/shared/projects/soushians/shared/src/lib/pipes/persian-date.pipe.ngfactory.ts"
+  ],
+  "names": [],
+  "mappings": "",
+  "sourcesContent": [
+    "import * as i0 from '@angular/core';\ni0.ComponentFactory;\n"
+  ]
+}
