@@ -4,6 +4,7 @@ import * as async from "async";
 import * as request from "request";
 import { Response, Request, NextFunction } from "express";
 import { model as moongooseModel } from "mongoose";
+import { SocketMiddleware } from "./socket.controller";
 
 const Model = moongooseModel("Form");
 
@@ -23,7 +24,10 @@ router.post("/", function(req, res) {
 });
 router.put("/", function(req, res) {
 	Model.findByIdAndUpdate(req.body._id, req.body, { upsert: true, new: true })
-		.then(Result => res.send({ Result }))
+		.then(Result => {
+			SocketMiddleware.server.dispatchActionToClients("xxx", Result);
+			res.send({ Result });
+		})
 		.catch(err => {
 			debugger;
 		});
