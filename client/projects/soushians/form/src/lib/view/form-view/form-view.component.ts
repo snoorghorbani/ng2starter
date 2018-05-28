@@ -176,14 +176,14 @@ export class DynamicFieldDirective implements Field, OnChanges, OnInit {
 	}
 
 	ngOnInit() {
-		if (!components[this.config.subtype]) {
+		if (!components[this.config.inputType]) {
 			const supportedTypes = Object.keys(components).join(", ");
 			throw new Error(
-				`Trying to use an unsupported type (${this.config.subtype}).
+				`Trying to use an unsupported type (${this.config.inputType}).
 		  Supported types: ${supportedTypes}`
 			);
 		}
-		const component = this.resolver.resolveComponentFactory<Field>(components[this.config.subtype]);
+		const component = this.resolver.resolveComponentFactory<Field>(components[this.config.inputType]);
 		this.component = this.container.createComponent(component);
 		this.component.instance.config = this.config;
 		this.component.instance.group = this.group;
