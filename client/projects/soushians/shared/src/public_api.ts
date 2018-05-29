@@ -10,3 +10,4 @@ export * from "./lib/utility.service";
 export * from "./lib/enums";
 export * from "./lib/helpers";
 export * from "./lib/validators";
+export * from "./lib/response.interface";
