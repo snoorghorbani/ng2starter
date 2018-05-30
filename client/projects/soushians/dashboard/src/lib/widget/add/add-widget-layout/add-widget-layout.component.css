@@ -1,0 +1,17 @@
+.add-widget {
+}
+.add-widget p {
+}
+.save {
+	position: absolute;
+	bottom: 45px;
+	background-color: #0078d4;
+	border: none;
+	color: #fff;
+	font-size: 15px;
+	font-family: 'iran-sans', sans-serif !important;
+	text-align: center;
+	padding: 3px 0;
+	width: 90px;
+	cursor: pointer;
+}

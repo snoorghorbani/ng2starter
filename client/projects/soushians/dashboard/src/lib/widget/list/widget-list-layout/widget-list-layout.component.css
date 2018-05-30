@@ -1,0 +1,47 @@
+.buttons-div {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+}
+.mat-drawer-container {
+	height: 100vh;
+}
+.widget-list {
+	background-color: #fff;
+	box-shadow: none !important;
+	border-bottom: 1px solid #eee;
+}
+.widget-list .item {
+	border-bottom: 1px solid #ccc;
+	box-shadow: none;
+}
+.widget-img {
+	border: 1px solid #ccc;
+	margin-left: 25px;
+}
+.close {
+	margin-top: 20px;
+	float: left;
+	margin-left: 20px;
+	width: 90px;
+	padding: 5px 0;
+	font-family: 'iran-sans', sans-serif !important;
+	background-color: #eee;
+	border: none;
+	cursor: pointer;
+}
+.drawer-header {
+	padding: 0 25px;
+	font-size: 18px;
+	color: #444;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 20px;
+}
+.drawer-header p {
+	padding: 0 25px;
+	font-size: 18px;
+	color: #444;
+	margin-bottom: 0;
+}
+.grid-title {
+}

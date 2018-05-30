@@ -48,6 +48,10 @@
         "dist/@soushians/socket",
         // "projects/soushians/socket/src/public_api"
       ],
+      "@soushians/dashboard": [
+        "dist/@soushians/dashboard",
+        // "projects/soushians/socket/src/public_api"
+      ],
       "@soushians/test": [
         "dist/soushians/test"
       ],
