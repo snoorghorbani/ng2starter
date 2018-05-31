@@ -9,5 +9,5 @@ export declare class UserEffects {
     private service;
     constructor(actions$: Actions<any>, router: Router, service: UserService);
     updateProfileInformation$: Observable<GetProfileSucceed>;
-    getProfileInformation$: Observable<GetProfile>;
+    getAccountInfo$: Observable<GetProfile>;
 }

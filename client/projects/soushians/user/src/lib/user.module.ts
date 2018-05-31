@@ -38,7 +38,7 @@ import { ProfileEditContainerComponent } from "./profile-edit/profile-edit-conta
 import { DashboardContainerComponent } from "./dashboard/dashboard-container/dashboard.component";
 import { ProfileComponent } from "./profile-view/profile/profile.component";
 import { ProfileContainerComponent } from "./profile-view/profile-container/profile-container.component";
-import { UserReducers } from "./feature/feature.reducers";
+import { UserReducers } from "./user.reducers";
 
 @NgModule({
 	imports: [

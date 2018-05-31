@@ -6,10 +6,15 @@ import { BehaviorSubject } from "rxjs";
 import { ConfigModel } from "@soushians/config";
 import { UserModel } from "@soushians/user";
 import { FeatureState } from "../../reducers";
+import { LayoutConfigurationService } from "../../services/layout-configuration.service";
+import { UserFacadeService } from "@soushians/user";
 export declare class MainComponent {
     private store;
     private router;
+    private configService;
+    private userFacadeService;
     user$: Observable<UserModel>;
+    displayName$: Observable<string>;
     progressStatus$: Observable<boolean>;
     showSidebarMenu: BehaviorSubject<boolean>;
     showMainSidenav: Observable<boolean>;
@@ -21,7 +26,7 @@ export declare class MainComponent {
     secondSidenavMode: Observable<"side" | "over" | "push">;
     toolbarAnimationState: Observable<string>;
     mainSideNav: ElementRef;
-    constructor(store: Store<FeatureState>, router: Router);
+    constructor(store: Store<FeatureState>, router: Router, configService: LayoutConfigurationService, userFacadeService: UserFacadeService);
     onSecondSidebarClosedStart(): void;
     onSidebarClosedStart(): void;
 }

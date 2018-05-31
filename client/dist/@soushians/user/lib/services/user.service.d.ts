@@ -7,9 +7,8 @@ export declare class UserService {
     private http;
     private store;
     private configurationService;
-    responseCache: ProfileViewModel.Response;
     constructor(http: HttpClient, store: Store<any>, configurationService: UserConfigurationService);
-    getProfileInformation(): Observable<ProfileViewModel.Response>;
+    getAccountInfo(): Observable<ProfileViewModel.Response>;
     editProfile(data: EditProfile_ApiModel.Request): Observable<UserModel>;
     getInfo(data: ProfileViewModel.Request): Observable<any>;
     is_role(role: string): Observable<boolean>;

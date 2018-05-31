@@ -3,7 +3,7 @@ import { Observable } from "rxjs/Observable";
 import { UserModel } from "../../models";
 import { Store } from "@ngrx/store";
 
-import * as appReducer from "../../feature/feature.reducers";
+import * as appReducer from "../../user.reducers";
 
 @Component({
 	selector: "user-dashboard-container",

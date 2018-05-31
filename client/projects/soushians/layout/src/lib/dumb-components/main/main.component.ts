@@ -30,6 +30,8 @@ import {
 	ChangeLayout,
 	ChangeToolbatToComfortableModeAction
 } from "../../actions";
+import { LayoutConfigurationService } from "../../services/layout-configuration.service";
+import { UserFacadeService } from "@soushians/user";
 
 @Component({
 	selector: "layout-main",
@@ -38,6 +40,7 @@ import {
 })
 export class MainComponent {
 	user$: Observable<UserModel>;
+	displayName$: Observable<string>;
 	progressStatus$: Observable<boolean>;
 	showSidebarMenu = new BehaviorSubject(true);
 	//user$: Observable<UserModel>;
@@ -51,12 +54,15 @@ export class MainComponent {
 	toolbarAnimationState: Observable<string>;
 	@ViewChild("mainSideNav") mainSideNav: ElementRef;
 
-	constructor(private store: Store<FeatureState>, private router: Router) {
+	constructor(
+		private store: Store<FeatureState>,
+		private router: Router,
+		private configService: LayoutConfigurationService,
+		private userFacadeService: UserFacadeService
+	) {
 		this.store.dispatch(new ChangeSideNavMode("push"));
-		this.user$ = this.store.select((s) => (s as any).user.user.data);
-		this.user$.subscribe((data) => {
-			debugger;
-		});
+		this.user$ = this.store.select(s => (s as any).user.user.data);
+		this.displayName$ = this.userFacadeService.getDisplayName();
 		this.showMainSidenav = this.store.select(getShowMainSidenav);
 		this.mainSidenavMode = this.store.select(getMainSideNavMode);
 		this.toolbarAnimationState = this.store.select(getLayoutToolbarMode);
@@ -69,18 +75,18 @@ export class MainComponent {
 
 		this.layoutMode = this.store.select(getLayoutMode);
 
-		this.router.events.filter((data) => data instanceof NavigationEnd).subscribe((event) => {
+		this.router.events.filter(data => data instanceof NavigationEnd).subscribe(event => {
 			var hideSituations = [
 				(event as NavigationEnd).urlAfterRedirects == "/auth/signin",
 				(event as NavigationEnd).urlAfterRedirects == "/auth/signup/register",
 				(event as NavigationEnd).urlAfterRedirects == "/auth/signup/verification",
 				(event as NavigationEnd).urlAfterRedirects == "/user/password/reset"
 			];
-			if (hideSituations.some((i) => i)) this.showSidebarMenu.next(false);
+			if (hideSituations.some(i => i)) this.showSidebarMenu.next(false);
 			else this.showSidebarMenu.next(true);
 		});
 
-		this.layoutMode.subscribe((mode) => {
+		this.layoutMode.subscribe(mode => {
 			if (!this.mainSideNav) return;
 			(this.mainSideNav.nativeElement as HTMLDivElement).className = "";
 			(this.mainSideNav.nativeElement as HTMLDivElement).classList.add(mode);

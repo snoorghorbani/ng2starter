@@ -8,32 +8,37 @@ import { Store } from "@ngrx/store";
 
 import { stringTemplate } from "@soushians/shared";
 
-// import * as userReducers from "../../feature/feature.reducers";
 import { GetProfile } from "../profile-view/profile-view.actions";
 import { getUser } from "../dashboard/user.reducer";
+import { map } from "rxjs/operators";
 
 @Injectable({
 	providedIn: "root"
 })
 export class UserService {
-	responseCache: ProfileViewModel.Response;
-
 	constructor(
 		private http: HttpClient,
 		private store: Store<any>,
 		private configurationService: UserConfigurationService
 	) {
+		debugger;
 		setTimeout(() => {
 			this.store.dispatch(new GetProfile());
 		}, 999);
 	}
 
-	getProfileInformation(): Observable<ProfileViewModel.Response> {
+	getAccountInfo(): Observable<ProfileViewModel.Response> {
 		return this.configurationService.config$
 			.filter(config => config.endpoints.profileInformation != "")
 			.take(1)
-			.switchMap(config => this.http.get(config.endpoints.profileInformation))
-			.map((response: UserModel) => response);
+			.switchMap(config =>
+				this.http.get<any>(config.endpoints.profileInformation).let(config.responseToUserInfo).pipe(
+					map((response: UserModel) => {
+						debugger;
+						return response;
+					})
+				)
+			);
 	}
 	editProfile(data: EditProfile_ApiModel.Request): Observable<UserModel> {
 		var model = new EditProfile_ApiModel.Request(data);
@@ -46,10 +51,10 @@ export class UserService {
 	getInfo(data: ProfileViewModel.Request): Observable<any> {
 		const model = new ProfileViewModel.Request(data);
 
-		if (this.responseCache && this.responseCache.Email == model.Email) return Observable.of(this.responseCache);
 		return this.http
-			.get(stringTemplate(this.configurationService.config.endpoints.getUserInfo, model))
-			.do((response: ProfileViewModel.Response) => (this.responseCache = response))
+			.get<ProfileViewModel.Response>(
+				stringTemplate(this.configurationService.config.endpoints.getUserInfo, model)
+			)
 			.map(response => response);
 	}
 

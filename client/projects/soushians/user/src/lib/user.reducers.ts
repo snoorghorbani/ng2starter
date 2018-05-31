@@ -1,6 +1,7 @@
 import { createSelector, createFeatureSelector, MemoizedSelector } from "@ngrx/store";
-import { UserModel, ProfileViewModel } from "../models";
-import { ChangePassword, ChangePasswordFailed, ChangePasswordStart, ChangePasswordSucceed } from "../change-password";
+
+import { UserModel, ProfileViewModel } from "./models";
+import { ChangePassword, ChangePasswordFailed, ChangePasswordStart, ChangePasswordSucceed } from "./change-password";
 import {
 	DisableGetLink,
 	EnableGetLink,
@@ -11,10 +12,10 @@ import {
 	ResetPasswordLinkRequestFailed,
 	ResetPasswordLinkRequestStart,
 	ResetPasswordLinkRequestSucceed
-} from "../reset-password";
-import { EditProfile, EditProfileFailed, EditProfileStart, EditProfileSucceed } from "../profile-edit";
-import { RefreshUserInfoAction, UserSelectedAction } from "../dashboard";
-import { SearchFailed, SearchStartAction, SearchSucceed } from "../search-account";
+} from "./reset-password";
+import { EditProfile, EditProfileFailed, EditProfileStart, EditProfileSucceed } from "./profile-edit";
+import { RefreshUserInfoAction, UserSelectedAction } from "./dashboard";
+import { SearchFailed, SearchStartAction, SearchSucceed } from "./search-account";
 
 //TODO : remove these lines
 //import {
@@ -22,11 +23,11 @@ import { SearchFailed, SearchStartAction, SearchSucceed } from "../search-accoun
 //} from "../actions"
 //import { CaptchaAction } from "../actions"
 
-import * as userReducer from "../dashboard/user.reducer";
-import * as resetPasswordRequestReducer from "../reset-password/reset-password-request.reducer";
-import * as changePassword from "../change-password/change-password.reducer";
-import * as editProfileReducer from "../profile-edit/edit-profile.reducer";
-import * as searchReducer from "../search-account/search.reducer";
+import * as userReducer from "./dashboard/user.reducer";
+import * as resetPasswordRequestReducer from "./reset-password/reset-password-request.reducer";
+import * as changePassword from "./change-password/change-password.reducer";
+import * as editProfileReducer from "./profile-edit/edit-profile.reducer";
+import * as searchReducer from "./search-account/search.reducer";
 
 export interface UserState {
 	user: userReducer.State;
@@ -44,7 +45,7 @@ export const UserReducers = {
 	editProfile: editProfileReducer.reducer
 };
 
-export interface FeatureState {
+export interface AppState {
 	"user": UserState;
 }
 

@@ -5,7 +5,6 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { getUserModuleConfig } from "@soushians/config";
 
 import { UserModuleConfig, MODULE_CONFIG_TOKEN, MODULE_DEFAULT_CONFIG } from "../user.config";
-// import { UserState } from "../../feature/feature.reducers";
 
 @Injectable({
 	providedIn: "root"

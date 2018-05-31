@@ -14,6 +14,7 @@ export declare class ToolbarMenuComponent {
     showSidebarMenu: any;
     app_config: any;
     user: UserModel;
+    displayName: string;
     showMainSidenav: Observable<boolean>;
     toolbarAnimationState: Observable<"comfortable" | "compact" | "summary">;
     menuItems$: Observable<any[]>;

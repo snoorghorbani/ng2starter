@@ -76,6 +76,7 @@ export class ToolbarMenuComponent {
 	@Input() showSidebarMenu;
 	@Input("app-config") app_config;
 	@Input() user: UserModel;
+	@Input() displayName: string;
 	showMainSidenav: Observable<boolean>;
 	toolbarAnimationState: Observable<"comfortable" | "compact" | "summary">;
 	menuItems$: Observable<any[]>;

@@ -4,7 +4,7 @@ import { HttpHeaders, HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Rx";
 import { Store } from "@ngrx/store";
 
-import * as FeatureReducer from "../feature/feature.reducers";
+import * as FeatureReducer from "../user.reducers";
 
 import { ResetPasswordModel, ResetPasswordRequestModel, ChangePasswordModel } from "../models";
 import { UserConfigurationService } from "./user-configuration.service";

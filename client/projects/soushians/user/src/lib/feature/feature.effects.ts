@@ -24,7 +24,7 @@ export class UserEffects {
 		})
 	);
 	@Effect()
-	getProfileInformation$ = this.actions$.ofType(SignInActionTypes.SIGNIN_SUCCEED).pipe(
+	getAccountInfo$ = this.actions$.ofType(SignInActionTypes.SIGNIN_SUCCEED).pipe(
 		map(() => {
 			return new GetProfile();
 		})

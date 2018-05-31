@@ -6,7 +6,7 @@ import { Store } from "@ngrx/store";
 
 import { ChangePasswordModel } from "../../models";
 
-import * as FeatureReducer from "../../feature/feature.reducers";
+import * as FeatureReducer from "../../user.reducers";
 import { ChangePassword } from "../change-password.actions";
 
 @Component({
@@ -18,10 +18,10 @@ import { ChangePassword } from "../change-password.actions";
 export class ChangePasswordContainerComponent implements OnInit {
 	formGroup = ChangePasswordModel.Request.formGroup;
 	ChangePasswordModel = new ChangePasswordModel.Request();
-	constructor(private route: ActivatedRoute, private store: Store<FeatureReducer.FeatureState>) { }
+	constructor(private route: ActivatedRoute, private store: Store<FeatureReducer.AppState>) {}
 
 	ngOnInit() {
-		this.store.select(FeatureReducer.getUserInfo).subscribe((userInfo) => {
+		this.store.select(FeatureReducer.getUserInfo).subscribe(userInfo => {
 			if (!userInfo) return;
 			// TODO:
 			// this.ChangePasswordModel.Username = userInfo.Username;
