@@ -1,0 +1,42 @@
+<mat-drawer-container class="example-container" autosize>
+	<mat-drawer #drawer class="example-sidenav widget-list" mode="side">
+		<div class="drawer-header">
+			<p>اضافه کردن ویجت</p>
+		</div>
+		<mat-card *ngFor="let item of widgetItems" class="item" fxLayout="row">
+			<img class="widget-img" src={{item.imgSrc}} />
+			<add-widget [data]="item.text" ></add-widget>
+		</mat-card>
+		<button class="close" (click)="drawer.toggle()">بستن</button>
+	</mat-drawer>
+	
+	<mat-drawer #editDrawer class="example-sidenav widget-list" mode="side">
+		<div class="drawer-header">
+			<p>وایرایش ویجت</p>
+		</div>
+		<mat-card class="item" fxLayout="row">
+			<edit-widget [data]="activeWidget" ></edit-widget>
+		</mat-card>
+		<button class="close" (click)="editDrawer.toggle()">بستن</button>
+	</mat-drawer>
+	<mat-drawer-content>
+		<gridStack #gridStack w="12" animate="true" (saveFunction)="saveGrid($event)" saveButtonText="دخیره">
+			<div *ngFor="let item of data" gridStackItem [x]="item.x" [y]="item.y" [h]="item.height" [w]="item.width" [customid]="item.typeId" 
+				 (changed)="saveGrid($event)" 
+				 (click)="editConfig(item)">
+					<button (click)="remove()"  mat-button color="primary">Primary</button>
+				<p class="grid-title">{{item.text}}</p>
+				{{item._id}}
+				<widget-selector [typeId]="item.typeId" [data]="widgetEntry" ></widget-selector>
+			</div>
+		</gridStack>
+		<div fxLayout="column" class="buttons-div">
+			<button mat-fab color="primary" class="save" (click)="gridStackSave()">
+				<mat-icon>check</mat-icon>
+			</button>
+			<button mat-fab color="accent" (click)="drawer.toggle()">
+				<mat-icon>add</mat-icon>
+			</button>
+		</div>
+	</mat-drawer-content>
+</mat-drawer-container>
