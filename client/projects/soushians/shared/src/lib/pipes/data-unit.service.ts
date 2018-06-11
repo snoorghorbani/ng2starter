@@ -3,7 +3,6 @@ import { Injectable } from "@angular/core";
 @Injectable({ providedIn: "root" })
 export class DataUnitService {
 	transform(value: number, exponent?: string): string {
-		debugger;
 		if (value == 0) return "0 B";
 		if (value == null) return "نامحدود";
 

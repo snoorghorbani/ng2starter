@@ -30,7 +30,6 @@ export namespace AddDiagramApiModel {
 		Source: SourceModel;
 		Groups: string[];
 		constructor(initValue: AddDiagramApiModel.Request = {} as AddDiagramApiModel.Request) {
-			debugger;
 			Object.keys(initValue).forEach(key => (this[key] = initValue[key]));
 		}
 		getRequestBody() {

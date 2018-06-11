@@ -74,7 +74,6 @@ export function reducer(state = initialState, action: WidgetActions): State {
 			};
 		}
 		case WidgetActionTypes.EDIT_WIDGET_SUCCEED: {
-			debugger;
 			const data = state.data.concat([]);
 			var updatedData = data.splice(data.findIndex(item => item._id == action.payload._id), 1);
 			updatedData = action.payload;
@@ -127,7 +126,6 @@ export function reducer(state = initialState, action: WidgetActions): State {
 		case WidgetActionTypes.DELETE_WIDGET_SUCCEED: {
 			const data = state.data.concat([]);
 			data.splice(data.findIndex(item => item._id == action.payload._id), 1);
-			debugger;
 			return {
 				...state,
 				data,

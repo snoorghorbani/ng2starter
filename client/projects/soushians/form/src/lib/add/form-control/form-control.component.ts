@@ -21,9 +21,7 @@ export class FormControlComponent {
 	tableOptions = new FormGroup({
 		dataEndpoint: new FormControl("http://localhost:3000/api/fake/packgeCompareSimpleList")
 	});
-	constructor() {
-		debugger;
-	}
+	constructor() {}
 
 	changed() {
 		if ([ this.schema.name, this.schema.title, this.schema.inputType ].some(item => !item)) return true;

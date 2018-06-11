@@ -3,7 +3,7 @@ export interface AuthenticationModuleConfig {
     endpoints?: {
         signOut?: string;
         signIn?: string;
-        userInformation?: string;
+        whoAmI?: string;
     };
     forms?: {
         signIn: string;

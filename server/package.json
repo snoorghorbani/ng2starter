@@ -1,5 +1,5 @@
 {
-	"name": "@soushians/starter",
+	"name": "@soushians/starter-server",
 	"version": "6.0.14",
 	"scripts": {
 		"start": "npm run build && npm run watch",

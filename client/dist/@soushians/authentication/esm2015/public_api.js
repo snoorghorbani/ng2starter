@@ -6,8 +6,8 @@
  * Public API Surface of authentication
  */
 export { UserModel } from "./lib/models";
-export { SignInActionTypes, SignoutAction } from "./lib/actions";
-// export * from "./lib/reducers";
-export { SigninService, SigninServiceStub } from "./lib/services/signin.service";
-export { NgsAuthenticationModule, RootNgsAuthenticationModule } from "./lib/authentication.module";
-//# sourceMappingURL=public_api.js.map
+export { SignInActionTypes, DoSignoutAction } from "./lib/actions";
+export { SigninService } from "./lib/services/signin.service";
+export { NgsAuthenticationModule } from "./lib/authentication.module";
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0Bzb3VzaGlhbnMvYXV0aGVudGljYXRpb24vIiwic291cmNlcyI6WyJwdWJsaWNfYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7QUFLQSxPQUFPLEVBQUUsU0FBUyxFQUFFLE1BQU0sY0FBYyxDQUFDO0FBQ3pDLE9BQU8sRUFBRSxpQkFBaUIsRUFBRSxlQUFlLEVBQTZCLE1BQU0sZUFBZSxDQUFDO0FBRTlGLE9BQU8sRUFBRSxhQUFhLEVBQUUsTUFBTSwrQkFBK0IsQ0FBQztBQUM5RCxPQUFPLEVBQUUsdUJBQXVCLEVBQUUsTUFBTSw2QkFBNkIsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG4gKiBQdWJsaWMgQVBJIFN1cmZhY2Ugb2YgYXV0aGVudGljYXRpb25cbiAqL1xuXG4vLyBleHBvcnQgKiBmcm9tIFwiLi9saWIvYXV0aGVudGljYXRpb24uY29uZmlnXCI7XG5leHBvcnQgeyBVc2VyTW9kZWwgfSBmcm9tIFwiLi9saWIvbW9kZWxzXCI7XG5leHBvcnQgeyBTaWduSW5BY3Rpb25UeXBlcywgRG9TaWdub3V0QWN0aW9uLCBBdXRoZW50aWNhdGlvbkFjdGlvblR5cGVzIH0gZnJvbSBcIi4vbGliL2FjdGlvbnNcIjtcbi8vIGV4cG9ydCAqIGZyb20gXCIuL2xpYi9yZWR1Y2Vyc1wiO1xuZXhwb3J0IHsgU2lnbmluU2VydmljZSB9IGZyb20gXCIuL2xpYi9zZXJ2aWNlcy9zaWduaW4uc2VydmljZVwiO1xuZXhwb3J0IHsgTmdzQXV0aGVudGljYXRpb25Nb2R1bGUgfSBmcm9tIFwiLi9saWIvYXV0aGVudGljYXRpb24ubW9kdWxlXCI7XG4iXX0=

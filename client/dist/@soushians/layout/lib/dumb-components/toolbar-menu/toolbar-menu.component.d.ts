@@ -16,7 +16,10 @@ export declare class ToolbarMenuComponent {
     user: UserModel;
     displayName: string;
     showMainSidenav: Observable<boolean>;
-    toolbarAnimationState: Observable<"comfortable" | "compact" | "summary">;
+    toolbarAnimationState: "comfortable" | "compact" | "summary" | "hide";
+    menuAnimationState: "comfortable" | "compact" | "summary" | "hide";
+    logoAnimationState: "comfortable" | "compact" | "summary" | "hide";
+    titleAnimationState: "comfortable" | "compact" | "summary" | "hide";
     menuItems$: Observable<any[]>;
     lastScroll: number;
     config: toolbarState;

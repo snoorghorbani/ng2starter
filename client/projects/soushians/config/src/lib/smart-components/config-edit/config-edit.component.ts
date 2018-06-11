@@ -48,14 +48,10 @@ export class ConfigEditComponent implements OnInit {
 
 	ngOnInit() {}
 	configChanged(event: any) {
-		debugger;
 		this.formGroup.controls.Config.patchValue(event);
 	}
 	edit() {
-		debugger;
 		if (!this.formGroup.valid) return;
-		this.configService.editConfig(this.formGroup.value).subscribe(config => {
-			debugger;
-		});
+		this.configService.editConfig(this.formGroup.value).subscribe(config => {});
 	}
 }

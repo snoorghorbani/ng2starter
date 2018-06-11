@@ -42,7 +42,6 @@ export class ProfileEditContainerComponent implements OnInit {
 
 	ngOnInit() {
 		this.userInforamation$.subscribe(userInfo => {
-			debugger;
 			if (userInfo == null) return;
 			this.formGroup.patchValue({
 				Email: userInfo.Email,

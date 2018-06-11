@@ -70,7 +70,6 @@ export class AddWidgetFailed implements Action {
 
 //EDIT
 export class EditWidgetAction implements Action {
-	debugger;
 	readonly type = WidgetActionTypes.EDIT_WIDGET;
 	constructor(public payload: WidgetModel) {}
 }

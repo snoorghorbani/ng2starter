@@ -12,7 +12,7 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "lib": [
+    "lib": [      
       "es2017",
       "dom"
     ],
@@ -49,8 +49,7 @@
         // "projects/soushians/socket/src/public_api"
       ],
       "@soushians/dashboard": [
-        "dist/@soushians/dashboard",
-        // "projects/soushians/socket/src/public_api"
+        "dist/@soushians/dashboard"
       ],
       "@soushians/test": [
         "dist/soushians/test"

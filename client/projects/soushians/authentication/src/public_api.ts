@@ -4,7 +4,7 @@
 
 // export * from "./lib/authentication.config";
 export { UserModel } from "./lib/models";
-export { SignInActionTypes, SignoutAction, AuthenticationActionTypes } from "./lib/actions";
+export { SignInActionTypes, DoSignoutAction, AuthenticationActionTypes } from "./lib/actions";
 // export * from "./lib/reducers";
-export * from "./lib/services/signin.service";
-export * from "./lib/authentication.module";
+export { SigninService } from "./lib/services/signin.service";
+export { NgsAuthenticationModule } from "./lib/authentication.module";

@@ -4,7 +4,7 @@ export interface AuthenticationModuleConfig {
 	endpoints?: {
 		signOut?: string;
 		signIn?: string;
-		userInformation?: string;
+		whoAmI?: string;
 	};
 	forms?: {
 		signIn: string;
@@ -18,7 +18,7 @@ export const MODULE_DEFAULT_CONFIG: AuthenticationModuleConfig = {
 	endpoints: {
 		signOut: "",
 		signIn: "",
-		userInformation: ""
+		whoAmI: ""
 	},
 	forms: {
 		signIn: ""

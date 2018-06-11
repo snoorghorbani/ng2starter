@@ -4,7 +4,7 @@ export declare const OPEN_SIDENAV = "[Layout] Open Sidenav";
 export declare const CLOSE_SIDENAV = "[Layout] Close Sidenav";
 export declare enum LayoutActionTypes {
     UPDATE_LAYOUT_CONFIG = "[Layout] UPDATE_LAYOUT_CONFIG",
-    SIGNOUT = "[Layout] signout",
+    DO_SIGNOUT = "[Layout] do signout",
     TITLE_CHANGED = "[LAYOUT] TITLE_CHANGED",
     CHANGE_LAYOUT = "[Layout] Change Layout",
     CHANGE_MAIN_SIDENAVE_MODE = "[Layout] Change main sidenav mode",
@@ -38,7 +38,7 @@ export declare class ChangeSecondSidenavMode implements Action {
     readonly type: LayoutActionTypes;
     constructor(mode: "over" | "push" | "side");
 }
-export declare class SignoutAction implements Action {
+export declare class DoSignoutAction implements Action {
     readonly type: LayoutActionTypes;
 }
 export declare class TitleChangedAction implements Action {
@@ -52,4 +52,4 @@ export declare class OpenSecondSidenavAction implements Action {
 export declare class CloseSecondSidenavAction implements Action {
     readonly type: LayoutActionTypes;
 }
-export declare type Actions = UpdateLayoutConfigAction | OpenSidenavAction | CloseSidenavAction | ChangeSideNavMode | ChangeLayout | SignoutAction | TitleChangedAction | OpenSecondSidenavAction | CloseSecondSidenavAction | ChangeSecondSidenavMode;
+export declare type Actions = UpdateLayoutConfigAction | OpenSidenavAction | CloseSidenavAction | ChangeSideNavMode | ChangeLayout | DoSignoutAction | TitleChangedAction | OpenSecondSidenavAction | CloseSecondSidenavAction | ChangeSecondSidenavMode;

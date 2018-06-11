@@ -18,7 +18,6 @@ export class SourceListComponent implements OnInit {
 	constructor(
 		private sourceService: SourceService // private store: Store<FeatureReducer.FeatureState>
 	) {
-		debugger;
 		this.sources = this.sourceService.getSources();
 		// this.sources.subscribe(data => { debugger})
 		//this.configs.subscribe(data => {

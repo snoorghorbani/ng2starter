@@ -11,9 +11,7 @@ export class FormGroupComponent {
 	@Input() noHeader: boolean = false;
 	@Output() changes = new EventEmitter();
 	@Output() delete = new EventEmitter();
-	constructor() {
-		debugger;
-	}
+	constructor() {}
 
 	changed() {
 		this.changes.emit();

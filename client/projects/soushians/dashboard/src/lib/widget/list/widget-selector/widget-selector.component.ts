@@ -30,7 +30,6 @@ export class WidgetSelectorComponent {
 	@Input()
 	set data(data: any) {
 		if (!(this.typeId in components)) {
-			debugger;
 			return;
 		}
 		let componentFactory = this.componentFactoryResolver.resolveComponentFactory(components[this.typeId]);

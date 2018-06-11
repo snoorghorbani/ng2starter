@@ -36,7 +36,6 @@ export class EditFormContainerComponent extends AddFormContainerComponent {
 			.filter(data => data != null)
 			.take(1)
 			.subscribe(formSchema => {
-				debugger;
 				this.schema = formSchema;
 				this.formGroup.patchValue(formSchema);
 			});

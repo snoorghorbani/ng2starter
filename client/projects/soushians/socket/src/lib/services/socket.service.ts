@@ -5,7 +5,6 @@ import { Store } from "@ngrx/store";
 // import * as socketIo from "socket.io-client";
 // const socketIo = require("socket.io-client");
 // tslint:disable-next-line:no-debugger
-debugger;
 import * as _io from "socket.io-client";
 const io = _io;
 import { AppState } from "../socket.reducer";
@@ -32,7 +31,6 @@ export class SocketService {
 			)
 			.subscribe(() => {
 				this.socket.on("DISPATCH_ACTION", data => {
-					debugger;
 					this.store.dispatch({
 						type: data.type,
 						payload: data.payload

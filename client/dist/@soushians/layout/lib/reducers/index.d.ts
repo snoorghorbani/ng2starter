@@ -22,4 +22,4 @@ export declare const getLayoutMode: MemoizedSelector<object, "default" | "with-m
 export declare const getShowSecondSidebarStatus: MemoizedSelector<object, boolean>;
 export declare const getSecondSidebarMode: MemoizedSelector<object, "over" | "push" | "side">;
 export declare const getLayoutToolbar: MemoizedSelector<object, fromToolbar.State>;
-export declare const getLayoutToolbarMode: MemoizedSelector<object, "comfortable" | "compact" | "summary">;
+export declare const getLayoutToolbarMode: MemoizedSelector<object, "comfortable" | "compact" | "summary" | "hide">;

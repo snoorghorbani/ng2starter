@@ -20,7 +20,6 @@ export function Reducer(state = initialState, action: config.Actions): State {
 			return {
 				...state,
 				data: state.data.map(config => {
-					debugger;
 					if (config._id == action.payload._id) config.Config = action.payload.Config;
 					return config;
 				})

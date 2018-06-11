@@ -18,7 +18,6 @@ export class DiagramPartialConfigEditComponent implements OnInit, OnDestroy {
 	_data;
 	@Input()
 	set data(data) {
-		debugger;
 		this._data = data;
 		this.dataLoaded.next(true);
 	}

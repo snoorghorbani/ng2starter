@@ -1,6 +1,6 @@
 {
-	"name": "@soushians/starter",
-	"version": "6.0.14",
+	"name": "@soushians/starter-client",
+	"version": "6.0.2",
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve",
@@ -16,8 +16,9 @@
 		"pretest": "webdriver-manager update",
 		"e2e": "ng e2e",
 		"e2e:p": "protractor configs/protractor.conf.js",
-		"p_update": "npm i @soushians/shared @soushians/infra @soushians/config @soushians/layout @soushians/user @soushians/authentication @soushians/source @soushians/form @soushians/diagram",
+		"p_update": "npm i @soushians/shared @soushians/config @soushians/layout @soushians/user @soushians/authentication @soushians/source @soushians/form @soushians/diagram",
 		"p_link": "cd ./dist/@soushians && cd ./authentication && npm link && cd ../config && npm link && cd ../diagram && npm link && cd ../form && npm link && cd ../layout && npm link && cd ../shared && npm link && cd ../socket && npm link && cd ../source && npm link && cd ../user && npm link",
+		"p_build": "ng build @soushians/shared && ng build @soushians/config && ng build @soushians/authentication && ng build @soushians/user && ng build @soushians/form && ng build @soushians/layout && ng build @soushians/diagram && ng build @soushians/socket && ng build @soushians/source && npm run p_link",
 		"p_uselink": "npm link @soushians/shared @soushians/config @soushians/layout @soushians/user @soushians/authentication @soushians/socket @soushians/source @soushians/form @soushians/diagram"
 	},
 	"dependencies": {
@@ -27,7 +28,7 @@
 		"@angular-devkit/schematics-cli": "^0.6.0",
 		"@angular/animations": "^6.0.0",
 		"@angular/cdk": "^6.0.0",
-		"@angular/cli": "^6.0.0",
+		"@angular/cli": "^6.0.7",
 		"@angular/common": "^6.0.0",
 		"@angular/compiler": "^6.0.0",
 		"@angular/compiler-cli": "^6.0.0",
@@ -51,7 +52,6 @@
 		"@soushians/config": "6.x.x",
 		"@soushians/diagram": "6.x.x",
 		"@soushians/form": "6.x.x",
-		"@soushians/infra": "6.x.x",
 		"@soushians/layout": "6.x.x",
 		"@soushians/ngs-schematics": "^1.1.1",
 		"@soushians/shared": "6.x.x",

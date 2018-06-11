@@ -5,6 +5,8 @@ export declare enum ToolbarActionTypes {
     SUMMARY = "[Layout][TOOLBAR] SUMMARY",
     ENABLE_COMFORTABLE_MODE = "[Layout][TOOLBAR] ENABLE_COMFORTABLE_MODE",
     DISBALE_COMFORTABLE_MODE = "[Layout][TOOLBAR] DISBALE_COMFORTABLE_MODE",
+    VISIBLE = "[Layout][TOOLBAR] VISIBLE",
+    INVISIBLE = "[Layout][TOOLBAR] INVISIBLE",
 }
 export declare class ChangeToolbatToComfortableModeAction implements Action {
     readonly type: ToolbarActionTypes;
@@ -21,4 +23,10 @@ export declare class EnableComfortableModeAction implements Action {
 export declare class DisableComfortableModeAction implements Action {
     readonly type: ToolbarActionTypes;
 }
-export declare type ToolbarActions = ChangeToolbatToComfortableModeAction | ChangeToolbatToCompactModeAction | ChangeToolbatToSummaryModeAction | EnableComfortableModeAction | DisableComfortableModeAction;
+export declare class VisibleToolbarAction implements Action {
+    readonly type: ToolbarActionTypes;
+}
+export declare class InvisibleToolbarModeAction implements Action {
+    readonly type: ToolbarActionTypes;
+}
+export declare type ToolbarActions = ChangeToolbatToComfortableModeAction | ChangeToolbatToCompactModeAction | ChangeToolbatToSummaryModeAction | EnableComfortableModeAction | DisableComfortableModeAction | VisibleToolbarAction | InvisibleToolbarModeAction;

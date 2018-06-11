@@ -68,11 +68,9 @@ export class DynamicConfigComponentSelectorComponent implements AfterViewInit {
 			this.dynamicComponentContainer.parentInjector
 		);
 		let factory = this.resolver.resolveComponentFactory(_component);
-		debugger;
 		let component = factory.create(injector);
 		if ((<any>component.instance).ConfigChanged)
 			(<any>component.instance).ConfigChanged.subscribe(() => {
-				debugger;
 				this.ConfigChanged.emit();
 			});
 
