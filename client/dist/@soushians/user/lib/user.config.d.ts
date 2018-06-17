@@ -5,7 +5,7 @@ export interface UserModuleConfig {
     endpoints?: {
         changePassword?: string;
         editProfile?: string;
-        getUserInfo?: string;
+        getAccountInfo?: string;
         profileInformation?: string;
     };
     forms?: {

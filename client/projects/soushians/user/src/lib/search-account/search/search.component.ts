@@ -22,7 +22,7 @@ export class SearchComponent implements OnInit {
 	userDataLoaded$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 	userNotFound$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 	constructor(private store: Store<FeatureReducer.AppState>) {
-		this.user = this.store.select(FeatureReducer.getUserInfo);
+		this.user = this.store.select(FeatureReducer.getAccountInfo);
 		this.userStatus$ = this.store.select(FeatureReducer.getSearchStatus);
 	}
 

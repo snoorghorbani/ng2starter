@@ -1,7 +1,7 @@
 ﻿#secondToolbar {
 	transition: all;
 	position: absolute;
-	padding-right: 25px;
+	/* padding-right: 25px; */
 }
 #logo {
 	transition: all;

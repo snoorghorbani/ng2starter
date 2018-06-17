@@ -17,7 +17,7 @@ export class ProfileContainerComponent implements OnInit {
 	dataStatus$: Observable<boolean>;
 
 	constructor(private store: Store<FeatureReducer.AppState>) {
-		this.data$ = this.store.select(FeatureReducer.getUser);
+		this.data$ = this.store.select(FeatureReducer.getAccountInfo);
 		this.dataStatus$ = this.store.select(FeatureReducer.getUserInforamtionStatus);
 	}
 

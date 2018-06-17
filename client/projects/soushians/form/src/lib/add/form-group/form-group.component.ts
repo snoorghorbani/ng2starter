@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { FieldConfig } from "../../models";
-import { Form } from "@angular/forms";
 
 @Component({
 	selector: "app-form-group",

@@ -14,7 +14,7 @@ export class DashboardContainerComponent implements OnInit {
 	user$: Observable<UserModel>;
 	// is_agent : Observable<boolean>;
 	constructor(private store: Store<appReducer.UserState>) {
-		this.user$ = this.store.select(appReducer.getUser);
+		this.user$ = this.store.select(appReducer.getAccountInfo);
 		// this.is_agent = signinService.is_agent();
 	}
 

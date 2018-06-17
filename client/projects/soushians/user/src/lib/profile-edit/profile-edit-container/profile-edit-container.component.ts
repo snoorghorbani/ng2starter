@@ -28,7 +28,7 @@ export class ProfileEditContainerComponent implements OnInit {
 	groups: Observable<string[]>;
 	config$: Observable<UserModuleConfig>;
 	constructor(private store: Store<FeatureReducer.AppState>, private configService: UserConfigurationService) {
-		this.userInforamation$ = this.store.select(FeatureReducer.getUser);
+		this.userInforamation$ = this.store.select(FeatureReducer.getAccountInfo);
 		this.roles$ = this.store
 			.select(getAppConfig)
 			.filter(config => config != undefined)

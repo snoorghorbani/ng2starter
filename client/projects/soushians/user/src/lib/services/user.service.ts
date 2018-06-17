@@ -7,10 +7,10 @@ import { UserConfigurationService } from "./user-configuration.service";
 import { Store } from "@ngrx/store";
 
 import { stringTemplate } from "@soushians/shared";
+import { map } from "rxjs/operators";
 
 import { GetProfile } from "../profile-view/profile-view.actions";
-import { getUser } from "../dashboard/user.reducer";
-import { map } from "rxjs/operators";
+import { getAccountInfo } from "../dashboard/account.reducer";
 
 @Injectable({
 	providedIn: "root"
@@ -31,10 +31,15 @@ export class UserService {
 			.filter(config => config.endpoints.profileInformation != "")
 			.take(1)
 			.switchMap(config =>
-				this.http
-					.get<any>(config.endpoints.profileInformation)
-					.let(config.responseToUserInfo)
-					.pipe(map((response: UserModel) => response))
+				this.http.get<any>(config.endpoints.profileInformation).let(config.responseToUserInfo).pipe(
+					map((response: UserModel) => {
+						const user: any = Object.assign({}, response);
+						if (user.Role) {
+							user.Roles = [ user.Role ];
+						}
+						return user;
+					})
+				)
 			);
 	}
 	editProfile(data: EditProfile_ApiModel.Request): Observable<UserModel> {
@@ -51,14 +56,14 @@ export class UserService {
 
 		return this.http
 			.get<ProfileViewModel.Response>(
-				stringTemplate(this.configurationService.config.endpoints.getUserInfo, model)
+				stringTemplate(this.configurationService.config.endpoints.getAccountInfo, model)
 			)
 			.map(response => response);
 	}
 
 	is_role(role: string): Observable<boolean> {
 		return this.store
-			.select(getUser)
+			.select(getAccountInfo)
 			.filter(user => user && user.Roles != undefined)
 			.take(1)
 			.map(user => user.Roles.indexOf(role) > -1);

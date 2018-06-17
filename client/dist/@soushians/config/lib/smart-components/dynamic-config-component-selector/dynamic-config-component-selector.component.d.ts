@@ -5,6 +5,7 @@ export declare class DynamicConfigComponentSelectorComponent implements AfterVie
     typeMapToDiagram: any;
     dynamicComponentContainer: ViewContainerRef;
     configChanged: EventEmitter<{}>;
+    readonly config: any;
     currentComponent: any;
     data: PartialConfig;
     constructor(resolver: ComponentFactoryResolver);

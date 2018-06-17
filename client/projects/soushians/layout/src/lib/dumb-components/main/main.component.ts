@@ -8,7 +8,7 @@ import { BehaviorSubject } from "rxjs";
 import { MatSidenav, MatSidenavContainer } from "@angular/material";
 
 import { ConfigModel, getAppConfig } from "@soushians/config";
-import { UserModel, getUserInfo } from "@soushians/user";
+import { UserModel } from "@soushians/user";
 
 import {
 	FeatureState,

@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { LayoutConfigModel } from "@soushians/config";
+import { LayoutModuleConfigModel } from "../layout.config";
 
 export const OPEN_SIDENAV = "[Layout] Open Sidenav";
 export const CLOSE_SIDENAV = "[Layout] Close Sidenav";
@@ -20,7 +20,7 @@ export enum LayoutActionTypes {
 
 export class UpdateLayoutConfigAction implements Action {
 	readonly type = LayoutActionTypes.UPDATE_LAYOUT_CONFIG;
-	constructor(public payload: LayoutConfigModel) {}
+	constructor(public payload: LayoutModuleConfigModel) {}
 }
 export class OpenSidenavAction implements Action {
 	readonly type = OPEN_SIDENAV;

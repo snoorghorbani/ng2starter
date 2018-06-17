@@ -5,9 +5,10 @@ export declare enum SignInActionTypes {
     SIGNIN = "[Auth] Signin",
     DO_SIGNOUT = "[Auth] Do Signout",
     SIGNOUT = "[Auth] Signout",
-    SIGNIN_SUCCEED = "[Auth] Signin Success",
-    SIGNIN_FAILURE = "[Auth] Signin Failure",
-    SIGNIN_REDIRECT = "[Auth] Signin Redirect",
+    SIGNIN_SUCCEED = "[Auth][Signin] Success",
+    SIGNIN_FAILURE = "[Auth][Signin] Failure",
+    SIGNIN_REDIRECT = "[Auth][Signin] Redirect",
+    SIGNIN_REQUIRED = "[Auth][Signin] Required",
 }
 export declare class WhoAmIAction implements Action {
     readonly type: SignInActionTypes;
@@ -36,4 +37,7 @@ export declare class DoSignoutAction implements Action {
 export declare class SignoutAction implements Action {
     readonly type: SignInActionTypes;
 }
-export declare type SigninAction = WhoAmIAction | Signin | SigninSecceed | SigninFailed | SigninRedirect | DoSignoutAction | SignoutAction;
+export declare class SigninRequiredAction implements Action {
+    readonly type: SignInActionTypes;
+}
+export declare type SigninAction = WhoAmIAction | Signin | SigninSecceed | SigninFailed | SigninRedirect | DoSignoutAction | SignoutAction | SigninRequiredAction;

@@ -49,4 +49,4 @@ export function reducer(state = initialState, action: SearchAction): State {
 }
 
 export var getStatus = (state: State) => state.status;
-export var getUserInfo = (state: State) => state.data;
+export var getAccountInfo = (state: State) => state.data;

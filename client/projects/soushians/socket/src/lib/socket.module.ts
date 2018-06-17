@@ -21,4 +21,6 @@ export class NgsSocketModule {
 @NgModule({
 	imports: [ NgsSocketModule, StoreModule.forFeature("socket", SocketReducer) ]
 })
-export class NgsSocketRootModule {}
+export class NgsSocketRootModule {
+	constructor(private socketService: SocketService) {}
+}

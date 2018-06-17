@@ -1,6 +1,6 @@
 import { HttpRequestBaseModel } from "@soushians/shared";
 import { ConfigModel } from "./config.model";
-export declare module GetConfigsApiModel {
+export declare namespace GetConfigsApiModel {
     class Request implements HttpRequestBaseModel<Request> {
         constructor(initValue?: GetConfigsApiModel.Request);
         getRequestBody(): {};

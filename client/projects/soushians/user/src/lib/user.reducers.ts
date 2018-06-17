@@ -1,33 +1,10 @@
 import { createSelector, createFeatureSelector, MemoizedSelector } from "@ngrx/store";
-
-import { UserModel, ProfileViewModel } from "./models";
-import { ChangePassword, ChangePasswordFailed, ChangePasswordStart, ChangePasswordSucceed } from "./change-password";
-import {
-	DisableGetLink,
-	EnableGetLink,
-	GetResetPasswordLink,
-	MaximumTryHappend,
-	PasswordChangedFailed,
-	PasswordChangedSucceed,
-	ResetPasswordLinkRequestFailed,
-	ResetPasswordLinkRequestStart,
-	ResetPasswordLinkRequestSucceed
-} from "./reset-password";
-import { EditProfile, EditProfileFailed, EditProfileStart, EditProfileSucceed } from "./profile-edit";
-import { RefreshUserInfoAction, UserSelectedAction } from "./dashboard";
-import { SearchFailed, SearchStartAction, SearchSucceed } from "./search-account";
-
-//TODO : remove these lines
-//import {
-//        Login, LoginSuccess, LoginFailure, LoginRedirect, LogoutAction
-//} from "../actions"
-//import { CaptchaAction } from "../actions"
-
-import * as userReducer from "./dashboard/user.reducer";
+import * as userReducer from "./dashboard/account.reducer";
 import * as resetPasswordRequestReducer from "./reset-password/reset-password-request.reducer";
 import * as changePassword from "./change-password/change-password.reducer";
 import * as editProfileReducer from "./profile-edit/edit-profile.reducer";
 import * as searchReducer from "./search-account/search.reducer";
+import { UserModel } from "./models";
 
 export interface UserState {
 	user: userReducer.State;
@@ -71,11 +48,10 @@ export const getResetPasswordRequestStatus = createSelector(
 
 //#region user
 export const selectUserInformaionState = createSelector(selectFeatureState, (state: UserState) => state.user);
-export const getUser = createSelector(selectUserInformaionState, userReducer.getUser);
+export const getAccountInfo = createSelector(selectUserInformaionState, userReducer.getAccountInfo);
 //#endregion
 
 //#region search
 export const selectSearchState = createSelector(selectFeatureState, (state: UserState) => state.searchView);
 export const getSearchStatus = createSelector(selectSearchState, searchReducer.getStatus);
-export const getUserInfo = createSelector(selectSearchState, searchReducer.getUserInfo);
 //#endregion

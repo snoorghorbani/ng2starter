@@ -21,7 +21,7 @@ export class ChangePasswordContainerComponent implements OnInit {
 	constructor(private route: ActivatedRoute, private store: Store<FeatureReducer.AppState>) {}
 
 	ngOnInit() {
-		this.store.select(FeatureReducer.getUserInfo).subscribe(userInfo => {
+		this.store.select(FeatureReducer.getAccountInfo).subscribe(userInfo => {
 			if (!userInfo) return;
 			// TODO:
 			// this.ChangePasswordModel.Username = userInfo.Username;

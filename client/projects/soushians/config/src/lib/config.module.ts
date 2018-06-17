@@ -24,11 +24,9 @@ import {
 	MatProgressBarModule,
 	MatSlideToggleModule
 } from "@angular/material";
-import { Observable } from "rxjs/Observable";
 import { EffectsModule } from "@ngrx/effects";
 
-import { GetConfigsApiModel } from "./models";
-import { ConfigModuleConfig, MODULE_CONFIG_TOKEN, MODULE_DEFAULT_CONFIG } from "./config.config";
+import { ConfigModuleConfig, MODULE_CONFIG_TOKEN } from "./config.config";
 import { ConfigsComponent } from "./smart-components/configs/configs.component";
 import { ConfigEditComponent } from "./smart-components/config-edit/config-edit.component";
 import { ConfigAppConfigComponent } from "./dumb-components/app-config/app-config.component";
@@ -65,8 +63,7 @@ import { RoutingModule } from "./config.routing-module";
 		MatToolbarModule,
 		MatDatepickerModule,
 		MatProgressBarModule,
-		BrowserAnimationsModule,
-		RoutingModule
+		BrowserAnimationsModule
 	],
 	declarations: [
 		ConfigsComponent,
@@ -93,8 +90,8 @@ export class NgsConfigModule {
 	imports: [
 		NgsConfigModule,
 		StoreModule.forFeature("config", ConfigReducers),
-		EffectsModule.forFeature([ LoadConfigEffects ])
-		// RoutingModule
+		EffectsModule.forFeature([ LoadConfigEffects ]),
+		RoutingModule
 	],
 	exports: [ NgsConfigModule ]
 })

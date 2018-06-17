@@ -1,5 +1,4 @@
 ﻿import * as config from "../actions/config.action";
-import { ConfigModel, LayoutConfigModel } from "../models";
 
 export interface State {
 	data: any[];
@@ -34,7 +33,6 @@ export const getAppConfig = (state: State) => state.data.find(config => config.N
 export const getAuthenticationModuleConfig = (state: State) =>
 	state.data.find(config => config.Name == "authentication_module_config");
 export const getUserModuleConfig = (state: State) => state.data.find(config => config.Name == "user_module_config");
-export const getlayoutModuleConfig = (state: State) => state.data.find(config => config.Name == "layout_config") as any;
 export const getConfigModuleConfig = (state: State) =>
 	state.data.find(config => config.Name == "config_module_config") as any;
 export const getFormModuleConfig = (state: State) =>

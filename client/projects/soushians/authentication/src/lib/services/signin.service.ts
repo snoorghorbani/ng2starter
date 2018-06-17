@@ -31,7 +31,13 @@ export class SigninService {
 			filter(config => config.endpoints.signIn != ""),
 			take(1),
 			switchMap(config => this.http.post<Signin_ApiModel.Response>(config.endpoints.signIn, model)),
-			map(response => response.Result)
+			map(response => {
+				const user: any = Object.assign({}, response.Result);
+				if (user.Role) {
+					user.Roles = [ user.Role ];
+				}
+				return user;
+			})
 		);
 		// .catch(err => {
 		// 	if (err.status == 400) {

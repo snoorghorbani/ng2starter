@@ -26,7 +26,7 @@ export declare class DisableComfortableModeAction implements Action {
 export declare class VisibleToolbarAction implements Action {
     readonly type: ToolbarActionTypes;
 }
-export declare class InvisibleToolbarModeAction implements Action {
+export declare class InvisibleToolbarAction implements Action {
     readonly type: ToolbarActionTypes;
 }
-export declare type ToolbarActions = ChangeToolbatToComfortableModeAction | ChangeToolbatToCompactModeAction | ChangeToolbatToSummaryModeAction | EnableComfortableModeAction | DisableComfortableModeAction | VisibleToolbarAction | InvisibleToolbarModeAction;
+export declare type ToolbarActions = ChangeToolbatToComfortableModeAction | ChangeToolbatToCompactModeAction | ChangeToolbatToSummaryModeAction | EnableComfortableModeAction | DisableComfortableModeAction | VisibleToolbarAction | InvisibleToolbarAction;

@@ -1,8 +1,8 @@
 export class UserModel {
 	_id: string;
-	FirstName: string;
-	LastName: string;
-	Username: string;
+	// FirstName: string;
+	// LastName: string;
+	// Username: string;
 	DisplayName: string;
 	// Username: string;
 	// MobileNumber: string;
@@ -15,5 +15,8 @@ export class UserModel {
 	// UserType: string;
 	Roles: string[];
 	Groups: string[];
-	constructor() {}
+	constructor() {
+		this.Roles = [];
+		this.Groups = [];
+	}
 }

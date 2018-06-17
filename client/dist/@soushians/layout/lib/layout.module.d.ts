@@ -1,7 +1,7 @@
 import { ModuleWithProviders } from "@angular/core";
-import { LayoutModuleConfig } from "./layout.config";
+import { LayoutModuleConfigModel } from "./layout.config";
 export declare class NgsLayoutModule {
-    static forRoot(config?: LayoutModuleConfig): ModuleWithProviders;
+    static forRoot(config?: LayoutModuleConfigModel): ModuleWithProviders;
 }
 export declare class RootNgsLayoutModule {
 }

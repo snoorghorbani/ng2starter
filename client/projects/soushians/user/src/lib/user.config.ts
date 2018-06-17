@@ -7,7 +7,7 @@ export interface UserModuleConfig {
 		//resetPasswordRequest: string;
 		changePassword?: string;
 		editProfile?: string;
-		getUserInfo?: string;
+		getAccountInfo?: string;
 		profileInformation?: string;
 		// resetPassword: string;
 	};
@@ -28,7 +28,7 @@ export const MODULE_DEFAULT_CONFIG: UserModuleConfig = {
 		//resetPasswordRequest: '',
 		changePassword: "",
 		editProfile: "",
-		getUserInfo: "",
+		getAccountInfo: "",
 		profileInformation: ""
 		// resetPassword: '',
 	},

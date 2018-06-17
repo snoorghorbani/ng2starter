@@ -12,6 +12,7 @@ export interface AuthenticationModuleConfig {
 	env: {
 		production: boolean;
 	};
+	afterSignoutRedirectTo?: string;
 }
 
 export const MODULE_DEFAULT_CONFIG: AuthenticationModuleConfig = {
@@ -25,7 +26,8 @@ export const MODULE_DEFAULT_CONFIG: AuthenticationModuleConfig = {
 	},
 	env: {
 		production: false
-	}
+	},
+	afterSignoutRedirectTo: "/"
 };
 
 export const MODULE_CONFIG_TOKEN = new InjectionToken<AuthenticationModuleConfig>("ModuleConfig");

@@ -15,6 +15,7 @@ export declare class ToolbarMenuComponent {
     app_config: any;
     user: UserModel;
     displayName: string;
+    user$: Observable<UserModel>;
     showMainSidenav: Observable<boolean>;
     toolbarAnimationState: "comfortable" | "compact" | "summary" | "hide";
     menuAnimationState: "comfortable" | "compact" | "summary" | "hide";
@@ -30,4 +31,5 @@ export declare class ToolbarMenuComponent {
     goback(): void;
     toggleSecondSidebar(): void;
     toggleMainSidebar(): void;
+    _observe_on_layout_config_and_filter_routes(): void;
 }

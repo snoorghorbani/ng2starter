@@ -13,14 +13,16 @@ export declare class MainComponent {
     private router;
     private configService;
     private userFacadeService;
+    app_config: ConfigModel<any>;
+    mode$: Observable<"visible" | "invisible">;
     user$: Observable<UserModel>;
     displayName$: Observable<string>;
+    isFullscreen$: Observable<boolean>;
     progressStatus$: Observable<boolean>;
     showSidebarMenu: BehaviorSubject<boolean>;
     showMainSidenav: Observable<boolean>;
     mainSidenavMode: Observable<"side" | "over" | "push">;
     layoutMode: Observable<"with-margin" | "without-margin" | "default">;
-    app_config: ConfigModel<any>;
     width: number;
     showSecondSidenav: Observable<boolean>;
     secondSidenavMode: Observable<"side" | "over" | "push">;

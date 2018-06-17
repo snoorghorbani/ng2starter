@@ -1,11 +1,26 @@
 ﻿import { InjectionToken } from "@angular/core";
 
-import { LayoutConfigModel } from "@soushians/config";
 import { Action } from "@ngrx/store";
 
-export interface LayoutModuleConfig extends LayoutConfigModel {}
+export interface LayoutModuleConfigModel {
+	showMainSidenav?: boolean;
+	showSecondSideNav?: boolean;
+	secondSideNavMode?: "over" | "push" | "side";
+	mainSideNavMode?: "over" | "push" | "side";
+	menuItems?: {
+		route: string;
+		icon: string;
+		roles: string[];
+		title: string;
+	}[];
+	showLeftNavBar?: boolean;
+	stickyLeftNavBar?: boolean;
+	layoutMode?: "with-margin" | "without-margin" | "default";
+	title?: string;
+	signoutAction: Action;
+}
 
-export const MODULE_DEFAULT_CONFIG: LayoutModuleConfig = {
+export const MODULE_DEFAULT_CONFIG: LayoutModuleConfigModel = {
 	showMainSidenav: false,
 	showSecondSideNav: true,
 	secondSideNavMode: "over", //| "push" | "side",
@@ -37,4 +52,4 @@ export const MODULE_DEFAULT_CONFIG: LayoutModuleConfig = {
 	signoutAction: {} as Action
 };
 
-export const MODULE_CONFIG_TOKEN = new InjectionToken<LayoutModuleConfig>("LayoutModuleConfig");
+export const MODULE_CONFIG_TOKEN = new InjectionToken<LayoutModuleConfigModel>("LayoutModuleConfigModel");

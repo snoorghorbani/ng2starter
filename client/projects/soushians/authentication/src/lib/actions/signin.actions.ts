@@ -7,9 +7,10 @@ export enum SignInActionTypes {
 	SIGNIN = "[Auth] Signin",
 	DO_SIGNOUT = "[Auth] Do Signout",
 	SIGNOUT = "[Auth] Signout",
-	SIGNIN_SUCCEED = "[Auth] Signin Success",
-	SIGNIN_FAILURE = "[Auth] Signin Failure",
-	SIGNIN_REDIRECT = "[Auth] Signin Redirect"
+	SIGNIN_SUCCEED = "[Auth][Signin] Success",
+	SIGNIN_FAILURE = "[Auth][Signin] Failure",
+	SIGNIN_REDIRECT = "[Auth][Signin] Redirect",
+	SIGNIN_REQUIRED = "[Auth][Signin] Required"
 }
 
 export class WhoAmIAction implements Action {
@@ -42,6 +43,10 @@ export class SignoutAction implements Action {
 	readonly type = SignInActionTypes.SIGNOUT;
 }
 
+export class SigninRequiredAction implements Action {
+	readonly type = SignInActionTypes.SIGNIN_REQUIRED;
+}
+
 export type SigninAction =
 	| WhoAmIAction
 	| Signin
@@ -49,4 +54,5 @@ export type SigninAction =
 	| SigninFailed
 	| SigninRedirect
 	| DoSignoutAction
-	| SignoutAction;
+	| SignoutAction
+	| SigninRequiredAction;
