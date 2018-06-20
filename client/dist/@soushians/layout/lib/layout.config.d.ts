@@ -15,7 +15,8 @@ export interface LayoutModuleConfigModel {
     stickyLeftNavBar?: boolean;
     layoutMode?: "with-margin" | "without-margin" | "default";
     title?: string;
-    signoutAction: Action;
+    signoutAction?: Action;
+    menu_item_authorization_operator?: ([routes, user]: [any, any]) => any[];
 }
 export declare const MODULE_DEFAULT_CONFIG: LayoutModuleConfigModel;
 export declare const MODULE_CONFIG_TOKEN: InjectionToken<LayoutModuleConfigModel>;

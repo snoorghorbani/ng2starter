@@ -3,11 +3,11 @@
   "version": "6.1.0",
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
+    "@soushians/shared": "*",
+    "@soushians/config": "*"
   },
   "dependencies": {
-    "@soushians/shared": "*",
-    "@soushians/config": "*",
     "tslib": "^1.9.0"
   },
   "main": "bundles/soushians-form.umd.js",

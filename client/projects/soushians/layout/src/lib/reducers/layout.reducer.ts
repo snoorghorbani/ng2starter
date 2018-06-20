@@ -37,9 +37,13 @@ const initialState: State = {
 export function Reducer(state = initialState, action: layout.Actions): State {
 	switch (action.type) {
 		case layout.LayoutActionTypes.UPDATE_LAYOUT_CONFIG:
+			const _state = {};
+			Object.keys(action.payload).forEach(k => {
+				if (k in state) _state[k] = action.payload[k];
+			});
 			return {
 				...state,
-				...action.payload
+				..._state
 			};
 		case layout.CLOSE_SIDENAV:
 			return {

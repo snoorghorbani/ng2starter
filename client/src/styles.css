@@ -185,9 +185,10 @@ app-search-box {
     margin-right: 20px !important;
 }*/
 
-mat-sidenav-container mat-sidenav-content {
+mat-sidenav-container mat-sidenav-content.mat-drawer-content {
 	min-height: calc(100vh - 106px);
-	padding-bottom: 50px;
+	/* padding-bottom: 50px; */
+	overflow-x: hidden;
 }
 
 mat-sidenav {
@@ -320,7 +321,7 @@ mat-toolbar.mat-toolbar {
 	/* background: #fff;
 	border-bottom: 1px solid #eaeaea; */
 	color: #202020;
-	z-index: 4;
+	z-index: 2;
 	position: fixed;
 }
 .mat-card-header-text {
@@ -347,14 +348,6 @@ mat-toolbar.mat-toolbar {
 }
 .mat-horizontal-content-container {
 	/* padding-bottom: 0 !important; */
-}
-
-mat-sidenav-content {
-	padding-top: 64px;
-}
-
-mat-sidenav-content mat-sidenav-content {
-	padding: 25px;
 }
 
 .left-align {
@@ -425,8 +418,22 @@ diagram-add dynamic-component-selector .mat-card {
 	box-sizing: border-box;
 	/* height: 100vh !important; */
 }
+
+/* mat-sidenav-content {
+	padding-top: 64px;
+}
+
+mat-sidenav-content mat-sidenav-content {
+	padding: 25px;
+} */
+
 #layout-sidnav > mat-sidenav-content {
-	transition: all 400ms;
+	transition: all 800ms;
+	overflow: visible;
+}
+
+.fullscreen #layout-sidnav > mat-sidenav-content {
+	padding: 0;
 }
 .comfortable #layout-sidnav > mat-sidenav-content {
 	padding-top: 33vh;
@@ -436,4 +443,44 @@ diagram-add dynamic-component-selector .mat-card {
 }
 .summary #layout-sidnav > mat-sidenav-content {
 	padding-top: 64px;
+}
+.hide #layout-sidnav > mat-sidenav-content {
+	padding-top: 1px;
+}
+.mat-form-field-wrapper {
+	transition: top 500ms;
+	top: 0px;
+}
+/* mat-form-field.view .mat-form-field-wrapper {
+	top: -60px;
+}
+mat-form-field.edit .mat-form-field-wrapper {
+	top: 1px;
+} */
+
+.clear-mat-card-box mat-card {
+	box-shadow: 0 0 0 0 transparent !important;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.card-stickey-header,
+.card-second-stickey-header {
+	position: sticky;
+	height: 60px;
+	background-color: #fff;
+	border-bottom: 1px solid #eee;
+	margin-left: -24px;
+	margin-right: -24px;
+	padding-left: 25px;
+	padding-right: 25px;
+	z-index: 1;
+	margin-bottom: 25px;
+	overflow: hidden;
+}
+.card-stickey-header {
+	top: 64px;
+}
+.card-second-stickey-header {
+	top: 124px;
 }

@@ -100,12 +100,6 @@ export class MainComponent {
 			if (hideSituations.some(i => i)) this.showSidebarMenu.next(false);
 			else this.showSidebarMenu.next(true);
 		});
-
-		this.layoutMode.subscribe(mode => {
-			if (!this.mainSideNav) return;
-			(this.mainSideNav.nativeElement as HTMLDivElement).className = "";
-			(this.mainSideNav.nativeElement as HTMLDivElement).classList.add(mode);
-		});
 	}
 
 	// ngAfterViewInit() {

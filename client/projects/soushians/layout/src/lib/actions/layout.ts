@@ -20,7 +20,7 @@ export enum LayoutActionTypes {
 
 export class UpdateLayoutConfigAction implements Action {
 	readonly type = LayoutActionTypes.UPDATE_LAYOUT_CONFIG;
-	constructor(public payload: LayoutModuleConfigModel) {}
+	constructor(public payload: Partial<LayoutModuleConfigModel>) {}
 }
 export class OpenSidenavAction implements Action {
 	readonly type = OPEN_SIDENAV;

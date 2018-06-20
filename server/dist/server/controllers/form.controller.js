@@ -14,7 +14,13 @@ router.get("/:id", function (req, res) {
 });
 router.post("/", function (req, res) {
     const model = new Model(req.body);
-    model.save().then(Result => res.json({ Result })).catch(err => {
+    model
+        .save()
+        .then(Result => {
+        socket_controller_1.SocketMiddleware.server.dispatchActionToClients("[FORM][ADD] ADD_FORM_SUCCEED", Result);
+        res.json({ Result });
+    })
+        .catch(err => {
         debugger;
     });
 });

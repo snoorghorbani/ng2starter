@@ -285,17 +285,18 @@ export class ToolbarMenuComponent {
 			setTimeout(() => (this.toolbarAnimationState = state), 1);
 		});
 		this._observe_on_layout_config_and_filter_routes();
+
 		fromEvent(this.document.body, "scroll").subscribe(() => {
 			let scrolledAmount = this.document.body.scrollTop;
 			let scrollToTop =
-				scrolledAmount - this.lastScroll < 0 && this.document.body.scrollHeight - scrolledAmount < 100;
+				scrolledAmount - this.lastScroll < 0 && this.document.body.scrollHeight - scrolledAmount < 300;
 			// let scrollToTop = scrolledAmount - this.lastScroll < 0;
 			this.lastScroll = this.document.body.scrollTop;
 			if (!this.config.visibility) return;
 			if (scrolledAmount == 0) {
 				if (this.config.mode == "comfortable") return;
 				this.store.dispatch(new ChangeToolbatToComfortableModeAction());
-			} else if (scrolledAmount < 128 || scrollToTop) {
+			} else if (scrolledAmount < 200 || scrollToTop) {
 				if (this.config.mode == "compact") return;
 				this.store.dispatch(new ChangeToolbatToCompactModeAction());
 			} else {
@@ -333,14 +334,7 @@ export class ToolbarMenuComponent {
 		this.menuItems$ = this.configurationService.config$.pipe(
 			map(config => config.menuItems),
 			combineLatest(this.user$),
-			map(([ routes, user ]) => {
-				if (!user.Roles) return [];
-				if (user.Roles.length == 0) {
-					return [];
-				} else {
-					return routes.filter(route => user.Roles.some(userRole => route.roles.indexOf(userRole) > -1));
-				}
-			})
+			map(this.configurationService.config$.getValue().menu_item_authorization_operator)
 		);
 	}
 }

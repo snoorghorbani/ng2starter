@@ -1,9 +1,8 @@
-<div #mainSideNav [className]="toolbarAnimationState | async" [class.fullscreen]="isFullscreen$ | async">
-  
+<div #mainSideNav [ngClass]="toolbarAnimationState | async" [class.fullscreen]="isFullscreen$ | async">
   <!-- <mat-progress-bar *ngIf='progressStatus$ | async' color="primary" mode="query"></mat-progress-bar> -->
   <layout-toolbar [user]="user$ | async" [displayName]="displayName$ | async" [showSidebarMenu]='showSidebarMenu | async' [app-config]="app_config"></layout-toolbar>
   
-  <mat-sidenav-container id="layout-sidnav">
+  <mat-sidenav-container id="layout-sidnav" [className]="layoutMode | async">
     <mat-sidenav [mode]="mainSidenavMode | async" [opened]='showMainSidenav | async' #sidebar (closedStart)="onSidebarClosedStart()">
       <mat-nav-list>
         <ngs-layout-main-menu [authenticated]='showSidebarMenu' (closeSidebar)="sidebar.close()" (click)="onSecondSidebarClosedStart()"></ngs-layout-main-menu>

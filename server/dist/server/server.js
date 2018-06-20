@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 const express = require("express");
 const compression = require("compression"); // compresses requests
-const session = require("express-session");
+const express_session = require("express-session");
 // import * as cookieSession from "cookie-session";
 const bodyParser = require("body-parser");
 const errorHandler = require("errorhandler");
@@ -16,38 +16,16 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const cors = require("cors");
 const expressValidator = require("express-validator");
-debugger;
-const MongoStore = mongo(session);
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
 dotenv.config({ path: ".env" });
-// import * as admin from "firebase-admin";
 /**
  * Models
  */
 require("./models/form.model");
 require("./models/bpmn.model");
-// import * as socketController from "./controllers/socket.controller";
-const socket_controller_1 = require("./controllers/socket.controller");
-/**
- * Controllers (route handlers).
- */
-const homeController = require("./controllers/home");
-const userController = require("./controllers/user.controller");
-const configController = require("./controllers/config.controller");
-const formController = require("./controllers/form.controller");
-const bpmnController = require("./controllers/bpmn.controller");
-const diagramController = require("./controllers/diagram.controller");
-// import * as apiController from "./controllers/api";
-const fakeController = require("./controllers/fake.controller");
-const dataController = require("./controllers/data-provider.controller");
-const eventController = require("./controllers/event.controller");
-const sourceController = require("./controllers/source.controller");
-/**
- * API keys and Passport configuration.
- */
-const passportConfig = require("./config/passport");
+require("./models/user.model");
 /**
  * Create Express server.
  */
@@ -78,11 +56,12 @@ const corsOptions = {
     credentials: true
 };
 app.use(cors(corsOptions));
+const MongoStore = mongo(express_session);
 const sessionStore = new MongoStore({
     url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
     autoReconnect: true
 });
-app.use(session({
+app.use(express_session({
     resave: true,
     saveUninitialized: true,
     secret: process.env.SESSION_SECRET,
@@ -93,6 +72,7 @@ app.use(session({
 //   keys: ["key1"],
 //   maxAge: 24 * 60 * 60 * 1000
 // }));
+debugger;
 app.use(passport.initialize());
 app.use(passport.session());
 app.use((req, res, next) => {
@@ -114,6 +94,21 @@ app.use((req, res, next) => {
     next();
 });
 app.use(express.static(path.join(__dirname, "../src"), { maxAge: 31557600000 }));
+/**
+ * Controllers (route handlers).
+ */
+const homeController = require("./controllers/home");
+const userController = require("./controllers/user.controller");
+const configController = require("./controllers/config.controller");
+const formController = require("./controllers/form.controller");
+const bpmnController = require("./controllers/bpmn.controller");
+const diagramController = require("./controllers/diagram.controller");
+// import * as apiController from "./controllers/api";
+const fakeController = require("./controllers/fake.controller");
+const dataController = require("./controllers/data-provider.controller");
+const eventController = require("./controllers/event.controller");
+const sourceController = require("./controllers/source.controller");
+const socket_controller_1 = require("./controllers/socket.controller");
 /**
  * Primary app routes.
  */
@@ -142,9 +137,9 @@ app.use("/api/source", sourceController.router);
 // app.post("/signup", userController.postSignup);
 // app.get("api/account", passportConfig.isAuthenticated, userController.getAccount);
 app.post("/api/account/profile", userController.postUpdateProfile);
-app.post("/account/password", passportConfig.isAuthenticated, userController.postUpdatePassword);
-app.post("/account/delete", passportConfig.isAuthenticated, userController.postDeleteAccount);
-app.get("/account/unlink/:provider", passportConfig.isAuthenticated, userController.getOauthUnlink);
+// app.post("/account/password", passportConfig.isAuthenticated, userController.postUpdatePassword);
+// app.post("/account/delete", passportConfig.isAuthenticated, userController.postDeleteAccount);
+// app.get("/account/unlink/:provider", passportConfig.isAuthenticated, userController.getOauthUnlink);
 // app.get("/api", apiController.getApi);
 /**
  * Error Handler. Provides full stack - remove for production
@@ -155,6 +150,7 @@ const server = app.listen(app.get("port"), () => {
     console.log("  Press CTRL-C to stop\n");
     sourceController.sourceJob();
 });
+debugger;
 socket_controller_1.SocketMiddleware.init(server, sessionStore, passport);
 module.exports = app;
 //# sourceMappingURL=server.js.map

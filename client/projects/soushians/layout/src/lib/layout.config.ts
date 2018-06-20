@@ -17,9 +17,18 @@ export interface LayoutModuleConfigModel {
 	stickyLeftNavBar?: boolean;
 	layoutMode?: "with-margin" | "without-margin" | "default";
 	title?: string;
-	signoutAction: Action;
+	signoutAction?: Action;
+	menu_item_authorization_operator?: ([ routes, user ]: [any, any]) => any[];
 }
 
+const menu_item_authorization_operator = function([ routes, user ]) {
+	if (!user.Roles) return [];
+	if (user.Roles.length == 0) {
+		return [];
+	} else {
+		return routes.filter(route => user.Roles.some(userRole => route.roles.indexOf(userRole) > -1));
+	}
+};
 export const MODULE_DEFAULT_CONFIG: LayoutModuleConfigModel = {
 	showMainSidenav: false,
 	showSecondSideNav: true,
@@ -49,7 +58,8 @@ export const MODULE_DEFAULT_CONFIG: LayoutModuleConfigModel = {
 			title: "آدرس سرویس ها"
 		}
 	],
-	signoutAction: {} as Action
+	signoutAction: {} as Action,
+	menu_item_authorization_operator
 };
 
 export const MODULE_CONFIG_TOKEN = new InjectionToken<LayoutModuleConfigModel>("LayoutModuleConfigModel");

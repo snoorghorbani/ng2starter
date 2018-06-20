@@ -74,14 +74,7 @@ export class MainMenuComponent {
 		this.routes$ = this.configurationService.config$.pipe(
 			map(config => config.menuItems),
 			combineLatest(this.user$),
-			map(([ routes, user ]) => {
-				if (!user.Roles) return [];
-				if (user.Roles.length == 0) {
-					return [];
-				} else {
-					return routes.filter(route => user.Roles.some(userRole => route.roles.indexOf(userRole) > -1));
-				}
-			})
+			map(this.configurationService.config$.getValue().menu_item_authorization_operator)
 		);
 	}
 }

@@ -16,9 +16,9 @@ export declare enum LayoutActionTypes {
     TOGGLE_FULLSCREEN = "[Layout] TOGGLE_FULLSCREEN",
 }
 export declare class UpdateLayoutConfigAction implements Action {
-    payload: LayoutModuleConfigModel;
+    payload: Partial<LayoutModuleConfigModel>;
     readonly type: LayoutActionTypes;
-    constructor(payload: LayoutModuleConfigModel);
+    constructor(payload: Partial<LayoutModuleConfigModel>);
 }
 export declare class OpenSidenavAction implements Action {
     readonly type: string;

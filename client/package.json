@@ -1,6 +1,6 @@
 {
 	"name": "@soushians/starter-client",
-	"version": "6.0.2",
+	"version": "6.0.3",
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve",
@@ -53,10 +53,10 @@
 		"@soushians/diagram": "6.x.x",
 		"@soushians/form": "6.x.x",
 		"@soushians/layout": "6.x.x",
-		"@soushians/ngs-schematics": "^1.1.1",
 		"@soushians/shared": "6.x.x",
 		"@soushians/source": "6.x.x",
 		"@soushians/user": "6.x.x",
+		"@soushians/ngs-schematics": "^1.1.1",
 		"@types/async": "^2.0.47",
 		"@types/compression": "0.0.33",
 		"@types/dotenv": "^2.0.20",
