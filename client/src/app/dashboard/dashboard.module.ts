@@ -5,9 +5,10 @@ import { SharedModule } from "@soushians/shared";
 
 import { DashboardRoutingModule } from "./dashboard-routing.module";
 import { DashboardComponent } from "./smart-components";
+import { RuleModule } from "@rule";
 
 @NgModule({
-	imports: [ CommonModule, SharedModule, DashboardRoutingModule ],
+	imports: [ CommonModule, SharedModule, DashboardRoutingModule, RuleModule ],
 	declarations: [ DashboardComponent ],
 	providers: []
 })

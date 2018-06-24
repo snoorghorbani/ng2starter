@@ -27,6 +27,7 @@ import { FeatureState, getShowSecondSidebarStatus, getLayoutToolbar } from "../.
 import { LayoutConfigurationService } from "../../services/layout-configuration.service";
 import { State as toolbarState } from "../../reducers/toolbar.reducer";
 import { map, combineLatest } from "rxjs/operators";
+import { ShowAnchorsAction, HideAnchorsAction } from "@rule";
 
 @Component({
 	selector: "layout-toolbar",
@@ -265,6 +266,7 @@ export class ToolbarMenuComponent {
 	lastScroll: number;
 	config: toolbarState;
 	config$: Observable<toolbarState>;
+	anchorsMode: boolean = false;
 	constructor(
 		@Inject(DOCUMENT) private document: any,
 		private _location: Location,
@@ -329,6 +331,15 @@ export class ToolbarMenuComponent {
 			action = state ? new CloseSidenavAction() : new OpenSidenavAction();
 		});
 		this.store.dispatch(action);
+	}
+	toggleAnchors() {
+		if (this.anchorsMode === false) {
+			this.store.dispatch(new ShowAnchorsAction());
+			this.anchorsMode = true;
+		} else {
+			this.store.dispatch(new HideAnchorsAction());
+			this.anchorsMode = false;
+		}
 	}
 	_observe_on_layout_config_and_filter_routes() {
 		this.menuItems$ = this.configurationService.config$.pipe(

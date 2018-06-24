@@ -1,10 +1,6 @@
-import { NgModule, LOCALE_ID } from "@angular/core";
+import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-// import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-// import { ServiceWorkerModule } from "@angular/service-worker";
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { StoreModule, Store } from "@ngrx/store";
-import { StoreRouterConnectingModule, routerReducer } from "@ngrx/router-store";
+import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 
@@ -29,7 +25,8 @@ import { reducers } from "./app.reducers";
 
 // module configs
 import { DashboardModule } from "./dashboard";
-// import { NgsBpmnModule } from "./bpmn";
+import { RuleModule } from "./rule";
+import { ruleModuleConfig } from "./rule.module-config";
 
 @NgModule({
 	imports: [
@@ -60,6 +57,7 @@ import { DashboardModule } from "./dashboard";
 		SourceModule,
 		StaticPageModule,
 		NgsFormModule.forRoot(),
+		RuleModule.forRoot(ruleModuleConfig),
 		AppRoutingModule,
 		DashboardModule
 	],

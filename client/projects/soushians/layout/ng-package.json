@@ -5,5 +5,11 @@
 	"lib": {
 		"entryFile": "src/public_api.ts"
 	},
-	"whitelistedNonPeerDependencies": [ "tslib" ]
+	"whitelistedNonPeerDependencies": [
+		"tslib",
+		"@soushians/config",
+		"@soushians/authentication",
+		"@soushians/shared",
+		"@soushians/user"
+	]
 }

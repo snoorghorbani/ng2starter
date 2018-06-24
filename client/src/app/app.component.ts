@@ -18,7 +18,7 @@ export class AppComponent {
 
 	constructor(private store: Store<State>, private socketService: SocketService) {
 		this.app_config = this.store.select(getAppConfig);
-
+		// debugger;
 		setTimeout(() => {
 			this.store.dispatch(new ChangeToolbatToComfortableModeAction());
 		}, 3000);
