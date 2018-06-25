@@ -26,6 +26,7 @@ dotenv.config({ path: ".env" });
 import "./models/form.model";
 import "./models/bpmn.model";
 import "./models/user.model";
+import "./models/gwt-scenario.model";
 
 /**
  * API keys and Passport configuration.
@@ -119,19 +120,16 @@ import * as configController from "./controllers/config.controller";
 import * as formController from "./controllers/form.controller";
 import * as bpmnController from "./controllers/bpmn.controller";
 import * as diagramController from "./controllers/diagram.controller";
-// import * as apiController from "./controllers/api";
 import * as fakeController from "./controllers/fake.controller";
 import * as dataController from "./controllers/data-provider.controller";
 import * as eventController from "./controllers/event.controller";
 import * as sourceController from "./controllers/source.controller";
+import * as gwtScenarioController from "./controllers/gwt-scenario.controller";
 import { SocketMiddleware } from "./controllers/socket.controller";
 
 /**
  * Primary app routes.
  */
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "../src/index-jit.html"));
-// });
 app.get("/", homeController.index);
 app.use("/api/user", userController.router);
 app.use("/api/config", configController.router);
@@ -142,25 +140,9 @@ app.use("/api/fake", fakeController.router);
 app.use("/api/data", dataController.router);
 app.use("/api/event", eventController.router);
 app.use("/api/source", sourceController.router);
-// app.use("/api/socket", socketController.router);
-
-// app.get("/login", userController.getLogin);
-// app.post("/login", userController.postLogin);
-// app.get("/logout", userController.logout);
-// app.get("/forgot", userController.getForgot);
-// app.post("/forgot", userController.postForgot);
-// app.get("/reset/:token", userController.getReset);
-// app.post("/reset/:token", userController.postReset);
-// app.get("/signup", userController.getSignup);
-// app.post("/signup", userController.postSignup);
-// app.get("api/account", passportConfig.isAuthenticated, userController.getAccount);
+app.use("/api/gwt/scenario", gwtScenarioController.router);
 
 app.post("/api/account/profile", userController.postUpdateProfile);
-// app.post("/account/password", passportConfig.isAuthenticated, userController.postUpdatePassword);
-// app.post("/account/delete", passportConfig.isAuthenticated, userController.postDeleteAccount);
-// app.get("/account/unlink/:provider", passportConfig.isAuthenticated, userController.getOauthUnlink);
-
-// app.get("/api", apiController.getApi);
 
 /**
  * Error Handler. Provides full stack - remove for production

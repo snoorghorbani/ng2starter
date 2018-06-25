@@ -13,6 +13,7 @@ export interface IfUserHaveRoleGwtGivenStepParams {
 }
 
 export class IfUserHaveRoleGwtGivenStep implements GwtStep<IfUserHaveRoleGwtGivenStepParams> {
+	Id: string;
 	name: string;
 	description: string;
 	type: GwtStepTypes;
@@ -20,6 +21,7 @@ export class IfUserHaveRoleGwtGivenStep implements GwtStep<IfUserHaveRoleGwtGive
 	stepComponent = IfUserHaveRoleGwtGivenStepComponent;
 	store: Store<AppState>;
 	constructor(public injector: Injector) {
+		this.Id = "if_user_have_role_given_step";
 		this.name = "if user have role given step";
 		this.description = "هنگامی که کاربر نقش .. را دارد";
 		this.type = GwtStepTypes.Given;

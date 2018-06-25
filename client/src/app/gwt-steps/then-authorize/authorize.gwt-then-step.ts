@@ -1,12 +1,14 @@
 import { Injector } from "@angular/core";
 import { Store } from "@ngrx/store";
 
-import { AppState } from "../../app.reducers";
 import { GwtStep, GwtStepTypes } from "@rule";
+
+import { AppState } from "../../app.reducers";
 import { GwtThenAuthorizeStepComponent } from "./step-component/gwt-then-authorize-step.component";
 import { of } from "rxjs";
 
 export class GwtThenAuthorizeStep implements GwtStep {
+	Id: string;
 	name: string;
 	description: string;
 	type: GwtStepTypes;
@@ -14,6 +16,7 @@ export class GwtThenAuthorizeStep implements GwtStep {
 	stepComponent = GwtThenAuthorizeStepComponent;
 	store: Store<AppState>;
 	constructor(private injector: Injector) {
+		this.Id = "authorize_and_show_block";
 		this.name = "authorize and show block";
 		this.description = "آنگاه این بخش قابل نمایش است";
 		this.type = GwtStepTypes.Then;

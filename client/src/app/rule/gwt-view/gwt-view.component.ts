@@ -34,7 +34,6 @@ export class GwtViewComponent implements OnInit {
 
 		this.steps$.subscribe(steps =>
 			this.scenario$.next({
-				_id: this.data["ruleId"],
 				ruleId: this.data["ruleId"],
 				steps: []
 			})

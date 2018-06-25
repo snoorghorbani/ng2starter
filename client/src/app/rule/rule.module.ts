@@ -33,7 +33,7 @@ import { RuleComponent } from "./rule.component";
 import { RuleAnchorDirective } from "./rule-anchor/rule-anchor.directive";
 import { GwtViewComponent } from "./gwt-view/gwt-view.component";
 import { StepLoaderDirective } from "./step-loader/step-loader.directive";
-import { ScenariosListEffects } from "./db/scenario-db.effects";
+import { ScenariosDbEffects } from "./db/scenario-db.effects";
 import { RulesListEffects } from "./db/rule-db.effects";
 
 @NgModule({
@@ -81,7 +81,7 @@ export class RuleModule {
 	imports: [
 		RuleModule,
 		StoreModule.forFeature("rule", RuleReducers),
-		EffectsModule.forFeature([ ScenariosListEffects, RulesListEffects ]),
+		EffectsModule.forFeature([ RulesListEffects, ScenariosDbEffects ]),
 		RoutingModule
 	],
 	exports: [ RuleModule ]

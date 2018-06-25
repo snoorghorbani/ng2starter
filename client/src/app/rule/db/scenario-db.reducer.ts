@@ -37,7 +37,7 @@ export function reducer(state = initialState, action: ScenariosListActions): Sta
 				status: "failed"
 			};
 		}
-		case ScenariosListActionTypes.SCENARIO_UPSERT: {
+		case ScenariosListActionTypes.UPSERT: {
 			const data = state.data.concat();
 			var entityIdx = state.data.findIndex(form => form._id == action.payload._id);
 			if (entityIdx > -1) {
@@ -58,6 +58,22 @@ export function reducer(state = initialState, action: ScenariosListActions): Sta
 			} else {
 				data.push(action.payload);
 			}
+			return {
+				...state,
+				data: data
+			};
+		}
+		case ScenariosListActionTypes.UPDATE_DB: {
+			const data = state.data.concat();
+			const scenarios = action.payload;
+			scenarios.forEach(scenario => {
+				var entityIdx = state.data.findIndex(form => form._id == scenario._id);
+				if (entityIdx > -1) {
+					data[entityIdx] = Object.assign({}, data[entityIdx], scenario);
+				} else {
+					data.push(scenario);
+				}
+			});
 			return {
 				...state,
 				data: data

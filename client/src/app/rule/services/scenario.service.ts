@@ -21,6 +21,14 @@ export class ScenarioService {
 		private configurationService: RuleConfigurationService
 	) {}
 
+	upsert(scenario: GwtScenarioModel): Observable<GwtScenarioModel> {
+		debugger;
+		const model = new GwtScenarioModel(scenario);
+		return this.http
+			.post("http://localhost:3000/api/gwt/scenario", model.getRequsetBody())
+			.map(response => response as GwtScenarioModel);
+	}
+
 	selectScenarioById(_id: string): Observable<GwtScenarioModel> {
 		const subject = new BehaviorSubject<GwtScenarioModel>(undefined);
 		this.store

@@ -1,16 +1,27 @@
 import { Injectable } from "@angular/core";
 import { Actions, Effect } from "@ngrx/effects";
 
-import { ScenariosListActionTypes, ScenariosListStartAction } from "./scenario-db.actions";
+import { ScenariosListActionTypes, ScenariosListStartAction, ScenarioFechedAction } from "./scenario-db.actions";
+import { ScenarioService } from "../services/scenario.service";
+import { map, switchMap } from "rxjs/operators";
 
 @Injectable()
-export class ScenariosListEffects {
-	constructor(private actions$: Actions<any>) {}
+export class ScenariosDbEffects {
+	constructor(private actions$: Actions<any>, private service: ScenarioService) {}
 
 	@Effect()
 	EditProfileRequest$ = this.actions$
 		.ofType(ScenariosListActionTypes.SCENARIOS_LIST)
 		.map(() => new ScenariosListStartAction());
+
+	@Effect()
+	UpsertScenario$ = this.actions$
+		.ofType(ScenariosListActionTypes.UPSERT)
+		.pipe(
+			map(action => action.payload),
+			switchMap(scenario => this.service.upsert(scenario)),
+			map(scenario => new ScenarioFechedAction(scenario))
+		);
 
 	// @Effect()
 	// GetScenario$ = this.actions$
