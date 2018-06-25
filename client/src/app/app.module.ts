@@ -26,7 +26,8 @@ import { reducers } from "./app.reducers";
 // module configs
 import { DashboardModule } from "./dashboard";
 import { RuleModule } from "./rule";
-import { ruleModuleConfig } from "./rule.module-config";
+import { ruleModuleConfig } from "./gwt-steps";
+import { GwtStepsModule } from "./gwt-steps/gwt-steps.module";
 
 @NgModule({
 	imports: [
@@ -58,6 +59,7 @@ import { ruleModuleConfig } from "./rule.module-config";
 		StaticPageModule,
 		NgsFormModule.forRoot(),
 		RuleModule.forRoot(ruleModuleConfig),
+		GwtStepsModule,
 		AppRoutingModule,
 		DashboardModule
 	],

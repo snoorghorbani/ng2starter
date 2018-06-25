@@ -5,9 +5,9 @@
     </span>
     کاربر دسترسی
     </div>
-  <div fxFlex>
+  <div fxFlex [formGroup]="formGroup">
     <mat-form-field>
-      <input matInput placeholder="دسترسی">
+      <input matInput placeholder="دسترسی" formControlName="operation">
     </mat-form-field>
   </div>
   <div class="step-text" fxFlex="nogrow">دارد</div>

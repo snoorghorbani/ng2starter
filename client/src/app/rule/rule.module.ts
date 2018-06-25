@@ -24,8 +24,6 @@ import {
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule, mergeEffects } from "@ngrx/effects";
 
-import { SharedModule } from "@soushians/shared";
-
 import { RuleModuleConfig, MODULE_CONFIG_TOKEN } from "./rule.config";
 import { RoutingModule } from "./rule-routing.module";
 import { RuleReducers } from "./rule.reducers";
@@ -34,9 +32,7 @@ import { RuleService, RuleConfigurationService } from "./services";
 import { RuleComponent } from "./rule.component";
 import { RuleAnchorDirective } from "./rule-anchor/rule-anchor.directive";
 import { GwtViewComponent } from "./gwt-view/gwt-view.component";
-import { OperationGwtStepComponent } from "./operation-gwt-step/operation-gwt-step.component";
 import { StepLoaderDirective } from "./step-loader/step-loader.directive";
-import { GwtThenAuthorizeStepComponent } from "./gwt-then-authorize-step/gwt-then-authorize-step.component";
 import { ScenariosListEffects } from "./db/scenario-db.effects";
 import { RulesListEffects } from "./db/rule-db.effects";
 
@@ -64,15 +60,8 @@ import { RulesListEffects } from "./db/rule-db.effects";
 		ReactiveFormsModule,
 		BrowserAnimationsModule
 	],
-	declarations: [
-		RuleComponent,
-		RuleAnchorDirective,
-		GwtViewComponent,
-		OperationGwtStepComponent,
-		StepLoaderDirective,
-		GwtThenAuthorizeStepComponent
-	],
-	entryComponents: [ GwtViewComponent, OperationGwtStepComponent, GwtThenAuthorizeStepComponent ],
+	declarations: [ RuleComponent, RuleAnchorDirective, GwtViewComponent, StepLoaderDirective ],
+	entryComponents: [ GwtViewComponent ],
 	exports: [ RuleAnchorDirective ]
 })
 export class RuleModule {

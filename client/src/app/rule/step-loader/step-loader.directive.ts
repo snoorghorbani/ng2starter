@@ -22,6 +22,9 @@ export class StepLoaderDirective implements OnChanges, OnInit {
 	@ViewChild("container", { read: ViewContainerRef })
 	// TODO: fix generic type
 	component: ComponentRef<any>;
+	get params() {
+		return this.component.instance.params || {};
+	}
 	constructor(private resolver: ComponentFactoryResolver, private container: ViewContainerRef) {}
 
 	ngOnChanges() {

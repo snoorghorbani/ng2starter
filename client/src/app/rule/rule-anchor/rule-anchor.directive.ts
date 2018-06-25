@@ -101,7 +101,8 @@ export class RuleAnchorDirective implements OnInit {
 			this.bottomSheet.open(GwtViewComponent, {
 				data: {
 					ruleId: this.ruleId
-				}
+				},
+				panelClass: "magenta-theme"
 			});
 		});
 		const maticon = this.renderer.createElement("mat-icon");

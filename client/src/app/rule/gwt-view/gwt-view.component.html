@@ -1,7 +1,47 @@
-<div fxLayout="column" fxLayoutGap="15px">
-  <ng-container rule-step-loader *ngFor="let step of (scenario$ | async).steps" [step]="step"></ng-container>
+<div fxLayout="row" fxLayoutGap="25px">
+<div fxFlex="400px" fxLayout="column" fxLayoutGap="15px">
+  <div fxLayout="row wrap">
+    <mat-form-field appearance="fill" fxFlex="100">
+      <input matInput placeholder="فیلتر">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <mat-checkbox fxFlex class="example-margin" [(ngModel)]="indeterminate">فرض کنید</mat-checkbox>
+    <mat-checkbox fxFlex class="example-margin" [(ngModel)]="checked">هنگامی که</mat-checkbox>
+    <mat-checkbox fxFlex class="example-margin" [(ngModel)]="indeterminate">آنگاه</mat-checkbox>
+  </div>
+    <mat-card class="steps-item" *ngFor="let step of steps$ | async">
+      <span class="step-text">
+        {{step.description}}
+      </span>
+      <button mat-icon-button class="add-button" (click)="addStepToScenario(step)">
+        <mat-icon>arrow_back_ios</mat-icon>
+      </button>
+    </mat-card>
 </div>
-<button mat-button (click)="save()">
-    <mat-icon>done</mat-icon>
-    ثبت
-</button>
+<div fxFlex="600px">
+  <div fxLayout="row" fxLayoutAlign="center center" class="scenario-toolbar">
+    <div fxFlex="grow"></div>
+    <button fxFlex="nogrow" mat-raised-button color="primary" (click)="save()">
+      ثبت
+    </button>
+  </div>
+  <div fxLayout="column" fxLayoutGap="15px">
+    <ng-container *ngFor="let step of (scenario$ | async).steps">
+      <div class="scenario-steps-item">
+        <ng-container rule-step-loader [step]="step"></ng-container>
+        <div class="scenario-steps-action">
+          <button mat-icon-button (click)="deleteStepFromScenario(step)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button mat-icon-button (click)="incScenarioStepPriority(step)">
+            <mat-icon>keyboard_arrow_up</mat-icon>
+          </button>
+          <button mat-icon-button (click)="decScenarioStepPriority(step)">
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  </div>
+</div>
