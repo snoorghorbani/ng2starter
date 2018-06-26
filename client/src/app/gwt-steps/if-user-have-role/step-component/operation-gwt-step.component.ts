@@ -8,17 +8,14 @@ import { IfUserHaveRoleGwtGivenStepParams } from "../user-have-role.gwt-given-st
 	styleUrls: [ "./operation-gwt-step.component.css" ]
 })
 export class IfUserHaveRoleGwtGivenStepComponent implements GwtGivenStepUi<IfUserHaveRoleGwtGivenStepParams> {
-	formGroup: FormGroup;
+	formGroup: FormGroup = new FormGroup({
+		role: new FormControl("")
+	});
 	set params(value) {
-		debugger;
 		this.formGroup.patchValue(value);
 	}
 	get params(): IfUserHaveRoleGwtGivenStepParams {
 		return this.formGroup.value;
 	}
-	constructor() {
-		this.formGroup = new FormGroup({
-			role: new FormControl("")
-		});
-	}
+	constructor() {}
 }

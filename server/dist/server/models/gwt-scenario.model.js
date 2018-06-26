@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const gwtScenarioSchema = new mongoose.Schema({
     featureId: String,
     anchorId: String,
+    name: String,
     steps: [
         {
             id: String,

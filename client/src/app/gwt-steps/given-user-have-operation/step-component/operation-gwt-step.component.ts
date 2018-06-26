@@ -10,13 +10,14 @@ import { GwtGivenStepUi } from "@rule";
 	styleUrls: [ "./operation-gwt-step.component.css" ]
 })
 export class OperationGwtStepComponent implements GwtGivenStepUi<OperationGwtStepParams> {
-	formGroup: FormGroup;
+	formGroup: FormGroup = new FormGroup({
+		operation: new FormControl("")
+	});
+	set params(value) {
+		this.formGroup.patchValue(value);
+	}
 	get params(): OperationGwtStepParams {
 		return this.formGroup.value;
 	}
-	constructor() {
-		this.formGroup = new FormGroup({
-			operation: new FormControl("")
-		});
-	}
+	constructor() {}
 }

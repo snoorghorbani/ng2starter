@@ -485,6 +485,9 @@ mat-form-field.edit .mat-form-field-wrapper {
 	top: 124px;
 }
 
+mat-form-field.fit {
+	width: 100%;
+}
 /* Rules Module Start */
 
 .ngs-rule-anchor-button {
