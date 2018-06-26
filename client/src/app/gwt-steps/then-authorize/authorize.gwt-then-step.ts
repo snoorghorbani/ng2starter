@@ -8,7 +8,7 @@ import { GwtThenAuthorizeStepComponent } from "./step-component/gwt-then-authori
 import { of } from "rxjs";
 
 export class GwtThenAuthorizeStep implements GwtStep {
-	Id: string;
+	id: string;
 	name: string;
 	description: string;
 	type: GwtStepTypes;
@@ -16,7 +16,7 @@ export class GwtThenAuthorizeStep implements GwtStep {
 	stepComponent = GwtThenAuthorizeStepComponent;
 	store: Store<AppState>;
 	constructor(private injector: Injector) {
-		this.Id = "authorize_and_show_block";
+		this.id = "authorize_and_show_block";
 		this.name = "authorize and show block";
 		this.description = "آنگاه این بخش قابل نمایش است";
 		this.type = GwtStepTypes.Then;

@@ -28,7 +28,11 @@ export class ScenarioService {
 			.post("http://localhost:3000/api/gwt/scenario", model.getRequsetBody())
 			.map(response => response as GwtScenarioModel);
 	}
-
+	getAnchorScenarios(anchorId: string): Observable<GwtScenarioModel[]> {
+		return this.http
+			.get<any>(`http://localhost:3000/api/gwt/anchor/${anchorId}/scenarios`)
+			.map(response => response.Result as GwtScenarioModel[]);
+	}
 	selectScenarioById(_id: string): Observable<GwtScenarioModel> {
 		const subject = new BehaviorSubject<GwtScenarioModel>(undefined);
 		this.store

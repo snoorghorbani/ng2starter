@@ -5,7 +5,7 @@ import { Observable } from "rxjs";
 
 export interface GwtStep<T = any> {
 	// (injector: Injector): GwtStep<T>;
-	Id: string;
+	id: string;
 	name: string;
 	description: string;
 	type: GwtStepTypes;

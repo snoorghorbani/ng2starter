@@ -109,6 +109,7 @@ const dataController = require("./controllers/data-provider.controller");
 const eventController = require("./controllers/event.controller");
 const sourceController = require("./controllers/source.controller");
 const gwtScenarioController = require("./controllers/gwt-scenario.controller");
+const gwtAnchorController = require("./controllers/gwt-anchor.controller");
 const socket_controller_1 = require("./controllers/socket.controller");
 /**
  * Primary app routes.
@@ -124,6 +125,7 @@ app.use("/api/data", dataController.router);
 app.use("/api/event", eventController.router);
 app.use("/api/source", sourceController.router);
 app.use("/api/gwt/scenario", gwtScenarioController.router);
+app.use("/api/gwt/anchor", gwtAnchorController.router);
 app.post("/api/account/profile", userController.postUpdateProfile);
 /**
  * Error Handler. Provides full stack - remove for production

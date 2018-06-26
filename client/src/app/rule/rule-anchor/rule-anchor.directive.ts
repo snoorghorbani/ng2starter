@@ -26,7 +26,7 @@ import { ShowAnchorsAction } from "./rule-anchor.actions";
 	selector: "[ruleAnchor]"
 })
 export class RuleAnchorDirective implements OnInit {
-	@Input("ruleAnchor") ruleId;
+	@Input("ruleAnchor") anchorId;
 	active$: Observable<boolean>;
 	active: boolean;
 	button: HTMLButtonElement;
@@ -67,7 +67,7 @@ export class RuleAnchorDirective implements OnInit {
 		this.store.dispatch(new ShowAnchorsAction());
 
 		this.scenario$ = this.scenarioService
-			.selectScenarioById(this.ruleId)
+			.selectScenarioById(this.anchorId)
 			.pipe(filter(scenario => scenario != undefined));
 		this.active$.subscribe(active => {
 			if (active) this._activate_anchor();
@@ -100,7 +100,7 @@ export class RuleAnchorDirective implements OnInit {
 			e.stopPropagation();
 			this.bottomSheet.open(GwtViewComponent, {
 				data: {
-					ruleId: this.ruleId
+					anchorId: this.anchorId
 				},
 				panelClass: "magenta-theme"
 			});

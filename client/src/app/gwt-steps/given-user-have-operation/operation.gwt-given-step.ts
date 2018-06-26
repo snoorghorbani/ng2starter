@@ -13,7 +13,7 @@ export interface OperationGwtStepParams {
 }
 
 export class GwtGivenOperationStep implements GwtStep<OperationGwtStepParams> {
-	Id: string;
+	id: string;
 	name: string;
 	description: string;
 	type: GwtStepTypes;
@@ -21,7 +21,7 @@ export class GwtGivenOperationStep implements GwtStep<OperationGwtStepParams> {
 	stepComponent = OperationGwtStepComponent;
 	store: Store<AppState>;
 	constructor(public injector: Injector) {
-		this.Id = "operation_given_step";
+		this.id = "operation_given_step";
 		this.name = "operation given step";
 		this.description = "هنگامی که کاربر دسترسی ... را دارد";
 		this.type = GwtStepTypes.Given;

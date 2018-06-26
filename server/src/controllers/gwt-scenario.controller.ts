@@ -5,6 +5,7 @@ import * as request from "request";
 import { Response, Request, NextFunction } from "express";
 import { model as moongooseModel } from "mongoose";
 import { SocketMiddleware } from "./socket.controller";
+import { ObjectId } from "bson";
 
 const Model = moongooseModel("GwtScenario");
 
@@ -18,24 +19,11 @@ router.get("/:id", function(req, res) {
 });
 router.post("/", function(req, res) {
 	debugger;
-	delete req.body._id;
-	const model = new Model(req.body);
-	model
-		.save()
-		.then(Result => {
-			SocketMiddleware.server.dispatchActionToClients("[GWT][SCENARIO][DB] UPDATE_DB", [ Result ]);
-			res.json({ Result });
-		})
-		.catch(err => {
-			debugger;
-		});
-});
-router.put("/", function(req, res) {
-	debugger;
+	if (!req.body._id) req.body._id = new ObjectId();
 	Model.findByIdAndUpdate(req.body._id, req.body, { upsert: true, new: true })
 		.then(Result => {
 			SocketMiddleware.server.dispatchActionToClients("[GWT][SCENARIO][DB] UPDATE_DB", [ Result ]);
-			res.send({ Result });
+			res.json({ Result });
 		})
 		.catch(err => {
 			debugger;

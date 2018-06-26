@@ -20,7 +20,12 @@
 </div>
 <div fxFlex="600px">
   <div fxLayout="row" fxLayoutAlign="center center" class="scenario-toolbar">
-    <div fxFlex="grow"></div>
+    <div fxFlex="grow">
+      <mat-form-field appearance="fill" fxFlex="100">
+        <input matInput placeholder="feature">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
     <button fxFlex="nogrow" mat-raised-button color="primary" (click)="save()">
       ثبت
     </button>

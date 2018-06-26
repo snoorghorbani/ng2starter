@@ -125,6 +125,7 @@ import * as dataController from "./controllers/data-provider.controller";
 import * as eventController from "./controllers/event.controller";
 import * as sourceController from "./controllers/source.controller";
 import * as gwtScenarioController from "./controllers/gwt-scenario.controller";
+import * as gwtAnchorController from "./controllers/gwt-anchor.controller";
 import { SocketMiddleware } from "./controllers/socket.controller";
 
 /**
@@ -141,6 +142,7 @@ app.use("/api/data", dataController.router);
 app.use("/api/event", eventController.router);
 app.use("/api/source", sourceController.router);
 app.use("/api/gwt/scenario", gwtScenarioController.router);
+app.use("/api/gwt/anchor", gwtAnchorController.router);
 
 app.post("/api/account/profile", userController.postUpdateProfile);
 

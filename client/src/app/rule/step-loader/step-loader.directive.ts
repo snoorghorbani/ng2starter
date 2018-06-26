@@ -45,6 +45,6 @@ export class StepLoaderDirective implements OnChanges, OnInit {
 		// TODO: fix generic type
 		const component = this.resolver.resolveComponentFactory<any>(this.step.stepComponent);
 		this.component = this.container.createComponent(component);
-		// this.component.instance.config = this.config;
+		this.component.instance.params = this.step.params;
 	}
 }
