@@ -21,26 +21,31 @@ import { GwtScenarioModel } from "../models/gwt-scenario.model";
 import { ScenarioService } from "../services/scenario.service";
 import { GwtStepTypes } from "../models/gwt-step-types.enum";
 import { ShowAnchorsAction } from "./rule-anchor.actions";
+import { GwtStep } from "../models";
+import { RuleConfigurationService } from "../services";
 
 @Directive({
 	selector: "[ruleAnchor]"
 })
 export class RuleAnchorDirective implements OnInit {
 	@Input("ruleAnchor") anchorId;
+	steps: GwtStep[];
 	active$: Observable<boolean>;
 	active: boolean;
 	button: HTMLButtonElement;
-	scenario$: Observable<GwtScenarioModel>;
+	anchorScenarios$: Observable<GwtScenarioModel[]>;
 	constructor(
 		private scenarioService: ScenarioService,
+		private configService: RuleConfigurationService,
+		private store: Store<AppState>,
 		private el: ElementRef,
 		private renderer: Renderer2,
-		private store: Store<AppState>,
 		private bottomSheet: MatBottomSheet
 	) {
 		this.active$ = this.store.select(s => s.rule.ruleAnchors.active);
 		this.active$.subscribe(active => (this.active = active));
 		this.el.nativeElement.classList.add("ngs-rule-anchor");
+		this.steps = this.configService.config$.getValue().steps;
 	}
 
 	@HostListener("mouseenter")
@@ -66,15 +71,24 @@ export class RuleAnchorDirective implements OnInit {
 		// TODO: remove
 		this.store.dispatch(new ShowAnchorsAction());
 
-		this.scenario$ = this.scenarioService
-			.selectScenarioById(this.anchorId)
+		this.anchorScenarios$ = this.scenarioService
+			.getAnchorScenarios(this.anchorId) //TODO: replace service call with ngrx action
 			.pipe(filter(scenario => scenario != undefined));
 		this.active$.subscribe(active => {
 			if (active) this._activate_anchor();
 			else this._deactivate_anchor();
 		});
-		this.scenario$.subscribe(scenario => {
-			this._do_scenario(scenario);
+		this.anchorScenarios$.subscribe(scenarios => {
+			debugger;
+			scenarios.forEach(scenario => {
+				scenario.steps = scenario.steps.map(scenarioStep => {
+					const step = this.steps.find(step => step.id == scenarioStep.id);
+					step.params = scenarioStep.params;
+					return step;
+				});
+
+				this._do_scenario(scenario);
+			});
 		});
 	}
 	_activate_anchor() {
@@ -117,6 +131,7 @@ export class RuleAnchorDirective implements OnInit {
 		this.button.parentNode.removeChild(this.button);
 	}
 	_do_scenario(scenario: GwtScenarioModel) {
+		debugger;
 		const givenStepInterpretors = scenario.steps
 			.filter(step => step.type == GwtStepTypes.Given)
 			.map(step => step.interperator(step.params));

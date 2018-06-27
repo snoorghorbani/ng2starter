@@ -9,7 +9,7 @@ import { RuleConfigurationService } from "./rule-configuration.service";
 
 import { AppState } from "../rule.reducers";
 import { GwtScenarioModel } from "../models/gwt-scenario.model";
-import { filter, map } from "rxjs/operators";
+import { filter, map, startWith } from "rxjs/operators";
 
 @Injectable({
 	providedIn: "root"
@@ -46,6 +46,22 @@ export class ScenarioService {
 			)
 			.subscribe(scenario => {
 				subject.next(scenario);
+			});
+		return subject.asObservable();
+	}
+	selectAnchorScenarios(anchorId: string): Observable<GwtScenarioModel[]> {
+		const subject = new BehaviorSubject<GwtScenarioModel[]>(undefined);
+		this.store
+			.select(state => state.rule.scenarios.data)
+			.pipe(
+				startWith([]),
+				filter(scenarios => scenarios != null),
+				map(scenarios => {
+					return scenarios.filter(scenario => scenario._id == anchorId);
+				})
+			)
+			.subscribe(scenarios => {
+				subject.next(scenarios);
 			});
 		return subject.asObservable();
 	}
