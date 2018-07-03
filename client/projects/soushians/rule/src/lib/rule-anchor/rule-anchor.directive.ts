@@ -1,10 +1,11 @@
 import { Directive, HostListener, ElementRef, Renderer2, OnInit, Input, OnDestroy } from "@angular/core";
-import { AppState } from "../rule.reducers";
 import { Store } from "@ngrx/store";
 import { Observable, of, zip, Subject } from "rxjs";
 import { filter, map, switchMap, takeUntil } from "rxjs/operators";
 import { MatBottomSheet } from "@angular/material";
+
 import { GwtViewComponent } from "../gwt-view/gwt-view.component";
+import { AppState } from "../rule.reducers";
 import { GwtScenarioModel } from "../models/gwt-scenario.model";
 import { ScenarioService } from "../services/scenario.service";
 import { GwtStepTypes } from "../models/gwt-step-types.enum";

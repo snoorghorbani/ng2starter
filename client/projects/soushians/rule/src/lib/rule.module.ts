@@ -35,6 +35,7 @@ import { GwtViewComponent } from "./gwt-view/gwt-view.component";
 import { StepLoaderDirective } from "./step-loader/step-loader.directive";
 import { ScenariosDbEffects } from "./db/scenario-db.effects";
 import { RulesListEffects } from "./db/rule-db.effects";
+import { GwtModeButtonComponent } from "./mode-button/mode-button.component";
 
 @NgModule({
 	imports: [
@@ -60,9 +61,9 @@ import { RulesListEffects } from "./db/rule-db.effects";
 		ReactiveFormsModule,
 		BrowserAnimationsModule
 	],
-	declarations: [ RuleComponent, RuleAnchorDirective, GwtViewComponent, StepLoaderDirective ],
+	declarations: [ RuleComponent, RuleAnchorDirective, GwtViewComponent, StepLoaderDirective, GwtModeButtonComponent ],
 	entryComponents: [ GwtViewComponent ],
-	exports: [ RuleAnchorDirective ]
+	exports: [ RuleAnchorDirective, GwtModeButtonComponent ]
 })
 export class RuleModule {
 	static forRoot(config?: RuleModuleConfig): ModuleWithProviders {
