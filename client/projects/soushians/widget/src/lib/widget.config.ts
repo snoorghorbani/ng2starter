@@ -1,4 +1,5 @@
 import { InjectionToken } from "@angular/core";
+
 import { IModuleConfigMapTypes } from "./models/module-config-map-types.interfce";
 
 export interface WidgetModuleConfig {

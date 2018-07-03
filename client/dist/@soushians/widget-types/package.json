@@ -1,0 +1,22 @@
+{
+  "name": "@soushians/widget-types",
+  "version": "6.0.0",
+  "peerDependencies": {
+    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+  },
+  "devDependencies": {},
+  "main": "bundles/soushians-widget-types.umd.js",
+  "module": "fesm5/soushians-widget-types.js",
+  "es2015": "fesm2015/soushians-widget-types.js",
+  "esm5": "esm5/soushians-widget-types.js",
+  "esm2015": "esm2015/soushians-widget-types.js",
+  "fesm5": "fesm5/soushians-widget-types.js",
+  "fesm2015": "fesm2015/soushians-widget-types.js",
+  "typings": "soushians-widget-types.d.ts",
+  "metadata": "soushians-widget-types.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

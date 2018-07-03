@@ -9,12 +9,18 @@ import {
 } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { Store } from "@ngrx/store";
+
 import { WidgetModel } from "../models";
 import { AppState } from "../widget.reducer";
 import { pluck, filter, switchMap, map, startWith } from "rxjs/operators";
 import { ActivatedRoute } from "@angular/router";
-import { WidgetService, WidgetConfigurationService } from "../services";
 import { IModuleConfigMapTypes } from "../models/module-config-map-types.interfce";
+import { WidgetService } from "../services/widget.service";
+import { WidgetConfigurationService } from "../services/widget-configuration.service";
+
+// const a = [ 1, 2, 3, 4 ];
+// const b = [ 3, 2, 7 ];
+// const c = b.filter((item) => a.indexOf(item) == -1);
 
 @Component({
 	template: ""
@@ -29,7 +35,6 @@ export class DynamicWidgetViewComponent implements OnInit {
 	mapTypeToComponent: IModuleConfigMapTypes;
 	constructor(
 		public store: Store<AppState>,
-		private route: ActivatedRoute,
 		private service: WidgetService,
 		private configurationService: WidgetConfigurationService,
 		private resolver: ComponentFactoryResolver,

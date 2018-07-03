@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Actions, Effect } from "@ngrx/effects";
+import { map, switchMap } from "rxjs/operators";
+import { Observable } from "rxjs";
 
 import { ScenariosListActionTypes, ScenariosListStartAction, ScenarioFechedAction } from "./scenario-db.actions";
 import { ScenarioService } from "../services/scenario.service";
-import { map, switchMap } from "rxjs/operators";
 
 @Injectable()
 export class ScenariosDbEffects {
@@ -12,15 +13,15 @@ export class ScenariosDbEffects {
 	@Effect()
 	EditProfileRequest$ = this.actions$
 		.ofType(ScenariosListActionTypes.SCENARIOS_LIST)
-		.map(() => new ScenariosListStartAction());
+		.pipe(map(() => new ScenariosListStartAction()));
 
 	@Effect()
 	UpsertScenario$ = this.actions$
 		.ofType(ScenariosListActionTypes.UPSERT)
 		.pipe(
-			map(action => action.payload),
-			switchMap(scenario => this.service.upsert(scenario)),
-			map(scenario => new ScenarioFechedAction(scenario))
+			map((action) => action.payload),
+			switchMap((scenario) => this.service.upsert(scenario)),
+			map((scenario) => new ScenarioFechedAction(scenario))
 		);
 
 	// @Effect()

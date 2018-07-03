@@ -1,10 +1,10 @@
 import { GwtStep } from "./gwt-step.model";
 
 export class GwtScenarioModel {
-	_id?: string;
+	_id: string;
 	name: string;
 	anchorId: string;
-	featureId?: string;
+	featureId: string;
 	steps: GwtStep[];
 	constructor(
 		{
@@ -22,13 +22,13 @@ export class GwtScenarioModel {
 		this.anchorId = anchorId || "";
 		this.steps = steps || [];
 	}
-	getRequsetBody?() {
+	getRequsetBody() {
 		return {
 			_id: this._id,
 			anchorId: this.anchorId,
 			name: this.name,
 			featureId: this.featureId,
-			steps: this.steps.map(step => ({
+			steps: this.steps.map((step) => ({
 				id: step.id,
 				opposite: step.opposite,
 				params: step.params

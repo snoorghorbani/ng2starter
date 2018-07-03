@@ -15,9 +15,7 @@ import { GetWidgetsApiModel, GetWidgetStartAction, UpsertWidgetApiModel } from "
 // import { WidgetConfigurationService } from "./widget-configuration.service";
 // import { WidgetRunSuccessfullyAction } from "../widget.actions";
 
-@Injectable({
-	providedIn: "root"
-})
+@Injectable()
 export class WidgetService {
 	constructor(
 		private http: HttpClient,

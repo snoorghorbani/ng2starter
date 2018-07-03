@@ -13,7 +13,8 @@ import { WidgetModel } from "../models";
 import { AppState } from "../widget.reducer";
 import { pluck, filter, switchMap, map, startWith } from "rxjs/operators";
 import { ActivatedRoute } from "@angular/router";
-import { WidgetService, WidgetConfigurationService } from "../services";
+import { WidgetService } from "../services/widget.service";
+import { WidgetConfigurationService } from "../services/widget-configuration.service";
 import { IModuleConfigMapTypes } from "../models/module-config-map-types.interfce";
 
 @Directive({

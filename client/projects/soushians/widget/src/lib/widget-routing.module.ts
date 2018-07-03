@@ -2,7 +2,7 @@ import { ModuleWithProviders } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
 import { RootComponent } from "./root";
-import { WidgetsManagementComponent } from "./mangement";
+import { WidgetsManagementComponent } from "./mangement/widget-management.component";
 import { UpsertComponent } from "./upsert/upsert.component";
 
 const routes: Routes = [

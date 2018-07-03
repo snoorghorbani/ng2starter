@@ -4,7 +4,8 @@ import { Store } from "@ngrx/store";
 import { WidgetModel } from "../models";
 import { AppState } from "../widget.reducer";
 import { ActivatedRoute } from "@angular/router";
-import { WidgetService, WidgetConfigurationService } from "../services";
+import { WidgetService } from "../services/widget.service";
+import { WidgetConfigurationService } from "../services/widget-configuration.service";
 import { IModuleConfigMapTypes } from "../models/module-config-map-types.interfce";
 export declare class DynamicWidgetViewDirective implements OnInit {
     store: Store<AppState>;
