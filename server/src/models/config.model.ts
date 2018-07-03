@@ -3,18 +3,21 @@ import * as crypto from "crypto";
 import * as mongoose from "mongoose";
 import { ObjectId } from "mongodb";
 
-const configSchema = new mongoose.Schema({
-  Name: { type: String, unique: true },
-  Config: Object,
-}, { timestamps: true });
+const configSchema = new mongoose.Schema(
+	{
+		Name: { type: String, unique: true },
+		Config: { type: Object, default: {} }
+	},
+	{ timestamps: true }
+);
 
 /**
  * pre save config middleware.
  */
 configSchema.pre("save", function save(next) {
-  const config = this;
-  // if (!config.isModified("password")) { return next(); }
-  next();
+	const config = this;
+	// if (!config.isModified("password")) { return next(); }
+	next();
 });
 
 const Config = mongoose.model("Config", configSchema);

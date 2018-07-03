@@ -57,6 +57,7 @@ import { DiagramEffects } from "./effects/diagrams.effects";
 import { AddDiagramEffects } from "./effects/add-diagram.effects";
 
 import { RoutingModule } from "./diagram-routing.module";
+import { DiagramSelectorComponent } from "./smart-components/diagram-selector/diagram-selector.component";
 
 @NgModule({
 	imports: [
@@ -101,8 +102,11 @@ import { RoutingModule } from "./diagram-routing.module";
 		NumericWidgetPartialConfigComponent,
 		ServerConnectingTimeDiagramComponent,
 		NumericEditDiagramComponent,
-		LinearDiagramPartialConfigComponent
+		LinearDiagramPartialConfigComponent,
+		DiagramSelectorComponent
 	],
+	entryComponents: [ DiagramSelectorComponent, diagramViewComponent ],
+	exports: [ DiagramSelectorComponent ],
 	providers: []
 })
 export class NgsDiagramModule {

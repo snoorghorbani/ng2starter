@@ -9,17 +9,19 @@ import { NgsLayoutModule } from "@soushians/layout";
 import { SharedModule } from "@soushians/shared";
 import { SourceModule } from "@soushians/source";
 import { NgsUserModule } from "@soushians/user";
+import { NgsSocketModule } from "@soushians/socket";
 
 @NgModule({
 	imports: [
-		NgsAuthenticationModule,
+		NgsAuthenticationModule.forRoot(),
 		NgsConfigModule,
-		NgsDiagramModule,
-		NgsFormModule,
-		NgsLayoutModule,
+		NgsDiagramModule.forRoot(),
+		NgsFormModule.forRoot(),
+		NgsLayoutModule.forRoot(),
 		SharedModule,
 		SourceModule,
-		NgsUserModule
+		NgsUserModule.forRoot(),
+		NgsSocketModule.forRoot()
 	],
 	declarations: [ TestComponent ],
 	exports: [ TestComponent ]

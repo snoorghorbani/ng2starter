@@ -39,14 +39,23 @@
         "dist/@soushians/form"
       ],
       "@soushians/diagram": [
-        "dist/@soushians/diagram"
+        // "dist/@soushians/diagram"
+        "projects/soushians/diagram/src/public_api"
       ],
       "@soushians/source": [
         "dist/@soushians/source"
       ],
       "@soushians/socket": [
         "dist/@soushians/socket",
-        // "projects/soushians/socket/src/public_api"
+      ],
+      "@soushians/widget": [
+        "projects/soushians/widget/src/public_api"
+      ],
+      "@soushians/widget-types": [
+        "projects/soushians/widget-types/src/public_api"
+      ],
+      "@soushians/grid": [
+        "projects/soushians/grid/src/public_api"
       ],
       "@soushians/test": [
         "dist/soushians/test"

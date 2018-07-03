@@ -1,0 +1,9 @@
+:host {
+	width: 95vw;
+	height: 100vh;
+	display: block;
+	direction: ltr;
+}
+.initializer {
+	padding: 25px;
+}

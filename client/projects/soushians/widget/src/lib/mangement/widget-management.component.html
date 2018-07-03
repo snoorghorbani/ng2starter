@@ -1,0 +1,10 @@
+<div fxLayout="row wrap" fxLayoutAlign="center center" >
+    <mat-card class="cards-item" *ngFor="let item of (widgets$ | async)" fxFlex="51">
+      <h3>
+        <a [routerLink]="['../upsert' ,  item.type,  item._id]">
+          <mat-icon aria-label="edit widget">edit</mat-icon>
+        </a>
+        {{item.name}}
+      </h3>
+  </mat-card>
+</div>

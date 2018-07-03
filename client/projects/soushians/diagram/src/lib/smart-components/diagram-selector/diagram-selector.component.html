@@ -1,0 +1,5 @@
+<mat-select placeholder="Diagrams" [(ngModel)]="selectedDiagramId" name="selectedDiagramId">
+  <mat-option *ngFor="let item of (diagrams$ | async)" [value]="item._id">
+    {{item._id}}
+  </mat-option>
+</mat-select>

@@ -1,0 +1,11 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+export { UpsertWidgetStartAction } from "./services/api";
+export { NgsWidgetModule, NgsWidgetRootModule } from "./widget.module";
+export { WidgetModel } from "./models";
+export { MODULE_DEFAULT_CONFIG, MODULE_CONFIG_TOKEN } from "./widget.config";
+export { WidgetService } from "./services";
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290Ijoibmc6Ly9Ac291c2hpYW5zL3dpZGdldC8iLCJzb3VyY2VzIjpbImxpYi9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLHVCQUF1QixFQUFFLE1BQU0sZ0JBQWdCLENBQUM7QUFFekQscURBQWMsaUJBQWlCLENBQUM7QUFDaEMsT0FBTyxFQUFFLFdBQVcsRUFBRSxNQUFNLFVBQVUsQ0FBQztBQUN2QywyREFBYyxpQkFBaUIsQ0FBQztBQUNoQyxPQUFPLEVBQUUsYUFBYSxFQUFFLE1BQU0sWUFBWSxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IHsgVXBzZXJ0V2lkZ2V0U3RhcnRBY3Rpb24gfSBmcm9tIFwiLi9zZXJ2aWNlcy9hcGlcIjtcclxuXHJcbmV4cG9ydCAqIGZyb20gXCIuL3dpZGdldC5tb2R1bGVcIjtcclxuZXhwb3J0IHsgV2lkZ2V0TW9kZWwgfSBmcm9tIFwiLi9tb2RlbHNcIjtcclxuZXhwb3J0ICogZnJvbSBcIi4vd2lkZ2V0LmNvbmZpZ1wiO1xyXG5leHBvcnQgeyBXaWRnZXRTZXJ2aWNlIH0gZnJvbSBcIi4vc2VydmljZXNcIjtcclxuIl19

@@ -19,6 +19,8 @@ import { SourceModule } from "@soushians/source";
 import { NgsSocketModule } from "@soushians/socket";
 import { NgsDiagramModule } from "@soushians/diagram";
 import { NgsFormModule } from "@soushians/form";
+import { NgsWidgetModule, WidgetSelectorComponent, DynamicWidgetViewComponent } from "@soushians/widget";
+import { NgsWidgetTypesModule, ArticleUpsertComponent, ArticleViewComponent } from "@soushians/widget-types";
 
 import { StaticPageModule } from "./static-page";
 
@@ -29,6 +31,8 @@ import { reducers } from "./app.reducers";
 
 // module configs
 import { DashboardModule } from "./dashboard";
+import { NgsGridModule } from "@soushians/grid";
+import { diagramViewComponent, DiagramSelectorComponent } from "@soushians/diagram";
 // import { NgsBpmnModule } from "./bpmn";
 
 @NgModule({
@@ -58,8 +62,20 @@ import { DashboardModule } from "./dashboard";
 		NgsSocketModule.forRoot(),
 		SharedModule,
 		SourceModule,
+		NgsWidgetTypesModule,
+		NgsWidgetModule.forRoot({
+			types: {
+				article: { upsert: ArticleUpsertComponent, view: ArticleViewComponent }
+			}
+		}),
 		StaticPageModule,
 		NgsFormModule.forRoot(),
+		NgsGridModule.forRoot({
+			types: {
+				article: { configComponent: WidgetSelectorComponent, viewComponent: DynamicWidgetViewComponent },
+				diagram: { configComponent: DiagramSelectorComponent, viewComponent: diagramViewComponent }
+			}
+		}),
 		AppRoutingModule,
 		DashboardModule
 	],

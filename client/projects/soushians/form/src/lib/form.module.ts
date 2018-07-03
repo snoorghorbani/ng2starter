@@ -17,7 +17,6 @@ import {
 	MatRadioModule,
 	MatSlideToggleModule,
 	MatDividerModule,
-	MatCheckbox,
 	MatCheckboxModule,
 	MatTableModule
 } from "@angular/material";

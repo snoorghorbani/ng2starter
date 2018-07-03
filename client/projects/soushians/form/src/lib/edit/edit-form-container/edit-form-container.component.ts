@@ -27,16 +27,15 @@ export class EditFormContainerComponent extends AddFormContainerComponent {
 
 	ngOnInit() {
 		this.route.params
-			.map(params => params["_id"])
-			.subscribe(id => this.store.dispatch(new GetFormSchemaAction(id)));
+			.map((params) => params["_id"])
+			.subscribe((id) => this.store.dispatch(new GetFormSchemaAction(id)));
 
 		this.route.params
-			.map(params => params["_id"])
-			.switchMap(id => this.service.selectFormById(id))
-			.filter(data => data != null)
+			.map((params) => params["_id"])
+			.switchMap((id) => this.service.selectFormById(id))
+			.filter((data) => data != null)
 			.take(1)
-			.subscribe(formSchema => {
-				debugger;
+			.subscribe((formSchema) => {
 				this.schema = formSchema;
 				this.formGroup.patchValue(formSchema);
 			});

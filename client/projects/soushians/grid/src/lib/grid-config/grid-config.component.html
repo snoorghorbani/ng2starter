@@ -1,0 +1,81 @@
+<div fxLayout="row wrap" fxLayoutAlign="center center">
+    <div fxFlex="100" [formGroup]="gridFormGroup">
+        <mat-form-field>
+            <input matInput placeholder="name" formControlName="name">
+        </mat-form-field>
+    </div>
+
+    <div  fxFlex="100" [formGroup]="configFormGroup">
+        <div fxFlex="100" fxLayout="row wrap" fxLayoutGap="25px">
+            <mat-form-field>
+                <mat-select placeholder="Grid Type" formControlName="gridType">
+                    <mat-option *ngFor="let item of gridTypes" [value]="item">
+                        {{item}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select placeholder="Compact Type" formControlName="compactType">
+                    <mat-option *ngFor="let item of compactType" [value]="item">
+                        {{item}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select placeholder="Display Grid" formControlName="displayGrid">
+                    <mat-option *ngFor="let item of displayGridTypes" [value]="item">
+                        {{item}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div fxFlex="100" fxLayout="row wrap" fxLayoutGap="25px">
+            <div>
+                <mat-checkbox formControlName="enableEmptyCellDrag">enableEmptyCellDrag</mat-checkbox>
+                <!-- <mat-checkbox formControlName="enableEmptyCellClick">enableEmptyCellClick</mat-checkbox> -->
+            </div>
+            <div [formGroup]="configFormGroup.get('draggable')">
+                <mat-checkbox formControlName="enabled">enable draggable</mat-checkbox>
+            </div>
+            <div [formGroup]="configFormGroup.get('resizable')">
+                <mat-checkbox formControlName="enabled">enable resizable</mat-checkbox>
+            </div>
+        </div>
+        <!-- Margins -->
+        <div fxFlex="100" fxLayout="row wrap" fxLayoutGap="25px">
+            <h3 fxFlex="100">حاشیه</h3>
+            <div fxFlex="100">
+                <mat-checkbox fxFlex formControlName="outerMargin">outerMargin</mat-checkbox>
+            </div>
+            <div fxFlex="100" fxLayout="row wrap" fxLayoutGap="25px">
+                <mat-form-field fxFlex>
+                    <input matInput type="number" placeholder="margin" formControlName="margin" />
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                    <input matInput type="number" placeholder="outerMarginTop" formControlName="outerMarginTop" />
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                    <input matInput type="number" placeholder="outerMarginRight" formControlName="outerMarginRight" />
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                    <input matInput type="number" placeholder="outerMarginBottom" formControlName="outerMarginBottom" />
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                    <input matInput type="number" placeholder="outerMarginLeft" formControlName="outerMarginLeft" />
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- Grid Size -->
+        <div fxFlex="100" fxLayout="row wrap" fxLayoutGap="25px">
+            <h3 fxFlex="100">گرید</h3>
+            <mat-form-field fxFlex>
+                <input matInput type="number" placeholder="minCols" formControlName="minCols" />
+            </mat-form-field>
+            <mat-form-field fxFlex>
+                <input matInput type="number" placeholder="maxCols" formControlName="maxCols" />
+            </mat-form-field>
+        </div>
+        <button fxFlex="100" color="primary" mat-raised-button (click)="save()">Save</button>
+    </div>
+</div>

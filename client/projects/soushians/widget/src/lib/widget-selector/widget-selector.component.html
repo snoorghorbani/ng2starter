@@ -1,0 +1,5 @@
+<mat-select placeholder="Grid Type" [(ngModel)]="selectedWidgetId" name="selectedWidgetId">
+  <mat-option *ngFor="let item of (widgets$ | async)" [value]="item._id">
+    {{item.type}} : <b>{{item.name}}</b>
+  </mat-option>
+</mat-select>

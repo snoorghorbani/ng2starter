@@ -1,13 +1,13 @@
 import { MemoizedSelector } from "@ngrx/store";
 import * as configList from "./config-list.reducer";
 export interface ConfigState {
-    list: configList.State;
+	list: configList.State;
 }
 export declare const ConfigReducers: {
-    list: typeof configList.Reducer;
+	list: typeof configList.Reducer;
 };
 export interface FeatureState {
-    "configs": ConfigState;
+	"configs": ConfigState;
 }
 export declare const selectConfigState: MemoizedSelector<object, ConfigState>;
 export declare const getConfigListState: MemoizedSelector<object, configList.State>;
@@ -19,3 +19,4 @@ export declare const getlayoutModuleConfig: MemoizedSelector<object, any>;
 export declare const getConfigModuleConfig: MemoizedSelector<object, any>;
 export declare const getFormModuleConfig: MemoizedSelector<object, any>;
 export declare const getSocketModuleConfig: MemoizedSelector<object, any>;
+export declare const getWidgetModuleConfig: MemoizedSelector<object, any>;

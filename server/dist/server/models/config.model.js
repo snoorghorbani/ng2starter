@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
 const configSchema = new mongoose.Schema({
     Name: { type: String, unique: true },
-    Config: Object,
+    Config: { type: Object, default: {} }
 }, { timestamps: true });
 /**
  * pre save config middleware.

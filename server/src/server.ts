@@ -30,6 +30,8 @@ dotenv.config({ path: ".env" });
  */
 import "./models/form.model";
 import "./models/bpmn.model";
+import "./models/widget.model";
+import "./models/grid.model";
 
 // import * as socketController from "./controllers/socket.controller";
 import { SocketMiddleware } from "./controllers/socket.controller";
@@ -47,6 +49,8 @@ import * as fakeController from "./controllers/fake.controller";
 import * as dataController from "./controllers/data-provider.controller";
 import * as eventController from "./controllers/event.controller";
 import * as sourceController from "./controllers/source.controller";
+import * as widgetController from "./controllers/widget.controller";
+import * as gridController from "./controllers/grid.controller";
 
 /**
  * API keys and Passport configuration.
@@ -135,9 +139,6 @@ app.use(express.static(path.join(__dirname, "../src"), { maxAge: 31557600000 }))
 /**
  * Primary app routes.
  */
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "../src/index-jit.html"));
-// });
 app.get("/", homeController.index);
 app.use("/api/user", userController.router);
 app.use("/api/config", configController.router);
@@ -148,18 +149,8 @@ app.use("/api/fake", fakeController.router);
 app.use("/api/data", dataController.router);
 app.use("/api/event", eventController.router);
 app.use("/api/source", sourceController.router);
-// app.use("/api/socket", socketController.router);
-
-// app.get("/login", userController.getLogin);
-// app.post("/login", userController.postLogin);
-// app.get("/logout", userController.logout);
-// app.get("/forgot", userController.getForgot);
-// app.post("/forgot", userController.postForgot);
-// app.get("/reset/:token", userController.getReset);
-// app.post("/reset/:token", userController.postReset);
-// app.get("/signup", userController.getSignup);
-// app.post("/signup", userController.postSignup);
-// app.get("api/account", passportConfig.isAuthenticated, userController.getAccount);
+app.use("/api/uiwidget", widgetController.router);
+app.use("/api/grid", gridController.router);
 
 app.post("/api/account/profile", userController.postUpdateProfile);
 app.post("/account/password", passportConfig.isAuthenticated, userController.postUpdatePassword);
