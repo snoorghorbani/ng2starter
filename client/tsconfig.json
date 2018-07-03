@@ -12,13 +12,14 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "lib": [
+    "lib": [      
       "es2017",
       "dom"
     ],
     "paths": {
       "@soushians/layout": [
         "dist/@soushians/layout"
+        // "projects/soushians/layout/src/public_api"
       ],
       "@soushians/config": [
         "dist/@soushians/config"
@@ -57,10 +58,16 @@
       "@soushians/grid": [
         "projects/soushians/grid/src/public_api"
       ],
+      "@soushians/dashboard": [
+        "dist/@soushians/dashboard"
+      ],
+      "@soushians/rule": [
+        "dist/@soushians/rule"
+      ],
       "@soushians/test": [
         "dist/soushians/test"
       ],
-      "socket.io-client": ["./node_modules/socket.io-client/dist/socket.io.slim.js"]
+      "socket.io-client": ["./node_modules/socket.io-client/dist/socket.io.slim.js"],
     }
   }
 }

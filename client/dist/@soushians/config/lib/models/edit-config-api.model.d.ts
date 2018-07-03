@@ -1,7 +1,7 @@
 import { HttpRequestBaseModel } from "@soushians/shared";
 import { FormGroup } from "@angular/forms";
 import { ConfigModel } from "../models";
-export declare module EditConfigApiModel {
+export declare namespace EditConfigApiModel {
     class Request implements HttpRequestBaseModel<Request> {
         Name: string;
         Config: {};

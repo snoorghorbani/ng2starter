@@ -3,11 +3,10 @@
   "version": "6.0.0",
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
-  },
-  "devDependencies": {
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
     "@types/socket.io-client": "^1.4.32"
   },
+  "devDependencies": {},
   "main": "bundles/soushians-socket.umd.js",
   "module": "fesm5/soushians-socket.js",
   "es2015": "fesm2015/soushians-socket.js",

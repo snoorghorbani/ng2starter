@@ -1,4 +1,4 @@
-import { InjectionToken } from '@angular/core';
+import { InjectionToken } from "@angular/core";
 export interface ConfigModuleConfig {
     dev_api_host?: string;
     prod_api_host?: string;

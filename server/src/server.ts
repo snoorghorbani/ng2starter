@@ -3,7 +3,7 @@
  */
 import * as express from "express";
 import * as compression from "compression"; // compresses requests
-import * as session from "express-session";
+import * as express_session from "express-session";
 // import * as cookieSession from "cookie-session";
 import * as bodyParser from "body-parser";
 import * as errorHandler from "errorhandler";
@@ -14,16 +14,11 @@ import * as mongoose from "mongoose";
 import * as passport from "passport";
 import * as cors from "cors";
 import expressValidator = require("express-validator");
-debugger;
-
-const MongoStore = mongo(session);
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
 dotenv.config({ path: ".env" });
-
-// import * as admin from "firebase-admin";
 
 /**
  * Models
@@ -32,9 +27,9 @@ import "./models/form.model";
 import "./models/bpmn.model";
 import "./models/widget.model";
 import "./models/grid.model";
+import "./models/user.model";
+import "./models/gwt-scenario.model";
 
-// import * as socketController from "./controllers/socket.controller";
-import { SocketMiddleware } from "./controllers/socket.controller";
 /**
  * Controllers (route handlers).
  */
@@ -49,15 +44,11 @@ import * as fakeController from "./controllers/fake.controller";
 import * as dataController from "./controllers/data-provider.controller";
 import * as eventController from "./controllers/event.controller";
 import * as sourceController from "./controllers/source.controller";
-import * as widgetController from "./controllers/widget.controller";
-import * as gridController from "./controllers/grid.controller";
 
 /**
  * API keys and Passport configuration.
  */
 import * as passportConfig from "./config/passport";
-import { EXDEV } from "constants";
-import { IncomingMessage } from "http";
 
 /**
  * Create Express server.
@@ -95,12 +86,13 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+const MongoStore = mongo(express_session);
 const sessionStore = new MongoStore({
 	url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
 	autoReconnect: true
 });
 app.use(
-	session({
+	express_session({
 		resave: true,
 		saveUninitialized: true,
 		secret: process.env.SESSION_SECRET,
@@ -112,7 +104,7 @@ app.use(
 //   keys: ["key1"],
 //   maxAge: 24 * 60 * 60 * 1000
 // }));
-
+debugger;
 app.use(passport.initialize());
 app.use(passport.session());
 app.use((req, res, next) => {
@@ -137,6 +129,23 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, "../src"), { maxAge: 31557600000 }));
 
 /**
+ * Controllers (route handlers).
+ */
+import * as homeController from "./controllers/home";
+import * as userController from "./controllers/user.controller";
+import * as configController from "./controllers/config.controller";
+import * as formController from "./controllers/form.controller";
+import * as bpmnController from "./controllers/bpmn.controller";
+import * as diagramController from "./controllers/diagram.controller";
+import * as fakeController from "./controllers/fake.controller";
+import * as dataController from "./controllers/data-provider.controller";
+import * as eventController from "./controllers/event.controller";
+import * as sourceController from "./controllers/source.controller";
+import * as gwtScenarioController from "./controllers/gwt-scenario.controller";
+import * as gwtAnchorController from "./controllers/gwt-anchor.controller";
+import { SocketMiddleware } from "./controllers/socket.controller";
+
+/**
  * Primary app routes.
  */
 app.get("/", homeController.index);
@@ -151,13 +160,10 @@ app.use("/api/event", eventController.router);
 app.use("/api/source", sourceController.router);
 app.use("/api/uiwidget", widgetController.router);
 app.use("/api/grid", gridController.router);
+app.use("/api/gwt/scenario", gwtScenarioController.router);
+app.use("/api/gwt/anchor", gwtAnchorController.router);
 
 app.post("/api/account/profile", userController.postUpdateProfile);
-app.post("/account/password", passportConfig.isAuthenticated, userController.postUpdatePassword);
-app.post("/account/delete", passportConfig.isAuthenticated, userController.postDeleteAccount);
-app.get("/account/unlink/:provider", passportConfig.isAuthenticated, userController.getOauthUnlink);
-
-// app.get("/api", apiController.getApi);
 
 /**
  * Error Handler. Provides full stack - remove for production
@@ -169,7 +175,7 @@ const server = app.listen(app.get("port"), () => {
 	console.log("  Press CTRL-C to stop\n");
 	sourceController.sourceJob();
 });
-
+debugger;
 SocketMiddleware.init(server, sessionStore, passport);
 
 module.exports = app;

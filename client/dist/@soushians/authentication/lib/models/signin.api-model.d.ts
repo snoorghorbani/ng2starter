@@ -1,5 +1,5 @@
 import { HttpRequestBaseModel, HttpResponseBaseModel } from "@soushians/shared";
-import { UserModel } from "../models";
+import { UserModel } from "./user.model";
 export declare namespace Signin_ApiModel {
     class Request implements HttpRequestBaseModel<Request> {
     }

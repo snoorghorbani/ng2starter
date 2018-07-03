@@ -3,7 +3,7 @@ export interface AuthenticationModuleConfig {
     endpoints?: {
         signOut?: string;
         signIn?: string;
-        userInformation?: string;
+        whoAmI?: string;
     };
     forms?: {
         signIn: string;
@@ -11,6 +11,7 @@ export interface AuthenticationModuleConfig {
     env: {
         production: boolean;
     };
+    afterSignoutRedirectTo?: string;
 }
 export declare const MODULE_DEFAULT_CONFIG: AuthenticationModuleConfig;
 export declare const MODULE_CONFIG_TOKEN: InjectionToken<AuthenticationModuleConfig>;

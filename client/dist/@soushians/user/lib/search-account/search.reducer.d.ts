@@ -8,4 +8,4 @@ export interface State {
 export declare const initialState: State;
 export declare function reducer(state: State, action: SearchAction): State;
 export declare var getStatus: (state: State) => responseStatusTypes;
-export declare var getUserInfo: (state: State) => ProfileViewModel.Response;
+export declare var getAccountInfo: (state: State) => ProfileViewModel.Response;

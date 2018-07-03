@@ -3,7 +3,7 @@ import { Observable } from "rxjs/Observable";
 import { FormGroup } from "@angular/forms";
 import { Store } from "@ngrx/store";
 import { UserModel } from "../../models";
-import * as FeatureReducer from "../../feature/feature.reducers";
+import * as FeatureReducer from "../../user.reducers";
 import { UserConfigurationService } from "../../services/user-configuration.service";
 import { UserModuleConfig } from "../../user.config";
 export declare class ProfileEditContainerComponent implements OnInit {
@@ -14,7 +14,7 @@ export declare class ProfileEditContainerComponent implements OnInit {
     roles$: Observable<string[]>;
     groups: Observable<string[]>;
     config$: Observable<UserModuleConfig>;
-    constructor(store: Store<FeatureReducer.FeatureState>, configService: UserConfigurationService);
+    constructor(store: Store<FeatureReducer.AppState>, configService: UserConfigurationService);
     ngOnInit(): void;
     updateProfile(data: any): void;
 }

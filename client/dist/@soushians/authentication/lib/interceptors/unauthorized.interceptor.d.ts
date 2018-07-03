@@ -1,4 +1,3 @@
-import "rxjs/add/operator/do";
 import { HttpInterceptor } from "@angular/common/http";
 import { HttpRequest } from "@angular/common/http";
 import { HttpHandler } from "@angular/common/http";

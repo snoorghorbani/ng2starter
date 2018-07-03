@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Rx";
 import { ConfigState } from "../reducers";
 import { Store } from "@ngrx/store";
-import { EditConfigApiModel, ConfigModel, LayoutConfigModel } from "../models";
+import { EditConfigApiModel, ConfigModel } from "../models";
 import { ConfigurationService } from "./configuration.service";
 export declare class ConfigService {
     private http;
@@ -14,5 +14,5 @@ export declare class ConfigService {
     getConfigs(): Observable<ConfigModel<any>[]>;
     getConfigByName(name: string): Observable<any>;
     editConfig(body: EditConfigApiModel.Request): Observable<any>;
-    getLayoutConfigs(): Observable<LayoutConfigModel>;
+    getLayoutConfigs(): Observable<any>;
 }

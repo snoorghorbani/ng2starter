@@ -1,5 +1,5 @@
 import { DiagramsAction } from "../actions";
-import { GetDiagramsApiModel } from "../models";
+import { GetDiagramsApiModel } from "../models/get-diagrams-api.model";
 export interface State {
     loaded: boolean;
     diagram: GetDiagramsApiModel.Response;

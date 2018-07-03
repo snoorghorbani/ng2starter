@@ -1,7 +1,6 @@
-import { HttpRequestBaseModel } from "@soushians/shared";
 import { DiagramModel } from "./diagram.model";
 export declare namespace GetDiagramsApiModel {
-    class Request implements HttpRequestBaseModel<Request> {
+    class Request {
         diagram: string;
         constructor(initValue?: GetDiagramsApiModel.Request);
         getRequestBody(): {};

@@ -14,16 +14,23 @@ export declare class ToolbarMenuComponent {
     showSidebarMenu: any;
     app_config: any;
     user: UserModel;
+    displayName: string;
+    user$: Observable<UserModel>;
     showMainSidenav: Observable<boolean>;
-    toolbarAnimationState: Observable<"comfortable" | "compact" | "summary">;
+    toolbarAnimationState: "comfortable" | "compact" | "summary" | "hide";
+    menuAnimationState: "comfortable" | "compact" | "summary" | "hide";
+    logoAnimationState: "comfortable" | "compact" | "summary" | "hide";
+    titleAnimationState: "comfortable" | "compact" | "summary" | "hide";
     menuItems$: Observable<any[]>;
     lastScroll: number;
     config: toolbarState;
     config$: Observable<toolbarState>;
+    anchorsMode: boolean;
     constructor(document: any, _location: Location, store: Store<FeatureState>, configurationService: LayoutConfigurationService);
     onWindowScroll(): void;
     signout(): void;
     goback(): void;
     toggleSecondSidebar(): void;
     toggleMainSidebar(): void;
+    _observe_on_layout_config_and_filter_routes(): void;
 }

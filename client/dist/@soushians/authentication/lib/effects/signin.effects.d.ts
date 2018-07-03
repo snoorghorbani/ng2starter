@@ -1,22 +1,26 @@
 import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/mergeMap";
-import "rxjs/add/operator/do";
-import "rxjs/add/operator/catch";
-import "rxjs/add/observable/empty";
 import { Action } from "@ngrx/store";
 import { Actions } from "@ngrx/effects";
-import { SigninSecceed, SigninFailed } from "../actions/signin.actions";
+import { SignoutAction, SigninSecceed, SigninFailed } from "../actions/signin.actions";
 import { SigninService } from "../services/signin.service";
 import { NewCaptcha } from "../actions";
+import { MatBottomSheet } from "@angular/material";
+import { AuthenticationConfigurationService } from "../services/authentication-configuration.service";
 export declare class SigninEffects {
     private actions$;
     private router;
     signinService: SigninService;
-    constructor(actions$: Actions, router: Router, signinService: SigninService);
-    preSignUpStart$: Observable<SigninSecceed | SigninFailed>;
+    configurationService: AuthenticationConfigurationService;
+    private bottomSheet;
+    constructor(actions$: Actions, router: Router, signinService: SigninService, configurationService: AuthenticationConfigurationService, bottomSheet: MatBottomSheet);
+    whoAmI$: Observable<SigninSecceed | SigninFailed>;
+    Signin$: Observable<SigninSecceed | SigninFailed>;
+    SignInRequired$: Observable<any>;
     SigninSucceed$: Observable<any>;
     AfterSigninFiled$: Observable<NewCaptcha>;
+    DoSignout$: Observable<SignoutAction>;
+    Signout$: Observable<SignoutAction>;
     redirectToLoginPage$: Observable<Action>;
+    redirectAfterSignout$: Observable<Action>;
 }
