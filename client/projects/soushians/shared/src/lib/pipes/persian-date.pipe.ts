@@ -8,10 +8,14 @@ interface PersianDateExtractor {
 
 @Pipe({ name: "persianDate" })
 export class PersianDatePipe implements PipeTransform {
-	transform(value: string, exponent: string): string {
+	transform(value: any, exponent: string): string {
 		if (!value) return "";
-		let date = new Date(parseInt(value.replace("/Date(", "").replace(")/", ""), 10));
-		debugger;
+		var date;
+		if (value.toDate) {
+			date = value.toDate();
+		} else {
+			date = new Date(parseInt(value.replace("/Date(", "").replace(")/", ""), 10));
+		}
 		var persianDate = _.date.georgian.to.persian(date.getFullYear(), date.getMonth() + 1, date.getDate());
 
 		return [

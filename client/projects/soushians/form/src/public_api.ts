@@ -2,7 +2,7 @@
  * Public API Surface of form
  */
 
-export * from "./lib/form.config";
+export { FormModuleConfig } from "./lib/form.config";
 //services
 export * from "./lib/services/form.service";
 

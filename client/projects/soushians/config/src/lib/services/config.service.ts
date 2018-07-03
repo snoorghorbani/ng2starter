@@ -4,7 +4,7 @@ import { Observable } from "rxjs/Rx";
 import { ConfigState } from "../reducers";
 import { Store } from "@ngrx/store";
 
-import { EditConfigApiModel, GetConfigsApiModel, ConfigModel, LayoutConfigModel } from "../models";
+import { EditConfigApiModel, GetConfigsApiModel, ConfigModel } from "../models";
 
 import { GetConfigAction } from "../actions";
 import { ConfigurationService } from "./configuration.service";
@@ -68,10 +68,10 @@ export class ConfigService {
 			});
 	}
 
-	getLayoutConfigs(): Observable<LayoutConfigModel> {
+	getLayoutConfigs(): Observable<any> {
 		return this.http
 			.get(`${this.configsEndpoint}/api/layout-config`)
-			.map((response: LayoutConfigModel) => response)
+			.map((response: any) => response)
 			.catch(err => {
 				return Observable.throw(err);
 			});

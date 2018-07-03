@@ -27,9 +27,9 @@ import {
 
 import { NgsConfigModule } from "@soushians/config";
 
-import { LayoutReducers } from "./reducers";
+import { LayoutReducers } from "./reducers/index";
 
-import { MODULE_CONFIG_TOKEN, LayoutModuleConfig } from "./layout.config";
+import { MODULE_CONFIG_TOKEN, LayoutModuleConfigModel } from "./layout.config";
 import { MainMenuComponent } from "./dumb-components/main-menu/main-menu.component";
 import { SearchBoxComponent } from "./dumb-components/search-box/search-box.component";
 import { LogoContainerComponent } from "./dumb-components/logo-container/logo-container.component";
@@ -37,6 +37,7 @@ import { ToolbarMenuComponent } from "./dumb-components/toolbar-menu/toolbar-men
 import { FooterComponent } from "./dumb-components/footer/footer.component";
 import { TitleComponent } from "./dumb-components/title/title.component";
 import { MainComponent } from "./dumb-components/main/main.component";
+import { LayoutEffects } from "./layout.effects";
 
 @NgModule({
 	imports: [
@@ -84,7 +85,7 @@ import { MainComponent } from "./dumb-components/main/main.component";
 	]
 })
 export class NgsLayoutModule {
-	static forRoot(config?: LayoutModuleConfig): ModuleWithProviders {
+	static forRoot(config?: LayoutModuleConfigModel): ModuleWithProviders {
 		return {
 			ngModule: RootNgsLayoutModule,
 			providers: [ { provide: MODULE_CONFIG_TOKEN, useValue: config } ]
@@ -93,7 +94,11 @@ export class NgsLayoutModule {
 }
 
 @NgModule({
-	imports: [ NgsLayoutModule, StoreModule.forFeature("layout", LayoutReducers) ],
+	imports: [
+		NgsLayoutModule,
+		StoreModule.forFeature("layout", LayoutReducers),
+		EffectsModule.forFeature([ LayoutEffects ])
+	],
 	exports: [ NgsLayoutModule ]
 })
 export class RootNgsLayoutModule {}

@@ -8,7 +8,7 @@ export interface State {
 }
 export const initialState: State = {
 	status: "pristine",
-	data: new ProfileViewModel.Response()
+	data: {} as ProfileViewModel.Response
 };
 export function reducer(state = initialState, action: SearchAction): State {
 	switch (action.type) {
@@ -49,4 +49,4 @@ export function reducer(state = initialState, action: SearchAction): State {
 }
 
 export var getStatus = (state: State) => state.status;
-export var getUserInfo = (state: State) => state.data;
+export var getAccountInfo = (state: State) => state.data;

@@ -11,7 +11,7 @@ export class AuthenticationModuleConfigComponent {
 		endpoints: new FormGroup({
 			signIn: new FormControl("", [ Validators.required ]),
 			signOut: new FormControl("", [ Validators.required ]),
-			userInformation: new FormControl("", [ Validators.required ])
+			whoAmI: new FormControl("", [ Validators.required ])
 		}),
 		forms: new FormGroup({
 			signIn: new FormControl("", [ Validators.required ])
@@ -29,7 +29,6 @@ export class AuthenticationModuleConfigComponent {
 		this.configFormGroup = this.injector.get("configFormGroup");
 	}
 	setFormId(formId: string, formName: string) {
-		debugger;
 		this.formGroup.patchValue({ [formName]: formId });
 	}
 }

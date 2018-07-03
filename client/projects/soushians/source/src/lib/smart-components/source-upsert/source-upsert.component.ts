@@ -76,7 +76,6 @@ export class SourceUpsertComponent implements OnInit {
 	getData() {
 		const o$ = this.sourceService.getData(this.formGroup.value);
 		o$.subscribe(data => {
-			debugger;
 			this.data = data.Data;
 		});
 		return o$;

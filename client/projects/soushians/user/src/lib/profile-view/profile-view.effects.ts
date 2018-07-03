@@ -25,9 +25,14 @@ export class ProfileViewEffects {
 		.ofType(ProfileViewActionTypes.GET_PROFILE_START)
 		.pipe(
 			map(action => action.payload),
-			switchMap((data: EditProfile_ApiModel.Request) => this.userService.getProfileInformation()),
-			map(res => new GetProfileSucceed(res)),
-			catchError(() => Observable.of(new GetProfileFailed()))
+			switchMap((data: EditProfile_ApiModel.Request) =>
+				this.userService
+					.getAccountInfo()
+					.pipe(
+						map(res => new GetProfileSucceed(res)),
+						catchError(() => Observable.of(new GetProfileFailed()))
+					)
+			)
 		);
 
 	@Effect()

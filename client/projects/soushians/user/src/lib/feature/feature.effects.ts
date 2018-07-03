@@ -10,23 +10,28 @@ import { SignInActionTypes } from "@soushians/authentication";
 
 import { UserService } from "../services/user.service";
 import { GetProfile, GetProfileSucceed } from "../profile-view/profile-view.actions";
+import { RefreshUserInfoAction } from "../dashboard";
+import { UserModel } from "../models";
 
 @Injectable()
 export class UserEffects {
 	constructor(private actions$: Actions<any>, private router: Router, private service: UserService) {}
 
+	// @Effect()
+	// updateProfileInformation$ = this.actions$.ofType(SignInActionTypes.SIGNIN_SUCCEED).pipe(
+	// 	map(action => action.payload),
+	// 	map(user => {
+	// 		return new GetProfileSucceed(user);
+	// 	})
+	// );
 	@Effect()
-	updateProfileInformation$ = this.actions$.ofType(SignInActionTypes.SIGNIN_SUCCEED).pipe(
-		map(action => action.payload),
-		map(user => {
-			debugger;
-			return new GetProfileSucceed(user);
-		})
-	);
-	@Effect()
-	getProfileInformation$ = this.actions$.ofType(SignInActionTypes.SIGNIN_SUCCEED).pipe(
+	getAccountInfo$ = this.actions$.ofType(SignInActionTypes.SIGNIN_SUCCEED).pipe(
 		map(() => {
 			return new GetProfile();
 		})
 	);
+	@Effect()
+	signout$ = this.actions$
+		.ofType(SignInActionTypes.SIGNOUT)
+		.pipe(map(() => new RefreshUserInfoAction({} as UserModel)));
 }

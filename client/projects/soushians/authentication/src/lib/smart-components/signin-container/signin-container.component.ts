@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, OnDestroy } from "@angular/core";
+﻿import { Component, OnInit, OnDestroy, Output, EventEmitter } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { Store } from "@ngrx/store";
 
@@ -17,11 +17,13 @@ import { FeatureState } from "../../reducers";
 })
 export class SigninContainerComponent {
 	formId$: Observable<string>;
+	@Output() signedIn$ = new EventEmitter<boolean>();
 	constructor(private configurationService: AuthenticationConfigurationService, private store: Store<FeatureState>) {
 		this.formId$ = this.configurationService.config$.map(config => config.forms.signIn);
 	}
 
 	signIn(formValue: any) {
 		this.store.dispatch(new Signin(formValue));
+		this.signedIn$.emit(true);
 	}
 }

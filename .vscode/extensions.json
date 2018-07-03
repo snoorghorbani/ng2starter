@@ -1,7 +1,3 @@
 {
-    "recommendations": [
-        "eg2.tslint",
-        "streetsidesoftware.code-spell-checker",
-        "msjsdiag.debugger-for-chrome"
-    ]
+	"recommendations": [ "eg2.tslint", "remimarsal.prettier-now" ]
 }

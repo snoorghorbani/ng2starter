@@ -1,5 +1,7 @@
 import { DiagramsActionTypes, DiagramsAction } from "../actions";
-import { GetDiagramsApiModel } from "../models";
+import { GetDiagramsApiModel } from "../models/get-diagrams-api.model";
+
+console.log(GetDiagramsApiModel);
 
 export interface State {
 	loaded: boolean;
@@ -7,7 +9,9 @@ export interface State {
 }
 export const initialState: State = {
 	loaded: false,
-	diagram: new GetDiagramsApiModel.Response()
+	diagram: {
+		Result: []
+	}
 };
 
 export function diagramReducer(state = initialState, action: DiagramsAction): State {

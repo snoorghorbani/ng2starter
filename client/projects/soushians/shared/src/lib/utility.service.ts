@@ -350,7 +350,6 @@ export class UtilityService {
 		};
 		(date.georgian.getRelativeDay = (n: number) => {
 			let date = new Date(Date.now() + -1 * n * 24 * 60 * 60 * 1000);
-			debugger;
 			return new DateClass(date.getFullYear(), date.getMonth() + 1, date.getDate());
 		}),
 			(date.julian.to.georgian = function(jd) {

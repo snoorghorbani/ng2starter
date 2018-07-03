@@ -94,7 +94,6 @@ export class AddDiagramComponent implements OnInit, OnDestroy {
 						if (!(key in typesControl.controls))
 							typesControl.addControl(key, new FormControl(data.Chart.data.types[key]));
 					});
-					debugger;
 					data.Chart.ColumnMappings.forEach(mapping => this.addColumn(mapping.NamePath, mapping.ValuePath));
 					this.source = data.Source;
 					this.store.dispatch(new HaveEndpointAction(this));
@@ -159,10 +158,8 @@ export class AddDiagramComponent implements OnInit, OnDestroy {
 		this.store.dispatch(new DiagramConfigChangedAction(this));
 	}
 	typeChanged() {
-		debugger;
 		const typesFormGroup = (this.formGroup.controls.Types as FormGroup).controls;
 		for (let cb in typesFormGroup) {
-			debugger;
 			typesFormGroup[cb].setValue(this.formGroup.value.Type);
 		}
 		this.diagramPartialConfig = {

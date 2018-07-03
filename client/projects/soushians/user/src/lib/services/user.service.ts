@@ -7,17 +7,15 @@ import { UserConfigurationService } from "./user-configuration.service";
 import { Store } from "@ngrx/store";
 
 import { stringTemplate } from "@soushians/shared";
+import { map } from "rxjs/operators";
 
-// import * as userReducers from "../../feature/feature.reducers";
 import { GetProfile } from "../profile-view/profile-view.actions";
-import { getUser } from "../dashboard/user.reducer";
+import { getAccountInfo } from "../dashboard/account.reducer";
 
 @Injectable({
 	providedIn: "root"
 })
 export class UserService {
-	responseCache: ProfileViewModel.Response;
-
 	constructor(
 		private http: HttpClient,
 		private store: Store<any>,
@@ -28,34 +26,44 @@ export class UserService {
 		}, 999);
 	}
 
-	getProfileInformation(): Observable<ProfileViewModel.Response> {
+	getAccountInfo(): Observable<ProfileViewModel.Response> {
 		return this.configurationService.config$
 			.filter(config => config.endpoints.profileInformation != "")
 			.take(1)
-			.switchMap(config => this.http.get(config.endpoints.profileInformation))
-			.map((response: UserModel) => response);
+			.switchMap(config =>
+				this.http.get<any>(config.endpoints.profileInformation).let(config.responseToUserInfo).pipe(
+					map((response: UserModel) => {
+						const user: any = Object.assign({}, response);
+						if (user.Role) {
+							user.Roles = [ user.Role ];
+						}
+						return user;
+					})
+				)
+			);
 	}
 	editProfile(data: EditProfile_ApiModel.Request): Observable<UserModel> {
 		var model = new EditProfile_ApiModel.Request(data);
 		return this.http
-			.put(stringTemplate(this.configurationService.config.endpoints.editProfile, model), model.getRequestBody())
-			.map((response: EditProfile_ApiModel.Response) =>
-				new EditProfile_ApiModel.Response(response).extractData()
-			);
+			.put<EditProfile_ApiModel.Response>(
+				stringTemplate(this.configurationService.config.endpoints.editProfile, model),
+				model.getRequestBody()
+			)
+			.map(response => new EditProfile_ApiModel.Response(response).extractData());
 	}
 	getInfo(data: ProfileViewModel.Request): Observable<any> {
 		const model = new ProfileViewModel.Request(data);
 
-		if (this.responseCache && this.responseCache.Email == model.Email) return Observable.of(this.responseCache);
 		return this.http
-			.get(stringTemplate(this.configurationService.config.endpoints.getUserInfo, model))
-			.do((response: ProfileViewModel.Response) => (this.responseCache = response))
+			.get<ProfileViewModel.Response>(
+				stringTemplate(this.configurationService.config.endpoints.getAccountInfo, model)
+			)
 			.map(response => response);
 	}
 
 	is_role(role: string): Observable<boolean> {
 		return this.store
-			.select(getUser)
+			.select(getAccountInfo)
 			.filter(user => user && user.Roles != undefined)
 			.take(1)
 			.map(user => user.Roles.indexOf(role) > -1);

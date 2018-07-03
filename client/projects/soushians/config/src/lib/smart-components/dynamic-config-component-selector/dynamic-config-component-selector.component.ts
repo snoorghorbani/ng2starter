@@ -40,6 +40,10 @@ export class DynamicConfigComponentSelectorComponent implements AfterViewInit {
 	@ViewChild("dynamicComponentContainer", { read: ViewContainerRef })
 	dynamicComponentContainer: ViewContainerRef;
 	@Output() configChanged = new EventEmitter();
+	get config() {
+		if (!this.currentComponent) return {};
+		return this.currentComponent.instance.formGroup.value;
+	}
 	currentComponent: any = null;
 	@Input()
 	set data(data: PartialConfig) {
@@ -61,9 +65,9 @@ export class DynamicConfigComponentSelectorComponent implements AfterViewInit {
 		let factory = this.resolver.resolveComponentFactory(_component);
 
 		let component = factory.create(injector);
-		(<any>component.instance).configChanged.subscribe((data: any) => {
-			this.configChanged.emit(data);
-		});
+		// (<any>component.instance).configChanged.add.subscribe((data: any) => {
+		// 	this.configChanged.emit(data);
+		// });
 		this.dynamicComponentContainer.insert(component.hostView);
 
 		if (this.currentComponent) {

@@ -45,7 +45,6 @@ export class DiagramService {
 			});
 	}
 	getDiagram(id: string): Observable<any> {
-		debugger;
 		if (!id) debugger;
 		return this.http.get(`http://localhost:3000/api/diagram/${id}`).map(response => response).catch(err => {
 			return Observable.throw(err);
@@ -53,7 +52,6 @@ export class DiagramService {
 	}
 	addDiagram(data: any): Observable<AddDiagramApiModel.Response> {
 		var model = new AddDiagramApiModel.Request(data);
-		debugger;
 		return this.http
 			.post<AddDiagramApiModel.Response>("http://localhost:3000/api/diagram", model.getRequestBody())
 			.map(response => response)
@@ -62,7 +60,6 @@ export class DiagramService {
 			});
 	}
 	updateDiagram(body: any): Observable<any> {
-		debugger;
 		return this.http.put("http://localhost:3000/api/diagram", body).map(response => response).catch(err => {
 			return Observable.throw(err);
 		});

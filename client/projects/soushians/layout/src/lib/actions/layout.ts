@@ -1,23 +1,26 @@
 import { Action } from "@ngrx/store";
-import { LayoutConfigModel } from "@soushians/config";
+import { LayoutModuleConfigModel } from "../layout.config";
 
 export const OPEN_SIDENAV = "[Layout] Open Sidenav";
 export const CLOSE_SIDENAV = "[Layout] Close Sidenav";
 
 export enum LayoutActionTypes {
 	UPDATE_LAYOUT_CONFIG = "[Layout] UPDATE_LAYOUT_CONFIG",
-	SIGNOUT = "[Layout] signout",
+	DO_SIGNOUT = "[Layout] do signout",
 	TITLE_CHANGED = "[LAYOUT] TITLE_CHANGED",
 	CHANGE_LAYOUT = "[Layout] Change Layout",
 	CHANGE_MAIN_SIDENAVE_MODE = "[Layout] Change main sidenav mode",
 	OPEN_SECOND_SIDEBAR = "[Layout] Open Second Sidebar",
 	CLOSE_SECOND_SIDEBAR = "[Layout] Close Second Sidebar",
-	CHANGE_SECOND_SIDENAV_MODE = "[Layout] Change second sidenav mode"
+	CHANGE_SECOND_SIDENAV_MODE = "[Layout] Change second sidenav mode",
+	FULLSCREEN = "[Layout] FULLSCREEN",
+	EXIT_FULLSCREEN = "[Layout] EXIT_FULLSCREEN",
+	TOGGLE_FULLSCREEN = "[Layout] TOGGLE_FULLSCREEN"
 }
 
 export class UpdateLayoutConfigAction implements Action {
 	readonly type = LayoutActionTypes.UPDATE_LAYOUT_CONFIG;
-	constructor(public payload: LayoutConfigModel) {}
+	constructor(public payload: Partial<LayoutModuleConfigModel>) {}
 }
 export class OpenSidenavAction implements Action {
 	readonly type = OPEN_SIDENAV;
@@ -40,8 +43,8 @@ export class ChangeSecondSidenavMode implements Action {
 	readonly type = LayoutActionTypes.CHANGE_SECOND_SIDENAV_MODE;
 	constructor(public mode: "over" | "push" | "side") {}
 }
-export class SignoutAction implements Action {
-	readonly type = LayoutActionTypes.SIGNOUT;
+export class DoSignoutAction implements Action {
+	readonly type = LayoutActionTypes.DO_SIGNOUT;
 }
 
 export class TitleChangedAction implements Action {
@@ -55,14 +58,26 @@ export class OpenSecondSidenavAction implements Action {
 export class CloseSecondSidenavAction implements Action {
 	readonly type = LayoutActionTypes.CLOSE_SECOND_SIDEBAR;
 }
+export class FullscreenAction implements Action {
+	readonly type = LayoutActionTypes.FULLSCREEN;
+}
+export class ExitFullscreenAction implements Action {
+	readonly type = LayoutActionTypes.EXIT_FULLSCREEN;
+}
+export class ToggleFullscreenAction implements Action {
+	readonly type = LayoutActionTypes.TOGGLE_FULLSCREEN;
+}
 export type Actions =
 	| UpdateLayoutConfigAction
 	| OpenSidenavAction
 	| CloseSidenavAction
 	| ChangeSideNavMode
 	| ChangeLayout
-	| SignoutAction
+	| DoSignoutAction
 	| TitleChangedAction
 	| OpenSecondSidenavAction
 	| CloseSecondSidenavAction
-	| ChangeSecondSidenavMode;
+	| FullscreenAction
+	| ExitFullscreenAction
+	| ChangeSecondSidenavMode
+	| ToggleFullscreenAction;

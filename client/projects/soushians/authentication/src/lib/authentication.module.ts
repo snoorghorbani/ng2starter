@@ -18,7 +18,8 @@ import {
 	MatInputModule,
 	MatToolbarModule,
 	MatDatepickerModule,
-	MatProgressBarModule
+	MatProgressBarModule,
+	MatBottomSheetModule
 } from "@angular/material";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -36,7 +37,7 @@ import { AuthenticationContainerComponent } from "./smart-components/authenticat
 import { WithCredentialInterceptor } from "./interceptors/with-credential.interceptor";
 import { UnauthorizedInterceptor } from "./interceptors/unauthorized.interceptor";
 
-import { AuthenticationReducers } from "./reducers";
+import { AuthenticationReducers } from "./reducers/index";
 
 import { SigninEffects } from "./effects/signin.effects";
 import { AuthenticationEffects } from "./effects/authentication.effects";
@@ -56,6 +57,7 @@ import { SigninService } from "./services/signin.service";
 		MatSidenavModule,
 		MatExpansionModule,
 		MatSelectModule,
+		MatBottomSheetModule,
 		MatFormFieldModule,
 		MatListModule,
 		MatMenuModule,
@@ -70,6 +72,7 @@ import { SigninService } from "./services/signin.service";
 		NgsFormModule
 	],
 	declarations: [ SigninContainerComponent, SigninComponent, AuthenticationContainerComponent ],
+	entryComponents: [ SigninContainerComponent ],
 	providers: [],
 	exports: []
 })

@@ -1,15 +1,11 @@
-// #docplaster
-// #docregion
 import { Observable } from "rxjs/Observable";
-import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy } from "@angular/core";
-import { Router, NavigationEnd } from "@angular/router";
-// import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { Component } from "@angular/core";
 import { Store } from "@ngrx/store";
 
 import { ConfigModel, getAppConfig } from "@soushians/config";
 import { ChangeToolbatToComfortableModeAction } from "@soushians/layout";
 
-import { State } from "./app.reducers";
+import { AppState } from "./app.reducers";
 import { SocketService } from "@soushians/socket";
 
 @Component({
@@ -20,9 +16,9 @@ import { SocketService } from "@soushians/socket";
 export class AppComponent {
 	app_config: Observable<ConfigModel<any>>;
 
-	constructor(private store: Store<State>, private router: Router, private socketService: SocketService) {
+	constructor(private store: Store<AppState>, private socketService: SocketService) {
 		this.app_config = this.store.select(getAppConfig);
-
+		// debugger;
 		setTimeout(() => {
 			this.store.dispatch(new ChangeToolbatToComfortableModeAction());
 		}, 3000);

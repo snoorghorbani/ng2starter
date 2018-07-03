@@ -1,7 +1,8 @@
 import { ModuleWithProviders } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-
-import { SourceListComponent, SourceUpsertComponent, SourceModuleContainerComponent } from "./smart-components";
+import { SourceModuleContainerComponent } from "./smart-components/source-module-container/source-module-container.component";
+import { SourceListComponent } from "./smart-components/source-list/source-list.component";
+import { SourceUpsertComponent } from "./smart-components/source-upsert/source-upsert.component";
 
 const routes: Routes = [
 	{

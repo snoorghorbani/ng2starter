@@ -1,13 +1,12 @@
 ﻿import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs/Observable";
-
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Store } from "@ngrx/store";
 
 import { ConfigModel, getAppConfig } from "@soushians/config";
 
 import { UserModel, EditProfile_ApiModel } from "../../models";
-import * as FeatureReducer from "../../feature/feature.reducers";
+import * as FeatureReducer from "../../user.reducers";
 import { EditProfile } from "../edit-profile.actions";
 import { UserConfigurationService } from "../../services/user-configuration.service";
 import { UserModuleConfig } from "../../user.config";
@@ -28,8 +27,8 @@ export class ProfileEditContainerComponent implements OnInit {
 	roles$: Observable<string[]>;
 	groups: Observable<string[]>;
 	config$: Observable<UserModuleConfig>;
-	constructor(private store: Store<FeatureReducer.FeatureState>, private configService: UserConfigurationService) {
-		this.userInforamation$ = this.store.select(FeatureReducer.getUser);
+	constructor(private store: Store<FeatureReducer.AppState>, private configService: UserConfigurationService) {
+		this.userInforamation$ = this.store.select(FeatureReducer.getAccountInfo);
 		this.roles$ = this.store
 			.select(getAppConfig)
 			.filter(config => config != undefined)
@@ -43,7 +42,6 @@ export class ProfileEditContainerComponent implements OnInit {
 
 	ngOnInit() {
 		this.userInforamation$.subscribe(userInfo => {
-			debugger;
 			if (userInfo == null) return;
 			this.formGroup.patchValue({
 				Email: userInfo.Email,

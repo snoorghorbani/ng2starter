@@ -5,16 +5,18 @@ import { FormGroup, FormBuilder, FormControl } from "@angular/forms";
 
 import { EditConfigApiModel, PartialConfig } from "../../models";
 import { ConfigService } from "../../services/config.service";
+import { DynamicConfigComponentSelectorComponent } from "../dynamic-config-component-selector";
 
 @Component({
 	selector: "config-config-edit",
-	templateUrl: "./config-edit.component.html"
+	templateUrl: "./config-edit.component.html",
+	styleUrls: [ "./config-edit.component.css" ]
 })
 export class ConfigEditComponent implements OnInit {
 	configInforamation: any;
 	formGroup: FormGroup = EditConfigApiModel.Request.formGroup;
 	partialConfigModel: PartialConfig;
-
+	@ViewChild("dynConfig") dynConfig: DynamicConfigComponentSelectorComponent;
 	constructor(private configService: ConfigService, private formBuilder: FormBuilder, private route: ActivatedRoute) {
 		this.route.params.subscribe(params => {
 			const configName: string = params["name"];
@@ -48,14 +50,11 @@ export class ConfigEditComponent implements OnInit {
 
 	ngOnInit() {}
 	configChanged(event: any) {
-		debugger;
-		this.formGroup.controls.Config.patchValue(event);
+		console.log("-");
 	}
 	edit() {
-		debugger;
+		this.formGroup.controls.Config.patchValue(this.dynConfig.config);
 		if (!this.formGroup.valid) return;
-		this.configService.editConfig(this.formGroup.value).subscribe(config => {
-			debugger;
-		});
+		this.configService.editConfig(this.formGroup.value).subscribe(config => {});
 	}
 }

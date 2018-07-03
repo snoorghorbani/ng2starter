@@ -1,4 +1,3 @@
-import "rxjs/add/operator/do";
 import { HttpInterceptor } from "@angular/common/http";
 import { HttpRequest } from "@angular/common/http";
 import { HttpHandler } from "@angular/common/http";
@@ -12,6 +11,7 @@ import { SignoutAction } from "../actions";
 import * as fromAuth from "../reducers";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
+import { of, throwError } from "rxjs";
 
 @Injectable()
 export class UnauthorizedInterceptor implements HttpInterceptor {
@@ -25,14 +25,14 @@ export class UnauthorizedInterceptor implements HttpInterceptor {
 			.map((event: HttpEvent<any>) => {
 				if (event instanceof HttpResponse) return event;
 			})
-			.catch((err) => {
-				if (!(err instanceof HttpErrorResponse)) return;
-				if (err.status != 401) return;
-				if (err.url.includes("logout")) return;
+			.catch(err => {
+				if (!(err instanceof HttpErrorResponse)) return throwError(err);
+				if (err.status != 401) return throwError(err);
+				if (err.url.includes("logout")) return throwError(err);
 
 				this.store.dispatch(new SignoutAction());
 
-				return Observable.throw("Unauthorized");
+				return throwError("Unauthorized");
 			});
 	}
 }

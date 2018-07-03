@@ -2,15 +2,10 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { Store } from "@ngrx/store";
-// import * as socketIo from "socket.io-client";
-// const socketIo = require("socket.io-client");
-// tslint:disable-next-line:no-debugger
-debugger;
 import * as _io from "socket.io-client";
 const io = _io;
-import { AppState } from "../socket.reducer";
 
-import { getSocketModuleConfig } from "@soushians/config";
+import { AppState } from "../socket.reducer";
 
 import { SocketConfigurationService } from "./socket-configuration.service";
 import { SocketRunSuccessfullyAction } from "../socket.actions";
@@ -26,13 +21,13 @@ export class SocketService {
 			.pipe(
 				map(config => (config.env.production ? config.production_uri : config.development_uri)),
 				map(uri => {
+					console.log(uri, this.configService.config);
 					this.socket = io(uri);
 					return this.store.dispatch(new SocketRunSuccessfullyAction());
 				})
 			)
 			.subscribe(() => {
 				this.socket.on("DISPATCH_ACTION", data => {
-					debugger;
 					this.store.dispatch({
 						type: data.type,
 						payload: data.payload

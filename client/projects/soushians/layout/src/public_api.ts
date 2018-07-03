@@ -26,7 +26,12 @@ export {
 	ChangeToolbatToComfortableModeAction,
 	ChangeToolbatToCompactModeAction,
 	DisableComfortableModeAction,
-	EnableComfortableModeAction
+	EnableComfortableModeAction,
+	VisibleToolbarAction,
+	FullscreenAction,
+	ExitFullscreenAction,
+	InvisibleToolbarAction,
+	ToggleFullscreenAction
 } from "./lib/actions";
 
 //components

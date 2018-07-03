@@ -108,7 +108,6 @@ export class DiagramComponent implements AfterViewInit, OnDestroy {
 		// this.dataSubscribtion.unsubscribe();
 	}
 	timeChange(e: MatSliderChange) {
-		debugger;
 		this.dataSubscribtion.unsubscribe();
 		// this.diagramService.getData(this.data.Source, Date.now() - ((1000 - e.value) * this.data.Source.Interval), true)
 		this.dataSubscribtion = this.diagramService
@@ -123,7 +122,6 @@ export class DiagramComponent implements AfterViewInit, OnDestroy {
 				//                 column[0] += '_historic';
 				//                 return column;
 				//         });
-				debugger;
 				this.chart.load({
 					columns: this.diagramService.extract_columns_from_data(data.Data, this.data.Chart.ColumnMappings)
 				});

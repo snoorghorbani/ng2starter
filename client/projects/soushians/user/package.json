@@ -3,12 +3,11 @@
 	"version": "6.1.0",
 	"peerDependencies": {
 		"@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-		"@angular/core": "^6.0.0-rc.0 || ^6.0.0"
-	},
-	"dependencies": {
+		"@angular/core": "^6.0.0-rc.0 || ^6.0.0",
 		"@soushians/authentication": "^6.1.0",
 		"@soushians/config": "0.0.1",
 		"@soushians/form": "^6.1.0",
 		"@soushians/shared": "^6.1.0"
-	}
+	},
+	"dependencies": {}
 }

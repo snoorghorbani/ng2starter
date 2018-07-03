@@ -9,7 +9,7 @@ export interface SocketModuleConfig {
 }
 export const MODULE_DEFAULT_CONFIG: SocketModuleConfig = {
 	development_uri: "http://localhost:3000",
-	production_uri: "",
+	production_uri: "http://185.208.174.92:3000",
 	env: {
 		production: false
 	}

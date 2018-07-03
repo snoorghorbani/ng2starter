@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { FieldConfig } from "../../models";
-import { Form } from "@angular/forms";
 
 @Component({
 	selector: "app-form-group",
@@ -11,9 +10,7 @@ export class FormGroupComponent {
 	@Input() noHeader: boolean = false;
 	@Output() changes = new EventEmitter();
 	@Output() delete = new EventEmitter();
-	constructor() {
-		debugger;
-	}
+	constructor() {}
 
 	changed() {
 		this.changes.emit();

@@ -3,10 +3,10 @@
     <mat-card-title>
       <div fxLayout="row" fxLayoutAlign="space-between">
         <div fxFlex="nogrow">
-          {{(user | async).LastName }}، {{(user | async).FirstName }}
+          <!-- {{(user | async).LastName }}، {{(user | async).FirstName }} -->
         </div>
         <div fxFlex="nogrow">
-          {{(user | async).Email}}
+          <!-- {{(user | async).Email}} -->
         </div>
       </div>
     </mat-card-title>
@@ -17,13 +17,13 @@
         <mat-icon fxFlex='nogrow'>local_grocery_store</mat-icon>
         <div fxFlex='15px'></div>
         <p fxFlex='40'>شناسه</p>
-        <p fxFlex='60' fxLayoutAlign="end">{{(user | async)._id }}</p>
+        <!-- <p fxFlex='60' fxLayoutAlign="end">{{(user | async)._id }}</p> -->
       </div>
       <div class='list-item' fxFlexLayout='row' fxLayoutAlign='center center'>
         <mat-icon fxFlex='nogrow'>email</mat-icon>
         <div fxFlex='15px'></div>
         <p fxFlex='40'>پست الکترونیکی</p>
-        <p fxFlex='60' fxLayoutAlign="end">{{(user | async).Email }}</p>
+        <!-- <p fxFlex='60' fxLayoutAlign="end">{{(user | async).Email }}</p> -->
       </div>
     </div>
 

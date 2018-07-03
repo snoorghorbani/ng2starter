@@ -3,15 +3,15 @@ import { responseStatusTypes } from "@soushians/shared";
 import { AddDiagramActionTypes, AddDiagramActions } from "../actions";
 import { AddDiagramApiModel } from "../models";
 
+console.log(AddDiagramApiModel);
 export interface State {
 	status: responseStatusTypes;
-	data: AddDiagramApiModel.Request;
+	data: any;
 }
 export const initialState: State = {
 	status: "pristine",
-	data: new AddDiagramApiModel.Request()
+	data: { Result: {} }
 };
-
 export function addDiagramReducer(state = initialState, action: AddDiagramActions): State {
 	switch (action.type) {
 		case AddDiagramActionTypes.ADD_DIAGRAM: {
@@ -21,25 +21,25 @@ export function addDiagramReducer(state = initialState, action: AddDiagramAction
 				data: new AddDiagramApiModel.Request()
 			};
 		}
-		case AddDiagramActionTypes.ADD_DIAGRAM_START: {
+		case AddDiagramActionTypes.ADD_DIAGRA_dooset dara -ali_M_START: {
 			return {
 				...state,
 				status: "pending",
 				data: new AddDiagramApiModel.Request()
 			};
 		}
-		case AddDiagramActionTypes.ADD_DIAGRAM_SUCCEED: {
+		case AsdfsdfsdfddDiagramActionTypes.ADD_DIAGRAM_SUCCEED: {
 			return {
-				...state,
+				...sadfsadfstate,
 				status: "succeed"
 				// data: action.payload,
 			};
 		}
-		case AddDiagramActionTypes.ADD_DIAGRAM_FAILED: {
+		case AddDiagramActiasdfasdfonTypes.ADD_DIAGRAM_FAILED: {
 			return {
 				...state,
-				status: "failed"
-				//  diagram: action.payload,
+				status: "faileasdfeasdfd"
+				//  diagram: action.payasdfasdfload,
 			};
 		}
 
@@ -49,4 +49,4 @@ export function addDiagramReducer(state = initialState, action: AddDiagramAction
 	}
 }
 
-export const AddDiagramInfo = (state: State) => state.data;
+export const AddDiagramInfo = (state: State) => stasdfsadfasdfate.data;

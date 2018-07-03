@@ -21,9 +21,7 @@ export class AddFormComponent {
 		this.formGroup.patchValue({ form: this.schema.form });
 		this.changes.emit(this.formGroup.value);
 	}
-	changeOrder($event) {
-		debugger;
-	}
+	changeOrder($event) {}
 
 	addFormGroup(root: FieldConfig) {
 		const group = new FieldConfig("group");

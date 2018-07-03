@@ -35,6 +35,7 @@ export const getLayoutMode = createSelector(getLayout, layout.getLayoutMode);
 
 export const getShowSecondSidebarStatus = createSelector(getLayout, layout.getShowSecondSidebarStatus);
 export const getSecondSidebarMode = createSelector(getLayout, layout.getSecondSidebarMode);
+export const getFullscreenMode = createSelector(getLayout, layout.getFullscreenMode);
 
 //#region toolbar
 
