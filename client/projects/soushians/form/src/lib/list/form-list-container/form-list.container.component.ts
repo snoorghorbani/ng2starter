@@ -2,8 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { Store } from "@ngrx/store";
 
-import { MainContainerState, FormReducers } from "../../main-container";
-import { FormService } from "../../services/form.service";
+import { MainContainerState } from "../../main-container";
 import { FormSchemaModel } from "../../models";
 import { FormsListAction } from "../../list/list.actions";
 

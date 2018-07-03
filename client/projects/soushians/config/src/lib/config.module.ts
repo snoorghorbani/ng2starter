@@ -36,7 +36,7 @@ import { ConfigModuleContainerComponent } from "./smart-components/config-module
 import { AuthenticationModuleConfigComponent } from "./dumb-components/authentication-module-config/authentication-module-config.component";
 import { DynamicConfigComponentSelectorComponent } from "./smart-components/dynamic-config-component-selector/dynamic-config-component-selector.component";
 import { LoadConfigEffects } from "./effects/load-config.effects";
-import { ConfigReducers } from "./reducers";
+import { ConfigReducers } from "./reducers/index";
 import { RoutingModule } from "./config.routing-module";
 
 @NgModule({

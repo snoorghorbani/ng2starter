@@ -2,9 +2,9 @@ import { ModuleWithProviders } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
 import { MainContainerComponent } from "./main-container/main-container.component/main-container.component";
+import { EditFormContainerComponent } from "./edit/edit-form-container/edit-form-container.component";
 import { AddFormContainerComponent } from "./add/add-form-container/add-form-container.component";
-import { EditFormContainerComponent } from "./edit";
-import { FormListContainerComponent } from "./list";
+import { FormListContainerComponent } from "./list/form-list-container/form-list.container.component";
 
 const routes: Routes = [
 	{

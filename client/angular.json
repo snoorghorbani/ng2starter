@@ -517,6 +517,44 @@
 					}
 				}
 			}
+		},
+		"@soushians/rule": {
+			"root": "projects/soushians/rule",
+			"sourceRoot": "projects/soushians/rule/src",
+			"projectType": "library",
+			"prefix": "lib",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-ng-packagr:build",
+					"options": {
+						"tsConfig": "projects/soushians/rule/tsconfig.lib.json",
+						"project": "projects/soushians/rule/ng-package.json"
+					},
+					"configurations": {
+						"production": {
+							"project": "projects/soushians/rule/ng-package.prod.json"
+						}
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "projects/soushians/rule/src/test.ts",
+						"tsConfig": "projects/soushians/rule/tsconfig.spec.json",
+						"karmaConfig": "projects/soushians/rule/karma.conf.js"
+					}
+				},
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"projects/soushians/rule/tsconfig.lib.json",
+							"projects/soushians/rule/tsconfig.spec.json"
+						],
+						"exclude": [ "**/node_modules/**" ]
+					}
+				}
+			}
 		}
 	},
 	"defaultProject": "ng2-starter"

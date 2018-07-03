@@ -37,7 +37,7 @@ import { AuthenticationContainerComponent } from "./smart-components/authenticat
 import { WithCredentialInterceptor } from "./interceptors/with-credential.interceptor";
 import { UnauthorizedInterceptor } from "./interceptors/unauthorized.interceptor";
 
-import { AuthenticationReducers } from "./reducers";
+import { AuthenticationReducers } from "./reducers/index";
 
 import { SigninEffects } from "./effects/signin.effects";
 import { AuthenticationEffects } from "./effects/authentication.effects";

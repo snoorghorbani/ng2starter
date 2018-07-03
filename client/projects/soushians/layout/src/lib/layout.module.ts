@@ -27,7 +27,7 @@ import {
 
 import { NgsConfigModule } from "@soushians/config";
 
-import { LayoutReducers } from "./reducers";
+import { LayoutReducers } from "./reducers/index";
 
 import { MODULE_CONFIG_TOKEN, LayoutModuleConfigModel } from "./layout.config";
 import { MainMenuComponent } from "./dumb-components/main-menu/main-menu.component";

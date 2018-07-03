@@ -3,15 +3,15 @@ import { responseStatusTypes } from "@soushians/shared";
 import { EditDiagramActionTypes, EditDiagramActions } from "../actions";
 import { EditDiagramApiModel } from "../models";
 
+console.log(EditDiagramApiModel);
 export interface State {
 	status: responseStatusTypes;
 	data: EditDiagramApiModel.Response;
 }
 export const initialState: State = {
 	status: "pristine",
-	data: new EditDiagramApiModel.Response()
+	data: { Result: {} } as EditDiagramApiModel.Response
 };
-
 export function Reducer(state = initialState, action: EditDiagramActions): State {
 	switch (action.type) {
 		case EditDiagramActionTypes.EDIT_DIAGRAM: {

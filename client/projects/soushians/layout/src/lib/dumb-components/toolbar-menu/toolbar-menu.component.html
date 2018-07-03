@@ -12,9 +12,6 @@
     <app-title fxFlex fxLayoutAlign="start center"></app-title>
     <app-search-box fxFlex fxLayoutAlign="end center"></app-search-box>
     
-    <button mat-icon-button type="button" (click)="toggleAnchors()" fxFlex="nogrow" fxLayoutAlign="center center">
-      <mat-icon>settings</mat-icon>
-    </button>
 
     <button *ngIf="!displayName" mat-button routerLink="auth/signin">
       ورود

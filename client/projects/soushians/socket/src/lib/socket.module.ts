@@ -2,9 +2,10 @@
 import { CommonModule } from "@angular/common";
 import { StoreModule } from "@ngrx/store";
 
-import { SocketService, SocketConfigurationService } from "./services";
-import { SocketReducer } from "./socket.reducer";
 import { SocketModuleConfig, MODULE_CONFIG_TOKEN } from "./socket.config";
+import { SocketConfigurationService } from "./services/socket-configuration.service";
+import { SocketService } from "./services/socket.service";
+import { SocketReducer } from "./socket.reducer";
 
 @NgModule({
 	imports: [ CommonModule ]

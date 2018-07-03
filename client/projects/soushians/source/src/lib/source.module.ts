@@ -30,7 +30,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { SharedModule } from "@soushians/shared";
 
-import { SourceReducers } from "./reducers";
+import { SourceReducers } from "./reducers/index";
 import { RoutingModule } from "./source.routing-module";
 import { SourceEffects } from "./effects/source.effects";
 import { SourceListComponent } from "./smart-components/source-list/source-list.component";

@@ -2,14 +2,10 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { Store } from "@ngrx/store";
-// import * as socketIo from "socket.io-client";
-// const socketIo = require("socket.io-client");
-// tslint:disable-next-line:no-debugger
 import * as _io from "socket.io-client";
 const io = _io;
-import { AppState } from "../socket.reducer";
 
-import { getSocketModuleConfig } from "@soushians/config";
+import { AppState } from "../socket.reducer";
 
 import { SocketConfigurationService } from "./socket-configuration.service";
 import { SocketRunSuccessfullyAction } from "../socket.actions";

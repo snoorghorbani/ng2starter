@@ -52,13 +52,13 @@
       "@soushians/dashboard": [
         "dist/@soushians/dashboard"
       ],
+      "@soushians/rule": [
+        "dist/@soushians/rule"
+      ],
       "@soushians/test": [
         "dist/soushians/test"
       ],
       "socket.io-client": ["./node_modules/socket.io-client/dist/socket.io.slim.js"],
-      "@rule": [
-        "src/app/rule"
-      ]
     }
   }
 }

@@ -1,6 +1,6 @@
 import { ModuleWithProviders } from "@angular/core";
-import { SocketService } from "./services";
 import { SocketModuleConfig } from "./socket.config";
+import { SocketService } from "./services/socket.service";
 export declare class NgsSocketModule {
     static forRoot(config?: SocketModuleConfig): ModuleWithProviders;
 }

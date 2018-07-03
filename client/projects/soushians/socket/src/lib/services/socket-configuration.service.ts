@@ -1,6 +1,7 @@
 import { BehaviorSubject } from "rxjs";
 import { Inject, Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
+
 import { getSocketModuleConfig } from "@soushians/config";
 
 import { SocketModuleConfig, MODULE_DEFAULT_CONFIG, MODULE_CONFIG_TOKEN } from "../socket.config";
@@ -17,7 +18,7 @@ export class SocketConfigurationService {
 	constructor(@Inject(MODULE_CONFIG_TOKEN) configFile, private store: Store<AppState>) {
 		this._config = Object.assign({}, MODULE_DEFAULT_CONFIG, configFile);
 		this.config$.next(this._config);
-		this.store.select(getSocketModuleConfig).subscribe((userConfig) => {
+		this.store.select(getSocketModuleConfig).subscribe(userConfig => {
 			if (!userConfig) {
 				return;
 			}

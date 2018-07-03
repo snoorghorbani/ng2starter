@@ -1,6 +1,6 @@
 import { OnInit } from "@angular/core";
-import { UserConfigurationService } from "../../services/user-configuration.service";
 import { Observable } from "rxjs/Observable";
+import { UserConfigurationService } from "../../services/user-configuration.service";
 export declare class DashboardLinksComponent implements OnInit {
     private userConfigurationService;
     links: any[];

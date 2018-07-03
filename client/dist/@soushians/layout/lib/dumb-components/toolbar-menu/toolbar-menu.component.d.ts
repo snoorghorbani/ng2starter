@@ -25,6 +25,7 @@ export declare class ToolbarMenuComponent {
     lastScroll: number;
     config: toolbarState;
     config$: Observable<toolbarState>;
+    anchorsMode: boolean;
     constructor(document: any, _location: Location, store: Store<FeatureState>, configurationService: LayoutConfigurationService);
     onWindowScroll(): void;
     signout(): void;

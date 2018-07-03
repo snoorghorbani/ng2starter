@@ -15,6 +15,7 @@ import { SourceModule } from "@soushians/source";
 import { NgsSocketModule } from "@soushians/socket";
 import { NgsDiagramModule } from "@soushians/diagram";
 import { NgsFormModule } from "@soushians/form";
+// import { RuleModule } from "@soushians/rule";
 
 import { StaticPageModule } from "./static-page";
 
@@ -25,9 +26,7 @@ import { reducers } from "./app.reducers";
 
 // module configs
 import { DashboardModule } from "./dashboard";
-import { RuleModule } from "./rule";
-import { ruleModuleConfig } from "./gwt-steps";
-import { GwtStepsModule } from "./gwt-steps/gwt-steps.module";
+// import { GwtStepsModule } from "./gwt-steps/gwt-steps.module";
 
 @NgModule({
 	imports: [
@@ -58,8 +57,8 @@ import { GwtStepsModule } from "./gwt-steps/gwt-steps.module";
 		SourceModule,
 		StaticPageModule,
 		NgsFormModule.forRoot(),
-		RuleModule.forRoot(ruleModuleConfig),
-		GwtStepsModule,
+		// RuleModule.forRoot(ruleModuleConfig),
+		// GwtStepsModule,
 		AppRoutingModule,
 		DashboardModule
 	],

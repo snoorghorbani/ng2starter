@@ -1,3 +1,2 @@
-export * from "./lib/socket.module";
-export * from "./lib/socket.actions";
-export * from "./lib/services/socket.service";
+export { NgsSocketModule } from "./lib/socket.module";
+export { SocketService } from "./lib/services/socket.service";

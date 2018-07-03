@@ -30,7 +30,7 @@ import { SharedModule } from "@soushians/shared";
 
 import { DiagramModuleConfig, MODULE_CONFIG_TOKEN } from "./diagram.config";
 
-import { DiagramReducers } from "./reducers";
+import { DiagramReducers } from "./reducers/index";
 
 import { ServerStatusDiagramComponent } from "./dumb-components/server-status-diagram/server-status-diagram.component";
 import { DiagramPartialConfigEditComponent } from "./dumb-components/diagram-partial-config-edit/diagram-partial-config-edit.component";
