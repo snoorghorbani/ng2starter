@@ -25,8 +25,6 @@ import { EffectsModule } from "@ngrx/effects";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { GridsterModule } from "angular-gridster2";
 
-import { NgsWidgetModule } from "@soushians/widget";
-
 import { GridModuleConfig, MODULE_CONFIG_TOKEN } from "./grid.config";
 import { GridRoutingModule } from "./grid-routing.module";
 import { GetGridApiEffects } from "./services/api/get-grid/get-grid.effects";
@@ -67,9 +65,7 @@ import { DynamicGridItemViewDirective } from "./grid-item/dynamic-grid-item-view
 		MatDividerModule,
 		MatCheckboxModule,
 		MatTableModule,
-		GridsterModule,
-		// TODO: remove this dependency
-		NgsWidgetModule
+		GridsterModule
 	],
 	declarations: [
 		RootComponent,

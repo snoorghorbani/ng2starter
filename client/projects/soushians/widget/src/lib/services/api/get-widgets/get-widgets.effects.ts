@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { Actions, Effect } from "@ngrx/effects";
 import { map, switchMap, catchError } from "rxjs/operators";
+import { of } from "rxjs";
 
 import { WidgetService } from "../../widget.service";
 import {
@@ -24,7 +25,7 @@ export class GetWidgetsApiEffects {
 					.getWidgets()
 					.pipe(
 						map((res) => new GetWidgetsSucceedAction(res)),
-						catchError((err) => Observable.of(new GetWidgetsFailedAction(err)))
+						catchError((err) => of(new GetWidgetsFailedAction(err)))
 					)
 			)
 		);

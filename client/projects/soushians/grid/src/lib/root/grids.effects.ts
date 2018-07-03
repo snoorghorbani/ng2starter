@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Actions, Effect } from "@ngrx/effects";
 import { map, pluck } from "rxjs/operators";
+import { Observable } from "rxjs";
 
 import { GridModel } from "../models";
 import { UpsertGridAction } from "./widget.actions";

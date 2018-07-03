@@ -18,12 +18,9 @@ export class GridConfigComponent {
 	oid: string;
 	configFormGroup: FormGroup;
 	gridFormGroup: FormGroup;
-	constructor(
-		private store: Store<AppState>,
-		@Inject(MAT_BOTTOM_SHEET_DATA) private data: { grid: GridModel; oid: string }
-	) {
-		this.grid = data.grid;
-		this.oid = data.oid;
+	constructor(private store: Store<AppState>, @Inject(MAT_BOTTOM_SHEET_DATA) private data: any) {
+		this.grid = this.data.grid;
+		this.oid = this.data.oid;
 		this._init_properties();
 		this._init_form_group();
 	}

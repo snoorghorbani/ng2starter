@@ -31,21 +31,6 @@ import "./models/user.model";
 import "./models/gwt-scenario.model";
 
 /**
- * Controllers (route handlers).
- */
-import * as homeController from "./controllers/home";
-import * as userController from "./controllers/user.controller";
-import * as configController from "./controllers/config.controller";
-import * as formController from "./controllers/form.controller";
-import * as bpmnController from "./controllers/bpmn.controller";
-import * as diagramController from "./controllers/diagram.controller";
-// import * as apiController from "./controllers/api";
-import * as fakeController from "./controllers/fake.controller";
-import * as dataController from "./controllers/data-provider.controller";
-import * as eventController from "./controllers/event.controller";
-import * as sourceController from "./controllers/source.controller";
-
-/**
  * API keys and Passport configuration.
  */
 import * as passportConfig from "./config/passport";
@@ -142,6 +127,8 @@ import * as dataController from "./controllers/data-provider.controller";
 import * as eventController from "./controllers/event.controller";
 import * as sourceController from "./controllers/source.controller";
 import * as gwtScenarioController from "./controllers/gwt-scenario.controller";
+import * as widgetController from "./controllers/widget.controller";
+import * as gridController from "./controllers/grid.controller";
 import * as gwtAnchorController from "./controllers/gwt-anchor.controller";
 import { SocketMiddleware } from "./controllers/socket.controller";
 

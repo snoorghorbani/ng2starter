@@ -13,7 +13,7 @@ export declare class DynamicWidgetViewDirective implements OnInit {
     private configurationService;
     private resolver;
     private container;
-    widgetId: string;
+    oid: string;
     widget$: Observable<WidgetModel<any>>;
     component: ComponentRef<any>;
     mapTypeToComponent: IModuleConfigMapTypes;

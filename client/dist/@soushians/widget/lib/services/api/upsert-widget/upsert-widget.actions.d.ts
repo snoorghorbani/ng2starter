@@ -1,5 +1,4 @@
 import { Action } from "@ngrx/store";
-import { UpsertWidgetApiModel } from "./upsert-widget.model";
 import { WidgetModel } from "../../../models/widget.model";
 export declare const enum UPSERT_WIDGET_ACTION_TYPES {
     START = "[UPSERT_WIDGET][API][UpsertWidget] start",
@@ -7,9 +6,9 @@ export declare const enum UPSERT_WIDGET_ACTION_TYPES {
     FAILED = "[UPSERT_WIDGET][API][UpsertWidget] failed",
 }
 export declare class UpsertWidgetStartAction implements Action {
-    payload: UpsertWidgetApiModel.Request;
+    payload: WidgetModel<any>;
     readonly type: UPSERT_WIDGET_ACTION_TYPES;
-    constructor(payload: UpsertWidgetApiModel.Request);
+    constructor(payload: WidgetModel<any>);
 }
 export declare class UpsertWidgetSucceedAction implements Action {
     payload: WidgetModel<any>;

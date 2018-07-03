@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Actions, Effect } from "@ngrx/effects";
 import { map, pluck } from "rxjs/operators";
+import { Observable } from "rxjs/Observable";
 
 import { GET_WIDGET_ACTION_TYPES, GET_WIDGETS_ACTION_TYPES } from "../services/api";
 import { WidgetModel } from "../models";

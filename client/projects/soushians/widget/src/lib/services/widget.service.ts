@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable, BehaviorSubject } from "rxjs";
-import { map, filter, tap } from "rxjs/operators";
+import { map, filter, tap, take, switchMap } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 import { HttpClient } from "@angular/common/http";
 
@@ -26,27 +26,29 @@ export class WidgetService {
 	) {}
 
 	get<T>(_id: string): Observable<WidgetModel<T>> {
-		return this.configurationService.config$
-			.filter((config) => config.endpoints.get !== "")
-			.take(1)
-			.switchMap((config) => this.http.get(stringTemplate(config.endpoints.get, { _id })))
-			.map((response: UpsertWidgetApiModel.Response) => response.Result);
+		return this.configurationService.config$.pipe(
+			filter((config) => config.endpoints.get !== ""),
+			take(1),
+			switchMap((config) => this.http.get(stringTemplate(config.endpoints.get, { _id }))),
+			map((response: UpsertWidgetApiModel.Response) => response.Result)
+		);
 	}
 
 	getWidgets(): Observable<WidgetModel<any>[]> {
-		return this.configurationService.config$
-			.filter((config) => config.endpoints.find != "")
-			.switchMap((config) => this.http.get(config.endpoints.find))
-			.map((response: GetWidgetsApiModel.Response) => response.Result);
+		return this.configurationService.config$.pipe(
+			filter((config) => config.endpoints.find != ""),
+			switchMap((config) => this.http.get(config.endpoints.find)),
+			map((response: GetWidgetsApiModel.Response) => response.Result)
+		);
 	}
 	upsert<T>(widget: UpsertWidgetApiModel.Request): Observable<WidgetModel<T>> {
-		debugger;
 		const model = new UpsertWidgetApiModel.Request(widget);
-		return this.configurationService.config$
-			.filter((config) => config.endpoints.upsert != "")
-			.take(1)
-			.switchMap((config) => this.http.post(config.endpoints.upsert, model.getRequestBody()))
-			.map((response: UpsertWidgetApiModel.Response) => response.Result);
+		return this.configurationService.config$.pipe(
+			filter((config) => config.endpoints.upsert != ""),
+			take(1),
+			switchMap((config) => this.http.post(config.endpoints.upsert, model.getRequestBody())),
+			map((response: UpsertWidgetApiModel.Response) => response.Result)
+		);
 	}
 	// delete(_id: string) {
 	// 	return this.configurationService.config$

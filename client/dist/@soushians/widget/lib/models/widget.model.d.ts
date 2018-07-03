@@ -3,5 +3,10 @@ export declare class WidgetModel<T> {
     name: string;
     type: string;
     Config: T;
-    constructor();
+    constructor({_id, name, type, Config}?: {
+        _id?: string;
+        name?: string;
+        type?: string;
+        Config?: T;
+    });
 }

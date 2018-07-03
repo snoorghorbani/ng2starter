@@ -2,7 +2,7 @@ import { WidgetModel } from "../../../models";
 export declare namespace UpsertWidgetApiModel {
     class Request {
         widget: WidgetModel<any>;
-        constructor(widgetConfig?: {});
+        constructor(widget?: {});
         getRequestBody(): WidgetModel<any>;
     }
     class Response {

@@ -1,0 +1,12 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+/**
+ * Generated bundle index. Do not edit.
+ */
+export { ArticleUpsertComponent, ArticleViewComponent, NgsWidgetTypesModule } from './public_api';
+export { ArticleUpsertComponent as ɵa } from './lib/article/article-upsert/article-upsert.component';
+export { ArticleViewComponent as ɵb } from './lib/article/article-view/article-view.component';
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic291c2hpYW5zLXdpZGdldC10eXBlcy5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0Bzb3VzaGlhbnMvd2lkZ2V0LXR5cGVzLyIsInNvdXJjZXMiOlsic291c2hpYW5zLXdpZGdldC10eXBlcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7O0FBSUEsbUZBQWMsY0FBYyxDQUFDO0FBRTdCLE9BQU8sRUFBQyxzQkFBc0IsSUFBSSxFQUFFLEVBQUMsTUFBTSx1REFBdUQsQ0FBQztBQUNuRyxPQUFPLEVBQUMsb0JBQW9CLElBQUksRUFBRSxFQUFDLE1BQU0sbURBQW1ELENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEdlbmVyYXRlZCBidW5kbGUgaW5kZXguIERvIG5vdCBlZGl0LlxuICovXG5cbmV4cG9ydCAqIGZyb20gJy4vcHVibGljX2FwaSc7XG5cbmV4cG9ydCB7QXJ0aWNsZVVwc2VydENvbXBvbmVudCBhcyDJtWF9IGZyb20gJy4vbGliL2FydGljbGUvYXJ0aWNsZS11cHNlcnQvYXJ0aWNsZS11cHNlcnQuY29tcG9uZW50JztcbmV4cG9ydCB7QXJ0aWNsZVZpZXdDb21wb25lbnQgYXMgybVifSBmcm9tICcuL2xpYi9hcnRpY2xlL2FydGljbGUtdmlldy9hcnRpY2xlLXZpZXcuY29tcG9uZW50JzsiXX0=

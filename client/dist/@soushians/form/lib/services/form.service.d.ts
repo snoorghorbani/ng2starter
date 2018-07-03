@@ -8,7 +8,6 @@ export declare class FormService {
     private http;
     private store;
     private configurationService;
-    responseCache: AddFormApiModel.Response;
     constructor(http: HttpClient, store: Store<MainContainerState>, configurationService: FormConfigurationService);
     add(data: AddFormApiModel.Request): Observable<FormSchemaModel>;
     get(_id: string): Observable<FormSchemaModel>;

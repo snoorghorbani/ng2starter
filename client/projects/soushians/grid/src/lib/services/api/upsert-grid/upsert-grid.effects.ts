@@ -10,6 +10,7 @@ import {
 	UpsertGridSucceedAction,
 	UpsertGridFailedAction
 } from "./upsert-grid.actions";
+import { of } from "rxjs";
 
 @Injectable()
 export class UpsertGridApiEffects {
@@ -22,6 +23,6 @@ export class UpsertGridApiEffects {
 			map((action) => action.payload),
 			switchMap((payload) => this.service.upsert(payload)),
 			map((res) => new UpsertGridSucceedAction(res)),
-			catchError((err) => Observable.of(new UpsertGridFailedAction(err)))
+			catchError((err) => of(new UpsertGridFailedAction(err)))
 		);
 }

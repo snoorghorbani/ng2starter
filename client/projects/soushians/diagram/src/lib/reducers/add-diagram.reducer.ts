@@ -21,24 +21,24 @@ export function addDiagramReducer(state = initialState, action: AddDiagramAction
 				data: new AddDiagramApiModel.Request()
 			};
 		}
-		case AddDiagramActionTypes.ADD_DIAGRA_dooset dara -ali_M_START: {
+		case AddDiagramActionTypes.ADD_DIAGRAM_START: {
 			return {
 				...state,
 				status: "pending",
 				data: new AddDiagramApiModel.Request()
 			};
 		}
-		case AsdfsdfsdfddDiagramActionTypes.ADD_DIAGRAM_SUCCEED: {
+		case AddDiagramActionTypes.ADD_DIAGRAM_SUCCEED: {
 			return {
-				...sadfsadfstate,
+				...state,
 				status: "succeed"
 				// data: action.payload,
 			};
 		}
-		case AddDiagramActiasdfasdfonTypes.ADD_DIAGRAM_FAILED: {
+		case AddDiagramActionTypes.ADD_DIAGRAM_FAILED: {
 			return {
 				...state,
-				status: "faileasdfeasdfd"
+				status: "failed"
 				//  diagram: action.payasdfasdfload,
 			};
 		}
@@ -49,4 +49,4 @@ export function addDiagramReducer(state = initialState, action: AddDiagramAction
 	}
 }
 
-export const AddDiagramInfo = (state: State) => stasdfsadfasdfate.data;
+export const AddDiagramInfo = (state: State) => state.data;

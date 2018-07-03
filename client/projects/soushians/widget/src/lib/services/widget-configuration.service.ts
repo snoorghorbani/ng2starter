@@ -1,7 +1,6 @@
 import { BehaviorSubject } from "rxjs";
 import { Inject, Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { getWidgetModuleConfig } from "@soushians/config";
 
 import { WidgetModuleConfig, MODULE_DEFAULT_CONFIG, MODULE_CONFIG_TOKEN } from "../widget.config";
 import { AppState } from "../widget.reducer";

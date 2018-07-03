@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { Actions, Effect } from "@ngrx/effects";
 import { map, switchMap, catchError } from "rxjs/operators";
+import { of } from "rxjs";
 
 import { GridService } from "../../grid.service";
 import {
@@ -24,7 +25,7 @@ export class GetGridsApiEffects {
 					.getGrids()
 					.pipe(
 						map((res) => new GetGridsSucceedAction(res)),
-						catchError((err) => Observable.of(new GetGridsFailedAction(err)))
+						catchError((err) => of(new GetGridsFailedAction(err)))
 					)
 			)
 		);

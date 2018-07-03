@@ -12,6 +12,6 @@ export declare class WidgetService {
     constructor(http: HttpClient, store: Store<AppState>, configurationService: WidgetConfigurationService);
     get<T>(_id: string): Observable<WidgetModel<T>>;
     getWidgets(): Observable<WidgetModel<any>[]>;
-    upsert<T>(data: UpsertWidgetApiModel.Request): Observable<WidgetModel<T>>;
+    upsert<T>(widget: UpsertWidgetApiModel.Request): Observable<WidgetModel<T>>;
     selectById<T>(_id: string): Observable<WidgetModel<T>>;
 }

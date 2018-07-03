@@ -6,13 +6,9 @@ import {
 	ViewContainerRef,
 	Directive,
 	Input,
-	Inject,
-	ViewChild
+	ViewChild,
+	Inject
 } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { Observable } from "rxjs/Observable";
-import { Store } from "@ngrx/store";
-import { pluck, filter, switchMap, map, startWith } from "rxjs/operators";
 import { GridConfigurationService } from "../services/grid-configuration.service";
 import { MAT_BOTTOM_SHEET_DATA } from "@angular/material";
 
@@ -62,7 +58,7 @@ export class DynamicGridItremConfigDirective implements OnInit {
 })
 export class DynamicGridItemConfigComponent {
 	@ViewChild(DynamicGridItremConfigDirective) DynamicWidgetRef: DynamicGridItremConfigDirective;
-	constructor(@Inject(MAT_BOTTOM_SHEET_DATA) private data: { type: string }) {}
+	constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any) {}
 	get config() {
 		return this.DynamicWidgetRef.config;
 	}
