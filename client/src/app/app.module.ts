@@ -33,7 +33,6 @@ import { reducers } from "./app.reducers";
 import { DashboardModule } from "./dashboard";
 import { NgsGridModule } from "@soushians/grid";
 import { diagramViewComponent, DiagramSelectorComponent } from "@soushians/diagram";
-// import { NgsBpmnModule } from "./bpmn";
 
 @NgModule({
 	imports: [
