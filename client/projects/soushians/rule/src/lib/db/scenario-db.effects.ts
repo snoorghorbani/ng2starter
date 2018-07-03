@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { Actions, Effect } from "@ngrx/effects";
-import { Observable } from "rxjs";
 
 import { ScenariosListActionTypes, ScenariosListStartAction, ScenarioFechedAction } from "./scenario-db.actions";
 import { ScenarioService } from "../services/scenario.service";

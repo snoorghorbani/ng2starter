@@ -4,6 +4,8 @@ import { map, filter, withLatestFrom, takeUntil } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 import { Observable, BehaviorSubject, Subject } from "rxjs";
 import { MAT_BOTTOM_SHEET_DATA } from "@angular/material";
+import { FormGroup } from "@angular/forms";
+import { FormControl } from "@angular/forms";
 
 import { GwtStep } from "../models/gwt-step.model";
 import { GwtScenarioModel } from "../models/gwt-scenario.model";
@@ -11,8 +13,6 @@ import { AppState } from "../rule.reducers";
 import { UpsertScenarioAction } from "../db/scenario-db.actions";
 import { StepLoaderDirective } from "../step-loader/step-loader.directive";
 import { ScenarioService } from "../services/scenario.service";
-import { FormGroup } from "@angular/forms";
-import { FormControl } from "@angular/forms";
 
 @Component({
 	selector: "app-gwt-view",

@@ -22,7 +22,7 @@ export class GwtScenarioModel {
 		this.anchorId = anchorId || "";
 		this.steps = steps || [];
 	}
-	getRequsetBody() {
+	getRequsetBody?() {
 		return {
 			_id: this._id,
 			anchorId: this.anchorId,
@@ -30,7 +30,7 @@ export class GwtScenarioModel {
 			featureId: this.featureId,
 			steps: this.steps.map(step => ({
 				id: step.id,
-				// opposite: step.opposite,
+				opposite: step.opposite,
 				params: step.params
 			}))
 		};

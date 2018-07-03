@@ -22,7 +22,7 @@ export class RuleConfigurationService {
 		private injector: Injector
 	) {
 		// instantiate steps and used them
-		// configFile.steps = configFile.stepClasses.map(step => new step(this.injector));
+		configFile.steps = configFile.stepClasses.map(step => new step(this.injector));
 
 		this._config = Object.assign({}, MODULE_DEFAULT_CONFIG, configFile);
 
