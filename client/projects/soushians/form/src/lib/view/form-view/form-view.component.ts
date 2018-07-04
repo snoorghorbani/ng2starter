@@ -46,6 +46,7 @@ export class FormViewComponent implements OnDestroy {
 	@Output() accept = new EventEmitter<FormGroup>();
 	@Output() cancel = new EventEmitter<FormGroup>();
 	@Input() local;
+	@Input() card: boolean;
 	@Input()
 	set id(id: string) {
 		if (!this.local) this.store.dispatch(new GetFormSchemaAction(id));
@@ -69,6 +70,7 @@ export class FormViewComponent implements OnDestroy {
 		private resolver: ComponentFactoryResolver,
 		private store: Store<MainContainerState>
 	) {
+		this.card = true;
 		this.schema$ = new BehaviorSubject(undefined);
 		this.schema$.pipe(takeUntil(this.unsubscribe)).subscribe(schema => {
 			if (!schema) return;
