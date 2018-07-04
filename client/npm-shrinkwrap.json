@@ -1,6 +1,6 @@
 {
-	"name": "@soushians/starter",
-	"version": "6.0.14",
+	"name": "@soushians/starter-client",
+	"version": "6.0.3",
 	"lockfileVersion": 1,
 	"requires": true,
 	"dependencies": {
@@ -3950,6 +3950,14 @@
 			"version": "1.0.1",
 			"resolved": "https://registry.npmjs.org/amdefine/-/amdefine-1.0.1.tgz",
 			"integrity": "sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU="
+		},
+		"angular-gridster2": {
+			"version": "6.0.5",
+			"resolved": "https://registry.npmjs.org/angular-gridster2/-/angular-gridster2-6.0.5.tgz",
+			"integrity": "sha512-pJ+Fd56yX2bT6XNU/75e74asslwyXA7bqyYkdZc63RciM6n7W8ExWAJZNkfi0imR/yJUpWrHnZi6q/UfgAubTg==",
+			"requires": {
+				"tslib": "1.9.1"
+			}
 		},
 		"ansi-align": {
 			"version": "2.0.0",
