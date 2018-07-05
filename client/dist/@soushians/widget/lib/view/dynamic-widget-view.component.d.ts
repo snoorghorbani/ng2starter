@@ -1,7 +1,7 @@
 import { OnInit, ComponentRef, ComponentFactoryResolver, ViewContainerRef } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { Store } from "@ngrx/store";
-import { WidgetModel } from "../models";
+import { WidgetModel } from "../models/widget.model";
 import { AppState } from "../widget.reducer";
 import { IModuleConfigMapTypes } from "../models/module-config-map-types.interfce";
 import { WidgetService } from "../services/widget.service";

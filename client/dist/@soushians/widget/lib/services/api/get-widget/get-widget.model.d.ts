@@ -1,4 +1,4 @@
-import { WidgetModel } from "../../../models";
+import { WidgetModel } from "../../../models/widget.model";
 export declare namespace GetWidgetApiModel {
     class Request {
         _id: string;

@@ -1,4 +1,4 @@
-import { ParentGuardAction } from '../actions';
+import { ParentGuardAction } from "../actions/parent-guard.actions";
 export interface State {
     route: string;
     result: boolean;

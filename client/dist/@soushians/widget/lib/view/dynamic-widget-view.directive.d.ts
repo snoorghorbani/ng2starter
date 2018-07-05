@@ -1,9 +1,9 @@
 import { OnInit, ComponentRef, ComponentFactoryResolver, ViewContainerRef } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { Store } from "@ngrx/store";
-import { WidgetModel } from "../models";
-import { AppState } from "../widget.reducer";
 import { ActivatedRoute } from "@angular/router";
+import { WidgetModel } from "../models/widget.model";
+import { AppState } from "../widget.reducer";
 import { WidgetService } from "../services/widget.service";
 import { WidgetConfigurationService } from "../services/widget-configuration.service";
 import { IModuleConfigMapTypes } from "../models/module-config-map-types.interfce";

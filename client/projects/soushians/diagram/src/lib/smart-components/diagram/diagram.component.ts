@@ -7,7 +7,7 @@ import { MatSliderChange } from "@angular/material";
 import { ActivatedRoute } from "@angular/router";
 
 import { DiagramService } from "../../services/diagram.service";
-import { DiagramModel } from "../../models";
+import { DiagramModel } from "../../models/diagram.model";
 import { FeatureState } from "../../reducers";
 
 declare var c3: any;

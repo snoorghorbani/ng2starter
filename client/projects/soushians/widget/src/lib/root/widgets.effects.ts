@@ -4,7 +4,7 @@ import { map, pluck } from "rxjs/operators";
 import { Observable } from "rxjs/Observable";
 
 import { GET_WIDGET_ACTION_TYPES, GET_WIDGETS_ACTION_TYPES } from "../services/api";
-import { WidgetModel } from "../models";
+import { WidgetModel } from "../models/widget.model";
 import { UpsertWidgetAction } from "./widget.actions";
 
 @Injectable()

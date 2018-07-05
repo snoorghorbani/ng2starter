@@ -1,8 +1,8 @@
 import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import { Actions } from "@ngrx/effects";
-import { AddDiagramActionStart, AddDiagramActionSucceed, AddDiagramActionFailed, GenerateDiagramAction, StructureDefinitionStartAction, DataLoadedAction } from "../actions";
 import { DiagramService } from "../services/diagram.service";
+import { AddDiagramActionStart, AddDiagramActionSucceed, AddDiagramActionFailed, DataLoadedAction, StructureDefinitionStartAction, GenerateDiagramAction } from "../actions/add-diagram.actions";
 export declare class AddDiagramEffects {
     private actions$;
     private router;

@@ -1,8 +1,8 @@
 import { OnInit, Injector, OnDestroy } from "@angular/core";
-import { RuleConfigurationService } from "../services";
 import { Store } from "@ngrx/store";
 import { Observable, BehaviorSubject, Subject } from "rxjs";
 import { FormGroup } from "@angular/forms";
+import { RuleConfigurationService } from "../services/rule-configuration.service";
 import { GwtStep } from "../models/gwt-step.model";
 import { GwtScenarioModel } from "../models/gwt-scenario.model";
 import { AppState } from "../rule.reducers";

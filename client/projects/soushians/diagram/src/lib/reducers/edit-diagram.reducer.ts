@@ -1,7 +1,7 @@
 import { responseStatusTypes } from "@soushians/shared";
 
-import { EditDiagramActionTypes, EditDiagramActions } from "../actions";
-import { EditDiagramApiModel } from "../models";
+import { EditDiagramApiModel } from "../models/edit-diagram-api.model";
+import { EditDiagramActionTypes, EditDiagramActions } from "../actions/edit-diagram.actions";
 
 console.log(EditDiagramApiModel);
 export interface State {

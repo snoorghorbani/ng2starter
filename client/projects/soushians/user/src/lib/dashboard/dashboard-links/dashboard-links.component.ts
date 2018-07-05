@@ -3,7 +3,6 @@ import { Observable } from "rxjs/Observable";
 
 import { UserConfigurationService } from "../../services/user-configuration.service";
 import { Store } from "@ngrx/store";
-import { ChangeLayout } from "@soushians/layout";
 
 @Component({
 	selector: "user-dashboard-links",
@@ -31,7 +30,5 @@ export class DashboardLinksComponent implements AfterViewInit {
 		];
 	}
 
-	ngAfterViewInit() {
-		this.store.dispatch(new ChangeLayout("with-margin"));
-	}
+	ngAfterViewInit() {}
 }

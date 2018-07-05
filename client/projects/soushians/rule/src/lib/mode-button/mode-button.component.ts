@@ -2,9 +2,9 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Subject, Observable } from "rxjs";
 
-import { AppState } from "../rule.reducers";
-import { ShowAnchorsAction, HideAnchorsAction } from "../rule-anchor";
 import { getFrontendAuthenticationState } from "@soushians/frontend-authentication";
+
+import { ShowAnchorsAction, HideAnchorsAction } from "../rule-anchor/rule-anchor.actions";
 
 @Component({
 	selector: "gwt-mode-button",

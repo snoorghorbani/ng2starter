@@ -23,15 +23,15 @@ import { NgsFormModule } from "@soushians/form";
 // import { NgsWidgetModule, WidgetSelectorComponent, DynamicWidgetViewComponent } from "@soushians/widget";
 // import { NgsWidgetTypesModule, ArticleUpsertComponent, ArticleViewComponent } from "@soushians/widget-types";
 
-import { StaticPageModule } from "./static-page";
+import { StaticPageModule } from "./static-page/static-page.module";
 
-import { CoreModule } from "./core";
+import { CoreModule } from "./core/core.module";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { reducers } from "./app.reducers";
 
 // module configs
-import { DashboardModule } from "./dashboard";
+import { DashboardModule } from "./dashboard/dashboard.module";
 import { NgsGridModule } from "@soushians/grid";
 import { diagramViewComponent, DiagramSelectorComponent } from "@soushians/diagram";
 import { RuleModule } from "@soushians/rule";

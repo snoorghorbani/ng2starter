@@ -1,13 +1,16 @@
 import { OnInit, EventEmitter } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { Observable } from "rxjs/Observable";
+import { Router } from "@angular/router";
 export declare class ProfileEditComponent implements OnInit {
+    private router;
     submited: EventEmitter<{}>;
+    userInfo: any;
     formId: string;
-    formGroup: FormGroup;
     roles$: Observable<string[]>;
     groups: string[];
-    constructor();
+    constructor(router: Router);
     ngOnInit(): void;
-    editProfile(): void;
+    editProfile(form: FormGroup): void;
+    goback(): void;
 }

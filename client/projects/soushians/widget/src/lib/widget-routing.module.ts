@@ -1,7 +1,7 @@
 import { ModuleWithProviders } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { RootComponent } from "./root";
+import { RootComponent } from "./root/root.component";
 import { WidgetsManagementComponent } from "./mangement/widget-management.component";
 import { UpsertComponent } from "./upsert/upsert.component";
 

@@ -1,4 +1,4 @@
-import * as fromRuleAnchor from "./rule-anchor";
+import * as fromRuleAnchor from "./rule-anchor/rule-anchor.reducer";
 import * as fromRuleDbAnchor from "./db/rule-db.reducer";
 import * as fromScenarioDbAnchor from "./db/scenario-db.reducer";
 export interface RuleState {

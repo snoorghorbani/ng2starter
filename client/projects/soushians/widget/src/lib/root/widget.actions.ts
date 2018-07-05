@@ -1,6 +1,6 @@
 import { Action } from "@ngrx/store";
 
-import { WidgetModel } from "../models";
+import { WidgetModel } from "../models/widget.model";
 
 export enum WidgetsActionTypes {
 	UPSERT = "[WIDGET][DB] UPSERT",

@@ -5,8 +5,9 @@ import { Store } from "@ngrx/store";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs/Subscription";
 import { DiagramService } from "../../services/diagram.service";
-import { DiagramModel, SourceModel } from "../../models";
 import { FeatureState } from "../../reducers";
+import { DiagramModel } from "../../models/diagram.model";
+import { SourceModel } from "../../models/source.model";
 export declare class AddDiagramComponent implements OnInit, OnDestroy {
     private diagramService;
     private formBuilder;

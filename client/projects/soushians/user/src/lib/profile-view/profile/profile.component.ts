@@ -14,10 +14,10 @@ export class ProfileComponent implements OnInit {
 	set information(information: UserModel) {
 		if (!information) return;
 
-		this.info = Object.entries(information);
+		Object.keys(information).forEach(k => this.info.push([ k, information[k] ]));
 	}
 	@Input() dataStatus$: BehaviorSubject<boolean>;
-	info: any[];
+	info: any[] = [];
 	constructor() {}
 
 	ngOnInit() {}

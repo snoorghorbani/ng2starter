@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { RuleModel } from "../models";
+import { RuleModel } from "../models/rule.model";
 export declare enum RulesListActionTypes {
     RULES_LIST = "[RULE][DB] RULES_LIST",
     RULES_LIST_START = "[RULE][DB] RULES_LIST_START",

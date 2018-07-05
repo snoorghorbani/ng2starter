@@ -1,4 +1,4 @@
-import { WidgetModel } from "../models";
+import { WidgetModel } from "../models/widget.model";
 import { WidgetsActions } from "./widget.actions";
 export interface State {
     data: WidgetModel<any>[];

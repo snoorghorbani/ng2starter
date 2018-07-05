@@ -4,9 +4,7 @@ import { Store } from "@ngrx/store";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 import { DiagramService } from "../../services/diagram.service";
-import { AddDiagramApiModel } from "../../models";
 import * as FeatureReducer from "../../reducers";
-import { AddDiagramAction } from "../../actions";
 
 declare var _: any;
 

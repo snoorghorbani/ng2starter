@@ -2,7 +2,7 @@
 import { Observable } from "rxjs/Observable";
 
 import { DiagramService } from "../../services/diagram.service";
-import { GetDiagramsApiModel } from "../../models";
+import { GetDiagramsApiModel } from "../../models/get-diagrams-api.model";
 
 @Component({
 	selector: "diagram-view",

@@ -1,5 +1,5 @@
-import { DiagramsActionTypes, DiagramsAction } from "../actions";
 import { GetDiagramsApiModel } from "../models/get-diagrams-api.model";
+import { DiagramsActionTypes, DiagramsAction } from "../actions/diagrams.actions";
 
 console.log(GetDiagramsApiModel);
 

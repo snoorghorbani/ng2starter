@@ -4,7 +4,6 @@ import { Observable } from "rxjs/Rx";
 import { Store } from "@ngrx/store";
 import { of } from "rxjs/internal/observable/of";
 
-import { RuleModel } from "../models";
 import { RuleConfigurationService } from "./rule-configuration.service";
 
 import { AppState } from "../rule.reducers";

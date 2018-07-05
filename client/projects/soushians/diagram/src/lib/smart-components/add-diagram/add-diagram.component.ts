@@ -10,17 +10,17 @@ declare var c3: any;
 
 import { addDiagramReducer } from "../../reducers/add-diagram.reducer";
 import { DiagramService } from "../../services/diagram.service";
-import { AddDiagramApiModel, DiagramModel, SourceModel } from "../../models";
-import {
-	AddDiagramAction,
-	ColumnAdded,
-	DiagramConfigChangedAction,
-	HaveEndpointAction,
-	ColumnsMappingChangedAction,
-	DataLoadedAction
-} from "../../actions";
 
 import { FeatureState } from "../../reducers";
+import { AddDiagramApiModel } from "../../models/add-diagram-api.model";
+import { DiagramModel } from "../../models/diagram.model";
+import { SourceModel } from "../../models/source.model";
+import {
+	HaveEndpointAction,
+	ColumnsMappingChangedAction,
+	DiagramConfigChangedAction,
+	AddDiagramAction
+} from "../../actions/add-diagram.actions";
 
 @Component({
 	selector: "diagram-add",

@@ -2,8 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter, Injector } from "@angul
 import { Observable } from "rxjs/Observable";
 import { BehaviorSubject, Subscription } from "rxjs";
 
-import { DiagramModel } from "../../models/diagram.model";
-
 @Component({
 	selector: "diagram-server-status",
 	templateUrl: "./server-status-diagram.component.html",

@@ -5,9 +5,9 @@ import { of } from "rxjs/observable/of";
 import { Action } from "@ngrx/store";
 import { Actions, Effect } from "@ngrx/effects";
 
-import { RuleService } from "./services";
+import { RuleService } from "./services/rule.service";
 
 @Injectable()
 export class RuleEffects {
-	constructor(private actions$: Actions<any>, private router: Router, private service: RuleService) { }
+	constructor(private actions$: Actions<any>, private router: Router, private service: RuleService) {}
 }

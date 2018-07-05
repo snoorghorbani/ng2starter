@@ -1,20 +1,20 @@
-﻿import { ParentGuardAction, ParentGuardActionTypes } from '../actions';
+﻿import { ParentGuardAction } from "../actions/parent-guard.actions";
 
 export interface State {
-        route: string;
-        result: boolean;
-};
+	route: string;
+	result: boolean;
+}
 export const initialState: State = {
-        route: '',
-        result: false
+	route: "",
+	result: false
 };
 
 export function ParentGuardReducer(state = initialState, action: ParentGuardAction): State {
-        switch (action.type) {
-                default: {
-                        return state;
-                }
-        }
+	switch (action.type) {
+		default: {
+			return state;
+		}
+	}
 }
 
 export var getParentRoutingGuard = (state: State) => state;

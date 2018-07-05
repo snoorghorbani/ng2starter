@@ -2,8 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter, Injector } from "@angul
 import { Observable } from "rxjs/Observable";
 import { BehaviorSubject } from "rxjs";
 
-import { DiagramModel } from "../../models";
-
 @Component({
 	selector: "diagram-server-connecting-time",
 	templateUrl: "./server-connecting-time-diagram.component.html",

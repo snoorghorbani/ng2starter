@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
 
-import { WidgetModel, WidgetService, IWidgetView } from "@soushians/widget";
+import { WidgetModel, IWidgetView } from "@soushians/widget";
 
 import { ArticleWidgetConfigModel } from "../article-widget-config.model";
 
@@ -14,7 +14,7 @@ import { ArticleWidgetConfigModel } from "../article-widget-config.model";
 export class ArticleViewComponent implements OnInit, IWidgetView<ArticleWidgetConfigModel> {
 	// tslint:disable-next-line:no-input-rename
 	widget: WidgetModel<ArticleWidgetConfigModel>;
-	constructor(private store: Store<any>, private service: WidgetService) {}
+	constructor(private store: Store<any>) {}
 
 	ngOnInit() {}
 }

@@ -1,5 +1,5 @@
-import { Action } from '@ngrx/store';
-import { GetDiagramsApiModel } from "../models";
+import { Action } from "@ngrx/store";
+import { GetDiagramsApiModel } from "../models/get-diagrams-api.model";
 export declare enum DiagramsActionTypes {
     GET_DIAGRAM = "[DIAGRAM] GET_DIAGRAM",
     GET_DIAGRAM_START = "[DIAGRAM] GET_DIAGRAM_START",

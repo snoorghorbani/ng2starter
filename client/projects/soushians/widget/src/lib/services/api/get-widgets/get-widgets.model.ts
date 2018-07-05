@@ -1,9 +1,9 @@
-import { WidgetModel } from "../../../models";
+import { WidgetModel } from "../../../models/widget.model";
 
 export namespace GetWidgetsApiModel {
 	export class Request {
 		constructor(initValue = {}) {
-			Object.keys(initValue).forEach((key) => (this[key] = initValue[key]));
+			Object.keys(initValue).forEach(key => (this[key] = initValue[key]));
 		}
 
 		getRequestBody() {

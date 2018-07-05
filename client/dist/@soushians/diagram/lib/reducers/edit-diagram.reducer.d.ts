@@ -1,6 +1,6 @@
 import { responseStatusTypes } from "@soushians/shared";
-import { EditDiagramActions } from "../actions";
-import { EditDiagramApiModel } from "../models";
+import { EditDiagramApiModel } from "../models/edit-diagram-api.model";
+import { EditDiagramActions } from "../actions/edit-diagram.actions";
 export interface State {
     status: responseStatusTypes;
     data: EditDiagramApiModel.Response;

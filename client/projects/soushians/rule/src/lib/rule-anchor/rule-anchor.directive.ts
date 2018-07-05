@@ -9,8 +9,8 @@ import { AppState } from "../rule.reducers";
 import { GwtScenarioModel } from "../models/gwt-scenario.model";
 import { ScenarioService } from "../services/scenario.service";
 import { GwtStepTypes } from "../models/gwt-step-types.enum";
-import { GwtStep } from "../models";
-import { RuleConfigurationService } from "../services";
+import { GwtStep } from "../models/gwt-step.model";
+import { RuleConfigurationService } from "../services/rule-configuration.service";
 
 @Directive({
 	selector: "[ruleAnchor]"

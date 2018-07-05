@@ -1,9 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { Observable, Subscription } from "rxjs/Rx";
 import { Store } from "@ngrx/store";
-import { AddDiagramApiModel, GetDiagramsApiModel, SourceModel } from "../models";
 import { DiagramConfigurationService } from "./diagram-configuration.service";
 import { FeatureState } from "../reducers";
+import { GetDiagramsApiModel } from "../models/get-diagrams-api.model";
+import { SourceModel } from "../models/source.model";
+import { AddDiagramApiModel } from "../models/add-diagram-api.model";
 export declare class DiagramService {
     private http;
     private store;

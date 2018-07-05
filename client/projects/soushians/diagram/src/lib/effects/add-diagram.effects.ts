@@ -7,19 +7,18 @@ import { of } from "rxjs/observable/of";
 import { Store } from "@ngrx/store";
 import { map, switchMap, catchError } from "rxjs/operators";
 
+import { DiagramService } from "../services/diagram.service";
+import { AddDiagramApiModel } from "../models/add-diagram-api.model";
 import {
 	AddDiagramActionTypes,
-	AddDiagramAction,
 	AddDiagramActionStart,
 	AddDiagramActionSucceed,
 	AddDiagramActionFailed,
-	GenerateDiagramAction,
+	DataLoadedAction,
 	StructureDefinitionStartAction,
-	StructureDefinitionFinishedAction,
-	DataLoadedAction
-} from "../actions";
-import { DiagramService } from "../services/diagram.service";
-import { AddDiagramApiModel } from "../models";
+	GenerateDiagramAction,
+	StructureDefinitionFinishedAction
+} from "../actions/add-diagram.actions";
 
 @Injectable()
 export class AddDiagramEffects {

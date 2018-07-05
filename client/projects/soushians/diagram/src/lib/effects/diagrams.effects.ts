@@ -6,9 +6,9 @@ import { Actions, Effect } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { map, switchMap, catchError } from "rxjs/operators";
 
-import { DiagramsActionTypes, GetDiagrams, GetDiagramsStart, GetDiagramsSucceed, GetDiagramsFailed } from "../actions";
 import { DiagramService } from "../services/diagram.service";
-import { DiagramModel, GetDiagramsApiModel } from "../models";
+import { GetDiagramsApiModel } from "../models/get-diagrams-api.model";
+import { GetDiagramsSucceed, GetDiagramsFailed, GetDiagramsStart } from "../actions/diagrams.actions";
 
 @Injectable()
 export class DiagramEffects {

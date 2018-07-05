@@ -3,7 +3,7 @@ import { Store } from "@ngrx/store";
 import { HttpClient } from "@angular/common/http";
 import { AppState } from "../widget.reducer";
 import { WidgetConfigurationService } from "./widget-configuration.service";
-import { WidgetModel } from "../models";
+import { WidgetModel } from "../models/widget.model";
 import { UpsertWidgetApiModel } from "./api";
 export declare class WidgetService {
     private http;

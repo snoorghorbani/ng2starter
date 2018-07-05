@@ -5,7 +5,7 @@ import { SharedModule } from "@soushians/shared";
 import { NgsWidgetModule } from "@soushians/widget";
 
 import { DashboardRoutingModule } from "./dashboard-routing.module";
-import { DashboardComponent } from "./smart-components";
+import { DashboardComponent } from "./smart-components/dashboard/dashboard.component";
 import { NgsGridModule } from "@soushians/grid";
 
 @NgModule({

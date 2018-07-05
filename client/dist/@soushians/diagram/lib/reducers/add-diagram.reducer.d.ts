@@ -1,5 +1,5 @@
 import { responseStatusTypes } from "@soushians/shared";
-import { AddDiagramActions } from "../actions";
+import { AddDiagramActions } from "../actions/add-diagram.actions";
 export interface State {
     status: responseStatusTypes;
     data: any;

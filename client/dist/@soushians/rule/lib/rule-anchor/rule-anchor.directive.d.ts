@@ -5,8 +5,8 @@ import { MatBottomSheet } from "@angular/material";
 import { AppState } from "../rule.reducers";
 import { GwtScenarioModel } from "../models/gwt-scenario.model";
 import { ScenarioService } from "../services/scenario.service";
-import { GwtStep } from "../models";
-import { RuleConfigurationService } from "../services";
+import { GwtStep } from "../models/gwt-step.model";
+import { RuleConfigurationService } from "../services/rule-configuration.service";
 export declare class RuleAnchorDirective implements OnInit, OnDestroy {
     private scenarioService;
     private configService;

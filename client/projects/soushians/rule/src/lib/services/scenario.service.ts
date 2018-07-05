@@ -7,14 +7,11 @@ import { filter, map, startWith, share } from "rxjs/operators";
 import { stringTemplate } from "@soushians/shared";
 
 import { RuleConfigurationService } from "./rule-configuration.service";
-
 import { AppState } from "../rule.reducers";
 import { GwtScenarioModel } from "../models/gwt-scenario.model";
 import { RuleModuleConfig } from "../rule.config";
 
-@Injectable({
-	providedIn: "root"
-})
+@Injectable()
 export class ScenarioService {
 	config$: Observable<RuleModuleConfig>;
 	config: RuleModuleConfig;

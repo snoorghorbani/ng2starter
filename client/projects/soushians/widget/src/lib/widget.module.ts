@@ -24,17 +24,18 @@ import {
 import { EffectsModule } from "@ngrx/effects";
 import { FlexLayoutModule } from "@angular/flex-layout";
 
-import { WidgetService, WidgetConfigurationService } from "./services";
+import { WidgetConfigurationService } from "./services/widget-configuration.service";
+import { WidgetService } from "./services/widget.service";
 // import { WidgetReducer } from "./widget.reducer";
 import { WidgetModuleConfig, MODULE_CONFIG_TOKEN } from "./widget.config";
 import { WidgetRoutingModule } from "./widget-routing.module";
-import { RootComponent } from "./root";
+import { RootComponent } from "./root/root.component";
 import { GetWidgetApiEffects } from "./services/api/get-widget/get-widget.effects";
 import { UpsertWidgetApiEffects } from "./services/api/upsert-widget/upsert-widget.effects";
 import { GetWidgetsApiEffects } from "./services/api/get-widgets/get-widgets.effects";
 import { WidgetReducer } from "./widget.reducer";
 import { WidgetDbEffects } from "./root/widgets.effects";
-import { WidgetsManagementComponent } from "./mangement";
+import { WidgetsManagementComponent } from "./mangement/widget-management.component";
 import { UpsertComponent } from "./upsert/upsert.component";
 import { DynamicWidgetConfigDirective } from "./upsert/dynamic-widget-config.directive";
 import { DynamicWidgetViewDirective } from "./view/dynamic-widget-view.directive";

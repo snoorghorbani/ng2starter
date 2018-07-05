@@ -3,7 +3,6 @@ import { Observable } from "rxjs/Observable";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 import { DiagramService } from "../../services/diagram.service";
-import { DiagramModel } from "../../models";
 
 @Component({
 	selector: "numeric-edit-diagram",

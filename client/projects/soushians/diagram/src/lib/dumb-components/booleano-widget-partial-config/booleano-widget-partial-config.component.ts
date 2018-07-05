@@ -5,7 +5,6 @@ import { Subscription } from "rxjs";
 import { FormGroup } from "@angular/forms";
 
 import { DiagramService } from "../../services/diagram.service";
-import { DiagramModel } from "../../models";
 
 @Component({
 	selector: "booleano-widget-partial-config",

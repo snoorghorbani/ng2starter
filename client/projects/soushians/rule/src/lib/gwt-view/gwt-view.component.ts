@@ -1,12 +1,13 @@
 import { Component, OnInit, Inject, Type, Injector, ViewChildren, OnDestroy } from "@angular/core";
-import { RuleConfigurationService } from "../services";
 import { map, filter, withLatestFrom, takeUntil } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 import { Observable, BehaviorSubject, Subject } from "rxjs";
 import { MAT_BOTTOM_SHEET_DATA } from "@angular/material";
+
 import { FormGroup } from "@angular/forms";
 import { FormControl } from "@angular/forms";
 
+import { RuleConfigurationService } from "../services/rule-configuration.service";
 import { GwtStep } from "../models/gwt-step.model";
 import { GwtScenarioModel } from "../models/gwt-scenario.model";
 import { AppState } from "../rule.reducers";

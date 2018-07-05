@@ -1,5 +1,5 @@
 import { responseStatusTypes } from "@soushians/shared";
-import { RuleModel } from "../models";
+import { RuleModel } from "../models/rule.model";
 import { RulesListActions } from "./rule-db.actions";
 export interface State {
     status: responseStatusTypes;

@@ -6,8 +6,8 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 import { DiagramService } from "../../services/diagram.service";
 import { FeatureState } from "../../reducers";
-import { DiagramModel, EditDiagramApiModel } from "../../models";
-import { EditDiagramAction } from "../../actions";
+import { EditDiagramApiModel } from "../../models/edit-diagram-api.model";
+import { EditDiagramAction } from "../../actions/edit-diagram.actions";
 
 @Component({
 	selector: "diagram-edit",

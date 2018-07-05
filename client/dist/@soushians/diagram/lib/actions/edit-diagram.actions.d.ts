@@ -1,5 +1,5 @@
-import { Action } from '@ngrx/store';
-import { EditDiagramApiModel } from "../models";
+import { Action } from "@ngrx/store";
+import { EditDiagramApiModel } from "../models/edit-diagram-api.model";
 export declare enum EditDiagramActionTypes {
     EDIT_DIAGRAM = "[DIAGRAM][EDIT] EDIT_DIAGRAM",
     EDIT_DIAGRAM_START = "[DIAGRAM][EDIT] EDIT_DIAGRAM_START",

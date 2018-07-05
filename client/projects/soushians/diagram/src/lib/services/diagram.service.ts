@@ -4,9 +4,11 @@ import { Observable, Subscription } from "rxjs/Rx";
 import { Store } from "@ngrx/store";
 declare var c3: any;
 
-import { AddDiagramApiModel, GetDiagramsApiModel, DiagramModel, SourceModel } from "../models";
 import { DiagramConfigurationService } from "./diagram-configuration.service";
 import { FeatureState } from "../reducers";
+import { GetDiagramsApiModel } from "../models/get-diagrams-api.model";
+import { SourceModel } from "../models/source.model";
+import { AddDiagramApiModel } from "../models/add-diagram-api.model";
 
 declare var _: any;
 

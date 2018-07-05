@@ -2,7 +2,7 @@ import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import { Action } from "@ngrx/store";
 import { Actions } from "@ngrx/effects";
-import { SignoutAction, SigninSecceed, SigninFailed } from "../actions/signin.actions";
+import { SigninSecceed, SigninFailed } from "../actions/signin.actions";
 import { SigninService } from "../services/signin.service";
 import { NewCaptcha } from "../actions";
 import { MatBottomSheet } from "@angular/material";
@@ -19,8 +19,7 @@ export declare class SigninEffects {
     SignInRequired$: Observable<any>;
     SigninSucceed$: Observable<any>;
     AfterSigninFiled$: Observable<NewCaptcha>;
-    DoSignout$: Observable<SignoutAction>;
-    Signout$: Observable<SignoutAction>;
+    DoSignout$: Observable<any>;
     redirectToLoginPage$: Observable<Action>;
     redirectAfterSignout$: Observable<Action>;
 }

@@ -1,6 +1,6 @@
 import { OnInit } from "@angular/core";
 import { Observable } from "rxjs/Observable";
-import { GetDiagramsApiModel } from "../../models";
+import { GetDiagramsApiModel } from "../../models/get-diagrams-api.model";
 import { DiagramService } from "../../services/diagram.service";
 export declare class DiagramsComponent implements OnInit {
     private diagramService;

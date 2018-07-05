@@ -15,7 +15,6 @@ import { Observable } from "rxjs/Observable";
 import { Subscription } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 
-import { DiagramModel } from "../../models";
 import { DiagramService } from "../../services/diagram.service";
 import { DiagramPartialConfigEditComponent } from "../../dumb-components/diagram-partial-config-edit/diagram-partial-config-edit.component";
 import { PieDiagramPartialConfigComponent } from "../../dumb-components/pie-diagram-partial-config/pie-diagram-partial-config.component";

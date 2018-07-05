@@ -3,8 +3,7 @@ import { Observable } from "rxjs/Observable";
 
 import { IGridItemComponent } from "@soushians/grid";
 
-import { GetDiagrams } from "../../actions";
-import { DiagramModel } from "../../models";
+import { DiagramModel } from "../../models/diagram.model";
 import { DiagramService } from "../../services/diagram.service";
 import { map } from "rxjs/operators";
 
@@ -23,7 +22,7 @@ export class DiagramSelectorComponent implements OnInit, IGridItemComponent<{ di
 		};
 	}
 	constructor(private diagramService: DiagramService) {
-		this.diagrams$ = this.diagramService.getDiagrams().pipe(map((res) => res.Result));
+		this.diagrams$ = this.diagramService.getDiagrams().pipe(map(res => res.Result));
 	}
 	ngOnInit() {}
 }

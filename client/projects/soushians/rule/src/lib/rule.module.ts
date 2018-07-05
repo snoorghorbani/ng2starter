@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { RouterModule, Routes } from "@angular/router";
+import { RouterModule } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -22,13 +22,11 @@ import {
 	MatTableModule
 } from "@angular/material";
 import { StoreModule } from "@ngrx/store";
-import { EffectsModule, mergeEffects } from "@ngrx/effects";
+import { EffectsModule } from "@ngrx/effects";
 
 import { RuleModuleConfig, MODULE_CONFIG_TOKEN } from "./rule.config";
 import { RoutingModule } from "./rule-routing.module";
 import { RuleReducers } from "./rule.reducers";
-import { RuleService, RuleConfigurationService } from "./services";
-
 import { RuleComponent } from "./rule.component";
 import { RuleAnchorDirective } from "./rule-anchor/rule-anchor.directive";
 import { GwtViewComponent } from "./gwt-view/gwt-view.component";
@@ -36,6 +34,8 @@ import { StepLoaderDirective } from "./step-loader/step-loader.directive";
 import { ScenariosDbEffects } from "./db/scenario-db.effects";
 import { RulesListEffects } from "./db/rule-db.effects";
 import { GwtModeButtonComponent } from "./mode-button/mode-button.component";
+import { RuleService } from "./services/rule.service";
+import { RuleConfigurationService } from "./services/rule-configuration.service";
 
 @NgModule({
 	imports: [

@@ -1,4 +1,5 @@
 import { InjectionToken, Type } from "@angular/core";
+
 import { GwtStep } from "./models/gwt-step.model";
 
 export interface RuleModuleConfig {
