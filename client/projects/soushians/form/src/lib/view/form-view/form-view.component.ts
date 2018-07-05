@@ -46,7 +46,7 @@ export class FormViewComponent implements OnDestroy {
 	@Output() accept = new EventEmitter<FormGroup>();
 	@Output() cancel = new EventEmitter<FormGroup>();
 	@Input() local;
-	@Input() card: boolean;
+	@Input() card = false;
 	@Input()
 	set id(id: string) {
 		if (!this.local) this.store.dispatch(new GetFormSchemaAction(id));
@@ -70,7 +70,6 @@ export class FormViewComponent implements OnDestroy {
 		private resolver: ComponentFactoryResolver,
 		private store: Store<MainContainerState>
 	) {
-		this.card = true;
 		this.schema$ = new BehaviorSubject(undefined);
 		this.schema$.pipe(takeUntil(this.unsubscribe)).subscribe(schema => {
 			if (!schema) return;
@@ -96,13 +95,13 @@ export class FormViewComponent implements OnDestroy {
 				parentPath = `${parentPath}.controls.${(data as FieldConfig).name}`;
 			}
 			var validators = [];
-			if (data.validator.required.active) {
+			if (data.validator.required && data.validator.required.active) {
 				validators.push(Validators.required);
 			}
-			if (data.validator.minlength.active) {
+			if (data.validator.minlength && data.validator.minlength.active) {
 				validators.push(Validators.minLength(data.validator.minlength.value));
 			}
-			if (data.validator.email.active) {
+			if (data.validator.email && data.validator.email.active) {
 				validators.push(Validators.email);
 			}
 			var ctr = new FormControl(data.value, validators);

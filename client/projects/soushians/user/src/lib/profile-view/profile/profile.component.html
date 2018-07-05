@@ -4,14 +4,18 @@
       <mat-card-title>اطلاعات پروفایل</mat-card-title>
     </mat-card-header>
     <mat-card-content *ngIf='dataStatus$ | async'>
-      <div class='list-item' fxFlexLayout='row'>
+        <div class='list-item' fxFlexLayout='row' *ngFor="let item of info">
+            <p fxFlex='40'>{{item[0]}}</p>
+            <p fxFlex='60'>{{item[1]}}</p>
+        </div>
+      <!-- <div class='list-item' fxFlexLayout='row'>
         <p fxFlex='40'>ایمیل</p>
         <p fxFlex='60'>{{(information | async).Email}}</p>
       </div>
       <div class='list-item' fxFlexLayout='row'>
         <p fxFlex='40'>roles</p>
         <p fxFlex='60'>{{(information | async).Roles | json}}</p>
-      </div>
+      </div> -->
       <!-- <div class='list-item' fxFlexLayout='row'>
         <p fxFlex='40'>نام</p>
         <p fxFlex='60'>{{(userInformation | async).FirstName}}</p>
@@ -50,8 +54,9 @@
       </div> -->
     </mat-card-content>
 
-    <mat-card-actions>
-      <button id="profile-edit-button" fxFlex mat-raised-button color="primary" routerLink='edit'>ویرایش</button>
+    <mat-card-actions align="end">
+      <button mat-button color="primary" routerLink='..'>بازگشت</button>
+      <button mat-raised-button color="primary" routerLink='edit'>ویرایش</button>
     </mat-card-actions>
   </mat-card>
 </div>

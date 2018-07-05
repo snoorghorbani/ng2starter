@@ -5,6 +5,8 @@ import { AppState } from "../user.reducers";
 import { Observable } from "rxjs/Observable";
 import { getAccountInfo } from "../user.reducers";
 import { UserConfigurationService } from "./user-configuration.service";
+import { map, switchMap, combineLatest, catchError, filter } from "rxjs/operators";
+import { of } from "rxjs";
 
 @Injectable({
 	providedIn: "root"
@@ -12,8 +14,7 @@ import { UserConfigurationService } from "./user-configuration.service";
 export class UserFacadeService {
 	constructor(private store: Store<AppState>, private configService: UserConfigurationService) {}
 	getDisplayName(): Observable<string> {
-		return this.configService.config$
-			.map(config => config.mapUserDisplayName)
-			.switchMap(mapper => this.store.select(getAccountInfo).let(mapper));
+		return this.store.select(getAccountInfo).let(this.configService.config$.getValue().mapUserDisplayName);
+		// .pipe(filter(displayName => displayName !== undefined));
 	}
 }

@@ -290,9 +290,10 @@ export class ToolbarMenuComponent {
 		fromEvent(this.document.body, "scroll").subscribe(() => {
 			let scrolledAmount = this.document.body.scrollTop;
 			let scrollToTop =
-				scrolledAmount - this.lastScroll < 0 && this.document.body.scrollHeight - scrolledAmount < 300;
+				scrolledAmount - this.lastScroll < 0 &&
+				this.document.body.scrollHeight - document.body.offsetHeight - scrolledAmount > 300;
 			// let scrollToTop = scrolledAmount - this.lastScroll < 0;
-			this.lastScroll = this.document.body.scrollTop;
+			this.lastScroll = scrolledAmount;
 			if (!this.config.visibility) return;
 			if (scrolledAmount == 0) {
 				if (this.config.mode == "comfortable") return;

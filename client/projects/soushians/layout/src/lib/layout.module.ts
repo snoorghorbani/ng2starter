@@ -38,6 +38,7 @@ import { FooterComponent } from "./dumb-components/footer/footer.component";
 import { TitleComponent } from "./dumb-components/title/title.component";
 import { MainComponent } from "./dumb-components/main/main.component";
 import { LayoutEffects } from "./layout.effects";
+import { RuleModule } from "@soushians/rule";
 
 @NgModule({
 	imports: [
@@ -63,7 +64,8 @@ import { LayoutEffects } from "./layout.effects";
 		MatDatepickerModule,
 		MatProgressBarModule,
 		RouterModule,
-		NgsConfigModule
+		NgsConfigModule,
+		RuleModule
 	],
 	declarations: [
 		MainMenuComponent,

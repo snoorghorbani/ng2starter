@@ -16,6 +16,7 @@ export declare class FormViewComponent implements OnDestroy {
     accept: EventEmitter<FormGroup>;
     cancel: EventEmitter<FormGroup>;
     local: any;
+    card: boolean;
     id: string;
     schema: FormSchemaModel;
     _id: string;

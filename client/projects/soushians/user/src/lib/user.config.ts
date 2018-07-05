@@ -37,7 +37,11 @@ export const MODULE_DEFAULT_CONFIG: UserModuleConfig = {
 	},
 	dashboardLinks: [],
 	responseToUserInfo: user$ => user$,
-	mapUserDisplayName: user$ => user$.map(user => user.Username)
+	mapUserDisplayName: user$ =>
+		user$.map(user => {
+			debugger;
+			return user.Username;
+		})
 };
 
 export const MODULE_CONFIG_TOKEN = new InjectionToken<UserModuleConfig>("UserModuleConfig");

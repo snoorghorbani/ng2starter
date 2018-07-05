@@ -1,0 +1,18 @@
+{
+  "name": "@soushians/frontend-authentication",
+  "version": "6.1.0",
+  "peerDependencies": {},
+  "main": "bundles/soushians-frontend-authentication.umd.js",
+  "module": "fesm5/soushians-frontend-authentication.js",
+  "es2015": "fesm2015/soushians-frontend-authentication.js",
+  "esm5": "esm5/soushians-frontend-authentication.js",
+  "esm2015": "esm2015/soushians-frontend-authentication.js",
+  "fesm5": "fesm5/soushians-frontend-authentication.js",
+  "fesm2015": "fesm2015/soushians-frontend-authentication.js",
+  "typings": "soushians-frontend-authentication.d.ts",
+  "metadata": "soushians-frontend-authentication.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

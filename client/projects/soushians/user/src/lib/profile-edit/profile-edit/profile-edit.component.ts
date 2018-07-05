@@ -4,6 +4,7 @@ import { FormGroup } from "@angular/forms";
 import { ChangePasswordModel } from "../../models";
 import { ConfigModel } from "@soushians/config";
 import { Observable } from "rxjs/Observable";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
 	selector: "profile-edit",
@@ -11,16 +12,18 @@ import { Observable } from "rxjs/Observable";
 })
 export class ProfileEditComponent implements OnInit {
 	@Output() submited = new EventEmitter();
-
+	@Input() userInfo: any;
 	@Input() formId: string;
-	@Input() formGroup: FormGroup;
 	@Input("roles") roles$: Observable<string[]>;
 	@Input() groups: string[];
-	constructor() {}
+	constructor(private router: Router) {}
 
 	ngOnInit() {}
-	editProfile() {
-		if (!this.formGroup.valid) return;
-		this.submited.emit(this.formGroup.value);
+	editProfile(form: FormGroup) {
+		if (!form.valid) return;
+		this.submited.emit(form.value);
+	}
+	goback() {
+		this.router.navigate([ ".." ]);
 	}
 }

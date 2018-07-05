@@ -5,6 +5,7 @@ import { Action } from "@ngrx/store";
 import { Actions, Effect } from "@ngrx/effects";
 import { RouterAction } from "@ngrx/router-store";
 import { switchMap, map, catchError, tap, pluck } from "rxjs/operators";
+import { of } from "rxjs";
 
 import {
 	SignoutAction,
@@ -73,12 +74,20 @@ export class SigninEffects {
 	@Effect() AfterSigninFiled$ = this.actions$.ofType(SignInActionTypes.SIGNIN_FAILURE).map(() => new NewCaptcha());
 
 	@Effect()
-	DoSignout$ = this.actions$
-		.ofType(SignInActionTypes.DO_SIGNOUT)
-		.pipe(switchMap(data => this.signinService.signout()), map(() => new SignoutAction()));
+	DoSignout$ = this.actions$.ofType(SignInActionTypes.DO_SIGNOUT).pipe(
+		switchMap(data =>
+			this.signinService.signout().pipe(
+				map(() => new SignoutAction()),
+				catchError(err => {
+					debugger;
+					return of(err);
+				})
+			)
+		)
+	);
 
 	// TODO
-	@Effect() Signout$ = this.actions$.ofType(SignInActionTypes.DO_SIGNOUT).pipe(map(() => new SignoutAction()));
+	// @Effect() Signout$ = this.actions$.ofType(SignInActionTypes.DO_SIGNOUT).pipe(map(() => new SignoutAction()));
 
 	@Effect({ dispatch: false })
 	redirectToLoginPage$ = this.actions$

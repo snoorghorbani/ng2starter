@@ -290,6 +290,44 @@
 				}
 			}
 		},
+		"@soushians/frontend-authentication": {
+			"root": "projects/soushians/frontend-authentication",
+			"sourceRoot": "projects/soushians/frontend-authentication/src",
+			"projectType": "library",
+			"prefix": "lib",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-ng-packagr:build",
+					"options": {
+						"tsConfig": "projects/soushians/frontend-authentication/tsconfig.lib.json",
+						"project": "projects/soushians/frontend-authentication/ng-package.json"
+					},
+					"configurations": {
+						"production": {
+							"project": "projects/soushians/frontend-authentication/ng-package.prod.json"
+						}
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "projects/soushians/frontend-authentication/src/test.ts",
+						"tsConfig": "projects/soushians/frontend-authentication/tsconfig.spec.json",
+						"karmaConfig": "projects/soushians/frontend-authentication/karma.conf.js"
+					}
+				},
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"projects/soushians/frontend-authentication/tsconfig.lib.json",
+							"projects/soushians/frontend-authentication/tsconfig.spec.json"
+						],
+						"exclude": [ "**/node_modules/**" ]
+					}
+				}
+			}
+		},
 		"@soushians/form": {
 			"root": "projects/soushians/form",
 			"sourceRoot": "projects/soushians/form/src",
@@ -442,6 +480,83 @@
 				}
 			}
 		},
+		"@soushians/grid": {
+			"root": "projects/soushians/grid",
+			"sourceRoot": "projects/soushians/grid/src",
+			"projectType": "library",
+			"prefix": "lib",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-ng-packagr:build",
+					"options": {
+						"tsConfig": "projects/soushians/grid/tsconfig.lib.json",
+						"project": "projects/soushians/grid/ng-package.json"
+					},
+					"configurations": {
+						"production": {
+							"project": "projects/soushians/grid/ng-package.prod.json"
+						}
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "projects/soushians/grid/src/test.ts",
+						"tsConfig": "projects/soushians/grid/tsconfig.spec.json",
+						"karmaConfig": "projects/soushians/grid/karma.conf.js"
+					}
+				},
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"projects/soushians/grid/tsconfig.lib.json",
+							"projects/soushians/grid/tsconfig.spec.json"
+						],
+						"exclude": [ "**/node_modules/**" ]
+					}
+				}
+			}
+		},
+		"@soushians/rule": {
+			"root": "projects/soushians/rule",
+			"sourceRoot": "projects/soushians/rule/src",
+			"projectType": "library",
+			"prefix": "lib",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-ng-packagr:build",
+					"options": {
+						"tsConfig": "projects/soushians/rule/tsconfig.lib.json",
+						"project": "projects/soushians/rule/ng-package.json"
+					},
+					"configurations": {
+						"production": {
+							"project": "projects/soushians/rule/ng-package.prod.json"
+						}
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "projects/soushians/rule/src/test.ts",
+						"tsConfig": "projects/soushians/rule/tsconfig.spec.json",
+						"karmaConfig": "projects/soushians/rule/karma.conf.js"
+					}
+				},
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"projects/soushians/rule/tsconfig.lib.json",
+							"projects/soushians/rule/tsconfig.spec.json"
+						],
+						"exclude": [ "**/node_modules/**" ]
+					}
+				}
+			}
+		},
+
 		"@soushians/test": {
 			"root": "projects/soushians/test",
 			"sourceRoot": "projects/soushians/test/src",

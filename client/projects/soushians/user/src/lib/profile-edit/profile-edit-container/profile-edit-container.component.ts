@@ -15,7 +15,7 @@ import { UserModuleConfig } from "../../user.config";
 	selector: "profile-edit-contianer",
 	template: `<profile-edit
                 (submited)='updateProfile($event)'
-                [formGroup]="formGroup"
+                [userInfo]="userInforamation$ | async"
                 [roles]="roles$"
 				[groups]="groups | async"
 				[formId]="(config$|async)?.forms.profile_edit"
@@ -23,7 +23,6 @@ import { UserModuleConfig } from "../../user.config";
 })
 export class ProfileEditContainerComponent implements OnInit {
 	userInforamation$: Observable<UserModel>;
-	formGroup = EditProfile_ApiModel.Request.formGroup;
 	roles$: Observable<string[]>;
 	groups: Observable<string[]>;
 	config$: Observable<UserModuleConfig>;
@@ -40,16 +39,7 @@ export class ProfileEditContainerComponent implements OnInit {
 		this.config$ = this.configService.config$;
 	}
 
-	ngOnInit() {
-		this.userInforamation$.subscribe(userInfo => {
-			if (userInfo == null) return;
-			this.formGroup.patchValue({
-				Email: userInfo.Email,
-				Roles: userInfo.Roles,
-				Groups: userInfo.Groups
-			});
-		});
-	}
+	ngOnInit() {}
 
 	updateProfile(data) {
 		this.store.dispatch(new EditProfile(data));

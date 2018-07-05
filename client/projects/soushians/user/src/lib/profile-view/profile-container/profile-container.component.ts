@@ -8,7 +8,7 @@ import { UserModel } from "../../models";
 
 @Component({
 	template: `<user-profile
-                [information]="data$"
+                [information]="data$ | async"
                 [dataStatus$]='dataStatus$'
             ></user-profile>`
 })

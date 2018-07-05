@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { Subject } from "rxjs";
+import { Subject, Observable } from "rxjs";
 
 import { AppState } from "../rule.reducers";
 import { ShowAnchorsAction, HideAnchorsAction } from "../rule-anchor";
+import { getFrontendAuthenticationState } from "@soushians/frontend-authentication";
 
 @Component({
 	selector: "gwt-mode-button",
@@ -12,8 +13,10 @@ import { ShowAnchorsAction, HideAnchorsAction } from "../rule-anchor";
 })
 export class GwtModeButtonComponent {
 	anchorsMode: boolean;
+	havePermission$: Observable<boolean>;
 	constructor(private store: Store<any>) {
 		this.anchorsMode = false;
+		this.havePermission$ = this.store.select(getFrontendAuthenticationState);
 	}
 
 	toggleAnchors() {

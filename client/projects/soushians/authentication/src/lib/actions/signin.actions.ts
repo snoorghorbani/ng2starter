@@ -3,14 +3,14 @@
 import { Signin_ApiModel } from "../models";
 
 export enum SignInActionTypes {
-	WHO_AM_I = "[Auth] who am i",
-	SIGNIN = "[Auth] Signin",
-	DO_SIGNOUT = "[Auth] Do Signout",
-	SIGNOUT = "[Auth] Signout",
-	SIGNIN_SUCCEED = "[Auth][Signin] Success",
-	SIGNIN_FAILURE = "[Auth][Signin] Failure",
-	SIGNIN_REDIRECT = "[Auth][Signin] Redirect",
-	SIGNIN_REQUIRED = "[Auth][Signin] Required"
+	WHO_AM_I = "[AUTHENTICATION] who am i",
+	SIGNIN = "[AUTHENTICATION] Signin",
+	DO_SIGNOUT = "[AUTHENTICATION] Do Signout",
+	SIGNOUT = "[AUTHENTICATION] Signout",
+	SIGNIN_SUCCEED = "[AUTHENTICATION][Signin] Success",
+	SIGNIN_FAILURE = "[AUTHENTICATION][Signin] Failure",
+	SIGNIN_REDIRECT = "[AUTHENTICATION][Signin] Redirect",
+	SIGNIN_REQUIRED = "[AUTHENTICATION][Signin] Required"
 }
 
 export class WhoAmIAction implements Action {

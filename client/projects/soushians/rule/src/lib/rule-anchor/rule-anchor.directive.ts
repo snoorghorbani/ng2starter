@@ -1,6 +1,6 @@
 import { Directive, HostListener, ElementRef, Renderer2, OnInit, Input, OnDestroy } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { Observable, of, zip, Subject } from "rxjs";
+import { Observable, of, zip, Subject, combineLatest } from "rxjs";
 import { filter, map, switchMap, takeUntil } from "rxjs/operators";
 import { MatBottomSheet } from "@angular/material";
 
@@ -127,20 +127,20 @@ export class RuleAnchorDirective implements OnInit, OnDestroy {
 			.filter(step => step.type == GwtStepTypes.Given)
 			.map(step => step.interperator(step.params));
 
-		zip
-			.apply(null, givenStepInterpretors)
+		combineLatest(givenStepInterpretors)
 			.pipe(
 				takeUntil(this.unsubscribe),
 				map((values: boolean[]) => values.every(value => value === true)),
 				switchMap(givenResult => {
+					debugger;
 					if (givenResult) {
 						const thenStepInterpretors = scenario.steps
 							.filter(step => step.type == GwtStepTypes.Then)
 							.map(step => step.interperator(step.params, this.el));
-						return zip
+						return combineLatest
 							.apply(null, thenStepInterpretors)
 							.pipe(map((values: boolean[]) => values.every(value => value === true)));
-					} else of(false);
+					} else return of(false);
 				})
 			)
 			.subscribe(() => {});
