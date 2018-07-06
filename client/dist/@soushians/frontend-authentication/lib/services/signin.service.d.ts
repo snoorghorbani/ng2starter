@@ -5,7 +5,7 @@ import { Store } from "@ngrx/store";
 import { UserModel } from "../models";
 import { FrontendAuthenticationConfigurationService } from "./frontend-authentication-configuration.service";
 import { FeatureState } from "../reducers";
-export declare class SigninService {
+export declare class FrontendSigninService {
     private http;
     private store;
     private configurationService;
@@ -15,4 +15,4 @@ export declare class SigninService {
     signout(): Observable<any>;
     whoAmI(): Observable<any>;
 }
-export declare var SigninServiceStub: {};
+export declare var FrontendSigninServiceStub: {};

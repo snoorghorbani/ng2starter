@@ -36,6 +36,7 @@ import { RulesListEffects } from "./db/rule-db.effects";
 import { GwtModeButtonComponent } from "./mode-button/mode-button.component";
 import { RuleService } from "./services/rule.service";
 import { RuleConfigurationService } from "./services/rule-configuration.service";
+import { ScenarioService } from "./services/scenario.service";
 
 @NgModule({
 	imports: [
@@ -72,7 +73,8 @@ export class RuleModule {
 			providers: [
 				{ provide: MODULE_CONFIG_TOKEN, useValue: config || {} },
 				RuleService,
-				RuleConfigurationService
+				RuleConfigurationService,
+				ScenarioService
 			]
 		};
 	}

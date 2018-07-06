@@ -15,7 +15,7 @@ import {
 	SigninRedirect,
 	Signin
 } from "../actions/signin.actions";
-import { SigninService } from "../services/signin.service";
+import { FrontendSigninService } from "../services/signin.service";
 import { NewCaptcha } from "../actions";
 import { SigninContainerComponent } from "../smart-components/signin-container";
 import { MatBottomSheet } from "@angular/material";
@@ -26,7 +26,7 @@ export class SigninEffects {
 	constructor(
 		private actions$: Actions,
 		private router: Router,
-		public signinService: SigninService,
+		public FrontendSigninService: FrontendSigninService,
 		public configurationService: FrontendAuthenticationConfigurationService,
 		private bottomSheet: MatBottomSheet
 	) {}
@@ -35,7 +35,7 @@ export class SigninEffects {
 	whoAmI$ = this.actions$
 		.ofType(SignInActionTypes.WHO_AM_I)
 		.pipe(
-			switchMap(() => this.signinService.whoAmI()),
+			switchMap(() => this.FrontendSigninService.whoAmI()),
 			map(user => new SigninSecceed(user)),
 			catchError(error => Observable.of(new SigninFailed(error)))
 		);
@@ -45,7 +45,7 @@ export class SigninEffects {
 		.ofType(SignInActionTypes.SIGNIN)
 		.pipe(
 			pluck("payload"),
-			switchMap(payload => this.signinService.signin(payload)),
+			switchMap(payload => this.FrontendSigninService.signin(payload)),
 			map(user => new SigninSecceed(user)),
 			catchError(error => Observable.of(new SigninFailed(error)))
 		);
@@ -76,7 +76,7 @@ export class SigninEffects {
 	@Effect()
 	DoSignout$ = this.actions$.ofType(SignInActionTypes.DO_SIGNOUT).pipe(
 		switchMap(data =>
-			this.signinService.signout().pipe(
+			this.FrontendSigninService.signout().pipe(
 				map(() => new SignoutAction()),
 				catchError(err => {
 					debugger;

@@ -16,7 +16,7 @@ import { WhoAmIAction } from "../actions";
 @Injectable({
 	providedIn: "root"
 })
-export class SigninService {
+export class FrontendSigninService {
 	constructor(
 		private http: HttpClient,
 		private store: Store<FeatureState>,
@@ -30,7 +30,9 @@ export class SigninService {
 		return this.configurationService.config$.pipe(
 			filter(config => config.endpoints.signIn != ""),
 			take(1),
-			switchMap(config => this.http.post<Signin_ApiModel.Response>(config.endpoints.signIn, model)),
+			switchMap(config =>
+				this.http.post<Signin_ApiModel.Response>(config.env.frontend_server + config.endpoints.signIn, model)
+			),
 			map(response => {
 				const user: any = Object.assign({}, response.Result);
 				if (user.Role) {
@@ -54,12 +56,21 @@ export class SigninService {
 	}
 
 	signout(): Observable<any> {
-		return this.http.get(this.configurationService.config.endpoints.signOut).map(response => response);
+		return this.http
+			.get(
+				this.configurationService.config.env.frontend_server +
+					this.configurationService.config.endpoints.signOut
+			)
+			.map(response => response);
 	}
 
 	whoAmI(): Observable<any> {
-		return this.http.get(this.configurationService.config.endpoints.whoAmI).map(response => response);
+		return this.http
+			.get(
+				this.configurationService.config.env.frontend_server + this.configurationService.config.endpoints.whoAmI
+			)
+			.map(response => response);
 	}
 }
 
-export var SigninServiceStub = {};
+export var FrontendSigninServiceStub = {};

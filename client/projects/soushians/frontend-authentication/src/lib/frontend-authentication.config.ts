@@ -11,6 +11,7 @@ export interface FrontendAuthenticationModuleConfig {
 	};
 	env: {
 		production: boolean;
+		frontend_server: string;
 	};
 	afterSignoutRedirectTo?: string;
 }
@@ -25,7 +26,8 @@ export const MODULE_DEFAULT_CONFIG: FrontendAuthenticationModuleConfig = {
 		signIn: ""
 	},
 	env: {
-		production: false
+		production: false,
+		frontend_server: "http://localhost:3000"
 	},
 	afterSignoutRedirectTo: "/"
 };

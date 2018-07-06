@@ -10,6 +10,7 @@ export interface FrontendAuthenticationModuleConfig {
     };
     env: {
         production: boolean;
+        frontend_server: string;
     };
     afterSignoutRedirectTo?: string;
 }

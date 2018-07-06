@@ -41,7 +41,7 @@ import { FrontendAuthenticationReducers } from "./reducers/index";
 
 import { SigninEffects } from "./effects/signin.effects";
 import { FrontendAuthenticationEffects } from "./effects/frontend-authentication.effects";
-import { SigninService } from "./services/signin.service";
+import { FrontendSigninService } from "./services/signin.service";
 
 @NgModule({
 	imports: [
@@ -94,7 +94,7 @@ export class NgsFrontendAuthenticationModule {
 					useClass: WithCredentialInterceptor,
 					multi: true
 				},
-				SigninService
+				FrontendSigninService
 			]
 		};
 	}

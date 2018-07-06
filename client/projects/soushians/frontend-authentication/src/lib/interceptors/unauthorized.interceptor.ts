@@ -18,7 +18,7 @@ import { of, throwError } from "rxjs";
 export class UnauthorizedInterceptor implements HttpInterceptor {
 	constructor(
 		private router: Router,
-		private store: Store<fromAuth.FeatureState> // private signinService: SigninService
+		private store: Store<fromAuth.FeatureState> // private FrontendSigninService: FrontendSigninService
 	) {}
 	intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		return next

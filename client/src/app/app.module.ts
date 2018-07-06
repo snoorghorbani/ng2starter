@@ -57,9 +57,9 @@ import { GwtStepsModule } from "./gwt-steps/gwt-steps.module";
 			env: environment as any,
 			afterSignoutRedirectTo: "/",
 			endpoints: {
-				signIn: "http://localhost:3000/api/user/signin",
-				signOut: "http://localhost:3000/api/user/signout",
-				whoAmI: "http://localhost:3000/api/user/account/profile"
+				signIn: "/api/user/signin",
+				signOut: "/api/user/signout",
+				whoAmI: "/api/user/account/profile"
 			},
 			forms: {
 				signIn: "5a951cfbfd791632a09b3bc6"

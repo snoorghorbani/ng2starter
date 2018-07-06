@@ -14,6 +14,6 @@ export { FeatureState as ɵf, FrontendAuthenticationState as ɵe } from './lib/r
 export { FrontendAuthenticationReducers as ɵi } from './lib/reducers/index';
 export { UserReducer as ɵj } from './lib/reducers/user.reducer';
 export { FrontendAuthenticationConfigurationService as ɵc } from './lib/services/frontend-authentication-configuration.service';
-export { SigninService as ɵl } from './lib/services/signin.service';
+export { FrontendSigninService as ɵl } from './lib/services/signin.service';
 export { FrontendAuthenticationContainerComponent as ɵh } from './lib/smart-components/frontend-authentication-container/frontend-authentication-container.component';
 export { SigninContainerComponent as ɵb } from './lib/smart-components/signin-container/signin-container.component';
