@@ -22,18 +22,22 @@ import { NgsDiagramModule } from "@soushians/diagram";
 import { NgsFormModule } from "@soushians/form";
 import { NgsGridModule } from "@soushians/grid";
 import { RuleModule } from "@soushians/rule";
+import { NgsWidgetModule } from "@soushians/widget";
+import { NgsWidgetTypesModule } from "@soushians/widget-types";
 // import { NgsWidgetModule, WidgetSelectorComponent, DynamicWidgetViewComponent } from "@soushians/widget";
-// import { NgsWidgetTypesModule, ArticleUpsertComponent, ArticleViewComponent } from "@soushians/widget-types";
 
 /**
  *  module configs
  * */
 import { ngsAuthenticationModuleConfig } from "./module-configs/ngs-authentication.module-config";
 import { ngsFrontendAuthenticationModuleConfig } from "./module-configs/ngs-frontend-authentication.module-config";
-import { ngsConfigModuleConfig } from "src/app/module-configs/ngs-config.module-config";
+import { ngsConfigModuleConfig } from "./module-configs/ngs-config.module-config";
 import { ngsGridModuleConfig } from "./module-configs/ngs-grid.module-config";
 import { ngsSocketModuleConfig } from "./module-configs/ngs-socket.module-config";
 import { ngsRuleModuleConfig } from "./module-configs/ngs-rule.module-config";
+import { NgsWidgetModuleConfig } from "./module-configs/ngs-widget.module-config";
+import { ngsUserModuleConfig } from "./module-configs/ngs-user.module-config";
+import { ngsLayoutModuleConfig } from "./module-configs/ngs-layout.module-config";
 
 import { StaticPageModule } from "./static-page/static-page.module";
 
@@ -45,8 +49,6 @@ import { reducers } from "./app.reducers";
 import { DashboardModule } from "./dashboard/dashboard.module";
 import { ruleModuleConfig } from "./gwt-steps";
 import { GwtStepsModule } from "./gwt-steps/gwt-steps.module";
-import { ngsUserModuleConfig } from "./module-configs/ngs-user.module-config";
-import { ngsLayoutModuleConfig } from "./module-configs/ngs-layout.module-config";
 
 @NgModule({
 	imports: [
@@ -60,6 +62,8 @@ import { ngsLayoutModuleConfig } from "./module-configs/ngs-layout.module-config
 		}),
 		EffectsModule.forRoot([]),
 
+		SharedModule,
+		SourceModule,
 		NgsLayoutModule.forRoot(),
 		NgsAuthenticationModule.forRoot(ngsAuthenticationModuleConfig),
 		NgsFrontendAuthenticationModule.forRoot(ngsFrontendAuthenticationModuleConfig),
@@ -68,14 +72,8 @@ import { ngsLayoutModuleConfig } from "./module-configs/ngs-layout.module-config
 		NgsUserModule.forRoot(),
 		NgsUserRoutingModule,
 		NgsSocketModule.forRoot(ngsSocketModuleConfig),
-		SharedModule,
-		SourceModule,
-		// NgsWidgetTypesModule,
-		// NgsWidgetModule.forRoot({
-		// 	types: {
-		// 		article: { upsert: ArticleUpsertComponent, view: ArticleViewComponent }
-		// 	}
-		// }),
+		NgsWidgetModule.forRoot(NgsWidgetModuleConfig),
+		NgsWidgetTypesModule,
 		NgsFormModule.forRoot(),
 		RuleModule.forRoot(ngsRuleModuleConfig),
 		GwtStepsModule,

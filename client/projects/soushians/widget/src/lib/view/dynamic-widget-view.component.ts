@@ -17,10 +17,6 @@ import { IModuleConfigMapTypes } from "../models/module-config-map-types.interfc
 import { WidgetService } from "../services/widget.service";
 import { WidgetConfigurationService } from "../services/widget-configuration.service";
 
-// const a = [ 1, 2, 3, 4 ];
-// const b = [ 3, 2, 7 ];
-// const c = b.filter((item) => a.indexOf(item) == -1);
-
 @Component({
 	template: ""
 })
@@ -42,12 +38,12 @@ export class DynamicWidgetViewComponent implements OnInit {
 		this._fill_component_map();
 	}
 	ngOnInit() {
-		this.widget$.pipe(filter(widget => widget != undefined)).subscribe(widget => {
+		this.widget$.pipe(filter((widget) => widget != undefined)).subscribe((widget) => {
 			this._resolve_correct_component_base_on_widget_type(widget);
 		});
 	}
 	_fill_component_map() {
-		this.configurationService.config$.pipe(map(config => config.types), startWith({})).subscribe(types => {
+		this.configurationService.config$.pipe(map((config) => config.types), startWith({})).subscribe((types) => {
 			debugger;
 			this.mapTypeToComponent = types;
 		});
@@ -57,6 +53,7 @@ export class DynamicWidgetViewComponent implements OnInit {
 	}
 	_resolve_correct_component_base_on_widget_type(widget) {
 		if (!this.mapTypeToComponent[widget.type]) {
+			debugger;
 			const supportedTypes = Object.keys(this.mapTypeToComponent).join(", ");
 			throw new Error(
 				`Trying to use an unsupported type (${widget.type}).
@@ -65,6 +62,6 @@ export class DynamicWidgetViewComponent implements OnInit {
 		}
 		const component = this.resolver.resolveComponentFactory<any>(this.mapTypeToComponent[widget.type].view);
 		this.component = this.container.createComponent(component);
-		this.widget$.subscribe(w => (this.component.instance.widget = w));
+		this.widget$.subscribe((w) => (this.component.instance.widget = w));
 	}
 }

@@ -18,7 +18,6 @@ import {
 	MatCheckboxModule,
 	MatTableModule
 } from "@angular/material";
-// import { EditorModule } from "@tinymce/tinymce-angular";
 
 import { ArticleUpsertComponent } from "./article/article-upsert/article-upsert.component";
 import { ArticleViewComponent } from "./article/article-view/article-view.component";

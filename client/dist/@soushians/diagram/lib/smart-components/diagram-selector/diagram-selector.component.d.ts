@@ -3,16 +3,18 @@ import { Observable } from "rxjs/Observable";
 import { IGridItemComponent } from "@soushians/grid";
 import { DiagramModel } from "../../models/diagram.model";
 import { DiagramService } from "../../services/diagram.service";
-export declare class DiagramSelectorComponent implements OnInit, IGridItemComponent<{
-    diagramId: string;
-}> {
-    private diagramService;
-    diagrams$: Observable<DiagramModel[]>;
-    selectedDiagramId: string;
-    readonly valid: boolean;
-    readonly config: {
-        diagramId: string;
-    };
-    constructor(diagramService: DiagramService);
-    ngOnInit(): void;
+export declare class DiagramSelectorComponent
+	implements OnInit,
+		IGridItemComponent<{
+			diagramId: string;
+		}> {
+	private diagramService;
+	diagrams$: Observable<DiagramModel[]>;
+	selectedDiagramId: string;
+	readonly valid: boolean;
+	readonly config: {
+		diagramId: string;
+	};
+	constructor(diagramService: DiagramService);
+	ngOnInit(): void;
 }
