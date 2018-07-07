@@ -26,13 +26,13 @@ router.get("/", function(req, res) {
 	GridModel.find().then((Result) => res.json({ Result }));
 });
 router.get("/:id", function(req, res) {
-	getGridWithItems(req.params.id, req.user.id).then((Result: any) => res.json({ Result }));
+	getGridWithItems(req.params.id, req.query.userId).then((Result: any) => res.json({ Result }));
 });
 router.post("/", function(req, res) {
 	Promise.all(
 		req.body.items.map((item: any) => {
 			if (!item._id) item._id = new ObjectId();
-			item.owner = req.user.id;
+			item.owner = req.query.userId;
 
 			return GridItemModel.findByIdAndUpdate(item._id, item, { upsert: true, new: true });
 		})
@@ -41,14 +41,14 @@ router.post("/", function(req, res) {
 			type: req.body.type,
 			name: req.body.name,
 			oid: req.body.oid,
-			owner: req.user.id,
+			// owner: req.user.id,
 			config: req.body.config,
 			items: (items as any).map((item: any) => item._id.toString())
 		};
 		if (!req.body._id) gridData._id = new ObjectId();
 
 		GridModel.findOneAndUpdate({ _id: req.body._id }, gridData, { upsert: true }).then((grid) => {
-			getGridWithItems(grid._id, req.user.id)
+			getGridWithItems(grid._id, req.query.userId)
 				.then((Result: any) => {
 					SocketMiddleware.server.dispatchActionToClients("[GRID][DB] UPSERT", [ Result ]);
 					res.send({ Result });

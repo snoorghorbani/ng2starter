@@ -6,7 +6,6 @@ import { MatBottomSheet } from "@angular/material";
 import { Observable } from "rxjs";
 
 import { getFrontendAuthenticationState } from "@soushians/frontend-authentication";
-import { getAccountInfo } from "@soushians/user";
 
 import { AppState } from "../grid.reducer";
 import { GridModel } from "../models";
@@ -90,8 +89,11 @@ export class GridComponent implements OnInit {
 		});
 	}
 	saveConfig() {
-		const user$ = this.store.select(getAccountInfo);
-
+		/**
+		 * TODO: 
+		 * احزار هویت در سمت نود اتحام شود
+		* کانفیگ برای گرفتن شناسه کاربر
+		 */
 		this.store.dispatch(new UpsertGridStartAction(this.grid));
 	}
 	gridItemTypeChanged(item: IGridItemModel<any>) {
