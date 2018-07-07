@@ -3,33 +3,63 @@ import * as express from "express";
 import * as async from "async";
 import * as request from "request";
 import { Response, Request, NextFunction } from "express";
-import { model as moongooseModel } from "mongoose";
+import { model as moongooseModel, DocumentQuery } from "mongoose";
 import { SocketMiddleware } from "./socket.controller";
 import { ObjectId } from "bson";
 
-const Model = moongooseModel("Grid");
+const GridModel = moongooseModel("Grid");
+const GridItemModel = moongooseModel("GridItem");
 
 const router = express.Router();
 
+const getGridWithItems = function(_id: string, userId: string): any {
+	return GridModel.findById(_id).populate({
+		path: "items",
+		match: { owner: { $eq: userId } },
+		// Explicitly exclude `_id`, see http://bit.ly/2aEfTdB
+		// select: "name -_id",
+		options: { limit: 22 }
+	});
+};
+
 router.get("/", function(req, res) {
-	Model.find().then((Result) => res.json({ Result }));
+	GridModel.find().then((Result) => res.json({ Result }));
 });
 router.get("/:id", function(req, res) {
-	Model.findById(req.params.id).then((Result) => res.json({ Result }));
+	getGridWithItems(req.params.id, req.user.id).then((Result: any) => res.json({ Result }));
 });
 router.post("/", function(req, res) {
-	if (!req.body._id) req.body._id = new ObjectId();
+	Promise.all(
+		req.body.items.map((item: any) => {
+			if (!item._id) item._id = new ObjectId();
+			item.owner = req.user.id;
 
-	Model.findOneAndUpdate({ _id: req.body._id }, req.body, { upsert: true, new: true })
-		.then((Result) => {
-			SocketMiddleware.server.dispatchActionToClients("[GRID][DB] UPSERT", [ Result ]);
-			res.send({ Result });
+			return GridItemModel.findByIdAndUpdate(item._id, item, { upsert: true, new: true });
 		})
-		.catch((err) => {
-			debugger;
+	).then((items) => {
+		const gridData: any = {
+			type: req.body.type,
+			name: req.body.name,
+			oid: req.body.oid,
+			owner: req.user.id,
+			config: req.body.config,
+			items: (items as any).map((item: any) => item._id.toString())
+		};
+		if (!req.body._id) gridData._id = new ObjectId();
+
+		GridModel.findOneAndUpdate({ _id: req.body._id }, gridData, { upsert: true }).then((grid) => {
+			getGridWithItems(grid._id, req.user.id)
+				.then((Result: any) => {
+					SocketMiddleware.server.dispatchActionToClients("[GRID][DB] UPSERT", [ Result ]);
+					res.send({ Result });
+				})
+				.catch((err: any) => {
+					debugger;
+				});
 		});
+	});
 });
-router.delete("/:id", function(req, res) {
-	Model.findByIdAndRemove(req.params.id);
+router.delete("/:id", function(req: Request, res: Response) {
+	GridModel.findByIdAndRemove(req.params.id);
 });
 export { router };

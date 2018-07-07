@@ -1,26 +1,23 @@
-import * as bcrypt from "bcrypt-nodejs";
-import * as crypto from "crypto";
 import * as mongoose from "mongoose";
-import { ObjectId } from "mongodb";
 
-const widgetSchema = new mongoose.Schema(
+const gridSchema = new mongoose.Schema(
 	{
 		type: { type: String },
 		name: { type: String },
 		oid: { type: String },
+		owner: { type: String },
 		config: { type: Object, default: {} },
-		items: { type: Object, default: [] }
+		items: [ { type: mongoose.Schema.Types.ObjectId, ref: "GridItem" } ]
 	},
 	{ timestamps: true }
 );
 
 /**
- * pre save widget middleware.
+ * pre save grid middleware.
  */
-widgetSchema.pre("save", function save(next) {
-	const widget = this;
-	// if (!widget.isModified("password")) { return next(); }
+gridSchema.pre("save", function save(next) {
+	const grid = this;
 	next();
 });
 
-mongoose.model("Grid", widgetSchema);
+mongoose.model("Grid", gridSchema);

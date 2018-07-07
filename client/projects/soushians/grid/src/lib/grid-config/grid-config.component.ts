@@ -39,7 +39,8 @@ export class GridConfigComponent {
 			displayGrid: new FormControl("onDrag&Resize"),
 			// empty cell
 			enableEmptyCellDrag: new FormControl(true),
-			// enableEmptyCellClick: new FormControl(true),
+			enableEmptyCellClick: new FormControl(false),
+			enableEmptyCellContextMenu: new FormControl(false),
 			//
 			scrollToNewItems: new FormControl(true),
 			// margins

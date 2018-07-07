@@ -3,6 +3,10 @@ import { GridsterConfig, GridsterItem } from "angular-gridster2";
 import { Store } from "@ngrx/store";
 import { filter } from "rxjs/operators";
 import { MatBottomSheet } from "@angular/material";
+import { Observable } from "rxjs";
+
+import { getFrontendAuthenticationState } from "@soushians/frontend-authentication";
+import { getAccountInfo } from "@soushians/user";
 
 import { AppState } from "../grid.reducer";
 import { GridModel } from "../models";
@@ -11,6 +15,7 @@ import { GridConfigurationService } from "../services/grid-configuration.service
 import { DynamicGridItemConfigComponent } from "../grid-item/dynamic-grid-item-config.directive";
 import { GridConfigComponent } from "../grid-config/grid-config.component";
 import { IGridItemModel } from "../models/gird-item.model";
+import { UpsertGridStartAction } from "../services/api/upsert-grid/upsert-grid.actions";
 
 @Component({
 	selector: "ngs-grid",
@@ -28,6 +33,7 @@ export class GridComponent implements OnInit {
 	@Output() initCallback = new EventEmitter();
 
 	@Input() oid: string;
+	havePermission$: Observable<boolean>;
 	options: GridsterConfig;
 	grid: GridModel;
 	ready = false;
@@ -40,6 +46,7 @@ export class GridComponent implements OnInit {
 	) {
 		this.options = {};
 		this.gridItemTypes = Object.keys(this.configurationService.config$.getValue().types);
+		this.havePermission$ = this.store.select(getFrontendAuthenticationState);
 	}
 
 	static itemChange(item, itemComponent) {
@@ -81,6 +88,11 @@ export class GridComponent implements OnInit {
 				grid: this.grid
 			}
 		});
+	}
+	saveConfig() {
+		const user$ = this.store.select(getAccountInfo);
+
+		this.store.dispatch(new UpsertGridStartAction(this.grid));
 	}
 	gridItemTypeChanged(item: IGridItemModel<any>) {
 		const bs = this.bottomSheet.open(DynamicGridItemConfigComponent, {

@@ -19,7 +19,7 @@ router.get("/:id", function(req, res) {
 });
 router.post("/", function(req, res) {
 	if (!req.body._id) req.body._id = new ObjectId();
-
+	//TODO:set user
 	Model.findOneAndUpdate({ _id: req.body._id }, req.body, { upsert: true, new: true })
 		.then((Result) => {
 			// TODO:
