@@ -20,8 +20,20 @@ import { SourceModule } from "@soushians/source";
 import { NgsSocketModule } from "@soushians/socket";
 import { NgsDiagramModule } from "@soushians/diagram";
 import { NgsFormModule } from "@soushians/form";
+import { NgsGridModule } from "@soushians/grid";
+import { RuleModule } from "@soushians/rule";
 // import { NgsWidgetModule, WidgetSelectorComponent, DynamicWidgetViewComponent } from "@soushians/widget";
 // import { NgsWidgetTypesModule, ArticleUpsertComponent, ArticleViewComponent } from "@soushians/widget-types";
+
+/**
+ *  module configs
+ * */
+import { ngsAuthenticationModuleConfig } from "./module-configs/ngs-authentication.module-config";
+import { ngsFrontendAuthenticationModuleConfig } from "./module-configs/ngs-frontend-authentication.module-config";
+import { ngsConfigModuleConfig } from "src/app/module-configs/ngs-config.module-config";
+import { ngsGridModuleConfig } from "./module-configs/ngs-grid.module-config";
+import { ngsSocketModuleConfig } from "./module-configs/ngs-socket.module-config";
+import { ngsRuleModuleConfig } from "./module-configs/ngs-rule.module-config";
 
 import { StaticPageModule } from "./static-page/static-page.module";
 
@@ -30,13 +42,11 @@ import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { reducers } from "./app.reducers";
 
-// module configs
 import { DashboardModule } from "./dashboard/dashboard.module";
-import { NgsGridModule } from "@soushians/grid";
-import { diagramViewComponent, DiagramSelectorComponent } from "@soushians/diagram";
-import { RuleModule } from "@soushians/rule";
 import { ruleModuleConfig } from "./gwt-steps";
 import { GwtStepsModule } from "./gwt-steps/gwt-steps.module";
+import { ngsUserModuleConfig } from "./module-configs/ngs-user.module-config";
+import { ngsLayoutModuleConfig } from "./module-configs/ngs-layout.module-config";
 
 @NgModule({
 	imports: [
@@ -49,32 +59,15 @@ import { GwtStepsModule } from "./gwt-steps/gwt-steps.module";
 			maxAge: 25
 		}),
 		EffectsModule.forRoot([]),
+
 		NgsLayoutModule.forRoot(),
-		NgsAuthenticationModule.forRoot({
-			env: environment as any
-		}),
-		NgsFrontendAuthenticationModule.forRoot({
-			env: environment as any,
-			afterSignoutRedirectTo: "/",
-			endpoints: {
-				signIn: "/api/user/signin",
-				signOut: "/api/user/signout",
-				whoAmI: "/api/user/account/profile"
-			},
-			forms: {
-				signIn: "5a951cfbfd791632a09b3bc6"
-			}
-		}),
-		NgsConfigModule.forRoot({
-			env: environment as any,
-			dev_api_host: "http://localhost:3000",
-			prod_api_host: "http://localhost:3000"
-		}),
+		NgsAuthenticationModule.forRoot(ngsAuthenticationModuleConfig),
+		NgsFrontendAuthenticationModule.forRoot(ngsFrontendAuthenticationModuleConfig),
+		NgsConfigModule.forRoot(ngsConfigModuleConfig),
 		NgsDiagramModule.forRoot(),
 		NgsUserModule.forRoot(),
 		NgsUserRoutingModule,
-		// NgsBpmnModule.forRoot(),
-		NgsSocketModule.forRoot(),
+		NgsSocketModule.forRoot(ngsSocketModuleConfig),
 		SharedModule,
 		SourceModule,
 		// NgsWidgetTypesModule,
@@ -83,16 +76,12 @@ import { GwtStepsModule } from "./gwt-steps/gwt-steps.module";
 		// 		article: { upsert: ArticleUpsertComponent, view: ArticleViewComponent }
 		// 	}
 		// }),
-		StaticPageModule,
 		NgsFormModule.forRoot(),
-		RuleModule.forRoot(ruleModuleConfig),
+		RuleModule.forRoot(ngsRuleModuleConfig),
 		GwtStepsModule,
-		NgsGridModule.forRoot({
-			types: {
-				// article: { configComponent: WidgetSelectorComponent, viewComponent: DynamicWidgetViewComponent },
-				diagram: { configComponent: DiagramSelectorComponent, viewComponent: diagramViewComponent }
-			}
-		}),
+		NgsGridModule.forRoot(ngsGridModuleConfig),
+
+		StaticPageModule,
 		AppRoutingModule,
 		DashboardModule
 	],

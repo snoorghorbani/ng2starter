@@ -19,7 +19,7 @@ export class SocketService {
 	constructor(private configService: SocketConfigurationService, private store: Store<AppState>) {
 		this.configService.config$
 			.pipe(
-				map(config => (config.env.production ? config.production_uri : config.development_uri)),
+				map(config => config.env.frontend_server),
 				map(uri => {
 					console.log(uri, this.configService.config);
 					this.socket = io(uri);

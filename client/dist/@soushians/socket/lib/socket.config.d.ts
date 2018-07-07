@@ -1,9 +1,8 @@
 import { InjectionToken } from "@angular/core";
 export interface SocketModuleConfig {
-    development_uri: string;
-    production_uri: string;
     env?: {
         production: boolean;
+        frontend_server: string;
     };
 }
 export declare const MODULE_DEFAULT_CONFIG: SocketModuleConfig;
