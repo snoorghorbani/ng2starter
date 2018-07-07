@@ -2,6 +2,7 @@ import { OnInit, EventEmitter } from "@angular/core";
 import { GridsterConfig, GridsterItem } from "angular-gridster2";
 import { Store } from "@ngrx/store";
 import { MatBottomSheet } from "@angular/material";
+import { Observable } from "rxjs";
 import { AppState } from "../grid.reducer";
 import { GridModel } from "../models";
 import { GridService } from "../services/grid.service";
@@ -21,6 +22,7 @@ export declare class GridComponent implements OnInit {
     destroyCallback: EventEmitter<{}>;
     initCallback: EventEmitter<{}>;
     oid: string;
+    havePermission$: Observable<boolean>;
     options: GridsterConfig;
     grid: GridModel;
     ready: boolean;
@@ -31,9 +33,10 @@ export declare class GridComponent implements OnInit {
     ngOnInit(): void;
     _initCallback(item: any): void;
     removeItem(item: any): void;
-    addItem(): void;
+    addItem(e: any): void;
     emptyCellClick(event: MouseEvent, item: GridsterItem): void;
-    openConfig(): void;
+    openConfig(e: any): void;
+    saveConfig(e: any): void;
     gridItemTypeChanged(item: IGridItemModel<any>): void;
     showConfig(item: IGridItemModel<any>): void;
     _get_grid_by_oid_and_update_component(): void;
