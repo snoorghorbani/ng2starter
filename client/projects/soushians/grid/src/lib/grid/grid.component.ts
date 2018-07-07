@@ -74,21 +74,28 @@ export class GridComponent implements OnInit {
 		this.grid.items.splice(this.grid.items.indexOf(item), 1);
 	}
 
-	addItem() {
+	addItem(e) {
+		e.stopPropagation();
 		this.grid.items.push({} as IGridItemModel<any>);
 	}
 	emptyCellClick(event: MouseEvent, item: GridsterItem) {
 		console.log("empty cell click", event, item);
 		this.grid.items.push(item as any);
 	}
-	openConfig() {
+	openConfig(e) {
+		e.stopPropagation();
+		e.preventDefault();
 		this.bottomSheet.open(GridConfigComponent, {
 			data: {
 				grid: this.grid
 			}
 		});
 	}
-	saveConfig() {
+	saveConfig(e) {
+		e.stopPropagation();
+		e.stopImmediatePropagation();
+		e.preventDefault();
+
 		/**
 		 * TODO: 
 		 * احزار هویت در سمت نود اتحام شود

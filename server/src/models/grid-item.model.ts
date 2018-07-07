@@ -11,6 +11,7 @@ export const gridItemSchema = new mongoose.Schema(
 		rows: { type: Number },
 		owner: { type: String },
 		type: { type: String },
+		valid: { type: Boolean },
 		config: Object
 	},
 	{ timestamps: true }

@@ -22,7 +22,6 @@ export function UserReducer(state = initialState, action: SigninAction): State {
 		}
 
 		case SignInActionTypes.SIGNOUT: {
-			debugger;
 			return {
 				...state,
 				loggedIn: false,

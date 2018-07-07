@@ -19,7 +19,14 @@
 						"polyfills": "src/polyfills.ts",
 						"tsConfig": "src/tsconfig.app.json",
 						"assets": [ "src/favicon.ico", "src/assets" ],
-						"styles": [ "src/styles.css", "src/custom.css" ],
+						"styles": [
+							"src/styles.css",
+							"./src/lib-modules-style/ngs-grid.scss",
+							"./src/lib-modules-style/ngs-rule.scss",
+							"./src/lib-modules-style/ngs-widget.scss",
+							"./src/lib-modules-style/ngs-diagram.scss",
+							"src/custom.css"
+						],
 						"scripts": []
 					},
 					"configurations": {

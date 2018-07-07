@@ -1,0 +1,105 @@
+/*
+* Rules Module Start
+*/
+
+.ngs-rule-anchor-button {
+	border-top-right-radius: 4px !important;
+	position: absolute !important;
+	top: -12px;
+	right: -12px;
+	color: darkmagenta;
+	background-color: white;
+	padding-top: 3px !important;
+	box-shadow: -2px 2px 7px 1px rgba(0, 0, 0, 0.4);
+	overflow: hidden !important;
+	width: 30px !important;
+	height: 30px !important;
+	transition: all 333ms;
+	opacity: 0 !important;
+	transform: scale(0) !important;
+	z-index: 4;
+}
+.show-anchor .ngs-rule-anchor-button {
+	opacity: 1 !important;
+	transform: scale(1) !important;
+}
+.ngs-rule-anchor {
+	position: relative;
+	/* box-shadow: 0px 0px 0px 0px darkmagenta !important; */
+}
+.ngs-rule-anchor.anchor-active:before {
+	content: " ";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	/* background: darkmagenta; */
+	opacity: 0.3;
+	filter: grayscale;
+	z-index: 3;
+	box-shadow: 0 0 9px 3px darkmagenta;
+	/* border: 2px dashed darkmagenta; */
+}
+.show-anchor {
+	box-shadow: 0px 0px 8px 4px darkmagenta !important;
+}
+
+.step-text {
+	padding-bottom: 25px;
+	font-size: 13px;
+	font-weight: bold;
+}
+mat-card.steps-item {
+	padding-top: 15px !important;
+	padding-bottom: 15px !important;
+}
+mat-card.steps-item .add-button {
+	position: absolute;
+	left: 10px;
+	top: 7px;
+}
+
+.scenario-steps-item {
+	position: relative;
+}
+.scenario-steps-action {
+	position: absolute;
+	top: 17px;
+	right: 7px;
+}
+
+.step .mat-form-field {
+	width: 100%;
+}
+.then {
+	color: darkorange;
+}
+mat-card.step {
+	padding-top: 10px;
+	height: 75px;
+	padding-bottom: 0;
+	padding-right: 130px;
+}
+.given {
+	color: darkolivegreen;
+}
+mat-bottom-sheet-container.magenta-theme {
+	background-color: rgb(244, 244, 244) !important;
+	/* color: #fff; */
+	/* font-weight: bold; */
+}
+mat-bottom-sheet-container.magenta-theme mat-icon {
+	/* color: #000; */
+}
+mat-bottom-sheet-container.magenta-theme .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+mat-bottom-sheet-container.magenta-theme .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+	/* background-color: #fff !important;
+	color: #000 !important; */
+}
+
+mat-bottom-sheet-container.magenta-theme .mat-checkbox-checkmark-path {
+	/* stroke: #222 !important; */
+}
+
+/* Rules Module End */

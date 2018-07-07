@@ -1,0 +1,36 @@
+/*
+* Widget Module
+*/
+
+.diagram-box mat-card {
+	margin: 15px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.diagram-box .c3 {
+	direction: ltr;
+}
+
+#modify-diagram mat-slider {
+	width: 100px;
+	position: absolute;
+	top: 50px;
+	left: 0px;
+}
+
+.diagram-box .mat-accent .mat-slider-thumb,
+.diagram-box .mat-accent .mat-slider-thumb-label,
+.diagram-box .mat-accent .mat-slider-track-fill {
+	background-color: #333;
+}
+
+diagram-add dynamic-component-selector .mat-card {
+	height: 100%;
+	margin-top: 0 !important;
+}
+
+/* Widget Module end */

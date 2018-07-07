@@ -1,12 +1,12 @@
 <gridster [options]="options">
-    <div class="actions" *ngIf="havePermission$ | async">
-        <button mat-mini-fab (click)="addItem()">
+    <div class="actions">
+        <button mat-mini-fab (click)="addItem($event)">
             <mat-icon>add</mat-icon>
         </button>
-        <button mat-mini-fab (click)="openConfig()">
+        <button mat-mini-fab (click)="openConfig($event)" *ngIf="havePermission$ | async">
             <mat-icon>dashboard</mat-icon>
         </button>
-        <button mat-mini-fab (click)="saveConfig()">
+        <button mat-mini-fab (click)="saveConfig($event)">
             <mat-icon>done</mat-icon>
         </button>
     </div>
@@ -16,7 +16,7 @@
                 <button mat-icon-button (click)="removeItem(item)">
                     <mat-icon>delete</mat-icon>
                 </button>
-                <button mat-icon-button (click)="showConfig(item)">
+                <button *ngIf="item.type" mat-icon-button (click)="showConfig(item)">
                     <mat-icon>settings</mat-icon>
                 </button>
             </div>
