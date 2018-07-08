@@ -1,4 +1,6 @@
-import { LayoutModuleConfigModel } from "projects/soushians/layout/src/public_api";
+import { LayoutModuleConfigModel } from "@soushians/layout";
 
-export class ngsLayoutModuleConfig {}
+export class NgsLayoutModuleConfig implements LayoutModuleConfigModel {
+	static showMainSidenav = false;
+}
 // export class ngsLayoutModuleConfig implements LayoutModuleConfigModel {}

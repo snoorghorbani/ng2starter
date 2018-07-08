@@ -43,7 +43,9 @@ router.post("/", function(req, res) {
 			oid: req.body.oid,
 			// owner: req.user.id,
 			config: req.body.config,
-			items: (items as any).map((item: any) => item._id.toString())
+			$addToSet: {
+				items: (items as any).map((item: any) => item._id.toString())
+			}
 		};
 		if (!req.body._id) gridData._id = new ObjectId();
 

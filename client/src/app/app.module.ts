@@ -37,7 +37,7 @@ import { ngsSocketModuleConfig } from "./module-configs/ngs-socket.module-config
 import { ngsRuleModuleConfig } from "./module-configs/ngs-rule.module-config";
 import { NgsWidgetModuleConfig } from "./module-configs/ngs-widget.module-config";
 import { ngsUserModuleConfig } from "./module-configs/ngs-user.module-config";
-import { ngsLayoutModuleConfig } from "./module-configs/ngs-layout.module-config";
+import { NgsLayoutModuleConfig } from "./module-configs/ngs-layout.module-config";
 
 import { StaticPageModule } from "./static-page/static-page.module";
 
@@ -47,7 +47,6 @@ import { AppRoutingModule } from "./app-routing.module";
 import { reducers } from "./app.reducers";
 
 import { DashboardModule } from "./dashboard/dashboard.module";
-import { ruleModuleConfig } from "./gwt-steps";
 import { GwtStepsModule } from "./gwt-steps/gwt-steps.module";
 
 @NgModule({
@@ -64,12 +63,12 @@ import { GwtStepsModule } from "./gwt-steps/gwt-steps.module";
 
 		SharedModule,
 		SourceModule,
-		NgsLayoutModule.forRoot(),
+		NgsLayoutModule.forRoot(NgsLayoutModuleConfig),
 		NgsAuthenticationModule.forRoot(ngsAuthenticationModuleConfig),
 		NgsFrontendAuthenticationModule.forRoot(ngsFrontendAuthenticationModuleConfig),
 		NgsConfigModule.forRoot(ngsConfigModuleConfig),
 		NgsDiagramModule.forRoot(),
-		NgsUserModule.forRoot(),
+		NgsUserModule.forRoot(ngsUserModuleConfig),
 		NgsUserRoutingModule,
 		NgsSocketModule.forRoot(ngsSocketModuleConfig),
 		NgsWidgetModule.forRoot(NgsWidgetModuleConfig),
