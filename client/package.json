@@ -1,6 +1,6 @@
 {
 	"name": "@soushians/starter-client",
-	"version": "6.0.4",
+	"version": "6.0.4.4",
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve",
