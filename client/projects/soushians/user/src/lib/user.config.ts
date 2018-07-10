@@ -4,7 +4,7 @@ import { UserModel } from "./models";
 
 export interface UserModuleConfig {
 	endpoints?: {
-		//resetPasswordRequest: string;
+		// resetPasswordRequest: string;
 		changePassword?: string;
 		editProfile?: string;
 		getAccountInfo?: string;
@@ -19,13 +19,13 @@ export interface UserModuleConfig {
 		icon: string;
 		title: string;
 	}[];
-	responseToUserInfo: { (user: Observable<any>): Observable<UserModel> };
-	mapUserDisplayName: { (user: Observable<any>): Observable<string> };
+	responseToUserInfo?: (user: Observable<any>) => Observable<UserModel>;
+	mapUserDisplayName?: (user: Observable<any>) => Observable<string>;
 }
 
 export const MODULE_DEFAULT_CONFIG: UserModuleConfig = {
 	endpoints: {
-		//resetPasswordRequest: '',
+		// resetPasswordRequest: '',
 		changePassword: "",
 		editProfile: "",
 		getAccountInfo: "",
@@ -36,9 +36,9 @@ export const MODULE_DEFAULT_CONFIG: UserModuleConfig = {
 		profile_edit: ""
 	},
 	dashboardLinks: [],
-	responseToUserInfo: user$ => user$,
-	mapUserDisplayName: user$ =>
-		user$.map(user => {
+	responseToUserInfo: (user$) => user$,
+	mapUserDisplayName: (user$) =>
+		user$.map((user) => {
 			debugger;
 			return user.Username;
 		})

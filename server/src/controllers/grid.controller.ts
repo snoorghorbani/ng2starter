@@ -29,35 +29,37 @@ router.get("/:id", function(req, res) {
 	getGridWithItems(req.params.id, req.query.userId).then((Result: any) => res.json({ Result }));
 });
 router.post("/", function(req, res) {
-	Promise.all(
-		req.body.items.map((item: any) => {
-			if (!item._id) item._id = new ObjectId();
-			item.owner = req.query.userId;
+	GridItemModel.find({ owner: req.query.userId }).then((items) => items.forEach((item) => item.remove())).then(() => {
+		Promise.all(
+			req.body.items.map((item: any) => {
+				if (!item._id) item._id = new ObjectId();
+				item.owner = req.query.userId;
 
-			return GridItemModel.findByIdAndUpdate(item._id, item, { upsert: true, new: true });
-		})
-	).then((items) => {
-		const gridData: any = {
-			type: req.body.type,
-			name: req.body.name,
-			oid: req.body.oid,
-			// owner: req.user.id,
-			config: req.body.config,
-			$addToSet: {
-				items: (items as any).map((item: any) => item._id.toString())
-			}
-		};
-		if (!req.body._id) gridData._id = new ObjectId();
+				return GridItemModel.findByIdAndUpdate(item._id, item, { upsert: true, new: true });
+			})
+		).then((items) => {
+			const gridData: any = {
+				type: req.body.type,
+				name: req.body.name,
+				oid: req.body.oid,
+				// owner: req.user.id,
+				config: req.body.config,
+				$addToSet: {
+					items: (items as any).map((item: any) => item._id.toString())
+				}
+			};
+			if (!req.body._id) gridData._id = new ObjectId();
 
-		GridModel.findOneAndUpdate({ _id: req.body._id }, gridData, { upsert: true }).then((grid) => {
-			getGridWithItems(grid._id, req.query.userId)
-				.then((Result: any) => {
-					SocketMiddleware.server.dispatchActionToClients("[GRID][DB] UPSERT", [ Result ]);
-					res.send({ Result });
-				})
-				.catch((err: any) => {
-					debugger;
-				});
+			GridModel.findOneAndUpdate({ _id: req.body._id }, gridData, { upsert: true }).then((grid) => {
+				getGridWithItems(grid._id, req.query.userId)
+					.then((Result: any) => {
+						SocketMiddleware.server.dispatchActionToClients("[GRID][DB] UPSERT", [ Result ]);
+						res.send({ Result });
+					})
+					.catch((err: any) => {
+						debugger;
+					});
+			});
 		});
 	});
 });

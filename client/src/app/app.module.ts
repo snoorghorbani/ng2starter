@@ -36,7 +36,7 @@ import { ngsGridModuleConfig } from "./module-configs/ngs-grid.module-config";
 import { ngsSocketModuleConfig } from "./module-configs/ngs-socket.module-config";
 import { ngsRuleModuleConfig } from "./module-configs/ngs-rule.module-config";
 import { NgsWidgetModuleConfig } from "./module-configs/ngs-widget.module-config";
-import { ngsUserModuleConfig } from "./module-configs/ngs-user.module-config";
+import { NgsUserModuleConfig } from "./module-configs/ngs-user.module-config";
 import { NgsLayoutModuleConfig } from "./module-configs/ngs-layout.module-config";
 
 import { StaticPageModule } from "./static-page/static-page.module";
@@ -68,7 +68,7 @@ import { GwtStepsModule } from "./gwt-steps/gwt-steps.module";
 		NgsFrontendAuthenticationModule.forRoot(ngsFrontendAuthenticationModuleConfig),
 		NgsConfigModule.forRoot(ngsConfigModuleConfig),
 		NgsDiagramModule.forRoot(),
-		NgsUserModule.forRoot(ngsUserModuleConfig),
+		NgsUserModule.forRoot(NgsUserModuleConfig),
 		NgsUserRoutingModule,
 		NgsSocketModule.forRoot(ngsSocketModuleConfig),
 		NgsWidgetModule.forRoot(NgsWidgetModuleConfig),

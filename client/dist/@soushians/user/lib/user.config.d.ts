@@ -16,12 +16,8 @@ export interface UserModuleConfig {
         icon: string;
         title: string;
     }[];
-    responseToUserInfo: {
-        (user: Observable<any>): Observable<UserModel>;
-    };
-    mapUserDisplayName: {
-        (user: Observable<any>): Observable<string>;
-    };
+    responseToUserInfo?: (user: Observable<any>) => Observable<UserModel>;
+    mapUserDisplayName?: (user: Observable<any>) => Observable<string>;
 }
 export declare const MODULE_DEFAULT_CONFIG: UserModuleConfig;
 export declare const MODULE_CONFIG_TOKEN: InjectionToken<UserModuleConfig>;
