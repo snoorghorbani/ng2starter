@@ -16,10 +16,10 @@ export interface UserModuleConfig {
         icon: string;
         title: string;
     }[];
-    responseToUserInfo: {
+    responseToUserInfo?: {
         (user: Observable<any>): Observable<UserModel>;
     };
-    mapUserDisplayName: {
+    mapUserDisplayName?: {
         (user: Observable<any>): Observable<string>;
     };
 }

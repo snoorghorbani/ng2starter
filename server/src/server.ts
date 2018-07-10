@@ -45,7 +45,7 @@ const app: express.Application = express();
  * Connect to MongoDB.
  */
 // mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI);
+mongoose.connect(process.env.MONGODB_URI);
 
 mongoose.connection.on("error", () => {
 	console.log("MongoDB connection error. Please make sure MongoDB is running.");
@@ -74,7 +74,7 @@ app.use(cors(corsOptions));
 
 const MongoStore = mongo(express_session);
 const sessionStore = new MongoStore({
-	url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
+	url: process.env.MONGODB_URI,
 	autoReconnect: true
 });
 app.use(
