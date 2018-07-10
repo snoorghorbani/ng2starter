@@ -66,7 +66,7 @@ export class WidgetService {
 					}
 				})
 			)
-			.subscribe((FormSchemaModel) => subject.next(FormSchemaModel));
+			.subscribe((widget) => subject.next(widget));
 		return subject.asObservable();
 	}
 }
