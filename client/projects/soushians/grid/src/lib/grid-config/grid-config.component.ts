@@ -2,9 +2,9 @@ import { Component, Injector, Inject } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { AppState } from "../grid.reducer";
 import { GridModel } from "../models";
-import { GridsterConfig } from "angular-gridster2";
 import { MAT_BOTTOM_SHEET_DATA } from "@angular/material";
 import { FormGroup, FormControl } from "@angular/forms";
+
 import { UpsertGridStartAction } from "../services/api/upsert-grid/upsert-grid.actions";
 
 @Component({

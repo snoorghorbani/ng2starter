@@ -1,5 +1,5 @@
 import { createSelector, createFeatureSelector, Store, StoreModule } from '@ngrx/store';
-import { InjectionToken, Injectable, Inject, Component, Input, Output, EventEmitter, ViewChild, HostListener, NgModule, defineInjectable, inject } from '@angular/core';
+import { InjectionToken, Injectable, Inject, Component, Output, EventEmitter, Input, ViewChild, HostListener, NgModule, defineInjectable, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { getConfigs, NgsConfigModule } from '@soushians/config';
 import 'rxjs/Observable';

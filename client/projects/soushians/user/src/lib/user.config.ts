@@ -36,9 +36,9 @@ export const MODULE_DEFAULT_CONFIG: UserModuleConfig = {
 		profile_edit: ""
 	},
 	dashboardLinks: [],
-	responseToUserInfo: (user$) => user$,
-	mapUserDisplayName: (user$) =>
-		user$.map((user) => {
+	responseToUserInfo: user$ => user$,
+	mapUserDisplayName: user$ =>
+		user$.map(user => {
 			debugger;
 			return user.Username;
 		})

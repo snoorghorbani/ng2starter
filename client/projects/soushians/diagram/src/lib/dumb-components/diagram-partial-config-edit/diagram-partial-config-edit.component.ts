@@ -4,6 +4,7 @@ import { FormGroup } from "@angular/forms";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Subscription } from "rxjs";
 
+import { DiagramModel } from "../../models/diagram.model";
 import { DiagramService } from "../../services/diagram.service";
 
 @Component({
