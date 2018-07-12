@@ -1,0 +1,45 @@
+<mat-form-field fxFlexFill [formGroup]="group">
+
+  <!-- <input matInput [id]="config.name" [type]="config.inputType" [placeholder]="config.title" [formControlName]="config.name"> -->
+  <input matInput [id]="config.name" [matDatepicker]="_datepicker" [placeholder]="config.title" [formControlName]="config.name">
+  <mat-datepicker-toggle matSuffix [for]="_datepicker"></mat-datepicker-toggle>
+  <mat-datepicker #_datepicker></mat-datepicker>
+
+  <mat-error *ngIf="group.get(config.name).errors?.required">
+    {{config.validator.required.message}}
+  </mat-error>
+  <mat-error *ngIf="group.get(config.name).errors?.minlength">
+    {{config.validator.minlength.message}}
+  </mat-error>
+  <!-- <mat-error *ngIf="group.get(config.name).email?.minlength">
+    {{config.validator.email.message}}
+  </mat-error> -->
+
+  <!-- <div *ngIf="form.get(config.name).invalid && (form.get(config.name).dirty || form.get(config.name).touched)" class="alert alert-danger">
+  </div> -->
+
+</mat-form-field>
+
+<!-- 
+
+<div [formGroup]="formGroup">
+    <div class="field-wrapper">
+      <div [@filedAnimation]="mode">
+        <mat-form-field class="fit" [(ngClass)]="mode">
+            <input matInput [matDatepicker]="_datepicker" [placeholder]="placeholder" [formControlName]="controlName">
+            <mat-datepicker-toggle matSuffix [for]="_datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #_datepicker></mat-datepicker>
+            
+          <mat-icon class="tooltip md-18" *ngIf="tooltip" [matTooltip]="tooltip">help</mat-icon>
+        </mat-form-field>
+        <div class="value-box"> 
+          <span class="name">
+            {{ placeholder }} :
+          </span>
+          <span class="value">
+            {{(DisplayValue$ | async | persianDate)}} 
+          </span>
+          </div>
+      </div>
+    </div>
+</div> -->

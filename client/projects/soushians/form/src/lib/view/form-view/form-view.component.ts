@@ -35,6 +35,8 @@ import { FormService } from "../../services/form.service";
 import { MainContainerState } from "../../main-container/main-container.reducers";
 import { GetFormSchemaAction } from "../../list/list.actions";
 import { Field, FieldConfig, FormSchemaModel } from "../../models";
+import { DateFormInputControlComponent } from "../form-controls/date/date.component";
+import { FileFormInputControlComponent } from "../form-controls/file/file.component";
 
 @Component({
 	selector: "ngs-form-view",
@@ -152,6 +154,8 @@ export class FormViewComponent implements OnDestroy {
 const components: { [type: string]: Type<Field> } = {
 	checkbox: CheckboxComponent,
 	text: TextComponent,
+	date: DateFormInputControlComponent,
+	file: FileFormInputControlComponent,
 	table: TableComponent,
 	color: ColorComponent,
 	email: EmailComponent,
@@ -171,6 +175,7 @@ export class DynamicFieldDirective implements Field, OnChanges, OnInit {
 	constructor(private resolver: ComponentFactoryResolver, private container: ViewContainerRef) {}
 
 	ngOnChanges() {
+		debugger;
 		if (this.component) {
 			this.component.instance.config = this.config;
 			this.component.instance.group = this.group;
@@ -178,6 +183,7 @@ export class DynamicFieldDirective implements Field, OnChanges, OnInit {
 	}
 
 	ngOnInit() {
+		debugger;
 		if (!components[this.config.inputType]) {
 			const supportedTypes = Object.keys(components).join(", ");
 			throw new Error(
