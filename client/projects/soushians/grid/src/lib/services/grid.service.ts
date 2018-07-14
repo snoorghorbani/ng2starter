@@ -13,7 +13,6 @@ import { GridModel } from "../models";
 import { UpsertGridApiModel } from "./api/upsert-grid/upsert-grid.model";
 import { GetGridsApiModel } from "./api/get-grids/get-grids.model";
 import { GetGridStartAction } from "./api/get-grid/get-grid.actions";
-import { takeWhile } from "../../../../../../node_modules/rxjs-compat/operator/takeWhile";
 
 @Injectable({
 	providedIn: "root"
@@ -36,20 +35,21 @@ export class GridService {
 			combineLatest(this.userId$),
 			switchMap(([ config, userId ]) => {
 				debugger;
-				return this.http.get(stringTemplate(config.endpoints.get, { _id }), {
-					params: {
-						userId: userId
-					}
-				});
-			}),
-			map((response: UpsertGridApiModel.Response) => response.Result)
+				return this.http
+					.get(stringTemplate(config.env.frontend_server + config.endpoints.get, { _id }), {
+						params: {
+							userId: userId
+						}
+					})
+					.pipe(map((response: UpsertGridApiModel.Response) => response.Result));
+			})
 		);
 	}
 
 	getGrids(): Observable<GridModel[]> {
 		return this.configurationService.config$.pipe(
 			filter((config) => config.endpoints.find != ""),
-			switchMap((config) => this.http.get(config.endpoints.find)),
+			switchMap((config) => this.http.get(config.env.frontend_server + config.endpoints.find)),
 			map((response: GetGridsApiModel.Response) => response.Result)
 		);
 	}
@@ -60,7 +60,7 @@ export class GridService {
 			take(1),
 			combineLatest(this.userId$),
 			switchMap(([ config, userId ]) => {
-				return this.http.post(config.endpoints.upsert, model.getRequestBody(), {
+				return this.http.post(config.env.frontend_server + config.endpoints.upsert, model.getRequestBody(), {
 					params: {
 						userId: userId
 					}

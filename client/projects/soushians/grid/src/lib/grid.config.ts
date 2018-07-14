@@ -6,10 +6,9 @@ export interface IGridType {
 	viewComponent: any;
 }
 export interface GridModuleConfig {
-	development_uri?: string;
-	production_uri?: string;
 	env?: {
 		production: boolean;
+		frontend_server: string;
 	};
 	endpoints?: {
 		get: string;
@@ -18,17 +17,18 @@ export interface GridModuleConfig {
 	};
 	types?: { [key: string]: IGridType };
 }
+
 export const MODULE_DEFAULT_CONFIG: GridModuleConfig = {
-	development_uri: "http://localhost:3000",
-	production_uri: "",
 	env: {
-		production: false
+		production: false,
+		frontend_server: ""
 	},
 	endpoints: {
-		upsert: "http://localhost:3000/api/grid",
-		find: "http://localhost:3000/api/grid",
-		get: "http://localhost:3000/api/grid/${model._id}"
+		upsert: "/api/grid",
+		find: "/api/grid",
+		get: "/api/grid/${model._id}"
 	},
 	types: {}
 };
+
 export const MODULE_CONFIG_TOKEN = new InjectionToken<GridModuleConfig>("GridModuleConfig");
