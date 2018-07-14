@@ -5,6 +5,7 @@ export interface WidgetModuleConfig {
     production_uri?: string;
     env?: {
         production: boolean;
+        frontend_server: string;
     };
     endpoints?: {
         get: string;

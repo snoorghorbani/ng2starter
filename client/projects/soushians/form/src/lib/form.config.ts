@@ -1,7 +1,11 @@
 import { InjectionToken } from "@angular/core";
 
 export interface FormModuleConfig {
-	endpoints: {
+	env?: {
+		production: boolean;
+		frontend_server: string;
+	};
+	endpoints?: {
 		addForm: string;
 		editForm: string;
 		getForm: string;
@@ -10,6 +14,10 @@ export interface FormModuleConfig {
 	};
 }
 export const MODULE_DEFAULT_CONFIG: FormModuleConfig = {
+	env: {
+		production: false,
+		frontend_server: "frontend/server/did/not/set"
+	},
 	endpoints: {
 		addForm: "",
 		editForm: "",

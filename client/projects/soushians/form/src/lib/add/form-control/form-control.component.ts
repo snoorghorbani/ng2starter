@@ -19,7 +19,7 @@ export class FormControlComponent {
 		})
 	]);
 	tableOptions = new FormGroup({
-		dataEndpoint: new FormControl("http://localhost:3000/api/fake/packgeCompareSimpleList")
+		dataEndpoint: new FormControl("")
 	});
 	constructor() {}
 

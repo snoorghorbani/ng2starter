@@ -1,6 +1,6 @@
 import { env } from "./env";
 
-export const ngsFrontendAuthenticationModuleConfig = {
+export const NgsFrontendAuthenticationModuleConfig = {
 	env,
 	afterSignoutRedirectTo: "/",
 	endpoints: {

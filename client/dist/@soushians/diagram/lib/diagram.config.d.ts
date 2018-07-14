@@ -1,8 +1,9 @@
 import { InjectionToken } from "@angular/core";
 export interface DiagramModuleConfig {
-    endpoints: {};
+    endpoints?: {};
     env?: {
         production: boolean;
+        frontend_server: string;
     };
 }
 export declare const MODULE_DEFAULT_CONFIG: DiagramModuleConfig;

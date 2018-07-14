@@ -1,5 +1,5 @@
 import { env } from "./env";
 
-export const ngsAuthenticationModuleConfig = {
+export const NgsAuthenticationModuleConfig = {
 	env
 };

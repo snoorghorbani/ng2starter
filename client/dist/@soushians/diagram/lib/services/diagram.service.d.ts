@@ -1,16 +1,18 @@
-import { HttpClient } from "@angular/common/http";
-import { Observable, Subscription } from "rxjs/Rx";
-import { Store } from "@ngrx/store";
-import { DiagramConfigurationService } from "./diagram-configuration.service";
-import { FeatureState } from "../reducers";
-import { GetDiagramsApiModel } from "../models/get-diagrams-api.model";
-import { SourceModel } from "../models/source.model";
-import { AddDiagramApiModel } from "../models/add-diagram-api.model";
+import { HttpClient } from '@angular/common/http';
+import { Observable, Subscription } from 'rxjs/Rx';
+import { Store } from '@ngrx/store';
+import { DiagramConfigurationService } from './diagram-configuration.service';
+import { FeatureState } from '../reducers';
+import { GetDiagramsApiModel } from '../models/get-diagrams-api.model';
+import { SourceModel } from '../models/source.model';
+import { AddDiagramApiModel } from '../models/add-diagram-api.model';
+import { DiagramModuleConfig } from '../diagram.config';
 export declare class DiagramService {
     private http;
     private store;
-    private userConfigurationService;
-    constructor(http: HttpClient, store: Store<FeatureState>, userConfigurationService: DiagramConfigurationService);
+    private configurationService;
+    config: DiagramModuleConfig;
+    constructor(http: HttpClient, store: Store<FeatureState>, configurationService: DiagramConfigurationService);
     getDiagrams(): Observable<GetDiagramsApiModel.Response>;
     getSources(): Observable<SourceModel[]>;
     getGroups(): Observable<string[]>;

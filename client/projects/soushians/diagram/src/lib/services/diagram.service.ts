@@ -1,80 +1,93 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable, Subscription } from "rxjs/Rx";
-import { Store } from "@ngrx/store";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, Subscription } from 'rxjs/Rx';
+import { Store } from '@ngrx/store';
 declare var c3: any;
 
-import { DiagramConfigurationService } from "./diagram-configuration.service";
-import { FeatureState } from "../reducers";
-import { GetDiagramsApiModel } from "../models/get-diagrams-api.model";
-import { SourceModel } from "../models/source.model";
-import { AddDiagramApiModel } from "../models/add-diagram-api.model";
+import { DiagramConfigurationService } from './diagram-configuration.service';
+import { FeatureState } from '../reducers';
+import { GetDiagramsApiModel } from '../models/get-diagrams-api.model';
+import { SourceModel } from '../models/source.model';
+import { AddDiagramApiModel } from '../models/add-diagram-api.model';
+import { DiagramModuleConfig } from '../diagram.config';
 
 declare var _: any;
 
 @Injectable({
-	providedIn: "root"
+	providedIn: 'root'
 })
 export class DiagramService {
+	config: DiagramModuleConfig;
 	constructor(
 		private http: HttpClient,
 		private store: Store<FeatureState>,
-		private userConfigurationService: DiagramConfigurationService
-	) {}
+		private configurationService: DiagramConfigurationService
+	) {
+		this.config = this.configurationService.config;
+	}
 
 	getDiagrams(): Observable<GetDiagramsApiModel.Response> {
 		return this.http
-			.get<GetDiagramsApiModel.Response>("http://localhost:3000/api/diagram")
-			.map(response => response)
-			.catch(err => {
+			.get<GetDiagramsApiModel.Response>(this.config.env.frontend_server + '/api/diagram')
+			.map((response) => response)
+			.catch((err) => {
 				return Observable.throw(err);
 			});
 	}
 	getSources(): Observable<SourceModel[]> {
 		return this.http
-			.get("http://localhost:3000/api/source")
-			.map(response => (response as any).Result)
-			.catch(err => {
+			.get(this.config.env.frontend_server + '/api/source')
+			.map((response) => (response as any).Result)
+			.catch((err) => {
 				return Observable.throw(err);
 			});
 	}
 	getGroups(): Observable<string[]> {
 		return this.http
-			.get("http://localhost:3000/api/diagram/groups")
-			.map(response => (response as any).Result)
-			.catch(err => {
+			.get(this.config.env.frontend_server + '/api/diagram/groups')
+			.map((response) => (response as any).Result)
+			.catch((err) => {
 				return Observable.throw(err);
 			});
 	}
 	getDiagram(id: string): Observable<any> {
 		if (!id) debugger;
-		return this.http.get(`http://localhost:3000/api/diagram/${id}`).map(response => response).catch(err => {
-			return Observable.throw(err);
-		});
+		return this.http
+			.get(this.config.env.frontend_server + `/api/diagram/${id}`)
+			.map((response) => response)
+			.catch((err) => {
+				return Observable.throw(err);
+			});
 	}
 	addDiagram(data: any): Observable<AddDiagramApiModel.Response> {
 		var model = new AddDiagramApiModel.Request(data);
 		return this.http
-			.post<AddDiagramApiModel.Response>("http://localhost:3000/api/diagram", model.getRequestBody())
-			.map(response => response)
-			.catch(err => {
+			.post<AddDiagramApiModel.Response>(this.config.env.frontend_server + '/api/diagram', model.getRequestBody())
+			.map((response) => response)
+			.catch((err) => {
 				return Observable.throw(err);
 			});
 	}
 	updateDiagram(body: any): Observable<any> {
-		return this.http.put("http://localhost:3000/api/diagram", body).map(response => response).catch(err => {
-			return Observable.throw(err);
-		});
+		return this.http
+			.put(this.config.env.frontend_server + '/api/diagram', body)
+			.map((response) => response)
+			.catch((err) => {
+				return Observable.throw(err);
+			});
 	}
 	deleteDiagram(id: string): Observable<any> {
-		return this.http.delete(`http://localhost:3000/api/diagram/${id}`).map(response => response).catch(err => {
-			return Observable.throw(err);
-		});
+		return this.http
+			.delete(`${this.config.env.frontend_server}/api/diagram/${id}`)
+			.map((response) => response)
+			.catch((err) => {
+				return Observable.throw(err);
+			});
 	}
 	getData(source: SourceModel, time: number = 0, once: Boolean = false): Observable<any> {
 		if (once && time !== 0) {
 			return this.http
-				.get(`http://localhost:3000/api/data`, {
+				.get(`${this.config.env.frontend_server}/api/data`, {
 					params: {
 						sourceId: source._id,
 						time: this.getFloorTime(source.Interval, time).toString()
@@ -83,7 +96,7 @@ export class DiagramService {
 				.map((res: any) => res.Result);
 		} else if (source.Interval == 0) {
 			return this.http
-				.get(`http://localhost:3000/api/data`, {
+				.get(`${this.config.env.frontend_server}/api/data`, {
 					params: {
 						sourceId: source._id,
 						time: null
@@ -92,9 +105,9 @@ export class DiagramService {
 				.map((res: any) => res.Result);
 		} else {
 			time = time || Date.now();
-			return Observable.timer(0, source.Interval).switchMap(i =>
+			return Observable.timer(0, source.Interval).switchMap((i) =>
 				this.http
-					.get(`http://localhost:3000/api/data`, {
+					.get(`${this.config.env.frontend_server}/api/data`, {
 						params: {
 							sourceId: source._id,
 							time: this.getFloorTime(source.Interval, time).toString()
@@ -107,11 +120,11 @@ export class DiagramService {
 	extract_columns_from_data(data: any, columnsMappings) {
 		let res = [];
 
-		columnsMappings.forEach(item => {
+		columnsMappings.forEach((item) => {
 			var ValueData = _.getValue(data, item.ValuePath);
 
 			if (!item.NamePath) {
-				return res.push([ item.ValuePath.split(".").pop() ].concat(ValueData));
+				return res.push([ item.ValuePath.split('.').pop() ].concat(ValueData));
 			}
 			var NameData = _.getValue(data, item.NamePath);
 
@@ -127,7 +140,7 @@ export class DiagramService {
 		return _.report(data);
 	}
 	get_last_node_of_data(data: any) {
-		return (_.report(data) as any[]).filter(item => item.isLastNode);
+		return (_.report(data) as any[]).filter((item) => item.isLastNode);
 	}
 	buildChartConfig(columns) {
 		return {
@@ -147,7 +160,7 @@ export class DiagramService {
 			bindto: `#diagram_${id}`
 		});
 
-		return this.getData({} as SourceModel, sync).subscribe(data => {
+		return this.getData({} as SourceModel, sync).subscribe((data) => {
 			this.charts[id].load({
 				columns: this.extract_columns_from_data(data.Data, config.ColumnMappings)
 			});

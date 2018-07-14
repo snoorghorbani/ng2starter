@@ -9,7 +9,7 @@ export interface ConfigModuleConfig {
 }
 
 export const MODULE_DEFAULT_CONFIG: ConfigModuleConfig = {
-	dev_api_host: "http://localhost:3000",
+	dev_api_host: "dev_api_host/did/not/set",
 	prod_api_host: "config/module/config/not/set",
 	env: {
 		production: false

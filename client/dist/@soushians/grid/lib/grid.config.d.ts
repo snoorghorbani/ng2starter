@@ -6,10 +6,9 @@ export interface IGridType {
     viewComponent: any;
 }
 export interface GridModuleConfig {
-    development_uri?: string;
-    production_uri?: string;
     env?: {
         production: boolean;
+        frontend_server: string;
     };
     endpoints?: {
         get: string;

@@ -1,14 +1,14 @@
-import { Injectable } from "@angular/core";
-import { Observable, BehaviorSubject } from "rxjs";
-import { map, filter, tap, take, switchMap } from "rxjs/operators";
-import { Store } from "@ngrx/store";
-import { HttpClient } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { map, filter, tap, take, switchMap } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { HttpClient } from '@angular/common/http';
 
-import { AppState } from "../widget.reducer";
-import { WidgetConfigurationService } from "./widget-configuration.service";
-import { WidgetModel } from "../models/widget.model";
-import { stringTemplate } from "@soushians/shared";
-import { GetWidgetsApiModel, GetWidgetStartAction, UpsertWidgetApiModel } from "./api";
+import { AppState } from '../widget.reducer';
+import { WidgetConfigurationService } from './widget-configuration.service';
+import { WidgetModel } from '../models/widget.model';
+import { stringTemplate } from '@soushians/shared';
+import { GetWidgetsApiModel, GetWidgetStartAction, UpsertWidgetApiModel } from './api';
 
 // import { getWidgetModuleConfig } from "@soushians/config";
 
@@ -25,26 +25,30 @@ export class WidgetService {
 
 	get<T>(_id: string): Observable<WidgetModel<T>> {
 		return this.configurationService.config$.pipe(
-			filter((config) => config.endpoints.get !== ""),
+			filter((config) => config.endpoints.get !== ''),
 			take(1),
-			switchMap((config) => this.http.get(stringTemplate(config.endpoints.get, { _id }))),
+			switchMap((config) =>
+				this.http.get(stringTemplate(config.env.frontend_server + config.endpoints.get, { _id }))
+			),
 			map((response: UpsertWidgetApiModel.Response) => response.Result)
 		);
 	}
 
 	getWidgets(): Observable<WidgetModel<any>[]> {
 		return this.configurationService.config$.pipe(
-			filter((config) => config.endpoints.find != ""),
-			switchMap((config) => this.http.get(config.endpoints.find)),
+			filter((config) => config.endpoints.find != ''),
+			switchMap((config) => this.http.get(config.env.frontend_server + config.endpoints.find)),
 			map((response: GetWidgetsApiModel.Response) => response.Result)
 		);
 	}
 	upsert<T>(widget: UpsertWidgetApiModel.Request): Observable<WidgetModel<T>> {
 		const model = new UpsertWidgetApiModel.Request(widget);
 		return this.configurationService.config$.pipe(
-			filter((config) => config.endpoints.upsert != ""),
+			filter((config) => config.endpoints.upsert != ''),
 			take(1),
-			switchMap((config) => this.http.post(config.endpoints.upsert, model.getRequestBody())),
+			switchMap((config) =>
+				this.http.post(config.env.frontend_server + config.endpoints.upsert, model.getRequestBody())
+			),
 			map((response: UpsertWidgetApiModel.Response) => response.Result)
 		);
 	}

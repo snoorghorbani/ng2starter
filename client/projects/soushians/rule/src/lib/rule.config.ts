@@ -22,7 +22,7 @@ export const MODULE_DEFAULT_CONFIG: RuleModuleConfig = {
 	stepClasses: [],
 	env: {
 		production: false,
-		frontend_server: "http://localhost:3000"
+		frontend_server: "frontend_server/did/not/set"
 	}
 };
 export const MODULE_CONFIG_TOKEN = new InjectionToken<RuleModuleConfig>("RuleModuleConfig");

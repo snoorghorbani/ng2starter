@@ -27,7 +27,7 @@ export const MODULE_DEFAULT_CONFIG: FrontendAuthenticationModuleConfig = {
 	},
 	env: {
 		production: false,
-		frontend_server: "http://localhost:3000"
+		frontend_server: "frontend/server/not/set"
 	},
 	afterSignoutRedirectTo: "/"
 };

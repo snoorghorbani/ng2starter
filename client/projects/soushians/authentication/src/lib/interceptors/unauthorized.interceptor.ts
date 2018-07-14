@@ -29,6 +29,7 @@ export class UnauthorizedInterceptor implements HttpInterceptor {
 				if (!(err instanceof HttpErrorResponse)) return throwError(err);
 				if (err.status != 401) return throwError(err);
 				if (err.url.includes("logout")) return throwError(err);
+				if (err.url.includes("user/account/profile")) return throwError(err);
 
 				this.store.dispatch(new SignoutAction());
 

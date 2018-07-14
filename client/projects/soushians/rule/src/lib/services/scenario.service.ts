@@ -1,15 +1,15 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable, BehaviorSubject } from "rxjs/Rx";
-import { Store } from "@ngrx/store";
 import { filter, map, startWith, share } from "rxjs/operators";
+import { Observable, BehaviorSubject } from "rxjs/Rx";
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Store } from "@ngrx/store";
 
 import { stringTemplate } from "@soushians/shared";
 
 import { RuleConfigurationService } from "./rule-configuration.service";
-import { AppState } from "../rule.reducers";
 import { GwtScenarioModel } from "../models/gwt-scenario.model";
 import { RuleModuleConfig } from "../rule.config";
+import { AppState } from "../rule.reducers";
 
 @Injectable()
 export class ScenarioService {
@@ -27,12 +27,12 @@ export class ScenarioService {
 	upsert(scenario: GwtScenarioModel): Observable<GwtScenarioModel> {
 		const model = new GwtScenarioModel(scenario);
 		return this.http
-			.post(`${this.config.env.frontend_server}${this.config.endpoints.upsert}`, model.getRequsetBody())
+			.post(this.config.env.frontend_server + this.config.endpoints.upsert, model.getRequsetBody())
 			.pipe(map(response => response as GwtScenarioModel), share());
 	}
 	getAnchorScenarios(anchorId: string): Observable<GwtScenarioModel[]> {
 		return this.http
-			.get<any>(`${this.config.env.frontend_server}${stringTemplate(this.config.endpoints.get, { anchorId })}`)
+			.get<any>(this.config.env.frontend_server + stringTemplate(this.config.endpoints.get, { anchorId }))
 			.map(response => response.Result as GwtScenarioModel[]);
 	}
 	selectScenarioById(_id: string): Observable<GwtScenarioModel> {

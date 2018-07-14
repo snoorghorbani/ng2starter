@@ -7,6 +7,7 @@ export interface WidgetModuleConfig {
 	production_uri?: string;
 	env?: {
 		production: boolean;
+		frontend_server: string;
 	};
 	endpoints?: {
 		get: string;
@@ -16,15 +17,14 @@ export interface WidgetModuleConfig {
 	types?: IModuleConfigMapTypes;
 }
 export const MODULE_DEFAULT_CONFIG: WidgetModuleConfig = {
-	development_uri: "http://localhost:3000",
-	production_uri: "",
 	env: {
-		production: false
+		production: false,
+		frontend_server: "frontend_server/did/not/set"
 	},
 	endpoints: {
-		upsert: "http://localhost:3000/api/uiwidget",
-		find: "http://localhost:3000/api/uiwidget",
-		get: "http://localhost:3000/api/uiwidget/${model._id}"
+		upsert: "/api/uiwidget",
+		find: "/api/uiwidget",
+		get: "/api/uiwidget/${model._id}"
 	},
 	types: {}
 };

@@ -3,7 +3,7 @@
  */
 export * from './public_api';
 export { RoutingModule as ɵbb } from './lib/diagram-routing.module';
-export { MODULE_CONFIG_TOKEN as ɵe } from './lib/diagram.config';
+export { MODULE_CONFIG_TOKEN as ɵa } from './lib/diagram.config';
 export { BooleanoWidgetPartialConfigComponent as ɵl } from './lib/dumb-components/booleano-widget-partial-config/booleano-widget-partial-config.component';
 export { DiagramPartialConfigEditComponent as ɵi } from './lib/dumb-components/diagram-partial-config-edit/diagram-partial-config-edit.component';
 export { LinearDiagramPartialConfigComponent as ɵk } from './lib/dumb-components/linear-diagram-partial-config/linear-diagram-partial-config.component';
@@ -15,14 +15,14 @@ export { ServerConnectingTimeDiagramComponent as ɵp } from './lib/dumb-componen
 export { ServerStatusDiagramComponent as ɵq } from './lib/dumb-components/server-status-diagram/server-status-diagram.component';
 export { AddDiagramEffects as ɵba } from './lib/effects/add-diagram.effects';
 export { DiagramEffects as ɵz } from './lib/effects/diagrams.effects';
-export { FeatureState as ɵc } from './lib/reducers';
+export { FeatureState as ɵd } from './lib/reducers';
 export { diagramReducer as ɵw } from './lib/reducers/diagrams.reducer';
 export { Reducer as ɵx } from './lib/reducers/edit-diagram.reducer';
 export { DiagramReducers as ɵv } from './lib/reducers/index';
 export { ParentGuardReducer as ɵy } from './lib/reducers/parent-guard.reducer';
-export { DiagramConfigurationService as ɵd } from './lib/services/diagram-configuration.service';
-export { DiagramService as ɵb } from './lib/services/diagram.service';
-export { AddDiagramComponent as ɵa } from './lib/smart-components/add-diagram/add-diagram.component';
+export { DiagramConfigurationService as ɵe } from './lib/services/diagram-configuration.service';
+export { DiagramService as ɵc } from './lib/services/diagram.service';
+export { AddDiagramComponent as ɵb } from './lib/smart-components/add-diagram/add-diagram.component';
 export { DataMapperComponent as ɵs } from './lib/smart-components/data-mapper/data-mapper.component';
 export { DiagramModuleContainerComponent as ɵr } from './lib/smart-components/diagram-module-container/diagram-module-container.component';
 export { DiagramComponent as ɵm } from './lib/smart-components/diagram/diagram.component';

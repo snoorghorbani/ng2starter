@@ -1,5 +1,5 @@
 import { env } from "./env";
 
-export const ngsSocketModuleConfig = {
+export const NgsSocketModuleConfig = {
 	env
 };

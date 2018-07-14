@@ -1,6 +1,10 @@
 import { InjectionToken } from "@angular/core";
 export interface FormModuleConfig {
-    endpoints: {
+    env?: {
+        production: boolean;
+        frontend_server: string;
+    };
+    endpoints?: {
         addForm: string;
         editForm: string;
         getForm: string;
