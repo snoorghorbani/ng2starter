@@ -17,6 +17,7 @@ export interface GridModuleConfig {
 	};
 	types?: { [key: string]: IGridType };
 }
+
 export const MODULE_DEFAULT_CONFIG: GridModuleConfig = {
 	env: {
 		production: false,
@@ -29,4 +30,5 @@ export const MODULE_DEFAULT_CONFIG: GridModuleConfig = {
 	},
 	types: {}
 };
+
 export const MODULE_CONFIG_TOKEN = new InjectionToken<GridModuleConfig>("GridModuleConfig");

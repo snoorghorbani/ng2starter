@@ -9,7 +9,7 @@ import { DashboardComponent } from "./smart-components/dashboard/dashboard.compo
 import { NgsGridModule } from "@soushians/grid";
 
 @NgModule({
-	imports: [ CommonModule, SharedModule, DashboardRoutingModule, NgsWidgetModule, NgsGridModule.forRoot() ],
+	imports: [ CommonModule, SharedModule, DashboardRoutingModule, NgsWidgetModule, NgsGridModule ],
 	declarations: [ DashboardComponent ],
 	providers: []
 })
