@@ -18,7 +18,8 @@ import {
 	MatSlideToggleModule,
 	MatDividerModule,
 	MatCheckboxModule,
-	MatTableModule
+	MatTableModule,
+	MatDatepickerModule
 } from "@angular/material";
 import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
@@ -48,6 +49,8 @@ import { AddFormEffects } from "./add/add-form.effects";
 import { EditFormEffects } from "./edit/edit-form.effects";
 import { FormsListEffects } from "./list/list.effects";
 import { RoutingModule } from "./form-routing.module";
+import { DateFormInputControlComponent } from "./view/form-controls/date/date.component";
+import { FileFormInputControlComponent } from "./view/form-controls/file/file.component";
 
 @NgModule({
 	imports: [
@@ -58,6 +61,7 @@ import { RoutingModule } from "./form-routing.module";
 		MatExpansionModule,
 		MatSnackBarModule,
 		MatIconModule,
+		MatDatepickerModule,
 		MatButtonModule,
 		MatCardModule,
 		MatCheckboxModule,
@@ -89,6 +93,8 @@ import { RoutingModule } from "./form-routing.module";
 		CheckboxComponent,
 		EmailComponent,
 		ColorComponent,
+		DateFormInputControlComponent,
+		FileFormInputControlComponent,
 		TextComponent,
 		NumberComponent,
 		TableComponent
@@ -99,6 +105,8 @@ import { RoutingModule } from "./form-routing.module";
 		CheckboxComponent,
 		EmailComponent,
 		ColorComponent,
+		DateFormInputControlComponent,
+		FileFormInputControlComponent,
 		TextComponent,
 		NumberComponent,
 		TableComponent
