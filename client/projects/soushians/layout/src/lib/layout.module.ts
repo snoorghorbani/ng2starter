@@ -36,7 +36,7 @@ import { LogoContainerComponent } from "./dumb-components/logo-container/logo-co
 import { ToolbarMenuComponent } from "./dumb-components/toolbar-menu/toolbar-menu.component";
 import { FooterComponent } from "./dumb-components/footer/footer.component";
 import { TitleComponent } from "./dumb-components/title/title.component";
-import { MainComponent } from "./dumb-components/main/main.component";
+import { NgsLayoutMainComponent } from "./dumb-components/main/main.component";
 import { LayoutEffects } from "./layout.effects";
 import { RuleModule } from "@soushians/rule";
 
@@ -74,7 +74,7 @@ import { RuleModule } from "@soushians/rule";
 		ToolbarMenuComponent,
 		FooterComponent,
 		TitleComponent,
-		MainComponent
+		NgsLayoutMainComponent
 	],
 	exports: [
 		MainMenuComponent,
@@ -83,7 +83,7 @@ import { RuleModule } from "@soushians/rule";
 		ToolbarMenuComponent,
 		FooterComponent,
 		TitleComponent,
-		MainComponent
+		NgsLayoutMainComponent
 	]
 })
 export class NgsLayoutModule {

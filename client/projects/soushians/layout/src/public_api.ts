@@ -35,3 +35,6 @@ export {
 } from "./lib/actions";
 
 //components
+
+export { NgsLayoutMainComponent } from "./lib/dumb-components/main";
+export { LayoutOutlets } from "./lib/models/layout-outlets.enum";

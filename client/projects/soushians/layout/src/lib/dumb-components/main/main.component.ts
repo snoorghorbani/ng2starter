@@ -48,7 +48,7 @@ import { trigger, state, transition, animate, style } from "@angular/animations"
 		])
 	]
 })
-export class MainComponent {
+export class NgsLayoutMainComponent {
 	@Input("app-config") app_config: ConfigModel<any>;
 	mode$: Observable<"visible" | "invisible">;
 	user$: Observable<UserModel>;
