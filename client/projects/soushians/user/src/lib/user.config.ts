@@ -3,6 +3,11 @@ import { Observable } from "rxjs/Observable";
 import { UserModel } from "./models";
 
 export interface UserModuleConfig {
+	env?: {
+		production: boolean;
+		frontend_server: string;
+		server: string;
+	};
 	endpoints?: {
 		// resetPasswordRequest: string;
 		changePassword?: string;
@@ -24,6 +29,11 @@ export interface UserModuleConfig {
 }
 
 export const MODULE_DEFAULT_CONFIG: UserModuleConfig = {
+	env: {
+		production: false,
+		frontend_server: "user/module/frontend/server/did/not/set",
+		server: "user/module/server/did/not/set"
+	},
 	endpoints: {
 		// resetPasswordRequest: '',
 		changePassword: "",
@@ -36,9 +46,9 @@ export const MODULE_DEFAULT_CONFIG: UserModuleConfig = {
 		profile_edit: ""
 	},
 	dashboardLinks: [],
-	responseToUserInfo: user$ => user$,
-	mapUserDisplayName: user$ =>
-		user$.map(user => {
+	responseToUserInfo: (user$) => user$,
+	mapUserDisplayName: (user$) =>
+		user$.map((user) => {
 			debugger;
 			return user.Username;
 		})

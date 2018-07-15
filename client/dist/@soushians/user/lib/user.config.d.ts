@@ -2,6 +2,11 @@ import { InjectionToken } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { UserModel } from "./models";
 export interface UserModuleConfig {
+    env?: {
+        production: boolean;
+        frontend_server: string;
+        server: string;
+    };
     endpoints?: {
         changePassword?: string;
         editProfile?: string;

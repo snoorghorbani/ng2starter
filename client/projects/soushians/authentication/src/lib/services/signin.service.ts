@@ -28,10 +28,12 @@ export class SigninService {
 
 	signin(model: any): Observable<UserModel> {
 		return this.configurationService.config$.pipe(
-			filter(config => config.endpoints.signIn != ""),
+			filter((config) => config.endpoints.signIn != ""),
 			take(1),
-			switchMap(config => this.http.post<Signin_ApiModel.Response>(config.endpoints.signIn, model)),
-			map(response => {
+			switchMap((config) =>
+				this.http.post<Signin_ApiModel.Response>(config.env.server + config.endpoints.signIn, model)
+			),
+			map((response) => {
 				const user: any = Object.assign({}, response.Result);
 				if (user.Role) {
 					user.Roles = [ user.Role ];
@@ -53,13 +55,15 @@ export class SigninService {
 		// });
 	}
 
+	// TODO:
 	signout(): Observable<any> {
-		return this.http.get(this.configurationService.config.endpoints.signOut).map(response => response);
+		return this.http
+			.get(this.configurationService.config.env.server + this.configurationService.config.endpoints.signOut)
+			.map((response) => response);
 	}
 
+	// TODO: remove it
 	whoAmI(): Observable<any> {
-		return this.http.get(this.configurationService.config.endpoints.whoAmI).map(response => response);
+		return this.http.get(this.configurationService.config.endpoints.whoAmI).map((response) => response);
 	}
 }
-
-export var SigninServiceStub = {};

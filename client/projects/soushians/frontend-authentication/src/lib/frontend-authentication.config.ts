@@ -9,9 +9,10 @@ export interface FrontendAuthenticationModuleConfig {
 	forms?: {
 		signIn: string;
 	};
-	env: {
+	env?: {
 		production: boolean;
 		frontend_server: string;
+		server: string;
 	};
 	afterSignoutRedirectTo?: string;
 }
@@ -27,7 +28,8 @@ export const MODULE_DEFAULT_CONFIG: FrontendAuthenticationModuleConfig = {
 	},
 	env: {
 		production: false,
-		frontend_server: "frontend/server/not/set"
+		frontend_server: "auth/module/frontend/server/not/set",
+		server: "auth/module/server/not/set"
 	},
 	afterSignoutRedirectTo: "/"
 };

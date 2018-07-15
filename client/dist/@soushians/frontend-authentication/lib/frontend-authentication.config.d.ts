@@ -8,9 +8,10 @@ export interface FrontendAuthenticationModuleConfig {
     forms?: {
         signIn: string;
     };
-    env: {
+    env?: {
         production: boolean;
         frontend_server: string;
+        server: string;
     };
     afterSignoutRedirectTo?: string;
 }

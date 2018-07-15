@@ -15,4 +15,3 @@ export declare class SigninService {
     signout(): Observable<any>;
     whoAmI(): Observable<any>;
 }
-export declare var SigninServiceStub: {};

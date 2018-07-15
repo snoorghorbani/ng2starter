@@ -9,7 +9,6 @@ export declare class ConfigService {
     private store;
     private configurationService;
     responseCache: any;
-    configsEndpoint: string;
     constructor(http: HttpClient, store: Store<ConfigState>, configurationService: ConfigurationService);
     getConfigs(): Observable<ConfigModel<any>[]>;
     getConfigByName(name: string): Observable<any>;

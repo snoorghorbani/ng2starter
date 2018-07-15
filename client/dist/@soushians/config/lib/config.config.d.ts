@@ -1,9 +1,8 @@
 import { InjectionToken } from "@angular/core";
 export interface ConfigModuleConfig {
-    dev_api_host?: string;
-    prod_api_host?: string;
     env?: {
         production: boolean;
+        frontend_server: string;
     };
 }
 export declare const MODULE_DEFAULT_CONFIG: ConfigModuleConfig;

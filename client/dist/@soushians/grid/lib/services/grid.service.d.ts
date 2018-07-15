@@ -1,11 +1,11 @@
-import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { HttpClient } from '@angular/common/http';
-import { UserFacadeService } from '@soushians/user';
-import { AppState } from '../grid.reducer';
-import { GridConfigurationService } from './grid-configuration.service';
-import { GridModel } from '../models';
-import { UpsertGridApiModel } from './api/upsert-grid/upsert-grid.model';
+import { Observable } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { Store } from "@ngrx/store";
+import { UserFacadeService } from "@soushians/user";
+import { GridConfigurationService } from "./grid-configuration.service";
+import { UpsertGridApiModel } from "./api/upsert-grid/upsert-grid.model";
+import { AppState } from "../grid.reducer";
+import { GridModel } from "../models";
 export declare class GridService {
     private http;
     private store;
