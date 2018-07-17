@@ -71,6 +71,10 @@
       "@soushians/test": [
         "dist/soushians/test"
       ],
+      "configs": [
+        // "dist/configs"
+        "projects/configs/src/public_api"
+      ],
       "socket.io-client": ["./node_modules/socket.io-client/dist/socket.io.slim.js"],
     }
   }

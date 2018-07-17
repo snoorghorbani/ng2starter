@@ -29,24 +29,26 @@ import { RuleModule } from "@soushians/rule";
 /**
  *  module configs
  * */
-import { NgsFrontendAuthenticationModuleConfig } from "./module-configs/ngs-frontend-authentication.module-config";
-import { NgsAuthenticationModuleConfig } from "./module-configs/ngs-authentication.module-config";
-import { NgsDiagramModuleConfig } from "./module-configs/ngs-diagram.module-config";
-import { NgsLayoutModuleConfig } from "./module-configs/ngs-layout.module-config";
-import { NgsConfigModuleConfig } from "./module-configs/ngs-config.module-config";
-import { NgsWidgetModuleConfig } from "./module-configs/ngs-widget.module-config";
-import { NgsSocketModuleConfig } from "./module-configs/ngs-socket.module-config";
-import { NgsGridModuleConfig } from "./module-configs/ngs-grid.module-config";
-import { NgsRuleModuleConfig } from "./module-configs/ngs-rule.module-config";
-import { NgsUserModuleConfig } from "./module-configs/ngs-user.module-config";
-import { NgsFormModuleConfig } from "./module-configs/ngs-form.module-config";
+import {
+	NgsFrontendAuthenticationModuleConfig,
+	NgsAuthenticationModuleConfig,
+	NgsDiagramModuleConfig,
+	NgsLayoutModuleConfig,
+	NgsConfigModuleConfig,
+	NgsWidgetModuleConfig,
+	NgsSocketModuleConfig,
+	NgsGridModuleConfig,
+	NgsRuleModuleConfig,
+	NgsUserModuleConfig,
+	NgsFormModuleConfig,
+	GwtStepsModule
+} from "configs";
 
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { reducers } from "./app.reducers";
 
 import { DashboardModule } from "./dashboard/dashboard.module";
-import { GwtStepsModule } from "./gwt-steps/gwt-steps.module";
 
 @NgModule({
 	imports: [
