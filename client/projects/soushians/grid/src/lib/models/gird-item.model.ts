@@ -4,6 +4,8 @@ export interface IGridItemModel<T> extends GridsterItem {
 	_id: string;
 	oid: string;
 	name: string;
+	valid: boolean;
+	owner: boolean;
 	type: string;
 	config: T;
 }

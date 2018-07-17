@@ -46,8 +46,10 @@ export class DynamicGridItemViewDirective implements OnInit {
 		  		 Supported types: ${supportedTypes}`
 			);
 		}
-		const component = this.resolver.resolveComponentFactory<any>(this.mapTypeToComponent[item.type].viewComponent);
-		this.component = this.container.createComponent(component);
+		const componentFactory = this.resolver.resolveComponentFactory<any>(
+			this.mapTypeToComponent[item.type].viewComponent
+		);
+		this.component = this.container.createComponent(componentFactory);
 		Object.keys(item.config || {}).forEach((key) => {
 			this.component.instance[key] = item.config[key];
 		});

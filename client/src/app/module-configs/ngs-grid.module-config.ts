@@ -1,8 +1,8 @@
-import { env } from './env';
+import { env } from "./env";
 
-import { DiagramSelectorComponent, diagramViewComponent } from '@soushians/diagram';
-import { WidgetSelectorComponent } from '@soushians/widget';
-import { DynamicWidgetViewComponent } from '@soushians/widget';
+import { DiagramSelectorComponent, diagramViewComponent } from "@soushians/diagram";
+import { DynamicWidgetViewComponent } from "@soushians/widget";
+import { WidgetSelectorComponent } from "@soushians/widget";
 
 export const NgsGridModuleConfig = {
 	types: {
