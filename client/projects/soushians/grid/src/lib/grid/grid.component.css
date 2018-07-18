@@ -4,8 +4,13 @@
 	display: block;
 	direction: ltr;
 }
+
 .initializer {
-	padding: 25px;
+	position: absolute;
+	z-index: 10;
+	top: 5px;
+	left: 5px;
+	height: 25px;
 }
 
 .actions {
@@ -17,4 +22,16 @@
 
 .actions button {
 	margin-left: 10px;
+}
+.widget-content {
+	position: relative;
+	height: 100%;
+}
+.form-container {
+	padding: 25px;
+	width: 100%;
+	direction: rtl;
+}
+.form-container mat-form-field {
+	width: 100%;
 }

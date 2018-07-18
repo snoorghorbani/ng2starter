@@ -58,8 +58,8 @@
         // "projects/soushians/widget-types/src/public_api"
       ],
       "@soushians/grid": [
-        "dist/@soushians/grid"
-        // "projects/soushians/grid/src/public_api"
+        /// "dist/@soushians/grid"
+         "projects/soushians/grid/src/public_api"
       ],
       "@soushians/rule": [
         "dist/@soushians/rule"

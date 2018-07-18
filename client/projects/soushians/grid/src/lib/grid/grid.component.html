@@ -12,22 +12,43 @@
     </div>
     <gridster-item [item]="item" *ngFor="let item of grid.items">
         <div class="initializer" fxLayout="row" fxLayoutAlign="space-between center">
-            <div fxFlex="nogrow">
+            <div fxFlex="nogrow"> 
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_horiz</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="showConfig(item)">
+                        <mat-icon>settings</mat-icon>
+                        <span>تنظیمات</span>
+                    </button>
+                    <button mat-menu-item  *ngIf="item.type" (click)="removeItem(item)">
+                        <mat-icon>delete</mat-icon>
+                        <span>حذف</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </div>
+        <div class="widget-content">
+            <div *ngIf="!item.valid" fxFlex="100" class="form-container">
+                <h4>تنظیمات</h4>
+                <mat-form-field fxFlex="grow">
+                    <mat-select placeholder="Grid Item Type" [(ngModel)]="item.type" (selectionChange)="gridItemTypeChanged(item)">
+                        <mat-option *ngFor="let item of gridItemTypes" [value]="item">
+                            {{item}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        <div *ngIf="item.valid" [ngsDynamicGridItemView]="item"></div>
+    </div>
+    </gridster-item>
+</gridster>
+
+            <!-- 
                 <button mat-icon-button (click)="removeItem(item)">
                     <mat-icon>delete</mat-icon>
                 </button>
                 <button *ngIf="item.type" mat-icon-button (click)="showConfig(item)">
                     <mat-icon>settings</mat-icon>
                 </button>
-            </div>
-        </div>
-        <mat-form-field *ngIf="!item.valid"  fxFlex="100">
-            <mat-select placeholder="Grid Item Type" [(ngModel)]="item.type" (selectionChange)="gridItemTypeChanged(item)">
-                <mat-option *ngFor="let item of gridItemTypes" [value]="item">
-                    {{item}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <div *ngIf="item.valid" [ngsDynamicGridItemView]="item"></div>
-    </gridster-item>
-</gridster>
+            </div> -->

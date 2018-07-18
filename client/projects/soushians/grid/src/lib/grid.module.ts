@@ -19,7 +19,9 @@ import {
 	MatDividerModule,
 	MatCheckboxModule,
 	MatTableModule,
-	MatBottomSheetModule
+	MatBottomSheetModule,
+	MatMenuModule,
+	MatToolbarModule
 } from "@angular/material";
 import { EffectsModule } from "@ngrx/effects";
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -59,6 +61,8 @@ import { DynamicGridItemViewDirective } from "./grid-item/dynamic-grid-item-view
 		MatBottomSheetModule,
 		MatRadioModule,
 		FlexLayoutModule,
+		MatMenuModule,
+		MatToolbarModule,
 		FormsModule,
 		ReactiveFormsModule,
 		MatSlideToggleModule,

@@ -8,5 +8,17 @@ gridster {
 gridster mat-card {
 	box-shadow: none !important;
 }
+gridster .diagram-box {
+	margin: 0 !important;
+}
+gridster gridster-item .initializer {
+	transition: all .4s ease;
+	opacity: 0;
+	visibility: hidden;
+}
+gridster gridster-item:hover .initializer {
+	visibility: visible;
+	opacity: 1;
+}
 
 /* Grid Module end */

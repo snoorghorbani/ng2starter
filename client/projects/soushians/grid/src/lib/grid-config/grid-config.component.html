@@ -1,28 +1,28 @@
-<div fxLayout="row wrap" fxLayoutAlign="center center">
-    <div fxFlex="100" [formGroup]="gridFormGroup">
-        <mat-form-field>
-            <input matInput placeholder="name" formControlName="name">
+<h4> تنظیمات داشبورد</h4>
+<div fxLayout="column wrap" fxLayoutGap="15px">
+    <div fxFlex="100" fxLayout="row wrap" [formGroup]="gridFormGroup">
+        <mat-form-field fxFlex="20">
+            <input matInput placeholder="نام" formControlName="name">
         </mat-form-field>
     </div>
-
-    <div  fxFlex="100" [formGroup]="configFormGroup">
-        <div fxFlex="100" fxLayout="row wrap" fxLayoutGap="25px">
-            <mat-form-field>
-                <mat-select placeholder="Grid Type" formControlName="gridType">
+    <div fxLayout="column wrap" fxLayoutGap="15px"  fxFlex="100" [formGroup]="configFormGroup">
+        <div fxLayout="row wrap" fxLayoutGap="25px">
+            <mat-form-field fxFlex="20">
+                <mat-select placeholder="نوع قرارگیری گریدها در صفحه" formControlName="gridType">
                     <mat-option *ngFor="let item of gridTypes" [value]="item">
                         {{item}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field>
-                <mat-select placeholder="Compact Type" formControlName="compactType">
+            <mat-form-field fxFlex="20">
+                <mat-select placeholder="نوع فشرده شدن گریدها در صفحه" formControlName="compactType">
                     <mat-option *ngFor="let item of compactType" [value]="item">
                         {{item}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field>
-                <mat-select placeholder="Display Grid" formControlName="displayGrid">
+            <mat-form-field fxFlex="20">
+                <mat-select placeholder="نشان دادن سلول‌های گرید" formControlName="displayGrid">
                     <mat-option *ngFor="let item of displayGridTypes" [value]="item">
                         {{item}}
                     </mat-option>
@@ -30,52 +30,53 @@
             </mat-form-field>
         </div>
         <div fxFlex="100" fxLayout="row wrap" fxLayoutGap="25px">
-            <div>
-                <mat-checkbox formControlName="enableEmptyCellDrag">enableEmptyCellDrag</mat-checkbox>
+            <div fxFlex="20">
+                <mat-checkbox formControlName="enableEmptyCellDrag">ایجاد گرید با درگ کردن</mat-checkbox>
                 <!-- <mat-checkbox formControlName="enableEmptyCellClick">enableEmptyCellClick</mat-checkbox> -->
             </div>
-            <div [formGroup]="configFormGroup.get('draggable')">
-                <mat-checkbox formControlName="enabled">enable draggable</mat-checkbox>
+            <div fxFlex="20" [formGroup]="configFormGroup.get('draggable')">
+                <mat-checkbox formControlName="enabled">قابلیت جابجایی گریدها</mat-checkbox>
             </div>
-            <div [formGroup]="configFormGroup.get('resizable')">
-                <mat-checkbox formControlName="enabled">enable resizable</mat-checkbox>
+            <div fxFlex="20" [formGroup]="configFormGroup.get('resizable')">
+                <mat-checkbox formControlName="enabled">قابلیت تغییر سایز گریدها</mat-checkbox>
             </div>
         </div>
         <!-- Margins -->
-        <div fxFlex="100" fxLayout="row wrap" fxLayoutGap="25px">
-            <h3 fxFlex="100">حاشیه</h3>
-            <div fxFlex="100">
-                <mat-checkbox fxFlex formControlName="outerMargin">outerMargin</mat-checkbox>
+        <div fxFlex="100" fxLayout="column wrap" fxLayoutGap="25px">
+            <h4 fxFlex="100">حاشیه:</h4>
+            <div fxFlex fxLayout="column" fxLayoutGap="25px">
+                <mat-checkbox fxFlex formControlName="outerMargin">امکان تنظیم فاصله گریدها</mat-checkbox>
             </div>
-            <div fxFlex="100" fxLayout="row wrap" fxLayoutGap="25px">
+            <div fxFlex="100"  fxLayout="row wrap" fxLayoutGap="25px">
                 <mat-form-field fxFlex>
-                    <input matInput type="number" placeholder="margin" formControlName="margin" />
+                    <input matInput type="number" placeholder="فاصله گریدها از هم" formControlName="margin" />
                 </mat-form-field>
                 <mat-form-field fxFlex>
-                    <input matInput type="number" placeholder="outerMarginTop" formControlName="outerMarginTop" />
+                    <input matInput type="number" placeholder="فاصله گریدها ار بالا داشبورد" formControlName="outerMarginTop" />
                 </mat-form-field>
                 <mat-form-field fxFlex>
-                    <input matInput type="number" placeholder="outerMarginRight" formControlName="outerMarginRight" />
+                    <input matInput type="number" placeholder="فاصله گریدها از راست داشبورد" formControlName="outerMarginRight" />
                 </mat-form-field>
                 <mat-form-field fxFlex>
-                    <input matInput type="number" placeholder="outerMarginBottom" formControlName="outerMarginBottom" />
+                    <input matInput type="number" placeholder="فاصله گریدها از پایین داشبورد" formControlName="outerMarginBottom" />
                 </mat-form-field>
                 <mat-form-field fxFlex>
-                    <input matInput type="number" placeholder="outerMarginLeft" formControlName="outerMarginLeft" />
+                    <input matInput type="number" placeholder="فاصله گریدها از چپ داشبورد" formControlName="outerMarginLeft" />
                 </mat-form-field>
             </div>
         </div>
-
         <!-- Grid Size -->
         <div fxFlex="100" fxLayout="row wrap" fxLayoutGap="25px">
-            <h3 fxFlex="100">گرید</h3>
-            <mat-form-field fxFlex>
-                <input matInput type="number" placeholder="minCols" formControlName="minCols" />
+            <h4 fxFlex="100">تعداد ستون‌ها:</h4>
+            <mat-form-field fxFlex="18">
+                <input matInput type="number" placeholder="کمترین ستون" formControlName="minCols" />
             </mat-form-field>
-            <mat-form-field fxFlex>
-                <input matInput type="number" placeholder="maxCols" formControlName="maxCols" />
+            <mat-form-field fxFlex="18">
+                <input matInput type="number" placeholder="بیشترین ستون" formControlName="maxCols" />
             </mat-form-field>
-        </div>
-        <button fxFlex="100" color="primary" mat-raised-button (click)="save()">Save</button>
+        </div> 
+        <div fxFlex="20" fxLayoutAlign="flex-end center" fxLayout="row wrap" fxLayoutGap="25px">
+         <button color="primary" mat-raised-button (click)="save()">ذخیره</button>
     </div>
+</div>
 </div>
