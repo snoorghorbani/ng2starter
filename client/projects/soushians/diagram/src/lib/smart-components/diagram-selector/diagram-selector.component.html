@@ -1,5 +1,10 @@
-<mat-select placeholder="Diagrams" [(ngModel)]="selectedDiagramId" name="selectedDiagramId">
+<div fxLayout="column wrap" fxLayoutGap="15px">
+<h4>لیست نمودارها</h4>
+      <mat-form-field fxFlex="100">
+  <mat-select placeholder="نمودار ها" [(ngModel)]="selectedDiagramId" name="selectedDiagramId">
   <mat-option *ngFor="let item of (diagrams$ | async)" [value]="item._id">
-    {{item._id}}
+    {{item.Name}}
   </mat-option>
 </mat-select>
+</mat-form-field>
+</div>

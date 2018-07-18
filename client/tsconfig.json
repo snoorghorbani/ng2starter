@@ -40,8 +40,8 @@
         "dist/@soushians/form"
       ],
       "@soushians/diagram": [
-        "dist/@soushians/diagram"
-        // "projects/soushians/diagram/src/public_api"
+        // "dist/@soushians/diagram"
+         "projects/soushians/diagram/src/public_api"
       ],
       "@soushians/source": [
         "dist/@soushians/source"
@@ -50,8 +50,8 @@
         "dist/@soushians/socket",
       ],
       "@soushians/widget": [
-        "dist/@soushians/widget"
-        // "projects/soushians/widget/src/public_api"
+      //  "dist/@soushians/widget"
+       "projects/soushians/widget/src/public_api"
       ],
       "@soushians/widget-types": [
         "dist/@soushians/widget-types"

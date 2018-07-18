@@ -1,5 +1,10 @@
-<mat-select placeholder="Grid Type" [(ngModel)]="selectedWidgetId" name="selectedWidgetId">
+<div fxLayout="column wrap" fxLayoutGap="15px">
+  <h4>لیست ویجت‌ها</h4>
+        <mat-form-field fxFlex="100">
+<mat-select placeholder="نوع ویجت" [(ngModel)]="selectedWidgetId" name="selectedWidgetId">
   <mat-option *ngFor="let item of (widgets$ | async)" [value]="item._id">
     {{item.type}} : <b>{{item.name}}</b>
   </mat-option>
-</mat-select>
+</mat-select> 
+</mat-form-field>
+</div>
