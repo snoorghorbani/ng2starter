@@ -18,6 +18,7 @@ import { WidgetService } from "../services/widget.service";
 import { WidgetConfigurationService } from "../services/widget-configuration.service";
 
 @Component({
+	selector: "widget",
 	template: ""
 })
 export class DynamicWidgetViewComponent implements OnInit {
@@ -38,12 +39,12 @@ export class DynamicWidgetViewComponent implements OnInit {
 		this._fill_component_map();
 	}
 	ngOnInit() {
-		this.widget$.pipe(filter((widget) => widget != undefined)).subscribe((widget) => {
+		this.widget$.pipe(filter(widget => widget != undefined)).subscribe(widget => {
 			this._resolve_correct_component_base_on_widget_type(widget);
 		});
 	}
 	_fill_component_map() {
-		this.configurationService.config$.pipe(map((config) => config.types), startWith({})).subscribe((types) => {
+		this.configurationService.config$.pipe(map(config => config.types), startWith({})).subscribe(types => {
 			debugger;
 			this.mapTypeToComponent = types;
 		});
@@ -62,6 +63,6 @@ export class DynamicWidgetViewComponent implements OnInit {
 		}
 		const component = this.resolver.resolveComponentFactory<any>(this.mapTypeToComponent[widget.type].view);
 		this.component = this.container.createComponent(component);
-		this.widget$.subscribe((w) => (this.component.instance.widget = w));
+		this.widget$.subscribe(w => (this.component.instance.widget = w));
 	}
 }

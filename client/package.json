@@ -71,6 +71,7 @@
 		"@types/node": "^9.4.6",
 		"@types/request": "^2.47.0",
 		"@types/supertest": "^2.0.4",
+		"angular-froala-wysiwyg": "^2.8.4",
 		"angular-gridster2": "^6.0.5",
 		"async": "^2.6.0",
 		"bcrypt-nodejs": "^0.0.3",

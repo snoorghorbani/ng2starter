@@ -18,6 +18,7 @@ import {
 	MatCheckboxModule,
 	MatTableModule
 } from "@angular/material";
+import { FroalaEditorModule, FroalaViewModule } from "angular-froala-wysiwyg";
 
 import { ArticleUpsertComponent } from "./article/article-upsert/article-upsert.component";
 import { ArticleViewComponent } from "./article/article-view/article-view.component";
@@ -42,8 +43,10 @@ import { ArticleViewComponent } from "./article/article-view/article-view.compon
 		MatSlideToggleModule,
 		MatDividerModule,
 		MatCheckboxModule,
-		MatTableModule
+		MatTableModule,
 		// EditorModule
+		FroalaEditorModule.forRoot(),
+		FroalaViewModule.forRoot()
 	],
 	declarations: [ ArticleUpsertComponent, ArticleViewComponent ],
 	entryComponents: [ ArticleUpsertComponent, ArticleViewComponent ],

@@ -9,10 +9,7 @@
   <mat-divider></mat-divider>
   <h3>تنظیمات ویجت</h3>
     <div [formGroup]="configFormGroup">
-        <!-- <editor apiKey="test" [init]="{plugins: 'link'}"></editor> -->
-        <mat-form-field>
-            <input type="text" matInput placeholder="متن تایید"  formControlName="content">
-          </mat-form-field>
+        <div [froalaEditor] formControlName="content"></div>
     </div>
     </mat-card-content>
     <mat-card-actions>

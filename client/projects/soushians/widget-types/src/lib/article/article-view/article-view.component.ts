@@ -3,6 +3,7 @@ import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
 
 import { WidgetModel, IWidgetView } from "@soushians/widget";
+import { getFrontendAuthenticationState } from "@soushians/frontend-authentication";
 
 import { ArticleWidgetConfigModel } from "../article-widget-config.model";
 
@@ -14,7 +15,10 @@ import { ArticleWidgetConfigModel } from "../article-widget-config.model";
 export class ArticleViewComponent implements OnInit, IWidgetView<ArticleWidgetConfigModel> {
 	// tslint:disable-next-line:no-input-rename
 	widget: WidgetModel<ArticleWidgetConfigModel>;
+	havePermission$: Observable<boolean>;
 	constructor(private store: Store<any>) {}
 
-	ngOnInit() {}
+	ngOnInit() {
+		this.havePermission$ = this.store.select(getFrontendAuthenticationState);
+	}
 }

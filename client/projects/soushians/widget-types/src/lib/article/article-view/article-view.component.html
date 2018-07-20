@@ -1,10 +1,5 @@
-<mat-card>
-  <mat-card-title>{{widget.name}}</mat-card-title>
-  <mat-card-content>
-    <p>
-      article-view works!
-    </p>
-    <!-- <editor apiKey="test" [init]="{plugins: 'link'}"></editor> -->
-    {{(widget)?.Config.content}}
-  </mat-card-content>
-</mat-card>
+<button mat-mini-fab color="accent" *ngIf="havePermission$ | async" [routerLink]="['/widget/upsert/article', (widget)?._id]">
+  <mat-icon>edit</mat-icon>
+</button>
+
+<div [froalaView]="(widget)?.Config.content"></div>

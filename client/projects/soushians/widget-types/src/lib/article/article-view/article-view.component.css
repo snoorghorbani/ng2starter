@@ -1,0 +1,9 @@
+:host {
+	position: relative;
+	display: block;
+}
+.mat-mini-fab {
+	position: absolute;
+	top: -20px;
+	right: -20px;
+}
