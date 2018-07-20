@@ -1,7 +1,7 @@
 import { Store } from "@ngrx/store";
+import { FormGroup } from "@angular/forms";
 import { AppState } from "../grid.reducer";
 import { GridModel } from "../models";
-import { FormGroup } from "@angular/forms";
 export declare class GridConfigComponent {
     private store;
     private data;

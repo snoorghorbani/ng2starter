@@ -8,7 +8,7 @@ import { UserModel } from "@soushians/user";
 import { FeatureState } from "../../reducers";
 import { LayoutConfigurationService } from "../../services/layout-configuration.service";
 import { UserFacadeService } from "@soushians/user";
-export declare class MainComponent {
+export declare class NgsLayoutMainComponent {
     private store;
     private router;
     private configService;
