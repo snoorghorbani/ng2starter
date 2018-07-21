@@ -1,0 +1,33 @@
+<mat-card fxFlex fxLayout="column">
+  <mat-card-content>
+      <h3>مشخصات ویجت</h3>
+    <div [formGroup]="widgetFormGroup">
+      <mat-form-field>
+        <input type="text" matInput placeholder="نام"  formControlName="name">
+      </mat-form-field>
+  </div>
+  <mat-divider></mat-divider>
+  <h3>تنظیمات ویجت</h3>
+    <div [formGroup]="configFormGroup">
+      <button color="primary" mat-raised-button (click)="addlink()">
+        اضافه کردن لینک
+      </button>
+      <div fxFlex="nogrow" *ngFor="let ctrl of configFormGroup.get('links').controls" [formGroup]="ctrl">
+        <div [formGroup]="ctrl" fxLayout="row" fxLayoutGap="25px">
+          <button mat-icon-button fxFlex="nogrow">
+              <mat-icon>delete</mat-icon>
+          </button>
+        <mat-form-field fxFlex>
+          <input type="text" matInput placeholder="آدرس"  formControlName="url">
+        </mat-form-field>          
+        <mat-form-field fxFlex >
+          <input type="text" matInput placeholder="نام"  formControlName="label">
+        </mat-form-field>          
+    </div>
+    </div>
+    </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="primary" (click)="upsert()">ثبت</button>
+    </mat-card-actions>
+  </mat-card>

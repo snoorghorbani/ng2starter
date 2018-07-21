@@ -1,10 +1,25 @@
-<div fxLayout="row wrap" fxLayoutAlign="center center" >
-    <mat-card class="cards-item" *ngFor="let item of (widgets$ | async)" fxFlex="51">
-      <h3>
+<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="25px">
+  <div fXFlex="30" fxLayout="row wrap">
+    <button fxFlex="100" color="primary" mat-raised-button routerLink="../upsert/article">
+      Add Article
+    </button>
+    <button fxFlex="100" color="primary" mat-raised-button routerLink="../upsert/links">
+      Add Links
+    </button>
+  </div>
+  <div fxFlex="70" fxLayout="row wrap" fxLayoutGap="25px">
+    <mat-card class="cards-item" *ngFor="let item of (widgets$ | async)" fxFlex="33" fxLayout="row">
+      <div fxFlex>
         <a [routerLink]="['../upsert' ,  item.type,  item._id]">
           <mat-icon aria-label="edit widget">edit</mat-icon>
         </a>
+      </div>
+      <div fxFlex>
         {{item.name}}
-      </h3>
-  </mat-card>
+      </div>
+      <div fxFlex>
+        {{item.type}}
+      </div>
+    </mat-card>
+  </div>
 </div>

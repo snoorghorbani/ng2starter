@@ -2,7 +2,12 @@ import { env } from "./env";
 
 import { WidgetModuleConfig } from "@soushians/widget";
 
-import { ArticleViewComponent, ArticleUpsertComponent } from "@soushians/widget-types";
+import {
+	ArticleViewComponent,
+	ArticleUpsertComponent,
+	LinksViewComponent,
+	LinksUpsertComponent
+} from "@soushians/widget-types";
 
 export class NgsWidgetModuleConfig implements WidgetModuleConfig {
 	static env = env;
@@ -10,6 +15,10 @@ export class NgsWidgetModuleConfig implements WidgetModuleConfig {
 		article: {
 			view: ArticleViewComponent,
 			upsert: ArticleUpsertComponent
+		},
+		links: {
+			view: LinksViewComponent,
+			upsert: LinksUpsertComponent
 		}
 	};
 }

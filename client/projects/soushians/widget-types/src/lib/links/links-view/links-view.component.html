@@ -1,0 +1,20 @@
+<div fxLayout="column">
+    <div class="actions" fxLayout="row" fxFlex fxLayoutAlign="end">
+      <button fxFlex="nogrow" mat-icon-button color="primary" *ngIf="havePermission$ | async" [routerLink]="['/widget/upsert/links', (widget)?._id]">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+    <div fxLayout="row" fxFlex fxLayoutAlign="end">
+    <h3>
+        {{widget.name}}
+    </h3>
+    </div>
+    <mat-list fxLayout="column" fxFlex="100" >
+        <mat-list-item fxLayout="column" *ngFor="let link of (widget)?.Config.links" fxFlex="100">
+          <mat-icon mat-list-icon>link</mat-icon>
+          <a fxLayout="row" fxFlex="grow" [routerLink]="[link.url]">
+            {{link.label}}
+          </a>
+        </mat-list-item>
+    </mat-list>
+</div>

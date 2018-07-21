@@ -2,7 +2,7 @@ import { Component, OnInit, ComponentRef, ComponentFactoryResolver, ViewContaine
 import { Observable } from "rxjs/Observable";
 import { Store } from "@ngrx/store";
 import { ActivatedRoute } from "@angular/router";
-import { pluck, filter, switchMap, map, startWith } from "rxjs/operators";
+import { pluck, filter, switchMap, map, startWith, tap } from "rxjs/operators";
 
 import { WidgetModel } from "../models/widget.model";
 import { AppState } from "../widget.reducer";
@@ -14,7 +14,6 @@ import { IModuleConfigMapTypes } from "../models/module-config-map-types.interfc
 	selector: "[ngsDynamicWidgetConfig]"
 })
 export class DynamicWidgetConfigDirective implements OnInit {
-	widget$: Observable<WidgetModel<any>>;
 	component: ComponentRef<any>;
 	mapTypeToComponent: IModuleConfigMapTypes;
 	constructor(
@@ -28,34 +27,40 @@ export class DynamicWidgetConfigDirective implements OnInit {
 		this._fill_component_map();
 	}
 	ngOnInit() {
-		this._selectWidget();
-		this.widget$.pipe(filter(widget => widget != undefined)).subscribe(widget => {
-			this._resolve_correct_component_base_on_widget_type(widget);
-		});
+		this._react_base_on_params();
 	}
 	_fill_component_map() {
-		this.configurationService.config$.pipe(map(config => config.types), startWith({})).subscribe(types => {
+		this.configurationService.config$.pipe(map((config) => config.types), startWith({})).subscribe((types) => {
 			debugger;
 			this.mapTypeToComponent = types;
 		});
 	}
-	_selectWidget() {
-		this.widget$ = this.route.params.pipe(
-			pluck("_id"),
-			filter((id: string) => id != null),
-			switchMap(id => this.service.selectById<any>(id))
-		);
+	_react_base_on_params() {
+		this.route.params.subscribe(({ type, _id }) => {
+			if (_id) {
+				this.service.selectById<any>(_id).subscribe((widget) => {
+					this._resolve_correct_component_base_on_widget_type(type, widget);
+				});
+			} else {
+				this._resolve_correct_component_base_on_widget_type(type);
+			}
+		});
 	}
-	_resolve_correct_component_base_on_widget_type(widget) {
-		if (!this.mapTypeToComponent[widget.type]) {
+	_resolve_correct_component_base_on_widget_type(type: string, widget?: WidgetModel<any>) {
+		if (this.component) {
+			this.component.destroy();
+		}
+
+		if (!this.mapTypeToComponent[type]) {
 			const supportedTypes = Object.keys(this.mapTypeToComponent).join(", ");
 			throw new Error(
-				`Trying to use an unsupported type (${widget.type}).
+				`Trying to use an unsupported type (${type}).
 		  		 Supported types: ${supportedTypes}`
 			);
 		}
-		const component = this.resolver.resolveComponentFactory<any>(this.mapTypeToComponent[widget.type].upsert);
+		const component = this.resolver.resolveComponentFactory<any>(this.mapTypeToComponent[type].upsert);
 		this.component = this.container.createComponent(component);
-		this.widget$.subscribe(w => (this.component.instance.widget = w));
+		// this.widget$.subscribe((w) => (this.component.instance.widget = w));
+		if (widget) this.component.instance.widget = widget;
 	}
 }

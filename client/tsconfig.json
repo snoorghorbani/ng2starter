@@ -50,12 +50,12 @@
         "dist/@soushians/socket",
       ],
       "@soushians/widget": [
-       "dist/@soushians/widget"
-      //  "projects/soushians/widget/src/public_api"
+      //  "dist/@soushians/widget"
+       "projects/soushians/widget/src/public_api"
       ],
       "@soushians/widget-types": [
-        "dist/@soushians/widget-types"
-        // "projects/soushians/widget-types/src/public_api"
+        // "dist/@soushians/widget-types"
+        "projects/soushians/widget-types/src/public_api"
       ],
       "@soushians/grid": [
         "dist/@soushians/grid"
@@ -72,8 +72,8 @@
         "dist/soushians/test"
       ],
       "configs": [
-        "dist/configs"
-        // "projects/configs/src/public_api"
+      //  "dist/configs"
+       "projects/configs/src/public_api"
       ],
       "socket.io-client": ["./node_modules/socket.io-client/dist/socket.io.slim.js"],
     }

@@ -17,6 +17,7 @@ export class ArticleUpsertComponent implements OnInit, IWidgetUpsert<ArticleWidg
 	configFormGroup: FormGroup;
 	constructor(private store: Store<any>) {
 		this._createFormGroup();
+		this.widget = new WidgetModel<ArticleWidgetConfigModel>({ type: "article" });
 	}
 
 	upsert() {

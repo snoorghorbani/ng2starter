@@ -6,7 +6,7 @@ import { WidgetSelectorComponent } from "@soushians/widget";
 
 export const NgsGridModuleConfig = {
 	types: {
-		article: { configComponent: WidgetSelectorComponent, viewComponent: DynamicWidgetViewComponent },
+		widget: { configComponent: WidgetSelectorComponent, viewComponent: DynamicWidgetViewComponent },
 		diagram: { configComponent: DiagramSelectorComponent, viewComponent: diagramViewComponent }
 	},
 	env

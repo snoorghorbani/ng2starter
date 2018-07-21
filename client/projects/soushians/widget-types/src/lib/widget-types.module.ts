@@ -16,12 +16,22 @@ import {
 	MatSlideToggleModule,
 	MatDividerModule,
 	MatCheckboxModule,
-	MatTableModule
+	MatTableModule,
+	MatListModule
 } from "@angular/material";
 import { FroalaEditorModule, FroalaViewModule } from "angular-froala-wysiwyg";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
+/**
+ * article
+ */
 import { ArticleUpsertComponent } from "./article/article-upsert/article-upsert.component";
 import { ArticleViewComponent } from "./article/article-view/article-view.component";
+/**
+ * links
+ */
+import { LinksUpsertComponent } from "./links/links-upsert/links-upsert.component";
+import { LinksViewComponent } from "./links/links-view/links-view.component";
 
 @NgModule({
 	imports: [
@@ -44,12 +54,14 @@ import { ArticleViewComponent } from "./article/article-view/article-view.compon
 		MatDividerModule,
 		MatCheckboxModule,
 		MatTableModule,
+		MatListModule,
+		FlexLayoutModule,
 		// EditorModule
 		FroalaEditorModule.forRoot(),
 		FroalaViewModule.forRoot()
 	],
-	declarations: [ ArticleUpsertComponent, ArticleViewComponent ],
-	entryComponents: [ ArticleUpsertComponent, ArticleViewComponent ],
+	declarations: [ ArticleUpsertComponent, ArticleViewComponent, LinksUpsertComponent, LinksViewComponent ],
+	entryComponents: [ ArticleUpsertComponent, ArticleViewComponent, LinksUpsertComponent, LinksViewComponent ],
 	exports: [ ArticleViewComponent ]
 })
 export class NgsWidgetTypesModule {}

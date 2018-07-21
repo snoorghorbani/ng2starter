@@ -1,0 +1,22 @@
+:host {
+	position: relative;
+	height: 100%;
+	display: block;
+}
+:host:hover .actions {
+	opacity: 1;
+	visibility: visible;
+}
+
+mat-list a {
+	text-decoration: none;
+}
+
+.actions {
+	transition: opacity .4s ease-in-out;
+	opacity: 0;
+	visibility: hidden;
+}
+.actions mat-icon {
+	color: #121212;
+}
