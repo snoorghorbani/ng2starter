@@ -11,13 +11,15 @@ const router = express.Router();
 router.get("/", function(req, res) {
 	Model.find().then((Result) => res.json({ Result }));
 });
-router.get("/:id", function(req, res) {
-	Model.findById(req.params.id).then((Result) => res.json({ Result }));
+router.get("/:name", function(req, res) {
+	Model.findOne({ name: req.params.name }).then((Result) => res.json({ Result }));
 });
 router.post("/", function(req, res) {
-	if (!req.body._id) req.body._id = new ObjectId();
+	// chek agar _id => y doc jadid
+	// grid jadid besaz save kon bad _id assign kon b in
+
 	// TODO: set user
-	Model.findOneAndUpdate({ _id: req.body._id }, req.body, { upsert: true, new: true })
+	Model.findOneAndUpdate({ name: req.body.name }, req.body, { upsert: true, new: true })
 		.then((Result) => {
 			// TODO:
 			SocketMiddleware.server.dispatchActionToClients("[PAGE][DB] UPSERT", [ Result ]);
@@ -27,7 +29,7 @@ router.post("/", function(req, res) {
 			debugger;
 		});
 });
-router.delete("/:id", function(req, res) {
+router.delete("/:name", function(req, res) {
 	Model.findByIdAndRemove(req.params.id);
 });
 export { router };

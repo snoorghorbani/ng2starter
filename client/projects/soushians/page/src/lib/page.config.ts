@@ -19,7 +19,7 @@ export const MODULE_DEFAULT_CONFIG: PageModuleConfig = {
 	endpoints: {
 		upsert: "/api/page",
 		find: "/api/page",
-		get: "/api/page/${model._id}"
+		get: "/api/page/${model.name}"
 	}
 };
 export const MODULE_CONFIG_TOKEN = new InjectionToken<PageModuleConfig>("PageModuleConfig");

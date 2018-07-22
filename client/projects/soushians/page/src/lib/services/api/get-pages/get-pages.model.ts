@@ -12,7 +12,7 @@ export namespace GetPagesApiModel {
 	}
 
 	export class Response {
-		Result: PageModel<any>[];
+		Result: PageModel[];
 		constructor() {}
 	}
 }

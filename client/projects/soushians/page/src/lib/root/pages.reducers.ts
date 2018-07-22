@@ -2,7 +2,7 @@ import { PageModel } from "../models/page.model";
 import { PagesActions, PagesActionTypes } from "./pages.actions";
 
 export interface State {
-	data: PageModel<any>[];
+	data: PageModel[];
 }
 
 const initialState: State = {
@@ -10,7 +10,7 @@ const initialState: State = {
 };
 
 export function Reducer(state = initialState, action: PagesActions): State {
-	let _data: PageModel<any>[];
+	let _data: PageModel[];
 	switch (action.type) {
 		case PagesActionTypes.UPSERT:
 			_data = state.data.concat();
@@ -21,7 +21,7 @@ export function Reducer(state = initialState, action: PagesActions): State {
 			}
 
 			newPages.forEach((newPage) => {
-				const existedPageIndex = _data.findIndex((w) => w._id == newPage._id);
+				const existedPageIndex = _data.findIndex((w) => w.name == newPage.name);
 				if (existedPageIndex > -1) {
 					_data.splice(existedPageIndex, 1, newPage);
 				} else {
@@ -37,7 +37,7 @@ export function Reducer(state = initialState, action: PagesActions): State {
 		case PagesActionTypes.DELETE:
 			_data = Object.assign({}, state.data);
 
-			const pageIndex = state.data.findIndex((w) => w._id == action.payload._id);
+			const pageIndex = state.data.findIndex((w) => w.name == action.payload.name);
 			_data.splice(pageIndex, 1);
 
 			return {

@@ -40,14 +40,15 @@ export class UpsertComponent implements OnInit {
 	 */
 	_init_formgroup() {
 		this.formGroup = new FormGroup({
-			name: new FormControl("")
+			name: new FormControl(""),
+			grid: new FormControl("")
 		});
 	}
 
 	_select_page() {
 		this.page$ = this.route.params.pipe(
-			pluck("_id"),
-			switchMap((_id: string) => this.service.selectById(_id)),
+			pluck("name"),
+			switchMap((name: string) => this.service.selectByName(name)),
 			filter((page) => page != undefined)
 		);
 	}

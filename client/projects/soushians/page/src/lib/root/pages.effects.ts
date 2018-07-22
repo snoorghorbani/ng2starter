@@ -14,10 +14,10 @@ export class PageDbEffects {
 	@Effect()
 	Upsert$ = this.actions$
 		.ofType(GET_PAGE_ACTION_TYPES.SUCCEED)
-		.pipe(pluck("payload"), map((page: PageModel<any>) => new UpsertPageAction([ page ])));
+		.pipe(pluck("payload"), map((page: PageModel) => new UpsertPageAction([ page ])));
 
 	@Effect()
 	UpsertMany$ = this.actions$
 		.ofType(GET_PAGES_ACTION_TYPES.SUCCEED)
-		.pipe(pluck("payload"), map((pages: PageModel<any>[]) => new UpsertPageAction(pages)));
+		.pipe(pluck("payload"), map((pages: PageModel[]) => new UpsertPageAction(pages)));
 }

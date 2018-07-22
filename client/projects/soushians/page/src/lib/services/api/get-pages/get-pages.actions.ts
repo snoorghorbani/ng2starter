@@ -14,7 +14,7 @@ export class GetPagesStartAction implements Action {
 }
 export class GetPagesSucceedAction implements Action {
 	readonly type = GET_PAGES_ACTION_TYPES.SUCCEED;
-	constructor(public payload: PageModel<any>[]) {}
+	constructor(public payload: PageModel[]) {}
 }
 export class GetPagesFailedAction implements Action {
 	readonly type = GET_PAGES_ACTION_TYPES.FAILED;

@@ -6,9 +6,14 @@
   </div>
   <div fxFlex="70" fxLayout="row wrap" fxLayoutGap="25px">
     <mat-card class="cards-item" *ngFor="let item of (pages$ | async)" fxFlex="33" fxLayout="row">
-      <div fxFlex>
-        <a [routerLink]="['../upsert' , item._id]">
+      <div fxFlex="nogrow">
+        <a [routerLink]="['../upsert' , item.name]">
           <mat-icon aria-label="edit page">edit</mat-icon>
+        </a>
+      </div>
+      <div fxFlex="nogrow">
+        <a [routerLink]="['/page' , item.name]">
+          <mat-icon aria-label="edit page">remove_red_eye</mat-icon>
         </a>
       </div>
       <div fxFlex>

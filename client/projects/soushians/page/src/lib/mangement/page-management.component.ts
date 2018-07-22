@@ -10,7 +10,7 @@ import { GetPagesStartAction } from "../services/api/get-pages/get-pages.actions
 	templateUrl: "page-management.component.html"
 })
 export class PagesManagementComponent implements OnInit {
-	pages$: Observable<PageModel<any>[]>;
+	pages$: Observable<PageModel[]>;
 	constructor(public store: Store<AppState>) {
 		this.pages$ = this.store.select((state) => state.pages.db.data);
 	}

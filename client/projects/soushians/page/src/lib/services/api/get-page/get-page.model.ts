@@ -2,7 +2,7 @@ import { PageModel } from "../../../models/page.model";
 
 export namespace GetPageApiModel {
 	export class Request {
-		_id: string;
+		name: string;
 		constructor(initValue = {}) {
 			Object.keys(initValue).forEach((key) => (this[key] = initValue[key]));
 		}
@@ -13,7 +13,7 @@ export namespace GetPageApiModel {
 	}
 
 	export class Response {
-		Result: PageModel<any>;
+		Result: PageModel;
 		constructor() {}
 	}
 }

@@ -6,6 +6,8 @@ import { StoreModule } from "@ngrx/store";
 import { RouterModule } from "@angular/router";
 import { EffectsModule } from "@ngrx/effects";
 
+import { NgsGridModule } from "@soushians/grid";
+
 import { RoutingModule } from "./page-routing.module";
 import { PageViewComponent } from "./view/page-view.component";
 import { PagesManagementComponent } from "./mangement/page-management.component";
@@ -32,7 +34,8 @@ import { UpsertPageApiEffects } from "./services/api/upsert-page/upsert-page.eff
 		MatIconModule,
 		FlexLayoutModule,
 		FormsModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		NgsGridModule
 	],
 	declarations: [ PageViewComponent, PagesManagementComponent, RootComponent, UpsertComponent ],
 	exports: []

@@ -15,26 +15,28 @@ import { PageModel } from "../models/page.model";
 import { AppState } from "../page.reducer";
 import { PageService } from "../services/page.service";
 import { PageConfigurationService } from "../services/page-configuration.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
-	template: ""
+	templateUrl: "./page-view.component.html"
 })
 export class PageViewComponent implements OnInit {
-	@Input()
-	set oid(id: string) {
-		this._selectPage(id);
-	}
 	page$: Observable<PageModel>;
-	component: ComponentRef<any>;
 	constructor(
 		public store: Store<AppState>,
 		private service: PageService,
-		private configurationService: PageConfigurationService,
+		private route: ActivatedRoute,
 		private resolver: ComponentFactoryResolver,
 		private container: ViewContainerRef
 	) {}
-	ngOnInit() {}
-	_selectPage(id: string) {
-		this.page$ = this.service.selectById(id);
+	ngOnInit() {
+		this._selectPage();
+	}
+	_selectPage() {
+		this.page$ = this.route.params.pipe(
+			pluck("name"),
+			switchMap((name: string) => this.service.selectByName(name)),
+			filter((page) => page != undefined)
+		);
 	}
 }

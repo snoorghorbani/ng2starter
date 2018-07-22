@@ -20,7 +20,7 @@ const routes: Routes = [
 				component: UpsertComponent
 			},
 			{
-				path: "upsert/:_id",
+				path: "upsert/:name",
 				component: UpsertComponent
 			}
 		]

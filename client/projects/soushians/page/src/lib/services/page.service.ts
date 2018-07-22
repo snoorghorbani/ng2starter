@@ -20,12 +20,12 @@ export class PageService {
 		private _location: Location
 	) {}
 
-	get(_id: string): Observable<PageModel> {
+	get(name: string): Observable<PageModel> {
 		return this.configurationService.config$.pipe(
 			filter((config) => config.endpoints.get !== ""),
 			take(1),
 			switchMap((config) =>
-				this.http.get(stringTemplate(config.env.frontend_server + config.endpoints.get, { _id }))
+				this.http.get(stringTemplate(config.env.frontend_server + config.endpoints.get, { name }))
 			),
 			map((response: UpsertPageApiModel.Response) => response.Result)
 		);
@@ -50,21 +50,22 @@ export class PageService {
 			tap(() => this._location.back())
 		);
 	}
-	// delete(_id: string) {
+	// delete(name: string) {
 	// 	return this.configurationService.config$
 	// 		.filter((config) => config.endpoints.deleteForm != "")
 	// 		.switchMap((config) => this.http.get(config.endpoints.deleteForm));
 	// }
-	selectById(_id: string): Observable<PageModel> {
+	selectByName(name: string): Observable<PageModel> {
 		const subject = new BehaviorSubject<PageModel>(undefined);
 		this.store
 			.select((state) => state.pages.db.data)
 			.pipe(
 				filter((pages) => pages != null),
-				map((pages) => pages.find((page) => page._id == _id)),
+				map((pages) => pages.find((page) => page.name == name)),
 				tap((page) => {
 					if (page == null) {
-						this.store.dispatch(new GetPageStartAction(_id));
+						debugger;
+						this.store.dispatch(new GetPageStartAction(name));
 					}
 				})
 			)

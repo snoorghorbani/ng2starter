@@ -11,11 +11,11 @@ export const enum UPSERT_PAGE_ACTION_TYPES {
 
 export class UpsertPageStartAction implements Action {
 	readonly type = UPSERT_PAGE_ACTION_TYPES.START;
-	constructor(public payload: PageModel<any>) {}
+	constructor(public payload: PageModel) {}
 }
 export class UpsertPageSucceedAction implements Action {
 	readonly type = UPSERT_PAGE_ACTION_TYPES.SUCCEED;
-	constructor(public payload: PageModel<any>) {}
+	constructor(public payload: PageModel) {}
 }
 export class UpsertPageFailedAction implements Action {
 	readonly type = UPSERT_PAGE_ACTION_TYPES.FAILED;

@@ -9,11 +9,11 @@ export enum PagesActionTypes {
 
 export class UpsertPageAction implements Action {
 	readonly type = PagesActionTypes.UPSERT;
-	constructor(public payload: PageModel<any>[]) {}
+	constructor(public payload: PageModel[]) {}
 }
 export class DeletePageAction implements Action {
 	readonly type = PagesActionTypes.DELETE;
-	constructor(public payload: PageModel<any>) {}
+	constructor(public payload: PageModel) {}
 }
 
 export type PagesActions = UpsertPageAction | DeletePageAction;

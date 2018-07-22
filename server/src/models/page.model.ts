@@ -5,7 +5,8 @@ import { ObjectId } from "mongodb";
 
 const pageSchema = new mongoose.Schema(
 	{
-		name: { type: String }
+		name: { type: String, unique: true },
+		grid: { type: String }
 	},
 	{ timestamps: true }
 );

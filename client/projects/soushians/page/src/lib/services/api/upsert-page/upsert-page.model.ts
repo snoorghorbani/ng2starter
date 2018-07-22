@@ -2,7 +2,7 @@ import { PageModel } from "../../../models/page.model";
 
 export namespace UpsertPageApiModel {
 	export class Request {
-		page: PageModel<any>;
+		page: PageModel;
 		constructor(page = {}) {
 			debugger;
 			this.page = new PageModel(page);
@@ -14,7 +14,7 @@ export namespace UpsertPageApiModel {
 	}
 
 	export class Response {
-		Result: PageModel<any>;
+		Result: PageModel;
 		constructor() {}
 	}
 }
