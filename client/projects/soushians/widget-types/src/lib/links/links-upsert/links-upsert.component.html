@@ -14,7 +14,7 @@
       </button>
       <div fxFlex="nogrow" *ngFor="let ctrl of configFormGroup.get('links').controls" [formGroup]="ctrl">
         <div [formGroup]="ctrl" fxLayout="row" fxLayoutGap="25px">
-          <button mat-icon-button fxFlex="nogrow">
+          <button mat-icon-button fxFlex="nogrow" (click)="removelink()">
               <mat-icon>delete</mat-icon>
           </button>
         <mat-form-field fxFlex>

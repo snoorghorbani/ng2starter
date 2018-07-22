@@ -68,6 +68,10 @@
         "dist/@soushians/frontend-authentication"
         // "projects/soushians/frontend-authentication/src/public_api"
       ],
+      "@soushians/page": [
+        // "dist/@soushians/page"
+        "projects/soushians/page/src/public_api"
+      ],
       "@soushians/test": [
         "dist/soushians/test"
       ],

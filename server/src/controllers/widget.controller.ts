@@ -23,7 +23,7 @@ router.post("/", function(req, res) {
 	Model.findOneAndUpdate({ _id: req.body._id }, req.body, { upsert: true, new: true })
 		.then((Result) => {
 			// TODO:
-			// SocketMiddleware.server.dispatchActionToClients("[FORM][LIST] FORM_SCHEMA_UPDATE", Result);
+			SocketMiddleware.server.dispatchActionToClients("[WIDGET][DB] UPSERT", [ Result ]);
 			res.send({ Result });
 		})
 		.catch((err) => {
