@@ -40,6 +40,7 @@ export class UpsertComponent implements OnInit {
 	 */
 	_init_formgroup() {
 		this.formGroup = new FormGroup({
+			_id: new FormControl(""),
 			name: new FormControl(""),
 			grid: new FormControl("")
 		});
@@ -48,6 +49,7 @@ export class UpsertComponent implements OnInit {
 	_select_page() {
 		this.page$ = this.route.params.pipe(
 			pluck("name"),
+			filter((name) => name != undefined),
 			switchMap((name: string) => this.service.selectByName(name)),
 			filter((page) => page != undefined)
 		);

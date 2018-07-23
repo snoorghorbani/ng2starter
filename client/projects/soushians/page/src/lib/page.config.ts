@@ -7,6 +7,7 @@ export interface PageModuleConfig {
 	};
 	endpoints?: {
 		get: string;
+		delete: string;
 		find: string;
 		upsert: string;
 	};
@@ -18,6 +19,7 @@ export const MODULE_DEFAULT_CONFIG: PageModuleConfig = {
 	},
 	endpoints: {
 		upsert: "/api/page",
+		delete: "/api/page/${model._id}",
 		find: "/api/page",
 		get: "/api/page/${model.name}"
 	}

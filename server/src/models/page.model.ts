@@ -1,12 +1,11 @@
-import * as bcrypt from "bcrypt-nodejs";
-import * as crypto from "crypto";
 import * as mongoose from "mongoose";
-import { ObjectId } from "mongodb";
+import { model as moongooseModel } from "mongoose";
 
 const pageSchema = new mongoose.Schema(
 	{
 		name: { type: String, unique: true },
-		grid: { type: String }
+		grid: { type: String },
+		owner: { type: String }
 	},
 	{ timestamps: true }
 );
@@ -14,10 +13,10 @@ const pageSchema = new mongoose.Schema(
 /**
  * pre save page middleware.
  */
-pageSchema.pre("save", function save(next) {
-	const page = this;
-	// if (!page.isModified("password")) { return next(); }
-	next();
-});
+// pageSchema.pre("update", function save(next) {
+// 	debugger;
+
+// 	const page: any = this;
+// });
 
 mongoose.model("Page", pageSchema);

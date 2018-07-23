@@ -26,9 +26,9 @@ dotenv.config({ path: ".env" });
 import "./models/form.model";
 import "./models/bpmn.model";
 import "./models/widget.model";
-import "./models/page.model";
 import "./models/grid-item.model";
 import "./models/grid.model";
+import "./models/page.model";
 import "./models/user.model";
 import "./models/gwt-scenario.model";
 

@@ -13,6 +13,7 @@ export function Reducer(state = initialState, action: PagesActions): State {
 	let _data: PageModel[];
 	switch (action.type) {
 		case PagesActionTypes.UPSERT:
+			debugger;
 			_data = state.data.concat();
 			let newPages = action.payload;
 			if (!(newPages instanceof Array)) {
@@ -21,7 +22,7 @@ export function Reducer(state = initialState, action: PagesActions): State {
 			}
 
 			newPages.forEach((newPage) => {
-				const existedPageIndex = _data.findIndex((w) => w.name == newPage.name);
+				const existedPageIndex = _data.findIndex((w) => w._id == newPage._id);
 				if (existedPageIndex > -1) {
 					_data.splice(existedPageIndex, 1, newPage);
 				} else {
@@ -35,9 +36,10 @@ export function Reducer(state = initialState, action: PagesActions): State {
 			};
 
 		case PagesActionTypes.DELETE:
-			_data = Object.assign({}, state.data);
+			debugger;
+			_data = state.data.concat();
 
-			const pageIndex = state.data.findIndex((w) => w.name == action.payload.name);
+			const pageIndex = state.data.findIndex((w) => w._id == action.payload._id);
 			_data.splice(pageIndex, 1);
 
 			return {

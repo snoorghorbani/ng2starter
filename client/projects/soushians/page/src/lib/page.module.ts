@@ -22,6 +22,7 @@ import { PageReducer } from "./page.reducer";
 import { GetPageApiEffects } from "./services/api/get-page/get-page.effects";
 import { GetPagesApiEffects } from "./services/api/get-pages/get-pages.effects";
 import { UpsertPageApiEffects } from "./services/api/upsert-page/upsert-page.effects";
+import { DeletePageApiEffects } from "./services/api/delete-page/delete-page.effects";
 
 @NgModule({
 	imports: [
@@ -54,7 +55,13 @@ export class NgsPageModule {
 		NgsPageModule,
 		RoutingModule,
 		StoreModule.forFeature("pages", PageReducer),
-		EffectsModule.forFeature([ PageDbEffects, GetPageApiEffects, GetPagesApiEffects, UpsertPageApiEffects ])
+		EffectsModule.forFeature([
+			PageDbEffects,
+			GetPageApiEffects,
+			GetPagesApiEffects,
+			UpsertPageApiEffects,
+			DeletePageApiEffects
+		])
 	],
 	exports: [ NgsPageModule ]
 })
