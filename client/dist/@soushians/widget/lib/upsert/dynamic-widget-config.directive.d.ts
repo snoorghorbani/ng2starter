@@ -1,5 +1,4 @@
 import { OnInit, ComponentRef, ComponentFactoryResolver, ViewContainerRef } from "@angular/core";
-import { Observable } from "rxjs/Observable";
 import { Store } from "@ngrx/store";
 import { ActivatedRoute } from "@angular/router";
 import { WidgetModel } from "../models/widget.model";
@@ -14,12 +13,11 @@ export declare class DynamicWidgetConfigDirective implements OnInit {
     private configurationService;
     private resolver;
     private container;
-    widget$: Observable<WidgetModel<any>>;
     component: ComponentRef<any>;
     mapTypeToComponent: IModuleConfigMapTypes;
     constructor(store: Store<AppState>, route: ActivatedRoute, service: WidgetService, configurationService: WidgetConfigurationService, resolver: ComponentFactoryResolver, container: ViewContainerRef);
     ngOnInit(): void;
     _fill_component_map(): void;
-    _selectWidget(): void;
-    _resolve_correct_component_base_on_widget_type(widget: any): void;
+    _react_base_on_params(): void;
+    _resolve_correct_component_base_on_widget_type(type: string, widget?: WidgetModel<any>): void;
 }
