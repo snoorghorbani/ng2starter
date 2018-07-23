@@ -15,6 +15,7 @@ export declare class LinksUpsertComponent implements OnInit, IWidgetUpsert<Links
      * view methods
      */
     addlink(): void;
+    removelink(link: any): void;
     /**
      * private methods
      */

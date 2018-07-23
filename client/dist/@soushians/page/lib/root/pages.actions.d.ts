@@ -5,13 +5,13 @@ export declare enum PagesActionTypes {
     DELETE = "[PAGE][DB] DELETE",
 }
 export declare class UpsertPageAction implements Action {
-    payload: PageModel<any>[];
+    payload: PageModel[];
     readonly type: PagesActionTypes;
-    constructor(payload: PageModel<any>[]);
+    constructor(payload: PageModel[]);
 }
 export declare class DeletePageAction implements Action {
-    payload: PageModel<any>;
+    payload: PageModel;
     readonly type: PagesActionTypes;
-    constructor(payload: PageModel<any>);
+    constructor(payload: PageModel);
 }
 export declare type PagesActions = UpsertPageAction | DeletePageAction;
