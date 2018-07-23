@@ -44,12 +44,12 @@ export class GridConfigComponent {
 			//
 			scrollToNewItems: new FormControl(true),
 			// margins
-			margin: new FormControl("10"),
+			margin: new FormControl(10),
 			outerMargin: new FormControl(true),
-			outerMarginTop: new FormControl("10"),
-			outerMarginRight: new FormControl("10"),
-			outerMarginBottom: new FormControl("10"),
-			outerMarginLeft: new FormControl("10"),
+			outerMarginTop: new FormControl(10),
+			outerMarginRight: new FormControl(10),
+			outerMarginBottom: new FormControl(10),
+			outerMarginLeft: new FormControl(10),
 			// grid size
 			minCols: new FormControl(3),
 			maxCols: new FormControl(3),

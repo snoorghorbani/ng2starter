@@ -1,0 +1,12 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+    <mat-card fxFlex="50">
+        <mat-card-content [formGroup]="formGroup">
+            <mat-form-field>
+                <input type="text" matInput placeholder="نام"  formControlName="name">
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <button mat-button color="primary" (click)="upsert()">Add</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

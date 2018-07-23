@@ -28,6 +28,7 @@ import "./models/bpmn.model";
 import "./models/widget.model";
 import "./models/grid-item.model";
 import "./models/grid.model";
+import "./models/page.model";
 import "./models/user.model";
 import "./models/gwt-scenario.model";
 
@@ -131,6 +132,7 @@ import * as gwtScenarioController from "./controllers/gwt-scenario.controller";
 import * as widgetController from "./controllers/widget.controller";
 import * as gridController from "./controllers/grid.controller";
 import * as gwtAnchorController from "./controllers/gwt-anchor.controller";
+import * as pageController from "./controllers/page.controller";
 import { SocketMiddleware } from "./controllers/socket.controller";
 
 /**
@@ -148,6 +150,7 @@ app.use("/api/event", eventController.router);
 app.use("/api/source", sourceController.router);
 app.use("/api/uiwidget", widgetController.router);
 app.use("/api/grid", gridController.router);
+app.use("/api/page", pageController.router);
 app.use("/api/gwt/scenario", gwtScenarioController.router);
 app.use("/api/gwt/anchor", gwtAnchorController.router);
 

@@ -1,0 +1,32 @@
+<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="25px">
+  <div fXFlex="30" fxLayout="row wrap">
+    <button fxFlex="100" color="primary" mat-mini-fab routerLink="../upsert">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <div fxFlex="70" fxLayout="row wrap" fxLayoutGap="25px">
+    <mat-card class="cards-item" *ngFor="let item of (pages$ | async)" fxFlex="33" fxLayout="row">
+      <div fxFlex="nogrow">
+        <button mat-icon-button (click)="delete(item)">
+          <mat-icon aria-label="delete page">delete</mat-icon>
+        </button>
+      </div>
+      <div fxFlex="nogrow">
+        <a [routerLink]="['../upsert' , item.name]">
+          <mat-icon aria-label="edit page">edit</mat-icon>
+        </a>
+      </div>
+      <div fxFlex="nogrow">
+        <a [routerLink]="['/page' , item.name]">
+          <mat-icon aria-label="edit page">remove_red_eye</mat-icon>
+        </a>
+      </div>
+      <div fxFlex>
+        {{item.name}}
+      </div>
+      <div fxFlex>
+        {{item.type}}
+      </div>
+    </mat-card>
+  </div>
+</div>

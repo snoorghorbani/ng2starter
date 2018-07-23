@@ -43,7 +43,10 @@ export class LinksUpsertComponent implements OnInit, IWidgetUpsert<LinksWidgetCo
 	addlink() {
 		(this.configFormGroup.get("links") as FormArray).push(this._get_new_empty_link_item());
 	}
-
+	removelink(link) {
+		const data: FormArray = <FormArray>this.configFormGroup.controls.links;
+		data.removeAt(link);
+	}
 	/**
 	 * private methods
 	 */

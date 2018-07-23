@@ -642,7 +642,6 @@
 				}
 			}
 		},
-
 		"@soushians/test": {
 			"root": "projects/soushians/test",
 			"sourceRoot": "projects/soushians/test/src",
@@ -711,6 +710,44 @@
 					"builder": "@angular-devkit/build-angular:tslint",
 					"options": {
 						"tsConfig": [ "projects/configs/tsconfig.lib.json", "projects/configs/tsconfig.spec.json" ],
+						"exclude": [ "**/node_modules/**" ]
+					}
+				}
+			}
+		},
+		"@soushians/page": {
+			"root": "projects/soushians/page",
+			"sourceRoot": "projects/soushians/page/src",
+			"projectType": "library",
+			"prefix": "lib",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-ng-packagr:build",
+					"options": {
+						"tsConfig": "projects/soushians/page/tsconfig.lib.json",
+						"project": "projects/soushians/page/ng-package.json"
+					},
+					"configurations": {
+						"production": {
+							"project": "projects/soushians/page/ng-package.prod.json"
+						}
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "projects/soushians/page/src/test.ts",
+						"tsConfig": "projects/soushians/page/tsconfig.spec.json",
+						"karmaConfig": "projects/soushians/page/karma.conf.js"
+					}
+				},
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"projects/soushians/page/tsconfig.lib.json",
+							"projects/soushians/page/tsconfig.spec.json"
+						],
 						"exclude": [ "**/node_modules/**" ]
 					}
 				}

@@ -1,31 +1,28 @@
-import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { map, filter, tap, take, switchMap } from 'rxjs/operators';
-import { Store } from '@ngrx/store';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { Observable, BehaviorSubject } from "rxjs";
+import { map, filter, tap, take, switchMap } from "rxjs/operators";
+import { Store } from "@ngrx/store";
+import { HttpClient } from "@angular/common/http";
 
-import { AppState } from '../widget.reducer';
-import { WidgetConfigurationService } from './widget-configuration.service';
-import { WidgetModel } from '../models/widget.model';
-import { stringTemplate } from '@soushians/shared';
-import { GetWidgetsApiModel, GetWidgetStartAction, UpsertWidgetApiModel } from './api';
-
-// import { getWidgetModuleConfig } from "@soushians/config";
-
-// import { WidgetConfigurationService } from "./widget-configuration.service";
-// import { WidgetRunSuccessfullyAction } from "../widget.actions";
+import { AppState } from "../widget.reducer";
+import { WidgetConfigurationService } from "./widget-configuration.service";
+import { WidgetModel } from "../models/widget.model";
+import { stringTemplate } from "@soushians/shared";
+import { GetWidgetsApiModel, GetWidgetStartAction, UpsertWidgetApiModel } from "./api";
+import { Location } from "@angular/common";
 
 @Injectable()
 export class WidgetService {
 	constructor(
 		private http: HttpClient,
 		private store: Store<AppState>,
-		private configurationService: WidgetConfigurationService
+		private configurationService: WidgetConfigurationService,
+		private _location: Location
 	) {}
 
 	get<T>(_id: string): Observable<WidgetModel<T>> {
 		return this.configurationService.config$.pipe(
-			filter((config) => config.endpoints.get !== ''),
+			filter((config) => config.endpoints.get !== ""),
 			take(1),
 			switchMap((config) =>
 				this.http.get(stringTemplate(config.env.frontend_server + config.endpoints.get, { _id }))
@@ -36,7 +33,7 @@ export class WidgetService {
 
 	getWidgets(): Observable<WidgetModel<any>[]> {
 		return this.configurationService.config$.pipe(
-			filter((config) => config.endpoints.find != ''),
+			filter((config) => config.endpoints.find != ""),
 			switchMap((config) => this.http.get(config.env.frontend_server + config.endpoints.find)),
 			map((response: GetWidgetsApiModel.Response) => response.Result)
 		);
@@ -44,12 +41,13 @@ export class WidgetService {
 	upsert<T>(widget: UpsertWidgetApiModel.Request): Observable<WidgetModel<T>> {
 		const model = new UpsertWidgetApiModel.Request(widget);
 		return this.configurationService.config$.pipe(
-			filter((config) => config.endpoints.upsert != ''),
+			filter((config) => config.endpoints.upsert != ""),
 			take(1),
 			switchMap((config) =>
 				this.http.post(config.env.frontend_server + config.endpoints.upsert, model.getRequestBody())
 			),
-			map((response: UpsertWidgetApiModel.Response) => response.Result)
+			map((response: UpsertWidgetApiModel.Response) => response.Result),
+			tap(() => this._location.back())
 		);
 	}
 	// delete(_id: string) {

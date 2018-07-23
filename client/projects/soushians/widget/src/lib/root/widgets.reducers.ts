@@ -14,10 +14,14 @@ export function Reducer(state = initialState, action: WidgetsActions): State {
 	switch (action.type) {
 		case WidgetsActionTypes.UPSERT:
 			_data = state.data.concat();
-			const newWidgets = action.payload;
+			let newWidgets = action.payload;
+			if (!(newWidgets instanceof Array)) {
+				newWidgets = [ newWidgets ];
+				console.error("'WidgetsActionTypes.UPSERT' does not get array payload");
+			}
 
-			newWidgets.forEach(newWidget => {
-				const existedWidgetIndex = _data.findIndex(w => w._id == newWidget._id);
+			newWidgets.forEach((newWidget) => {
+				const existedWidgetIndex = _data.findIndex((w) => w._id == newWidget._id);
 				if (existedWidgetIndex > -1) {
 					_data.splice(existedWidgetIndex, 1, newWidget);
 				} else {
@@ -33,7 +37,7 @@ export function Reducer(state = initialState, action: WidgetsActions): State {
 		case WidgetsActionTypes.DELETE:
 			_data = Object.assign({}, state.data);
 
-			const widgetIndex = state.data.findIndex(w => w._id == action.payload._id);
+			const widgetIndex = state.data.findIndex((w) => w._id == action.payload._id);
 			_data.splice(widgetIndex, 1);
 
 			return {
