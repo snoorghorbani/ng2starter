@@ -7,7 +7,7 @@ import { Request as OriginalRequest, Response, NextFunction } from "express";
 import { WriteError } from "mongodb";
 // const LocalStrategyInfo = require("passport-local").LocalStrategyInfo;
 const request = require("express-validator");
-import * as passportConfig from "../config/passport";
+import * as passportConfig from "../config/passport.local";
 
 export interface Request extends OriginalRequest {
 	assert: any;

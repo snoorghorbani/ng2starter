@@ -37,7 +37,8 @@
         "dist/@soushians/authentication"
       ],
       "@soushians/form": [
-        "dist/@soushians/form"
+        // "dist/@soushians/form"
+         "projects/soushians/form/src/public_api"
       ],
       "@soushians/diagram": [
         "dist/@soushians/diagram"

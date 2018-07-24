@@ -90,13 +90,14 @@ export class FormViewComponent implements OnDestroy {
 
 	createFrom(data: FieldConfig, parentPath = ""): AbstractControl {
 		if (data.type == "control") {
+			let formGroupPath;
 			if (data.parentType == "array") {
 				// parentPath = `${parentPath}.controls[${(data as FieldConfig).name}]`;
 			} else if (data.parentType == "group") {
-				var formGroupPath = parentPath;
+				formGroupPath = parentPath;
 				parentPath = `${parentPath}.controls.${(data as FieldConfig).name}`;
 			}
-			var validators = [];
+			const validators = [];
 			if (data.validator.required && data.validator.required.active) {
 				validators.push(Validators.required);
 			}
@@ -106,13 +107,13 @@ export class FormViewComponent implements OnDestroy {
 			if (data.validator.email && data.validator.email.active) {
 				validators.push(Validators.email);
 			}
-			var ctr = new FormControl(data.value, validators);
+			const ctr = new FormControl(data.value, validators);
 			(ctr as any).schema = data;
 			(ctr as any).schema.path = parentPath;
 			(ctr as any).schema.formGroupPath = formGroupPath;
 			return ctr;
 		} else if (data.type == "group") {
-			var formGroup = new FormGroup({});
+			const formGroup = new FormGroup({});
 			if (data.parentType == undefined) {
 				parentPath = (data as FieldConfig).name;
 			} else if (data.parentType == "array") {
@@ -129,7 +130,7 @@ export class FormViewComponent implements OnDestroy {
 			});
 			return formGroup;
 		} else {
-			var formArray: FormArray = new FormArray([]);
+			const formArray: FormArray = new FormArray([]);
 			parentPath =
 				parentPath == "" ? (data as FieldConfig).name : `${parentPath}.controls.${(data as FieldConfig).name}`;
 			(formArray as any).schema = data;
@@ -154,6 +155,7 @@ export class FormViewComponent implements OnDestroy {
 const components: { [type: string]: Type<Field> } = {
 	checkbox: CheckboxComponent,
 	text: TextComponent,
+	password: TextComponent,
 	date: DateFormInputControlComponent,
 	file: FileFormInputControlComponent,
 	table: TableComponent,

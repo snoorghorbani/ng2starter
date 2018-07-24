@@ -65,6 +65,7 @@
 		"nodemon": "^1.17.3",
 		"npm-ls-scripts": "^0.1.2",
 		"passport": "^0.3.2",
+		"passport-activedirectory": "^1.0.4",
 		"passport-facebook": "^2.1.1",
 		"passport-local": "^1.0.0",
 		"passport.socketio": "^3.7.0",

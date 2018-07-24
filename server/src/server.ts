@@ -35,7 +35,8 @@ import "./models/gwt-scenario.model";
 /**
  * API keys and Passport configuration.
  */
-import * as passportConfig from "./config/passport";
+import * as passportConfig from "./config/passport.local";
+// import * as passportConfig from "./config/passport.activedirectory";
 
 /**
  * Create Express server.

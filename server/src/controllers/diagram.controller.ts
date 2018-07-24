@@ -3,7 +3,7 @@ import * as express from "express";
 import * as async from "async";
 import * as request from "request";
 import { Response, Request, NextFunction } from "express";
-import * as passportConfig from "../config/passport";
+import * as passportConfig from "../config/passport.local";
 
 import * as DiagramModel from "../models/diagram.model";
 
@@ -16,10 +16,10 @@ export const all = (req: Request, res: Response) => {
 		.find()
 		.where("IsActive", true)
 		.populate("Source")
-		.then((Result) => {
+		.then(Result => {
 			res.json({ Result });
 		})
-		.catch((err) => {
+		.catch(err => {
 			debugger;
 		});
 };
@@ -30,10 +30,10 @@ router.get("/", passportConfig.isAuthenticated, function(req: Request, res: Resp
 		.find()
 		.where("IsActive", true)
 		.populate("Source")
-		.then((Result) => {
+		.then(Result => {
 			res.json({ Result });
 		})
-		.catch((err) => {
+		.catch(err => {
 			debugger;
 		});
 });
@@ -66,7 +66,7 @@ router.get("/groups", function(req: Request, res: Response) {
 });
 
 router.get("/:id", function(req: Request, res: Response) {
-	DiagramModel.Diagram.findById(req.params.id).populate("Source").then((data) => {
+	DiagramModel.Diagram.findById(req.params.id).populate("Source").then(data => {
 		res.json(data);
 	});
 });
@@ -90,10 +90,10 @@ router.post("/", function(req: Request, res: Response) {
 	} else {
 		DiagramModel.Diagram
 			.findByIdAndUpdate(data._id, data, { upsert: true, new: true })
-			.then((diagram) => {
+			.then(diagram => {
 				res.send(diagram);
 			})
-			.catch((err) => {
+			.catch(err => {
 				debugger;
 			});
 	}
@@ -108,10 +108,10 @@ router.post("/", function(req: Request, res: Response) {
 router.put("/:id", function(req: Request, res: Response) {
 	DiagramModel.Diagram
 		.findByIdAndUpdate(req.params.id, req.body, { upsert: true })
-		.then((diagram) => {
+		.then(diagram => {
 			res.send(diagram);
 		})
-		.catch((err) => {
+		.catch(err => {
 			debugger;
 		});
 });
@@ -120,10 +120,10 @@ export { router };
 router.delete("/:id", function(req: Request, res: Response) {
 	DiagramModel.Diagram
 		.findByIdAndRemove(req.params.id)
-		.then((diagram) => {
+		.then(diagram => {
 			res.sendStatus(200);
 		})
-		.catch((err) => {
+		.catch(err => {
 			debugger;
 		});
 });
