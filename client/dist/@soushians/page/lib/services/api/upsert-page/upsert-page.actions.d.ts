@@ -6,14 +6,14 @@ export declare const enum UPSERT_PAGE_ACTION_TYPES {
     FAILED = "[UPSERT_PAGE][API][UpsertPage] failed",
 }
 export declare class UpsertPageStartAction implements Action {
-    payload: PageModel<any>;
+    payload: PageModel;
     readonly type: UPSERT_PAGE_ACTION_TYPES;
-    constructor(payload: PageModel<any>);
+    constructor(payload: PageModel);
 }
 export declare class UpsertPageSucceedAction implements Action {
-    payload: PageModel<any>;
+    payload: PageModel;
     readonly type: UPSERT_PAGE_ACTION_TYPES;
-    constructor(payload: PageModel<any>);
+    constructor(payload: PageModel);
 }
 export declare class UpsertPageFailedAction implements Action {
     payload: any;

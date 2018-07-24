@@ -5,7 +5,11 @@ import { PageModel } from "../models/page.model";
 import { AppState } from "../page.reducer";
 export declare class PagesManagementComponent implements OnInit {
     store: Store<AppState>;
-    pages$: Observable<PageModel<any>[]>;
+    pages$: Observable<PageModel[]>;
     constructor(store: Store<AppState>);
     ngOnInit(): void;
+    /**
+     * view methods
+     */
+    delete(page: PageModel): void;
 }

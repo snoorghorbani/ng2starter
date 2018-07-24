@@ -1,6 +1,7 @@
 import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
 import { HttpClient } from "@angular/common/http";
+import { UserFacadeService } from "@soushians/user";
 import { AppState } from "../page.reducer";
 import { PageConfigurationService } from "./page-configuration.service";
 import { PageModel } from "../models/page.model";
@@ -11,9 +12,12 @@ export declare class PageService {
     private store;
     private configurationService;
     private _location;
-    constructor(http: HttpClient, store: Store<AppState>, configurationService: PageConfigurationService, _location: Location);
-    get<T>(_id: string): Observable<PageModel<T>>;
-    getPages(): Observable<PageModel<any>[]>;
-    upsert<T>(page: UpsertPageApiModel.Request): Observable<PageModel<T>>;
-    selectById<T>(_id: string): Observable<PageModel<T>>;
+    private userFacadeService;
+    userId$: Observable<string>;
+    constructor(http: HttpClient, store: Store<AppState>, configurationService: PageConfigurationService, _location: Location, userFacadeService: UserFacadeService);
+    get(name: string): Observable<PageModel>;
+    delete(_id: string): Observable<PageModel>;
+    getPages(): Observable<PageModel[]>;
+    upsert<T>(page: UpsertPageApiModel.Request): Observable<PageModel>;
+    selectByName(name: string): Observable<PageModel>;
 }

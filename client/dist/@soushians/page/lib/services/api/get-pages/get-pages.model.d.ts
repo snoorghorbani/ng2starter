@@ -5,7 +5,7 @@ export declare namespace GetPagesApiModel {
         getRequestBody(): {};
     }
     class Response {
-        Result: PageModel<any>[];
+        Result: PageModel[];
         constructor();
     }
 }

@@ -9,9 +9,9 @@ export declare class GetPagesStartAction implements Action {
     readonly type: GET_PAGES_ACTION_TYPES;
 }
 export declare class GetPagesSucceedAction implements Action {
-    payload: PageModel<any>[];
+    payload: PageModel[];
     readonly type: GET_PAGES_ACTION_TYPES;
-    constructor(payload: PageModel<any>[]);
+    constructor(payload: PageModel[]);
 }
 export declare class GetPagesFailedAction implements Action {
     payload: any;

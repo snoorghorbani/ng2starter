@@ -51,12 +51,12 @@
         "dist/@soushians/socket",
       ],
       "@soushians/widget": [
-      //  "dist/@soushians/widget"
-       "projects/soushians/widget/src/public_api"
+       "dist/@soushians/widget"
+      //  "projects/soushians/widget/src/public_api"
       ],
       "@soushians/widget-types": [
-        // "dist/@soushians/widget-types"
-        "projects/soushians/widget-types/src/public_api"
+        "dist/@soushians/widget-types"
+        // "projects/soushians/widget-types/src/public_api"
       ],
       "@soushians/grid": [
         "dist/@soushians/grid"
@@ -70,8 +70,8 @@
         // "projects/soushians/frontend-authentication/src/public_api"
       ],
       "@soushians/page": [
-        // "dist/@soushians/page"
-        "projects/soushians/page/src/public_api"
+        "dist/@soushians/page"
+        // "projects/soushians/page/src/public_api"
       ],
       "@soushians/test": [
         "dist/soushians/test"

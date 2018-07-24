@@ -1,12 +1,10 @@
-export declare class PageModel<T> {
+export declare class PageModel {
     _id: string;
     name: string;
-    type: string;
-    Config: T;
-    constructor({_id, name, type, Config}?: {
+    grid: string;
+    constructor({_id, name, grid}?: {
         _id?: string;
         name?: string;
-        type?: string;
-        Config?: T;
+        grid?: string;
     });
 }

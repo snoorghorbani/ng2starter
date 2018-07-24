@@ -1,12 +1,12 @@
 import { PageModel } from "../../../models/page.model";
 export declare namespace UpsertPageApiModel {
     class Request {
-        page: PageModel<any>;
+        page: PageModel;
         constructor(page?: {});
-        getRequestBody(): PageModel<any>;
+        getRequestBody(): PageModel;
     }
     class Response {
-        Result: PageModel<any>;
+        Result: PageModel;
         constructor();
     }
 }

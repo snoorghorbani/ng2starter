@@ -11,9 +11,9 @@ export declare class GetPageStartAction implements Action {
     constructor(payload: string);
 }
 export declare class GetPageSucceedAction implements Action {
-    payload: PageModel<any>;
+    payload: PageModel;
     readonly type: GET_PAGE_ACTION_TYPES;
-    constructor(payload: PageModel<any>);
+    constructor(payload: PageModel);
 }
 export declare class GetPageFailedAction implements Action {
     payload: any;

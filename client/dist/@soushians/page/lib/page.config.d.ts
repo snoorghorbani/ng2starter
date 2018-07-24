@@ -6,6 +6,7 @@ export interface PageModuleConfig {
     };
     endpoints?: {
         get: string;
+        delete: string;
         find: string;
         upsert: string;
     };
