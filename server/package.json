@@ -15,6 +15,8 @@
 		"debug": "npm run build && npm run watch-debug",
 		"serve-debug": "nodemon --inspect dist/server/server.js",
 		"watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" -n \"npm run watch-ts\" \"npm run serve-debug\"",
+		"dbm_up": "node ./node_modules/mongodb-migrate -runmm -cfg db-migration.json -dbn starter up",
+		"dbm_down": "node ./node_modules/mongodb-migrate -runmm -cfg db-migration.json -dbn starter down",
 		"prepublish": "echo DO NOT PUBLISH THIS PROJECT, ONLY THE ROOT PROJECT. && exit 1"
 	},
 	"dependencies": {
@@ -58,6 +60,8 @@
 		"gulp": "^3.9.1",
 		"gulp-copy": "^1.1.0",
 		"lodash": "^4.17.4",
+		"mongodb": "^3.1.1",
+		"mongodb-migrate": "^2.0.2",
 		"mongoose": "^5.0.17",
 		"mongoose-connection": "0.0.2",
 		"node-gcm": "^0.14.9",
