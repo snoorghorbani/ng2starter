@@ -20,8 +20,9 @@
 						"tsConfig": "src/tsconfig.app.json",
 						"assets": [ "src/favicon.ico", "src/assets" ],
 						"styles": [
+							"src/assets//theme/theme.css",
 							"src/styles.css",
-							"./src/lib-modules-style/styles.scss",
+							"src/lib-modules-style/styles.scss",
 							"./node_modules/froala-editor/css/froala_editor.pkgd.min.css",
 							"./node_modules/froala-editor/css/froala_style.min.css",
 							"./node_modules/font-awesome/css/font-awesome.css",

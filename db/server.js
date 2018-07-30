@@ -25,7 +25,7 @@ MongoClient.connect(url, function(err, client) {
 		collections.forEach(collection => {
 			let _collection = db.collection(collection.collectionName);
 			_collection.find().toArray((err, docs) => {
-				fs.writeFileSync(`./db/repository/${collection.collectionName}.json`, JSON.stringify(docs), "utf8");
+				fs.writeFileSync(`./repository/${collection.collectionName}.json`, JSON.stringify(docs), "utf8");
 			});
 		})
 	);

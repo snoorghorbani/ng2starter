@@ -65,7 +65,6 @@
 		"mongoose": "^5.0.17",
 		"mongoose-connection": "0.0.2",
 		"node-gcm": "^0.14.9",
-		"node-sass": "^4.9.0",
 		"nodemon": "^1.17.3",
 		"npm-ls-scripts": "^0.1.2",
 		"passport": "^0.3.2",
