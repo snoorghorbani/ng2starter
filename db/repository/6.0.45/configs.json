@@ -1,1 +1,100 @@
-[{"_id":"5a377d7dff6ae751f2542a32","Name":"app_config","Config":{"AppTitle":"داشبورد","FooterCopyright":"© 2005-2017 همه حقوق برای شرکت شاتل محفوظ است.","Roles":["User","Admin"]},"updatedAt":"2018-07-22T06:12:56.633Z"},{"_id":"5a50a483ff6ae751f29073f1","Name":"authentication_module_config","Config":{"endpoints":{"signIn":"/api/user/signin","signOut":"/api/user","whoAmI":"/api/user"},"forms":{"signIn":"5a951cfbfd791632a09b3bc6"}},"updatedAt":"2018-07-22T06:12:50.762Z"},{"_id":"5a50a775ff6ae751f2907a4d","Name":"user_module_config","Config":{"endpoints":{"changePassword":"not/set","editProfile":"not/set","getUserInfo":"/api/user/${Email}","profileInformation":"/api/user/account/profile"},"forms":{"profile_edit":"5a940123bdfc033d70061cc5"},"dashboardLinks":[{"route":"/order/my-orders","icon":"security","title":"سفارش های من"}]},"updatedAt":"2018-05-13T17:11:38.747Z"},{"_id":"5a716a0eff6ae751f2dcaa39","Name":"layout_config","Config":{"showMainSidenav":false,"showSecondSideNav":false,"secondSideNavMode":"push","mainSideNavMode":"push","showLeftNavBar":true,"stickyLeftNavBar":false,"layoutMode":"default","title":"","menuItems":[{"route":"/","icon":"home","roles":["Admin"],"title":"صفحه اصلی"},{"route":"/configs","icon":"settings","roles":["Admin"],"title":"تنظیمات"},{"route":"/diagrams","icon":"multiline_chart","roles":["Admin"],"title":"مدیریت دیاگرام ها"},{"route":"/form","icon":"assignment","roles":["Admin"],"title":"مدیریت فرم"},{"route":"/bpmn","icon":"device_hub","roles":["Admin"],"title":"مدیریت فرایند ها"},{"route":"/source","icon":"device_hub","roles":["Admin"],"title":"مدیریت منابع"},{"route":"widget/management","icon":"device_hub","roles":["Admin"],"title":"ویجت"},{"route":"pages/management","icon":"device_hub","roles":["Admin"],"title":"مدیریت صفحات"},{"route":"/servco/requests","icon":"device_hub","roles":["User","Admin"],"title":"درخواست ها"}]},"updatedAt":"2018-07-25T13:49:55.673Z"},{"_id":"5a9148d7ff6ae751f2f97d64","Name":"form_module_config","Config":{"endpoints":{"addForm":"/api/form","editForm":"/api/form","getForm":"/api/form/${model._id}","getList":"/api/form"}},"updatedAt":"2018-07-22T06:13:14.171Z"}]
+[
+	{
+		"_id": "5a377d7dff6ae751f2542a3a",
+		"Name": "asdfasdfdsf",
+		"Config": {
+			"AppTitle": "sdfasdf",
+			"FooterCopyright": "© 2005-2017 همه حقوق برای شرکت شاتل محفوظ است.",
+			"Roles": [ "User", "Admin" ]
+		},
+		"updatedAt": "2018-07-22T06:12:56.633Z"
+	},
+	{
+		"_id": "5a377d7d4f6ae751f2542a3a",
+		"Name": "sdfgsdfgapp_config",
+		"Config": {
+			"AppTitle": "sdfasdf",
+			"FooterCopyright": "© 2005-2017 همه حقوق برای شرکت شاتل محفوظ است.",
+			"Roles": [ "User", "Admin" ]
+		},
+		"updatedAt": "2018-07-22T06:12:56.633Z"
+	},
+	{
+		"_id": "5a377d7dff6ae751f2542a32",
+		"Name": "app_config",
+		"Config": {
+			"AppTitle": "داشبورد",
+			"FooterCopyright": "© 2005-2017 همه حقوق برای شرکت شاتل محفوظ است.",
+			"Roles": [ "User", "Admin" ]
+		},
+		"updatedAt": "2018-07-22T06:12:56.633Z"
+	},
+	{
+		"_id": "5a50a483ff6ae751f29073f1",
+		"Name": "authentication_module_config",
+		"Config": {
+			"endpoints": { "signIn": "/api/user/signin", "signOut": "/api/user", "whoAmI": "/api/user" },
+			"forms": { "signIn": "5a951cfbfd791632a09b3bc6" }
+		},
+		"updatedAt": "2018-07-22T06:12:50.762Z"
+	},
+	{
+		"_id": "5a50a775ff6ae751f2907a4d",
+		"Name": "user_module_config",
+		"Config": {
+			"endpoints": {
+				"changePassword": "not/set",
+				"editProfile": "not/set",
+				"getUserInfo": "/api/user/${Email}",
+				"profileInformation": "/api/user/account/profile"
+			},
+			"forms": { "profile_edit": "5a940123bdfc033d70061cc5" },
+			"dashboardLinks": [ { "route": "/order/my-orders", "icon": "security", "title": "سفارش های من" } ]
+		},
+		"updatedAt": "2018-05-13T17:11:38.747Z"
+	},
+	{
+		"_id": "5a716a0eff6ae751f2dcaa39",
+		"Name": "layout_config",
+		"Config": {
+			"showMainSidenav": false,
+			"showSecondSideNav": false,
+			"secondSideNavMode": "push",
+			"mainSideNavMode": "push",
+			"showLeftNavBar": true,
+			"stickyLeftNavBar": false,
+			"layoutMode": "default",
+			"title": "",
+			"menuItems": [
+				{ "route": "/", "icon": "home", "roles": [ "Admin" ], "title": "صفحه اصلی" },
+				{ "route": "/configs", "icon": "settings", "roles": [ "Admin" ], "title": "تنظیمات" },
+				{ "route": "/diagrams", "icon": "multiline_chart", "roles": [ "Admin" ], "title": "مدیریت دیاگرام ها" },
+				{ "route": "/form", "icon": "assignment", "roles": [ "Admin" ], "title": "مدیریت فرم" },
+				{ "route": "/bpmn", "icon": "device_hub", "roles": [ "Admin" ], "title": "مدیریت فرایند ها" },
+				{ "route": "/source", "icon": "device_hub", "roles": [ "Admin" ], "title": "مدیریت منابع" },
+				{ "route": "widget/management", "icon": "device_hub", "roles": [ "Admin" ], "title": "ویجت" },
+				{ "route": "pages/management", "icon": "device_hub", "roles": [ "Admin" ], "title": "مدیریت صفحات" },
+				{
+					"route": "/servco/requests",
+					"icon": "device_hub",
+					"roles": [ "User", "Admin" ],
+					"title": "درخواست ها"
+				}
+			]
+		},
+		"updatedAt": "2018-07-25T13:49:55.673Z"
+	},
+	{
+		"_id": "5a9148d7ff6ae751f2f97d64",
+		"Name": "form_module_config",
+		"Config": {
+			"endpoints": {
+				"addForm": "/api/form",
+				"editForm": "/api/form",
+				"getForm": "/api/form/${model._id}",
+				"getList": "/api/form"
+			}
+		},
+		"updatedAt": "2018-07-22T06:13:14.171Z"
+	}
+]

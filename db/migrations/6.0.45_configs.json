@@ -1,0 +1,10 @@
+{
+	"_id": "5a377d7d4f6ae751f2542a3a",
+	"Name": "sdfgsdfgapp_config",
+	"Config": {
+		"AppTitle": "sdfasdf",
+		"FooterCopyright": "© 2005-2017 همه حقوق برای شرکت شاتل محفوظ است.",
+		"Roles": [ "User", "Admin" ]
+	},
+	"updatedAt": "2018-07-22T06:12:56.633Z"
+}
