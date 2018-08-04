@@ -3,12 +3,12 @@ const assert = require("assert");
 const fs = require("fs");
 const dotenv = require("dotenv");
 
-let npmPackage = JSON.parse(fs.readFileSync(`./package.json`));
+let npmPackage = JSON.parse(fs.readFileSync(`../package.json`));
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
-dotenv.config({ path: "./db/.env" });
+dotenv.config({ path: "./.env" });
 
 if (!fs.existsSync(`${process.env.reposRoot}/${npmPackage.version}`))
 	fs.mkdirSync(`${process.env.reposRoot}/${npmPackage.version}`);
