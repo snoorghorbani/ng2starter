@@ -5,35 +5,20 @@ const dotenv = require("dotenv");
 
 let npmPackage = JSON.parse(fs.readFileSync(`../package.json`));
 
+const version = require("./version.js");
+const compare = require("./compare.js");
+const packgeHandler = require("./packages-handler");
+
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
 dotenv.config({ path: "./.env" });
 
-if (!fs.existsSync(`${process.env.reposRoot}/${npmPackage.version}`))
-	fs.mkdirSync(`${process.env.reposRoot}/${npmPackage.version}`);
-
-// Use connect method to connect to the server
-MongoClient.connect(process.env.MONGODB_URI, function(err, client) {
-	assert.equal(null, err);
-	console.log("Connected successfully to server");
-
-	const db = client.db(process.env.dbName);
-
-	db.collections().then(collections =>
-		collections.forEach(collection => {
-			if (process.env.excludedCollection.includes(collection.collectionName)) return;
-
-			let _collection = db.collection(collection.collectionName);
-			_collection.find().toArray((err, docs) => {
-				fs.writeFileSync(
-					`${process.env.reposRoot}/${npmPackage.version}/${collection.collectionName}.json`,
-					JSON.stringify(docs),
-					"utf8"
-				);
-			});
-		})
-	);
-
-	// client.close();
-});
+// get new version
+const nextVersion = version.getNextVersion();
+// get update package.json s
+packgeHandler.update_all_packages();
+// backup from database
+// compare
+// create migration files
+compare.create_migration_files();

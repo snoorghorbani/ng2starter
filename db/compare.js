@@ -2,6 +2,9 @@ const MongoClient = require("mongodb").MongoClient;
 const assert = require("assert");
 const fs = require("fs");
 const dotenv = require("dotenv");
+var deepDiff = require("deep-diff");
+
+var version = require("./version");
 
 let npmPackage = JSON.parse(fs.readFileSync(`../package.json`));
 
@@ -14,48 +17,56 @@ const changes = {
  */
 dotenv.config({ path: "./.env" });
 
-// Use connect method to connect to the server
-MongoClient.connect(process.env.MONGODB_URI, function(err, client) {
-	assert.equal(null, err);
-	console.log("Connected successfully to server");
+const create_migration_files = () => {
+	// Use connect method to connect to the server
+	MongoClient.connect(process.env.MONGODB_URI, function(err, client) {
+		assert.equal(null, err);
+		console.log("Connected successfully to server");
 
-	const db = client.db(process.env.dbName);
+		const db = client.db(process.env.dbName);
 
-	db.collections().then(collections => {
-		let colLength = collections.length - eval(process.env.excludedCollection).length;
+		db.collections().then(collections => {
+			let colLength = collections.length - eval(process.env.excludedCollection).length;
 
-		collections.forEach(collection => {
-			if (process.env.excludedCollection.includes(collection.collectionName)) return;
-			collection.find().toArray((err, docs) => {
-				let sourceCollection = JSON.parse(
-					fs.readFileSync(`${process.env.reposRoot}/${npmPackage.version}/${collection.collectionName}.json`)
-				);
+			collections.forEach(collection => {
+				if (process.env.excludedCollection.includes(collection.collectionName)) return;
+				collection.find().toArray((err, docs) => {
+					let sourceCollection = JSON.parse(
+						fs.readFileSync(
+							`${process.env.reposRoot}/${npmPackage.version}/${collection.collectionName}.json`
+						)
+					);
 
-				sourceCollection.forEach(sourceDoc => {
-					let desticationDoc = docs.find(doc => doc._id.toString() === sourceDoc._id);
-					if (!desticationDoc) {
-						console.log(`${collection.collectionName} : ${sourceDoc._id} is not existed`);
-						changes.insert[collection.collectionName] = changes.insert[collection.collectionName] || [];
-						changes.insert[collection.collectionName].push(sourceDoc);
-					} else if (JSON.stringify(desticationDoc) == JSON.stringify(sourceDoc)) {
-						// console.log(`${collection.collectionName} : ${sourceDoc._id} is correct`);
-					} else {
-						console.log(`${collection.collectionName} : ${sourceDoc._id} is existed but have confilict`);
+					sourceCollection.forEach(sourceDoc => {
+						let desticationDoc = docs.find(doc => doc._id.toString() === sourceDoc._id);
+						if (!desticationDoc) {
+							console.log(`${collection.collectionName} : ${sourceDoc._id} is not existed`);
+							changes.insert[collection.collectionName] = changes.insert[collection.collectionName] || [];
+							changes.insert[collection.collectionName].push(sourceDoc);
+						} else if (JSON.stringify(desticationDoc) == JSON.stringify(sourceDoc)) {
+							// console.log(`${collection.collectionName} : ${sourceDoc._id} is correct`);
+						} else {
+							applyChange(desticationDoc, sourceDoc);
+
+							console.log(
+								`${collection.collectionName} : ${sourceDoc._id} is existed but have confilict`
+							);
+						}
+					});
+
+					if (--colLength == 0) {
+						createMigrationFile();
+						console.log(`comparing completed`);
 					}
 				});
-
-				if (--colLength == 0) {
-					createMigrationFile();
-					console.log(`comparing completed`);
-				}
 			});
 		});
+
+		// client.close();
 	});
+};
 
-	// client.close();
-});
-
-createMigrationFile = () => {
+const createMigrationFile = () => {
 	console.log("createMigrationFile");
 	const _insertMany = `
 	var mongodb = require("mongodb");
@@ -66,12 +77,18 @@ createMigrationFile = () => {
 	};
 
 	exports.down = function(db, next) {
-		${removeDocsToCollections()}
+		${removeDocsFromCollections()}
 	};
 	`;
-	fs.writeFileSync(`${process.env.migrationsRoot}/${npmPackage.version}.js`, _insertMany, "utf8");
+	fs.writeFileSync(
+		`${process.env.migrationsRoot}/${version.getCurrentVersion().migrationIndex}-${version.getPreviousVersion()
+			.version}_to_${version.getCurrentVersion().version}.js`,
+		_insertMany,
+		"utf8"
+	);
 };
-insertDocsToCollections = () => {
+
+const insertDocsToCollections = () => {
 	let res = "";
 	for (const collectionName in changes.insert) {
 		let docs = changes.insert[collectionName];
@@ -82,7 +99,8 @@ insertDocsToCollections = () => {
 	}
 	return res;
 };
-removeDocsToCollections = () => {
+
+const removeDocsFromCollections = () => {
 	let res = "";
 	for (const collectionName in changes.insert) {
 		let docs = changes.insert[collectionName];
@@ -96,5 +114,15 @@ removeDocsToCollections = () => {
 
 	return res;
 };
-migrationFile = () => {};
-migrationFile = () => {};
+const applyChange = (desticationDoc, sourceDoc) => {
+	const diff = getDifOf(desticationDoc, sourceDoc);
+	console.log(diff);
+	diff.filter(d => d.kind === "N").forEach(d => {
+		deepDiff.applyChange(desticationDoc, sourceDoc, d);
+	});
+};
+const getDifOf = (desticationDoc, sourceDoc) => {
+	return deepDiff.diff(desticationDoc, sourceDoc);
+};
+
+module.exports.create_migration_files = create_migration_files;

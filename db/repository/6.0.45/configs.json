@@ -21,7 +21,8 @@
 	},
 	{
 		"_id": "5a377d7dff6ae751f2542a32",
-		"Name": "app_config",
+		"Name": "app_config2",
+		"Name2": "app_config2",
 		"Config": {
 			"AppTitle": "داشبورد",
 			"FooterCopyright": "© 2005-2017 همه حقوق برای شرکت شاتل محفوظ است.",

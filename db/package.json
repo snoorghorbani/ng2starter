@@ -4,7 +4,9 @@
 	"description": "",
 	"main": "server.js",
 	"dependencies": {
+		"deep-diff": "^1.0.1",
 		"dotenv": "^6.0.0",
+		"glob-fs": "^0.1.7",
 		"mongodb": "^3.1.1",
 		"mongodb-migrate": "^2.0.2"
 	},
