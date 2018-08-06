@@ -15,10 +15,10 @@ const packgeHandler = require("./packages-handler");
 dotenv.config({ path: "./.env" });
 
 // get new version
-const nextVersion = version.getNextVersion();
+const nextVersion = version.getNextVersion().version;
 // get update package.json s
-packgeHandler.update_all_packages();
+packgeHandler.update_all_packages(nextVersion);
 // backup from database
 // compare
 // create migration files
-compare.create_migration_files();
+// compare.create_migration_files();

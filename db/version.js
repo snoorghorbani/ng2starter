@@ -43,7 +43,7 @@ const updatePackagesVersion = () => {
 const getPreviousVersion = () => logFile.versions.pop();
 const getCurrentVersion = () => logFile.currentVersion;
 const getNextVersion = () => {
-	let version = semver.inc(logFile.currentVersion.version, "prerelease", "beta");
+	let version = semver.inc(logFile.currentVersion.version, "minor");
 
 	return (logFile.currentVersion = {
 		version,

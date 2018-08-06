@@ -26,11 +26,9 @@ const get_all_packages = () => {
 		.readdirSync("../**/package.json");
 };
 
-const update_all_packages = () => {
-	let version = versionHanler.getNextVersion().version;
+const update_all_packages = version => {
 	get_all_packages().forEach(file => {
 		let package = JSON.parse(fs.readFileSync(file));
-		debugger;
 		package.version = version;
 		fs.writeFileSync(file, JSON.stringify(package), "utf8");
 	});
