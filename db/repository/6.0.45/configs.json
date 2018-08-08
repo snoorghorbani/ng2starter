@@ -1,20 +1,5 @@
 [
 	{
-		"_id": "5a50a775ff6ae751f2907a4d",
-		"Name": "user_module_config",
-		"Config": {
-			"endpoints": {
-				"changePassword": "not/set",
-				"editProfile": "not/set",
-				"getUserInfo": "/api/user/${Email}",
-				"profileInformation": "/api/user/account/profile"
-			},
-			"forms": { "profile_edit": "5a940123bdfc033d70061cc5" },
-			"dashboardLinks": [ { "route": "/order/my-orders", "icon": "security", "title": "سفارش های من" } ]
-		},
-		"updatedAt": "2018-05-13T17:11:38.747Z"
-	},
-	{
 		"_id": "5a716a0eff6ae751f2dcaa39",
 		"Name": "layout_config",
 		"Config": {

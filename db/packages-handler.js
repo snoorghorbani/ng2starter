@@ -35,6 +35,7 @@ const update_all_packages = version => {
 		package.version = version;
 		fs.writeFileSync(file, JSON.stringify(package), "utf8");
 	});
+	return Promise.resolve();
 };
 
 module.exports.npmPackage = npmPackage;

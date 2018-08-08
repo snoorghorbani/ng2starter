@@ -21,20 +21,23 @@ const fromVersion = version.getCurrentVersion();
 /**
  * get update package.json s
  */
-packgeHandler.update_all_packages(toVersion.version);
-/**
- * backup from database
- */
-backupHandler.backup(toVersion.version);
-/**
- * compare
- */
+packgeHandler.update_all_packages(toVersion.version).then(() => {
+	/**
+	 * backup from database
+	 */
+	backupHandler.backup(toVersion.version).then(() => {
+		/**
+		 * compare
+		 */
 
-/**
- * create migration files
- */
-compare.create_migration_files(fromVersion, toVersion);
-/**
- * save log file
- */
-version.update_log_file();
+		/**
+		 * create migration files
+		 */
+		compare.create_migration_files(fromVersion, toVersion).then(() => {
+			/**
+			 * save log file
+			 */
+			version.update_log_file();
+		});
+	});
+});

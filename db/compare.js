@@ -34,12 +34,12 @@ const create_migration_files = (fromVersion, toVersion) => {
 
 	toCollctions.forEach(collection => {
 		if (process.env.excludedCollection.includes(collection.collectionName)) return;
-		let preCollection = JSON.parse(
+		let fromDocs = JSON.parse(
 			fs.readFileSync(`${process.env.reposRoot}/${fromVersion.version}/${collection.collectionName}.json`)
 		);
 
-		preCollection.forEach(preDoc => {
-			let desticationDoc = collection.docs.find(doc => doc._id.toString() === preDoc._id);
+		collection.docs.forEach(preDoc => {
+			let desticationDoc = fromDocs.find(doc => doc._id.toString() === preDoc._id);
 			if (!desticationDoc) {
 				console.log(`${collection.collectionName} : ${preDoc._id} is not existed`);
 				changes.insert[collection.collectionName] = changes.insert[collection.collectionName] || [];
@@ -58,6 +58,8 @@ const create_migration_files = (fromVersion, toVersion) => {
 			console.log(`comparing completed`);
 		}
 	});
+
+	return Promise.resolve();
 };
 
 const withBussinesAppDatabase = () => {
