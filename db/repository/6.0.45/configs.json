@@ -1,45 +1,5 @@
 [
 	{
-		"_id": "5a377d7dff6ae751f2542a3a",
-		"Name": "asdfasdfdsf",
-		"Config": {
-			"AppTitle": "sdfasdf",
-			"FooterCopyright": "© 2005-2017 همه حقوق برای شرکت شاتل محفوظ است.",
-			"Roles": [ "User", "Admin" ]
-		},
-		"updatedAt": "2018-07-22T06:12:56.633Z"
-	},
-	{
-		"_id": "5a377d7d4f6ae751f2542a3a",
-		"Name": "sdfgsdfgapp_config",
-		"Config": {
-			"AppTitle": "sdfasdf",
-			"FooterCopyright": "© 2005-2017 همه حقوق برای شرکت شاتل محفوظ است.",
-			"Roles": [ "User", "Admin" ]
-		},
-		"updatedAt": "2018-07-22T06:12:56.633Z"
-	},
-	{
-		"_id": "5a377d7dff6ae751f2542a32",
-		"Name": "app_config2",
-		"Name2": "app_config2",
-		"Config": {
-			"AppTitle": "داشبورد",
-			"FooterCopyright": "© 2005-2017 همه حقوق برای شرکت شاتل محفوظ است.",
-			"Roles": [ "User", "Admin" ]
-		},
-		"updatedAt": "2018-07-22T06:12:56.633Z"
-	},
-	{
-		"_id": "5a50a483ff6ae751f29073f1",
-		"Name": "authentication_module_config",
-		"Config": {
-			"endpoints": { "signIn": "/api/user/signin", "signOut": "/api/user", "whoAmI": "/api/user" },
-			"forms": { "signIn": "5a951cfbfd791632a09b3bc6" }
-		},
-		"updatedAt": "2018-07-22T06:12:50.762Z"
-	},
-	{
 		"_id": "5a50a775ff6ae751f2907a4d",
 		"Name": "user_module_config",
 		"Config": {

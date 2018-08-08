@@ -3,10 +3,9 @@ const assert = require("assert");
 const fs = require("fs");
 const dotenv = require("dotenv");
 var deepDiff = require("deep-diff");
+const glob = require("glob-fs")({ gitignore: true });
 
-var version = require("./version");
-
-let npmPackage = JSON.parse(fs.readFileSync(`../package.json`));
+var packagesHandler = require("./packages-handler");
 
 const changes = {
 	insert : {}
@@ -17,7 +16,51 @@ const changes = {
  */
 dotenv.config({ path: "./.env" });
 
-const create_migration_files = () => {
+const getColections = version => {
+	return require("glob-fs")({ gitignore: true })
+		.readdirSync(`./${process.env.reposRoot}/${version}/*.json`)
+		.map(file => {
+			let col = {};
+			col.docs = JSON.parse(fs.readFileSync(file));
+			col.collectionName = file.split("\\").pop().split(".")[0];
+			return col;
+		});
+};
+
+const create_migration_files = (fromVersion, toVersion) => {
+	const toCollctions = getColections(toVersion.version);
+
+	let colLength = toCollctions.length - eval(process.env.excludedCollection).length;
+
+	toCollctions.forEach(collection => {
+		if (process.env.excludedCollection.includes(collection.collectionName)) return;
+		let preCollection = JSON.parse(
+			fs.readFileSync(`${process.env.reposRoot}/${fromVersion.version}/${collection.collectionName}.json`)
+		);
+
+		preCollection.forEach(preDoc => {
+			let desticationDoc = collection.docs.find(doc => doc._id.toString() === preDoc._id);
+			if (!desticationDoc) {
+				console.log(`${collection.collectionName} : ${preDoc._id} is not existed`);
+				changes.insert[collection.collectionName] = changes.insert[collection.collectionName] || [];
+				changes.insert[collection.collectionName].push(preDoc);
+			} else if (JSON.stringify(desticationDoc) == JSON.stringify(preDoc)) {
+				// console.log(`${collection.collectionName} : ${sourceDoc._id} is correct`);
+			} else {
+				applyChange(desticationDoc, preDoc);
+
+				console.log(`${collection.collectionName} : ${preDoc._id} is existed but have confilict`);
+			}
+		});
+
+		if (--colLength == 0) {
+			createMigrationFile(fromVersion, toVersion);
+			console.log(`comparing completed`);
+		}
+	});
+};
+
+const withBussinesAppDatabase = () => {
 	// Use connect method to connect to the server
 	MongoClient.connect(process.env.MONGODB_URI, function(err, client) {
 		assert.equal(null, err);
@@ -33,7 +76,8 @@ const create_migration_files = () => {
 				collection.find().toArray((err, docs) => {
 					let sourceCollection = JSON.parse(
 						fs.readFileSync(
-							`${process.env.reposRoot}/${npmPackage.version}/${collection.collectionName}.json`
+							`${process.env.reposRoot}/${packagesHandler.npmPackage()
+								.version}/${collection.collectionName}.json`
 						)
 					);
 
@@ -66,7 +110,7 @@ const create_migration_files = () => {
 	});
 };
 
-const createMigrationFile = () => {
+const createMigrationFile = (fromVersion, toVersion) => {
 	console.log("createMigrationFile");
 	const _insertMany = `
 	var mongodb = require("mongodb");
@@ -81,8 +125,7 @@ const createMigrationFile = () => {
 	};
 	`;
 	fs.writeFileSync(
-		`${process.env.migrationsRoot}/${version.getCurrentVersion().migrationIndex}-${version.getPreviousVersion()
-			.version}_to_${version.getCurrentVersion().version}.js`,
+		`${process.env.migrationsRoot}/${toVersion.migrationIndex}-${fromVersion.version}_to_${toVersion.version}.js`,
 		_insertMany,
 		"utf8"
 	);

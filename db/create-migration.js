@@ -3,7 +3,7 @@ const assert = require("assert");
 const fs = require("fs");
 const dotenv = require("dotenv");
 
-let npmPackage = JSON.parse(fs.readFileSync(`./package.json`));
+var packagesHandler = require("./packages-handler");
 
 /**
  * Load environment variables from .env file
@@ -22,7 +22,10 @@ MongoClient.connect(process.env.MONGODB_URI, function(err, client) {
 			if (process.env.excludedCollection.includes(collection.collectionName)) return;
 			collection.find().toArray((err, docs) => {
 				let sourceCollection = JSON.parse(
-					fs.readFileSync(`${process.env.reposRoot}/${npmPackage.version}/${collection.collectionName}.json`)
+					fs.readFileSync(
+						`${process.env.reposRoot}/${packagesHandler.npmPackage()
+							.version}/${collection.collectionName}.json`
+					)
 				);
 
 				sourceCollection.forEach(sourceDoc => {

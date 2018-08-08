@@ -4,9 +4,8 @@ const fs = require("fs");
 const dotenv = require("dotenv");
 const semver = require("semver");
 const deepDiff = require("deep-diff");
-var glob = require("glob-fs")({ gitignore: true });
+const glob = require("glob-fs")({ gitignore: true });
 
-let npmPackage = JSON.parse(fs.readFileSync(`../package.json`));
 const versionHanler = require("./version.js");
 let logFile = JSON.parse(fs.readFileSync(`./logFile.json`));
 
@@ -14,6 +13,10 @@ let logFile = JSON.parse(fs.readFileSync(`./logFile.json`));
  * Load environment variables from .env file
  */
 dotenv.config({ path: "./.env" });
+
+const npmPackage = () => {
+	return Object.assign({}, JSON.parse(fs.readFileSync(`../package.json`)));
+};
 
 const get_all_packages = () => {
 	return glob
@@ -34,5 +37,6 @@ const update_all_packages = version => {
 	});
 };
 
+module.exports.npmPackage = npmPackage;
 module.exports.get_all_packages = get_all_packages;
 module.exports.update_all_packages = update_all_packages;
