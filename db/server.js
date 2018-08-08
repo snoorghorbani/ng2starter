@@ -37,7 +37,7 @@ packgeHandler.update_all_packages(toVersion.version).then(() => {
 			/**
 			 * save log file
 			 */
-			version.update_log_file();
+			// version.update_log_file();
 		});
 	});
 });

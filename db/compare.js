@@ -8,7 +8,8 @@ const glob = require("glob-fs")({ gitignore: true });
 var packagesHandler = require("./packages-handler");
 
 const changes = {
-	insert : {}
+	insert : {},
+	sets   : []
 };
 
 /**
@@ -47,7 +48,11 @@ const create_migration_files = (fromVersion, toVersion) => {
 			} else if (JSON.stringify(desticationDoc) == JSON.stringify(preDoc)) {
 				// console.log(`${collection.collectionName} : ${sourceDoc._id} is correct`);
 			} else {
-				applyChange(desticationDoc, preDoc);
+				changes.sets.push({
+					collectionName : collection.collectionName,
+					desticationDoc : desticationDoc,
+					sourceDoc      : preDoc
+				});
 
 				console.log(`${collection.collectionName} : ${preDoc._id} is existed but have confilict`);
 			}
@@ -92,7 +97,7 @@ const withBussinesAppDatabase = () => {
 						} else if (JSON.stringify(desticationDoc) == JSON.stringify(sourceDoc)) {
 							// console.log(`${collection.collectionName} : ${sourceDoc._id} is correct`);
 						} else {
-							applyChange(desticationDoc, sourceDoc);
+							set_properties(desticationDoc, sourceDoc);
 
 							console.log(
 								`${collection.collectionName} : ${sourceDoc._id} is existed but have confilict`
@@ -119,11 +124,25 @@ const createMigrationFile = (fromVersion, toVersion) => {
 	const fs = require("fs");
 	
 	exports.up = function(db, next) {
-		${insertDocsToCollections()}
+		
+		/**
+		 * Apply change for properties that changed
+		*/
+		${set_properties()};
+
+		/**
+		 * Insert New Docs
+		*/
+		${insert_docs_to_collections()};
+
+		next();
 	};
 
 	exports.down = function(db, next) {
-		${removeDocsFromCollections()}
+		${unset_properties()}
+		${remove_docs_from_collections()}
+
+		next();
 	};
 	`;
 	fs.writeFileSync(
@@ -133,40 +152,79 @@ const createMigrationFile = (fromVersion, toVersion) => {
 	);
 };
 
-const insertDocsToCollections = () => {
+const insert_docs_to_collections = () => {
 	let res = "";
 	for (const collectionName in changes.insert) {
 		let docs = changes.insert[collectionName];
 		res += `
-				var collection = db.collection(${collectionName});
-				collection.insertMany(${JSON.stringify(docs)}, {}, next);
+				var collection = db.collection("${collectionName}");
+				collection.insertMany(${JSON.stringify(docs)}, {});
 			`;
 	}
 	return res;
 };
 
-const removeDocsFromCollections = () => {
+const remove_docs_from_collections = () => {
 	let res = "";
 	for (const collectionName in changes.insert) {
 		let docs = changes.insert[collectionName];
 		res += `
 				var collection = db.collection(${collectionName});
-				collection.remove({_id : { $in : ${JSON.stringify(
-					docs.map(doc => doc._id.toString())
-				)} }}, { justOne: true }, next);
+				collection.remove({_id : { $in : ${JSON.stringify(docs.map(doc => doc._id.toString()))} }}, { justOne: true });
 			`;
 	}
 
 	return res;
 };
-const applyChange = (desticationDoc, sourceDoc) => {
-	const diff = getDifOf(desticationDoc, sourceDoc);
-	console.log(diff);
-	diff.filter(d => d.kind === "N").forEach(d => {
-		deepDiff.applyChange(desticationDoc, sourceDoc, d);
+const set_properties = () => {
+	res = "";
+	changes.sets.forEach(({ collectionName, desticationDoc, sourceDoc }) => {
+		const diff = get_diff_of(desticationDoc, sourceDoc);
+		console.log(diff);
+		diff.filter(d => d.kind === "N").forEach(d => {
+			// deepDiff.applyChange(desticationDoc, sourceDoc, d);
+			let query = { _id: sourceDoc._id };
+			let $set = { $set: { [d.path.join(".")]: d.rhs } };
+			res += `
+			db.collection("${collectionName}").update(${JSON.stringify(query)}, ${JSON.stringify($set)}, {});
+			`;
+		});
+		diff.filter(d => d.kind !== "N").forEach(d => {
+			// deepDiff.applyChange(desticationDoc, sourceDoc, d);
+			let query = { _id: sourceDoc._id };
+			let $set = { $set: {} };
+			res += `
+			throw "migration file not implemented!";
+			/* 
+			* Kind	:	${d.kind}
+			* Path	:	${d.path.join(".")}
+			* lhs	:	${d.lhs}
+			* rhs	:	${d.rhs}
+			*/
+			db.collection("${collectionName}").update(${JSON.stringify(query)}, ${JSON.stringify($set)}, {});
+			`;
+		});
 	});
+	return res;
 };
-const getDifOf = (desticationDoc, sourceDoc) => {
+const unset_properties = () => {
+	res = "";
+	changes.sets.forEach(({ collectionName, desticationDoc, sourceDoc }) => {
+		const diff = get_diff_of(desticationDoc, sourceDoc);
+		console.log(diff);
+		diff.filter(d => d.kind === "N").forEach(d => {
+			// deepDiff.applyChange(desticationDoc, sourceDoc, d);
+			let query = { _id: sourceDoc._id };
+			let $unset = { $set: { [d.path.join(".")]: d.rhs } };
+			res += `
+			var collection = db.collection("${collectionName}");
+			collection.update(${JSON.stringify(query)}, ${JSON.stringify($unset)}, {});
+			`;
+		});
+	});
+	return res;
+};
+const get_diff_of = (desticationDoc, sourceDoc) => {
 	return deepDiff.diff(desticationDoc, sourceDoc);
 };
 
