@@ -124,16 +124,16 @@ const createMigrationFile = (fromVersion, toVersion) => {
 	const fs = require("fs");
 	
 	exports.up = function(db, next) {
-		
+
 		/**
 		 * Apply change for properties that changed
 		*/
-		${set_properties()};
+		${set_properties()}
 
 		/**
 		 * Insert New Docs
 		*/
-		${insert_docs_to_collections()};
+		${insert_docs_to_collections()}
 
 		next();
 	};
@@ -157,8 +157,7 @@ const insert_docs_to_collections = () => {
 	for (const collectionName in changes.insert) {
 		let docs = changes.insert[collectionName];
 		res += `
-				var collection = db.collection("${collectionName}");
-				collection.insertMany(${JSON.stringify(docs)}, {});
+			db.collection("${collectionName}").insertMany(${JSON.stringify(docs)}, {});
 			`;
 	}
 	return res;
@@ -169,8 +168,9 @@ const remove_docs_from_collections = () => {
 	for (const collectionName in changes.insert) {
 		let docs = changes.insert[collectionName];
 		res += `
-				var collection = db.collection(${collectionName});
-				collection.remove({_id : { $in : ${JSON.stringify(docs.map(doc => doc._id.toString()))} }}, { justOne: true });
+			db.collection("${collectionName}").remove({_id : { $in : ${JSON.stringify(
+			docs.map(doc => doc._id.toString())
+		)} }}, { justOne: true });
 			`;
 	}
 
@@ -189,7 +189,15 @@ const set_properties = () => {
 			db.collection("${collectionName}").update(${JSON.stringify(query)}, ${JSON.stringify($set)}, {});
 			`;
 		});
-		diff.filter(d => d.kind !== "N").forEach(d => {
+		diff.filter(d => d.kind === "D").forEach(d => {
+			// deepDiff.applyChange(desticationDoc, sourceDoc, d);
+			let query = { _id: sourceDoc._id };
+			let $unset = { $unset: { [d.path.join(".")]: d.lhs } };
+			res += `
+			db.collection("${collectionName}").update(${JSON.stringify(query)}, ${JSON.stringify($unset)}, {});
+			`;
+		});
+		diff.filter(d => d.kind !== "N" && d.kind !== "D").forEach(d => {
 			// deepDiff.applyChange(desticationDoc, sourceDoc, d);
 			let query = { _id: sourceDoc._id };
 			let $set = { $set: {} };
@@ -215,10 +223,33 @@ const unset_properties = () => {
 		diff.filter(d => d.kind === "N").forEach(d => {
 			// deepDiff.applyChange(desticationDoc, sourceDoc, d);
 			let query = { _id: sourceDoc._id };
-			let $unset = { $set: { [d.path.join(".")]: d.rhs } };
+			let $unset = { $unset: { [d.path.join(".")]: d.rhs } };
 			res += `
 			var collection = db.collection("${collectionName}");
 			collection.update(${JSON.stringify(query)}, ${JSON.stringify($unset)}, {});
+			`;
+		});
+		diff.filter(d => d.kind === "D").forEach(d => {
+			// deepDiff.applyChange(desticationDoc, sourceDoc, d);
+			let query = { _id: sourceDoc._id };
+			let $set = { $set: { [d.path.join(".")]: d.lhs } };
+			res += `
+			db.collection("${collectionName}").update(${JSON.stringify(query)}, ${JSON.stringify($set)}, {});
+			`;
+		});
+		diff.filter(d => d.kind !== "N" && d.kind !== "D").forEach(d => {
+			// deepDiff.applyChange(desticationDoc, sourceDoc, d);
+			let query = { _id: sourceDoc._id };
+			let $set = { $set: {} };
+			res += `
+			/* 
+			* Kind	:	${d.kind}
+			* Path	:	${d.path.join(".")}
+			* lhs	:	${d.lhs}
+			* rhs	:	${d.rhs}
+			*/
+			throw "migration file not implemented!";
+			db.collection("${collectionName}").update(${JSON.stringify(query)}, ${JSON.stringify($set)}, {});
 			`;
 		});
 	});
