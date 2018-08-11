@@ -202,13 +202,13 @@ const set_properties = () => {
 			let query = { _id: sourceDoc._id };
 			let $set = { $set: {} };
 			res += `
-			throw "migration file not implemented!";
 			/* 
 			* Kind	:	${d.kind}
 			* Path	:	${d.path.join(".")}
 			* lhs	:	${d.lhs}
 			* rhs	:	${d.rhs}
 			*/
+			throw "migration file not implemented!";
 			db.collection("${collectionName}").update(${JSON.stringify(query)}, ${JSON.stringify($set)}, {});
 			`;
 		});
