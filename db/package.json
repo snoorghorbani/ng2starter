@@ -1,17 +1,1 @@
-{
-  "name": "db",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "dependencies": {
-    "dotenv": "^6.0.0",
-    "mongodb": "^3.1.1"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "author": "",
-  "license": "ISC"
-}
+{"name":"db","version":"6.1.0","description":"","main":"server.js","dependencies":{"deep-diff":"^1.0.1","dotenv":"^6.0.0","glob-fs":"^0.1.7","mongodb":"^3.1.1","mongodb-migrate":"^2.0.2"},"devDependencies":{},"scripts":{"test":"echo \"Error: no test specified\" && exit 1","start":"node server.js","dbm_up":"node ./node_modules/mongodb-migrate -runmm -cfg db-migration.json -dbn starter up","dbm_down":"node ./node_modules/mongodb-migrate -runmm -cfg db-migration.json -dbn starter down"},"author":"","license":"ISC"}

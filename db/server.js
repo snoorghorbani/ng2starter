@@ -3,37 +3,41 @@ const assert = require("assert");
 const fs = require("fs");
 const dotenv = require("dotenv");
 
-let npmPackage = JSON.parse(fs.readFileSync(`./package.json`));
+const version = require("./version.js");
+const compare = require("./compare.js");
+const packgeHandler = require("./packages-handler");
+const backupHandler = require("./dobackup");
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
-dotenv.config({ path: "./db/.env" });
+dotenv.config({ path: "./.env" });
 
-if (!fs.existsSync(`${process.env.reposRoot}/${npmPackage.version}`))
-	fs.mkdirSync(`${process.env.reposRoot}/${npmPackage.version}`);
+/**
+  * get new version
+  */
+const toVersion = version.getNextVersion();
+const fromVersion = version.getCurrentVersion();
+/**
+ * get update package.json s
+ */
+packgeHandler.update_all_packages(toVersion.version).then(() => {
+	/**
+	 * backup from database
+	 */
+	backupHandler.backup(toVersion.version).then(() => {
+		/**
+		 * compare
+		 */
 
-// Use connect method to connect to the server
-MongoClient.connect(process.env.MONGODB_URI, function(err, client) {
-	assert.equal(null, err);
-	console.log("Connected successfully to server");
-
-	const db = client.db(process.env.dbName);
-
-	db.collections().then(collections =>
-		collections.forEach(collection => {
-			if (process.env.excludedCollection.includes(collection.collectionName)) return;
-
-			let _collection = db.collection(collection.collectionName);
-			_collection.find().toArray((err, docs) => {
-				fs.writeFileSync(
-					`${process.env.reposRoot}/${npmPackage.version}/${collection.collectionName}.json`,
-					JSON.stringify(docs),
-					"utf8"
-				);
-			});
-		})
-	);
-
-	// client.close();
+		/**
+		 * create migration files
+		 */
+		compare.create_migration_files(fromVersion, toVersion).then(() => {
+			/**
+			 * save log file
+			 */
+			// version.update_log_file();
+		});
+	});
 });

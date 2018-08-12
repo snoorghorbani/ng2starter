@@ -5,17 +5,32 @@
     "version": "0.2.0",
     "configurations": [
         {
-        "type": "node",
-        "request": "launch",
-        "name": "Mongo Export",
-        "program": "${workspaceFolder}/db/server.js"
-    },
+            "type": "node",
+            "request": "launch",
+            "name": "Main",
+            "cwd": "E:/@ng2-starter/starter/db/",
+            "program": "${workspaceFolder}/db/server.js"
+        },
         {
-        "type": "node",
-        "request": "launch",
-        "name": "Mongo Compare",
-        "program": "${workspaceFolder}/db/compare.js"
-    },
+            "type": "node",
+            "request": "launch",
+            "name": "Mongo do Backup",
+            "program": "${workspaceFolder}/db/dobackup.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Mongo Version",
+            "cwd": "E:/@ng2-starter/starter/db/",
+            "program": "${workspaceFolder}/db/version.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Mongo Compare",
+            "cwd": "E:/@ng2-starter/starter/db/",
+            "program": "${workspaceFolder}/db/compare.js"
+        },
         {
             "type": "node",
             "request": "attach",

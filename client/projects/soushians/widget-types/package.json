@@ -1,9 +1,1 @@
-{
-	"name": "@soushians/widget-types",
-	"version": "6.0.0",
-	"peerDependencies": {
-		"@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-		"@angular/core": "^6.0.0-rc.0 || ^6.0.0"
-	},
-	"devDependencies": {}
-}
+{"name":"@soushians/widget-types","version":"6.1.0","peerDependencies":{"@angular/common":"^6.0.0-rc.0 || ^6.0.0","@angular/core":"^6.0.0-rc.0 || ^6.0.0"},"devDependencies":{}}
