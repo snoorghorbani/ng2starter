@@ -1,7 +1,7 @@
 import { InjectionToken, Inject, Injectable, Component, ComponentFactoryResolver, ViewContainerRef, NgModule } from '@angular/core';
 import { BehaviorSubject, of } from 'rxjs';
 import { Store, StoreModule } from '@ngrx/store';
-import { __assign, __read, __decorate, __metadata } from 'tslib';
+import { __decorate, __metadata, __assign, __read } from 'tslib';
 import { map, filter, tap, take, switchMap, combineLatest, pluck, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { UserFacadeService } from '@soushians/user';
