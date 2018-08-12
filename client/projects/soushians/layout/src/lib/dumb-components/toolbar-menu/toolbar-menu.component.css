@@ -10,3 +10,6 @@
 #app-name {
 	padding-right: 8px;
 }
+button.rtl-dir {
+	direction: rtl !important;
+}
