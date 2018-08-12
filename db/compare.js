@@ -42,7 +42,7 @@ const create_migration_files = (fromVersion, toVersion) => {
 		collection.docs.forEach(preDoc => {
 			let desticationDoc = fromDocs.find(doc => doc._id.toString() === preDoc._id);
 			if (!desticationDoc) {
-				console.log(`${collection.collectionName} : ${preDoc._id} is not existed`);
+				// console.log(`${collection.collectionName} : ${preDoc._id} is not existed`);
 				changes.insert[collection.collectionName] = changes.insert[collection.collectionName] || [];
 				changes.insert[collection.collectionName].push(preDoc);
 			} else if (JSON.stringify(desticationDoc) == JSON.stringify(preDoc)) {
@@ -54,13 +54,12 @@ const create_migration_files = (fromVersion, toVersion) => {
 					sourceDoc      : preDoc
 				});
 
-				console.log(`${collection.collectionName} : ${preDoc._id} is existed but have confilict`);
+				// console.log(`${collection.collectionName} : ${preDoc._id} is existed but have confilict`);
 			}
 		});
 
 		if (--colLength == 0) {
 			createMigrationFile(fromVersion, toVersion);
-			console.log(`comparing completed`);
 		}
 	});
 
@@ -71,7 +70,6 @@ const withBussinesAppDatabase = () => {
 	// Use connect method to connect to the server
 	MongoClient.connect(process.env.MONGODB_URI, function(err, client) {
 		assert.equal(null, err);
-		console.log("Connected successfully to server");
 
 		const db = client.db(process.env.dbName);
 
@@ -91,7 +89,7 @@ const withBussinesAppDatabase = () => {
 					sourceCollection.forEach(sourceDoc => {
 						let desticationDoc = docs.find(doc => doc._id.toString() === sourceDoc._id);
 						if (!desticationDoc) {
-							console.log(`${collection.collectionName} : ${sourceDoc._id} is not existed`);
+							// console.log(`${collection.collectionName} : ${sourceDoc._id} is not existed`);
 							changes.insert[collection.collectionName] = changes.insert[collection.collectionName] || [];
 							changes.insert[collection.collectionName].push(sourceDoc);
 						} else if (JSON.stringify(desticationDoc) == JSON.stringify(sourceDoc)) {
@@ -99,15 +97,14 @@ const withBussinesAppDatabase = () => {
 						} else {
 							set_properties(desticationDoc, sourceDoc);
 
-							console.log(
-								`${collection.collectionName} : ${sourceDoc._id} is existed but have confilict`
-							);
+							// console.log(
+							// 	`${collection.collectionName} : ${sourceDoc._id} is existed but have confilict`
+							// );
 						}
 					});
 
 					if (--colLength == 0) {
 						createMigrationFile();
-						console.log(`comparing completed`);
 					}
 				});
 			});
@@ -118,7 +115,6 @@ const withBussinesAppDatabase = () => {
 };
 
 const createMigrationFile = (fromVersion, toVersion) => {
-	console.log("createMigrationFile");
 	const _insertMany = `
 	var mongodb = require("mongodb");
 	const fs = require("fs");
@@ -180,7 +176,6 @@ const set_properties = () => {
 	res = "";
 	changes.sets.forEach(({ collectionName, desticationDoc, sourceDoc }) => {
 		const diff = get_diff_of(desticationDoc, sourceDoc);
-		console.log(diff);
 		diff.filter(d => d.kind === "N").forEach(d => {
 			// deepDiff.applyChange(desticationDoc, sourceDoc, d);
 			let query = { _id: sourceDoc._id };
@@ -219,7 +214,6 @@ const unset_properties = () => {
 	res = "";
 	changes.sets.forEach(({ collectionName, desticationDoc, sourceDoc }) => {
 		const diff = get_diff_of(desticationDoc, sourceDoc);
-		console.log(diff);
 		diff.filter(d => d.kind === "N").forEach(d => {
 			// deepDiff.applyChange(desticationDoc, sourceDoc, d);
 			let query = { _id: sourceDoc._id };
