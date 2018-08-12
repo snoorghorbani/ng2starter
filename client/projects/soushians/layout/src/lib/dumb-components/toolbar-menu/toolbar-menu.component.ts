@@ -31,7 +31,7 @@ import { map, combineLatest } from "rxjs/operators";
 @Component({
 	selector: "layout-toolbar",
 	templateUrl: "./toolbar-menu.component.html",
-	styleUrls: [ "./toolbar-menu.component.css" ],
+	styleUrls: ["./toolbar-menu.component.scss"],
 	animations: [
 		trigger("logoAnimation", [
 			state(
@@ -89,15 +89,15 @@ import { map, combineLatest } from "rxjs/operators";
 				style({
 					right: "50%",
 					transform: "translateX(50%)",
-					bottom: "25px"
+					bottom: "0"
 				})
 			),
 			state(
 				"compact",
 				style({
-					right: "45px",
-					transform: "translateX(0)",
-					bottom: "13px"
+					right: "50%",
+					transform: "translateX(50%)",
+					bottom: "0"
 				})
 			),
 			state(
@@ -105,7 +105,7 @@ import { map, combineLatest } from "rxjs/operators";
 				style({
 					right: "75px",
 					transform: "translateX(0)",
-					bottom: "14px"
+					bottom: "0"
 				})
 			),
 			state(
@@ -113,7 +113,7 @@ import { map, combineLatest } from "rxjs/operators";
 				style({
 					right: "75px",
 					transform: "translateX(0)",
-					bottom: "14px"
+					bottom: "0"
 				})
 			),
 			transition("comfortable => compact", animate("800ms ease-in")),
@@ -149,9 +149,9 @@ import { map, combineLatest } from "rxjs/operators";
 					"margin-right": "0px",
 					"font-size": "16px",
 					"font-weight": "bolder",
-					transform: "translateX(0)",
-					right: "60px",
-					bottom: "79px",
+					right: "50%",
+					transform: "translateX(50%)",
+					bottom: "51px",
 					position: "absolute",
 					padding: 0
 				})

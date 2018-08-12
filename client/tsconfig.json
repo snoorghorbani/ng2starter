@@ -12,14 +12,14 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "lib": [      
+    "lib": [
       "es2017",
       "dom"
     ],
     "paths": {
       "@soushians/layout": [
-        "dist/@soushians/layout"
-        // "projects/soushians/layout/src/public_api"
+        // "dist/@soushians/layout"
+        "projects/soushians/layout/src/public_api"
       ],
       "@soushians/config": [
         "dist/@soushians/config"
@@ -37,7 +37,7 @@
         "dist/@soushians/authentication"
       ],
       "@soushians/form": [
-         "dist/@soushians/form"
+        "dist/@soushians/form"
         // "projects/soushians/form/src/public_api"
       ],
       "@soushians/diagram": [
@@ -51,8 +51,8 @@
         "dist/@soushians/socket",
       ],
       "@soushians/widget": [
-       "dist/@soushians/widget"
-      //  "projects/soushians/widget/src/public_api"
+        "dist/@soushians/widget"
+        //  "projects/soushians/widget/src/public_api"
       ],
       "@soushians/widget-types": [
         "dist/@soushians/widget-types"
@@ -77,10 +77,12 @@
         "dist/soushians/test"
       ],
       "configs": [
-      //  "dist/configs"
-       "projects/configs/src/public_api"
+        //  "dist/configs"
+        "projects/configs/src/public_api"
       ],
-      "socket.io-client": ["./node_modules/socket.io-client/dist/socket.io.slim.js"],
+      "socket.io-client": [
+        "./node_modules/socket.io-client/dist/socket.io.slim.js"
+      ],
     }
   }
 }

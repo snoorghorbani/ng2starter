@@ -1,0 +1,25 @@
+/*
+* layout Module Start
+*/
+
+#layout-sidnav > mat-sidenav-content {
+	transition: all 800ms;
+	overflow: visible;
+}
+.fullscreen #layout-sidnav > mat-sidenav-content {
+	padding: 0;
+}
+.comfortable #layout-sidnav > mat-sidenav-content {
+	padding-top: 33vh;
+}
+.compact #layout-sidnav > mat-sidenav-content {
+	padding-top: 100px;
+}
+.summary #layout-sidnav > mat-sidenav-content {
+	padding-top: 64px;
+}
+.hide #layout-sidnav > mat-sidenav-content {
+	padding-top: 1px;
+}
+
+/* Rules Module End */

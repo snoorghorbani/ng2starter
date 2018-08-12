@@ -1,6 +1,6 @@
-import { __assign, __read, __decorate, __metadata } from 'tslib';
+import { __read, __decorate, __metadata, __assign } from 'tslib';
 import { createSelector, createFeatureSelector, Store, StoreModule } from '@ngrx/store';
-import { InjectionToken, Injectable, Inject, Component, Input, ViewChild, Output, EventEmitter, HostListener, NgModule, defineInjectable, inject } from '@angular/core';
+import { InjectionToken, Injectable, Inject, Component, Input, Output, EventEmitter, ViewChild, HostListener, NgModule, defineInjectable, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { getConfigs, NgsConfigModule } from '@soushians/config';
 import 'rxjs/Observable';
