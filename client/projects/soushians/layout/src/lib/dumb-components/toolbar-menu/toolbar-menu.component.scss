@@ -1,7 +1,7 @@
 ﻿mat-toolbar {
     background-color: rgb(255, 255, 255) !important;
     height: 100px !important;
-    top: 0px !important;
+    top: 0px;
     box-shadow: rgba(0, 0, 0, 0.5) 1px 1px 3px !important;
 }
 #firstToolbar{
@@ -16,6 +16,8 @@
 		opacity: 0.6;
 		font-family: 'iran-sans-bold', sans-serif !important;
 		font-size: .65em !important;
+		height: 50px !important;
+		border-radius: 0 !important;
 		
 		&.active {
 			border-bottom: 2px solid rgb(255, 116, 0);
@@ -33,4 +35,11 @@
 }
 button.rtl-dir {
 	direction: rtl !important;
+}
+#acccountName{
+	display: block;
+    text-align: right;
+    padding-right: 20px;
+    font-size: 14px;
+    font-weight: bolder;
 }

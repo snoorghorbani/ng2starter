@@ -18,8 +18,8 @@
     ],
     "paths": {
       "@soushians/layout": [
-        // "dist/@soushians/layout"
-        "projects/soushians/layout/src/public_api"
+        "dist/@soushians/layout"
+        // "projects/soushians/layout/src/public_api"
       ],
       "@soushians/config": [
         "dist/@soushians/config"
