@@ -6,8 +6,7 @@ import { DashboardComponent } from './smart-components/dashboard/dashboard.compo
 const routes: Routes = [
         {
                 path: 'dashboard',
-                component: DashboardComponent,
-                children: []
+                component: DashboardComponent
         }
 ];
 //{ path: '**', component: PageNotFoundComponent }

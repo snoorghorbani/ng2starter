@@ -346,26 +346,6 @@ mat-sidenav-content mat-sidenav-content {
 	padding: 25px;
 } */
 
-#layout-sidnav > mat-sidenav-content {
-	transition: all 800ms;
-	overflow: visible;
-}
-
-.fullscreen #layout-sidnav > mat-sidenav-content {
-	padding: 0;
-}
-.comfortable #layout-sidnav > mat-sidenav-content {
-	padding-top: 33vh;
-}
-.compact #layout-sidnav > mat-sidenav-content {
-	padding-top: 128px;
-}
-.summary #layout-sidnav > mat-sidenav-content {
-	padding-top: 64px;
-}
-.hide #layout-sidnav > mat-sidenav-content {
-	padding-top: 1px;
-}
 .mat-form-field-wrapper {
 	transition: top 500ms;
 	top: 0px;

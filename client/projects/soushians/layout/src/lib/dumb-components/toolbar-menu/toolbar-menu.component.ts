@@ -31,7 +31,7 @@ import { map, combineLatest } from "rxjs/operators";
 @Component({
 	selector: "layout-toolbar",
 	templateUrl: "./toolbar-menu.component.html",
-	styleUrls: [ "./toolbar-menu.component.css" ],
+	styleUrls: ["./toolbar-menu.component.scss"],
 	animations: [
 		trigger("logoAnimation", [
 			state(
@@ -57,7 +57,7 @@ import { map, combineLatest } from "rxjs/operators";
 				style({
 					width: "36px",
 					height: "36px",
-					top: "76px",
+					top: "57px",
 					right: "10px"
 				})
 			),
@@ -66,7 +66,7 @@ import { map, combineLatest } from "rxjs/operators";
 				style({
 					width: "0",
 					height: "0",
-					top: "76px",
+					top: "57px",
 					right: "10px"
 				})
 			),
@@ -89,15 +89,15 @@ import { map, combineLatest } from "rxjs/operators";
 				style({
 					right: "50%",
 					transform: "translateX(50%)",
-					bottom: "25px"
+					bottom: "0"
 				})
 			),
 			state(
 				"compact",
 				style({
-					right: "45px",
-					transform: "translateX(0)",
-					bottom: "13px"
+					right: "50%",
+					transform: "translateX(50%)",
+					bottom: "0"
 				})
 			),
 			state(
@@ -105,7 +105,7 @@ import { map, combineLatest } from "rxjs/operators";
 				style({
 					right: "75px",
 					transform: "translateX(0)",
-					bottom: "14px"
+					bottom: "0"
 				})
 			),
 			state(
@@ -113,7 +113,7 @@ import { map, combineLatest } from "rxjs/operators";
 				style({
 					right: "75px",
 					transform: "translateX(0)",
-					bottom: "14px"
+					bottom: "0"
 				})
 			),
 			transition("comfortable => compact", animate("800ms ease-in")),
@@ -149,9 +149,9 @@ import { map, combineLatest } from "rxjs/operators";
 					"margin-right": "0px",
 					"font-size": "16px",
 					"font-weight": "bolder",
-					transform: "translateX(0)",
-					right: "60px",
-					bottom: "79px",
+					right: "50%",
+					transform: "translateX(50%)",
+					bottom: "51px",
 					position: "absolute",
 					padding: 0
 				})
@@ -211,7 +211,7 @@ import { map, combineLatest } from "rxjs/operators";
 				"compact",
 				style({
 					backgroundColor: "rgba(256,256,256,1)",
-					height: "128px",
+					height: "100px",
 					top: "0",
 					boxShadow: "1px 1px 3px rgba(0,0,0,0.5)"
 				})
@@ -220,8 +220,8 @@ import { map, combineLatest } from "rxjs/operators";
 				"summary",
 				style({
 					backgroundColor: "rgba(256,256,256,1)",
-					height: "128px",
-					top: "-64px",
+					height: "100px",
+					top: "-50px",
 					boxShadow: "1px 1px 3px rgba(0,0,0,0.5)"
 				})
 			),
@@ -229,8 +229,8 @@ import { map, combineLatest } from "rxjs/operators";
 				"hide",
 				style({
 					backgroundColor: "rgba(256,256,256,1)",
-					height: "128px",
-					top: "-128px",
+					height: "100px",
+					top: "-100px",
 					boxShadow: "1px 1px 3px rgba(0,0,0,0.5)"
 				})
 			),
@@ -298,7 +298,7 @@ export class ToolbarMenuComponent {
 			if (scrolledAmount == 0) {
 				if (this.config.mode == "comfortable") return;
 				this.store.dispatch(new ChangeToolbatToComfortableModeAction());
-			} else if (scrolledAmount < 200 || scrollToTop) {
+			} else if (scrolledAmount < 150 || scrollToTop) {
 				if (this.config.mode == "compact") return;
 				this.store.dispatch(new ChangeToolbatToCompactModeAction());
 			} else {
