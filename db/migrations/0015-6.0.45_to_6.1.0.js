@@ -12,13 +12,13 @@
 			
 			db.collection("configs").update({"_id":"5a716a0eff6ae751f2dcaa39"}, {"$unset":{"Name33":"layout_config33"}}, {});
 			
-			throw "migration file not implemented!";
 			/* 
 			* Kind	:	E
 			* Path	:	Name
 			* lhs	:	newValue_layout_config
 			* rhs	:	layout_config
 			*/
+			throw "migration file not implemented!";
 			db.collection("configs").update({"_id":"5a716a0eff6ae751f2dcaa39"}, {"$set":{}}, {});
 			
 
