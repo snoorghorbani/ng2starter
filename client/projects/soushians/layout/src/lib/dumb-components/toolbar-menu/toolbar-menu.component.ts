@@ -56,6 +56,7 @@ import { map, combineLatest } from "rxjs/operators";
 				"summary",
 				style({
 					width: "36px",
+
 					height: "36px",
 					top: "57px",
 					right: "10px"
@@ -116,18 +117,18 @@ import { map, combineLatest } from "rxjs/operators";
 					bottom: "0"
 				})
 			),
-			transition("comfortable => compact", animate("800ms ease-in")),
-			transition("comfortable => hide", animate("400ms ease-in")),
-			transition("hide => comfortable", animate("600ms ease-in")),
-			transition("compact => hide", animate("400ms ease-in")),
-			transition("hide => compact", animate("600ms ease-in")),
-			transition("summary => hide", animate("400ms ease-in")),
-			transition("hide => summary", animate("600ms ease-in")),
+			transition("comfortable => compact", animate("800ms ease-in-out")),
+			transition("comfortable => hide", animate("400ms ease-in-out")),
+			transition("hide => comfortable", animate("600ms ease-in-out")),
+			transition("compact => hide", animate("400ms ease-in-out")),
+			transition("hide => compact", animate("600ms ease-in-out")),
+			transition("summary => hide", animate("400ms ease-in-out")),
+			transition("hide => summary", animate("600ms ease-in-out")),
 			// transition("comfortable => summary", animate("800ms ease-in")),
 			transition("summary => compact", animate("400ms ease-out")),
 			transition("summary => comfortable", animate("800ms ease-out")),
 			transition("compact => comfortable", animate("800ms ease-out")),
-			transition("compact => summary", animate("400ms ease-in"))
+			transition("compact => summary", animate("400ms ease-in-out"))
 		]),
 		trigger("titleAnimation", [
 			state(
@@ -162,8 +163,8 @@ import { map, combineLatest } from "rxjs/operators";
 					"margin-right": "0px",
 					"font-size": "16px",
 					"font-weight": "bolder",
-					transform: "translateX(0)",
-					right: "60px",
+					transform: "translateX(50%)",
+					right: "50%",
 					bottom: "79px",
 					position: "absolute",
 					padding: 0
@@ -175,8 +176,8 @@ import { map, combineLatest } from "rxjs/operators";
 					"margin-right": "0px",
 					"font-size": "1px",
 					"font-weight": "bolder",
-					transform: "translateX(0)",
-					right: "60px",
+					// transform: "translateX(0)",
+					// right: "60px",
 					bottom: "79px",
 					position: "absolute",
 					padding: 0
