@@ -16,6 +16,9 @@
     <button *ngIf="!displayName" mat-button routerLink="auth/signin">
       ورود
     </button>
+    <button *ngIf="!displayName" mat-button routerLink="auth/signup">
+      ثبت نام
+    </button>
     <button *ngIf="displayName" mat-icon-button [matMenuTriggerFor]="toolbarMenu1">
       <mat-icon>account_circle</mat-icon>
     </button>

@@ -21,5 +21,18 @@
 .hide #layout-sidnav > mat-sidenav-content {
 	padding-top: 1px;
 }
+.main-container:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 167px;
+    background-color: #63b5f6;
+    z-index: 0;
+    padding: 25px;
+    font-size: 18px;
+    z-index: -2;
+}
 
 /* Rules Module End */

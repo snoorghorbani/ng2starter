@@ -42,6 +42,9 @@ import { AuthenticationReducers } from "./reducers/index";
 import { SigninEffects } from "./effects/signin.effects";
 import { AuthenticationEffects } from "./effects/authentication.effects";
 import { SigninService } from "./services/signin.service";
+import { SignupContainerComponent } from "./smart-components/signup-container/signup-container.component";
+import { SignupComponent } from "./dump-components/signup/signup.component";
+import { SigninGuard } from "./routing-guards/signin.guard";
 
 @NgModule({
 	imports: [
@@ -71,9 +74,15 @@ import { SigninService } from "./services/signin.service";
 		FormsModule,
 		NgsFormModule
 	],
-	declarations: [ SigninContainerComponent, SigninComponent, AuthenticationContainerComponent ],
+	declarations: [
+		SigninContainerComponent,
+		SigninComponent,
+		AuthenticationContainerComponent,
+		SignupContainerComponent,
+		SignupComponent
+	],
 	entryComponents: [ SigninContainerComponent ],
-	providers: [],
+	providers: [ SigninGuard ],
 	exports: []
 })
 export class NgsAuthenticationModule {

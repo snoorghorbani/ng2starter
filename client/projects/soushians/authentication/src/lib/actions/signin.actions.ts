@@ -4,6 +4,9 @@ import { Signin_ApiModel } from "../models";
 
 export enum SignInActionTypes {
 	WHO_AM_I = "[AUTHENTICATION] who am i",
+	SIGNUP = "[AUTHENTICATION][SIGNUP] start",
+	SIGNUP_SUCCEED = "[AUTHENTICATION][SIGNUP] Success",
+	SIGNUP_FAILURE = "[AUTHENTICATION][SIGNUP] Failure",
 	SIGNIN = "[AUTHENTICATION] Signin",
 	DO_SIGNOUT = "[AUTHENTICATION] Do Signout",
 	SIGNOUT = "[AUTHENTICATION] Signout",
@@ -16,6 +19,28 @@ export enum SignInActionTypes {
 export class WhoAmIAction implements Action {
 	readonly type = SignInActionTypes.WHO_AM_I;
 }
+
+/**
+ * 	sign up
+ */
+export class Signup implements Action {
+	readonly type = SignInActionTypes.SIGNUP;
+	constructor(public payload: Signin_ApiModel.Request) {}
+}
+
+export class SignupSecceed implements Action {
+	readonly type = SignInActionTypes.SIGNUP_SUCCEED;
+	constructor(public payload: any) {}
+}
+
+export class SignupFailed implements Action {
+	readonly type = SignInActionTypes.SIGNUP_FAILURE;
+	constructor(public payload: any) {}
+}
+
+/**
+ * Sign in
+ */
 export class Signin implements Action {
 	readonly type = SignInActionTypes.SIGNIN;
 	constructor(public payload: Signin_ApiModel.Request) {}
