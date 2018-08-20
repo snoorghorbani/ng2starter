@@ -5,9 +5,7 @@ import { Observable } from "rxjs/Observable";
 
 import { FeatureState, getLoggedIn } from "../reducers";
 
-@Injectable({
-	providedIn: "root"
-})
+@Injectable()
 export class SigninGuard implements CanActivate {
 	constructor(private store: Store<FeatureState>) {}
 
