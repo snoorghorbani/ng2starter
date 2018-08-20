@@ -4,4 +4,17 @@
 .cdk-overlay-container {
 	direction: ltr !important;
 }
+
+th.mat-header-cell {
+	text-align: right !important;
+}
+
+td.mat-cell:first-child, td.mat-footer-cell:first-child, th.mat-header-cell:first-child {
+    padding-left: 0 !important;
+    padding-right: 24px !important;
+}
+td.mat-cell:last-child, td.mat-footer-cell:last-child, th.mat-header-cell:last-child {
+    padding-right: 0 !important;
+    padding-left: 24px !important;
+}
 /* RTL Fixed */

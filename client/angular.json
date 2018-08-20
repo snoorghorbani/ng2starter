@@ -20,13 +20,13 @@
 						"tsConfig": "src/tsconfig.app.json",
 						"assets": [ "src/favicon.ico", "src/assets" ],
 						"styles": [
-							"src/assets//theme/theme.css",
-							"src/styles.css",
-							"src/lib-modules-style/styles.scss",
+							"./src/styles.css",
+							"./src/lib-modules-style/styles.scss",
 							"./node_modules/froala-editor/css/froala_editor.pkgd.min.css",
 							"./node_modules/froala-editor/css/froala_style.min.css",
+							"./src/assets/c3.min.css",
 							"./node_modules/font-awesome/css/font-awesome.css",
-							"src/custom.css"
+							"./src/custom.css"
 						],
 						"scripts": [
 							"./node_modules/jquery/dist/jquery.min.js",
