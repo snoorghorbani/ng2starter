@@ -6,6 +6,7 @@ export interface IGridItemModel<T> extends GridsterItem {
 	name: string;
 	valid: boolean;
 	owner: boolean;
+	access: "public" | "private";
 	type: string;
 	config: T;
 }

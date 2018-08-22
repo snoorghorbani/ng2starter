@@ -28,20 +28,17 @@ import { EffectsModule } from "@ngrx/effects";
 
 import { NgsFormModule } from "@soushians/form";
 
-import { FrontendAuthenticationModuleConfig, MODULE_CONFIG_TOKEN } from "./frontend-authentication.config";
-import { FrontendAuthenticationRoutingModule } from "./frontend-authentication-routing.module";
-import { SigninContainerComponent } from "./smart-components/signin-container/signin-container.component";
-import { SigninComponent } from "./dump-components/signin/signin.component";
 import { FrontendAuthenticationContainerComponent } from "./smart-components/frontend-authentication-container/frontend-authentication-container.component";
-
-import { WithCredentialInterceptor } from "./interceptors/with-credential.interceptor";
-import { UnauthorizedInterceptor } from "./interceptors/unauthorized.interceptor";
+import { FrontendAuthenticationModuleConfig, MODULE_CONFIG_TOKEN } from "./frontend-authentication.config";
+import { SigninContainerComponent } from "./smart-components/signin-container/signin-container.component";
+import { FrontendAuthenticationRoutingModule } from "./frontend-authentication-routing.module";
+import { SigninComponent } from "./dump-components/signin/signin.component";
 
 import { FrontendAuthenticationReducers } from "./reducers/index";
 
-import { SigninEffects } from "./effects/signin.effects";
-import { FrontendAuthenticationEffects } from "./effects/frontend-authentication.effects";
 import { FrontendSigninService } from "./services/signin.service";
+import { SigninEffects } from "./effects/signin.effects";
+import { FrontendAuthenticationModuleEffects } from "./frontend-authentication.effect";
 
 @NgModule({
 	imports: [
@@ -82,20 +79,7 @@ export class NgsFrontendAuthenticationModule {
 	): ModuleWithProviders {
 		return {
 			ngModule: RootNgsFrontendAuthenticationModule,
-			providers: [
-				{ provide: MODULE_CONFIG_TOKEN, useValue: config },
-				{
-					provide: HTTP_INTERCEPTORS,
-					useClass: UnauthorizedInterceptor,
-					multi: true
-				},
-				{
-					provide: HTTP_INTERCEPTORS,
-					useClass: WithCredentialInterceptor,
-					multi: true
-				},
-				FrontendSigninService
-			]
+			providers: [ { provide: MODULE_CONFIG_TOKEN, useValue: config }, FrontendSigninService ]
 		};
 	}
 }
@@ -103,7 +87,7 @@ export class NgsFrontendAuthenticationModule {
 @NgModule({
 	imports: [
 		StoreModule.forFeature("frontend-authentication", FrontendAuthenticationReducers),
-		EffectsModule.forFeature([ SigninEffects, FrontendAuthenticationEffects ]),
+		EffectsModule.forFeature([ FrontendAuthenticationModuleEffects, SigninEffects ]),
 		FrontendAuthenticationRoutingModule,
 		NgsFrontendAuthenticationModule
 	]

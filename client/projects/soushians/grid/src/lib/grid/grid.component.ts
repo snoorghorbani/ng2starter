@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { GridsterConfig, GridsterItem } from "angular-gridster2";
 import { Store } from "@ngrx/store";
-import { filter } from "rxjs/operators";
-import { MatBottomSheet } from "@angular/material";
+import { filter, map } from "rxjs/operators";
+import { MatBottomSheet, MatCheckboxChange } from "@angular/material";
 import { Observable } from "rxjs";
 
 import { getFrontendAuthenticationState } from "@soushians/frontend-authentication";
@@ -15,6 +15,7 @@ import { DynamicGridItemConfigComponent } from "../grid-item/dynamic-grid-item-c
 import { GridConfigComponent } from "../grid-config/grid-config.component";
 import { IGridItemModel } from "../models/gird-item.model";
 import { UpsertGridStartAction } from "../services/api/upsert-grid/upsert-grid.actions";
+import { UserFacadeService } from "@soushians/user";
 
 @Component({
 	selector: "ngs-grid",
@@ -33,6 +34,7 @@ export class GridComponent implements OnInit {
 
 	@Input() oid: string;
 	havePermission$: Observable<boolean>;
+	username: string;
 	options: GridsterConfig;
 	grid: GridModel;
 	ready = false;
@@ -40,10 +42,22 @@ export class GridComponent implements OnInit {
 	constructor(
 		private store: Store<AppState>,
 		private service: GridService,
+		private userFacadeService: UserFacadeService,
 		private configurationService: GridConfigurationService,
 		private bottomSheet: MatBottomSheet
 	) {
 		this.options = {};
+		debugger;
+		this.userFacadeService
+			.getInfo()
+			.pipe(
+				filter((user: any) => user.CurrentSession != undefined),
+				map((user: any) => user.CurrentSession.Username)
+			)
+			.subscribe(username => {
+				debugger;
+				this.username = username;
+			});
 		this.gridItemTypes = Object.keys(this.configurationService.config$.getValue().types);
 		this.havePermission$ = this.store.select(getFrontendAuthenticationState);
 	}
@@ -73,7 +87,13 @@ export class GridComponent implements OnInit {
 	removeItem(item) {
 		this.grid.items.splice(this.grid.items.indexOf(item), 1);
 	}
-
+	make_public(item: IGridItemModel<any>, event: MatCheckboxChange) {
+		debugger;
+		item.access = event.checked ? "public" : "private";
+		this.service.update_item_access(item).subscribe(item => {
+			debugger;
+		});
+	}
 	addItem(e) {
 		e.stopPropagation();
 		this.grid.items.push({} as IGridItemModel<any>);
@@ -109,7 +129,7 @@ export class GridComponent implements OnInit {
 				type: item.type
 			}
 		});
-		bs.afterDismissed().subscribe((data) => {
+		bs.afterDismissed().subscribe(data => {
 			item.config = bs.instance.config;
 			item.valid = bs.instance.valid;
 		});
@@ -120,13 +140,13 @@ export class GridComponent implements OnInit {
 				type: item.type
 			}
 		});
-		bs.afterDismissed().subscribe((data) => {
+		bs.afterDismissed().subscribe(data => {
 			item.config = bs.instance.config;
 			item.valid = bs.instance.valid;
 		});
 	}
 	_get_grid_by_oid_and_update_component() {
-		this.service.selectById(this.oid).pipe(filter((data) => data != undefined)).subscribe((data) => {
+		this.service.selectById(this.oid).pipe(filter(data => data != undefined)).subscribe(data => {
 			this.grid = data;
 			this.options = { ...this.options, ...data.config };
 			// this.options.draggable = {

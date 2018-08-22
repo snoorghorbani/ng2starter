@@ -1,46 +1,39 @@
-import { map, filter, tap, take, switchMap, combineLatest } from "rxjs/operators";
+import { map, filter, tap, take, switchMap, combineLatest, skipWhile, skipUntil } from "rxjs/operators";
 import { Observable, BehaviorSubject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 
-import { stringTemplate } from "@soushians/shared";
+import { getFrontendUser } from "@soushians/frontend-authentication";
 import { UserFacadeService } from "@soushians/user";
+import { stringTemplate } from "@soushians/shared";
 
-import { GridConfigurationService } from "./grid-configuration.service";
 import { UpsertGridApiModel } from "./api/upsert-grid/upsert-grid.model";
+import { GridConfigurationService } from "./grid-configuration.service";
 import { GetGridStartAction } from "./api/get-grid/get-grid.actions";
 import { GetGridsApiModel } from "./api/get-grids/get-grids.model";
+import { GridModel, IGridItemModel } from "../models";
 import { AppState } from "../grid.reducer";
-import { GridModel } from "../models";
 
 @Injectable({
 	providedIn: "root"
 })
 export class GridService {
-	userId$: Observable<string>;
 	constructor(
 		private http: HttpClient,
 		private store: Store<AppState>,
 		private userFacadeService: UserFacadeService,
 		private configurationService: GridConfigurationService
-	) {
-		this.userId$ = this.userFacadeService.getDisplayName().filter(i => i != undefined);
-	}
+	) {}
 
 	get(_id: string): Observable<GridModel> {
 		return this.configurationService.config$.pipe(
 			filter(config => config.endpoints.get !== ""),
 			take(1),
-			combineLatest(this.userId$),
-			switchMap(([ config, userId ]) => {
-				debugger;
+			skipUntil(this.store.select(getFrontendUser)),
+			switchMap(config => {
 				return this.http
-					.get(stringTemplate(config.env.frontend_server + config.endpoints.get, { _id }), {
-						params: {
-							userId: userId
-						}
-					})
+					.get(stringTemplate(config.env.frontend_server + config.endpoints.get, { _id }), {})
 					.pipe(map((response: UpsertGridApiModel.Response) => response.Result));
 			})
 		);
@@ -53,18 +46,29 @@ export class GridService {
 			map((response: GetGridsApiModel.Response) => response.Result)
 		);
 	}
+	update_item(item: IGridItemModel<any>): Observable<GridModel[]> {
+		return this.configurationService.config$.pipe(
+			filter(config => config.endpoints.update_item != ""),
+			switchMap(config => this.http.patch(config.env.frontend_server + config.endpoints.update_item, item)),
+			map((response: GetGridsApiModel.Response) => response.Result)
+		);
+	}
+	update_item_access(item: IGridItemModel<any>): Observable<GridModel[]> {
+		return this.configurationService.config$.pipe(
+			filter(config => config.endpoints.update_item_access != ""),
+			switchMap(config =>
+				this.http.patch(config.env.frontend_server + config.endpoints.update_item_access, item)
+			),
+			map((response: GetGridsApiModel.Response) => response.Result)
+		);
+	}
 	upsert(grid: UpsertGridApiModel.Request): Observable<GridModel> {
 		const model = new UpsertGridApiModel.Request(grid);
 		return this.configurationService.config$.pipe(
 			filter(config => config.endpoints.upsert != ""),
 			take(1),
-			combineLatest(this.userId$),
-			switchMap(([ config, userId ]) => {
-				return this.http.post(config.env.frontend_server + config.endpoints.upsert, model.getRequestBody(), {
-					params: {
-						userId: userId
-					}
-				});
+			switchMap(config => {
+				return this.http.post(config.env.frontend_server + config.endpoints.upsert, model.getRequestBody(), {});
 			}),
 			map((response: UpsertGridApiModel.Response) => response.Result)
 		);

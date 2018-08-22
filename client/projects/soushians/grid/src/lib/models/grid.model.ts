@@ -6,6 +6,7 @@ export class GridModel {
 	oid: string;
 	name: string;
 	type: string;
+	owner: string;
 	config: GridsterConfig;
 	items: IGridItemModel<any>[];
 	constructor(

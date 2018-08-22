@@ -2,7 +2,7 @@ import { env } from "./env";
 
 export const NgsFrontendAuthenticationModuleConfig = {
 	env,
-	afterSignoutRedirectTo: "/",
+	afterSignoutRedirectTo: "/login.aspx",
 	endpoints: {
 		signIn: "/api/user/signin",
 		signOut: "/api/user/signout",

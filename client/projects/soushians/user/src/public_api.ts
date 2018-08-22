@@ -1,4 +1,3 @@
-
 /*
 * Public API Surface of user
 */
@@ -15,3 +14,5 @@ export { UserService } from "./lib/services/user.service";
 export { UserFacadeService } from "./lib/services/user.facade-service";
 
 export { getAccountInfo } from "./lib/user.reducers";
+
+export { UserActionTypes } from "./lib/dashboard/user.actions";

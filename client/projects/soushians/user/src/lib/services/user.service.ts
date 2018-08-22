@@ -23,7 +23,7 @@ export class UserService {
 		private store: Store<any>,
 		private configurationService: UserConfigurationService
 	) {
-		this.configurationService.config$.subscribe((config) => (this.config = config));
+		this.configurationService.config$.subscribe(config => (this.config = config));
 		setTimeout(() => {
 			this.store.dispatch(new GetProfile());
 		}, 999);
@@ -31,9 +31,9 @@ export class UserService {
 
 	getAccountInfo(): Observable<ProfileViewModel.Response> {
 		return this.configurationService.config$
-			.filter((config) => config.endpoints.profileInformation != "")
+			.filter(config => config.endpoints.profileInformation != "")
 			.take(1)
-			.switchMap((config) =>
+			.switchMap(config =>
 				this.http
 					.get<any>(config.env.server + config.endpoints.profileInformation)
 					.let(config.responseToUserInfo)
@@ -55,7 +55,7 @@ export class UserService {
 				stringTemplate(this.config.env.server + this.config.endpoints.editProfile, model),
 				model.getRequestBody()
 			)
-			.map((response) => new EditProfile_ApiModel.Response(response).extractData());
+			.map(response => new EditProfile_ApiModel.Response(response).extractData());
 	}
 	// TODO: remove
 	getInfo(data: ProfileViewModel.Request): Observable<any> {
@@ -65,14 +65,14 @@ export class UserService {
 			.get<ProfileViewModel.Response>(
 				stringTemplate(this.config.env.server + this.config.endpoints.getAccountInfo, model)
 			)
-			.map((response) => response);
+			.map(response => response);
 	}
 
 	is_role(role: string): Observable<boolean> {
 		return this.store
 			.select(getAccountInfo)
-			.filter((user) => user && user.Roles != undefined)
+			.filter(user => user && user.Roles != undefined)
 			.take(1)
-			.map((user) => user.Roles.indexOf(role) > -1);
+			.map(user => user.Roles.indexOf(role) > -1);
 	}
 }
