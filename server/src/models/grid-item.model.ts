@@ -10,6 +10,7 @@ export const gridItemSchema = new mongoose.Schema(
 		cols: { type: Number },
 		rows: { type: Number },
 		owner: { type: String },
+		access: { type: String, enum: ["public", "private"], default: "private" },
 		type: { type: String },
 		valid: { type: Boolean },
 		config: Object

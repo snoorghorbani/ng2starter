@@ -12,23 +12,21 @@ const GridItemModel = moongooseModel("GridItem");
 
 const router = express.Router();
 
-const getGridWithItems = function(_id: string, userId: string): any {
+const getGridWithItems = function (_id: string, userId: string): any {
 	return GridModel.findById(_id).populate({
 		path: "items",
-		match: { owner: { $eq: userId } },
-		// Explicitly exclude `_id`, see http://bit.ly/2aEfTdB
-		// select: "name -_id",
+		match: { $or: [{ owner: userId }, { access: "public" }] },
 		options: { limit: 22 }
 	});
 };
 
-router.get("/", function(req, res) {
+router.get("/", function (req, res) {
 	GridModel.find().then((Result) => res.json({ Result }));
 });
-router.get("/:id", function(req, res) {
+router.get("/:id", function (req, res) {
 	getGridWithItems(req.params.id, req.query.userId).then((Result: any) => res.json({ Result }));
 });
-router.post("/", function(req, res) {
+router.post("/", function (req, res) {
 	GridItemModel.find({ owner: req.query.userId }).then((items) => items.forEach((item) => item.remove())).then(() => {
 		Promise.all(
 			req.body.items.map((item: any) => {
@@ -53,7 +51,7 @@ router.post("/", function(req, res) {
 			GridModel.findOneAndUpdate({ _id: req.body._id }, gridData, { upsert: true }).then((grid) => {
 				getGridWithItems(grid._id, req.query.userId)
 					.then((Result: any) => {
-						SocketMiddleware.server.dispatchActionToClients("[GRID][DB] UPSERT", [ Result ]);
+						SocketMiddleware.server.dispatchActionToClients("[GRID][DB] UPSERT", [Result]);
 						res.send({ Result });
 					})
 					.catch((err: any) => {
@@ -63,7 +61,7 @@ router.post("/", function(req, res) {
 		});
 	});
 });
-router.delete("/:id", function(req: Request, res: Response) {
+router.delete("/:id", function (req: Request, res: Response) {
 	GridModel.findByIdAndRemove(req.params.id);
 });
 export { router };
