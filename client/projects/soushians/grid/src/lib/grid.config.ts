@@ -14,6 +14,8 @@ export interface GridModuleConfig {
 		get: string;
 		find: string;
 		upsert: string;
+		update_item: string;
+		update_item_access: string;
 	};
 	types?: { [key: string]: IGridType };
 }
@@ -26,7 +28,9 @@ export const MODULE_DEFAULT_CONFIG: GridModuleConfig = {
 	endpoints: {
 		upsert: "/api/grid",
 		find: "/api/grid",
-		get: "/api/grid/${model._id}"
+		get: "/api/grid/${model._id}",
+		update_item: "/api/grid/item",
+		update_item_access: "/api/grid/item/access"
 	},
 	types: {}
 };

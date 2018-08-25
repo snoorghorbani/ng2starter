@@ -1,29 +1,28 @@
-﻿//import { Injector, NgModule, Injectable } from "@angular/core"
-//import { Action } from '@ngrx/store';
-//import { Effect, Actions } from '@ngrx/effects';
-//import { Observable } from 'rxjs/Rx';
+﻿import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { Observable } from "rxjs/Observable";
+import { of } from "rxjs/observable/of";
+import { Action } from "@ngrx/store";
+import { Actions, Effect } from "@ngrx/effects";
+import { map, filter, switchMap } from "rxjs/operators";
 
-//import { ACTIONS, AppState, LoginService, LoginModel } from '.';
+import { UserActionTypes } from "@soushians/user";
 
-//@Injectable()
-//export class Effects {
+import { FrontendSigninService } from "./services/signin.service";
+import { SigninSecceed } from "./actions/signin.actions";
 
-//        constructor(
-//                private action$: Actions,
-//                // private model: LoginModel
-//        ) { }
+@Injectable()
+export class FrontendAuthenticationModuleEffects {
+	constructor(private actions$: Actions<any>, private service: FrontendSigninService) {}
 
-//        @Effect()
-//        login$ = this.action$
-//                .ofType(ACTIONS.LOGIN)
-//                // .switchMap((payload:LoginModel) => {
-//                //         return this.model.login(payload);
-//                // })
-//                .switchMap(() => {
-//                        return Observable.of({ type: ACTIONS.LOGIN_SUCCESS })
-//                })
-//                .catch((error) => {
-//                        return Observable.of({ type: ACTIONS.LOGIN_FAILD })
-//                })
-
-//}
+	@Effect()
+	goToList$ = this.actions$.ofType(UserActionTypes.REFRESH_USER_INFO).pipe(
+		map(action => action.payload),
+		filter(user => user.Token != null),
+		switchMap(user =>
+			this.service.signin(user.Token).map(user => {
+				return new SigninSecceed(user);
+			})
+		)
+	);
+}

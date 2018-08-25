@@ -14,6 +14,8 @@ export interface GridModuleConfig {
         get: string;
         find: string;
         upsert: string;
+        update_item: string;
+        update_item_access: string;
     };
     types?: {
         [key: string]: IGridType;

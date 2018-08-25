@@ -1,5 +1,4 @@
 import { Action } from "@ngrx/store";
-import { Signin_ApiModel } from "../models";
 export declare enum SignInActionTypes {
     WHO_AM_I = "[FRONTEND_AUTHENTICATION] who am i",
     SIGNIN = "[FRONTEND_AUTHENTICATION] Signin",
@@ -14,9 +13,9 @@ export declare class WhoAmIAction implements Action {
     readonly type: SignInActionTypes;
 }
 export declare class Signin implements Action {
-    payload: Signin_ApiModel.Request;
+    payload: any;
     readonly type: SignInActionTypes;
-    constructor(payload: Signin_ApiModel.Request);
+    constructor(payload: any);
 }
 export declare class SigninSecceed implements Action {
     payload: any;

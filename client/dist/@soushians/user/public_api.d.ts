@@ -6,3 +6,4 @@ export { NgsUserModuleOutlets } from "./lib/models/user-outlets.enum";
 export { UserService } from "./lib/services/user.service";
 export { UserFacadeService } from "./lib/services/user.facade-service";
 export { getAccountInfo } from "./lib/user.reducers";
+export { UserActionTypes } from "./lib/dashboard/user.actions";

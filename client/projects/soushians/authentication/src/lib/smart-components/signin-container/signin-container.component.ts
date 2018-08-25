@@ -3,7 +3,6 @@ import { Observable } from "rxjs/Observable";
 import { Store } from "@ngrx/store";
 
 import { Signin } from "../../actions";
-import { CaptchaModel } from "../../models";
 import { AuthenticationConfigurationService } from "../../services/authentication-configuration.service";
 import { FeatureState } from "../../reducers";
 

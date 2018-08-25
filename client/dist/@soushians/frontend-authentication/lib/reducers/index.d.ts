@@ -1,6 +1,7 @@
 import { MemoizedSelector } from "@ngrx/store";
 import * as userReducer from "./user.reducer";
 import { UserModel } from "../models/user.model";
+export { UserModel };
 export interface FrontendAuthenticationState {
     userStatus: userReducer.State;
 }

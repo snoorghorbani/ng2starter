@@ -5,6 +5,7 @@ export declare class GridModel {
     oid: string;
     name: string;
     type: string;
+    owner: string;
     config: GridsterConfig;
     items: IGridItemModel<any>[];
     constructor({_id, oid, name, type, config, items}?: {

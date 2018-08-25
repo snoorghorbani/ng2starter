@@ -4,7 +4,6 @@ import { Action } from "@ngrx/store";
 import { Actions } from "@ngrx/effects";
 import { SigninSecceed, SigninFailed } from "../actions/signin.actions";
 import { FrontendSigninService } from "../services/signin.service";
-import { NewCaptcha } from "../actions";
 import { MatBottomSheet } from "@angular/material";
 import { FrontendAuthenticationConfigurationService } from "../services/frontend-authentication-configuration.service";
 export declare class SigninEffects {
@@ -18,7 +17,6 @@ export declare class SigninEffects {
     Signin$: Observable<SigninSecceed | SigninFailed>;
     SignInRequired$: Observable<any>;
     SigninSucceed$: Observable<any>;
-    AfterSigninFiled$: Observable<NewCaptcha>;
     DoSignout$: Observable<any>;
     redirectToLoginPage$: Observable<Action>;
     redirectAfterSignout$: Observable<Action>;

@@ -2,9 +2,8 @@
 import { Observable } from "rxjs/Observable";
 import { Store } from "@ngrx/store";
 
-import { Signin } from "../../actions";
-import { CaptchaModel } from "../../models";
 import { FrontendAuthenticationConfigurationService } from "../../services/frontend-authentication-configuration.service";
+import { Signin } from "../../actions/signin.actions";
 import { FeatureState } from "../../reducers";
 
 @Component({

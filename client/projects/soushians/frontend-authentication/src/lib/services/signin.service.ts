@@ -7,11 +7,12 @@ import { map, switchMap, take, filter, tap } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 
 // import { environment } from "../../environments/environment";
+import { stringTemplate } from "@soushians/shared";
 
-import { Signin_ApiModel, UserModel } from "../models";
+import { UserModel } from "../models/user.model";
 import { FrontendAuthenticationConfigurationService } from "./frontend-authentication-configuration.service";
 import { FeatureState } from "../reducers";
-import { WhoAmIAction } from "../actions";
+// import { WhoAmIAction } from "../actions";
 
 @Injectable({
 	providedIn: "root"
@@ -23,17 +24,18 @@ export class FrontendSigninService {
 		private configurationService: FrontendAuthenticationConfigurationService,
 		private snackBar: MatSnackBar
 	) {
-		setTimeout(() => this.store.dispatch(new WhoAmIAction()), 300);
+		// setTimeout(() => this.store.dispatch(new WhoAmIAction()), 300);
 	}
 
-	signin(model: any): Observable<UserModel> {
+	signin(token: any): Observable<UserModel> {
+		this.configurationService.config$.subscribe(c => {
+			debugger;
+		});
 		return this.configurationService.config$.pipe(
 			filter(config => config.endpoints.signIn != ""),
 			take(1),
-			switchMap(config =>
-				this.http.post<Signin_ApiModel.Response>(config.env.frontend_server + config.endpoints.signIn, model)
-			),
-			map(response => {
+			switchMap(config => this.http.post(config.env.frontend_server + config.endpoints.signIn, { token })),
+			map((response: any) => {
 				const user: any = Object.assign({}, response.Result);
 				if (user.Role) {
 					user.Roles = [ user.Role ];
@@ -41,18 +43,6 @@ export class FrontendSigninService {
 				return user;
 			})
 		);
-		// .catch(err => {
-		// 	if (err.status == 400) {
-		// 		this.snackBar.open("کد امنیتی اشتباه است", null, {
-		// 			duration: 5000
-		// 		});
-		// 	} else if (err.status == 403) {
-		// 		this.snackBar.open(" شماره موبایل و یا کلمه عبور اشتباه است", null, {
-		// 			duration: 5000
-		// 		});
-		// 	}
-		// 	return Observable.throw(err);
-		// });
 	}
 
 	signout(): Observable<any> {

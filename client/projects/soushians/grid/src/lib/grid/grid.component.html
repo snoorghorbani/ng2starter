@@ -17,6 +17,7 @@
                     <mat-icon>more_horiz</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
+                    <mat-checkbox *ngIf="grid.owner == username" labelPosition="before" [checked]="item.access=='public'" (change)="make_public(item,$event)">عمومی</mat-checkbox>
                     <button mat-menu-item (click)="showConfig(item)">
                         <mat-icon>settings</mat-icon>
                         <span>تنظیمات</span>
