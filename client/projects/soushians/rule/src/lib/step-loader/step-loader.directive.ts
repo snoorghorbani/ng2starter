@@ -25,7 +25,7 @@ export class StepLoaderDirective implements OnChanges, OnInit {
 	get params() {
 		return this.component.instance.params || {};
 	}
-	constructor(private resolver: ComponentFactoryResolver, private container: ViewContainerRef) {}
+	constructor(private resolver: ComponentFactoryResolver, private container: ViewContainerRef) { }
 
 	ngOnChanges() {
 		if (this.component) {
@@ -45,6 +45,7 @@ export class StepLoaderDirective implements OnChanges, OnInit {
 		// TODO: fix generic type
 		const component = this.resolver.resolveComponentFactory<any>(this.step.stepComponent);
 		this.component = this.container.createComponent(component);
+		debugger;
 		this.component.instance.params = this.step.params;
 	}
 }

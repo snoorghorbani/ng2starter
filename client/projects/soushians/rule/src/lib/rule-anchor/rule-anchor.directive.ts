@@ -39,13 +39,13 @@ export class RuleAnchorDirective implements OnInit, OnDestroy {
 
 	@HostListener("mouseenter")
 	onMouseEnter() {
-		if (!this.active) return;
+		if (!this.active) { return; }
 		this.showAnchor();
 	}
 
 	@HostListener("mouseleave")
 	onMouseLeave() {
-		if (!this.active) return;
+		if (!this.active) { return; }
 		this.hideAnchor();
 	}
 
@@ -61,18 +61,18 @@ export class RuleAnchorDirective implements OnInit, OnDestroy {
 		// this.store.dispatch(new ShowAnchorsAction());
 
 		this.anchorScenarios$ = this.scenarioService
-			.getAnchorScenarios(this.anchorId) //TODO: replace service call with ngrx action
-			.pipe(takeUntil(this.unsubscribe), filter(scenario => scenario != undefined));
+			.getAnchorScenarios(this.anchorId) // TODO: replace service call with ngrx action
+			.pipe(takeUntil(this.unsubscribe), filter(scenario => scenario !== undefined));
 		this.active$.subscribe(active => {
-			if (active) this._activate_anchor();
-			else this._deactivate_anchor();
+			if (active) { this._activate_anchor(); } else { this._deactivate_anchor(); }
 		});
 		this.anchorScenarios$.subscribe(scenarios => {
 			scenarios.forEach(scenario => {
 				scenario.steps = scenario.steps.map(scenarioStep => {
-					const step = this.steps.find(step => step.id == scenarioStep.id);
-					step.params = scenarioStep.params;
-					return step;
+					const step = this.steps.find(step => step.id === scenarioStep.id);
+					const _step = Object.create(step);
+					_step.params = scenarioStep.params;
+					return _step;
 				});
 
 				this._do_scenario(scenario);
@@ -119,14 +119,16 @@ export class RuleAnchorDirective implements OnInit, OnDestroy {
 		this.renderer.appendChild(this.el.nativeElement, this.button);
 	}
 	_remove_anchor() {
-		if (!this.button) return;
+		if (!this.button) { return; }
 		this.button.parentNode.removeChild(this.button);
 	}
-	_do_scenario(scenario: GwtScenarioModel) {
+	_do_scenario(_scenario: GwtScenarioModel) {
+		debugger;
+		const scenario = _scenario;
 		const givenStepInterpretors = scenario.steps
-			.filter(step => step.type == GwtStepTypes.Given)
+			.filter(step => step.type === GwtStepTypes.Given)
 			.map(step => step.interperator(step.params));
-
+		debugger;
 		combineLatest(givenStepInterpretors)
 			.pipe(
 				takeUntil(this.unsubscribe),
@@ -135,14 +137,14 @@ export class RuleAnchorDirective implements OnInit, OnDestroy {
 					debugger;
 					if (givenResult) {
 						const thenStepInterpretors = scenario.steps
-							.filter(step => step.type == GwtStepTypes.Then)
+							.filter(step => step.type === GwtStepTypes.Then)
 							.map(step => step.interperator(step.params, this.el));
 						return combineLatest
 							.apply(null, thenStepInterpretors)
 							.pipe(map((values: boolean[]) => values.every(value => value === true)));
-					} else return of(false);
+					} else { return of(false); }
 				})
 			)
-			.subscribe(() => {});
+			.subscribe(() => { });
 	}
 }

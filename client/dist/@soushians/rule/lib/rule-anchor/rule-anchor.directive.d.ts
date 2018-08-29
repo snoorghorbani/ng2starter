@@ -34,5 +34,5 @@ export declare class RuleAnchorDirective implements OnInit, OnDestroy {
     _remove_active_class_to_host(): void;
     _create_anchor(): void;
     _remove_anchor(): void;
-    _do_scenario(scenario: GwtScenarioModel): void;
+    _do_scenario(_scenario: GwtScenarioModel): void;
 }

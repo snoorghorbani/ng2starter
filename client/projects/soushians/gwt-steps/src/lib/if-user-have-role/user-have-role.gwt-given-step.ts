@@ -1,6 +1,7 @@
 import { Injector, ElementRef } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { map, debounceTime, filter } from "rxjs/operators";
+import { Observable } from "rxjs";
 
 import { getAccountInfo } from "@soushians/user";
 import { GwtStep, GwtStepTypes } from "@soushians/rule";

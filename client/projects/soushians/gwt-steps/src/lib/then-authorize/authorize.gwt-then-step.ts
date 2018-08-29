@@ -1,18 +1,22 @@
-import { Injector } from "@angular/core";
+import { Injector, ElementRef } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { of } from "rxjs";
+import { Observable, of } from "rxjs";
 
 import { GwtStep, GwtStepTypes } from "@soushians/rule";
 
 import { GwtThenAuthorizeStepComponent } from "./step-component/gwt-then-authorize-step.component";
 
-export class GwtThenAuthorizeStep implements GwtStep {
+export interface ThenShowBlockGwtStepParams {
+	verb: "visible" | "hidden";
+}
+
+export class GwtThenAuthorizeStep implements GwtStep<ThenShowBlockGwtStepParams> {
 	id: string;
 	name: string;
 	opposite: boolean;
 	description: string;
 	type: GwtStepTypes;
-	params: {};
+	params: ThenShowBlockGwtStepParams;
 	stepComponent = GwtThenAuthorizeStepComponent;
 	store: Store<any>;
 	constructor(private injector: Injector) {
@@ -22,9 +26,10 @@ export class GwtThenAuthorizeStep implements GwtStep {
 		this.type = GwtStepTypes.Then;
 		this.store = this.injector.get(Store);
 	}
-	interperator(params, elementRef) {
+	interperator(params: ThenShowBlockGwtStepParams, elementRef: ElementRef) {
 		debugger;
-		elementRef.nativeElement.style.display = "none";
+		const display = (params.verb === "visible") ? "block" : "none";
+		elementRef.nativeElement.style.display = display;
 		return of(true);
 	}
 }

@@ -1,0 +1,16 @@
+<mat-card class="step" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start end" [formGroup]="formGroup">
+  <div fxFlex="0 0 auto" class="step-text then">
+    آنگاه
+  </div>
+  <div fxFlex="0 0 auto" class="step-text">
+    این بخش قابل نمایش
+  </div>
+  <div fxFlex="nogrow">
+    <mat-form-field fxFlex="nogrow">
+      <mat-select formControlName="verb">
+        <mat-option value="visible">باشد</mat-option>
+        <mat-option value="hidden">نباشد</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</mat-card>

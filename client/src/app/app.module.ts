@@ -24,6 +24,7 @@ import { NgsPageModule } from "@soushians/page";
 import { NgsFormModule } from "@soushians/form";
 import { NgsGridModule } from "@soushians/grid";
 import { RuleModule } from "@soushians/rule";
+import { GwtStepsModule } from "@soushians/gwt-steps";
 
 /**
  *  module configs
@@ -41,7 +42,6 @@ import {
 	NgsUserModuleConfig,
 	NgsFormModuleConfig,
 	NgsPageModuleConfig,
-	GwtStepsModule
 } from "configs";
 
 import { AppComponent } from "./app.component";
@@ -81,10 +81,10 @@ import { DashboardModule } from "./dashboard/dashboard.module";
 		DashboardModule,
 		AppRoutingModule
 	],
-	declarations: [ AppComponent ],
+	declarations: [AppComponent],
 	providers: [
 		// { provide: LOCALE_ID, useValue: 'fa-IR' },
 	],
-	bootstrap: [ AppComponent ]
+	bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

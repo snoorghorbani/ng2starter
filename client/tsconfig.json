@@ -73,6 +73,9 @@
         "dist/@soushians/page"
         // "projects/soushians/page/src/public_api"
       ],
+      "@soushians/gwt-steps": [
+        "dist/@soushians/gwt-steps"
+      ],
       "@soushians/test": [
         "dist/soushians/test"
       ],

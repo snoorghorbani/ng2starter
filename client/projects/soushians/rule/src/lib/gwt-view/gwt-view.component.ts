@@ -18,7 +18,7 @@ import { ScenarioService } from "../services/scenario.service";
 @Component({
 	selector: "app-gwt-view",
 	templateUrl: "./gwt-view.component.html",
-	styleUrls: [ "./gwt-view.component.css" ]
+	styleUrls: ["./gwt-view.component.css"]
 })
 export class GwtViewComponent implements OnInit, OnDestroy {
 	unsubscribe = new Subject<void>();
@@ -44,6 +44,9 @@ export class GwtViewComponent implements OnInit, OnDestroy {
 		this.steps$ = this.configService.config$.pipe(map(config => config.steps), takeUntil(this.unsubscribe));
 		this.steps$.subscribe(steps => (this.steps = steps));
 		this._load_scenario_and_map_scenario_step_to_steps_class();
+		this.scenario$.subscribe(s => {
+			debugger;
+		});
 	}
 	ngOnDestroy() {
 		this.unsubscribe.next();
@@ -52,7 +55,7 @@ export class GwtViewComponent implements OnInit, OnDestroy {
 	save() {
 		const scenario = this.scenario$.getValue();
 		this.stepLoaders.forEach(stepLoader => {
-			scenario.steps.find(step => step.name == stepLoader.step.name).params = stepLoader.params;
+			scenario.steps.find(step => step.name === stepLoader.step.name).params = stepLoader.params;
 		});
 		scenario.featureId = this.scenarioFormGroup.value.featureId;
 		scenario.name = this.scenarioFormGroup.value.name;
@@ -65,11 +68,11 @@ export class GwtViewComponent implements OnInit, OnDestroy {
 	}
 	deleteStepFromScenario(step: GwtStep) {
 		const scenario = this.scenario$.getValue();
-		scenario.steps.splice(scenario.steps.findIndex(item => item.name == step.name), 1);
+		scenario.steps.splice(scenario.steps.findIndex(item => item.name === step.name), 1);
 		this.scenario$.next(scenario);
 	}
-	decScenarioStepPriority(step: GwtStep) {}
-	incScenarioStepPriority(step: GwtStep) {}
+	decScenarioStepPriority(step: GwtStep) { }
+	incScenarioStepPriority(step: GwtStep) { }
 	addNewScenario() {
 		const scenarios = this.scenarios$.getValue();
 		scenarios.push(
@@ -80,8 +83,10 @@ export class GwtViewComponent implements OnInit, OnDestroy {
 		this.scenarios$.next(scenarios);
 	}
 	activeScenario(scenario: GwtScenarioModel) {
+		debugger;
 		scenario.steps = scenario.steps.map(scenarioStep => {
-			const step = this.steps.find(step => step.id == scenarioStep.id);
+			const _step = this.steps.find(step => step.id === scenarioStep.id);
+			const step = Object.create(_step);
 			step.params = scenarioStep.params;
 			return step;
 		});
@@ -110,6 +115,6 @@ export class GwtViewComponent implements OnInit, OnDestroy {
 		this.scenarioFormGroup.patchValue(this.scenario$.getValue());
 	}
 	_init_features_list() {
-		this.features$ = [ "مدیریت نمایش براساس دسترسی های کاربر" ];
+		this.features$ = ["مدیریت نمایش براساس دسترسی های کاربر"];
 	}
 }

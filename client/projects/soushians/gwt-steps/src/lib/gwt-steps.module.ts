@@ -25,7 +25,9 @@ import {
 
 import { GwtThenAuthorizeStepComponent } from "./then-authorize/step-component/gwt-then-authorize-step.component";
 import { IfUserHaveRoleGwtGivenStepComponent } from "./if-user-have-role/step-component/operation-gwt-step.component";
-import { GivenUserIsAuthenticatedStepComponent } from "./given-user-is-authenticated/step-component/given-user-is-authenticated-step.component";
+import {
+	GivenUserIsAuthenticatedStepComponent
+} from "./given-user-is-authenticated/step-component/given-user-is-authenticated-step.component";
 
 @NgModule({
 	imports: [
@@ -64,4 +66,4 @@ import { GivenUserIsAuthenticatedStepComponent } from "./given-user-is-authentic
 	],
 	exports: []
 })
-export class GwtStepsModule {}
+export class GwtStepsModule { }
