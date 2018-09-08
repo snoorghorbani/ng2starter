@@ -40,7 +40,7 @@ const link_all_packages = () => {
 const publish_all_packages = () => {
 	return new Promise((resolve, reject) => {
 		shell.cd("../client");
-		shell.exec("npm run p_build", (a, b, c, d) => {
+		shell.exec("npm run p_publish", (a, b, c, d) => {
 			if (a == 0) resolve();
 			else reject();
 		});

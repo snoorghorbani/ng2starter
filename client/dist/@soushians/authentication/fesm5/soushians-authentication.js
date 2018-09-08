@@ -1,4 +1,4 @@
-import { InjectionToken, Injectable, Inject, Component, Input, Output, EventEmitter, NgModule, defineInjectable, inject } from '@angular/core';
+import { InjectionToken, Injectable, Inject, NgModule, Component, Input, Output, EventEmitter, defineInjectable, inject } from '@angular/core';
 import { of, BehaviorSubject, throwError } from 'rxjs';
 import { Store, createSelector, createFeatureSelector, StoreModule } from '@ngrx/store';
 import { getAuthenticationModuleConfig } from '@soushians/config';
