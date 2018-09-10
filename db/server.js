@@ -17,8 +17,8 @@ dotenv.config({ path: "./.env" });
 /**
   * get new version
   */
-const toVersion = version.getNextVersion();
 const fromVersion = version.getCurrentVersion();
+const toVersion = version.getNextVersion();
 /**
  * get update package.json s
  */
