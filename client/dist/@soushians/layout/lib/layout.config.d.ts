@@ -17,6 +17,7 @@ export interface LayoutModuleConfigModel {
     title?: string;
     signoutAction?: Action;
     menu_item_authorization_operator?: ([routes, user]: [any, any]) => any[];
+    theme: "theme_A" | "theme_B";
 }
 export declare const MODULE_DEFAULT_CONFIG: LayoutModuleConfigModel;
 export declare const MODULE_CONFIG_TOKEN: InjectionToken<LayoutModuleConfigModel>;
