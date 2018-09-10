@@ -19,6 +19,7 @@ export interface LayoutModuleConfigModel {
 	title?: string;
 	signoutAction?: Action;
 	menu_item_authorization_operator?: ([ routes, user ]: [any, any]) => any[];
+	theme : "theme_A" | "theme_B"
 }
 
 const menu_item_authorization_operator = function([ routes, user ]) {
@@ -30,6 +31,7 @@ const menu_item_authorization_operator = function([ routes, user ]) {
 	}
 };
 export const MODULE_DEFAULT_CONFIG: LayoutModuleConfigModel = {
+	theme: "theme_B",
 	showMainSidenav: false,
 	showSecondSideNav: true,
 	secondSideNavMode: "over", //| "push" | "side",

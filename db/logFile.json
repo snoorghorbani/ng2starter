@@ -1,7 +1,1 @@
-{
-	"versions": [
-		{ "version": "6.0.44", "time": "", "migrationIndex": "" },
-		{ "version": "6.0.45", "time": 1533491165533, "migrationIndex": "0010" }
-	],
-	"currentVersion": { "version": "6.1.0", "time": 1534090176277, "migrationIndex": "0015" }
-}
+{"versions":[{"version":"6.0.44","time":"","migrationIndex":""},{"version":"6.0.45","time":1533491165533,"migrationIndex":"0010"},{"version":"6.1.0","time":1534090176277,"migrationIndex":"0015"}],"currentVersion":{"version":"6.2.0","time":1536389283219,"migrationIndex":"0020"}}

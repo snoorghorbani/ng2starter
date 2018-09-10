@@ -39,6 +39,7 @@ import { TitleComponent } from "./dumb-components/title/title.component";
 import { NgsLayoutMainComponent } from "./dumb-components/main/main.component";
 import { LayoutEffects } from "./layout.effects";
 import { RuleModule } from "@soushians/rule";
+import { ToolbarMenuThemeBComponent } from "./dumb-components/toolbar-menu-theme-b/toolbar-menu-theme-b";
 
 @NgModule({
 	imports: [
@@ -72,6 +73,7 @@ import { RuleModule } from "@soushians/rule";
 		SearchBoxComponent,
 		LogoContainerComponent,
 		ToolbarMenuComponent,
+		ToolbarMenuThemeBComponent,
 		FooterComponent,
 		TitleComponent,
 		NgsLayoutMainComponent
@@ -81,6 +83,7 @@ import { RuleModule } from "@soushians/rule";
 		SearchBoxComponent,
 		LogoContainerComponent,
 		ToolbarMenuComponent,
+		ToolbarMenuThemeBComponent,
 		FooterComponent,
 		TitleComponent,
 		NgsLayoutMainComponent
