@@ -1,0 +1,40 @@
+﻿
+#firstToolbar{
+	color: #333;
+}
+#secondToolbar {
+	transition: all;
+	position: absolute;
+	/* padding-right: 25px; */
+	
+	button {
+		opacity: 0.6;
+		font-family: 'iran-sans-bold', sans-serif !important;
+		font-size: .65em !important;
+		height: 50px !important;
+		border-radius: 0 !important;
+		
+		&.active {
+			border-bottom: 2px solid rgb(255, 116, 0);
+			opacity: 1;
+		}
+	}
+}
+#logo {
+	transition: all;
+	position: absolute;
+}
+#app-name {
+	padding-right: 8px;
+	font-family: 'iran-sans-bold', sans-serif !important;
+}
+button.rtl-dir {
+	direction: rtl !important;
+}
+#acccountName{
+	display: block;
+    text-align: right;
+    padding-right: 20px;
+    font-size: 14px;
+    font-weight: bolder;
+}
