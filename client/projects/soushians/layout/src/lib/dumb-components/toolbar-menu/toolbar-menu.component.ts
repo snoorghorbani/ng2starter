@@ -56,9 +56,8 @@ import { map, combineLatest } from "rxjs/operators";
 				"summary",
 				style({
 					width: "36px",
-
 					height: "36px",
-					top: "57px",
+					top: "76px",
 					right: "10px"
 				})
 			),
@@ -67,7 +66,7 @@ import { map, combineLatest } from "rxjs/operators";
 				style({
 					width: "0",
 					height: "0",
-					top: "57px",
+					top: "76px",
 					right: "10px"
 				})
 			),
@@ -90,15 +89,15 @@ import { map, combineLatest } from "rxjs/operators";
 				style({
 					right: "50%",
 					transform: "translateX(50%)",
-					bottom: "0"
+					bottom: "25px"
 				})
 			),
 			state(
 				"compact",
 				style({
-					right: "50%",
-					transform: "translateX(50%)",
-					bottom: "0"
+					right: "45px",
+					transform: "translateX(0)",
+					bottom: "13px"
 				})
 			),
 			state(
@@ -106,7 +105,7 @@ import { map, combineLatest } from "rxjs/operators";
 				style({
 					right: "75px",
 					transform: "translateX(0)",
-					bottom: "0"
+					bottom: "14px"
 				})
 			),
 			state(
@@ -114,21 +113,21 @@ import { map, combineLatest } from "rxjs/operators";
 				style({
 					right: "75px",
 					transform: "translateX(0)",
-					bottom: "0"
+					bottom: "14px"
 				})
 			),
-			transition("comfortable => compact", animate("800ms ease-in-out")),
-			transition("comfortable => hide", animate("400ms ease-in-out")),
-			transition("hide => comfortable", animate("600ms ease-in-out")),
-			transition("compact => hide", animate("400ms ease-in-out")),
-			transition("hide => compact", animate("600ms ease-in-out")),
-			transition("summary => hide", animate("400ms ease-in-out")),
-			transition("hide => summary", animate("600ms ease-in-out")),
+			transition("comfortable => compact", animate("800ms ease-in")),
+			transition("comfortable => hide", animate("400ms ease-in")),
+			transition("hide => comfortable", animate("600ms ease-in")),
+			transition("compact => hide", animate("400ms ease-in")),
+			transition("hide => compact", animate("600ms ease-in")),
+			transition("summary => hide", animate("400ms ease-in")),
+			transition("hide => summary", animate("600ms ease-in")),
 			// transition("comfortable => summary", animate("800ms ease-in")),
 			transition("summary => compact", animate("400ms ease-out")),
 			transition("summary => comfortable", animate("800ms ease-out")),
 			transition("compact => comfortable", animate("800ms ease-out")),
-			transition("compact => summary", animate("400ms ease-in-out"))
+			transition("compact => summary", animate("400ms ease-in"))
 		]),
 		trigger("titleAnimation", [
 			state(
@@ -150,9 +149,9 @@ import { map, combineLatest } from "rxjs/operators";
 					"margin-right": "0px",
 					"font-size": "16px",
 					"font-weight": "bolder",
-					right: "50%",
-					transform: "translateX(50%)",
-					bottom: "51px",
+					transform: "translateX(0)",
+					right: "60px",
+					bottom: "79px",
 					position: "absolute",
 					padding: 0
 				})
@@ -163,8 +162,8 @@ import { map, combineLatest } from "rxjs/operators";
 					"margin-right": "0px",
 					"font-size": "16px",
 					"font-weight": "bolder",
-					transform: "translateX(50%)",
-					right: "50%",
+					transform: "translateX(0)",
+					right: "60px",
 					bottom: "79px",
 					position: "absolute",
 					padding: 0
@@ -176,8 +175,8 @@ import { map, combineLatest } from "rxjs/operators";
 					"margin-right": "0px",
 					"font-size": "1px",
 					"font-weight": "bolder",
-					// transform: "translateX(0)",
-					// right: "60px",
+					transform: "translateX(0)",
+					right: "60px",
 					bottom: "79px",
 					position: "absolute",
 					padding: 0
@@ -212,7 +211,7 @@ import { map, combineLatest } from "rxjs/operators";
 				"compact",
 				style({
 					backgroundColor: "rgba(256,256,256,1)",
-					height: "100px",
+					height: "128px",
 					top: "0",
 					boxShadow: "1px 1px 3px rgba(0,0,0,0.5)"
 				})
@@ -221,8 +220,8 @@ import { map, combineLatest } from "rxjs/operators";
 				"summary",
 				style({
 					backgroundColor: "rgba(256,256,256,1)",
-					height: "100px",
-					top: "-50px",
+					height: "128px",
+					top: "-64px",
 					boxShadow: "1px 1px 3px rgba(0,0,0,0.5)"
 				})
 			),
@@ -230,8 +229,8 @@ import { map, combineLatest } from "rxjs/operators";
 				"hide",
 				style({
 					backgroundColor: "rgba(256,256,256,1)",
-					height: "100px",
-					top: "-100px",
+					height: "128px",
+					top: "-128px",
 					boxShadow: "1px 1px 3px rgba(0,0,0,0.5)"
 				})
 			),
@@ -266,7 +265,7 @@ export class ToolbarMenuComponent {
 	lastScroll: number;
 	config: toolbarState;
 	config$: Observable<toolbarState>;
-	anchorsMode: boolean = false;
+	anchorsMode = false;
 	constructor(
 		@Inject(DOCUMENT) private document: any,
 		private _location: Location,
@@ -289,17 +288,16 @@ export class ToolbarMenuComponent {
 		this._observe_on_layout_config_and_filter_routes();
 
 		fromEvent(this.document.body, "scroll").subscribe(() => {
-			let scrolledAmount = this.document.body.scrollTop;
-			let scrollToTop =
-				scrolledAmount - this.lastScroll < 0 &&
-				this.document.body.scrollHeight - document.body.offsetHeight - scrolledAmount > 300;
+			const scrolledAmount = this.document.body.scrollTop;
+			const scrollToTop =
+				scrolledAmount - this.lastScroll < 0 && this.document.body.scrollHeight - scrolledAmount < 300;
 			// let scrollToTop = scrolledAmount - this.lastScroll < 0;
-			this.lastScroll = scrolledAmount;
+			this.lastScroll = this.document.body.scrollTop;
 			if (!this.config.visibility) return;
 			if (scrolledAmount == 0) {
 				if (this.config.mode == "comfortable") return;
 				this.store.dispatch(new ChangeToolbatToComfortableModeAction());
-			} else if (scrolledAmount < 150 || scrollToTop) {
+			} else if (scrolledAmount < 200 || scrollToTop) {
 				if (this.config.mode == "compact") return;
 				this.store.dispatch(new ChangeToolbatToCompactModeAction());
 			} else {

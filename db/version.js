@@ -5,7 +5,8 @@ const dotenv = require("dotenv");
 const semver = require("semver");
 const deepDiff = require("deep-diff");
 
-let logFile = JSON.parse(fs.readFileSync(`./logFile.json`));
+// TODO: correct logFile.json path
+let logFile = JSON.parse(fs.readFileSync(`../db/logFile.json`));
 
 /**
  * Load environment variables from .env file
@@ -30,9 +31,9 @@ const update_log_file = () => {
 const getPreviousVersion = () => logFile.versions.concat().pop();
 const getCurrentVersion = () => logFile.currentVersion;
 const getNextVersion = () => ({
-	version        : semver.inc(logFile.currentVersion.version, "minor"),
-	time           : Date.now(),
-	migrationIndex : getNextMigrationIndex()
+	version: semver.inc(logFile.currentVersion.version, "minor"),
+	time: Date.now(),
+	migrationIndex: getNextMigrationIndex()
 });
 
 module.exports.update_log_file = update_log_file;

@@ -28,7 +28,7 @@ export class GwtThenAuthorizeStep implements GwtStep<ThenShowBlockGwtStepParams>
 	}
 	interperator(params: ThenShowBlockGwtStepParams, elementRef: ElementRef) {
 		debugger;
-		const display = (params.verb === "visible") ? "block" : "none";
+		const display = (params.verb === "visible") ? "initial" : "none";
 		elementRef.nativeElement.style.display = display;
 		return of(true);
 	}

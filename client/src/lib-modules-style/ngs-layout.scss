@@ -2,6 +2,27 @@
 * layout Module Start
 */
 
+// .theme_A mat-toolbar {
+//     background-color: rgb(255, 255, 255) !important;
+//     height: 100px !important;
+//     top: 0px;
+//     box-shadow: #00000080 1px 1px 3px !important;
+// }
+.theme_B mat-toolbar {
+    // background-color: rgb(255, 255, 255) !important;
+	// box-shadow: rgba(0, 0, 0, 0.5) 1px 1px 3px !important;
+	box-shadow:none !important;
+
+    height: 100px !important;
+    top: 0px;
+}
+.theme_A #firstToolbar {
+    color: #fff !important;
+}
+.theme_B #firstToolbar {
+    color: #fff !important;
+}
+
 #layout-sidnav > mat-sidenav-content {
 	transition: all 800ms;
 	overflow: visible;
@@ -12,7 +33,10 @@
 .comfortable #layout-sidnav > mat-sidenav-content {
 	padding-top: 33vh;
 }
-.compact #layout-sidnav > mat-sidenav-content {
+.theme_A .compact #layout-sidnav > mat-sidenav-content {
+	padding-top: 128px;
+}
+.theme_B .compact #layout-sidnav > mat-sidenav-content {
 	padding-top: 100px;
 }
 .summary #layout-sidnav > mat-sidenav-content {
@@ -28,7 +52,7 @@
     left: 0;
     right: 0;
     height: 167px;
-    background-color: #63b5f6;
+    background-color: #1976d2;
     z-index: 0;
     padding: 25px;
     font-size: 18px;
