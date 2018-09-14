@@ -41,7 +41,7 @@ import {
 	NgsRuleModuleConfig,
 	NgsUserModuleConfig,
 	NgsFormModuleConfig,
-	NgsPageModuleConfig,
+	NgsPageModuleConfig
 } from "configs";
 
 import { AppComponent } from "./app.component";
@@ -81,10 +81,10 @@ import { DashboardModule } from "./dashboard/dashboard.module";
 		DashboardModule,
 		AppRoutingModule
 	],
-	declarations: [AppComponent],
+	declarations: [ AppComponent ],
 	providers: [
 		// { provide: LOCALE_ID, useValue: 'fa-IR' },
 	],
-	bootstrap: [AppComponent]
+	bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {}

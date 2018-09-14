@@ -11,6 +11,7 @@ export declare class SigninService {
     private configurationService;
     private snackBar;
     constructor(http: HttpClient, store: Store<FeatureState>, configurationService: AuthenticationConfigurationService, snackBar: MatSnackBar);
+    signup(model: any): Observable<UserModel>;
     signin(model: any): Observable<UserModel>;
     signout(): Observable<any>;
     whoAmI(): Observable<any>;

@@ -64,4 +64,4 @@ export declare class SignoutAction implements Action {
 export declare class SigninRequiredAction implements Action {
     readonly type: SignInActionTypes;
 }
-export declare type SigninAction = WhoAmIAction | Signin | SigninSecceed | SigninFailed | SigninRedirect | DoSignoutAction | SignoutAction | SigninRequiredAction;
+export declare type SigninAction = WhoAmIAction | Signup | SignupSecceed | SignupFailed | Signin | SigninSecceed | SigninFailed | SigninRedirect | DoSignoutAction | SignoutAction | SigninRequiredAction;

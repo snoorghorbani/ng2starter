@@ -74,6 +74,9 @@ export class SigninRequiredAction implements Action {
 
 export type SigninAction =
 	| WhoAmIAction
+	| Signup
+	| SignupSecceed
+	| SignupFailed
 	| Signin
 	| SigninSecceed
 	| SigninFailed

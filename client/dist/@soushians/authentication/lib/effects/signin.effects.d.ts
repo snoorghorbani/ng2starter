@@ -2,7 +2,7 @@ import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import { Action } from "@ngrx/store";
 import { Actions } from "@ngrx/effects";
-import { SigninSecceed, SigninFailed } from "../actions/signin.actions";
+import { SigninSecceed, SigninFailed, SignupSecceed, SignupFailed } from "../actions/signin.actions";
 import { SigninService } from "../services/signin.service";
 import { NewCaptcha } from "../actions";
 import { MatBottomSheet } from "@angular/material";
@@ -16,6 +16,8 @@ export declare class SigninEffects {
     constructor(actions$: Actions, router: Router, signinService: SigninService, configurationService: AuthenticationConfigurationService, bottomSheet: MatBottomSheet);
     whoAmI$: Observable<SigninSecceed | SigninFailed>;
     Signin$: Observable<SigninSecceed | SigninFailed>;
+    signup$: Observable<SignupSecceed | SignupFailed>;
+    signupSucceed$: Observable<Action>;
     SignInRequired$: Observable<any>;
     SigninSucceed$: Observable<any>;
     AfterSigninFiled$: Observable<NewCaptcha>;

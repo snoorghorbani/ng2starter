@@ -211,18 +211,6 @@ select:-webkit-autofill {
 	position: relative;
 }
 
-.mat-calendar-controls:before {
-	content: '';
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 40%;
-	bottom: 0;
-	background: white;
-	z-index: 5;
-	background-color: transparent;
-}
-
 .mat-calendar-arrow {
 	display: none !important;
 }
