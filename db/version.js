@@ -31,9 +31,9 @@ const update_log_file = () => {
 const getPreviousVersion = () => logFile.versions.concat().pop();
 const getCurrentVersion = () => logFile.currentVersion;
 const getNextVersion = () => ({
-	version: semver.inc(logFile.currentVersion.version, "minor"),
-	time: Date.now(),
-	migrationIndex: getNextMigrationIndex()
+	version        : semver.inc(logFile.currentVersion.version, "minor"),
+	time           : Date.now(),
+	migrationIndex : getNextMigrationIndex()
 });
 
 module.exports.update_log_file = update_log_file;

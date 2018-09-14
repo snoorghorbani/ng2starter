@@ -4,8 +4,9 @@ var Angularcli = require("./angular-cli");
 var tsconfig = require("./tsconfig-handler");
 var Database = require("./database");
 var Files = require("./files");
-var Npm = require("./npm");
+var Npm = require("./npm-handler");
 
+Npm.install_dependencies();
 Npm.rename_package(process.env);
 Npm.clean_client_packge_json();
 Angularcli.edit_angular_json(process.env);
