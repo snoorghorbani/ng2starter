@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const npmModule = require("npm");
+// const npmModule = require("npm");
 
 const client_packge_path = "../client/package.json";
 
