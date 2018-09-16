@@ -33,7 +33,7 @@ const update_all_packages = version => {
 	get_all_packages().forEach(file => {
 		let package = JSON.parse(fs.readFileSync(file));
 		package.version = version;
-		fs.writeFileSync(file, JSON.stringify(package), "utf8");
+		fs.writeFileSync(file, JSON.stringify(package, null, 4), "utf8");
 	});
 	return Promise.resolve();
 };

@@ -26,7 +26,7 @@ const getNextMigrationIndex = () => {
 const update_log_file = () => {
 	logFile.versions.push(logFile.currentVersion);
 	logFile.currentVersion = getNextVersion();
-	fs.writeFileSync(`./logFile.json`, JSON.stringify(logFile), "utf8");
+	fs.writeFileSync(`./logFile.json`, JSON.stringify(logFile, null, 4), "utf8");
 };
 const getPreviousVersion = () => logFile.versions.concat().pop();
 const getCurrentVersion = () => logFile.currentVersion;
