@@ -34,7 +34,7 @@ router.post("/", function(req, res) {
 	Model.findOneAndUpdate({ _id: req.body._id, owner: req.query.userId }, req.body, { upsert: true, new: true })
 		.then(Result => {
 			// TODO:
-			SocketMiddleware.server.dispatchActionToClientByUsername("[PAGE][DB] UPSERT", [ Result ], req.query.userId);
+			SocketMiddleware.server.dispatchActionToClients("[PAGE][DB] UPSERT", [ Result ]);
 			res.send({ Result });
 		})
 		.catch(err => {

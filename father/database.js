@@ -40,10 +40,10 @@ function clone_database() {
 						debugger;
 					});
 			}
-			console.log("***************************");
-			console.log("*********** DONE **********");
-			console.log("***************************");
 		}
+		console.log("***************************");
+		console.log("*********** DONE **********");
+		console.log("***************************");
 	});
 }
 
