@@ -14,7 +14,7 @@ const backup = nextVersion => {
 			fs.mkdirSync(`${process.env.reposRoot}/${nextVersion}`);
 
 		// Use connect method to connect to the server
-		MongoClient.connect(process.env.MONGODB_URI, function (err, client) {
+		MongoClient.connect(process.env.MONGODB_URI, function(err, client) {
 			assert.equal(null, err);
 			console.log("Connected successfully to server");
 
@@ -29,7 +29,7 @@ const backup = nextVersion => {
 					_collection.find().toArray((err, docs) => {
 						fs.writeFileSync(
 							`${process.env.reposRoot}/${nextVersion}/${collection.collectionName}.json`,
-							JSON.stringify(docs),
+							JSON.stringify(docs, null, 4),
 							"utf8"
 						);
 						if (--count == 0) {
@@ -46,11 +46,16 @@ const backup = nextVersion => {
 
 function getBackupVersionOf(version) {
 	const collections = {};
-	fs.readdirSync(`../db/${process.env.reposRoot}/${version}`).map(fileName => {
-		return fileName.replace(".json", "")
-	}).forEach(fileName => {
-		collections[fileName] = JSON.parse(fs.readFileSync(`../db/${process.env.reposRoot}/${version}/${fileName}.json`))
-	});
+	fs
+		.readdirSync(`../db/${process.env.reposRoot}/${version}`)
+		.map(fileName => {
+			return fileName.replace(".json", "");
+		})
+		.forEach(fileName => {
+			collections[fileName] = JSON.parse(
+				fs.readFileSync(`../db/${process.env.reposRoot}/${version}/${fileName}.json`)
+			);
+		});
 	return collections;
 }
 
