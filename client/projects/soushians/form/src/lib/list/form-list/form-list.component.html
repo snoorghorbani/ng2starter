@@ -1,10 +1,20 @@
-<div fxLayout="row" fxLayoutWrap fxLayoutAlign="center center" >
-    <mat-card class="cards-item" *ngFor="let item of (data$ | async)" fxFlex="51">
-      <h3>
-        <a [routerLink]="['edit' ,  item._id]">
-          <mat-icon aria-label="edit form">edit</mat-icon>
-        </a>
-        {{item.name}}
-      </h3>
+<!-- <div fxLayout="row" fxLayoutWrap fxLayoutAlign="center center">
+  <mat-card class="cards-item" *ngFor="let item of (data$ | async)" fxFlex="51">
+    <h3>
+      <a [routerLink]="['edit' ,  item._id]">
+        <mat-icon aria-label="edit form">edit</mat-icon>
+      </a>
+      {{item.name}}
+    </h3>
   </mat-card>
+</div> -->
+
+<div fxLayout="row wrap" fxLayoutAlign=" center">
+  <button fxFlex.lt-lg="19" fxFlex.lg="24" fxFlex.md="32" fxFlex.sm="49" fxFlex.xs="100" class='link' mat-raised-button
+    [routerLink]="['edit' ,  item._id]" *ngFor="let item of (data$ | async)">
+    <div fxLayout='column' fxLayoutAlign='center center'>
+      <mat-icon color='primary'>settings</mat-icon>
+      <h3 class='title'>{{item.name}}</h3>
+    </div>
+  </button>
 </div>

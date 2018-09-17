@@ -1,33 +1,41 @@
-<form *ngIf="formGroupCreated && card" class="ngs-dynamic-form" [formGroup]="formGroup" (ngSubmit)="accepted()">
-  <mat-card>
-    <mat-card-title>
-      {{(schema$ | async)?.name}}
-    </mat-card-title>
-    <mat-card-content fxLayout="row wrap" fxLayoutGap="25px">
-      <div  *ngFor="let field of (schema$ | async)?.form.fields;" [fxFlex]="field.width * 10">
-        <ng-container dynamicField  [config]="field" [group]="formGroup"></ng-container>
-      </div>
-    </mat-card-content>
-    <mat-card-actions align="end">
-        <button type="button" *ngIf="(schema$ | async)?.events.cancel.show" (click)="cancel.emit()" mat-button color="primary">{{(schema$ | async)?.events.cancel.text}}</button>
-        <button type="submit" *ngIf="(schema$ | async)?.events.accept.show" mat-raised-button color="primary">{{(schema$ | async)?.events.accept.text}}</button>
-      </mat-card-actions>
-  </mat-card>
-</form>
+<div fxFlex="100" fxLayoutAlign="center center">
+  <mat-card fxFlex="90">
+    <form *ngIf="formGroupCreated && card" class="ngs-dynamic-form" [formGroup]="formGroup" (ngSubmit)="accepted()">
+      <mat-card>
+        <mat-card-title>
+          {{(schema$ | async)?.name}}
+        </mat-card-title>
+        <mat-card-content fxLayout="row wrap" fxLayoutGap="25px">
+          <div *ngFor="let field of (schema$ | async)?.form.fields;" [fxFlex]="field.width * 10">
+            <ng-container dynamicField [config]="field" [group]="formGroup"></ng-container>
+          </div>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button type="button" *ngIf="(schema$ | async)?.events.cancel.show" (click)="cancel.emit()" mat-button color="primary">{{(schema$
+            | async)?.events.cancel.text}}</button>
+          <button type="submit" *ngIf="(schema$ | async)?.events.accept.show" mat-raised-button color="primary">{{(schema$
+            | async)?.events.accept.text}}</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
 
-<form *ngIf="formGroupCreated && !card" class="ngs-dynamic-form" [formGroup]="formGroup" (ngSubmit)="accepted()">
-  <div>
-    <h3>
-      {{(schema$ | async)?.name}}
-    </h3>
-    <div fxLayout="row wrap" fxLayoutGap="25px">
-      <div  *ngFor="let field of (schema$ | async)?.form.fields;" [fxFlex]="field.width * 10">
-        <ng-container dynamicField  [config]="field" [group]="formGroup"></ng-container>
+    <form *ngIf="formGroupCreated && !card" class="ngs-dynamic-form" [formGroup]="formGroup" (ngSubmit)="accepted()">
+      <div>
+        <h3>
+          {{(schema$ | async)?.name}}
+        </h3>
+        <div fxLayout="row wrap" fxLayoutGap="5px">
+          <div *ngFor="let field of (schema$ | async)?.form.fields;" [fxFlex]="field.width * 10">
+            <ng-container dynamicField [config]="field" [group]="formGroup"></ng-container>
+          </div>
+        </div>
+        <div>
+          <button type="button" *ngIf="(schema$ | async)?.events.cancel.show" (click)="cancel.emit()" mat-button color="primary">{{(schema$
+            | async)?.events.cancel.text}}</button>
+          <button type="submit" *ngIf="(schema$ | async)?.events.accept.show" mat-raised-button color="primary">{{(schema$
+            | async)?.events.accept.text}}</button>
+        </div>
       </div>
-    </div>
-    <div>
-      <button type="button" *ngIf="(schema$ | async)?.events.cancel.show" (click)="cancel.emit()" mat-button color="primary">{{(schema$ | async)?.events.cancel.text}}</button>
-      <button type="submit" *ngIf="(schema$ | async)?.events.accept.show" mat-raised-button color="primary">{{(schema$ | async)?.events.accept.text}}</button>
-    </div>
-  </div>
-</form>
+    </form>
+  </mat-card>
+</div>

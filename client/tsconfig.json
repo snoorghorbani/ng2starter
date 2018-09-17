@@ -22,7 +22,8 @@
         // "projects/soushians/layout/src/public_api"
       ],
       "@soushians/config": [
-        "dist/@soushians/config"
+        // "dist/@soushians/config"
+        "projects/soushians/config/src/public_api"
       ],
       "@soushians/user": [
         "dist/@soushians/user"
@@ -37,8 +38,8 @@
         "dist/@soushians/authentication"
       ],
       "@soushians/form": [
-        "dist/@soushians/form"
-        // "projects/soushians/form/src/public_api"
+        // "dist/@soushians/form"
+        "projects/soushians/form/src/public_api"
       ],
       "@soushians/diagram": [
         "dist/@soushians/diagram"
