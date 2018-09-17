@@ -1,19 +1,45 @@
-<h2>Endpoints</h2>
-<div [formGroup]="formGroup.controls.endpoints" fxLayout="column">
-    <mat-form-field>
-        <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="sign in" formControlName="signIn">
-    </mat-form-field>
-    <mat-form-field>
-        <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="sign out" formControlName="signOut">
-    </mat-form-field>
-    <mat-form-field>
-        <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="who am i" formControlName="whoAmI">
-    </mat-form-field>
-</div>
-<h2>Forms</h2>
-<div [formGroup]="formGroup.controls.forms" fxLayout="column">
-    <mat-form-field>
-        <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="SignIn Forms" formControlName="signIn">
-    </mat-form-field>
-            <!-- <ngs-form-selector (select)="setFormId($event,'signIn')"></ngs-form-selector> -->
+<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="25px" class="main-container">
+
+    <div class="content-action">
+        <mat-card class="with-sticky-action">
+            <mat-card-header>
+                <mat-card-title fxLayout="row" fxLayoutGap="5px">
+                    <mat-icon>settings_input_component</mat-icon>
+                    <span>تنظیمات ماژول احراز هویت</span>
+                </mat-card-title>
+                <mat-card-subtitle fxLayout="row" fxLayoutAlign="space-between center">
+                    <span>
+                        شامل تمامی درخواست‌ها از قبیل دائری، جمع‌آوری و ...
+                    </span>
+                </mat-card-subtitle>
+            </mat-card-header>
+
+            <div>
+
+                <h2>Endpoints</h2>
+                <div [formGroup]="formGroup.controls.endpoints" fxLayout="column">
+                    <mat-form-field>
+                        <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="sign in"
+                            formControlName="signIn">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="sign out"
+                            formControlName="signOut">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="who am i"
+                            formControlName="whoAmI">
+                    </mat-form-field>
+                </div>
+                <h2>Forms</h2>
+                <div [formGroup]="formGroup.controls.forms" fxLayout="column">
+                    <mat-form-field>
+                        <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="SignIn Forms"
+                            formControlName="signIn">
+                    </mat-form-field>
+                    <!-- <ngs-form-selector (select)="setFormId($event,'signIn')"></ngs-form-selector> -->
+                </div>
+            </div>
+        </mat-card>
+    </div>
 </div>

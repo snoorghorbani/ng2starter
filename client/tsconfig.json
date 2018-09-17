@@ -71,8 +71,8 @@
         // "projects/soushians/frontend-authentication/src/public_api"
       ],
       "@soushians/page": [
-        "dist/@soushians/page"
-        // "projects/soushians/page/src/public_api"
+        // "dist/@soushians/page"
+        "projects/soushians/page/src/public_api"
       ],
       "@soushians/gwt-steps": [
         "dist/@soushians/gwt-steps"

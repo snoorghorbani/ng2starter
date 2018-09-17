@@ -1,55 +1,73 @@
-<div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="25px">
-    <mat-card fxFlex="20" fxFlexLayout="row">
-        <div [formGroup]="formGroup">
-            <mat-form-field>
-                <mat-select placeholder="layout mode" formControlName="layoutMode">
-                    <mat-option *ngFor="let item of layoutModes" [value]="item">{{item}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <mat-slide-toggle formControlName="showLeftNavBar">show left navbar</mat-slide-toggle>
-            <mat-form-field>
-                <mat-select placeholder="main side nav mode" formControlName="mainSideNavMode">
-                    <mat-option *ngFor="let item of sideNavModes" [value]="item">{{item}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <mat-slide-toggle formControlName="showMainSidenav">show main side nav</mat-slide-toggle>
-            <mat-slide-toggle formControlName="stickyLeftNavBar">sticky left navbar</mat-slide-toggle>
-            <mat-slide-toggle formControlName="showSecondSideNav">show second side nav</mat-slide-toggle>
-            <mat-form-field>
-                <mat-select placeholder="second side nav mode" formControlName="secondSideNavMode">
-                    <mat-option *ngFor="let item of sideNavModes" [value]="item">{{item}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-    </mat-card>
+<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="25px" class="main-container">
 
-    <mat-card fxFlex fxLayout="column">
-        <h2 fxFlex>
-            Menu Items
-            <button mat-icon-button color="primary" (click)="addMenu()">
-                <mat-icon aria-label="icon-button icon">add</mat-icon>
-            </button>
-        </h2>
-        <div fxFlex="nogrow" *ngFor="let item of $any(formGroup).get('menuItems').controls">
-            <div [formGroup]="item" fxLayout="row" fxLayoutGap="25px">
-                <button mat-icon-button (click)="removeMenu(item)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-                <mat-form-field>
-                    <input type="text" matInput placeholder="route" formControlName="route">
-                </mat-form-field>
-                <mat-form-field>
-                    <input type="text" matInput placeholder="icon" formControlName="icon">
-                </mat-form-field>
-                <mat-form-field>
-                    <input type="text" matInput placeholder="title" formControlName="title">
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-select placeholder="roles" formControlName="roles" multiple>
-                        <mat-option *ngFor="let role of roleItems$ | async" [value]="role">{{role}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
+    <div class="content-action">
+        <mat-card class="with-sticky-action">
+            <mat-card-header>
+                <mat-card-title fxLayout="row" fxLayoutGap="5px">
+                    <mat-icon>settings_input_component</mat-icon>
+                    <span>تنظیمات ماژول Layout</span>
+                </mat-card-title>
+                <mat-card-subtitle fxLayout="row" fxLayoutAlign="space-between center">
+                    <span>
+                        شامل تمامی درخواست‌ها از قبیل دائری، جمع‌آوری و ...
+                    </span>
+                </mat-card-subtitle>
+            </mat-card-header>
+            <div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="25px">
+                <mat-card fxFlex="20" fxFlexLayout="row">
+                    <div [formGroup]="formGroup">
+                        <mat-form-field>
+                            <mat-select placeholder="layout mode" formControlName="layoutMode">
+                                <mat-option *ngFor="let item of layoutModes" [value]="item">{{item}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-slide-toggle formControlName="showLeftNavBar">show left navbar</mat-slide-toggle>
+                        <mat-form-field>
+                            <mat-select placeholder="main side nav mode" formControlName="mainSideNavMode">
+                                <mat-option *ngFor="let item of sideNavModes" [value]="item">{{item}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-slide-toggle formControlName="showMainSidenav">show main side nav</mat-slide-toggle>
+                        <mat-slide-toggle formControlName="stickyLeftNavBar">sticky left navbar</mat-slide-toggle>
+                        <mat-slide-toggle formControlName="showSecondSideNav">show second side nav</mat-slide-toggle>
+                        <mat-form-field>
+                            <mat-select placeholder="second side nav mode" formControlName="secondSideNavMode">
+                                <mat-option *ngFor="let item of sideNavModes" [value]="item">{{item}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </mat-card>
+
+                <mat-card fxFlex fxLayout="column">
+                    <h2 fxFlex>
+                        Menu Items
+                        <button mat-icon-button color="primary" (click)="addMenu()">
+                            <mat-icon aria-label="icon-button icon">add</mat-icon>
+                        </button>
+                    </h2>
+                    <div fxFlex="nogrow" *ngFor="let item of $any(formGroup).get('menuItems').controls">
+                        <div [formGroup]="item" fxLayout="row" fxLayoutGap="25px">
+                            <button mat-icon-button (click)="removeMenu(item)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            <mat-form-field>
+                                <input type="text" matInput placeholder="route" formControlName="route">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input type="text" matInput placeholder="icon" formControlName="icon">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input type="text" matInput placeholder="title" formControlName="title">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-select placeholder="roles" formControlName="roles" multiple>
+                                    <mat-option *ngFor="let role of roleItems$ | async" [value]="role">{{role}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </mat-card>
             </div>
-        </div>
-    </mat-card>
+        </mat-card>
+    </div>
 </div>

@@ -1,22 +1,43 @@
-<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="25px">
-  <div fXFlex="30" fxLayout="column">
-    <button mat-fab routerLink="../upsert/article" [style.backgroundColor]="'#ffffff'">
-      <mat-icon [style.color]="anghazi.article.color">{{anghazi.article.icon}}</mat-icon>
-    </button>
-    <button mat-fab routerLink="../upsert/links" [style.backgroundColor]="'#ffffff'">
-      <mat-icon [style.color]="anghazi.links.color">{{anghazi.links.icon}}</mat-icon>
-    </button>
-  </div>
-  <div fxFlex="70" fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign=" center">
-    <button fxFlex.lt-lg="19" fxFlex.lg="24" fxFlex.md="32" fxFlex.sm="49" fxFlex.xs="100" class='link'
-      mat-raised-button [routerLink]="['../upsert' ,  item.type,  item._id]" *ngFor="let item of (widgets$ | async)">
-      <div fxLayout='column' fxLayoutAlign='space-between center'>
-        <mat-icon color='primary' [style.color]="anghazi[item.type].color">{{anghazi[item.type].icon}}</mat-icon>
-        <div fxFlex="nogrow" fxFlexAlign="stretch" fxLayoutAlign="center center" class="widget-type">
-          {{item.type}}
-        </div>
-        <h4 class="title">{{item.name}}</h4>
+<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="25px" class="main-container">
+
+  <div class="content-action">
+    <mat-card class="with-sticky-action">
+      <mat-card-header>
+        <mat-card-title fxLayout="row" fxLayoutGap="5px">
+          <mat-icon>settings_input_component</mat-icon>
+          <span>مدیریت افزونه ها</span>
+        </mat-card-title>
+        <mat-card-subtitle fxLayout="row" fxLayoutAlign="space-between center">
+          <span>
+            شامل تمامی درخواست‌ها از قبیل دائری، جمع‌آوری و ...
+          </span>
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="start">
+
+        <button fxFlex.lt-lg="18" fxFlex.lg="23.5" fxFlex.md="31" fxFlex.sm="48" fxFlex.xs="100" class='link'
+          mat-raised-button [routerLink]="['../upsert' ,  item.type,  item._id]" *ngFor="let item of (widgets$ | async)">
+          <div fxLayout='column' fxLayoutAlign='space-between center'>
+            <mat-icon color='primary' [style.color]="anghazi[item.type].color">{{anghazi[item.type].icon}}</mat-icon>
+            <div fxFlex="nogrow" fxFlexAlign="stretch" fxLayoutAlign="center center" class="widget-type">
+              {{item.type}}
+            </div>
+            <h4 class="title">{{item.name}}</h4>
+          </div>
+        </button>
       </div>
-    </button>
+
+    </mat-card>
+
+    <div fxLayout="column" class="sticky-action">
+      <a mat-mini-fab routerLink="../upsert/article" [style.backgroundColor]="'#ffffff'">
+        <mat-icon [style.color]="anghazi.article.color">{{anghazi.article.icon}}</mat-icon>
+      </a>
+      <a mat-mini-fab routerLink="../upsert/links" [style.backgroundColor]="'#ffffff'">
+        <mat-icon [style.color]="anghazi.links.color">{{anghazi.links.icon}}</mat-icon>
+      </a>
+    </div>
+
   </div>
 </div>

@@ -1,9 +1,31 @@
-<div fxLayout="row wrap" fxLayoutAlign=" center">
-  <button fxFlex.lt-lg="19" fxFlex.lg="24" fxFlex.md="32" fxFlex.sm="49" fxFlex.xs="100" class='link' mat-raised-button
-    [routerLink]="['edit' ,  config.Name]" *ngFor="let config of (configs | async)">
-    <div fxLayout='column' fxLayoutAlign='center center'>
-      <mat-icon color='primary'>settings</mat-icon>
-      <h3 class='title'>{{config.Name}}</h3>
-    </div>
-  </button>
+<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="25px" class="main-container">
+
+  <div class="content-action">
+    <mat-card class="with-sticky-action">
+      <mat-card-header>
+        <mat-card-title fxLayout="row" fxLayoutGap="5px">
+          <mat-icon>settings_input_component</mat-icon>
+          <span>تنظیمات سامانه و ماژول ها</span>
+        </mat-card-title>
+        <mat-card-subtitle fxLayout="row" fxLayoutAlign="space-between center">
+          <span>
+            شامل تمامی درخواست‌ها از قبیل دائری، جمع‌آوری و ...
+          </span>
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="start">
+
+        <button fxFlex.lt-lg="18" fxFlex.lg="23.5" fxFlex.md="31" fxFlex.sm="48" fxFlex.xs="100" class='link'
+          mat-raised-button [routerLink]="['edit' ,  config.Name]" *ngFor="let config of (configs | async)">
+          <div fxLayout='column' fxLayoutAlign='center center'>
+            <mat-icon color='primary'>settings</mat-icon>
+            <h3 class='title'>{{config.Name}}</h3>
+          </div>
+        </button>
+
+      </div>
+
+    </mat-card>
+  </div>
 </div>

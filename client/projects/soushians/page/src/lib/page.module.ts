@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { MatCardModule, MatIconModule, MatButtonModule, MatFormFieldModule, MatInputModule } from "@angular/material";
+import { MatCardModule, MatIconModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatDividerModule } from "@angular/material";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { StoreModule } from "@ngrx/store";
 import { RouterModule } from "@angular/router";
@@ -33,19 +33,20 @@ import { DeletePageApiEffects } from "./services/api/delete-page/delete-page.eff
 		MatCardModule,
 		MatButtonModule,
 		MatIconModule,
+		MatDividerModule,
 		FlexLayoutModule,
 		FormsModule,
 		ReactiveFormsModule,
 		NgsGridModule
 	],
-	declarations: [ PageViewComponent, PagesManagementComponent, RootComponent, UpsertComponent ],
+	declarations: [PageViewComponent, PagesManagementComponent, RootComponent, UpsertComponent],
 	exports: []
 })
 export class NgsPageModule {
 	static forRoot(config?: PageModuleConfig): ModuleWithProviders {
 		return {
 			ngModule: NgsPageRootModule,
-			providers: [ { provide: MODULE_CONFIG_TOKEN, useValue: config }, PageConfigurationService, PageService ]
+			providers: [{ provide: MODULE_CONFIG_TOKEN, useValue: config }, PageConfigurationService, PageService]
 		};
 	}
 }
@@ -63,6 +64,6 @@ export class NgsPageModule {
 			DeletePageApiEffects
 		])
 	],
-	exports: [ NgsPageModule ]
+	exports: [NgsPageModule]
 })
-export class NgsPageRootModule {}
+export class NgsPageRootModule { }

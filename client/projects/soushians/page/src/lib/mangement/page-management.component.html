@@ -1,36 +1,55 @@
-<div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="25px">
-  <div fXFlex fxLayout="row">
-    <button  color="primary" mat-mini-fab routerLink="../upsert">
-      <mat-icon>add</mat-icon>
-    </button>
-  </div>
-  <div fxFlex="100" fxLayout="row wrap" fxLayoutGap="20px">
-    <mat-card class="cards-item" *ngFor="let item of (pages$ | async)" fxFlex="32" fxLayout="row">
+<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="25px" class="main-container">
 
-      <div fxFlex fxLayoutAlign="start center">
-        {{item.name}}
-      </div>
-      <div fxFlex fxLayoutAlign="center center">
-        {{item.type}}
-      </div>
-      <div fxLayout="row" >
-          <div fxFlex="nogrow">
-              <a mat-icon-button [routerLink]="['../upsert' , item.name]">
-                <mat-icon aria-label="edit page">edit</mat-icon>
-              </a>
+  <div class="content-action">
+    <mat-card class="with-sticky-action">
+      <mat-card-header>
+        <mat-card-title fxLayout="row" fxLayoutGap="5px">
+          <mat-icon>settings_input_component</mat-icon>
+          <span>مدیریت صغحات</span>
+        </mat-card-title>
+        <mat-card-subtitle fxLayout="row" fxLayoutAlign="space-between center">
+          <span>
+            شامل تمامی درخواست‌ها از قبیل دائری، جمع‌آوری و ...
+          </span>
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="25px">
+        <div fxFlex="100" fxLayout="row wrap" fxLayoutGap="20px">
+          <mat-card class="cards-item" *ngFor="let item of (pages$ | async)" fxFlex="32" fxLayout="row">
+
+            <div fxFlex fxLayoutAlign="start center">
+              <h3> {{item.name}}</h3>
             </div>
-    
-        <div fxFlex="nogrow">
-          <button mat-icon-button (click)="delete(item)">
-            <mat-icon aria-label="delete page">delete</mat-icon>
-          </button>
-        </div>
-                <div fxFlex="nogrow">
-          <a mat-icon-button [routerLink]="['/page' , item.name]">
-            <mat-icon aria-label="edit page">remove_red_eye</mat-icon>
-          </a>
+            <div fxFlex fxLayoutAlign="center center">
+              {{item.type}}
+            </div>
+            <div fxLayout="row">
+              <div fxFlex="nogrow">
+                <a mat-icon-button [routerLink]="['../upsert' , item.name]">
+                  <mat-icon aria-label="edit page">edit</mat-icon>
+                </a>
+              </div>
+
+              <div fxFlex="nogrow">
+                <button mat-icon-button (click)="delete(item)">
+                  <mat-icon aria-label="delete page">delete</mat-icon>
+                </button>
+              </div>
+              <div fxFlex="nogrow">
+                <a mat-icon-button [routerLink]="['/page' , item.name]">
+                  <mat-icon aria-label="edit page">remove_red_eye</mat-icon>
+                </a>
+              </div>
+            </div>
+          </mat-card>
         </div>
       </div>
     </mat-card>
+    <div fxLayout="column" class="sticky-action">
+      <a color="primary" mat-mini-fab routerLink="../upsert">
+        <mat-icon>add</mat-icon>
+      </a>
+    </div>
   </div>
 </div>

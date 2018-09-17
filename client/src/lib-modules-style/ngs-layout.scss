@@ -62,3 +62,56 @@
 }
 
 /* Rules Module End */
+
+.theme_B {
+	
+	.content-action {
+		width: 90%;
+	}
+	.content-action .sticky-action {
+		position: sticky;
+		position: sticky;
+		top: 100px;
+		margin-top: 95px;
+		left: 0;
+		width: 50px;
+		text-align: center;
+		height:auto;
+	}
+	.content-action .sticky-action > a {
+		display: inline-block;
+		margin-bottom:8px;
+		background: #fff;
+		color:#f26323;
+	}
+	.content-action .with-sticky-action {
+		width: calc(100% - 70px);
+		margin-left: 20px;
+		position: relative;
+		box-sizing: border-box;
+		float: right;
+			.mat-card-header{
+				margin-bottom: 0 !important;
+				height: 95px;
+			}
+			
+	}
+	.main-container {
+		.mat-card mat-card-subtitle {
+			font-size: 14px;
+		}
+	}
+	.main-container:after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 167px;
+		background-color: #64b5f6;
+		z-index: 0;
+		padding: 25px;
+		font-size: 18px;
+		z-index: -2;
+	}
+}
