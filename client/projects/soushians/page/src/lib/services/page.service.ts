@@ -31,12 +31,8 @@ export class PageService {
 			filter((config) => config.endpoints.get !== ""),
 			take(1),
 			combineLatest(this.userId$),
-			switchMap(([ config, userId ]) =>
-				this.http.get(stringTemplate(config.env.frontend_server + config.endpoints.get, { name }), {
-					params: {
-						userId: userId
-					}
-				})
+			switchMap(([config, userId]) =>
+				this.http.get(stringTemplate(config.env.frontend_server + config.endpoints.get, { name }))
 			),
 			map((response: UpsertPageApiModel.Response) => response.Result)
 		);
@@ -57,12 +53,8 @@ export class PageService {
 		return this.configurationService.config$.pipe(
 			filter((config) => config.endpoints.find != ""),
 			combineLatest(this.userId$),
-			switchMap(([ config, userId ]) =>
-				this.http.get(config.env.frontend_server + config.endpoints.find, {
-					params: {
-						userId: userId
-					}
-				})
+			switchMap(([config, userId]) =>
+				this.http.get(config.env.frontend_server + config.endpoints.find)
 			),
 			map((response: GetPagesApiModel.Response) => response.Result)
 		);
@@ -73,12 +65,8 @@ export class PageService {
 			filter((config) => config.endpoints.upsert != ""),
 			take(1),
 			combineLatest(this.userId$),
-			switchMap(([ config, userId ]) =>
-				this.http.post(config.env.frontend_server + config.endpoints.upsert, model.getRequestBody(), {
-					params: {
-						userId: userId
-					}
-				})
+			switchMap(([config, userId]) =>
+				this.http.post(config.env.frontend_server + config.endpoints.upsert, model.getRequestBody())
 			),
 			map((response: UpsertPageApiModel.Response) => response.Result),
 			tap(() => this._location.back())

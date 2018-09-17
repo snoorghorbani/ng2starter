@@ -23,7 +23,7 @@
                         <mat-icon>settings</mat-icon>
                         <span>تنظیمات</span>
                     </button>
-                    <button mat-menu-item *ngIf="item.type" (click)="removeItem(item)">
+                    <button mat-menu-item (click)="removeItem(item)">
                         <mat-icon>delete</mat-icon>
                         <span>حذف</span>
                     </button>
@@ -45,12 +45,3 @@
         </div>
     </gridster-item>
 </gridster>
-
-<!-- 
-                <button mat-icon-button (click)="removeItem(item)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-                <button *ngIf="item.type" mat-icon-button (click)="showConfig(item)">
-                    <mat-icon>settings</mat-icon>
-                </button>
-            </div> -->

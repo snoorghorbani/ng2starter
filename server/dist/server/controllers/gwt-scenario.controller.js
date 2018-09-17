@@ -14,7 +14,6 @@ router.get("/:id", function (req, res) {
     Model.findById(req.params.id).then(Result => res.json({ Result }));
 });
 router.post("/", function (req, res) {
-    debugger;
     if (!req.body._id)
         req.body._id = new bson_1.ObjectId();
     Model.findByIdAndUpdate(req.body._id, req.body, { upsert: true, new: true })

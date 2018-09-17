@@ -21,17 +21,18 @@ const getGridWithItems = function (_id: string, userId: string): any {
 };
 
 router.get("/", function (req, res) {
-	GridModel.find().then((Result) => res.json({ Result }));
+	GridModel.find({ owner: req.user.id }).then((Result) => res.json({ Result }));
 });
 router.get("/:id", function (req, res) {
-	getGridWithItems(req.params.id, req.query.userId).then((Result: any) => res.json({ Result }));
+	getGridWithItems(req.params.id, req.user.id).then((Result: any) => res.json({ Result }));
 });
 router.post("/", function (req, res) {
-	GridItemModel.find({ owner: req.query.userId }).then((items) => items.forEach((item) => item.remove())).then(() => {
+	GridItemModel.find({ owner: req.user.id }).then((items) => items.forEach((item) => item.remove())).then(() => {
+		debugger;
 		Promise.all(
 			req.body.items.map((item: any) => {
 				if (!item._id) item._id = new ObjectId();
-				item.owner = req.query.userId;
+				item.owner = req.user.id;
 
 				return GridItemModel.findByIdAndUpdate(item._id, item, { upsert: true, new: true });
 			})
@@ -49,7 +50,7 @@ router.post("/", function (req, res) {
 			if (!req.body._id) gridData._id = new ObjectId();
 
 			GridModel.findOneAndUpdate({ _id: req.body._id }, gridData, { upsert: true }).then((grid) => {
-				getGridWithItems(grid._id, req.query.userId)
+				getGridWithItems(grid._id, req.user.id)
 					.then((Result: any) => {
 						SocketMiddleware.server.dispatchActionToClients("[GRID][DB] UPSERT", [Result]);
 						res.send({ Result });
