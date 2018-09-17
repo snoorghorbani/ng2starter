@@ -12,17 +12,18 @@
     </div>
     <gridster-item [item]="item" *ngFor="let item of grid.items">
         <div class="initializer" fxLayout="row" fxLayoutAlign="space-between center">
-            <div fxFlex="nogrow"> 
+            <div fxFlex="nogrow">
                 <button mat-icon-button [matMenuTriggerFor]="menu">
                     <mat-icon>more_horiz</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                    <mat-checkbox *ngIf="grid.owner == username" labelPosition="before" [checked]="item.access=='public'" (change)="make_public(item,$event)">عمومی</mat-checkbox>
+                    <mat-checkbox *ngIf="grid.owner == username" labelPosition="before" [checked]="item.access=='public'"
+                        (change)="make_public(item,$event)">عمومی</mat-checkbox>
                     <button mat-menu-item (click)="showConfig(item)">
                         <mat-icon>settings</mat-icon>
                         <span>تنظیمات</span>
                     </button>
-                    <button mat-menu-item  *ngIf="item.type" (click)="removeItem(item)">
+                    <button mat-menu-item *ngIf="item.type" (click)="removeItem(item)">
                         <mat-icon>delete</mat-icon>
                         <span>حذف</span>
                     </button>
@@ -40,12 +41,12 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-        <div *ngIf="item.valid" [ngsDynamicGridItemView]="item"></div>
-    </div>
+            <div *ngIf="item.valid" [ngsDynamicGridItemView]="item"></div>
+        </div>
     </gridster-item>
 </gridster>
 
-            <!-- 
+<!-- 
                 <button mat-icon-button (click)="removeItem(item)">
                     <mat-icon>delete</mat-icon>
                 </button>

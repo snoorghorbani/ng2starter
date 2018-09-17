@@ -11,7 +11,7 @@ import * as Model from "../models/source.model";
 
 const router = express.Router();
 
-router.get("/", function(req, res) {
+router.get("/", function (req, res) {
 	Model.Source
 		.find()
 		.then(data =>
@@ -23,10 +23,10 @@ router.get("/", function(req, res) {
 			debugger;
 		});
 });
-router.get("/:id", function(req, res) {
+router.get("/:id", function (req, res) {
 	Model.Source.findById(req.params.id).then(Result => res.json({ Result }));
 });
-router.put("/", function(req, res) {
+router.put("/", function (req, res) {
 	req.body._id = req.body._id || new mongoose.Types.ObjectId();
 	Model.Source
 		.findByIdAndUpdate(req.body._id, req.body, { upsert: true, new: true })
@@ -39,7 +39,7 @@ router.put("/", function(req, res) {
 			res.send(err);
 		});
 });
-router.delete("/:id", function(req, res) {
+router.delete("/:id", function (req, res) {
 	Model.Source
 		.findByIdAndRemove(req.params.id)
 		.then(source => {
@@ -61,7 +61,6 @@ const saveSourceData = (Result: any, timeOfReuquestSending: number, source: any)
 			const ComputedFormula = compileString(threshold.Formula, Result);
 			const thresholdResult = eval(ComputedFormula);
 			if (thresholdResult) {
-				debugger;
 				model.Events.addToSet({
 					Type: "threshold",
 					Info: {
@@ -83,7 +82,6 @@ const saveSourceData = (Result: any, timeOfReuquestSending: number, source: any)
 	model
 		.save()
 		.then((Result: any) => {
-			debugger;
 		})
 		.catch((Result: any) => {
 			debugger;
@@ -102,7 +100,7 @@ const saveRequestFailure = (error: any, timeOfReuquestSending: number, source: a
 		}
 	});
 
-	model.save().then((Result: any) => {}).catch((Result: any) => {
+	model.save().then((Result: any) => { }).catch((Result: any) => {
 		debugger;
 	});
 };
@@ -119,7 +117,7 @@ const scheduleForGetData = (() => {
 		}, source.Interval);
 	};
 })();
-export const sourceJob = function() {
+export const sourceJob = function () {
 	// Model.Source
 	//   .find({ IsActive: true })
 	//   .then((data: any) => {

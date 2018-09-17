@@ -21,7 +21,7 @@ const dynamicSocketMessages: { [message: string]: (socket: any, io: any, data: a
 };
 export const SocketMiddleware = {
 	// TODO: export const init = function(server: Server, sessionStore: MongoStore, passport: PassportStatic) {
-	init: function(server: Server, sessionStore: any, passport: PassportStatic) {
+	init: function (server: Server, sessionStore: any, passport: PassportStatic) {
 		io = listen(server);
 		io.use(
 			passportSocketIo.authorize({
@@ -64,7 +64,6 @@ export const SocketMiddleware = {
 			io.emit(MESSAGES.DISPATCH_ACTION, { type: ngrxActionType, payload: ngrxActionPayload });
 		},
 		dispatchActionToClientByUsername: (ngrxActionType: string, ngrxActionPayload: any, participant: any) => {
-			debugger;
 			// TOFIX:
 			io
 				.clients(usernames[participant].values())

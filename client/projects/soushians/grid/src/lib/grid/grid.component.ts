@@ -5,7 +5,7 @@ import { filter, map } from "rxjs/operators";
 import { MatBottomSheet, MatCheckboxChange } from "@angular/material";
 import { Observable } from "rxjs";
 
-import { getFrontendAuthenticationState } from "@soushians/frontend-authentication";
+import { getAccountInfo } from "@soushians/user";
 
 import { AppState } from "../grid.reducer";
 import { GridModel } from "../models";
@@ -20,7 +20,7 @@ import { UserFacadeService } from "@soushians/user";
 @Component({
 	selector: "ngs-grid",
 	templateUrl: "./grid.component.html",
-	styleUrls: [ "./grid.component.css" ]
+	styleUrls: ["./grid.component.css"]
 })
 export class GridComponent implements OnInit {
 	@Output() itemValidateCallback = new EventEmitter();
@@ -47,7 +47,6 @@ export class GridComponent implements OnInit {
 		private bottomSheet: MatBottomSheet
 	) {
 		this.options = {};
-		debugger;
 		this.userFacadeService
 			.getInfo()
 			.pipe(
@@ -55,11 +54,17 @@ export class GridComponent implements OnInit {
 				map((user: any) => user.CurrentSession.Username)
 			)
 			.subscribe(username => {
-				debugger;
 				this.username = username;
 			});
 		this.gridItemTypes = Object.keys(this.configurationService.config$.getValue().types);
-		this.havePermission$ = this.store.select(getFrontendAuthenticationState);
+		this.havePermission$ = this.store.select(getAccountInfo).pipe(map(user => {
+			const criteria = [
+				user, user._id, this.grid, this.grid.owner
+			];
+			if (criteria.some(i => !i)) return false;
+
+			return user._id == this.grid.owner;
+		}));
 	}
 
 	static itemChange(item, itemComponent) {
@@ -95,6 +100,7 @@ export class GridComponent implements OnInit {
 		});
 	}
 	addItem(e) {
+		debugger;
 		e.stopPropagation();
 		this.grid.items.push({} as IGridItemModel<any>);
 	}
@@ -103,6 +109,7 @@ export class GridComponent implements OnInit {
 		this.grid.items.push(item as any);
 	}
 	openConfig(e) {
+		debugger;
 		e.stopPropagation();
 		e.preventDefault();
 		this.bottomSheet.open(GridConfigComponent, {
@@ -112,12 +119,13 @@ export class GridComponent implements OnInit {
 		});
 	}
 	saveConfig(e) {
+		debugger;
 		e.stopPropagation();
 		e.stopImmediatePropagation();
 		e.preventDefault();
 
 		/**
-		 * TODO: 
+		 * TODO:
 		 * احزار هویت در سمت نود اتحام شود
 		* کانفیگ برای گرفتن شناسه کاربر
 		 */

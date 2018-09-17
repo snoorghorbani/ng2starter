@@ -1,16 +1,14 @@
 "use strict";
 import * as express from "express";
-import * as async from "async";
-import * as request from "request";
 import { Response, Request, NextFunction } from "express";
-import * as passportConfig from "../config/passport.local";
+import { isAuthenticated } from "../config/passport.local";
+
 
 import * as DiagramModel from "../models/diagram.model";
 
 const router = express.Router();
 declare var emit: any;
 export const all = (req: Request, res: Response) => {
-	debugger;
 	req.user;
 	DiagramModel.Diagram
 		.find()
@@ -23,8 +21,7 @@ export const all = (req: Request, res: Response) => {
 			debugger;
 		});
 };
-router.get("/", passportConfig.isAuthenticated, function(req: Request, res: Response) {
-	debugger;
+router.get("/", isAuthenticated, function (req: Request, res: Response) {
 	req.user;
 	DiagramModel.Diagram
 		.find()
@@ -38,14 +35,12 @@ router.get("/", passportConfig.isAuthenticated, function(req: Request, res: Resp
 		});
 });
 
-router.get("/groups", function(req: Request, res: Response) {
+router.get("/groups", isAuthenticated, function (req: Request, res: Response) {
 	const o = {
-		map: function() {
-			debugger;
+		map: function () {
 			this.Groups.forEach((group: any) => emit(group, 1));
 		},
-		reduce: function(k: any, vals: any) {
-			debugger;
+		reduce: function (k: any, vals: any) {
 			return vals.length;
 		}
 		// finalize: function (k, vals) {
@@ -57,22 +52,20 @@ router.get("/groups", function(req: Request, res: Response) {
 		// }
 	};
 
-	DiagramModel.Diagram.mapReduce(o, function(err, results) {
-		debugger;
+	DiagramModel.Diagram.mapReduce(o, function (err, results) {
 		if (err) throw err;
 		const groups = results.results.map((item: any) => item._id);
 		res.json({ Result: groups });
 	});
 });
 
-router.get("/:id", function(req: Request, res: Response) {
+router.get("/:id", isAuthenticated, function (req: Request, res: Response) {
 	DiagramModel.Diagram.findById(req.params.id).populate("Source").then(data => {
 		res.json(data);
 	});
 });
 
-router.post("/", function(req: Request, res: Response) {
-	debugger;
+router.post("/", isAuthenticated, function (req: Request, res: Response) {
 	const data = req.body;
 	if (!data._id) {
 		delete data._id;
@@ -80,7 +73,6 @@ router.post("/", function(req: Request, res: Response) {
 		diagram
 			.save()
 			.then((diagram: any) => {
-				debugger;
 				res.send(diagram);
 			})
 			.catch((err: any) => {
@@ -105,7 +97,7 @@ router.post("/", function(req: Request, res: Response) {
 	//   });
 });
 
-router.put("/:id", function(req: Request, res: Response) {
+router.put("/:id", isAuthenticated, function (req: Request, res: Response) {
 	DiagramModel.Diagram
 		.findByIdAndUpdate(req.params.id, req.body, { upsert: true })
 		.then(diagram => {
@@ -117,7 +109,7 @@ router.put("/:id", function(req: Request, res: Response) {
 });
 export { router };
 
-router.delete("/:id", function(req: Request, res: Response) {
+router.delete("/:id", isAuthenticated, function (req: Request, res: Response) {
 	DiagramModel.Diagram
 		.findByIdAndRemove(req.params.id)
 		.then(diagram => {

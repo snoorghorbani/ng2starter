@@ -15,7 +15,6 @@ export const httpGet = (endpoint: string): Observable<any> => {
       });
     })
       .on("error", function (e: any) {
-        debugger;
         observer.error(e);
       });
   });

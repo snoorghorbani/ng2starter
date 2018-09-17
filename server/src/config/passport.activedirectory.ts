@@ -37,7 +37,7 @@ passport.use(
 			}
 		},
 		(profile: any, ad: any, done: any) => {
-			ad.isUserMemberOf(profile._json.dn, "AccessGroup", function(err: any, isMember: any) {
+			ad.isUserMemberOf(profile._json.dn, "AccessGroup", function (err: any, isMember: any) {
 				if (err) return done(err);
 				return done(undefined, profile);
 			});
@@ -49,7 +49,6 @@ passport.use(
  * Login Required middleware.
  */
 export let isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
-	debugger;
 	if (req.isAuthenticated()) {
 		return next();
 	}

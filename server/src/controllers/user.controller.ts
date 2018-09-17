@@ -17,20 +17,18 @@ export interface Request extends OriginalRequest {
 
 const router = express.Router();
 
-router.get("/account/profile", passportConfig.isAuthenticated, (req: Request, res: Response) => {
-	res.json(req.user);
-});
-router.get("/:email", (req: Request, res: Response) => {
-	debugger;
-	User.findOne({ Email: req.params.email }, (err, user) => {
-		res.json(user);
-	});
-});
 
-router.put("/:email", (req: Request, res: Response) => {
-	debugger;
-	User.findOneAndUpdate({ Email: req.params.email }, req.body, (err, User) => {
-		res.json({ Result: { User } });
+/**
+ * GET /logout
+ * Log out.
+ */
+router.get("/signout", (req: Request, res: Response, next: NextFunction) => {
+	req.logout();
+	// req.session.destroy(function (e) {
+	// 	debugger;
+	// });
+	res.send({
+		Message: "succeed"
 	});
 });
 
@@ -71,14 +69,24 @@ router.post("/signin", (req: Request, res: Response, next: NextFunction) => {
 	})(req, res, next);
 });
 
-/**
- * GET /logout
- * Log out.
- */
-export let logout = (req: Request, res: Response) => {
-	req.logout();
-	res.redirect("/");
-};
+
+
+router.get("/account/profile", passportConfig.isAuthenticated, (req: Request, res: Response) => {
+	res.json(req.user);
+});
+router.get("/:email", (req: Request, res: Response) => {
+	debugger;
+	User.findOne({ Email: req.params.email }, (err, user) => {
+		res.json(user);
+	});
+});
+
+router.put("/:email", (req: Request, res: Response) => {
+	debugger;
+	User.findOneAndUpdate({ Email: req.params.email }, req.body, (err, User) => {
+		res.json({ Result: { User } });
+	});
+});
 
 /**
  * POST /signup
@@ -397,7 +405,7 @@ export let postForgot = (req: Request, res: Response, next: NextFunction) => {
 	);
 };
 
-router.get("/:id", function(req, res) {
+router.get("/:id", function (req, res) {
 	if (req.isAuthenticated()) {
 	}
 });

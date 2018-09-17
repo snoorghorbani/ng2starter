@@ -64,9 +64,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 
-const originsWhitelist = [ process.env.TEST_SERVER_ADDRESS, process.env.SERVER_ADDRESS ];
+const originsWhitelist = [process.env.TEST_SERVER_ADDRESS, process.env.SERVER_ADDRESS];
 const corsOptions = {
-	origin: function(origin: any, callback: any) {
+	origin: function (origin: any, callback: any) {
 		const isWhitelisted = originsWhitelist.indexOf(origin) !== -1;
 		callback(undefined, isWhitelisted);
 	},
@@ -92,7 +92,6 @@ app.use(
 //   keys: ["key1"],
 //   maxAge: 24 * 60 * 60 * 1000
 // }));
-debugger;
 app.use(passport.initialize());
 app.use(passport.session());
 app.use((req, res, next) => {
@@ -143,16 +142,16 @@ app.get("/", homeController.index);
 app.use("/api/user", userController.router);
 app.use("/api/config", configController.router);
 app.use("/api/form", formController.router);
-app.use("/api/bpmn", bpmnController.router);
-app.use("/api/diagram", diagramController.router);
+app.use("/api/bpmn", passportConfig.isAuthenticated, bpmnController.router);
+app.use("/api/diagram", passportConfig.isAuthenticated, diagramController.router);
 app.use("/api/fake", fakeController.router);
 app.use("/api/data", dataController.router);
 app.use("/api/event", eventController.router);
 app.use("/api/source", sourceController.router);
-app.use("/api/uiwidget", widgetController.router);
-app.use("/api/grid", gridController.router);
-app.use("/api/page", pageController.router);
-app.use("/api/gwt/scenario", gwtScenarioController.router);
+app.use("/api/uiwidget", passportConfig.isAuthenticated, widgetController.router);
+app.use("/api/grid", passportConfig.isAuthenticated, gridController.router);
+app.use("/api/page", passportConfig.isAuthenticated, pageController.router);
+app.use("/api/gwt/scenario", passportConfig.isAuthenticated, gwtScenarioController.router);
 app.use("/api/gwt/anchor", gwtAnchorController.router);
 
 app.post("/api/account/profile", userController.postUpdateProfile);
