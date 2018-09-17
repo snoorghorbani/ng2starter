@@ -15,4 +15,5 @@ export declare class LayoutModuleConfigComponent {
     roleItems$: Observable<string[]>;
     constructor(injector: Injector, store: Store<FeatureState>);
     addMenu(): void;
+    removeMenu(item: any): void;
 }

@@ -1,10 +1,15 @@
 {
-	"name": "@soushians/starter",
-	"version": "6.2.0",
-	"repository": { "type": "git", "url": "https://github.com/snoorghorbani/ng2starter.git" },
-	"license": "MIT",
-	"dependencies": { "semver": "^5.5.0" },
-	"scripts": {
-		"init": "cd ./client && npm i && cd ../server && npm i && cd ../db && npm i && cd ../father && npm i && node ./main.js"
-	}
+    "name": "@soushians/starter",
+    "version": "6.5.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/snoorghorbani/ng2starter.git"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "semver": "^5.5.0"
+    },
+    "scripts": {
+        "init": "cd ./client && npm i && cd ../server && npm i && cd ../db && npm i && cd ../father && npm i && node ./main.js"
+    }
 }

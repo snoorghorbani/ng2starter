@@ -1,6 +1,6 @@
 import { InjectionToken, Component, Injectable, Inject, Injector, Input, ViewContainerRef, ComponentFactoryResolver, ViewChild, Directive, ViewChildren, HostListener, ElementRef, Renderer2, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { __decorate, __metadata, __assign } from 'tslib';
+import { __assign, __decorate, __metadata } from 'tslib';
 import { Store, StoreModule } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { filter, map, startWith, share, takeUntil, switchMap } from 'rxjs/operators';
