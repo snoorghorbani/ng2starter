@@ -2,7 +2,7 @@
 
   <div class="content-action">
     <mat-card fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="start" class="with-sticky-action">
-      <div fxLayout="row wrap" *ngIf="schema" fxFlex="100" fxLayoutAlign="start center" fxLayoutAlign.lt-md="center">
+      <div fxLayout="row wrap" *ngIf="schema" fxFlex="100" fxLayoutAlign="start start" fxLayoutAlign.lt-md="center">
         <div fxFlex.gt-md="50" fxFlex.lt-md="100" *ngIf="formGroup">
           <form [formGroup]="formGroup">
             <mat-card>
@@ -49,7 +49,7 @@
             </mat-card>
           </form>
         </div>
-        <div fxFlex.gt-md="50" fxFlex.lt-md="100" fxLayoutAlign="center center">
+        <div fxFlex.gt-md="50" fxFlex.lt-md="100" fxLayoutAlign="center start">
           <ngs-form-view [local]='true' [id]=" schema._id">
           </ngs-form-view>
 

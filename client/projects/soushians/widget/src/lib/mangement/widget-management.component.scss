@@ -1,6 +1,5 @@
-.widget-type {
-}
-.link {
+
+button.link {
     margin: 0.5%;
     box-sizing: border-box;
 	padding: 25px 15px;
@@ -13,4 +12,10 @@ button.link mat-icon {
 }
 .link h4 {
   margin:0;
+}
+.setting {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 100;
 }

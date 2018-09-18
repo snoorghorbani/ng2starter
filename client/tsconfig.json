@@ -38,8 +38,8 @@
         // "projects/soushians/authentication/src/public_api"
       ],
       "@soushians/form": [
-        "dist/@soushians/form"
-        // "projects/soushians/form/src/public_api"
+        // "dist/@soushians/form"
+        "projects/soushians/form/src/public_api"
       ],
       "@soushians/diagram": [
         "dist/@soushians/diagram"
@@ -54,12 +54,12 @@
         // "projects/soushians/socket/src/public_api"
       ],
       "@soushians/widget": [
-        "dist/@soushians/widget"
-        // "projects/soushians/widget/src/public_api"
+        // "dist/@soushians/widget"
+        "projects/soushians/widget/src/public_api"
       ],
       "@soushians/widget-types": [
-        "dist/@soushians/widget-types"
-        // "projects/soushians/widget-types/src/public_api"
+        // "dist/@soushians/widget-types"
+        "projects/soushians/widget-types/src/public_api"
       ],
       "@soushians/grid": [
         "dist/@soushians/grid"
@@ -74,8 +74,8 @@
         // "projects/soushians/frontend-authentication/src/public_api"
       ],
       "@soushians/page": [
-        "dist/@soushians/page"
-        // "projects/soushians/page/src/public_api"
+        // "dist/@soushians/page"
+        "projects/soushians/page/src/public_api"
       ],
       "@soushians/gwt-steps": [
         "dist/@soushians/gwt-steps"

@@ -8,7 +8,8 @@ import { GetPagesStartAction } from "../services/api/get-pages/get-pages.actions
 import { DeletePageStartAction } from "../services/api";
 
 @Component({
-	templateUrl: "page-management.component.html"
+	templateUrl: "page-management.component.html",
+	styleUrls: ["page-management.component.scss"]
 })
 export class PagesManagementComponent implements OnInit {
 	pages$: Observable<PageModel[]>;

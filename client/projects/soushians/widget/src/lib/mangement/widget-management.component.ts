@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Directive } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { Store } from "@ngrx/store";
 
@@ -33,3 +33,5 @@ export class WidgetsManagementComponent implements OnInit {
 		};
 	}
 }
+
+

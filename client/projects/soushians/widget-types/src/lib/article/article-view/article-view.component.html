@@ -1,5 +1,7 @@
-<button mat-mini-fab color="accent" *ngIf="havePermission$ | async" [routerLink]="['/widget/upsert/article', (widget)?._id]">
-  <mat-icon>edit</mat-icon>
-</button>
+<div fxLayout="row" fxFlex="100" fxLayoutAlign="center start">
+  <button mat-mini-fab color="accent" *ngIf="havePermission$ | async" [routerLink]="['/widget/upsert/article', (widget)?._id]">
+    <mat-icon>edit</mat-icon>
+  </button>
 
-<div [froalaView]="(widget)?.Config.content"></div>
+  <div fxFlex="90" [froalaView]="(widget)?.Config.content" align="right" class="article"></div>
+</div>

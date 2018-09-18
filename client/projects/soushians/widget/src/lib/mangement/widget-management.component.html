@@ -4,19 +4,19 @@
     <mat-card class="with-sticky-action">
       <mat-card-header>
         <mat-card-title fxLayout="row" fxLayoutGap="5px">
-          <mat-icon>settings_input_component</mat-icon>
-          <span>مدیریت افزونه ها</span>
+          <mat-icon>widgets</mat-icon>
+          <span>مدیریت افزونه‌ها</span>
         </mat-card-title>
         <mat-card-subtitle fxLayout="row" fxLayoutAlign="space-between center">
           <span>
-            شامل تمامی درخواست‌ها از قبیل دائری، جمع‌آوری و ...
+            افزونه‌ مورد نظر را براساس نوع آن ایجاد نمایید ...
           </span>
         </mat-card-subtitle>
       </mat-card-header>
 
-      <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="start">
+      <div fxLayout="row wrap" fxLayoutAlign="start">
 
-        <button fxFlex.lt-lg="18" fxFlex.lg="23.5" fxFlex.md="31" fxFlex.sm="48" fxFlex.xs="100" class='link'
+        <button fxFlex.lt-lg="19" fxFlex.lg="24" fxFlex.md="31.7" fxFlex.sm="49" fxFlex.xs="100" class='link'
           mat-raised-button [routerLink]="['../upsert' ,  item.type,  item._id]" *ngFor="let item of (widgets$ | async)">
           <div fxLayout='column' fxLayoutAlign='space-between center'>
             <mat-icon color='primary' [style.color]="anghazi[item.type].color">{{anghazi[item.type].icon}}</mat-icon>

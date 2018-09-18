@@ -1,33 +1,47 @@
-<mat-card fxFlex fxLayout="column">
+<mat-card fxFlex>
+  <mat-card-header>
+    <mat-card-title fxLayout="row" fxLayoutGap="5px">
+      <mat-icon>gradient</mat-icon>
+      <span>ایجاد افزونه‌</span>
+    </mat-card-title>
+    <mat-card-subtitle fxLayout="row" fxLayoutAlign="space-between center">
+      <span>
+        نام لینک موردنظر را وارد کرده و اطلاعات را کامل نمایید ...
+      </span>
+    </mat-card-subtitle>
+  </mat-card-header>
   <mat-card-content>
-      <h3>مشخصات ویجت</h3>
+    <h3>نام ویجت</h3>
     <div [formGroup]="widgetFormGroup">
       <mat-form-field>
-        <input type="text" matInput placeholder="نام"  formControlName="name">
+        <input type="text" matInput placeholder="نام" formControlName="name">
       </mat-form-field>
-  </div>
-  <mat-divider></mat-divider>
-  <h3>تنظیمات ویجت</h3>
-    <div [formGroup]="configFormGroup">
-      <button color="primary" mat-raised-button (click)="addlink()">
-        اضافه کردن لینک
+    </div>
+    <mat-divider></mat-divider>
+    <br>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <h3>تنظیمات ویجت</h3>
+      <button color="primary" mat-fab fxFlexAlign="end" (click)="addlink()">
+        <mat-icon>add</mat-icon>
       </button>
+    </div>
+    <div [formGroup]="configFormGroup">
       <div fxFlex="nogrow" *ngFor="let ctrl of $any(configFormGroup.get('links')).controls" [formGroup]="ctrl">
         <div [formGroup]="ctrl" fxLayout="row" fxLayoutGap="25px">
           <button mat-icon-button fxFlex="nogrow" (click)="removelink(ctrl)">
-              <mat-icon>delete</mat-icon>
+            <mat-icon>delete</mat-icon>
           </button>
-        <mat-form-field fxFlex>
-          <input type="text" matInput placeholder="آدرس"  formControlName="url">
-        </mat-form-field>          
-        <mat-form-field fxFlex >
-          <input type="text" matInput placeholder="نام"  formControlName="label">
-        </mat-form-field>          
+          <mat-form-field fxFlex>
+            <input type="text" matInput placeholder="آدرس" formControlName="url">
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <input type="text" matInput placeholder="نام" formControlName="label">
+          </mat-form-field>
+        </div>
+      </div>
     </div>
-    </div>
-    </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button color="primary" (click)="upsert()">ثبت</button>
-    </mat-card-actions>
-  </mat-card>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button color="primary" (click)="upsert()">ثبت</button>
+  </mat-card-actions>
+</mat-card>
