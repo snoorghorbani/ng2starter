@@ -1,8 +1,9 @@
 
-button.link {
+.link {
     margin: 0.5%;
     box-sizing: border-box;
-	padding: 25px 15px;
+	position: relative;
+	padding: 0;
 
 }
 button.link mat-icon {
@@ -13,9 +14,25 @@ button.link mat-icon {
 .link h4 {
   margin:0;
 }
-.setting {
+.remove-item {
 	position: absolute;
 	top: 0;
-	left: 0;
+	left: 0px;
 	z-index: 100;
+}
+.link-button {
+	padding: 25px 15px;
+
+}
+button.link .remove-item mat-icon {
+	font-size: initial;
+	width: initial;
+	height: initial;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out;
+}
+button.link:hover .remove-item mat-icon {
+	visibility: visible;
+	opacity: 1;
 }

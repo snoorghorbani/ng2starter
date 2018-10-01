@@ -16,7 +16,7 @@ export function Reducer(state = initialState, action: WidgetsActions): State {
 			_data = state.data.concat();
 			let newWidgets = action.payload;
 			if (!(newWidgets instanceof Array)) {
-				newWidgets = [ newWidgets ];
+				newWidgets = [newWidgets];
 				console.error("'WidgetsActionTypes.UPSERT' does not get array payload");
 			}
 
@@ -35,16 +35,17 @@ export function Reducer(state = initialState, action: WidgetsActions): State {
 			};
 
 		case WidgetsActionTypes.DELETE:
-			_data = Object.assign({}, state.data);
+			debugger;
+			_data = state.data.concat();
 
 			const widgetIndex = state.data.findIndex((w) => w._id == action.payload._id);
-			_data.splice(widgetIndex, 1);
-
+			if (widgetIndex > -1) {
+				_data.splice(widgetIndex, 1);
+			}
 			return {
 				...state,
 				data: _data
 			};
-
 		default:
 			return state;
 	}

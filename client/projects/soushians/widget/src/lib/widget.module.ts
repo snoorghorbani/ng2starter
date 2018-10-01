@@ -33,6 +33,7 @@ import { RootComponent } from "./root/root.component";
 import { GetWidgetApiEffects } from "./services/api/get-widget/get-widget.effects";
 import { UpsertWidgetApiEffects } from "./services/api/upsert-widget/upsert-widget.effects";
 import { GetWidgetsApiEffects } from "./services/api/get-widgets/get-widgets.effects";
+import { DeleteWidgetApiEffects } from "./services/api/delete-widget/delete-widget.effects";
 import { WidgetReducer } from "./widget.reducer";
 import { WidgetDbEffects } from "./root/widgets.effects";
 import { WidgetsManagementComponent } from "./mangement/widget-management.component";
@@ -91,7 +92,7 @@ export class NgsWidgetModule {
 		NgsWidgetModule,
 		WidgetRoutingModule,
 		StoreModule.forFeature("widgets", WidgetReducer),
-		EffectsModule.forFeature([WidgetDbEffects, GetWidgetApiEffects, GetWidgetsApiEffects, UpsertWidgetApiEffects])
+		EffectsModule.forFeature([WidgetDbEffects, GetWidgetApiEffects, GetWidgetsApiEffects, UpsertWidgetApiEffects, DeleteWidgetApiEffects])
 	],
 	exports: [NgsWidgetModule]
 })

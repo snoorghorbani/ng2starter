@@ -1,6 +1,6 @@
 ﻿import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs/Rx";
+import { Observable } from "rxjs";
 import { MatSnackBar } from "@angular/material";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { map, switchMap, take, filter, tap } from "rxjs/operators";
@@ -38,7 +38,7 @@ export class FrontendSigninService {
 			map((response: any) => {
 				const user: any = Object.assign({}, response.Result);
 				if (user.Role) {
-					user.Roles = [ user.Role ];
+					user.Roles = [user.Role];
 				}
 				return user;
 			})
@@ -49,7 +49,7 @@ export class FrontendSigninService {
 		return this.http
 			.get(
 				this.configurationService.config.env.frontend_server +
-					this.configurationService.config.endpoints.signOut
+				this.configurationService.config.endpoints.signOut
 			)
 			.map(response => response);
 	}
@@ -63,4 +63,4 @@ export class FrontendSigninService {
 	}
 }
 
-export var FrontendSigninServiceStub = {};
+export let FrontendSigninServiceStub = {};

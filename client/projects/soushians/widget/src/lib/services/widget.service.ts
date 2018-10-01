@@ -8,7 +8,7 @@ import { AppState } from "../widget.reducer";
 import { WidgetConfigurationService } from "./widget-configuration.service";
 import { WidgetModel } from "../models/widget.model";
 import { stringTemplate } from "@soushians/shared";
-import { GetWidgetsApiModel, GetWidgetStartAction, UpsertWidgetApiModel } from "./api";
+import { GetWidgetsApiModel, GetWidgetStartAction, UpsertWidgetApiModel, DeleteWidgetApiModel } from "./api";
 import { Location } from "@angular/common";
 
 @Injectable()
@@ -18,7 +18,7 @@ export class WidgetService {
 		private store: Store<AppState>,
 		private configurationService: WidgetConfigurationService,
 		private _location: Location
-	) {}
+	) { }
 
 	get<T>(_id: string): Observable<WidgetModel<T>> {
 		return this.configurationService.config$.pipe(
@@ -50,11 +50,17 @@ export class WidgetService {
 			tap(() => this._location.back())
 		);
 	}
-	// delete(_id: string) {
-	// 	return this.configurationService.config$
-	// 		.filter((config) => config.endpoints.deleteForm != "")
-	// 		.switchMap((config) => this.http.get(config.endpoints.deleteForm));
-	// }
+	delete(widget: WidgetModel<any>) {
+		debugger;
+		const widgetId = widget._id;
+		return this.configurationService.config$.pipe(
+			filter((config) => config.endpoints.deleteItem != ""),
+			switchMap((config) => this.http.delete<DeleteWidgetApiModel.Response>(
+				stringTemplate(config.env.frontend_server + config.endpoints.deleteItem, { widgetId })).pipe(
+					map((response) => response.Result)
+				)),
+		);
+	}
 	selectById<T>(_id: string): Observable<WidgetModel<T>> {
 		const subject = new BehaviorSubject<WidgetModel<T>>(undefined);
 		this.store

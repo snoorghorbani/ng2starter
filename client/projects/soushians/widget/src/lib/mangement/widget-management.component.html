@@ -16,9 +16,12 @@
 
       <div fxLayout="row wrap" fxLayoutAlign="start">
 
-        <button fxFlex.lt-lg="19" fxFlex.lg="24" fxFlex.md="31.7" fxFlex.sm="49" fxFlex.xs="100" class='link'
-          mat-raised-button [routerLink]="['../upsert' ,  item.type,  item._id]" *ngFor="let item of (widgets$ | async)">
-          <div fxLayout='column' fxLayoutAlign='space-between center'>
+        <button mat-raised-button fxFlex.gt-lg="19" fxFlex.lg="24" fxFlex.md="31.7" fxFlex.sm="49" fxFlex.xs="100"
+          class='link' *ngFor="let item of (widgets$ | async)">
+          <button mat-icon-button (click)="remove(item)" class="remove-item">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <div class="link-button" [routerLink]="['../upsert' ,  item.type,  item._id]" fxLayout='column' fxLayoutAlign='space-between center'>
             <mat-icon color='primary' [style.color]="anghazi[item.type].color">{{anghazi[item.type].icon}}</mat-icon>
             <div fxFlex="nogrow" fxFlexAlign="stretch" fxLayoutAlign="center center" class="widget-type">
               {{item.type}}

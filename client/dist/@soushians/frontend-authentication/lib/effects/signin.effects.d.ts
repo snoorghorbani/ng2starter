@@ -9,10 +9,10 @@ import { FrontendAuthenticationConfigurationService } from "../services/frontend
 export declare class SigninEffects {
     private actions$;
     private router;
-    FrontendSigninService: FrontendSigninService;
+    frontendSigninService: FrontendSigninService;
     configurationService: FrontendAuthenticationConfigurationService;
     private bottomSheet;
-    constructor(actions$: Actions, router: Router, FrontendSigninService: FrontendSigninService, configurationService: FrontendAuthenticationConfigurationService, bottomSheet: MatBottomSheet);
+    constructor(actions$: Actions, router: Router, frontendSigninService: FrontendSigninService, configurationService: FrontendAuthenticationConfigurationService, bottomSheet: MatBottomSheet);
     whoAmI$: Observable<SigninSecceed | SigninFailed>;
     Signin$: Observable<SigninSecceed | SigninFailed>;
     SignInRequired$: Observable<any>;

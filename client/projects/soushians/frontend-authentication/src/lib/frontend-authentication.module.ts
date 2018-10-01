@@ -28,7 +28,9 @@ import { EffectsModule } from "@ngrx/effects";
 
 import { NgsFormModule } from "@soushians/form";
 
-import { FrontendAuthenticationContainerComponent } from "./smart-components/frontend-authentication-container/frontend-authentication-container.component";
+import {
+	FrontendAuthenticationContainerComponent
+} from "./smart-components/frontend-authentication-container/frontend-authentication-container.component";
 import { FrontendAuthenticationModuleConfig, MODULE_CONFIG_TOKEN } from "./frontend-authentication.config";
 import { SigninContainerComponent } from "./smart-components/signin-container/signin-container.component";
 import { FrontendAuthenticationRoutingModule } from "./frontend-authentication-routing.module";
@@ -68,8 +70,8 @@ import { FrontendAuthenticationModuleEffects } from "./frontend-authentication.e
 		FormsModule,
 		NgsFormModule
 	],
-	declarations: [ SigninContainerComponent, SigninComponent, FrontendAuthenticationContainerComponent ],
-	entryComponents: [ SigninContainerComponent ],
+	declarations: [SigninContainerComponent, SigninComponent, FrontendAuthenticationContainerComponent],
+	entryComponents: [SigninContainerComponent],
 	providers: [],
 	exports: []
 })
@@ -79,7 +81,7 @@ export class NgsFrontendAuthenticationModule {
 	): ModuleWithProviders {
 		return {
 			ngModule: RootNgsFrontendAuthenticationModule,
-			providers: [ { provide: MODULE_CONFIG_TOKEN, useValue: config }, FrontendSigninService ]
+			providers: [{ provide: MODULE_CONFIG_TOKEN, useValue: config }, FrontendSigninService]
 		};
 	}
 }
@@ -87,9 +89,9 @@ export class NgsFrontendAuthenticationModule {
 @NgModule({
 	imports: [
 		StoreModule.forFeature("frontend-authentication", FrontendAuthenticationReducers),
-		EffectsModule.forFeature([ FrontendAuthenticationModuleEffects, SigninEffects ]),
+		EffectsModule.forFeature([FrontendAuthenticationModuleEffects, SigninEffects]),
 		FrontendAuthenticationRoutingModule,
 		NgsFrontendAuthenticationModule
 	]
 })
-export class RootNgsFrontendAuthenticationModule {}
+export class RootNgsFrontendAuthenticationModule { }

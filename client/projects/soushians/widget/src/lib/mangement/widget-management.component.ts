@@ -5,6 +5,7 @@ import { Store } from "@ngrx/store";
 import { WidgetModel } from "../models/widget.model";
 import { AppState } from "../widget.reducer";
 import { GetWidgetsStartAction } from "../services/api/get-widgets/get-widgets.actions";
+import { DeleteWidgetStartAction } from "../services/api/delete-widget";
 
 @Component({
 	templateUrl: "widget-management.component.html",
@@ -19,6 +20,10 @@ export class WidgetsManagementComponent implements OnInit {
 	}
 	ngOnInit() {
 		this.store.dispatch(new GetWidgetsStartAction());
+	}
+	remove(item) {
+		debugger;
+		this.store.dispatch(new DeleteWidgetStartAction(item));
 	}
 	_fill_anghazi() {
 		this.anghazi = {

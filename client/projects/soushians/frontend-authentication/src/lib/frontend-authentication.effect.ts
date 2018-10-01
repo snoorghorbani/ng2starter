@@ -13,15 +13,15 @@ import { SigninSecceed } from "./actions/signin.actions";
 
 @Injectable()
 export class FrontendAuthenticationModuleEffects {
-	constructor(private actions$: Actions<any>, private service: FrontendSigninService) {}
+	constructor(private actions$: Actions<any>, private service: FrontendSigninService) { }
 
 	@Effect()
 	goToList$ = this.actions$.ofType(UserActionTypes.REFRESH_USER_INFO).pipe(
 		map(action => action.payload),
 		filter(user => user.Token != null),
 		switchMap(user =>
-			this.service.signin(user.Token).map(user => {
-				return new SigninSecceed(user);
+			this.service.signin(user.Token).map(_user => {
+				return new SigninSecceed(_user);
 			})
 		)
 	);

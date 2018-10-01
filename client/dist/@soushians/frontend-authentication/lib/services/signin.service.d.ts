@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs/Rx";
+import { Observable } from "rxjs";
 import { MatSnackBar } from "@angular/material";
 import { Store } from "@ngrx/store";
 import { UserModel } from "../models/user.model";
@@ -15,4 +15,4 @@ export declare class FrontendSigninService {
     signout(): Observable<any>;
     whoAmI(): Observable<any>;
 }
-export declare var FrontendSigninServiceStub: {};
+export declare let FrontendSigninServiceStub: {};

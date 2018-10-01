@@ -13,6 +13,7 @@ export interface WidgetModuleConfig {
 		get: string;
 		find: string;
 		upsert: string;
+		deleteItem: string;
 	};
 	types?: IModuleConfigMapTypes;
 }
@@ -24,7 +25,8 @@ export const MODULE_DEFAULT_CONFIG: WidgetModuleConfig = {
 	endpoints: {
 		upsert: "/api/uiwidget",
 		find: "/api/uiwidget",
-		get: "/api/uiwidget/${model._id}"
+		get: "/api/uiwidget/${model._id}",
+		deleteItem: "/api/uiwidget/${model.widgetId}"
 	},
 	types: {}
 };
