@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var FailedLoginModel = /** @class */ (function () {
     function FailedLoginModel() {
@@ -8,7 +8,7 @@ var FailedLoginModel = /** @class */ (function () {
     return FailedLoginModel;
 }());
 export { FailedLoginModel };
-function FailedLoginModel_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     FailedLoginModel.prototype.Username;
     /** @type {?} */

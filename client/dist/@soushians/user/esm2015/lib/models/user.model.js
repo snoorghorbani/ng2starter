@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 export class UserModel {
     constructor() {
@@ -8,7 +8,7 @@ export class UserModel {
         this.Groups = [];
     }
 }
-function UserModel_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     UserModel.prototype._id;
     /** @type {?} */

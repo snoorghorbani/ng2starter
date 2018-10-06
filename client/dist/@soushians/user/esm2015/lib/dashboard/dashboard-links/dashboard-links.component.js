@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import { Component } from "@angular/core";
 import { UserConfigurationService } from "../../services/user-configuration.service";
@@ -55,7 +55,7 @@ DashboardLinksComponent.ctorParameters = () => [
     { type: UserConfigurationService },
     { type: Store }
 ];
-function DashboardLinksComponent_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     DashboardLinksComponent.prototype.links;
     /** @type {?} */

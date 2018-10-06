@@ -1,9 +1,9 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 export { UserActionTypes, UserSelectedAction, RefreshUserInfoAction } from "./user.actions";
-export { initialState, userReducer, getAccountInfo } from "./account.reducer";
+export { userReducer, initialState, getAccountInfo } from "./account.reducer";
 export { DashboardContainerComponent } from "./dashboard-container";
 export { DashboardLinksComponent } from "./dashboard-links";
 

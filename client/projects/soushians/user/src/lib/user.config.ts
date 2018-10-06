@@ -3,6 +3,7 @@ import { Observable } from "rxjs/Observable";
 import { UserModel } from "./models";
 
 export interface UserModuleConfig {
+	server?: string;
 	env?: {
 		production: boolean;
 		frontend_server: string;
@@ -29,6 +30,7 @@ export interface UserModuleConfig {
 }
 
 export const MODULE_DEFAULT_CONFIG: UserModuleConfig = {
+	server: "frontend_server",
 	env: {
 		production: false,
 		frontend_server: "user/module/frontend/server/did/not/set",

@@ -1,10 +1,10 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 export class TokenModel {
 }
-function TokenModel_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     TokenModel.prototype.Token;
     /** @type {?} */
@@ -15,7 +15,7 @@ export class CaptchaModel {
         this.CaptchaImageUrl = "";
     }
 }
-function CaptchaModel_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     CaptchaModel.prototype.Token;
     /** @type {?} */

@@ -8,7 +8,8 @@ import * as express_session from "express-session";
 import * as bodyParser from "body-parser";
 import * as errorHandler from "errorhandler";
 import * as dotenv from "dotenv";
-import * as mongo from "connect-mongo";
+var MongoDBStore = require('connect-mongodb-session');
+//  import {} from "connect-mongodb-session";
 import * as path from "path";
 import * as mongoose from "mongoose";
 import * as passport from "passport";
@@ -47,7 +48,9 @@ const app: express.Application = express();
  * Connect to MongoDB.
  */
 // mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI).then(a => {
+	console.log("connect to db successfully")
+});
 
 mongoose.connection.on("error", () => {
 	console.log("MongoDB connection error. Please make sure MongoDB is running.");
@@ -74,18 +77,23 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-const MongoStore = mongo(express_session);
+const MongoStore = MongoDBStore(express_session);
 const sessionStore = new MongoStore({
-	url: process.env.MONGODB_URI,
-	autoReconnect: true
+	url: process.env.MONGODB_URI
 });
+
+var sess = {
+	resave: true,
+	saveUninitialized: true,
+	secret: process.env.SESSION_SECRET,
+	cookie: {}
+}
+if (app.get('env') === 'production') {
+	app.set('trust proxy', 1); // trust first proxy
+	(sess.cookie as any).secure = true // serve secure cookies
+}
 app.use(
-	express_session({
-		resave: true,
-		saveUninitialized: true,
-		secret: process.env.SESSION_SECRET,
-		store: sessionStore
-	})
+	express_session(sess)
 );
 // app.use(cookieSession({
 //   name: "session",
@@ -98,21 +106,21 @@ app.use((req, res, next) => {
 	res.locals.user = req.user;
 	next();
 });
-app.use((req, res, next) => {
-	// After successful login, redirect back to the intended page
-	if (
-		!req.user &&
-		req.path !== "/api/user/signin" &&
-		req.path !== "/signup" &&
-		!req.path.match(/^\/auth/) &&
-		!req.path.match(/\./)
-	) {
-		req.session.returnTo = req.path;
-	} else if (req.user && req.path == "/account") {
-		req.session.returnTo = req.path;
-	}
-	next();
-});
+// app.use((req, res, next) => {
+// 	// After successful login, redirect back to the intended page
+// 	if (
+// 		!req.user &&
+// 		req.path !== "/api/user/signin" &&
+// 		req.path !== "/signup" &&
+// 		!req.path.match(/^\/auth/) &&
+// 		!req.path.match(/\./)
+// 	) {
+// 		req.session.returnTo = req.path;
+// 	} else if (req.user && req.path == "/account") {
+// 		req.session.returnTo = req.path;
+// 	}
+// 	next();
+// });
 app.use(express.static(path.join(__dirname, "../src"), { maxAge: 31557600000 }));
 
 /**
@@ -166,7 +174,7 @@ const server = app.listen(app.get("port"), () => {
 	console.log("  Press CTRL-C to stop\n");
 	sourceController.sourceJob();
 });
-debugger;
+
 SocketMiddleware.init(server, sessionStore, passport);
 
 module.exports = app;

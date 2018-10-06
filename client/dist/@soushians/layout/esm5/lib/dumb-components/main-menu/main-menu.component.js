@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import { Component, Output, EventEmitter, Input, ViewChild, ElementRef } from "@angular/core";
 import { Observable } from "rxjs/Observable";
@@ -75,7 +75,7 @@ var MainMenuComponent = /** @class */ (function () {
     return MainMenuComponent;
 }());
 export { MainMenuComponent };
-function MainMenuComponent_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     MainMenuComponent.prototype.closeSidebar;
     /** @type {?} */

@@ -1,9 +1,10 @@
-<mat-toolbar color="primary" [@toolbarAnimation]="toolbarAnimationState">
-  <mat-toolbar-row id="firstToolbar">
+<mat-toolbar dir="rtl" color="primary" [@toolbarAnimation]="toolbarAnimationState">
+  <mat-toolbar-row dir="rtl" id="firstToolbar">
     <!-- <div id="background"></div> -->
-    <img [@logoAnimation]="logoAnimationState" id="logo" routerLink='/' src='assets/images/shatel-logo.png' />
+    <img [@logoAnimation]="logoAnimationState" id="logo" routerLink='/' src='assets/logos/logo-type.png' />
 
-    <button type="button" *ngIf='showSidebarMenu && false' (click)="toggleMainSidebar()" mat-icon-button fxFlex="nogrow" fxLayoutAlign="center center">
+    <button type="button" *ngIf='showSidebarMenu && false' (click)="toggleMainSidebar()" mat-icon-button fxFlex="nogrow"
+      fxLayoutAlign="center center">
       <mat-icon>menu</mat-icon>
     </button>
     <span [@titleAnimation]="titleAnimationState" id='app-name'>
@@ -13,7 +14,7 @@
     <app-search-box fxFlex fxLayoutAlign="end center"></app-search-box>
 
 
-    <button *ngIf="!displayName" mat-button routerLink="auth/signin">
+    <button *ngIf="!displayName" mat-button routerLink="auth/signin" i18n="@@signin">
       ورود
     </button>
     <button *ngIf="!displayName" mat-button routerLink="auth/signup">

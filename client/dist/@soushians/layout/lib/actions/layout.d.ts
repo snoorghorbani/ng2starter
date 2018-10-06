@@ -13,7 +13,7 @@ export declare enum LayoutActionTypes {
     CHANGE_SECOND_SIDENAV_MODE = "[Layout] Change second sidenav mode",
     FULLSCREEN = "[Layout] FULLSCREEN",
     EXIT_FULLSCREEN = "[Layout] EXIT_FULLSCREEN",
-    TOGGLE_FULLSCREEN = "[Layout] TOGGLE_FULLSCREEN",
+    TOGGLE_FULLSCREEN = "[Layout] TOGGLE_FULLSCREEN"
 }
 export declare class UpdateLayoutConfigAction implements Action {
     payload: Partial<LayoutModuleConfigModel>;

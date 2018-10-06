@@ -31,12 +31,12 @@ export class SigninService {
 			filter(config => config.endpoints.signIn != ""),
 			take(1),
 			switchMap(config =>
-				this.http.post<Signin_ApiModel.Response>(config.env.server + config.endpoints.signUp, model)
+				this.http.post<Signin_ApiModel.Response>(config.env[config.server] + config.endpoints.signUp, model)
 			),
 			map(response => {
 				const user: any = Object.assign({}, response.Result);
 				if (user.Role) {
-					user.Roles = [ user.Role ];
+					user.Roles = [user.Role];
 				}
 				return user;
 			})
@@ -48,12 +48,12 @@ export class SigninService {
 			filter(config => config.endpoints.signIn != ""),
 			take(1),
 			switchMap(config =>
-				this.http.post<Signin_ApiModel.Response>(config.env.server + config.endpoints.signIn, model)
+				this.http.post<Signin_ApiModel.Response>(config.env[config.server] + config.endpoints.signIn, model)
 			),
 			map(response => {
 				const user: any = Object.assign({}, response.Result);
 				if (user.Role) {
-					user.Roles = [ user.Role ];
+					user.Roles = [user.Role];
 				}
 				return user;
 			})
@@ -75,7 +75,7 @@ export class SigninService {
 	// TODO:
 	signout(): Observable<any> {
 		return this.http
-			.get(this.configurationService.config.env.server + this.configurationService.config.endpoints.signOut)
+			.get(this.configurationService.config.env[this.configurationService.config.server] + this.configurationService.config.endpoints.signOut)
 			.map(response => response);
 	}
 

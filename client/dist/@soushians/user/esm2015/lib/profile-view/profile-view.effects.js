@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import * as tslib_1 from "tslib";
 import { Injectable } from "@angular/core";
@@ -51,7 +51,7 @@ tslib_1.__decorate([
     Effect(),
     tslib_1.__metadata("design:type", Object)
 ], ProfileViewEffects.prototype, "refreshUserInfo$", void 0);
-function ProfileViewEffects_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     ProfileViewEffects.prototype.ProfileRequest$;
     /** @type {?} */

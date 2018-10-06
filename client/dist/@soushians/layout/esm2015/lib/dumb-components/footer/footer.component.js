@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import { Component, Input } from "@angular/core";
 export class FooterComponent {
@@ -24,7 +24,7 @@ FooterComponent.ctorParameters = () => [];
 FooterComponent.propDecorators = {
     app_config: [{ type: Input, args: ["app-config",] }]
 };
-function FooterComponent_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     FooterComponent.prototype.app_config;
 }

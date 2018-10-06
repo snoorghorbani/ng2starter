@@ -31,4 +31,4 @@ export declare const getResetPasswordRequestStatus: MemoizedSelector<object, boo
 export declare const selectUserInformaionState: MemoizedSelector<object, userReducer.State>;
 export declare const getAccountInfo: MemoizedSelector<object, UserModel>;
 export declare const selectSearchState: MemoizedSelector<object, searchReducer.State>;
-export declare const getSearchStatus: MemoizedSelector<object, "failed" | "pending" | "pristine" | "dirty" | "succeed">;
+export declare const getSearchStatus: MemoizedSelector<object, import("../../../../../../../../Projects/ng2starter/client/node_modules/@soushians/shared/lib/enums/response-status-type.enum").responseStatusTypes>;

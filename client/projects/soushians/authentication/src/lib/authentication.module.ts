@@ -81,8 +81,8 @@ import { SigninGuard } from "./routing-guards/signin.guard";
 		SignupContainerComponent,
 		SignupComponent
 	],
-	entryComponents: [ SigninContainerComponent ],
-	providers: [ SigninGuard ],
+	entryComponents: [SigninContainerComponent],
+	providers: [SigninGuard],
 	exports: []
 })
 export class NgsAuthenticationModule {
@@ -110,9 +110,9 @@ export class NgsAuthenticationModule {
 @NgModule({
 	imports: [
 		StoreModule.forFeature("authentication", AuthenticationReducers),
-		EffectsModule.forFeature([ SigninEffects, AuthenticationEffects ]),
+		EffectsModule.forFeature([SigninEffects, AuthenticationEffects]),
 		AuthenticationRoutingModule,
 		NgsAuthenticationModule
 	]
 })
-export class RootNgsAuthenticationModule {}
+export class RootNgsAuthenticationModule { }
