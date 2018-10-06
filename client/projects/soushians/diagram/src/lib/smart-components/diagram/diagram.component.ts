@@ -1,5 +1,5 @@
 ﻿import { Component, OnInit, Input, AfterViewInit, OnDestroy, Injector } from "@angular/core";
-import { Subscription } from "rxjs";
+import { Subscription, Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Store } from "@ngrx/store";
@@ -9,15 +9,17 @@ import { ActivatedRoute } from "@angular/router";
 import { DiagramService } from "../../services/diagram.service";
 import { DiagramModel } from "../../models/diagram.model";
 import { FeatureState } from "../../reducers";
+import { filter, takeUntil } from "rxjs/operators";
 
 declare var c3: any;
 
 @Component({
 	selector: "diagram",
 	templateUrl: "./diagram.component.html",
-	styleUrls: [ "./diagram.component.scss" ]
+	styleUrls: ["./diagram.component.scss"]
 })
 export class DiagramComponent implements AfterViewInit, OnDestroy {
+	unsubscribe = new Subject<void>();
 	modelIsCorrect: BehaviorSubject<boolean> = new BehaviorSubject(false);
 	_model: DiagramModel;
 	@Input()
@@ -40,10 +42,12 @@ export class DiagramComponent implements AfterViewInit, OnDestroy {
 		private injector: Injector,
 		private route: ActivatedRoute
 	) {
+		debugger;
 		this.data = this.injector.get("data");
 
 		this.route.params.subscribe(params => {
 			const diagramId: string = params["id"];
+			// tslint:disable-next-line:no-unused-expression
 			diagramId &&
 				this.diagramService.getDiagram(diagramId).subscribe(data => {
 					console.log(data);
@@ -73,8 +77,11 @@ export class DiagramComponent implements AfterViewInit, OnDestroy {
 				// }
 			});
 			this.dataSubscribtion = this.diagramService
-				.getData(this.data.Source)
-				.filter(data => data != undefined)
+				.getData(this.data.Source, this.unsubscribe).pipe(
+					filter(data => data != undefined),
+					takeUntil(this.unsubscribe)
+
+				)
 				.subscribe(data => {
 					this.now = Date.now();
 					this.time = data.Time;
@@ -106,12 +113,15 @@ export class DiagramComponent implements AfterViewInit, OnDestroy {
 	}
 	ngOnDestroy() {
 		// this.dataSubscribtion.unsubscribe();
+		debugger;
+		this.unsubscribe.next();
+		this.unsubscribe.complete();
 	}
 	timeChange(e: MatSliderChange) {
 		this.dataSubscribtion.unsubscribe();
 		// this.diagramService.getData(this.data.Source, Date.now() - ((1000 - e.value) * this.data.Source.Interval), true)
 		this.dataSubscribtion = this.diagramService
-			.getData(this.data.Source, Date.now() - (1000 - e.value) * this.data.Source.Interval, true)
+			.getData(this.data.Source, this.unsubscribe, Date.now() - (1000 - e.value) * this.data.Source.Interval, true)
 			.subscribe(data => {
 				this.time = data.Time;
 				this.now = Date.now();

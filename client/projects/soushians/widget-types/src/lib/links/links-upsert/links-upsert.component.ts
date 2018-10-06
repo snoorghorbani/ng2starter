@@ -9,7 +9,7 @@ import { LinksWidgetConfigModel, LinkItem } from "../links-widget-config.model";
 @Component({
 	selector: "widget-links-upsert",
 	templateUrl: "./links-upsert.component.html",
-	styleUrls: [ "./links-upsert.component.css" ]
+	styleUrls: ["./links-upsert.component.css"]
 })
 export class LinksUpsertComponent implements OnInit, IWidgetUpsert<LinksWidgetConfigModel> {
 	@Input() widget: WidgetModel<LinksWidgetConfigModel>;
@@ -44,8 +44,13 @@ export class LinksUpsertComponent implements OnInit, IWidgetUpsert<LinksWidgetCo
 		(this.configFormGroup.get("links") as FormArray).push(this._get_new_empty_link_item());
 	}
 	removelink(link) {
-		const data: FormArray = <FormArray>this.configFormGroup.controls.links;
-		data.removeAt(link);
+		debugger;
+		const data = this.configFormGroup.get("links") as FormArray;
+		if (data.controls.length > -1) {
+			data.removeAt(link);
+		} else {
+			return data;
+		}
 	}
 	/**
 	 * private methods

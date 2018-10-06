@@ -34,6 +34,10 @@ export class WidgetsManagementComponent implements OnInit {
 			links: {
 				color: "orange",
 				icon: "link"
+			},
+			list: {
+				color: "blue",
+				icon: "list"
 			}
 		};
 	}

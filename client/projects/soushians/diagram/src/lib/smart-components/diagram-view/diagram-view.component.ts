@@ -7,7 +7,7 @@ import { GetDiagramsApiModel } from "../../models/get-diagrams-api.model";
 @Component({
 	selector: "diagram-view",
 	templateUrl: "./diagram-view.component.html",
-	styleUrls: [ "./diagram-view.component.scss" ]
+	styleUrls: ["./diagram-view.component.scss"]
 })
 export class diagramViewComponent implements OnInit {
 	diagrams: Observable<GetDiagramsApiModel.Response>;

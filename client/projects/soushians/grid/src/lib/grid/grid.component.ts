@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from "@angular/core";
 import { GridsterConfig, GridsterItem } from "angular-gridster2";
 import { Store } from "@ngrx/store";
 import { filter, map } from "rxjs/operators";
@@ -16,6 +16,8 @@ import { GridConfigComponent } from "../grid-config/grid-config.component";
 import { IGridItemModel } from "../models/gird-item.model";
 import { UpsertGridStartAction } from "../services/api/upsert-grid/upsert-grid.actions";
 import { UserFacadeService } from "@soushians/user";
+import { WidgetSelectorComponent, WidgetModel } from "@soushians/widget";
+import { DynamicGridItemViewDirective } from "../grid-item/dynamic-grid-item-view.directive";
 
 @Component({
 	selector: "ngs-grid",
@@ -33,6 +35,7 @@ export class GridComponent implements OnInit {
 	@Output() initCallback = new EventEmitter();
 
 	@Input() oid: string;
+	widget: WidgetModel<any>;
 	havePermission$: Observable<boolean>;
 	username: string;
 	options: GridsterConfig;
@@ -153,6 +156,16 @@ export class GridComponent implements OnInit {
 			item.valid = bs.instance.valid;
 		});
 	}
+	// tslint:disable-next-line:member-ordering
+	@ViewChild("DynamicGridItemViewDirective") _ngsDynamicGridItemView: DynamicGridItemViewDirective;
+	goToEdit() {
+		debugger;
+		// tslint:disable-next-line:no-unused-expression
+		this._ngsDynamicGridItemView;
+	}
+	/**
+	 * private methods
+	 */
 	_get_grid_by_oid_and_update_component() {
 		this.service.selectById(this.oid).pipe(filter(data => data != undefined)).subscribe(data => {
 			this.grid = data;

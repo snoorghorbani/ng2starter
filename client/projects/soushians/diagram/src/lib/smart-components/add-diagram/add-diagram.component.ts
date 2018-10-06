@@ -21,13 +21,16 @@ import {
 	DiagramConfigChangedAction,
 	AddDiagramAction
 } from "../../actions/add-diagram.actions";
+import { filter, takeUntil } from "rxjs/operators";
+import { Subject } from "rxjs";
 
 @Component({
 	selector: "diagram-add",
 	templateUrl: "./add-diagram.component.html",
-	styleUrls: [ "./add-diagram.component.scss" ]
+	styleUrls: ["./add-diagram.component.scss"]
 })
 export class AddDiagramComponent implements OnInit, OnDestroy {
+	unsubscribe = new Subject<void>();
 	formGroup: FormGroup = AddDiagramApiModel.Request.formGroup;
 	data: any;
 	columns: any;
@@ -60,6 +63,7 @@ export class AddDiagramComponent implements OnInit, OnDestroy {
 		this.columnsMappings = (this.formGroup.controls.ColumnMappings as FormArray).controls;
 		this.route.params.subscribe(params => {
 			const diagramId: string = params["id"];
+			// tslint:disable-next-line:no-unused-expression
 			diagramId &&
 				this.diagramService.getDiagram(diagramId).subscribe(data => {
 					this.formGroup.patchValue({
@@ -140,6 +144,8 @@ export class AddDiagramComponent implements OnInit, OnDestroy {
 	}
 	ngOnDestroy() {
 		if (this.dataSubscription) this.dataSubscription.unsubscribe();
+		this.unsubscribe.next();
+		this.unsubscribe.complete();
 	}
 	// getData() {
 	//   const o$ = this.diagramService.getData(this.source);
@@ -147,7 +153,8 @@ export class AddDiagramComponent implements OnInit, OnDestroy {
 	//   return o$;
 	// }
 	getDataStructure() {
-		const observer = this.diagramService.getData({ ...this.source, Interval: 0 }, Date.now() - 10000);
+		debugger;
+		const observer = this.diagramService.getData({ ...this.source, Interval: 0 }, this.unsubscribe, Date.now() - 10000);
 		this.dataSubscription = observer.subscribe(data => {
 			this.data = data.Data;
 			this.pathOptions = this.diagramService.get_data_report(data.Data);
@@ -159,7 +166,8 @@ export class AddDiagramComponent implements OnInit, OnDestroy {
 	}
 	typeChanged() {
 		const typesFormGroup = (this.formGroup.controls.Types as FormGroup).controls;
-		for (let cb in typesFormGroup) {
+		// tslint:disable-next-line:forin
+		for (const cb in typesFormGroup) {
 			typesFormGroup[cb].setValue(this.formGroup.value.Type);
 		}
 		this.diagramPartialConfig = {
@@ -175,12 +183,13 @@ export class AddDiagramComponent implements OnInit, OnDestroy {
 		const control = <FormArray>this.formGroup.controls["ColumnMappings"];
 		control.push(
 			this.formBuilder.group({
-				NamePath: [ NamePath ],
-				ValuePath: [ ValuePath, Validators.required ]
+				NamePath: [NamePath],
+				ValuePath: [ValuePath, Validators.required]
 			})
 		);
 	}
 	routeEntered(event) {
+		debugger;
 		this.source = event.value;
 		this.formGroup.patchValue({ Source: event.value });
 		this.store.dispatch(new HaveEndpointAction(this));
@@ -191,25 +200,25 @@ export class AddDiagramComponent implements OnInit, OnDestroy {
 	}
 	calculateColumns(): Observable<void> {
 		return Observable.create(obser => {
-			var columnsMApping = {
+			const columnsMApping = {
 				// NameVAlue:  (this.formGroup.controls.ColumnMappings as FormArray).controls.values
 			};
-			let columns = this.diagramService.extract_columns_from_data(
+			const columns = this.diagramService.extract_columns_from_data(
 				this.data,
 				(this.formGroup.controls.ColumnMappings as FormArray).value
 			);
 			this.formGroup.controls.columns.setValue(columns);
-			//add new item to this.formGroup.controls.colors form control
+			// add new item to this.formGroup.controls.colors form control
 			const colorsControl = <FormGroup>this.formGroup.controls["Colors"];
 			columns.forEach(column => {
-				let columnKey = column[0];
+				const columnKey = column[0];
 				if (!(columnKey in colorsControl.controls))
 					colorsControl.addControl(columnKey, new FormControl("#123456"));
 			});
 
 			const typesControl = <FormGroup>this.formGroup.controls["Types"];
 			columns.forEach(column => {
-				let key = column[0];
+				const key = column[0];
 				if (!(key in typesControl.controls))
 					typesControl.addControl(key, new FormControl(this.formGroup.value.Type));
 			});
@@ -217,9 +226,10 @@ export class AddDiagramComponent implements OnInit, OnDestroy {
 		});
 	}
 	generateDiagram(): Observable<any> {
-		var temp = new DiagramModel();
+		const temp = new DiagramModel();
 		temp._id = "template_id";
 		temp.Name = this.formGroup.value.Name;
+		debugger;
 		temp.Source = this.source;
 		temp.Box = {
 			NumberOfColumns: 1,

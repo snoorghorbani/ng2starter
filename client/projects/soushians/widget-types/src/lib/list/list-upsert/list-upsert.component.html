@@ -1,0 +1,45 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title fxLayout="row" fxLayoutGap="5px">
+      <mat-icon>gradient</mat-icon>
+      <span>ایجاد افزونه‌</span>
+    </mat-card-title>
+    <!-- <mat-card-subtitle fxLayout="row" fxLayoutAlign="space-between center">
+      <span>
+        افزونه‌ مورد نظر را براساس نوع آن ایجاد نمایید ...
+      </span>
+    </mat-card-subtitle> -->
+  </mat-card-header>
+  <mat-card-content>
+    <h3>نام افزونه</h3>
+    <div [formGroup]="widgetFormGroup">
+      <mat-form-field>
+        <input type="text" matInput placeholder="نام" formControlName="name">
+      </mat-form-field>
+    </div>
+    <mat-divider></mat-divider>
+    <h3>متن افزونه</h3>
+    <button color="primary" mat-fab fxFlexAlign="end" (click)="addItem()">
+      <mat-icon>add</mat-icon>
+    </button>
+    <div [formGroup]="configFormGroup">
+      <div fxFlex="nogrow" *ngFor="let ctrl of $any(configFormGroup.get('list')).controls; let idx = index" [formGroup]="ctrl">
+        <button mat-icon-button fxFlex="nogrow" (click)="removelist(idx)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <mat-form-field fxFlex>
+          <input type="text" matInput placeholder="عنوان" formControlName="title">
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input type="text" matInput placeholder="زیرعنوان" formControlName="subtitle">
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input type="text" matInput placeholder="توضیحات" formControlName="description">
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button color="primary" (click)="upsert()">ثبت</button>
+  </mat-card-actions>
+</mat-card>
