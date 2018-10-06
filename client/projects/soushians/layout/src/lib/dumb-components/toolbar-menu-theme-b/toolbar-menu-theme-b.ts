@@ -8,6 +8,8 @@ import { DOCUMENT } from "@angular/platform-browser";
 import { fromEvent } from "rxjs/observable/fromEvent";
 import { of } from "rxjs/observable/of";
 import { trigger, state, transition, style, animate } from "@angular/animations";
+import { TranslateService } from '@ngx-translate/core';
+
 
 import { UserModel, getAccountInfo } from "@soushians/user";
 
@@ -100,7 +102,7 @@ import { map, combineLatest } from "rxjs/operators";
 			state(
 				"summary",
 				style({
-					right: "75px",
+					right: "165px",
 					transform: "translateX(0)",
 					bottom: "0"
 				})
@@ -108,7 +110,7 @@ import { map, combineLatest } from "rxjs/operators";
 			state(
 				"hide",
 				style({
-					right: "75px",
+					right: "165px",
 					transform: "translateX(0)",
 					bottom: "0"
 				})
@@ -135,7 +137,7 @@ import { map, combineLatest } from "rxjs/operators";
 					"font-weight": "bolder",
 					transform: "translateX(50%)",
 					right: "calc(50%)",
-					bottom: "75px",
+					bottom: "165px",
 					position: "absolute",
 					padding: 0
 				})
@@ -267,6 +269,7 @@ export class ToolbarMenuThemeBComponent {
 		@Inject(DOCUMENT) private document: any,
 		private _location: Location,
 		private store: Store<FeatureState>,
+		private translateService: TranslateService,
 		public configurationService: LayoutConfigurationService
 	) {
 		this.user$ = this.store.select(getAccountInfo);

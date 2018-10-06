@@ -24,6 +24,7 @@ import {
 	MatDatepickerModule,
 	MatProgressBarModule
 } from "@angular/material";
+import { TranslateModule } from '@ngx-translate/core';
 
 import { NgsConfigModule } from "@soushians/config";
 
@@ -65,6 +66,7 @@ import { ToolbarMenuThemeBComponent } from "./dumb-components/toolbar-menu-theme
 		MatDatepickerModule,
 		MatProgressBarModule,
 		RouterModule,
+		TranslateModule,
 		NgsConfigModule,
 		RuleModule
 	],
