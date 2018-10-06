@@ -16,14 +16,18 @@
                 <button mat-icon-button [matMenuTriggerFor]="menu">
                     <mat-icon>more_horiz</mat-icon>
                 </button>
-                <mat-menu #menu="matMenu">
+                <mat-menu #menu="matMenu" class="rtl">
                     <mat-checkbox *ngIf="grid.owner == username" labelPosition="before" [checked]="item.access=='public'"
                         (change)="make_public(item,$event)">عمومی</mat-checkbox>
-                    <button mat-menu-item (click)="showConfig(item)">
+                    <button mat-menu-item class="rtl" (click)="goToEdit()">
+                        <mat-icon>edit</mat-icon>
+                        <span>ویرایش افزونه</span>
+                    </button>
+                    <button mat-menu-item class="rtl" (click)="showConfig(item)">
                         <mat-icon>settings</mat-icon>
                         <span>تنظیمات</span>
                     </button>
-                    <button mat-menu-item (click)="removeItem(item)">
+                    <button mat-menu-item class="rtl" (click)="removeItem(item)">
                         <mat-icon>delete</mat-icon>
                         <span>حذف</span>
                     </button>
@@ -41,7 +45,7 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-            <div *ngIf="item.valid" [ngsDynamicGridItemView]="item"></div>
+            <div *ngIf="item.valid" #test [ngsDynamicGridItemView]="item"></div>
         </div>
     </gridster-item>
 </gridster>

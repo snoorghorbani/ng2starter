@@ -6,7 +6,9 @@ import {
 	ArticleViewComponent,
 	ArticleUpsertComponent,
 	LinksViewComponent,
-	LinksUpsertComponent
+	LinksUpsertComponent,
+	ListViewComponent,
+	ListUpsertComponent
 } from "@soushians/widget-types";
 
 export class NgsWidgetModuleConfig implements WidgetModuleConfig {
@@ -19,6 +21,10 @@ export class NgsWidgetModuleConfig implements WidgetModuleConfig {
 		links: {
 			view: LinksViewComponent,
 			upsert: LinksUpsertComponent
+		},
+		list: {
+			view: ListViewComponent,
+			upsert: ListUpsertComponent
 		}
 	};
 }

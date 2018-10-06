@@ -35,3 +35,6 @@
 .form-container mat-form-field {
 	width: 100%;
 }
+.rtl {
+	direction: rtl;
+}

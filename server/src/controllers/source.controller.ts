@@ -118,11 +118,11 @@ const scheduleForGetData = (() => {
 	};
 })();
 export const sourceJob = function () {
-	// Model.Source
-	//   .find({ IsActive: true })
-	//   .then((data: any) => {
-	//     data.forEach((source: any) => scheduleForGetData(source));
-	//   });
+	Model.Source
+		.find({ IsActive: true })
+		.then((data: any) => {
+			data.forEach((source: any) => scheduleForGetData(source));
+		});
 };
 
 export { router };

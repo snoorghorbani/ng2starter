@@ -10,7 +10,7 @@
             <input matInput placeholder="عنوان نمودار" formControlName="Name">
           </mat-form-field>
           <mat-form-field fxFlexFill>
-            <mat-select placeholder="نام مسیر" formControlName="Source" (change)="routeEntered($event)">
+            <mat-select placeholder="نام مسیر" formControlName="Source" (selectionChange)="routeEntered($event)">
               <mat-option *ngFor="let item of sources | async" [value]="item">
                 {{item.Endpoint}}
               </mat-option>
