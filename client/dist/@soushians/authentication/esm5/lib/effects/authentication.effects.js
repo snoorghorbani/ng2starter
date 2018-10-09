@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import * as tslib_1 from "tslib";
 import { Injectable } from "@angular/core";
@@ -40,7 +40,7 @@ var AuthenticationEffects = /** @class */ (function () {
     return AuthenticationEffects;
 }());
 export { AuthenticationEffects };
-function AuthenticationEffects_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     AuthenticationEffects.prototype.dispachProgressingStarted$;
     /** @type {?} */

@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders } from "@angular/core";
+import { NgModule, ModuleWithProviders, LOCALE_ID } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { StoreModule } from "@ngrx/store";
 import { CommonModule } from "@angular/common";
@@ -24,6 +24,7 @@ import {
 	MatDatepickerModule,
 	MatProgressBarModule
 } from "@angular/material";
+import { TranslateModule } from '@ngx-translate/core';
 
 import { NgsConfigModule } from "@soushians/config";
 
@@ -65,6 +66,7 @@ import { ToolbarMenuThemeBComponent } from "./dumb-components/toolbar-menu-theme
 		MatDatepickerModule,
 		MatProgressBarModule,
 		RouterModule,
+		TranslateModule,
 		NgsConfigModule,
 		RuleModule
 	],
@@ -93,7 +95,9 @@ export class NgsLayoutModule {
 	static forRoot(config?: LayoutModuleConfigModel): ModuleWithProviders {
 		return {
 			ngModule: RootNgsLayoutModule,
-			providers: [ { provide: MODULE_CONFIG_TOKEN, useValue: config } ]
+			providers: [
+				{ provide: LOCALE_ID, useValue: 'en en-US' },
+				{ provide: MODULE_CONFIG_TOKEN, useValue: config }]
 		};
 	}
 }
@@ -102,8 +106,8 @@ export class NgsLayoutModule {
 	imports: [
 		NgsLayoutModule,
 		StoreModule.forFeature("layout", LayoutReducers),
-		EffectsModule.forFeature([ LayoutEffects ])
+		EffectsModule.forFeature([LayoutEffects])
 	],
-	exports: [ NgsLayoutModule ]
+	exports: [NgsLayoutModule]
 })
-export class RootNgsLayoutModule {}
+export class RootNgsLayoutModule { }

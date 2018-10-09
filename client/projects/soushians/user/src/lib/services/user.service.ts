@@ -35,13 +35,13 @@ export class UserService {
 			.take(1)
 			.switchMap(config =>
 				this.http
-					.get<any>(config.env.server + config.endpoints.profileInformation)
+					.get<any>(config.env[config.server] + config.endpoints.profileInformation)
 					.let(config.responseToUserInfo)
 					.pipe(
 						map((response: UserModel) => {
 							const user: any = Object.assign({}, response);
 							if (user.Role) {
-								user.Roles = [ user.Role ];
+								user.Roles = [user.Role];
 							}
 							return user;
 						})
@@ -52,7 +52,7 @@ export class UserService {
 		const model = new EditProfile_ApiModel.Request(data);
 		return this.http
 			.put<EditProfile_ApiModel.Response>(
-				stringTemplate(this.config.env.server + this.config.endpoints.editProfile, model),
+				stringTemplate(this.config.env[this.config.server] + this.config.endpoints.editProfile, model),
 				model.getRequestBody()
 			)
 			.map(response => new EditProfile_ApiModel.Response(response).extractData());
@@ -63,7 +63,7 @@ export class UserService {
 
 		return this.http
 			.get<ProfileViewModel.Response>(
-				stringTemplate(this.config.env.server + this.config.endpoints.getAccountInfo, model)
+				stringTemplate(this.config.env[this.config.server] + this.config.endpoints.getAccountInfo, model)
 			)
 			.map(response => response);
 	}

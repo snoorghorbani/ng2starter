@@ -1,6 +1,7 @@
 import { Store } from "@ngrx/store";
 import { Location } from "@angular/common";
 import { Observable } from "rxjs/Observable";
+import { TranslateService } from '@ngx-translate/core';
 import { UserModel } from "@soushians/user";
 import { FeatureState } from "../../reducers";
 import { LayoutConfigurationService } from "../../services/layout-configuration.service";
@@ -9,6 +10,7 @@ export declare class ToolbarMenuThemeBComponent {
     private document;
     private _location;
     private store;
+    private translateService;
     configurationService: LayoutConfigurationService;
     showSecondSidenav: Observable<boolean>;
     showSidebarMenu: any;
@@ -26,7 +28,7 @@ export declare class ToolbarMenuThemeBComponent {
     config: toolbarState;
     config$: Observable<toolbarState>;
     anchorsMode: boolean;
-    constructor(document: any, _location: Location, store: Store<FeatureState>, configurationService: LayoutConfigurationService);
+    constructor(document: any, _location: Location, store: Store<FeatureState>, translateService: TranslateService, configurationService: LayoutConfigurationService);
     onWindowScroll(): void;
     signout(): void;
     goback(): void;

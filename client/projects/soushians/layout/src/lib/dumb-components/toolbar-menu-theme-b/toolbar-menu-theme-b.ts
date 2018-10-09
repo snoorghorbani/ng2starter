@@ -8,6 +8,8 @@ import { DOCUMENT } from "@angular/platform-browser";
 import { fromEvent } from "rxjs/observable/fromEvent";
 import { of } from "rxjs/observable/of";
 import { trigger, state, transition, style, animate } from "@angular/animations";
+import { TranslateService } from '@ngx-translate/core';
+
 
 import { UserModel, getAccountInfo } from "@soushians/user";
 
@@ -37,8 +39,7 @@ import { map, combineLatest } from "rxjs/operators";
 			state(
 				"comfortable",
 				style({
-					width: "60px",
-					height: "auto",
+					height: "48px",
 					top: "50px",
 					right: "calc(50% - 50px)"
 				})
@@ -46,8 +47,7 @@ import { map, combineLatest } from "rxjs/operators";
 			state(
 				"compact",
 				style({
-					width: "36px",
-					height: "auto",
+					height: "36px",
 					top: "13px",
 					right: "13px"
 				})
@@ -55,9 +55,7 @@ import { map, combineLatest } from "rxjs/operators";
 			state(
 				"summary",
 				style({
-					width: "36px",
-
-					height: "auto",
+					height: "36px",
 					top: "57px",
 					right: "10px"
 				})
@@ -104,7 +102,7 @@ import { map, combineLatest } from "rxjs/operators";
 			state(
 				"summary",
 				style({
-					right: "75px",
+					right: "165px",
 					transform: "translateX(0)",
 					bottom: "0"
 				})
@@ -112,7 +110,7 @@ import { map, combineLatest } from "rxjs/operators";
 			state(
 				"hide",
 				style({
-					right: "75px",
+					right: "165px",
 					transform: "translateX(0)",
 					bottom: "0"
 				})
@@ -139,7 +137,7 @@ import { map, combineLatest } from "rxjs/operators";
 					"font-weight": "bolder",
 					transform: "translateX(50%)",
 					right: "calc(50%)",
-					bottom: "75px",
+					bottom: "165px",
 					position: "absolute",
 					padding: 0
 				})
@@ -205,7 +203,7 @@ import { map, combineLatest } from "rxjs/operators";
 					color: "rgba(30,30,30,1)",
 					height: "33vh",
 					top: "0",
-					boxShadow: "1px 1px 3px rgba(0,0,0,0)"
+					// boxShadow: "0px 1px 3px rgba(0,0,0,0)"
 				})
 			),
 			state(
@@ -214,7 +212,7 @@ import { map, combineLatest } from "rxjs/operators";
 					// backgroundColor: "rgba(256,256,256,1)",
 					height: "100px",
 					top: "0",
-					boxShadow: "1px 1px 3px rgba(0,0,0,0.5)"
+					// boxShadow: "1px 1px 3px rgba(0,0,0,0.5)"
 				})
 			),
 			state(
@@ -223,7 +221,7 @@ import { map, combineLatest } from "rxjs/operators";
 					// backgroundColor: "rgba(256,256,256,1)",
 					height: "100px",
 					top: "-50px",
-					boxShadow: "1px 1px 3px rgba(0,0,0,0.5)"
+					// boxShadow: "1px 1px 3px rgba(0,0,0,0.5)"
 				})
 			),
 			state(
@@ -232,7 +230,7 @@ import { map, combineLatest } from "rxjs/operators";
 					// backgroundColor: "rgba(256,256,256,1)",
 					height: "100px",
 					top: "-100px",
-					boxShadow: "1px 1px 3px rgba(0,0,0,0.5)"
+					// boxShadow: "1px 1px 3px rgba(0,0,0,0.5)"
 				})
 			),
 			transition("comfortable => compact", animate("800ms ease-in")),
@@ -271,6 +269,7 @@ export class ToolbarMenuThemeBComponent {
 		@Inject(DOCUMENT) private document: any,
 		private _location: Location,
 		private store: Store<FeatureState>,
+		private translateService: TranslateService,
 		public configurationService: LayoutConfigurationService
 	) {
 		this.user$ = this.store.select(getAccountInfo);

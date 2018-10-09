@@ -47,19 +47,19 @@
 .hide #layout-sidnav > mat-sidenav-content {
 	padding-top: 1px;
 }
-.main-container:after {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	height: 167px;
-	background-color: #1976d2;
-	z-index: 0;
-	padding: 25px;
-	font-size: 18px;
-	z-index: -2;
-}
+// .main-container:after {
+// 	content: "";
+// 	position: absolute;
+// 	top: 0;
+// 	left: 0;
+// 	right: 0;
+// 	height: 167px;
+// 	background-color: #1976d2;
+// 	z-index: 0;
+// 	padding: 25px;
+// 	font-size: 18px;
+// 	z-index: -2;
+// }
 
 /* Rules Module End */
 
@@ -81,8 +81,8 @@
 	.content-action .sticky-action > a {
 		display: inline-block;
 		margin-bottom:8px;
-		background: #fff;
-		color:#f26323;
+		// background: #fff;
+		// color:#f26323;
 	}
 	.content-action .with-sticky-action {
 		width: calc(100% - 70px);
@@ -103,7 +103,7 @@
 	}
 	.main-container:after {
 		content: "";
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
 		right: 0;
@@ -114,4 +114,7 @@
 		font-size: 18px;
 		z-index: -2;
 	}
+}
+[dir="ltr"] #logo{
+	left:13px !important;
 }

@@ -1,9 +1,9 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 export { SearchEffects } from "./search.effects";
-export { initialState, reducer, getStatus, getAccountInfo } from "./search.reducer";
+export { reducer, initialState, getStatus, getAccountInfo } from "./search.reducer";
 export { SearchActionTypes, Search, SearchStartAction, SearchSucceed, SearchFailed, ClearSearchedUser } from "./search.actions";
 export { SearchComponent } from "./search";
 

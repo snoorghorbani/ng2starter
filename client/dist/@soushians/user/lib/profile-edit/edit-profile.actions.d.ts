@@ -4,7 +4,7 @@ export declare enum EditProfileActionTypes {
     EDIT_PROFILE = "[USER][PASSWORD] EDIT_PROFILE",
     EDIT_PROFILE_START = "[USER][PASSWORD] EDIT_PROFILE_START",
     EDIT_PROFILE_SUCCEED = "[USER][PASSWORD] EDIT_PROFILE_SUCCEED",
-    EDIT_PROFILE_FAILED = "[USER][PASSWORD] EDIT_PROFILE_FAILED",
+    EDIT_PROFILE_FAILED = "[USER][PASSWORD] EDIT_PROFILE_FAILED"
 }
 export declare class EditProfile implements Action {
     payload: EditProfile_ApiModel.Request;

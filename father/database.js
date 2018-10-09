@@ -1,5 +1,6 @@
 const MongoClient = require("mongodb").MongoClient;
 const fs = require("fs");
+const ObjectId = require("bson").ObjectId;
 
 var versionHandler = require("../db/version");
 var backupHandler = require("../db/dobackup");
@@ -7,8 +8,8 @@ var backupHandler = require("../db/dobackup");
 function clone_database() {
 	// Use connect method to connect to the server
 	MongoClient.connect(process.env.MONGODB_URI, {
-		useNewUrlParser : true
-	}).then(function(client) {
+		useNewUrlParser: true
+	}).then(function (client) {
 		/**
          * find latest version of starter
          */
@@ -34,6 +35,9 @@ function clone_database() {
 					.createCollection(name)
 					.then(collection => {
 						if (documents.length == 0) return;
+						documents.forEach(i => {
+							i._id = ObjectId(i._id)
+						});
 						collection.insertMany(documents, {});
 					})
 					.catch(err => {

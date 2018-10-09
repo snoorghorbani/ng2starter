@@ -6,10 +6,6 @@
 		"entryFile": "src/public_api.ts"
 	},
 	"whitelistedNonPeerDependencies": [
-		"tslib",
-		"@soushians/authentication",
-		"@soushians/config",
-		"@soushians/form",
-		"@soushians/shared"
+		"tslib"
 	]
 }

@@ -1,9 +1,10 @@
-<mat-toolbar color="primary" [@toolbarAnimation]="toolbarAnimationState">
-  <mat-toolbar-row id="firstToolbar">
+<mat-toolbar dir="rtl" color="primary" [@toolbarAnimation]="toolbarAnimationState">
+  <mat-toolbar-row dir="rtl" id="firstToolbar">
     <!-- <div id="background"></div> -->
-    <img [@logoAnimation]="logoAnimationState" id="logo" routerLink='/' src='assets/images/shatel-logo.png' />
+    <img [@logoAnimation]="logoAnimationState" id="logo" routerLink='/' src='assets/logos/logo-type.png' />
 
-    <button type="button" *ngIf='showSidebarMenu && false' (click)="toggleMainSidebar()" mat-icon-button fxFlex="nogrow" fxLayoutAlign="center center">
+    <button type="button" *ngIf='showSidebarMenu && false' (click)="toggleMainSidebar()" mat-icon-button fxFlex="nogrow"
+      fxLayoutAlign="center center">
       <mat-icon>menu</mat-icon>
     </button>
     <span [@titleAnimation]="titleAnimationState" id='app-name'>
@@ -14,10 +15,10 @@
 
 
     <button *ngIf="!displayName" mat-button routerLink="auth/signin">
-      ورود
+      <span [translate]="'__signin'"></span>
     </button>
-    <button *ngIf="!displayName" mat-button routerLink="auth/signup">
-      ثبت نام
+    <button translate *ngIf="!displayName" mat-button routerLink="auth/signup">
+      {{'__signup' | translate}}
     </button>
     <button *ngIf="displayName" mat-icon-button [matMenuTriggerFor]="toolbarMenu1">
       <mat-icon>account_circle</mat-icon>
@@ -28,13 +29,12 @@
       </div>
       <button routerLink='/user/panel' mat-menu-item class="rtl-dir">
         <mat-icon>fingerprint</mat-icon>
-        <span>
-          مدیریت کاربری
+        <span translate="__account_mangement">
         </span>
       </button>
       <button (click)='signout()' mat-menu-item class="rtl-dir">
         <mat-icon>exit_to_app</mat-icon>
-        <span>خروج</span>
+        <span translate>__signout</span>
       </button>
     </mat-menu>
     <button mat-icon-button type="button" (click)="toggleSecondSidebar()" fxFlex="nogrow" fxLayoutAlign="center center">

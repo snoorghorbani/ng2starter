@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import { Component, Input } from "@angular/core";
 var FooterComponent = /** @class */ (function () {
@@ -28,7 +28,7 @@ var FooterComponent = /** @class */ (function () {
     return FooterComponent;
 }());
 export { FooterComponent };
-function FooterComponent_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     FooterComponent.prototype.app_config;
 }

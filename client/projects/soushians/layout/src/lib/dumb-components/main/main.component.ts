@@ -6,6 +6,7 @@ import { Store } from "@ngrx/store";
 import { SwPush } from "@angular/service-worker";
 import { BehaviorSubject } from "rxjs";
 import { MatSidenav, MatSidenavContainer } from "@angular/material";
+import { TranslateService } from '@ngx-translate/core';
 
 import { ConfigModel, getAppConfig } from "@soushians/config";
 import { UserModel } from "@soushians/user";
@@ -72,10 +73,11 @@ export class NgsLayoutMainComponent {
 		private store: Store<FeatureState>,
 		private router: Router,
 		private configService: LayoutConfigurationService,
+		private translateService: TranslateService,
 		private userFacadeService: UserFacadeService
 	) {
+		this._set_i18n_resource();
 		this.configService.config$.subscribe((config) => {
-			debugger;
 			this.theme = config.theme;
 			this.theme_A = config.theme == "theme_A";
 			this.theme_B = config.theme == "theme_B";
@@ -120,5 +122,23 @@ export class NgsLayoutMainComponent {
 
 	onSidebarClosedStart() {
 		this.store.dispatch(new CloseSidenavAction());
+	}
+
+	/**
+	 * private methods
+	 */
+	_set_i18n_resource() {
+		this.translateService.setTranslation('en', {
+			__signin: 'Signin',
+			__signup: 'Signup',
+			__account_mangement: 'Account',
+			__signout: 'Signout'
+		});
+		this.translateService.setTranslation('fa', {
+			__signin: 'ورود',
+			__signup: 'ثبت نام',
+			__account_mangement: 'مدریت کاربری',
+			__signout: 'خروج'
+		});
 	}
 }
