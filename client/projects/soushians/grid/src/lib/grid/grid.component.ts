@@ -157,12 +157,12 @@ export class GridComponent implements OnInit {
 		});
 	}
 	// tslint:disable-next-line:member-ordering
-	@ViewChild("DynamicGridItemViewDirective") _ngsDynamicGridItemView: DynamicGridItemViewDirective;
-	goToEdit() {
-		debugger;
-		// tslint:disable-next-line:no-unused-expression
-		this._ngsDynamicGridItemView;
-	}
+	// @ViewChild("DiagramViewComponent") _ngsDynamicGridItemView: DiagramViewComponent;
+	// goToEdit() {
+	// 	debugger;
+	// 	// tslint:disable-next-line:no-unused-expression
+	// 	this._ngsDynamicGridItemView;
+	// }
 	/**
 	 * private methods
 	 */

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs/Rx";
+import { Observable } from "rxjs";
 import { ConfigState } from "../reducers";
 import { Store } from "@ngrx/store";
 
@@ -42,7 +42,7 @@ export class ConfigService {
 	}
 	editConfig(body: EditConfigApiModel.Request): Observable<any> {
 		const model = new EditConfigApiModel.Request(body);
-
+		debugger;
 		return this.http
 			.put(
 				`${this.configurationService.config.env.frontend_server}/api/config/${model.Name}`,

@@ -22,8 +22,8 @@
         // "projects/soushians/layout/src/public_api"
       ],
       "@soushians/config": [
-        "dist/@soushians/config"
-        // "projects/soushians/config/src/public_api"
+        // "dist/@soushians/config"
+        "projects/soushians/config/src/public_api"
       ],
       "@soushians/user": [
         "dist/@soushians/user"

@@ -6,7 +6,7 @@
       </mat-card-title>
       <mat-card-content fxLayout="row wrap" fxLayoutGap="25px">
         <div *ngFor="let field of (schema$ | async)?.form.fields;" [fxFlex]="field.width * 10">
-          <ng-container dynamicField [config]="field" [group]="formGroup"></ng-container>
+          <ng-container *ngIf="field && field.inputType" dynamicField [config]="field" [group]="formGroup"></ng-container>
         </div>
       </mat-card-content>
       <mat-card-actions align="end">
@@ -17,7 +17,6 @@
       </mat-card-actions>
     </mat-card>
   </form>
-
   <form *ngIf="formGroupCreated && !card" class="ngs-dynamic-form" [formGroup]="formGroup" (ngSubmit)="accepted()">
     <div>
       <h3>

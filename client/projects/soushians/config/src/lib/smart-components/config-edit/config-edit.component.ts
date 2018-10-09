@@ -10,7 +10,7 @@ import { DynamicConfigComponentSelectorComponent } from "../dynamic-config-compo
 @Component({
 	selector: "config-config-edit",
 	templateUrl: "./config-edit.component.html",
-	styleUrls: [ "./config-edit.component.css" ]
+	styleUrls: ["./config-edit.component.css"]
 })
 export class ConfigEditComponent implements OnInit {
 	configInforamation: any;
@@ -21,6 +21,7 @@ export class ConfigEditComponent implements OnInit {
 		this.route.params.subscribe(params => {
 			const configName: string = params["name"];
 			this.configService.getConfigByName(configName).subscribe(data => {
+				debugger;
 				this.partialConfigModel = {
 					type: data.Result.Name,
 					inputs: {
@@ -48,13 +49,13 @@ export class ConfigEditComponent implements OnInit {
 		}
 	}
 
-	ngOnInit() {}
+	ngOnInit() { }
 	configChanged(event: any) {
 		console.log("-");
 	}
 	edit() {
 		this.formGroup.controls.Config.patchValue(this.dynConfig.config);
 		if (!this.formGroup.valid) return;
-		this.configService.editConfig(this.formGroup.value).subscribe(config => {});
+		this.configService.editConfig(this.formGroup.value).subscribe(config => { });
 	}
 }

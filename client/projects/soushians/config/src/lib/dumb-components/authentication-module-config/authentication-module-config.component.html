@@ -7,11 +7,11 @@
                     <mat-icon>settings_input_component</mat-icon>
                     <span>تنظیمات ماژول احراز هویت</span>
                 </mat-card-title>
-                <mat-card-subtitle fxLayout="row" fxLayoutAlign="space-between center">
+                <!-- <mat-card-subtitle fxLayout="row" fxLayoutAlign="space-between center">
                     <span>
                         شامل تمامی درخواست‌ها از قبیل دائری، جمع‌آوری و ...
                     </span>
-                </mat-card-subtitle>
+                </mat-card-subtitle> -->
             </mat-card-header>
 
             <div>
@@ -29,6 +29,10 @@
                     <mat-form-field>
                         <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="who am i"
                             formControlName="whoAmI">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="captcha url"
+                            formControlName="captchaUrl">
                     </mat-form-field>
                 </div>
                 <h2>Forms</h2>

@@ -69,7 +69,7 @@
           <div *ngFor="let column of columnsMappings; let i=index" fxFlex="100" fxLayout="column">
             <div fxLayout="column">
               <div [formGroup]="columnsMappings[i]" fxLayout="row" fxLayout.xs="column">
-                <mat-form-field fxFlex="50" fxFlex.xs="100">
+                <mat-form-field fxFlex="45" fxFlex.xs="100">
                   <mat-select placeholder="نام مسیر" formControlName="NamePath">
                     <mat-option>--</mat-option>
                     <mat-option *ngFor="let item of pathOptions" [value]="item.path" [class]="'mat-option depth_' + item.depts">
@@ -78,7 +78,7 @@
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
-                <mat-form-field fxFlex="50" fxFlex.xs="100">
+                <mat-form-field fxFlex="45" fxFlex.xs="100">
                   <mat-select placeholder="مقدار مسیر" formControlName="ValuePath">
                     <mat-option>--</mat-option>
                     <!-- <mat-option *ngFor="let item of pathOptions" [value]="item.path" [class]="'mat-option depth_' + item.depts" [disabled]="!item.isLastNode"> -->
@@ -87,7 +87,9 @@
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
-                <button (click)="removeColumn(i)" fxFlex mat-button color="primary" type="button">پاک کردن</button>
+                <button (click)="removeColumn(i)" fxFlex mat-icon-button>
+                  <mat-icon>delete</mat-icon>
+                </button>
               </div>
               <br />
             </div>
@@ -104,12 +106,13 @@
       </mat-card-header>
       <mat-card-content>
         <div class="item-margin">
-          <div class="list-item" *ngFor="let item of formGroup.controls.columns.value; let i=index" fxLayoutAlign="space-between center">
-            <span>{{item[0]}} : {{item[1]}}</span>
-            <span [formGroup]="formGroup.controls.Colors" *ngIf="$any(formGroup.controls.Colors).controls[item[0]]">
+          <div class="list-item" fxLayout="row" *ngFor="let item of formGroup.controls.columns.value; let i=index"
+            fxLayoutAlign="space-between center">
+            <span fxFlex="40">{{item[0]}} : {{item[1]}}</span>
+            <span fxFlex [formGroup]="formGroup.controls.Colors" *ngIf="$any(formGroup.controls.Colors).controls[item[0]]">
               <input placeholder="رنگ نمودار" (change)="configChanged()" [formControlName]="item[0]" type="color">
             </span>
-            <mat-form-field [formGroup]="formGroup.controls.Types" *ngIf="$any(formGroup.controls.Types).controls[item[0]]">
+            <mat-form-field fxFlex="30" [formGroup]="formGroup.controls.Types" *ngIf="$any(formGroup.controls.Types).controls[item[0]]">
               <!-- <input placeholder="tipo" (change)="configChanged()" > -->
               <mat-select placeholder="tipo" [formControlName]="item[0]">
                 <mat-option>--</mat-option>
@@ -133,13 +136,13 @@
         <mat-form-field>
           <input matInput placeholder="تعداد ستون" formControlName="Rows">
         </mat-form-field>
-        <div>
+        <div fxLayout="row">
           <label fxFlex="50">رنگ متن :</label>
           <span>
             <input (change)="configChanged()" formControlName="TextColor" type="color">
           </span>
         </div>
-        <div>
+        <div fxLayout="row">
           <label fxFlex="50">رنگ پس زمینه :</label>
           <span>
             <input formControlName="BackgroundColor" type="color">

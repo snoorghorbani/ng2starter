@@ -37,11 +37,12 @@ import { GetFormSchemaAction } from "../../list/list.actions";
 import { Field, FieldConfig, FormSchemaModel } from "../../models";
 import { DateFormInputControlComponent } from "../form-controls/date/date.component";
 import { FileFormInputControlComponent } from "../form-controls/file/file.component";
+import { FormCaptchaComponent } from "../form-controls/form-captcha";
 
 @Component({
 	selector: "ngs-form-view",
 	templateUrl: "./form-view.component.html",
-	styleUrls: [ "./form-view.component.css" ]
+	styleUrls: ["./form-view.component.css"]
 })
 export class FormViewComponent implements OnDestroy {
 	unsubscribe = new Subject<void>();
@@ -161,6 +162,7 @@ const components: { [type: string]: Type<Field> } = {
 	table: TableComponent,
 	color: ColorComponent,
 	email: EmailComponent,
+	captcha: FormCaptchaComponent,
 	select: SelectComponent
 };
 
@@ -174,7 +176,7 @@ export class DynamicFieldDirective implements Field, OnChanges, OnInit {
 
 	component: ComponentRef<Field>;
 
-	constructor(private resolver: ComponentFactoryResolver, private container: ViewContainerRef) {}
+	constructor(private resolver: ComponentFactoryResolver, private container: ViewContainerRef) { }
 
 	ngOnChanges() {
 		debugger;
@@ -186,6 +188,7 @@ export class DynamicFieldDirective implements Field, OnChanges, OnInit {
 
 	ngOnInit() {
 		debugger;
+		if (this.config.inputType == undefined) return;
 		if (!components[this.config.inputType]) {
 			const supportedTypes = Object.keys(components).join(", ");
 			throw new Error(

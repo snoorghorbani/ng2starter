@@ -1,8 +1,8 @@
 import { FormGroup } from "@angular/forms";
 
 export interface PartialConfig {
-    type: string,
+    type: string;
     inputs: {
-            configFormGroup: FormGroup
-    }
+        configFormGroup: FormGroup
+    };
 }

@@ -1,0 +1,11 @@
+<div>
+  <img [src]="captcha.captchaImg" />
+
+  <button (click)="refresh()">refresh</button>
+
+  <div [formGroup]="group">
+    <mat-form-field fxFlex>
+      <input matInput [id]="config.name" [placeholder]="config.title" [formControlName]="config.name" />
+    </mat-form-field>
+  </div>
+</div>
