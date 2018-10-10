@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import { Component, ComponentFactoryResolver, ViewContainerRef } from "@angular/core";
 import { Store } from "@ngrx/store";
@@ -50,7 +50,7 @@ PageViewComponent.ctorParameters = () => [
     { type: ComponentFactoryResolver },
     { type: ViewContainerRef }
 ];
-function PageViewComponent_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     PageViewComponent.prototype.page$;
     /** @type {?} */

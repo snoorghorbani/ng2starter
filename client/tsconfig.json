@@ -17,7 +17,10 @@
       "dom"
     ],
     "paths": {
-    
+      
+      "@soushians/test": [
+        "dist/soushians/test"
+      ],
       "configs": [
         //  "dist/configs"
         "projects/configs/src/public_api"

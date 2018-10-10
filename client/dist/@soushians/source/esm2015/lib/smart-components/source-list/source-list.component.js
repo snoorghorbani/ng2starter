@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import { Component } from "@angular/core";
 import { SourceService } from "../../services/source.service";
@@ -54,7 +54,7 @@ SourceListComponent.decorators = [
 SourceListComponent.ctorParameters = () => [
     { type: SourceService }
 ];
-function SourceListComponent_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     SourceListComponent.prototype.sources;
     /** @type {?} */

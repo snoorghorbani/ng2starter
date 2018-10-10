@@ -24,8 +24,8 @@ export declare class RuleAnchorDirective implements OnInit, OnDestroy {
     constructor(scenarioService: ScenarioService, configService: RuleConfigurationService, store: Store<AppState>, el: ElementRef, renderer: Renderer2, bottomSheet: MatBottomSheet);
     onMouseEnter(): void;
     onMouseLeave(): void;
-    private showAnchor();
-    private hideAnchor();
+    private showAnchor;
+    private hideAnchor;
     ngOnInit(): void;
     ngOnDestroy(): void;
     _activate_anchor(): void;

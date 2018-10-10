@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
@@ -27,7 +27,7 @@ RuleService.ctorParameters = () => [
     { type: Store },
     { type: RuleConfigurationService }
 ];
-function RuleService_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     RuleService.prototype.http;
     /** @type {?} */

@@ -2,7 +2,7 @@ import { Action } from "@ngrx/store";
 import { PageModel } from "../models/page.model";
 export declare enum PagesActionTypes {
     UPSERT = "[PAGE][DB] UPSERT",
-    DELETE = "[PAGE][DB] DELETE",
+    DELETE = "[PAGE][DB] DELETE"
 }
 export declare class UpsertPageAction implements Action {
     payload: PageModel[];

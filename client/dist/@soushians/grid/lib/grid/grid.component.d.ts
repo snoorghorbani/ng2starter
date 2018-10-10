@@ -9,6 +9,7 @@ import { GridService } from "../services/grid.service";
 import { GridConfigurationService } from "../services/grid-configuration.service";
 import { IGridItemModel } from "../models/gird-item.model";
 import { UserFacadeService } from "@soushians/user";
+import { WidgetModel } from "@soushians/widget";
 export declare class GridComponent implements OnInit {
     private store;
     private service;
@@ -24,6 +25,7 @@ export declare class GridComponent implements OnInit {
     destroyCallback: EventEmitter<{}>;
     initCallback: EventEmitter<{}>;
     oid: string;
+    widget: WidgetModel<any>;
     havePermission$: Observable<boolean>;
     username: string;
     options: GridsterConfig;
@@ -43,5 +45,9 @@ export declare class GridComponent implements OnInit {
     saveConfig(e: any): void;
     gridItemTypeChanged(item: IGridItemModel<any>): void;
     showConfig(item: IGridItemModel<any>): void;
+    goToEdit(): void;
+    /**
+     * private methods
+     */
     _get_grid_by_oid_and_update_component(): void;
 }

@@ -1,5 +1,5 @@
 import { OnInit } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { FormGroup, FormArray } from "@angular/forms";
 import { Store } from "@ngrx/store";
 import { WidgetModel, IWidgetUpsert } from "@soushians/widget";
 import { LinksWidgetConfigModel, LinkItem } from "../links-widget-config.model";
@@ -15,7 +15,7 @@ export declare class LinksUpsertComponent implements OnInit, IWidgetUpsert<Links
      * view methods
      */
     addlink(): void;
-    removelink(link: any): void;
+    removelink(link: any): FormArray;
     /**
      * private methods
      */

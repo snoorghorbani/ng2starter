@@ -1,10 +1,10 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 export class RuleModel {
 }
-function RuleModel_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     RuleModel.prototype._id;
 }

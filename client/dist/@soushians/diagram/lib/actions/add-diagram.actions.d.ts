@@ -13,7 +13,7 @@ export declare enum AddDiagramActionTypes {
     COLUMNS_MAPPING_CHANGED = "[DIAGRAM][ADD] COLUMNS_MAPPING_CHANGED",
     DATA_CALCULATED = "[DIAGRAM][ADD] DATA_CALCULATED",
     COLUMN_ADDED = "[DIAGRAM][ADD] COLUMN_ADDED",
-    GENERATE_DIAGRAM = "[DIAGRAM][ADD] GENERATE_DIAGRAM",
+    GENERATE_DIAGRAM = "[DIAGRAM][ADD] GENERATE_DIAGRAM"
 }
 export declare class AddDiagramAction implements Action {
     payload: AddDiagramApiModel.Response;

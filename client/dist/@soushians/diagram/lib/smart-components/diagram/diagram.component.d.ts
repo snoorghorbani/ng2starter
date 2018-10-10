@@ -1,5 +1,5 @@
 import { AfterViewInit, OnDestroy, Injector } from "@angular/core";
-import { Subscription } from "rxjs";
+import { Subscription, Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Store } from "@ngrx/store";
@@ -14,6 +14,7 @@ export declare class DiagramComponent implements AfterViewInit, OnDestroy {
     private http;
     private injector;
     private route;
+    unsubscribe: Subject<void>;
     modelIsCorrect: BehaviorSubject<boolean>;
     _model: DiagramModel;
     data: DiagramModel;

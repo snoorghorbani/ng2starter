@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import { FieldConfig } from "./field-config.model";
 export class FormSchemaModel {
@@ -24,7 +24,7 @@ export class FormSchemaModel {
         this._id = (Math.random() * 10).toString();
     }
 }
-function FormSchemaModel_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     FormSchemaModel.prototype._id;
     /** @type {?} */

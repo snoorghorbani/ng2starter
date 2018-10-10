@@ -8,7 +8,7 @@ export declare class GridModel {
     owner: string;
     config: GridsterConfig;
     items: IGridItemModel<any>[];
-    constructor({_id, oid, name, type, config, items}?: {
+    constructor({ _id, oid, name, type, config, items }?: {
         _id?: string;
         oid?: string;
         name?: string;

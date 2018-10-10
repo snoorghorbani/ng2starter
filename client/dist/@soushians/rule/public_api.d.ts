@@ -1,5 +1,5 @@
-export * from "./lib/rule.module";
-export * from "./lib/rule.config";
+export { RuleModule } from "./lib/rule.module";
+export { RuleModuleConfig } from "./lib/rule.config";
 export { GwtStep } from "./lib/models/gwt-step.model";
 export { GwtStepTypes } from "./lib/models/gwt-step-types.enum";
 export { GwtGivenStepUi } from "./lib/models/step-ui.model";

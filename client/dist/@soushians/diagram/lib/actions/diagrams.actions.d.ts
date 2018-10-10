@@ -4,7 +4,7 @@ export declare enum DiagramsActionTypes {
     GET_DIAGRAM = "[DIAGRAM] GET_DIAGRAM",
     GET_DIAGRAM_START = "[DIAGRAM] GET_DIAGRAM_START",
     GET_DIAGRAM_SUCCEED = "[DIAGRAM] GET_DIAGRAM_SUCCEED",
-    GET_DIAGRAM_FAILED = "[DIAGRAM] GET_DIAGRAM_FAILED",
+    GET_DIAGRAM_FAILED = "[DIAGRAM] GET_DIAGRAM_FAILED"
 }
 export declare class GetDiagrams implements Action {
     readonly type: DiagramsActionTypes;

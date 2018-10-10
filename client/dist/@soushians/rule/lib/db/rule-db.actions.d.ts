@@ -7,7 +7,7 @@ export declare enum RulesListActionTypes {
     RULES_LIST_FAILED = "[RULE][DB] RULES_LIST_FAILED",
     RULE_UPSERT = "[RULE][DB] RULE_UPSERT",
     GET_RULE = "[RULE][DB] GET_RULE",
-    RULE_FETCHED = "[RULE][DB] RULE_FETCHED",
+    RULE_FETCHED = "[RULE][DB] RULE_FETCHED"
 }
 export declare class RulesListAction implements Action {
     readonly type: RulesListActionTypes;

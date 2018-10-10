@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import * as tslib_1 from "tslib";
 import { Injectable } from "@angular/core";
@@ -42,7 +42,7 @@ var PageDbEffects = /** @class */ (function () {
     return PageDbEffects;
 }());
 export { PageDbEffects };
-function PageDbEffects_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     PageDbEffects.prototype.Upsert$;
     /** @type {?} */

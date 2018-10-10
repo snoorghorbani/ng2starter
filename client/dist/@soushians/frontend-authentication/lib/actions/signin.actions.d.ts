@@ -7,7 +7,7 @@ export declare enum SignInActionTypes {
     SIGNIN_SUCCEED = "[FRONTEND_AUTHENTICATION][Signin] Success",
     SIGNIN_FAILURE = "[FRONTEND_AUTHENTICATION][Signin] Failure",
     SIGNIN_REDIRECT = "[FRONTEND_AUTHENTICATION][Signin] Redirect",
-    SIGNIN_REQUIRED = "[FRONTEND_AUTHENTICATION][Signin] Required",
+    SIGNIN_REQUIRED = "[FRONTEND_AUTHENTICATION][Signin] Required"
 }
 export declare class WhoAmIAction implements Action {
     readonly type: SignInActionTypes;

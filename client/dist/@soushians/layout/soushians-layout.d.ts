@@ -10,9 +10,9 @@ export { SearchBoxComponent as ɵd } from './lib/dumb-components/search-box/sear
 export { TitleComponent as ɵi } from './lib/dumb-components/title/title.component';
 export { ToolbarMenuThemeBComponent as ɵg } from './lib/dumb-components/toolbar-menu-theme-b/toolbar-menu-theme-b';
 export { ToolbarMenuComponent as ɵf } from './lib/dumb-components/toolbar-menu/toolbar-menu.component';
-export { LayoutEffects as ɵn } from './lib/layout.effects';
+export { LayoutEffects as ɵo } from './lib/layout.effects';
 export { FeatureState as ɵb } from './lib/reducers';
-export { LayoutReducers as ɵk } from './lib/reducers/index';
-export { Reducer as ɵl } from './lib/reducers/layout.reducer';
-export { Reducer as ɵm } from './lib/reducers/toolbar.reducer';
+export { FeatureState as ɵl, LayoutReducers as ɵk } from './lib/reducers/index';
+export { Reducer as ɵm } from './lib/reducers/layout.reducer';
+export { Reducer as ɵn } from './lib/reducers/toolbar.reducer';
 export { LayoutConfigurationService as ɵc } from './lib/services/layout-configuration.service';

@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var GridModel = /** @class */ (function () {
     function GridModel(_a) {
@@ -18,7 +18,7 @@ var GridModel = /** @class */ (function () {
     return GridModel;
 }());
 export { GridModel };
-function GridModel_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     GridModel.prototype._id;
     /** @type {?} */

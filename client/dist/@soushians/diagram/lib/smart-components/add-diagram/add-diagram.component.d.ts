@@ -8,11 +8,13 @@ import { DiagramService } from "../../services/diagram.service";
 import { FeatureState } from "../../reducers";
 import { DiagramModel } from "../../models/diagram.model";
 import { SourceModel } from "../../models/source.model";
+import { Subject } from "rxjs";
 export declare class AddDiagramComponent implements OnInit, OnDestroy {
     private diagramService;
     private formBuilder;
     private store;
     private route;
+    unsubscribe: Subject<void>;
     formGroup: FormGroup;
     data: any;
     columns: any;

@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 export { DeletePageApiModel } from "./delete-page.model";
 export { DeletePageStartAction, DeletePageSucceedAction, DeletePageFailedAction } from "./delete-page.actions";

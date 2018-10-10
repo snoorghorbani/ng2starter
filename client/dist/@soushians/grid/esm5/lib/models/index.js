@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 export { UpsertGridApiModel } from "./upsert-grid.api-model";
 export { GridModel } from "./grid.model";

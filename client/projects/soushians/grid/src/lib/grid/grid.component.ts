@@ -22,7 +22,7 @@ import { DynamicGridItemViewDirective } from "../grid-item/dynamic-grid-item-vie
 @Component({
 	selector: "ngs-grid",
 	templateUrl: "./grid.component.html",
-	styleUrls: ["./grid.component.css"]
+	styleUrls: [ "./grid.component.css" ]
 })
 export class GridComponent implements OnInit {
 	@Output() itemValidateCallback = new EventEmitter();
@@ -60,14 +60,14 @@ export class GridComponent implements OnInit {
 				this.username = username;
 			});
 		this.gridItemTypes = Object.keys(this.configurationService.config$.getValue().types);
-		this.havePermission$ = this.store.select(getAccountInfo).pipe(map(user => {
-			const criteria = [
-				user, user._id, this.grid, this.grid.owner
-			];
-			if (criteria.some(i => !i)) return false;
+		this.havePermission$ = this.store.select(getAccountInfo).pipe(
+			map(user => {
+				const criteria = [ user, user._id, this.grid, this.grid.owner ];
+				if (criteria.some(i => !i)) return false;
 
-			return user._id == this.grid.owner;
-		}));
+				return user._id == this.grid.owner;
+			})
+		);
 	}
 
 	static itemChange(item, itemComponent) {
@@ -158,11 +158,11 @@ export class GridComponent implements OnInit {
 	}
 	// tslint:disable-next-line:member-ordering
 	// @ViewChild("DiagramViewComponent") _ngsDynamicGridItemView: DiagramViewComponent;
-	// goToEdit() {
-	// 	debugger;
-	// 	// tslint:disable-next-line:no-unused-expression
-	// 	this._ngsDynamicGridItemView;
-	// }
+	goToEdit() {
+		debugger;
+		// tslint:disable-next-line:no-unused-expression
+		// this._ngsDynamicGridItemView;
+	}
 	/**
 	 * private methods
 	 */

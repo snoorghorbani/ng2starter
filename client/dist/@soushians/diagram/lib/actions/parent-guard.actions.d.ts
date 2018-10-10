@@ -2,7 +2,7 @@ import { Action } from "@ngrx/store";
 export declare enum ParentGuardActionTypes {
     "ASK_FROM_PARENT_GUARD" = "[USER][GUARD] ASK_FROM_PARENT_GUARD",
     "PARENT_GUARD_APPROVED" = "[USER][GUARD] PARENT_GUARD_APPROVED",
-    "PARENT_GUARD_REJECTED" = "[USER][GUARD] PARENT_GUARD_REJECTED",
+    "PARENT_GUARD_REJECTED" = "[USER][GUARD] PARENT_GUARD_REJECTED"
 }
 export declare class AskFromParentGuardAction implements Action {
     readonly type: ParentGuardActionTypes;

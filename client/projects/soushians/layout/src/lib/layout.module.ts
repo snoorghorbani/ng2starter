@@ -24,7 +24,7 @@ import {
 	MatDatepickerModule,
 	MatProgressBarModule
 } from "@angular/material";
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule } from "@ngx-translate/core";
 
 import { NgsConfigModule } from "@soushians/config";
 
@@ -96,8 +96,9 @@ export class NgsLayoutModule {
 		return {
 			ngModule: RootNgsLayoutModule,
 			providers: [
-				{ provide: LOCALE_ID, useValue: 'en en-US' },
-				{ provide: MODULE_CONFIG_TOKEN, useValue: config }]
+				{ provide: LOCALE_ID, useValue: "en en-US" },
+				{ provide: MODULE_CONFIG_TOKEN, useValue: config }
+			]
 		};
 	}
 }
@@ -106,8 +107,8 @@ export class NgsLayoutModule {
 	imports: [
 		NgsLayoutModule,
 		StoreModule.forFeature("layout", LayoutReducers),
-		EffectsModule.forFeature([LayoutEffects])
+		EffectsModule.forFeature([ LayoutEffects ])
 	],
-	exports: [NgsLayoutModule]
+	exports: [ NgsLayoutModule ]
 })
-export class RootNgsLayoutModule { }
+export class RootNgsLayoutModule {}

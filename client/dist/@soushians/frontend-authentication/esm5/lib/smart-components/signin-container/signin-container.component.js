@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import { Component, Output, EventEmitter } from "@angular/core";
 import { Store } from "@ngrx/store";
@@ -41,7 +41,7 @@ var SigninContainerComponent = /** @class */ (function () {
     return SigninContainerComponent;
 }());
 export { SigninContainerComponent };
-function SigninContainerComponent_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     SigninContainerComponent.prototype.formId$;
     /** @type {?} */

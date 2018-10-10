@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 export class SourceModel {
     /**
@@ -10,7 +10,7 @@ export class SourceModel {
         Object.keys(initValue).forEach(key => this[key] = initValue[key]);
     }
 }
-function SourceModel_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     SourceModel.prototype._id;
     /** @type {?} */

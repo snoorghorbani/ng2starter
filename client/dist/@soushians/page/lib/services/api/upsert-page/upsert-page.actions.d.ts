@@ -3,7 +3,7 @@ import { PageModel } from "../../../models/page.model";
 export declare const enum UPSERT_PAGE_ACTION_TYPES {
     START = "[UPSERT_PAGE][API][UpsertPage] start",
     SUCCEED = "[UPSERT_PAGE][API][UpsertPage] succeed",
-    FAILED = "[UPSERT_PAGE][API][UpsertPage] failed",
+    FAILED = "[UPSERT_PAGE][API][UpsertPage] failed"
 }
 export declare class UpsertPageStartAction implements Action {
     payload: PageModel;

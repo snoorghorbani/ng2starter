@@ -3,6 +3,7 @@ export interface FormModuleConfig {
     env?: {
         production: boolean;
         frontend_server: string;
+        server: string;
     };
     endpoints?: {
         addForm: string;
@@ -10,6 +11,7 @@ export interface FormModuleConfig {
         getForm: string;
         getList: string;
         deleteForm: string;
+        getCaptcha: string;
     };
 }
 export declare const MODULE_DEFAULT_CONFIG: FormModuleConfig;

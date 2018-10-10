@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
  * @template T
@@ -16,7 +16,7 @@ export class WidgetModel {
         this.Config = Config || (/** @type {?} */ ({}));
     }
 }
-function WidgetModel_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     WidgetModel.prototype._id;
     /** @type {?} */

@@ -11,6 +11,7 @@ export interface WidgetModuleConfig {
         get: string;
         find: string;
         upsert: string;
+        deleteItem: string;
     };
     types?: IModuleConfigMapTypes;
 }

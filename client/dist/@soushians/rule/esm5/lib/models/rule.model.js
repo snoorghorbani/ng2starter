@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var RuleModel = /** @class */ (function () {
     function RuleModel() {
@@ -8,7 +8,7 @@ var RuleModel = /** @class */ (function () {
     return RuleModel;
 }());
 export { RuleModel };
-function RuleModel_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     RuleModel.prototype._id;
 }

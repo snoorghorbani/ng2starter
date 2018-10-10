@@ -3,7 +3,7 @@ import { WidgetModel } from "../../../models/widget.model";
 export declare const enum GET_WIDGETS_ACTION_TYPES {
     START = "[GET_WIDGETS][API][GetWidgets] start",
     SUCCEED = "[GET_WIDGETS][API][GetWidgets] succeed",
-    FAILED = "[GET_WIDGETS][API][GetWidgets] failed",
+    FAILED = "[GET_WIDGETS][API][GetWidgets] failed"
 }
 export declare class GetWidgetsStartAction implements Action {
     readonly type: GET_WIDGETS_ACTION_TYPES;

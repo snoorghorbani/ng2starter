@@ -5,6 +5,7 @@ import { WidgetModel, IWidgetView } from "@soushians/widget";
 import { LinksWidgetConfigModel } from "../links-widget-config.model";
 export declare class LinksViewComponent implements OnInit, IWidgetView<LinksWidgetConfigModel> {
     private store;
+    _widget: WidgetModel<LinksWidgetConfigModel>;
     widget: WidgetModel<LinksWidgetConfigModel>;
     havePermission$: Observable<boolean>;
     constructor(store: Store<any>);

@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 export { GetWidgetsApiModel } from "./get-widgets.model";
 export { GetWidgetsStartAction, GetWidgetsSucceedAction, GetWidgetsFailedAction } from "./get-widgets.actions";

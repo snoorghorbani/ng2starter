@@ -1,10 +1,10 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 export class IWidgetViewInputInterface {
 }
-function IWidgetViewInputInterface_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     IWidgetViewInputInterface.prototype.oid;
 }

@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
  * @abstract
@@ -20,7 +20,7 @@ HttpResponseBaseModel = /** @class */ (function () {
  * @template T
  */
 export { HttpResponseBaseModel };
-function HttpResponseBaseModel_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     HttpResponseBaseModel.prototype.Result;
     /**

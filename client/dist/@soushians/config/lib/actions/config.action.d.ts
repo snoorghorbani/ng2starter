@@ -4,7 +4,7 @@ export declare enum ConfigActionTypes {
     GET_CONFIGS = "[CONFIG] get config",
     CONFIG_LOADED_SUCCEED = "[CONFIG] load config succeed",
     UPDATE_CONFIG = "[CONFIG] update config",
-    CONFIG_LOADED_FAILED = "[CONFIG] load config failed",
+    CONFIG_LOADED_FAILED = "[CONFIG] load config failed"
 }
 export declare class GetConfigAction implements Action {
     readonly type: ConfigActionTypes;
