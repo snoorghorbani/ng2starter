@@ -1,4 +1,4 @@
-import { UserModel } from "../models";
+import { UserModel } from "../models/user.model";
 import { UserAction } from "./user.actions";
 export interface State {
     loaded: boolean;

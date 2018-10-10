@@ -1,6 +1,6 @@
 import { InjectionToken } from "@angular/core";
 import { Observable } from "rxjs/Observable";
-import { UserModel } from "./models";
+import { UserModel } from "./models/user.model";
 export interface UserModuleConfig {
     server?: string;
     env?: {

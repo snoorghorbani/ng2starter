@@ -1,5 +1,5 @@
-import { Action } from '@ngrx/store';
-import { ProfileViewModel } from '../models';
+import { Action } from "@ngrx/store";
+import { ProfileViewModel } from "../models/profile-view.model";
 export declare enum SearchActionTypes {
     SEARCH = "[USER][SEARCH] SEARCH",
     SEARCH_START = "[USER][SEARCH] SEARCH_START",

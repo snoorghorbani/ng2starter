@@ -1,7 +1,7 @@
-import { EventEmitter, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
-import { ResetPasswordRequestModel } from "../../models";
+import { EventEmitter, OnInit } from "@angular/core";
+import { FormGroup } from "@angular/forms";
+import { Observable } from "rxjs/Observable";
+import { ResetPasswordRequestModel } from "../../models/reset-password-request.model";
 import { MatSnackBar } from "@angular/material";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 export declare class ResetPasswordRequestComponent implements OnInit {
