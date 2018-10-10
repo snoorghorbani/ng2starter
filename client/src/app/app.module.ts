@@ -25,6 +25,7 @@ import { NgsFormModule } from "@soushians/form";
 import { NgsGridModule } from "@soushians/grid";
 import { RuleModule } from "@soushians/rule";
 import { GwtStepsModule } from "@soushians/gwt-steps";
+import { TranslateModule, TranslateService } from "@ngx-translate/core";
 
 /**
  *  module configs
@@ -58,6 +59,7 @@ import { DashboardModule } from "./dashboard/dashboard.module";
 			maxAge: 25
 		}),
 		EffectsModule.forRoot([]),
+		TranslateModule.forRoot(),
 
 		SharedModule,
 		SourceModule,
@@ -81,10 +83,14 @@ import { DashboardModule } from "./dashboard/dashboard.module";
 		DashboardModule,
 		AppRoutingModule
 	],
-	declarations: [AppComponent],
+	declarations: [ AppComponent ],
 	providers: [
 		// { provide: LOCALE_ID, useValue: 'fa-IR' },
 	],
-	bootstrap: [AppComponent]
+	bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {
+	constructor(private translateService: TranslateService) {
+		this.translateService.setDefaultLang("fa");
+	}
+}

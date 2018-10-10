@@ -19,9 +19,9 @@ export class ScenariosDbEffects {
 	UpsertScenario$ = this.actions$
 		.ofType(ScenariosListActionTypes.UPSERT)
 		.pipe(
-			map((action) => action.payload),
-			switchMap((scenario) => this.service.upsert(scenario)),
-			map((scenario) => new ScenarioFechedAction(scenario))
+			map(action => action.payload),
+			switchMap(scenario => this.service.upsert(scenario)),
+			map(scenario => new ScenarioFechedAction(scenario))
 		);
 
 	// @Effect()
@@ -39,6 +39,6 @@ export class ScenariosDbEffects {
 	// 	.pipe(
 	// 		switchMap((data: any) => this.service.getList()),
 	// 		map(res => new ScenariosListSucceedAction(res)),
-	// 		catchError(() => Observable.of(new ScenariosListFailedAction()))
+	// 		catchError(() => of(new ScenariosListFailedAction()))
 	// 	);
 }

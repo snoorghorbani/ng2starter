@@ -40,10 +40,7 @@ export class SigninEffects {
 			switchMap(() =>
 				this.signinService
 					.whoAmI()
-					.pipe(
-						map(user => new SigninSecceed(user)),
-						catchError(error => Observable.of(new SigninFailed(error)))
-					)
+					.pipe(map(user => new SigninSecceed(user)), catchError(error => of(new SigninFailed(error))))
 			)
 		);
 
@@ -55,10 +52,7 @@ export class SigninEffects {
 			switchMap(payload =>
 				this.signinService
 					.signin(payload)
-					.pipe(
-						map(user => new SigninSecceed(user)),
-						catchError(error => Observable.of(new SigninFailed(error)))
-					)
+					.pipe(map(user => new SigninSecceed(user)), catchError(error => of(new SigninFailed(error))))
 			)
 		);
 
@@ -70,10 +64,7 @@ export class SigninEffects {
 			switchMap(payload =>
 				this.signinService
 					.signup(payload)
-					.pipe(
-						map(user => new SignupSecceed(user)),
-						catchError(error => Observable.of(new SignupFailed(error)))
-					)
+					.pipe(map(user => new SignupSecceed(user)), catchError(error => of(new SignupFailed(error))))
 			)
 		);
 

@@ -1,6 +1,6 @@
 {
-    "name": "@soushians/user",
-    "version": "6.5.12",
-    "peerDependencies": {},
-    "dependencies": {}
+	"name": "@soushians/user",
+	"version": "6.5.30",
+	"peerDependencies": {},
+	"dependencies": {}
 }

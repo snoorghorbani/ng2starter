@@ -9,6 +9,7 @@ import { map, switchMap, catchError } from "rxjs/operators";
 import { DiagramService } from "../services/diagram.service";
 import { GetDiagramsApiModel } from "../models/get-diagrams-api.model";
 import { GetDiagramsSucceed, GetDiagramsFailed, GetDiagramsStart } from "../actions/diagrams.actions";
+import { of } from "rxjs";
 
 @Injectable()
 export class DiagramEffects {
@@ -25,10 +26,7 @@ export class DiagramEffects {
 			switchMap((data: GetDiagramsApiModel.Request) =>
 				this.diagramService
 					.getDiagrams()
-					.pipe(
-						map(res => new GetDiagramsSucceed(res)),
-						catchError(() => Observable.of(new GetDiagramsFailed()))
-					)
+					.pipe(map(res => new GetDiagramsSucceed(res)), catchError(() => of(new GetDiagramsFailed())))
 			)
 		);
 }

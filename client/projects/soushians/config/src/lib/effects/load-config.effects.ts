@@ -20,6 +20,6 @@ export class LoadConfigEffects {
 			map(action => action.payload),
 			switchMap((data: GetConfigsApiModel.Request) => this.configService.getConfigs()),
 			map(configs => new ConfigLoadedSucceedAction(configs)),
-			catchError(() => Observable.of(new ConfigLoadedFailedAction()))
+			catchError(() => of(new ConfigLoadedFailedAction()))
 		);
 }

@@ -51,7 +51,7 @@
         "@ngx-translate/core": "^10.0.2",
         "@schematics/angular": "^0.6.0",
         "@schematics/schematics": "^0.6.0",
-        "@soushians/authentication": "^6.2.x",
+        "@soushians/authentication": "^6.5.30",
         "@soushians/config": "^6.2.x",
         "@soushians/diagram": "^6.2.x",
         "@soushians/form": "^6.2.x",

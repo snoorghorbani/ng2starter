@@ -20,10 +20,10 @@
 //                //         return this.model.login(payload);
 //                // })
 //                .switchMap(() => {
-//                        return Observable.of({ type: ACTIONS.LOGIN_SUCCESS })
+//                        return of({ type: ACTIONS.LOGIN_SUCCESS })
 //                })
 //                .catch((error) => {
-//                        return Observable.of({ type: ACTIONS.LOGIN_FAILD })
+//                        return of({ type: ACTIONS.LOGIN_FAILD })
 //                })
 
 //}

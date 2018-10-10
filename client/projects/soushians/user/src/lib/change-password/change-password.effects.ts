@@ -33,7 +33,7 @@ export class ChangePasswordEffects {
 			return this.passwordService
 				.changePassword(data)
 				.map(res => new ChangePasswordSucceed(res))
-				.catch(() => Observable.of(new ChangePasswordFailed()));
+				.catch(() => of(new ChangePasswordFailed()));
 		})
 	);
 
@@ -50,6 +50,6 @@ export class ChangePasswordEffects {
 	//        .switchMap((data: ResetPasswordModel.Request) => {
 	//            return this.passwordService.resetPassword(data)
 	//                .map(() => new ResetPasswordSucceed())
-	//                .catch(() => Observable.of(new ResetPasswordFailed()))
+	//                .catch(() => of(new ResetPasswordFailed()))
 	//        });
 }

@@ -16,7 +16,7 @@ declare var c3: any;
 @Component({
 	selector: "diagram",
 	templateUrl: "./diagram.component.html",
-	styleUrls: ["./diagram.component.scss"]
+	styleUrls: [ "./diagram.component.scss" ]
 })
 export class DiagramComponent implements AfterViewInit, OnDestroy {
 	unsubscribe = new Subject<void>();
@@ -66,7 +66,7 @@ export class DiagramComponent implements AfterViewInit, OnDestroy {
 		//                         }
 		//                 })
 		//         )
-		//         // .switchMap((res: any) => Observable.of(res.Result.Data))
+		//         // .switchMap((res: any) => of(res.Result.Data))
 		//         .map((res: any) => res.Result.Data)
 		this.modelIsCorrect.delay(300).filter(data => data).subscribe(state => {
 			this.chart = c3.generate({
@@ -77,11 +77,8 @@ export class DiagramComponent implements AfterViewInit, OnDestroy {
 				// }
 			});
 			this.dataSubscribtion = this.diagramService
-				.getData(this.data.Source, this.unsubscribe).pipe(
-					filter(data => data != undefined),
-					takeUntil(this.unsubscribe)
-
-				)
+				.getData(this.data.Source, this.unsubscribe)
+				.pipe(filter(data => data != undefined), takeUntil(this.unsubscribe))
 				.subscribe(data => {
 					this.now = Date.now();
 					this.time = data.Time;
@@ -121,7 +118,12 @@ export class DiagramComponent implements AfterViewInit, OnDestroy {
 		this.dataSubscribtion.unsubscribe();
 		// this.diagramService.getData(this.data.Source, Date.now() - ((1000 - e.value) * this.data.Source.Interval), true)
 		this.dataSubscribtion = this.diagramService
-			.getData(this.data.Source, this.unsubscribe, Date.now() - (1000 - e.value) * this.data.Source.Interval, true)
+			.getData(
+				this.data.Source,
+				this.unsubscribe,
+				Date.now() - (1000 - e.value) * this.data.Source.Interval,
+				true
+			)
 			.subscribe(data => {
 				this.time = data.Time;
 				this.now = Date.now();

@@ -17,73 +17,7 @@
       "dom"
     ],
     "paths": {
-      "@soushians/layout": [
-        "dist/@soushians/layout"
-        // "projects/soushians/layout/src/public_api"
-      ],
-      "@soushians/config": [
-        // "dist/@soushians/config"
-        "projects/soushians/config/src/public_api"
-      ],
-      "@soushians/user": [
-        "dist/@soushians/user"
-        // "projects/soushians/user/src/public_api"
-      ],
-      "@soushians/shared": [
-        "dist/@soushians/shared"
-        // "projects/soushians/shared/src/public_api"
-      ],
-      "@soushians/authentication": [
-        "dist/@soushians/authentication"
-        // "projects/soushians/authentication/src/public_api"
-      ],
-      "@soushians/form": [
-        "dist/@soushians/form"
-        // "projects/soushians/form/src/public_api"
-      ],
-      "@soushians/diagram": [
-        // "dist/@soushians/diagram"
-        "projects/soushians/diagram/src/public_api"
-      ],
-      "@soushians/source": [
-        "dist/@soushians/source"
-        // "projects/soushians/source/src/public_api"
-      ],
-      "@soushians/socket": [
-        "dist/@soushians/socket"
-        // "projects/soushians/socket/src/public_api"
-      ],
-      "@soushians/widget": [
-        // "dist/@soushians/widget"
-        "projects/soushians/widget/src/public_api"
-      ],
-      "@soushians/widget-types": [
-        // "dist/@soushians/widget-types"
-        "projects/soushians/widget-types/src/public_api"
-      ],
-      "@soushians/grid": [
-        // "dist/@soushians/grid"
-        "projects/soushians/grid/src/public_api"
-      ],
-      "@soushians/rule": [
-        "dist/@soushians/rule"
-        // "projects/soushians/rule/src/public_api"
-      ],
-      "@soushians/frontend-authentication": [
-        "dist/@soushians/frontend-authentication"
-        // "projects/soushians/frontend-authentication/src/public_api"
-      ],
-      "@soushians/page": [
-        // "dist/@soushians/page"
-        "projects/soushians/page/src/public_api"
-      ],
-      "@soushians/gwt-steps": [
-        "dist/@soushians/gwt-steps"
-        // "projects/soushians/gwt-steps/src/public_api"
-      ],
-      "@soushians/test": [
-        "dist/soushians/test"
-      ],
+    
       "configs": [
         //  "dist/configs"
         "projects/configs/src/public_api"

@@ -26,6 +26,6 @@ export class RulesListEffects {
 	// 	.pipe(
 	// 		switchMap((data: any) => this.service.getList()),
 	// 		map(res => new RulesListSucceedAction(res)),
-	// 		catchError(() => Observable.of(new RulesListFailedAction()))
+	// 		catchError(() => of(new RulesListFailedAction()))
 	// 	);
 }

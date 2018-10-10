@@ -39,7 +39,7 @@ export class AddDiagramEffects {
 					.addDiagram(data)
 					.pipe(
 						map(res => new AddDiagramActionSucceed(res)),
-						catchError(() => Observable.of(new AddDiagramActionFailed()))
+						catchError(() => of(new AddDiagramActionFailed()))
 					)
 			)
 		);

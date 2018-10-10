@@ -10,6 +10,7 @@ import * as FeatureReducer from "../../user.reducers";
 import { EditProfile } from "../edit-profile.actions";
 import { UserConfigurationService } from "../../services/user-configuration.service";
 import { UserModuleConfig } from "../../user.config";
+import { of } from "rxjs";
 
 @Component({
 	selector: "profile-edit-contianer",
@@ -34,7 +35,7 @@ export class ProfileEditContainerComponent implements OnInit {
 			.map(config => config.Config.Roles);
 		// TODO:
 		// this.groups = this.diagramService.getGroups();
-		this.groups = Observable.of([ "test1", "test2" ]);
+		this.groups = of([ "test1", "test2" ]);
 
 		this.config$ = this.configService.config$;
 	}
