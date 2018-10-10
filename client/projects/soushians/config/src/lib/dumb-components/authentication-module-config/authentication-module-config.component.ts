@@ -11,8 +11,7 @@ export class AuthenticationModuleConfigComponent {
 		endpoints: new FormGroup({
 			signIn: new FormControl("", [Validators.required]),
 			signOut: new FormControl("", [Validators.required]),
-			whoAmI: new FormControl("", [Validators.required]),
-			captchaUrl: new FormControl("", [Validators.required])
+			whoAmI: new FormControl("", [Validators.required])
 		}),
 		forms: new FormGroup({
 			signIn: new FormControl("", [Validators.required])

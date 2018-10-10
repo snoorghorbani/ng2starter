@@ -2,7 +2,7 @@
 import { Observable, of } from "rxjs";
 
 export interface AuthenticationModuleConfig {
-    server: string,
+    server: string;
     endpoints?: {
         signOut?: string;
         signIn?: string;
