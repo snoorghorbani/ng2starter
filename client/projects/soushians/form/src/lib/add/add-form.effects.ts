@@ -31,6 +31,6 @@ export class AddFormEffects {
 			map(action => action.payload),
 			switchMap((data: AddFormApiModel.Request) => this.service.add(data)),
 			map(res => new AddFormSucceedAction()),
-			catchError(() => Observable.of(new AddFormFailedAction()))
+			catchError(() => of(new AddFormFailedAction()))
 		);
 }

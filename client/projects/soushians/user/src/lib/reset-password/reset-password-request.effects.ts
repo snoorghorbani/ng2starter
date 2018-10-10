@@ -55,6 +55,6 @@ export class ResetPasswordRequestEffects {
 			map(action => action.payload),
 			switchMap((data: ResetPasswordRequestModel.Request) => this.passwordService.requestResetPasswordLink(data)),
 			map(() => new ResetPasswordLinkRequestSucceed()),
-			catchError(() => Observable.of(new ResetPasswordLinkRequestFailed()))
+			catchError(() => of(new ResetPasswordLinkRequestFailed()))
 		);
 }

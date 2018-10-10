@@ -38,7 +38,7 @@
 // 				.addDiagram(data)
 // 				.pipe(
 // 					map((res) => new AddDiagramActionSucceed(res)),
-// 						catch(() => Observable.of(new AddDiagramActionFailed()))
+// 						catch(() => of(new AddDiagramActionFailed()))
 // 			)
 // 	)
 // 			)

@@ -28,10 +28,7 @@ export class ProfileViewEffects {
 			switchMap((data: EditProfile_ApiModel.Request) =>
 				this.userService
 					.getAccountInfo()
-					.pipe(
-						map(res => new GetProfileSucceed(res)),
-						catchError(() => Observable.of(new GetProfileFailed()))
-					)
+					.pipe(map(res => new GetProfileSucceed(res)), catchError(() => of(new GetProfileFailed())))
 			)
 		);
 

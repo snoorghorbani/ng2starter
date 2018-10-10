@@ -33,7 +33,7 @@ export class EditFormEffects {
 			map(action => action.payload),
 			switchMap((data: EditFormApiModel.Request) => this.service.update(data)),
 			map(formSchema => new EditFormSucceedAction(formSchema)),
-			catchError(() => Observable.of(new EditFormFailedAction()))
+			catchError(() => of(new EditFormFailedAction()))
 		);
 
 	@Effect()

@@ -21,7 +21,7 @@ export class SourceEffects {
 		switchMap((data: UpsertSourceApiModel.Request) => {
 			return this.sourceService
 				.upsertSource(data)
-				.pipe(map(res => new SourceSubmitSucceed()), catchError(() => Observable.of(new SourceSubmitFailed())));
+				.pipe(map(res => new SourceSubmitSucceed()), catchError(() => of(new SourceSubmitFailed())));
 		})
 	);
 

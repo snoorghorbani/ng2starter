@@ -26,5 +26,5 @@
 // 		.map(toPayload)
 // 		.switchMap((data: AddFormApiModel.Request) => this.service.add(data))
 // 		.map(res => new AddFormSucceedAction())
-// 		.catch(() => Observable.of(new AddFormFailedAction()));
+// 		.catch(() => of(new AddFormFailedAction()));
 // }

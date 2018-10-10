@@ -26,16 +26,16 @@
         // "projects/soushians/config/src/public_api"
       ],
       "@soushians/user": [
-        "dist/@soushians/user"
-        // "projects/soushians/user/src/public_api"
+        // "dist/@soushians/user"
+        "projects/soushians/user/src/public_api"
       ],
       "@soushians/shared": [
         "dist/@soushians/shared"
         // "projects/soushians/shared/src/public_api"
       ],
       "@soushians/authentication": [
-        "dist/@soushians/authentication"
-        // "projects/soushians/authentication/src/public_api"
+        // "dist/@soushians/authentication"
+        "projects/soushians/authentication/src/public_api"
       ],
       "@soushians/form": [
         "dist/@soushians/form"

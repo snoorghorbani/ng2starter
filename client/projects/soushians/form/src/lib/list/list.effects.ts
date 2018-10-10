@@ -41,6 +41,6 @@ export class FormsListEffects {
 		.pipe(
 			switchMap((data: any) => this.service.getList()),
 			map(res => new FormsListSucceedAction(res)),
-			catchError(() => Observable.of(new FormsListFailedAction()))
+			catchError(() => of(new FormsListFailedAction()))
 		);
 }

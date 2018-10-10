@@ -1,14 +1,14 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Rx";
-
-import { UserModel, EditProfile_ApiModel, ProfileViewModel, FailedLoginReportModel } from "../models";
-import { UserConfigurationService } from "./user-configuration.service";
+import { map, filter, take, switchMap, combineLatest } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 
 import { stringTemplate } from "@soushians/shared";
-import { map } from "rxjs/operators";
+import { getUser } from "@soushians/authentication";
 
+import { UserConfigurationService } from "./user-configuration.service";
+import { UserModel, EditProfile_ApiModel, ProfileViewModel, FailedLoginReportModel } from "../models";
 import { GetProfile } from "../profile-view/profile-view.actions";
 import { getAccountInfo } from "../dashboard/account.reducer";
 import { UserModuleConfig } from "../user.config";
@@ -30,23 +30,30 @@ export class UserService {
 	}
 
 	getAccountInfo(): Observable<ProfileViewModel.Response> {
-		return this.configurationService.config$
-			.filter(config => config.endpoints.profileInformation != "")
-			.take(1)
-			.switchMap(config =>
-				this.http
-					.get<any>(config.env[config.server] + config.endpoints.profileInformation)
+		return this.configurationService.config$.pipe(
+			filter(config => config.endpoints.profileInformation != ""),
+			take(1),
+			combineLatest(this.store.select(getUser)),
+			switchMap(([ config, user ]: [UserModuleConfig, any]) => {
+				debugger;
+				return this.http
+					.get<any>(
+						stringTemplate(config.env[config.server] + config.endpoints.profileInformation, {
+							user: user.User
+						})
+					)
 					.let(config.responseToUserInfo)
 					.pipe(
 						map((response: UserModel) => {
 							const user: any = Object.assign({}, response);
 							if (user.Role) {
-								user.Roles = [user.Role];
+								user.Roles = [ user.Role ];
 							}
 							return user;
 						})
-					)
-			);
+					);
+			})
+		);
 	}
 	editProfile(data: EditProfile_ApiModel.Request): Observable<UserModel> {
 		const model = new EditProfile_ApiModel.Request(data);
@@ -55,7 +62,7 @@ export class UserService {
 				stringTemplate(this.config.env[this.config.server] + this.config.endpoints.editProfile, model),
 				model.getRequestBody()
 			)
-			.map(response => new EditProfile_ApiModel.Response(response).extractData());
+			.pipe(map(response => new EditProfile_ApiModel.Response(response).extractData()));
 	}
 	// TODO: remove
 	getInfo(data: ProfileViewModel.Request): Observable<any> {
@@ -65,14 +72,12 @@ export class UserService {
 			.get<ProfileViewModel.Response>(
 				stringTemplate(this.config.env[this.config.server] + this.config.endpoints.getAccountInfo, model)
 			)
-			.map(response => response);
+			.pipe(map(response => response));
 	}
 
 	is_role(role: string): Observable<boolean> {
 		return this.store
 			.select(getAccountInfo)
-			.filter(user => user && user.Roles != undefined)
-			.take(1)
-			.map(user => user.Roles.indexOf(role) > -1);
+			.pipe(filter(user => user && user.Roles != undefined), take(1), map(user => user.Roles.indexOf(role) > -1));
 	}
 }

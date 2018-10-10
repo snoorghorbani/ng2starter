@@ -41,24 +41,6 @@ export const MODULE_DEFAULT_CONFIG: LayoutModuleConfigModel = {
 	layoutMode: "with-margin", // | "without-margin" | "default",
 	title: "",
 	menuItems: [
-		{
-			route: "/",
-			icon: "multiline_chart",
-			roles: ["Admin", "User"],
-			title: "صفحه اصلی"
-		},
-		{
-			route: "/configs",
-			icon: "settings",
-			roles: ["Admin"],
-			title: "تنظیمات"
-		},
-		{
-			route: "/source",
-			icon: "device_hub",
-			roles: ["Admin"],
-			title: "آدرس سرویس ها"
-		}
 	],
 	signoutAction: {} as Action,
 	menu_item_authorization_operator

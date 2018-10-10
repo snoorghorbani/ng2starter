@@ -38,7 +38,7 @@ export class EditProfileEffects {
 	// 	return this.service
 	// 		.editProfile(data)
 	// 		.map((res) => new EditProfileSucceed(res))
-	// 		.catch(() => Observable.of(new EditProfileFailed()));
+	// 		.catch(() => of(new EditProfileFailed()));
 	// });
 
 	@Effect()

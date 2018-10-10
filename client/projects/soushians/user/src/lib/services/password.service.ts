@@ -8,6 +8,7 @@ import * as FeatureReducer from "../user.reducers";
 
 import { ResetPasswordModel, ResetPasswordRequestModel, ChangePasswordModel } from "../models";
 import { UserConfigurationService } from "./user-configuration.service";
+import { of } from "rxjs";
 
 @Injectable({
 	providedIn: "root"
@@ -24,9 +25,7 @@ export class PasswordService {
 	}
 
 	isValidResetPasswordRequest(): Observable<boolean> {
-		return this.numberOfRequeseted$
-			.take(1)
-			.switchMap(count => (count < 3 ? Observable.of(true) : Observable.of(false)));
+		return this.numberOfRequeseted$.take(1).switchMap(count => (count < 3 ? of(true) : of(false)));
 	}
 
 	isValidResetPasswordReset(data: ResetPasswordModel.Request): Observable<any> {
