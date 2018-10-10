@@ -1,6 +1,6 @@
 {
   "name": "@soushians/config",
-  "version": "6.5.30",
+  "version": "6.6.0",
   "peerDependencies": {},
   "main": "bundles/soushians-config.umd.js",
   "module": "fesm5/soushians-config.js",

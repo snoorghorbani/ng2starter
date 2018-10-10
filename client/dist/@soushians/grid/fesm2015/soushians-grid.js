@@ -1,4 +1,4 @@
-import { InjectionToken, Component, Inject, Injectable, ComponentFactoryResolver, ViewContainerRef, Directive, Input, ViewChild, Output, EventEmitter, NgModule, defineInjectable, inject } from '@angular/core';
+import { InjectionToken, Component, Inject, Injectable, ComponentFactoryResolver, ViewContainerRef, Directive, Input, Output, EventEmitter, ViewChild, NgModule, defineInjectable, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BehaviorSubject, of } from 'rxjs';
 import { Store, StoreModule } from '@ngrx/store';
