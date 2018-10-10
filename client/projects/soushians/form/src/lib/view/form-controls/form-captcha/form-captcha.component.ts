@@ -2,12 +2,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
 import { Store } from "@ngrx/store";
 
-import { Field, FieldConfig } from "../../../models";
-import { FormCaptchaService } from "../../../services/form-captcha.service";
+import { FieldConfig } from "../../../models/field-config.model";
+import { Field } from "../../../models/field.interface";
 import { CaptchaModel } from "../../../models/captcha.model";
-import { GetCaptchaAction } from "../../../add/captcha.actions";
-import { MainContainerState } from "../../../main-container";
-import { Refresh } from "@ngrx/store-devtools/src/actions";
+import { FormCaptchaService } from "../../../services/form-captcha.service";
 
 @Component({
 	selector: "lib-form-captcha",
@@ -19,7 +17,7 @@ export class FormCaptchaComponent implements OnInit, Field {
 
 	captcha: CaptchaModel;
 	captchaSrc: string;
-	constructor(private service: FormCaptchaService, private store: Store<MainContainerState>) {
+	constructor(private service: FormCaptchaService, private store: Store<any>) {
 		this.captcha = new CaptchaModel({
 			captchaImg: "http://172.22.34.28:8001/api/authentication/captcha"
 		});
@@ -30,7 +28,6 @@ export class FormCaptchaComponent implements OnInit, Field {
 		// this.store.dispatch(new GetCaptchaAction());
 	}
 	refresh() {
-		this.captcha.captchaImg = `http://172.22.34.28:8001/api/authentication/captcha?${Math.random()}`
+		this.captcha.captchaImg = `http://172.22.34.28:8001/api/authentication/captcha?${Math.random()}`;
 	}
-
 }

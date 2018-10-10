@@ -2,11 +2,11 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { Action } from "@ngrx/store";
 import { Actions, Effect } from "@ngrx/effects";
-import { of } from "rxjs/observable/of";
+import { of } from "rxjs";
 import { Store } from "@ngrx/store";
 import { switchMap, map, takeUntil, delay, catchError } from "rxjs/operators";
 
-import { ResetPasswordRequestModel } from "../models";
+import { ResetPasswordRequestModel } from "../models/reset-password-request.model";
 
 import {
 	ResetPasswordRequestActionTypes,

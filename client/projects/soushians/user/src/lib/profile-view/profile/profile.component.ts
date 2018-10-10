@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit, Input } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 
-import { UserModel } from "../../models";
+import { UserModel } from "../../models/user.model";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 @Component({

@@ -1,9 +1,9 @@
 ﻿import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs/Observable";
-import { UserModel } from "../../models";
 import { Store } from "@ngrx/store";
 
-import * as appReducer from "../../user.reducers";
+import { UserModel } from "../../models/user.model";
+import { getAccountInfo } from "../account.reducer";
 
 @Component({
 	selector: "user-dashboard-container",
@@ -13,8 +13,8 @@ import * as appReducer from "../../user.reducers";
 export class DashboardContainerComponent implements OnInit {
 	user$: Observable<UserModel>;
 	// is_agent : Observable<boolean>;
-	constructor(private store: Store<appReducer.UserState>) {
-		this.user$ = this.store.select(appReducer.getAccountInfo);
+	constructor(private store: Store<any>) {
+		this.user$ = this.store.select(getAccountInfo);
 		// this.is_agent = signinService.is_agent();
 	}
 

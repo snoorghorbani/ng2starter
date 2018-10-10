@@ -3,11 +3,11 @@ import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import { Action } from "@ngrx/store";
 import { Actions, Effect } from "@ngrx/effects";
-import { of } from "rxjs/observable/of";
+import { of } from "rxjs";
 import { map, catchError, switchMap } from "rxjs/operators";
 
 import { UserService } from "../services/user.service";
-import { EditProfile_ApiModel } from "../models";
+import { EditProfile_ApiModel } from "../models/profile-edit.model";
 import {
 	EditProfileActionTypes,
 	EditProfileStart,

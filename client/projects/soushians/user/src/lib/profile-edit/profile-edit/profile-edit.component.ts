@@ -1,7 +1,6 @@
 ﻿import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 
 import { FormGroup } from "@angular/forms";
-import { ChangePasswordModel } from "../../models";
 import { ConfigModel } from "@soushians/config";
 import { Observable } from "rxjs/Observable";
 import { ActivatedRoute, Router } from "@angular/router";

@@ -4,10 +4,10 @@ import { Observable } from "rxjs/Observable";
 import { Action } from "@ngrx/store";
 import { Actions, Effect } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
-import { of } from "rxjs/observable/of";
+import { of } from "rxjs";
 import { map, switchMap } from "rxjs/operators";
 
-import { ChangePasswordModel } from "../models";
+import { ChangePasswordModel } from "../models/change-password.model";
 
 import { PasswordService } from "../services/password.service";
 import {

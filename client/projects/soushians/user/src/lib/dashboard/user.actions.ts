@@ -1,6 +1,6 @@
 ﻿import { Action } from "@ngrx/store";
 
-import { UserModel } from "../models";
+import { UserModel } from "../models/user.model";
 
 export enum UserActionTypes {
 	USER_SELECTED = "[USER] USER_SELECTED",

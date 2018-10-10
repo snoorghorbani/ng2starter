@@ -1,6 +1,7 @@
 ﻿import { Action } from "@ngrx/store";
 
-import { EditProfile_ApiModel, UserModel } from "../models";
+import { UserModel } from "../models/user.model";
+import { EditProfile_ApiModel } from "../models/profile-edit.model";
 
 export enum EditProfileActionTypes {
 	EDIT_PROFILE = "[USER][PASSWORD] EDIT_PROFILE",
@@ -11,22 +12,18 @@ export enum EditProfileActionTypes {
 
 export class EditProfile implements Action {
 	readonly type = EditProfileActionTypes.EDIT_PROFILE;
-	constructor(public payload: EditProfile_ApiModel.Request) { }
+	constructor(public payload: EditProfile_ApiModel.Request) {}
 }
 export class EditProfileStart implements Action {
 	readonly type = EditProfileActionTypes.EDIT_PROFILE_START;
-	constructor(public payload: EditProfile_ApiModel.Request) { }
+	constructor(public payload: EditProfile_ApiModel.Request) {}
 }
 export class EditProfileSucceed implements Action {
 	readonly type = EditProfileActionTypes.EDIT_PROFILE_SUCCEED;
-	constructor(public payload: UserModel) { }
+	constructor(public payload: UserModel) {}
 }
 export class EditProfileFailed implements Action {
 	readonly type = EditProfileActionTypes.EDIT_PROFILE_FAILED;
 }
 
-export type EditProfileAction =
-	| EditProfile
-	| EditProfileStart
-	| EditProfileSucceed
-	| EditProfileFailed;
+export type EditProfileAction = EditProfile | EditProfileStart | EditProfileSucceed | EditProfileFailed;

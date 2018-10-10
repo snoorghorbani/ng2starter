@@ -2,12 +2,12 @@
 import { Observable } from "rxjs/Observable";
 import { Action } from "@ngrx/store";
 import { Actions, Effect } from "@ngrx/effects";
-import { of } from "rxjs/observable/of";
+import { of } from "rxjs";
 import { Store } from "@ngrx/store";
 import { map, switchMap, catchError } from "rxjs/operators";
 
 import { UserService } from "../services/user.service";
-import { EditProfile_ApiModel } from "../models";
+import { EditProfile_ApiModel } from "../models/profile-edit.model";
 import { ProfileViewActionTypes, GetProfileStart, GetProfileSucceed, GetProfileFailed } from "./profile-view.actions";
 import { RefreshUserInfoAction } from "../dashboard/user.actions";
 

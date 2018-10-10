@@ -4,7 +4,6 @@ import * as resetPasswordRequestReducer from "./reset-password/reset-password-re
 import * as changePassword from "./change-password/change-password.reducer";
 import * as editProfileReducer from "./profile-edit/edit-profile.reducer";
 import * as searchReducer from "./search-account/search.reducer";
-import { UserModel } from "./models";
 
 export interface UserState {
 	user: userReducer.State;

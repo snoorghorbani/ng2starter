@@ -1,6 +1,11 @@
 {
-    "name": "@soushians/user",
-    "version": "6.6.0",
-    "peerDependencies": {},
-    "dependencies": {}
+	"name": "@soushians/user",
+	"version": "6.6.0",
+	"peerDependencies": {
+		"@angular/common": "^6.0.0-rc.0 || ^6.0.0",
+		"@angular/core": "^6.0.0-rc.0 || ^6.0.0",
+		"@soushians/shared": "*",
+		"@soushians/config": "*"
+	},
+	"dependencies": {}
 }

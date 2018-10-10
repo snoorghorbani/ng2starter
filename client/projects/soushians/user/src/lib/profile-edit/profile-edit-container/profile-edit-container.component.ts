@@ -2,15 +2,16 @@
 import { Observable } from "rxjs/Observable";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Store } from "@ngrx/store";
+import { of } from "rxjs";
 
-import { ConfigModel, getAppConfig } from "@soushians/config";
+import { getAppConfig } from "@soushians/config";
 
-import { UserModel, EditProfile_ApiModel } from "../../models";
+import { UserModel } from "../../models/user.model";
 import * as FeatureReducer from "../../user.reducers";
 import { EditProfile } from "../edit-profile.actions";
 import { UserConfigurationService } from "../../services/user-configuration.service";
 import { UserModuleConfig } from "../../user.config";
-import { of } from "rxjs";
+import { map, filter } from "rxjs/operators";
 
 @Component({
 	selector: "profile-edit-contianer",
@@ -27,12 +28,12 @@ export class ProfileEditContainerComponent implements OnInit {
 	roles$: Observable<string[]>;
 	groups: Observable<string[]>;
 	config$: Observable<UserModuleConfig>;
+
 	constructor(private store: Store<FeatureReducer.AppState>, private configService: UserConfigurationService) {
 		this.userInforamation$ = this.store.select(FeatureReducer.getAccountInfo);
 		this.roles$ = this.store
 			.select(getAppConfig)
-			.filter(config => config != undefined)
-			.map(config => config.Config.Roles);
+			.pipe(filter(config => config != undefined), map(config => config.Config.Roles));
 		// TODO:
 		// this.groups = this.diagramService.getGroups();
 		this.groups = of([ "test1", "test2" ]);

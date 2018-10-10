@@ -6,7 +6,7 @@ import { Store } from "@ngrx/store";
 
 import { responseStatusTypes } from "@soushians/shared";
 
-import { ProfileViewModel } from "../../models";
+import { ProfileViewModel } from "../../models/profile-view.model";
 import * as FeatureReducer from "../../user.reducers";
 import { Search } from "../search.actions";
 
