@@ -4,6 +4,7 @@ export interface FormModuleConfig {
 	env?: {
 		production: boolean;
 		frontend_server: string;
+		server: string;
 	};
 	endpoints?: {
 		addForm: string;
@@ -11,19 +12,22 @@ export interface FormModuleConfig {
 		getForm: string;
 		getList: string;
 		deleteForm: string;
+		getCaptcha: string;
 	};
 }
 export const MODULE_DEFAULT_CONFIG: FormModuleConfig = {
 	env: {
 		production: false,
-		frontend_server: "frontend/server/did/not/set"
+		frontend_server: "frontend/server/did/not/set",
+		server: "server/did/not/set"
 	},
 	endpoints: {
 		addForm: "",
 		editForm: "",
 		getForm: "",
 		getList: "",
-		deleteForm: ""
+		deleteForm: "",
+		getCaptcha: "/api/authentication/captcha"
 	}
 };
 export const MODULE_CONFIG_TOKEN = new InjectionToken<FormModuleConfig>("FormModuleConfig");

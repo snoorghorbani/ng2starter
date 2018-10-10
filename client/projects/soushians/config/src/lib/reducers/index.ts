@@ -5,7 +5,6 @@ import { ConfigLoadedFailedAction, ConfigLoadedSucceedAction } from "../actions"
 export interface ConfigState {
 	list: configList.State;
 }
-ConfigLoadedFailedAction;
 export const ConfigReducers = {
 	list: configList.Reducer
 };
