@@ -4,6 +4,8 @@ import * as resetPasswordRequestReducer from "./reset-password/reset-password-re
 import * as changePassword from "./change-password/change-password.reducer";
 import * as editProfileReducer from "./profile-edit/edit-profile.reducer";
 import * as searchReducer from "./search-account/search.reducer";
+import { UserModel } from "./models/user.model";
+import { responseStatusTypes } from "@soushians/shared";
 export interface UserState {
     user: userReducer.State;
     resetPasswordRequest: resetPasswordRequestReducer.State;
@@ -28,6 +30,6 @@ export declare const selectResetPasswordRequestState: MemoizedSelector<object, r
 export declare const getNumberOfRequeseted: MemoizedSelector<object, number>;
 export declare const getResetPasswordRequestStatus: MemoizedSelector<object, boolean>;
 export declare const selectUserInformaionState: MemoizedSelector<object, userReducer.State>;
-export declare const getAccountInfo: MemoizedSelector<object, import("projects/soushians/user/src/lib/models/user.model").UserModel>;
+export declare const getAccountInfo: MemoizedSelector<object, UserModel>;
 export declare const selectSearchState: MemoizedSelector<object, searchReducer.State>;
-export declare const getSearchStatus: MemoizedSelector<object, import("dist/@soushians/shared/lib/enums/response-status-type.enum").responseStatusTypes>;
+export declare const getSearchStatus: MemoizedSelector<object, responseStatusTypes>;

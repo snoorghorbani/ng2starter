@@ -1,9 +1,12 @@
 import { createSelector, createFeatureSelector, MemoizedSelector } from "@ngrx/store";
 import * as userReducer from "./dashboard/account.reducer";
+import { getAccountInfo as _getAccountInfo } from "./dashboard/account.reducer";
 import * as resetPasswordRequestReducer from "./reset-password/reset-password-request.reducer";
 import * as changePassword from "./change-password/change-password.reducer";
 import * as editProfileReducer from "./profile-edit/edit-profile.reducer";
 import * as searchReducer from "./search-account/search.reducer";
+import { UserModel } from "./models/user.model";
+import { responseStatusTypes } from "@soushians/shared";
 
 export interface UserState {
 	user: userReducer.State;
@@ -47,7 +50,7 @@ export const getResetPasswordRequestStatus = createSelector(
 
 //#region user
 export const selectUserInformaionState = createSelector(selectFeatureState, (state: UserState) => state.user);
-export const getAccountInfo = createSelector(selectUserInformaionState, userReducer.getAccountInfo);
+export const getAccountInfo = createSelector(selectUserInformaionState, _getAccountInfo);
 //#endregion
 
 //#region search
