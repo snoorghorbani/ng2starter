@@ -13,7 +13,7 @@ import { RefreshUserInfoAction } from "../dashboard/user.actions";
 
 @Injectable()
 export class ProfileViewEffects {
-	constructor(private actions$: Actions<any>, private userService: UserService) {}
+	constructor(private actions$: Actions<any>, private userService: UserService) { }
 
 	@Effect()
 	ProfileRequest$ = this.actions$

@@ -34,7 +34,8 @@ export class UserService {
 			filter(config => config.endpoints.profileInformation != ""),
 			take(1),
 			combineLatest(this.store.select(getUser)),
-			switchMap(([ config, user ]: [UserModuleConfig, any]) => {
+			filter(([config, user]: [UserModuleConfig, any]) => user != undefined),
+			switchMap(([config, user]: [UserModuleConfig, any]) => {
 				debugger;
 				return this.http
 					.get<any>(
@@ -45,11 +46,11 @@ export class UserService {
 					.let(config.responseToUserInfo)
 					.pipe(
 						map((response: UserModel) => {
-							const user: any = Object.assign({}, response);
-							if (user.Role) {
-								user.Roles = [ user.Role ];
+							const _user: any = Object.assign({}, response);
+							if (_user.Role) {
+								_user.Roles = [_user.Role];
 							}
-							return user;
+							return _user;
 						})
 					);
 			})
