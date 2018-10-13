@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 export { GetPagesApiModel, GetPagesStartAction, GetPagesSucceedAction, GetPagesFailedAction } from "./get-pages";
 export { GetPageApiModel, GetPageStartAction, GetPageSucceedAction, GetPageFailedAction } from "./get-page";

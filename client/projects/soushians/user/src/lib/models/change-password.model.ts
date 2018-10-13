@@ -1,6 +1,5 @@
-﻿import { Injectable } from "@angular/core";
-import { HttpRequestBaseModel } from "@soushians/shared";
-import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn } from "@angular/forms";
+﻿import { HttpRequestBaseModel } from "@soushians/shared";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { MatchValidator } from "@soushians/shared";
 
 export namespace ChangePasswordModel {

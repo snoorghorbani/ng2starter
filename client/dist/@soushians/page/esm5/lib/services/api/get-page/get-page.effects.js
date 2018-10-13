@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import * as tslib_1 from "tslib";
 import { Injectable } from "@angular/core";
@@ -33,7 +33,7 @@ var GetPageApiEffects = /** @class */ (function () {
     return GetPageApiEffects;
 }());
 export { GetPageApiEffects };
-function GetPageApiEffects_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     GetPageApiEffects.prototype.start$;
     /** @type {?} */

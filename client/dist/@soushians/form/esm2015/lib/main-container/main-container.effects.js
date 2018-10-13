@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
@@ -29,7 +29,7 @@ FormEffects.ctorParameters = () => [
     { type: Router },
     { type: FormService }
 ];
-function FormEffects_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     FormEffects.prototype.actions$;
     /** @type {?} */

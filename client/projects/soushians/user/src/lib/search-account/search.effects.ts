@@ -1,10 +1,10 @@
 ﻿import { Injectable } from "@angular/core";
 import { map, switchMap, catchError } from "rxjs/operators";
 import { Actions, Effect } from "@ngrx/effects";
-import { of } from "rxjs/observable/of";
+import { of } from "rxjs";
 import { Observable } from "rxjs/observable";
 
-import { ProfileViewModel } from "../models";
+import { ProfileViewModel } from "../models/profile-view.model";
 import { UserService } from "../services/user.service";
 import { SearchStartAction, SearchFailed, SearchActionTypes, SearchSucceed } from "./search.actions";
 

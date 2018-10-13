@@ -1,11 +1,11 @@
 import { HttpRequestBaseModel } from "@soushians/shared";
 import { FormGroup } from "@angular/forms";
-export declare module ResetPasswordRequestModel {
+export declare namespace ResetPasswordRequestModel {
     class Request implements HttpRequestBaseModel<Request> {
         Username: string;
         Token: string;
         Captcha: string;
-        Type: 'sms' | 'email';
+        Type: "sms" | "email";
         constructor(initValue?: ResetPasswordRequestModel.Request);
         getRequestBody(): {
             Username: string;

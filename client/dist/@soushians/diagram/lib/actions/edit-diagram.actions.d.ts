@@ -4,7 +4,7 @@ export declare enum EditDiagramActionTypes {
     EDIT_DIAGRAM = "[DIAGRAM][EDIT] EDIT_DIAGRAM",
     EDIT_DIAGRAM_START = "[DIAGRAM][EDIT] EDIT_DIAGRAM_START",
     EDIT_DIAGRAM_SUCCEED = "[DIAGRAM][EDIT] EDIT_DIAGRAM_SUCCEED",
-    EDIT_DIAGRAM_FAILED = "[DIAGRAM][EDIT] EDIT_DIAGRAM_FAILED",
+    EDIT_DIAGRAM_FAILED = "[DIAGRAM][EDIT] EDIT_DIAGRAM_FAILED"
 }
 export declare class EditDiagramAction implements Action {
     payload: EditDiagramApiModel.Response;

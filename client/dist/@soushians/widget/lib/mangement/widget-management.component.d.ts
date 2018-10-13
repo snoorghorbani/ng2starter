@@ -14,5 +14,6 @@ export declare class WidgetsManagementComponent implements OnInit {
     widgets$: Observable<WidgetModel<any>[]>;
     constructor(store: Store<AppState>);
     ngOnInit(): void;
+    remove(item: any): void;
     _fill_anghazi(): void;
 }

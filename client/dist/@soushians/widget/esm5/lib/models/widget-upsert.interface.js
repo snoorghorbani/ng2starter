@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
  * @template T
@@ -17,7 +17,7 @@ IWidgetUpsert = /** @class */ (function () {
  * @template T
  */
 export { IWidgetUpsert };
-function IWidgetUpsert_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     IWidgetUpsert.prototype.widget;
 }

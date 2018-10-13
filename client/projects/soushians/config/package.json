@@ -1,9 +1,5 @@
 {
     "name": "@soushians/config",
-    "version": "6.5.0",
-    "peerDependencies": {
-        "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-        "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
-    },
-    "dependencies": {}
+    "version": "6.7.0",
+    "peerDependencies": {}
 }

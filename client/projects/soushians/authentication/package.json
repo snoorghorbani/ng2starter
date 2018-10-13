@@ -1,5 +1,5 @@
 {
-	"name": "@soushians/authentication",
-	"version": "6.5.30",
-	"peerDependencies": {}
+    "name": "@soushians/authentication",
+    "version": "6.7.0",
+    "peerDependencies": {}
 }

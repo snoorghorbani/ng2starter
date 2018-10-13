@@ -3,5 +3,5 @@ export declare enum GwtStepTypes {
     "When" = "When",
     "Then" = "Then",
     "And" = "And",
-    "But" = "But",
+    "But" = "But"
 }

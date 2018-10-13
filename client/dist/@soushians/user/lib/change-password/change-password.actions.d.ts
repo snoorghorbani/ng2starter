@@ -1,5 +1,5 @@
-import { Action } from '@ngrx/store';
-import { ChangePasswordModel } from '../models';
+import { Action } from "@ngrx/store";
+import { ChangePasswordModel } from "../models/change-password.model";
 export declare enum ChangePasswordActionTypes {
     CHANGE_PASSWORD = "[USER][PASSWORD] CHANGE_PASSWORD",
     PASSWORD_CHANGED_START = "[USER][PASSWORD] PASSWORD_CHANGED_START",

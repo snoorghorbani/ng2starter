@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var PageModel = /** @class */ (function () {
     function PageModel(_a) {
@@ -12,7 +12,7 @@ var PageModel = /** @class */ (function () {
     return PageModel;
 }());
 export { PageModel };
-function PageModel_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     PageModel.prototype._id;
     /** @type {?} */

@@ -1,7 +1,7 @@
-export * from "./lib/user.config";
-export * from "./lib/models";
-export * from "./lib/user.module";
-export * from "./lib/user.routing-module";
+export { UserModuleConfig } from "./lib/user.config";
+export { UserModel } from "./lib/models/user.model";
+export { NgsUserModule } from "./lib/user.module";
+export { NgsUserRoutingModule } from "./lib/user.routing-module";
 export { NgsUserModuleOutlets } from "./lib/models/user-outlets.enum";
 export { UserService } from "./lib/services/user.service";
 export { UserFacadeService } from "./lib/services/user.facade-service";

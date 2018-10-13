@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import { Component } from "@angular/core";
 import { DiagramService } from "../../services/diagram.service";
@@ -42,7 +42,7 @@ var DiagramsComponent = /** @class */ (function () {
     return DiagramsComponent;
 }());
 export { DiagramsComponent };
-function DiagramsComponent_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     DiagramsComponent.prototype.diagrams;
     /** @type {?} */

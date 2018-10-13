@@ -1,7 +1,7 @@
 ﻿import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
-import { of } from "rxjs/observable/of";
+import { of } from "rxjs";
 import { Action } from "@ngrx/store";
 import { Actions, Effect } from "@ngrx/effects";
 import { map } from "rxjs/operators";
@@ -10,8 +10,8 @@ import { SignInActionTypes } from "@soushians/authentication";
 
 import { UserService } from "../services/user.service";
 import { GetProfile, GetProfileSucceed } from "../profile-view/profile-view.actions";
-import { RefreshUserInfoAction } from "../dashboard";
-import { UserModel } from "../models";
+import { RefreshUserInfoAction } from "../dashboard/user.actions";
+import { UserModel } from "../models/user.model";
 
 @Injectable()
 export class UserEffects {

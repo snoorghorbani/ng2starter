@@ -2,12 +2,12 @@
 * Public API Surface of user
 */
 
-export * from "./lib/user.config";
-export * from "./lib/models";
+export { UserModuleConfig } from "./lib/user.config";
+export { UserModel } from "./lib/models/user.model";
 
 // actions
-export * from "./lib/user.module";
-export * from "./lib/user.routing-module";
+export { NgsUserModule } from "./lib/user.module";
+export { NgsUserRoutingModule } from "./lib/user.routing-module";
 export { NgsUserModuleOutlets } from "./lib/models/user-outlets.enum";
 // services
 export { UserService } from "./lib/services/user.service";

@@ -1,6 +1,7 @@
 ﻿import { InjectionToken } from "@angular/core";
 import { Observable } from "rxjs/Observable";
-import { UserModel } from "./models";
+import { UserModel } from "./models/user.model";
+import { map } from "rxjs/operators";
 
 export interface UserModuleConfig {
 	server?: string;
@@ -48,12 +49,8 @@ export const MODULE_DEFAULT_CONFIG: UserModuleConfig = {
 		profile_edit: ""
 	},
 	dashboardLinks: [],
-	responseToUserInfo: (user$) => user$,
-	mapUserDisplayName: (user$) =>
-		user$.map((user) => {
-			debugger;
-			return user.Username;
-		})
+	responseToUserInfo: user$ => user$,
+	mapUserDisplayName: user$ => user$.pipe(map(user => user.Username))
 };
 
 export const MODULE_CONFIG_TOKEN = new InjectionToken<UserModuleConfig>("UserModuleConfig");

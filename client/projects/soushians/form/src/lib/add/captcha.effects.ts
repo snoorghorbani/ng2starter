@@ -12,13 +12,18 @@ import { Store } from "@ngrx/store";
 
 import { FormService } from "../services/form.service";
 import { AddFormApiModel } from "../models";
-import { CaptchaActionTypes, GetCaptchaSucceedAction, GetCaptchaFailedAction, GetCaptchaStartAction } from "./captcha.actions";
+import {
+	CaptchaActionTypes,
+	GetCaptchaSucceedAction,
+	GetCaptchaFailedAction,
+	GetCaptchaStartAction
+} from "./captcha.actions";
 import { map, switchMap, catchError } from "rxjs/operators";
 import { FormCaptchaService } from "../services/form-captcha.service";
 
 @Injectable()
 export class CaptchaEffects {
-	constructor(private actions$: Actions<any>, private router: Router, private service: FormCaptchaService) { }
+	constructor(private actions$: Actions<any>, private router: Router, private service: FormCaptchaService) {}
 
 	@Effect()
 	GetCaptcha$ = this.actions$
@@ -32,6 +37,6 @@ export class CaptchaEffects {
 			map(action => action.payload),
 			switchMap((data: AddFormApiModel.Request) => this.service.getCaptcha()),
 			map(res => new GetCaptchaSucceedAction()),
-			catchError(() => Observable.of(new GetCaptchaFailedAction()))
+			catchError(() => of(new GetCaptchaFailedAction()))
 		);
 }

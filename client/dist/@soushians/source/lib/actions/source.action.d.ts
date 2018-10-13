@@ -3,7 +3,7 @@ import { UpsertSourceApiModel } from "../models";
 export declare enum SourceActionTypes {
     SOURCE_SUBMIT = "[SOURCE] source submit",
     SOURCE_SUBMIT_SUCCEED = "[SOURCE] source submit succeed",
-    SOURCE_SUBMIT_FAILED = "[SOURCE] source submit failed",
+    SOURCE_SUBMIT_FAILED = "[SOURCE] source submit failed"
 }
 export declare class SourceSubmit implements Action {
     payload: UpsertSourceApiModel.Request;

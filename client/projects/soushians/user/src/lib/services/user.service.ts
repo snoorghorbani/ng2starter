@@ -8,10 +8,12 @@ import { stringTemplate } from "@soushians/shared";
 import { getUser } from "@soushians/authentication";
 
 import { UserConfigurationService } from "./user-configuration.service";
-import { UserModel, EditProfile_ApiModel, ProfileViewModel, FailedLoginReportModel } from "../models";
 import { GetProfile } from "../profile-view/profile-view.actions";
 import { getAccountInfo } from "../dashboard/account.reducer";
 import { UserModuleConfig } from "../user.config";
+import { ProfileViewModel } from "../models/profile-view.model";
+import { UserModel } from "../models/user.model";
+import { EditProfile_ApiModel } from "../models/profile-edit.model";
 
 @Injectable({
 	providedIn: "root"

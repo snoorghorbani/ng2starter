@@ -1,49 +1,43 @@
-import { Injectable } from "@angular/core";
 import { HttpRequestBaseModel } from "@soushians/shared";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
-export module ResetPasswordRequestModel {
+export namespace ResetPasswordRequestModel {
+	export class Request implements HttpRequestBaseModel<Request> {
+		Username: string;
 
-    export class Request implements HttpRequestBaseModel<Request>{
+		//@RequestBody("pegah")
+		Token: string;
 
-        Username: string;
+		//@UseIn('body')
+		Captcha: string;
 
-        //@RequestBody("pegah")
-        Token: string;
+		//@UseIn('url')
+		//@Validators([Validators.required])
+		Type: "sms" | "email";
 
-        //@UseIn('body')
-        Captcha: string;
+		constructor(initValue?: ResetPasswordRequestModel.Request) {
+			Object.keys(initValue).forEach(key => (this[key] = initValue[key]));
+		}
 
-        //@UseIn('url')
-        //@Validators([Validators.required])
-        Type: 'sms' | 'email';
+		getRequestBody() {
+			return {
+				Username: this.Username,
+				Token: this.Token,
+				Captcha: this.Captcha
+			};
+		}
 
-        constructor(initValue?: ResetPasswordRequestModel.Request) {
-            Object.keys(initValue).forEach(key => this[key] = initValue[key]);
-        }
+		static get formGroup() {
+			return new FormGroup({
+				Username: new FormControl("", [ Validators.minLength(8), Validators.required ]),
+				Captcha: new FormControl(null, [ Validators.required ]),
+				Token: new FormControl(null, [ Validators.required ]),
+				Type: new FormControl("sms")
+			});
+		}
+	}
 
-        getRequestBody() {
-            return {
-                Username: this.Username,
-                Token: this.Token,
-                Captcha: this.Captcha
-            }
-        }
-
-        static get formGroup() {
-            return new FormGroup({
-                Username: new FormControl('', [Validators.minLength(8), Validators.required]),
-                Captcha: new FormControl(null, [Validators.required]),
-                Token: new FormControl(null, [Validators.required]),
-                Type: new FormControl('sms'),
-            })
-        }
-    }
-
-    export class Response {
-
-        constructor() {
-        }
-    }
-
+	export class Response {
+		constructor() {}
+	}
 }

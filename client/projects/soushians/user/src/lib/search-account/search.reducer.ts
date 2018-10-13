@@ -1,5 +1,5 @@
 ﻿import { responseStatusTypes } from "@soushians/shared";
-import { ProfileViewModel } from "../models";
+import { ProfileViewModel } from "../models/profile-view.model";
 import { SearchActionTypes, SearchAction } from "./search.actions";
 
 export interface State {

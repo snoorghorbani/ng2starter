@@ -3,12 +3,11 @@ import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import { Store } from "@ngrx/store";
 import { BehaviorSubject } from "rxjs";
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService } from "@ngx-translate/core";
 import { ConfigModel } from "@soushians/config";
-import { UserModel } from "@soushians/user";
-import { FeatureState } from "../../reducers";
+import { UserFacadeService, UserModel } from "@soushians/user";
+import { FeatureState } from "../../reducers/index";
 import { LayoutConfigurationService } from "../../services/layout-configuration.service";
-import { UserFacadeService } from "@soushians/user";
 export declare class NgsLayoutMainComponent {
     private store;
     private router;

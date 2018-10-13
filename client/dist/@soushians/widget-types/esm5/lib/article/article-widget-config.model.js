@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var ArticleWidgetConfigModel = /** @class */ (function () {
     function ArticleWidgetConfigModel() {
@@ -8,7 +8,7 @@ var ArticleWidgetConfigModel = /** @class */ (function () {
     return ArticleWidgetConfigModel;
 }());
 export { ArticleWidgetConfigModel };
-function ArticleWidgetConfigModel_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     ArticleWidgetConfigModel.prototype.content;
 }

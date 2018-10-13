@@ -5,6 +5,7 @@ import { CommonModule } from "@angular/common";
 import { StoreModule, Store } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { TranslateModule, TranslateService } from "@ngx-translate/core";
 
 /**
  *  ngs module
@@ -25,7 +26,6 @@ import { NgsFormModule } from "@soushians/form";
 import { NgsGridModule } from "@soushians/grid";
 import { RuleModule } from "@soushians/rule";
 import { GwtStepsModule } from "@soushians/gwt-steps";
-import { TranslateModule, TranslateService } from "@ngx-translate/core";
 
 /**
  *  module configs
@@ -63,7 +63,7 @@ import { DashboardModule } from "./dashboard/dashboard.module";
 
 		SharedModule,
 		SourceModule,
-		NgsFrontendAuthenticationModule.forRoot(NgsFrontendAuthenticationModuleConfig),
+		// NgsFrontendAuthenticationModule.forRoot(NgsFrontendAuthenticationModuleConfig),
 		NgsAuthenticationModule.forRoot(NgsAuthenticationModuleConfig),
 		NgsDiagramModule.forRoot(NgsDiagramModuleConfig),
 		NgsLayoutModule.forRoot(NgsLayoutModuleConfig),

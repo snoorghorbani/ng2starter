@@ -3,7 +3,7 @@ import { PageModel } from "../../../models/page.model";
 export declare const enum DELETE_PAGE_ACTION_TYPES {
     START = "[PAGE][API][DELETE] start",
     SUCCEED = "[PAGE][API][DELETE] succeed",
-    FAILED = "[PAGE][API][DELETE] failed",
+    FAILED = "[PAGE][API][DELETE] failed"
 }
 export declare class DeletePageStartAction implements Action {
     payload: string;

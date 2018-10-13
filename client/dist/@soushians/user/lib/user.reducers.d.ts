@@ -4,7 +4,8 @@ import * as resetPasswordRequestReducer from "./reset-password/reset-password-re
 import * as changePassword from "./change-password/change-password.reducer";
 import * as editProfileReducer from "./profile-edit/edit-profile.reducer";
 import * as searchReducer from "./search-account/search.reducer";
-import { UserModel } from "./models";
+import { UserModel } from "./models/user.model";
+import { responseStatusTypes } from "@soushians/shared";
 export interface UserState {
     user: userReducer.State;
     resetPasswordRequest: resetPasswordRequestReducer.State;
@@ -31,4 +32,4 @@ export declare const getResetPasswordRequestStatus: MemoizedSelector<object, boo
 export declare const selectUserInformaionState: MemoizedSelector<object, userReducer.State>;
 export declare const getAccountInfo: MemoizedSelector<object, UserModel>;
 export declare const selectSearchState: MemoizedSelector<object, searchReducer.State>;
-export declare const getSearchStatus: MemoizedSelector<object, import("../../../../../../../../Projects/ng2starter/client/node_modules/@soushians/shared/lib/enums/response-status-type.enum").responseStatusTypes>;
+export declare const getSearchStatus: MemoizedSelector<object, responseStatusTypes>;

@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import { Component } from "@angular/core";
 export class SelectComponent {
@@ -21,7 +21,7 @@ SelectComponent.decorators = [
 ];
 /** @nocollapse */
 SelectComponent.ctorParameters = () => [];
-function SelectComponent_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     SelectComponent.prototype.config;
     /** @type {?} */

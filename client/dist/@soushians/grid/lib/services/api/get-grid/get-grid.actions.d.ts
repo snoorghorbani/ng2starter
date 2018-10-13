@@ -3,7 +3,7 @@ import { GridModel } from "../../../models/grid.model";
 export declare const enum GET_GRID_ACTION_TYPES {
     START = "[GRID][API][GetGrid] start",
     SUCCEED = "[GRID][API][GetGrid] succeed",
-    FAILED = "[GRID][API][GetGrid] failed",
+    FAILED = "[GRID][API][GetGrid] failed"
 }
 export declare class GetGridStartAction implements Action {
     payload: string;

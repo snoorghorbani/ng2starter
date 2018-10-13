@@ -3,8 +3,8 @@ import { Store } from "@ngrx/store";
 import { ActivatedRoute } from "@angular/router";
 
 import * as FeatureReducer from "../../user.reducers";
-import { ProfileViewModel } from "../../models";
-import { Search } from "../../search-account";
+import { ProfileViewModel } from "../../models/profile-view.model";
+import { Search } from "../../search-account/search.actions";
 
 @Component({
 	template: "<router-outlet></router-outlet>"

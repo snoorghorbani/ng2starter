@@ -1,4 +1,3 @@
-import { Injectable } from "@angular/core";
 import { HttpRequestBaseModel, HttpResponseBaseModel } from "@soushians/shared";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { UserModel } from "./user.model";

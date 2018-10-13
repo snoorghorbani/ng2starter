@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var SourceModel = /** @class */ (function () {
     function SourceModel(initValue) {
@@ -11,7 +11,7 @@ var SourceModel = /** @class */ (function () {
     return SourceModel;
 }());
 export { SourceModel };
-function SourceModel_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     SourceModel.prototype._id;
     /** @type {?} */

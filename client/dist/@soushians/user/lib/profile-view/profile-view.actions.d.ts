@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { ProfileViewModel } from "../models";
+import { ProfileViewModel } from "../models/profile-view.model";
 export declare enum ProfileViewActionTypes {
     GET_PROFILE = "[USER][PROFILE] GET_PROFILE",
     GET_PROFILE_START = "[USER][PROFILE] GET_PROFILE_START",

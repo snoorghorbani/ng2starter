@@ -8,7 +8,7 @@ export declare enum ScenariosListActionTypes {
     UPSERT = "[GWT][SCENARIO][DB][UPSERT] SCENARIO_UPSERT",
     GET_SCENARIO = "[SCENARIO][DB] GET_SCENARIO",
     SCENARIO_FETCHED = "[SCENARIO][DB] SCENARIO_FETCHED",
-    UPDATE_DB = "[GWT][SCENARIO][DB] UPDATE_DB",
+    UPDATE_DB = "[GWT][SCENARIO][DB] UPDATE_DB"
 }
 export declare class ScenariosListAction implements Action {
     readonly type: ScenariosListActionTypes;

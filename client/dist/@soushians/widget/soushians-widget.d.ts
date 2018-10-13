@@ -6,6 +6,8 @@ export { WidgetsManagementComponent as ɵh } from './lib/mangement/widget-manage
 export { RootComponent as ɵg } from './lib/root/root.component';
 export { WidgetDbEffects as ɵn } from './lib/root/widgets.effects';
 export { Reducer as ɵm } from './lib/root/widgets.reducers';
+export { DeleteWidgetActions as ɵv } from './lib/services/api/delete-widget/delete-widget.actions';
+export { DeleteWidgetApiEffects as ɵu } from './lib/services/api/delete-widget/delete-widget.effects';
 export { GetWidgetActions as ɵp } from './lib/services/api/get-widget/get-widget.actions';
 export { GetWidgetApiEffects as ɵo } from './lib/services/api/get-widget/get-widget.effects';
 export { GetWidgetsActions as ɵr } from './lib/services/api/get-widgets/get-widgets.actions';

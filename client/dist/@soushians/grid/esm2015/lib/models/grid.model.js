@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 export class GridModel {
     /**
@@ -18,7 +18,7 @@ export class GridModel {
         this.items = items;
     }
 }
-function GridModel_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     GridModel.prototype._id;
     /** @type {?} */

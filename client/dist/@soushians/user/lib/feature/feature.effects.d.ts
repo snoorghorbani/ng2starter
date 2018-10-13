@@ -3,7 +3,7 @@ import { Observable } from "rxjs/Observable";
 import { Actions } from "@ngrx/effects";
 import { UserService } from "../services/user.service";
 import { GetProfile } from "../profile-view/profile-view.actions";
-import { RefreshUserInfoAction } from "../dashboard";
+import { RefreshUserInfoAction } from "../dashboard/user.actions";
 export declare class UserEffects {
     private actions$;
     private router;

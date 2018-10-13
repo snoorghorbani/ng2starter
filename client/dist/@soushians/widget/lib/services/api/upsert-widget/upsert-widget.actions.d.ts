@@ -3,7 +3,7 @@ import { WidgetModel } from "../../../models/widget.model";
 export declare const enum UPSERT_WIDGET_ACTION_TYPES {
     START = "[UPSERT_WIDGET][API][UpsertWidget] start",
     SUCCEED = "[UPSERT_WIDGET][API][UpsertWidget] succeed",
-    FAILED = "[UPSERT_WIDGET][API][UpsertWidget] failed",
+    FAILED = "[UPSERT_WIDGET][API][UpsertWidget] failed"
 }
 export declare class UpsertWidgetStartAction implements Action {
     payload: WidgetModel<any>;

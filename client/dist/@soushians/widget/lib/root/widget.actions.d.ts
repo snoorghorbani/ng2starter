@@ -2,7 +2,7 @@ import { Action } from "@ngrx/store";
 import { WidgetModel } from "../models/widget.model";
 export declare enum WidgetsActionTypes {
     UPSERT = "[WIDGET][DB] UPSERT",
-    DELETE = "[WIDGET][DB] DELETE",
+    DELETE = "[WIDGET][DB] DELETE"
 }
 export declare class UpsertWidgetAction implements Action {
     payload: WidgetModel<any>[];

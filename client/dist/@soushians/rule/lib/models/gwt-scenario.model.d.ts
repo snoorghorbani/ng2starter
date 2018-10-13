@@ -5,7 +5,7 @@ export declare class GwtScenarioModel {
     anchorId: string;
     featureId: string;
     steps: GwtStep[];
-    constructor({_id, anchorId, steps, name, featureId}?: {
+    constructor({ _id, anchorId, steps, name, featureId }?: {
         _id?: string;
         anchorId?: string;
         steps?: GwtStep[];

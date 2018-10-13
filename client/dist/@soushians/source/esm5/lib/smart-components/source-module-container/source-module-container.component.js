@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import { Component } from "@angular/core";
 import { SourceService } from "../../services/source.service";
@@ -28,7 +28,7 @@ var SourceModuleContainerComponent = /** @class */ (function () {
     return SourceModuleContainerComponent;
 }());
 export { SourceModuleContainerComponent };
-function SourceModuleContainerComponent_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     SourceModuleContainerComponent.prototype.service;
 }

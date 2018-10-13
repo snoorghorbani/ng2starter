@@ -5,7 +5,5 @@
 	"lib": {
 		"entryFile": "src/public_api.ts"
 	},
-	"whitelistedNonPeerDependencies": [
-		"tslib"
-	]
+	"whitelistedNonPeerDependencies": [ "angular", "tslib", "@soushians/shared", "@soushians/config" ]
 }

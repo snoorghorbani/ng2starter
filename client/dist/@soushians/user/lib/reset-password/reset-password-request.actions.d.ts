@@ -1,5 +1,5 @@
-import { Action } from '@ngrx/store';
-import { ResetPasswordRequestModel } from '../models';
+import { Action } from "@ngrx/store";
+import { ResetPasswordRequestModel } from "../models/reset-password-request.model";
 export declare enum ResetPasswordRequestActionTypes {
     GET_RESET_PASSWORD_LINK = "[USER][PASSWORD] GET_RESET_PASSWORD_LINK",
     RESET_PASSWORD_LINK_REQUEST_START = "[USER][PASSWORD] RESET_PASSWORD_LINK_REQUEST_START",

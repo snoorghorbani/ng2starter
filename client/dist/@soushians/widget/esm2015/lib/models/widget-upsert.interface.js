@@ -1,13 +1,13 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
  * @template T
  */
 export class IWidgetUpsert {
 }
-function IWidgetUpsert_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     IWidgetUpsert.prototype.widget;
 }

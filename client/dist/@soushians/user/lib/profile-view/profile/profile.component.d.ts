@@ -1,5 +1,5 @@
 import { OnInit } from "@angular/core";
-import { UserModel } from "../../models";
+import { UserModel } from "../../models/user.model";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 export declare class ProfileComponent implements OnInit {
     information: UserModel;

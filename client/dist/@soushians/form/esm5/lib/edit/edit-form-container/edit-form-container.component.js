@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import * as tslib_1 from "tslib";
 import { Component } from "@angular/core";
@@ -67,7 +67,7 @@ var EditFormContainerComponent = /** @class */ (function (_super) {
     return EditFormContainerComponent;
 }(AddFormContainerComponent));
 export { EditFormContainerComponent };
-function EditFormContainerComponent_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     EditFormContainerComponent.prototype.formGroup;
     /** @type {?} */

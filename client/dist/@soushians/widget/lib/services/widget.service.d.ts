@@ -15,5 +15,6 @@ export declare class WidgetService {
     get<T>(_id: string): Observable<WidgetModel<T>>;
     getWidgets(): Observable<WidgetModel<any>[]>;
     upsert<T>(widget: UpsertWidgetApiModel.Request): Observable<WidgetModel<T>>;
+    delete(widget: WidgetModel<any>): Observable<WidgetModel<any>>;
     selectById<T>(_id: string): Observable<WidgetModel<T>>;
 }

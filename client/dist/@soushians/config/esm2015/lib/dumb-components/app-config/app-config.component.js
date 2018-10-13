@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import { Component, Output, EventEmitter, Input, Injector } from "@angular/core";
 import { FormGroup, Validators, FormControl } from "@angular/forms";
@@ -67,7 +67,7 @@ ConfigAppConfigComponent.propDecorators = {
     configFormGroup: [{ type: Input }],
     configChanged: [{ type: Output }]
 };
-function ConfigAppConfigComponent_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     ConfigAppConfigComponent.prototype.formGroup;
     /** @type {?} */
