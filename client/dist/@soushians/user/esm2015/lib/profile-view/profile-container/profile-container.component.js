@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes} checked by tsc
  */
 import { Component } from "@angular/core";
 import { Store } from "@ngrx/store";
@@ -31,7 +31,7 @@ ProfileContainerComponent.decorators = [
 ProfileContainerComponent.ctorParameters = () => [
     { type: Store }
 ];
-if (false) {
+function ProfileContainerComponent_tsickle_Closure_declarations() {
     /** @type {?} */
     ProfileContainerComponent.prototype.data$;
     /** @type {?} */
