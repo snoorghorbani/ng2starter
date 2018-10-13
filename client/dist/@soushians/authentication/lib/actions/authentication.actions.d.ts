@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 export declare const enum AuthenticationActionTypes {
     PROGRESSING_STARTED = "[AUTHENTICATION] PROGRESSING_STARTED",
     PROGRESSING_FINISHED = "[AUTHENTICATION] PROGRESSING_FINISHED",
-    FAILED_HAPPENED = "[AUTHENTICATION] FAILED_HAPPENED"
+    FAILED_HAPPENED = "[AUTHENTICATION] FAILED_HAPPENED",
 }
 export declare class ProgressingStarted implements Action {
     readonly type: AuthenticationActionTypes;
