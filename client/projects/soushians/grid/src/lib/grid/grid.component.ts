@@ -169,6 +169,9 @@ export class GridComponent implements OnInit {
 	_get_grid_by_oid_and_update_component() {
 		this.service.selectById(this.oid).pipe(filter(data => data != undefined)).subscribe(data => {
 			this.grid = data;
+			debugger;
+			data.config.outerMarginBottom = +data.config.outerMarginBottom;
+			data.config.outerMarginRight = +data.config.outerMarginRight;
 			this.options = { ...this.options, ...data.config };
 			// this.options.draggable = {
 			// 	enabled: true
