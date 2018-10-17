@@ -26,10 +26,10 @@ export class FormCaptchaService {
 	getCaptcha(): Observable<any> {
 		debugger;
 		return this.configurationService.config$.pipe(
-			filter((captcha) => captcha.endpoints.getCaptcha != ""),
+			filter((captcha) => captcha.endpoints.captchaUrl != ""),
 			take(1),
 			switchMap((captcha) =>
-				this.http.get(captcha.env.server + captcha.endpoints.getCaptcha)
+				this.http.get(captcha.env.server + captcha.endpoints.captchaUrl)
 			),
 			map((response: any) => response.Result),
 		);

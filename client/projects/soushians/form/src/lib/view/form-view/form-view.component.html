@@ -1,4 +1,4 @@
-<div fxFlex="100" fxLayoutAlign="center center">
+<div fxFlex="nogrow" fxLayoutAlign="center center" class="main-container">
   <form *ngIf="formGroupCreated && card" class="ngs-dynamic-form" [formGroup]="formGroup" (ngSubmit)="accepted()">
     <mat-card>
       <mat-card-title>

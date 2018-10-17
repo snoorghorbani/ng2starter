@@ -22,6 +22,7 @@ import {
 	MatDatepickerModule
 } from "@angular/material";
 import { StoreModule } from "@ngrx/store";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { EffectsModule, mergeEffects } from "@ngrx/effects";
 
 import { FormModuleConfig, MODULE_CONFIG_TOKEN, MODULE_DEFAULT_CONFIG } from "./form.config";
@@ -51,7 +52,8 @@ import { RoutingModule } from "./form-routing.module";
 import { DateFormInputControlComponent } from "./view/form-controls/date/date.component";
 import { FileFormInputControlComponent } from "./view/form-controls/file/file.component";
 import { CaptchaEffects } from "./add/captcha.effects";
-import { FormCaptchaComponent } from "./view/form-controls/form-captcha/form-captcha.component";
+import { FormCaptchaComponent } from "./view/form-controls/form-captcha";
+import { FormConfigurationService } from "./services/form-configuration.service";
 
 @NgModule({
 	imports: [
@@ -114,14 +116,14 @@ import { FormCaptchaComponent } from "./view/form-controls/form-captcha/form-cap
 		TableComponent,
 		FormCaptchaComponent
 	],
-	exports: [ FormViewComponent ]
+	exports: [FormViewComponent]
 	// exports: [ FormViewComponent, NgsFormSelectorComponent ]
 })
 export class NgsFormModule {
 	static forRoot(config?: FormModuleConfig): ModuleWithProviders {
 		return {
 			ngModule: RootNgsFormModule,
-			providers: [ { provide: MODULE_CONFIG_TOKEN, useValue: config } ]
+			providers: [{ provide: MODULE_CONFIG_TOKEN, useValue: config }, FormConfigurationService]
 		};
 	}
 }
@@ -130,9 +132,9 @@ export class NgsFormModule {
 	imports: [
 		NgsFormModule,
 		StoreModule.forFeature("form", FormReducers),
-		EffectsModule.forFeature([ AddFormEffects, EditFormEffects, FormsListEffects, CaptchaEffects ]),
+		EffectsModule.forFeature([AddFormEffects, EditFormEffects, FormsListEffects, CaptchaEffects]),
 		RoutingModule
 	],
-	exports: [ NgsFormModule ]
+	exports: [NgsFormModule]
 })
-export class RootNgsFormModule {}
+export class RootNgsFormModule { }

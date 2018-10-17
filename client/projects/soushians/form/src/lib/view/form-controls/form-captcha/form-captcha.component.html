@@ -1,7 +1,9 @@
-<div>
+<div fxLayout="row wrap" fxLayoutAlign="start center">
   <img [src]="captcha.captchaImg" />
 
-  <button (click)="refresh()">refresh</button>
+  <button mat-icon-button color="primary" (click)="refresh()">
+    <mat-icon>refresh</mat-icon>
+  </button>
 
   <div [formGroup]="group">
     <mat-form-field fxFlex>

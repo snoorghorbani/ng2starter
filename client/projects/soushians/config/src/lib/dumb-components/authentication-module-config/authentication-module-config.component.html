@@ -30,7 +30,10 @@
                         <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="who am i"
                             formControlName="whoAmI">
                     </mat-form-field>
-
+                    <mat-form-field>
+                        <input type="text" (change)="configChanged.emit(formGroup.value)" matInput placeholder="captcha url"
+                            formControlName="captchaUrl">
+                    </mat-form-field>
                 </div>
                 <h2>Forms</h2>
                 <div [formGroup]="formGroup.controls.forms" fxLayout="column">
