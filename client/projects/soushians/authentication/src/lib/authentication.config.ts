@@ -2,7 +2,11 @@
 import { Observable, of } from "rxjs";
 
 export interface AuthenticationModuleConfig {
-    server: string;
+    mode?: string; // "token-base" | "cookie-base";
+    token?: {
+        time: number
+    };
+    server?: string;
     endpoints?: {
         signOut?: string;
         signIn?: string;
@@ -20,9 +24,16 @@ export interface AuthenticationModuleConfig {
     };
     afterSignoutRedirectTo?: string;
     signupValidator?: (value: any) => Observable<boolean>;
+    afterSignin?: (user: any) => void;
+    responseToUser?: (user: any) => any;
+
 }
 
 export const MODULE_DEFAULT_CONFIG: AuthenticationModuleConfig = {
+    mode: "cookie-base",
+    token: {
+        time: 24 * 12 * 60 * 60
+    },
     server: "frontend_server",
     endpoints: {
         signOut: "",
@@ -40,7 +51,9 @@ export const MODULE_DEFAULT_CONFIG: AuthenticationModuleConfig = {
         server: "auth/module/server/did/not/set"
     },
     afterSignoutRedirectTo: "/",
-    signupValidator: value => of(true)
+    signupValidator: value => of(true),
+    afterSignin: (user) => { },
+    responseToUser: user => user
 };
 
 export const MODULE_CONFIG_TOKEN = new InjectionToken<AuthenticationModuleConfig>("ModuleConfig");

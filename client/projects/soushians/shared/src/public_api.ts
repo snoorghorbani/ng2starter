@@ -9,5 +9,6 @@ export * from "./lib/utility.service";
 // export * from "./lib/calender/persian-data-adapter";
 export * from "./lib/enums";
 export * from "./lib/helpers";
+export { Cookie } from "./lib/helpers/cookie.utility";
 export * from "./lib/validators";
 export * from "./lib/response.interface";

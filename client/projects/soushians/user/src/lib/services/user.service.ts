@@ -36,13 +36,9 @@ export class UserService {
 		return this.configurationService.config$.pipe(
 			filter(config => config.endpoints.profileInformation != ""),
 			take(1),
-			combineLatest(this.store.select(s => {
-				debugger;
-				return getUser(s);
-			})),
+			combineLatest(this.store.select(getUser)),
 			filter(([config, user]: [UserModuleConfig, any]) => user != undefined),
 			switchMap(([config, user]: [UserModuleConfig, any]) => {
-				debugger;
 				return this.http
 					.get<any>(
 						stringTemplate(config.env[config.server] + config.endpoints.profileInformation, {

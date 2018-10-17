@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs/Rx";
+import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
 import { UserConfigurationService } from "./user-configuration.service";
 import { UserModuleConfig } from "../user.config";
