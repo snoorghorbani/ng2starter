@@ -52,7 +52,7 @@ import { RoutingModule } from "./form-routing.module";
 import { DateFormInputControlComponent } from "./view/form-controls/date/date.component";
 import { FileFormInputControlComponent } from "./view/form-controls/file/file.component";
 import { CaptchaEffects } from "./add/captcha.effects";
-import { FormCaptchaComponent } from "./view/form-controls/form-captcha";
+import { FormCaptchaComponent } from "./view/form-controls/form-captcha/form-captcha.component";
 import { FormConfigurationService } from "./services/form-configuration.service";
 
 @NgModule({
@@ -116,14 +116,14 @@ import { FormConfigurationService } from "./services/form-configuration.service"
 		TableComponent,
 		FormCaptchaComponent
 	],
-	exports: [FormViewComponent]
+	exports: [ FormViewComponent ]
 	// exports: [ FormViewComponent, NgsFormSelectorComponent ]
 })
 export class NgsFormModule {
 	static forRoot(config?: FormModuleConfig): ModuleWithProviders {
 		return {
 			ngModule: RootNgsFormModule,
-			providers: [{ provide: MODULE_CONFIG_TOKEN, useValue: config }, FormConfigurationService]
+			providers: [ { provide: MODULE_CONFIG_TOKEN, useValue: config }, FormConfigurationService ]
 		};
 	}
 }
@@ -132,9 +132,9 @@ export class NgsFormModule {
 	imports: [
 		NgsFormModule,
 		StoreModule.forFeature("form", FormReducers),
-		EffectsModule.forFeature([AddFormEffects, EditFormEffects, FormsListEffects, CaptchaEffects]),
+		EffectsModule.forFeature([ AddFormEffects, EditFormEffects, FormsListEffects, CaptchaEffects ]),
 		RoutingModule
 	],
-	exports: [NgsFormModule]
+	exports: [ NgsFormModule ]
 })
-export class RootNgsFormModule { }
+export class RootNgsFormModule {}
