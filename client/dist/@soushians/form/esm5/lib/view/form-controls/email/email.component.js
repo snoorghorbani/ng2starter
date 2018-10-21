@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes} checked by tsc
  */
 import { Component } from "@angular/core";
 var EmailComponent = /** @class */ (function () {
@@ -25,7 +25,7 @@ var EmailComponent = /** @class */ (function () {
     return EmailComponent;
 }());
 export { EmailComponent };
-if (false) {
+function EmailComponent_tsickle_Closure_declarations() {
     /** @type {?} */
     EmailComponent.prototype.config;
     /** @type {?} */

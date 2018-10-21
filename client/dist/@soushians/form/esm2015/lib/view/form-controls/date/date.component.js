@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes} checked by tsc
  */
 import { Component } from "@angular/core";
 export class DateFormInputControlComponent {
@@ -59,7 +59,7 @@ DateFormInputControlComponent.decorators = [
 ];
 /** @nocollapse */
 DateFormInputControlComponent.ctorParameters = () => [];
-if (false) {
+function DateFormInputControlComponent_tsickle_Closure_declarations() {
     /** @type {?} */
     DateFormInputControlComponent.prototype.config;
     /** @type {?} */

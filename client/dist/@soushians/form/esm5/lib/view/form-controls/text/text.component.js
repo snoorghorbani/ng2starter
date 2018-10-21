@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes} checked by tsc
  */
 import { Component } from "@angular/core";
 var TextComponent = /** @class */ (function () {
@@ -18,7 +18,7 @@ var TextComponent = /** @class */ (function () {
     return TextComponent;
 }());
 export { TextComponent };
-if (false) {
+function TextComponent_tsickle_Closure_declarations() {
     /** @type {?} */
     TextComponent.prototype.config;
     /** @type {?} */

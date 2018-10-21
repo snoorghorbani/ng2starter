@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes} checked by tsc
  */
 import { Component } from "@angular/core";
 export class EmailComponent {
@@ -23,7 +23,7 @@ EmailComponent.decorators = [
 ];
 /** @nocollapse */
 EmailComponent.ctorParameters = () => [];
-if (false) {
+function EmailComponent_tsickle_Closure_declarations() {
     /** @type {?} */
     EmailComponent.prototype.config;
     /** @type {?} */

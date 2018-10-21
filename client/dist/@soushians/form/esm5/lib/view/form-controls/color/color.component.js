@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes} checked by tsc
  */
 import { Component, Input } from "@angular/core";
 import { FormGroup } from "@angular/forms";
@@ -31,7 +31,7 @@ var ColorComponent = /** @class */ (function () {
     return ColorComponent;
 }());
 export { ColorComponent };
-if (false) {
+function ColorComponent_tsickle_Closure_declarations() {
     /** @type {?} */
     ColorComponent.prototype.config;
     /** @type {?} */

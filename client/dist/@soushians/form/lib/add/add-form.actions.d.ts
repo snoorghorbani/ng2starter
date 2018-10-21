@@ -4,7 +4,7 @@ export declare enum AddFormActionTypes {
     ADD_FORM = "[FORM][ADD] ADD_FORM_PROFILE",
     ADD_FORM_START = "[FORM][ADD] ADD_FORM_START",
     ADD_FORM_SUCCEED = "[FORM][ADD] ADD_FORM_SUCCEED",
-    ADD_FORM_FAILED = "[FORM][ADD] ADD_FORM_FAILED"
+    ADD_FORM_FAILED = "[FORM][ADD] ADD_FORM_FAILED",
 }
 export declare class AddFormAction implements Action {
     payload: FormSchemaModel;

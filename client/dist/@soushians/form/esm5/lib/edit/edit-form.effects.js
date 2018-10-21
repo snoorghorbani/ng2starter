@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes} checked by tsc
  */
 import * as tslib_1 from "tslib";
 import { Injectable } from "@angular/core";
@@ -51,7 +51,7 @@ var EditFormEffects = /** @class */ (function () {
     return EditFormEffects;
 }());
 export { EditFormEffects };
-if (false) {
+function EditFormEffects_tsickle_Closure_declarations() {
     /** @type {?} */
     EditFormEffects.prototype.EditForm$;
     /** @type {?} */

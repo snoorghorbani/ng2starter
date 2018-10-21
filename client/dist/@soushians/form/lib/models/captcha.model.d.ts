@@ -1,7 +1,7 @@
 export declare class CaptchaModel {
     captchaImg: string;
     captchaCode: string;
-    constructor({ captchaImg, captchaCode }?: {
+    constructor({captchaImg, captchaCode}?: {
         captchaImg?: string;
         captchaCode?: string;
     });

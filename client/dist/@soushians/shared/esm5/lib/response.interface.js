@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes} checked by tsc
  */
 /**
  * @template T
@@ -17,7 +17,7 @@ IResponse = /** @class */ (function () {
  * @template T
  */
 export { IResponse };
-if (false) {
+function IResponse_tsickle_Closure_declarations() {
     /** @type {?} */
     IResponse.prototype.Result;
 }

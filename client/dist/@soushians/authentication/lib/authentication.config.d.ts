@@ -1,7 +1,11 @@
 import { InjectionToken } from "@angular/core";
 import { Observable } from "rxjs";
 export interface AuthenticationModuleConfig {
-    server: string;
+    mode?: string;
+    token?: {
+        time: number;
+    };
+    server?: string;
     endpoints?: {
         signOut?: string;
         signIn?: string;
@@ -19,6 +23,8 @@ export interface AuthenticationModuleConfig {
     };
     afterSignoutRedirectTo?: string;
     signupValidator?: (value: any) => Observable<boolean>;
+    afterSignin?: (user: any) => void;
+    responseToUser?: (user: any) => any;
 }
 export declare const MODULE_DEFAULT_CONFIG: AuthenticationModuleConfig;
 export declare const MODULE_CONFIG_TOKEN: InjectionToken<AuthenticationModuleConfig>;

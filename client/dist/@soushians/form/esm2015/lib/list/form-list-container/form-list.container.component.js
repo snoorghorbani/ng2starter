@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes} checked by tsc
  */
 import { Component } from "@angular/core";
 import { Store } from "@ngrx/store";
@@ -31,7 +31,7 @@ FormListContainerComponent.decorators = [
 FormListContainerComponent.ctorParameters = () => [
     { type: Store }
 ];
-if (false) {
+function FormListContainerComponent_tsickle_Closure_declarations() {
     /** @type {?} */
     FormListContainerComponent.prototype.data$;
     /** @type {?} */

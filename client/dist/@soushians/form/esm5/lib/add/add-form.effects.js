@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes} checked by tsc
  */
 import * as tslib_1 from "tslib";
 import "rxjs/add/operator/map";
@@ -46,7 +46,7 @@ var AddFormEffects = /** @class */ (function () {
     return AddFormEffects;
 }());
 export { AddFormEffects };
-if (false) {
+function AddFormEffects_tsickle_Closure_declarations() {
     /** @type {?} */
     AddFormEffects.prototype.AddForm$;
     /** @type {?} */

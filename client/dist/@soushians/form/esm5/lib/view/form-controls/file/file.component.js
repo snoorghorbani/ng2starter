@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes} checked by tsc
  */
 import { Component } from "@angular/core";
 var FileFormInputControlComponent = /** @class */ (function () {
@@ -18,7 +18,7 @@ var FileFormInputControlComponent = /** @class */ (function () {
     return FileFormInputControlComponent;
 }());
 export { FileFormInputControlComponent };
-if (false) {
+function FileFormInputControlComponent_tsickle_Closure_declarations() {
     /** @type {?} */
     FileFormInputControlComponent.prototype.config;
     /** @type {?} */

@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes} checked by tsc
  */
 import { Component } from "@angular/core";
 export class TextComponent {
@@ -32,7 +32,7 @@ TextComponent.decorators = [
 ];
 /** @nocollapse */
 TextComponent.ctorParameters = () => [];
-if (false) {
+function TextComponent_tsickle_Closure_declarations() {
     /** @type {?} */
     TextComponent.prototype.config;
     /** @type {?} */

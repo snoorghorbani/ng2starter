@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes} checked by tsc
  */
 import { Component } from "@angular/core";
 var SelectComponent = /** @class */ (function () {
@@ -18,7 +18,7 @@ var SelectComponent = /** @class */ (function () {
     return SelectComponent;
 }());
 export { SelectComponent };
-if (false) {
+function SelectComponent_tsickle_Closure_declarations() {
     /** @type {?} */
     SelectComponent.prototype.config;
     /** @type {?} */

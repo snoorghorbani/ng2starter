@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes} checked by tsc
  */
 import { Component } from "@angular/core";
 import { Store } from "@ngrx/store";
@@ -25,7 +25,7 @@ MainContainerComponent.ctorParameters = () => [
     { type: ActivatedRoute },
     { type: Store }
 ];
-if (false) {
+function MainContainerComponent_tsickle_Closure_declarations() {
     /** @type {?} */
     MainContainerComponent.prototype.route;
     /** @type {?} */

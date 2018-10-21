@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes} checked by tsc
  */
 import { Component } from "@angular/core";
 import { Store } from "@ngrx/store";
@@ -59,7 +59,7 @@ var AddFormContainerComponent = /** @class */ (function () {
     return AddFormContainerComponent;
 }());
 export { AddFormContainerComponent };
-if (false) {
+function AddFormContainerComponent_tsickle_Closure_declarations() {
     /** @type {?} */
     AddFormContainerComponent.prototype.schema;
     /** @type {?} */

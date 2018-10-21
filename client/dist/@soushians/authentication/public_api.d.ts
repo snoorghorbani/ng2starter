@@ -1,3 +1,4 @@
+export { AuthenticationModuleConfig } from "./lib/authentication.config";
 export { UserModel } from "./lib/models";
 export { SignInActionTypes, DoSignoutAction, AuthenticationActionTypes, SigninRequiredAction } from "./lib/actions";
 export { SigninService } from "./lib/services/signin.service";

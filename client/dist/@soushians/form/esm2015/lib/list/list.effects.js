@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes} checked by tsc
  */
 import * as tslib_1 from "tslib";
 import { Injectable } from "@angular/core";
@@ -50,7 +50,7 @@ tslib_1.__decorate([
     Effect(),
     tslib_1.__metadata("design:type", Object)
 ], FormsListEffects.prototype, "get_forms_list$", void 0);
-if (false) {
+function FormsListEffects_tsickle_Closure_declarations() {
     /** @type {?} */
     FormsListEffects.prototype.EditProfileRequest$;
     /** @type {?} */

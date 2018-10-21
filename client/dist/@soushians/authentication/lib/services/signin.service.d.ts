@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs/Rx";
+import { Observable } from "rxjs";
 import { MatSnackBar } from "@angular/material";
 import { Store } from "@ngrx/store";
 import { UserModel } from "../models";

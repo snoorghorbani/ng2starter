@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes} checked by tsc
  */
 /**
  * @abstract
@@ -9,7 +9,7 @@
 export class HttpRequestBaseModel {
     constructor() { }
 }
-if (false) {
+function HttpRequestBaseModel_tsickle_Closure_declarations() {
     /**
      * @abstract
      * @template K

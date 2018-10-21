@@ -11,7 +11,7 @@ export interface FormModuleConfig {
         getForm: string;
         getList: string;
         deleteForm: string;
-        getCaptcha: string;
+        captchaUrl: string;
     };
 }
 export declare const MODULE_DEFAULT_CONFIG: FormModuleConfig;

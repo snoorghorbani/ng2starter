@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes} checked by tsc
  */
 import { FieldConfig } from "./field-config.model";
 var FormSchemaModel = /** @class */ (function () {
@@ -29,7 +29,7 @@ var FormSchemaModel = /** @class */ (function () {
     return FormSchemaModel;
 }());
 export { FormSchemaModel };
-if (false) {
+function FormSchemaModel_tsickle_Closure_declarations() {
     /** @type {?} */
     FormSchemaModel.prototype._id;
     /** @type {?} */

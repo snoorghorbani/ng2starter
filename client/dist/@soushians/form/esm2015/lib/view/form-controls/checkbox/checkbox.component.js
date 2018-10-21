@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes} checked by tsc
  */
 import { Component } from "@angular/core";
 export class CheckboxComponent {
@@ -19,7 +19,7 @@ CheckboxComponent.decorators = [
 ];
 /** @nocollapse */
 CheckboxComponent.ctorParameters = () => [];
-if (false) {
+function CheckboxComponent_tsickle_Closure_declarations() {
     /** @type {?} */
     CheckboxComponent.prototype.config;
     /** @type {?} */
