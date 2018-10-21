@@ -1,6 +1,6 @@
 :host {
 	width: 100%;
-	height: 100vh;
+	min-height: calc(100vh - 205px);
 	display: block;
 	direction: ltr;
 }
@@ -30,6 +30,8 @@
 .form-container {
 	padding: 25px;
 	width: 100%;
+}
+[dir="rtl"] .form-container {
 	direction: rtl;
 }
 .form-container mat-form-field {

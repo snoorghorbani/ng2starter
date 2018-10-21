@@ -1,5 +1,5 @@
 <gridster [options]="options">
-    <div class="actions">
+    <div class="actions" >
         <button mat-mini-fab (click)="addItem($event)">
             <mat-icon>add</mat-icon>
         </button>
@@ -23,10 +23,10 @@
                         <mat-icon>edit</mat-icon>
                         <span>ویرایش افزونه</span>
                     </button>
-                    <button mat-menu-item class="rtl" (click)="showConfig(item)">
+                    <!-- <button mat-menu-item class="rtl" (click)="showConfig(item)">
                         <mat-icon>settings</mat-icon>
                         <span>تنظیمات</span>
-                    </button>
+                    </button> -->
                     <button mat-menu-item class="rtl" (click)="removeItem(item)">
                         <mat-icon>delete</mat-icon>
                         <span>حذف</span>
