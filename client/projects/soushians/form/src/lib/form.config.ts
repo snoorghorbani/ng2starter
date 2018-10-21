@@ -12,7 +12,7 @@ export interface FormModuleConfig {
 		getForm: string;
 		getList: string;
 		deleteForm: string;
-		getCaptcha: string;
+		captchaUrl: string;
 	};
 }
 export const MODULE_DEFAULT_CONFIG: FormModuleConfig = {
@@ -27,7 +27,8 @@ export const MODULE_DEFAULT_CONFIG: FormModuleConfig = {
 		getForm: "",
 		getList: "",
 		deleteForm: "",
-		getCaptcha: "/api/authentication/captcha"
-	}
+		captchaUrl: ""
+
+	},
 };
 export const MODULE_CONFIG_TOKEN = new InjectionToken<FormModuleConfig>("FormModuleConfig");

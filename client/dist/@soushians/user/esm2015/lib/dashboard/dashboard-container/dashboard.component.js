@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes} checked by tsc
  */
 import { Component } from "@angular/core";
 import { Store } from "@ngrx/store";
@@ -33,7 +33,7 @@ DashboardContainerComponent.decorators = [
 DashboardContainerComponent.ctorParameters = () => [
     { type: Store }
 ];
-if (false) {
+function DashboardContainerComponent_tsickle_Closure_declarations() {
     /** @type {?} */
     DashboardContainerComponent.prototype.user$;
     /** @type {?} */

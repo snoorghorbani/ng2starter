@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs/Rx";
-import { map, filter, take, switchMap, combineLatest } from "rxjs/operators";
+import { Observable } from "rxjs";
+import { map, filter, take, switchMap, combineLatest, catchError } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 
 import { stringTemplate } from "@soushians/shared";
@@ -14,6 +14,7 @@ import { UserModuleConfig } from "../user.config";
 import { ProfileViewModel } from "../models/profile-view.model";
 import { UserModel } from "../models/user.model";
 import { EditProfile_ApiModel } from "../models/profile-edit.model";
+import { of } from "rxjs";
 
 @Injectable({
 	providedIn: "root"
@@ -36,23 +37,24 @@ export class UserService {
 			filter(config => config.endpoints.profileInformation != ""),
 			take(1),
 			combineLatest(this.store.select(getUser)),
-			switchMap(([ config, user ]: [UserModuleConfig, any]) => {
-				debugger;
+			filter(([config, user]: [UserModuleConfig, any]) => user != undefined),
+			switchMap(([config, user]: [UserModuleConfig, any]) => {
 				return this.http
 					.get<any>(
 						stringTemplate(config.env[config.server] + config.endpoints.profileInformation, {
-							user: user.User
+							user: user || {}
 						})
 					)
 					.let(config.responseToUserInfo)
 					.pipe(
 						map((response: UserModel) => {
-							const user: any = Object.assign({}, response);
-							if (user.Role) {
-								user.Roles = [ user.Role ];
+							const _user: any = Object.assign({}, response);
+							if (_user.Role) {
+								_user.Roles = [_user.Role];
 							}
-							return user;
-						})
+							return _user;
+						}),
+						catchError(err => of(false))
 					);
 			})
 		);

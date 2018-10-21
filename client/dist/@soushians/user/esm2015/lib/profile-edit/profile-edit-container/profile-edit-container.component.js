@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes} checked by tsc
  */
 import { Component } from "@angular/core";
 import { Store } from "@ngrx/store";
@@ -56,7 +56,7 @@ ProfileEditContainerComponent.ctorParameters = () => [
     { type: Store },
     { type: UserConfigurationService }
 ];
-if (false) {
+function ProfileEditContainerComponent_tsickle_Closure_declarations() {
     /** @type {?} */
     ProfileEditContainerComponent.prototype.userInforamation$;
     /** @type {?} */

@@ -9,14 +9,13 @@ import { ActivatedRoute } from "@angular/router";
 export class UserModuleConfigComponent {
 	formGroup: FormGroup = new FormGroup({
 		endpoints: new FormGroup({
-			changePassword: new FormControl("", [Validators.required]),
-			editProfile: new FormControl("", [Validators.required]),
-			getUserInfo: new FormControl("", [Validators.required]),
-			whoAmI: new FormControl("", [Validators.required]),
-			// captchaUrl: new FormControl("", [Validators.required])
+			changePassword: new FormControl("", [ Validators.required ]),
+			editProfile: new FormControl("", [ Validators.required ]),
+			getUserInfo: new FormControl("", [ Validators.required ]),
+			whoAmI: new FormControl("", [ Validators.required ])
 		}),
 		forms: new FormGroup({
-			profile_edit: new FormControl("", [Validators.required])
+			profile_edit: new FormControl("", [ Validators.required ])
 		}),
 		dashboardLinks: new FormArray([])
 	});
@@ -27,9 +26,9 @@ export class UserModuleConfigComponent {
 		(configFormGroup.controls.dashboardLinks as FormArray).controls.forEach(control => {
 			(this.formGroup.controls.dashboardLinks as FormArray).push(
 				new FormGroup({
-					route: new FormControl("", [Validators.required]),
-					icon: new FormControl("", [Validators.required]),
-					title: new FormControl("", [Validators.required])
+					route: new FormControl("", [ Validators.required ]),
+					icon: new FormControl("", [ Validators.required ]),
+					title: new FormControl("", [ Validators.required ])
 				})
 			);
 		});
@@ -47,10 +46,10 @@ export class UserModuleConfigComponent {
 		this.configFormGroup = this.injector.get("configFormGroup");
 	}
 	addMenu() {
-		const menuItem = new FormGroup({
-			route: new FormControl("", [Validators.required]),
-			icon: new FormControl("", [Validators.required]),
-			title: new FormControl("", [Validators.required])
+		var menuItem = new FormGroup({
+			route: new FormControl("", [ Validators.required ]),
+			icon: new FormControl("", [ Validators.required ]),
+			title: new FormControl("", [ Validators.required ])
 		});
 
 		(this.formGroup.get("dashboardLinks") as FormArray).push(menuItem);

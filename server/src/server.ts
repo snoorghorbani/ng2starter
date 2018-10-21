@@ -8,7 +8,7 @@ import * as express_session from "express-session";
 import * as bodyParser from "body-parser";
 import * as errorHandler from "errorhandler";
 import * as dotenv from "dotenv";
-var MongoDBStore = require('connect-mongodb-session');
+const MongoDBStore = require("connect-mongodb-session");
 //  import {} from "connect-mongodb-session";
 import * as path from "path";
 import * as mongoose from "mongoose";
@@ -49,7 +49,7 @@ const app: express.Application = express();
  */
 // mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI).then(a => {
-	console.log("connect to db successfully")
+	console.log("connect to db successfully");
 });
 
 mongoose.connection.on("error", () => {
@@ -76,21 +76,25 @@ const corsOptions = {
 	credentials: true
 };
 app.use(cors(corsOptions));
+app.use(function (req, res, next) {
+	res.setHeader("Vary", "origin");
+	next();
+});
 
 const MongoStore = MongoDBStore(express_session);
 const sessionStore = new MongoStore({
 	url: process.env.MONGODB_URI
 });
 
-var sess = {
+const sess = {
 	resave: true,
 	saveUninitialized: true,
 	secret: process.env.SESSION_SECRET,
 	cookie: {}
-}
-if (app.get('env') === 'production') {
-	app.set('trust proxy', 1); // trust first proxy
-	(sess.cookie as any).secure = true // serve secure cookies
+};
+if (app.get("env") === "production") {
+	app.set("trust proxy", 1); // trust first proxy
+	(sess.cookie as any).secure = true; // serve secure cookies
 }
 app.use(
 	express_session(sess)

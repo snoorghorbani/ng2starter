@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes} checked by tsc
  */
 import { Component, Output, EventEmitter } from "@angular/core";
 import { Store } from "@ngrx/store";
@@ -44,7 +44,7 @@ SigninContainerComponent.ctorParameters = () => [
 SigninContainerComponent.propDecorators = {
     signedIn$: [{ type: Output }]
 };
-if (false) {
+function SigninContainerComponent_tsickle_Closure_declarations() {
     /** @type {?} */
     SigninContainerComponent.prototype.formId$;
     /** @type {?} */

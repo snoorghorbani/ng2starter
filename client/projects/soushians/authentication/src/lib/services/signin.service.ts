@@ -1,17 +1,21 @@
 ﻿import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs/Rx";
+import { Observable } from "rxjs";
 import { MatSnackBar } from "@angular/material";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { map, switchMap, take, filter, tap } from "rxjs/operators";
+import { map, switchMap, take, filter, tap, catchError } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 
 // import { environment } from "../../environments/environment";
+import { stringTemplate } from "@soushians/shared";
 
 import { Signin_ApiModel, UserModel } from "../models";
 import { AuthenticationConfigurationService } from "./authentication-configuration.service";
 import { FeatureState } from "../reducers";
 import { WhoAmIAction } from "../actions";
+import { Cookie } from "@soushians/shared";
+
+const COOKIE_NAME = "ngs-authentication";
 
 @Injectable({
 	providedIn: "root"
@@ -28,7 +32,7 @@ export class SigninService {
 
 	signup(model: any): Observable<UserModel> {
 		return this.configurationService.config$.pipe(
-			filter(config => config.endpoints.signIn != ""),
+			filter(config => config.endpoints.signUp != ""),
 			take(1),
 			switchMap(config =>
 				this.http.post<Signin_ApiModel.Response>(config.env[config.server] + config.endpoints.signUp, model)
@@ -48,39 +52,51 @@ export class SigninService {
 			filter(config => config.endpoints.signIn != ""),
 			take(1),
 			switchMap(config =>
-				this.http.post<Signin_ApiModel.Response>(config.env[config.server] + config.endpoints.signIn, model)
+				this.http.post<any>(config.env[config.server] + config.endpoints.signIn, model)
 			),
-			map(response => {
-				const user: any = Object.assign({}, response.Result);
+			map(this.configurationService.config.responseToUser),
+			map((user) => {
 				if (user.Role) {
 					user.Roles = [user.Role];
 				}
 				return user;
-			})
+			}),
+			tap(user => {
+				if (this.configurationService.config.mode == "token-base")
+					Cookie.setCookie(COOKIE_NAME, JSON.stringify(user), this.configurationService.config.token.time);
+			}),
+			tap((user) => this.configurationService.config.afterSignin(user)),
 		);
-		// .catch(err => {
-		// 	if (err.status == 400) {
-		// 		this.snackBar.open("کد امنیتی اشتباه است", null, {
-		// 			duration: 5000
-		// 		});
-		// 	} else if (err.status == 403) {
-		// 		this.snackBar.open(" شماره موبایل و یا کلمه عبور اشتباه است", null, {
-		// 			duration: 5000
-		// 		});
-		// 	}
-		// 	return Observable.throw(err);
-		// });
 	}
 
 	// TODO:
 	signout(): Observable<any> {
+		Cookie.deleteCookie(COOKIE_NAME);
 		return this.http
-			.get(this.configurationService.config.env[this.configurationService.config.server] + this.configurationService.config.endpoints.signOut)
-			.map(response => response);
+			.get(
+				this.configurationService.config.env[this.configurationService.config.server] + this.configurationService.config.endpoints.signOut
+			)
+			.pipe(
+				tap(() => {
+					Cookie.deleteCookie(COOKIE_NAME);
+				})
+			);
 	}
 
-	// TODO: remove it
 	whoAmI(): Observable<any> {
-		return this.http.get(this.configurationService.config.endpoints.whoAmI).map(response => response);
+		debugger;
+		let user = { Token: "--" };
+		if (this.configurationService.config.mode == "token-base") {
+			try {
+				user = JSON.parse(Cookie.getCookie(COOKIE_NAME));
+			} catch (error) { }
+		}
+		return this.configurationService.config$.pipe(
+			filter(config => config.endpoints.whoAmI != ""),
+			take(1),
+			switchMap(config =>
+				this.http.get(stringTemplate(config.env[config.server] + config.endpoints.whoAmI, { user }))
+			)
+		);
 	}
 }

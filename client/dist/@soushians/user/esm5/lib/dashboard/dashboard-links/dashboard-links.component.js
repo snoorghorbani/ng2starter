@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes} checked by tsc
  */
 import { Component } from "@angular/core";
 import { UserConfigurationService } from "../../services/user-configuration.service";
@@ -42,7 +42,7 @@ var DashboardLinksComponent = /** @class */ (function () {
     return DashboardLinksComponent;
 }());
 export { DashboardLinksComponent };
-if (false) {
+function DashboardLinksComponent_tsickle_Closure_declarations() {
     /** @type {?} */
     DashboardLinksComponent.prototype.links;
     /** @type {?} */

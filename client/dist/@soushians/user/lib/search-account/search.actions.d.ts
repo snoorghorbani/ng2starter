@@ -5,7 +5,7 @@ export declare enum SearchActionTypes {
     SEARCH_START = "[USER][SEARCH] SEARCH_START",
     SEARCH_SUCCEED = "[USER][SEARCH] SEARCH_SUCCEED",
     SEARCH_FAILED = "[USER][SEARCH] SEARCH_FAILED",
-    CLEAR_SEARCHED_USER = "[USER][SEARCH] CLEAR_SEARCHED_USER"
+    CLEAR_SEARCHED_USER = "[USER][SEARCH] CLEAR_SEARCHED_USER",
 }
 export declare class Search implements Action {
     payload: ProfileViewModel.Request;
