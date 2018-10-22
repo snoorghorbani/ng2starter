@@ -9,7 +9,7 @@ export declare enum ResetPasswordRequestActionTypes {
     ENABLE_GET_LINK = "[USER][PASSWORD] ENABLE_GET_LINK",
     MAXIMUM_TRY_HAPPEND = "[USER][PASSWORD] MAXIMUM_TRY_HAPPEND",
     PASSWORD_CHANGED_SUCCEED = "[USER][PASSWORD] PASSWORD_CHANGED_SUCCEED",
-    PASSWORD_CHANGED_FAILED = "[USER][PASSWORD] PASSWORD_CHANGED_FAILED",
+    PASSWORD_CHANGED_FAILED = "[USER][PASSWORD] PASSWORD_CHANGED_FAILED"
 }
 export declare class GetResetPasswordLink implements Action {
     payload: ResetPasswordRequestModel.Request;

@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import { Component } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
@@ -64,7 +64,7 @@ EditFormContainerComponent.ctorParameters = () => [
     { type: ActivatedRoute },
     { type: Store }
 ];
-function EditFormContainerComponent_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     EditFormContainerComponent.prototype.formGroup;
     /** @type {?} */

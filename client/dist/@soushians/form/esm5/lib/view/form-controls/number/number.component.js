@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import { Component, Input } from "@angular/core";
 import { FormGroup } from "@angular/forms";
@@ -31,7 +31,7 @@ var NumberComponent = /** @class */ (function () {
     return NumberComponent;
 }());
 export { NumberComponent };
-function NumberComponent_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     NumberComponent.prototype.form;
     /** @type {?} */

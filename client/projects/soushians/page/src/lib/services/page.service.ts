@@ -23,15 +23,15 @@ export class PageService {
 		private _location: Location,
 		private userFacadeService: UserFacadeService
 	) {
-		this.userId$ = this.userFacadeService.getDisplayName().filter((i) => i != undefined);
+		this.userId$ = this.userFacadeService.getDisplayName().pipe(filter(i => i != undefined));
 	}
 
 	get(name: string): Observable<PageModel> {
 		return this.configurationService.config$.pipe(
-			filter((config) => config.endpoints.get !== ""),
+			filter(config => config.endpoints.get !== ""),
 			take(1),
 			combineLatest(this.userId$),
-			switchMap(([config, userId]) =>
+			switchMap(([ config, userId ]) =>
 				this.http.get(stringTemplate(config.env.frontend_server + config.endpoints.get, { name }))
 			),
 			map((response: UpsertPageApiModel.Response) => response.Result)
@@ -40,9 +40,9 @@ export class PageService {
 
 	delete(_id: string): Observable<PageModel> {
 		return this.configurationService.config$.pipe(
-			filter((config) => config.endpoints.delete !== ""),
+			filter(config => config.endpoints.delete !== ""),
 			take(1),
-			switchMap((config) =>
+			switchMap(config =>
 				this.http.delete(stringTemplate(config.env.frontend_server + config.endpoints.delete, { _id }))
 			),
 			map((response: DeletePageApiModel.Response) => response.Result)
@@ -51,21 +51,19 @@ export class PageService {
 
 	getPages(): Observable<PageModel[]> {
 		return this.configurationService.config$.pipe(
-			filter((config) => config.endpoints.find != ""),
+			filter(config => config.endpoints.find != ""),
 			combineLatest(this.userId$),
-			switchMap(([config, userId]) =>
-				this.http.get(config.env.frontend_server + config.endpoints.find)
-			),
+			switchMap(([ config, userId ]) => this.http.get(config.env.frontend_server + config.endpoints.find)),
 			map((response: GetPagesApiModel.Response) => response.Result)
 		);
 	}
 	upsert<T>(page: UpsertPageApiModel.Request): Observable<PageModel> {
 		const model = new UpsertPageApiModel.Request(page);
 		return this.configurationService.config$.pipe(
-			filter((config) => config.endpoints.upsert != ""),
+			filter(config => config.endpoints.upsert != ""),
 			take(1),
 			combineLatest(this.userId$),
-			switchMap(([config, userId]) =>
+			switchMap(([ config, userId ]) =>
 				this.http.post(config.env.frontend_server + config.endpoints.upsert, model.getRequestBody())
 			),
 			map((response: UpsertPageApiModel.Response) => response.Result),
@@ -80,18 +78,18 @@ export class PageService {
 	selectByName(name: string): Observable<PageModel> {
 		const subject = new BehaviorSubject<PageModel>(undefined);
 		this.store
-			.select((state) => state.pages.db.data)
+			.select(state => state.pages.db.data)
 			.pipe(
-				filter((pages) => pages != null),
-				map((pages) => pages.find((page) => page.name == name)),
-				tap((page) => {
+				filter(pages => pages != null),
+				map(pages => pages.find(page => page.name == name)),
+				tap(page => {
 					if (page == null) {
 						debugger;
 						this.store.dispatch(new GetPageStartAction(name));
 					}
 				})
 			)
-			.subscribe((page) => subject.next(page));
+			.subscribe(page => subject.next(page));
 		return subject.asObservable();
 	}
 }

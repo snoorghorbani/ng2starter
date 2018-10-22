@@ -4,7 +4,7 @@ export declare enum EditFormActionTypes {
     EDIT_FORM = "[FORM][EDIT] EDIT_FORM",
     EDIT_FORM_START = "[FORM][EDIT] EDIT_FORM_START",
     EDIT_FORM_SUCCEED = "[FORM][EDIT] EDIT_FORM_SUCCEED",
-    EDIT_FORM_FAILED = "[FORM][EDIT] EDIT_FORM_FAILED",
+    EDIT_FORM_FAILED = "[FORM][EDIT] EDIT_FORM_FAILED"
 }
 export declare class EditFormAction implements Action {
     payload: FormSchemaModel;

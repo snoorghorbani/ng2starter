@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var TokenModel = /** @class */ (function () {
     function TokenModel() {
@@ -8,7 +8,7 @@ var TokenModel = /** @class */ (function () {
     return TokenModel;
 }());
 export { TokenModel };
-function TokenModel_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     TokenModel.prototype.Token;
     /** @type {?} */
@@ -21,7 +21,7 @@ var CaptchaModel = /** @class */ (function () {
     return CaptchaModel;
 }());
 export { CaptchaModel };
-function CaptchaModel_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     CaptchaModel.prototype.Token;
     /** @type {?} */

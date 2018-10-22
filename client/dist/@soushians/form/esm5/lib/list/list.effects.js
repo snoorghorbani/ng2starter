@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import * as tslib_1 from "tslib";
 import { Injectable } from "@angular/core";
@@ -48,7 +48,7 @@ var FormsListEffects = /** @class */ (function () {
     return FormsListEffects;
 }());
 export { FormsListEffects };
-function FormsListEffects_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     FormsListEffects.prototype.EditProfileRequest$;
     /** @type {?} */

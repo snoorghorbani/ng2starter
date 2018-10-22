@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import * as tslib_1 from "tslib";
 import "rxjs/add/operator/map";
@@ -46,7 +46,7 @@ var CaptchaEffects = /** @class */ (function () {
     return CaptchaEffects;
 }());
 export { CaptchaEffects };
-function CaptchaEffects_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     CaptchaEffects.prototype.GetCaptcha$;
     /** @type {?} */

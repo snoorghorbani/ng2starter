@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 export var Signin_ApiModel;
 (function (Signin_ApiModel) {
@@ -10,7 +10,7 @@ export var Signin_ApiModel;
     class Response {
     }
     Signin_ApiModel.Response = Response;
-    function Response_tsickle_Closure_declarations() {
+    if (false) {
         /** @type {?} */
         Response.prototype.Result;
     }

@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 import { Component } from "@angular/core";
 import { Store } from "@ngrx/store";
@@ -55,7 +55,7 @@ var ProfileEditContainerComponent = /** @class */ (function () {
     return ProfileEditContainerComponent;
 }());
 export { ProfileEditContainerComponent };
-function ProfileEditContainerComponent_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     ProfileEditContainerComponent.prototype.userInforamation$;
     /** @type {?} */

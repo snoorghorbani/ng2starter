@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var UserModel = /** @class */ (function () {
     function UserModel() {
@@ -10,7 +10,7 @@ var UserModel = /** @class */ (function () {
     return UserModel;
 }());
 export { UserModel };
-function UserModel_tsickle_Closure_declarations() {
+if (false) {
     /** @type {?} */
     UserModel.prototype._id;
     /** @type {?} */

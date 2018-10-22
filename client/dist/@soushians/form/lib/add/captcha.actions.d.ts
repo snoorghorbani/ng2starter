@@ -4,7 +4,7 @@ export declare enum CaptchaActionTypes {
     GET_CAPTCHA = "[CAPTCHA][GET] GET_CAPTCHA",
     GET_CAPTCHA_START = "[CAPTCHA][GET] GET_CAPTCHA_START",
     GET_CAPTCHA_SUCCEED = "[CAPTCHA][GET] GET_CAPTCHA_SUCCEED",
-    GET_CAPTCHA_FAILED = "[CAPTCHA][GET] GET_CAPTCHA_FAILED",
+    GET_CAPTCHA_FAILED = "[CAPTCHA][GET] GET_CAPTCHA_FAILED"
 }
 export declare class GetCaptchaAction implements Action {
     readonly type: CaptchaActionTypes;

@@ -8,7 +8,7 @@ export declare enum FormsListActionTypes {
     ADD_FORM_SCHEMA = "[FORM][LIST] ADD_FORM_SCHEMA",
     FORM_SCHEMA_UPDATE = "[FORM][LIST] FORM_SCHEMA_UPDATE",
     GET_FORM_SCHEMA = "[FORM][LIST] GET_FORM_SCHEMA",
-    FORM_SCHEMA_FETCHED = "[FORM][LIST] FORM_SCHEMA_FETCHED",
+    FORM_SCHEMA_FETCHED = "[FORM][LIST] FORM_SCHEMA_FETCHED"
 }
 export declare class FormsListAction implements Action {
     readonly type: FormsListActionTypes;
