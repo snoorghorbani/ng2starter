@@ -1,4 +1,4 @@
-import { GridModel } from "../models";
+import { GridModel } from "../models/grid.model";
 import { GridsActionTypes, GridsActions } from "./widget.actions";
 
 export interface State {
@@ -16,8 +16,8 @@ export function Reducer(state = initialState, action: GridsActions): State {
 			_data = state.data.concat();
 			const newGrids = action.payload;
 
-			newGrids.forEach((newGrid) => {
-				const existedGridIndex = _data.findIndex((w) => w._id == newGrid._id);
+			newGrids.forEach(newGrid => {
+				const existedGridIndex = _data.findIndex(w => w._id == newGrid._id);
 				if (existedGridIndex > -1) {
 					_data.splice(existedGridIndex, 1, newGrid);
 				} else {
@@ -33,7 +33,7 @@ export function Reducer(state = initialState, action: GridsActions): State {
 		case GridsActionTypes.DELETE:
 			_data = Object.assign({}, state.data);
 
-			const gridIndex = state.data.findIndex((w) => w._id == action.payload._id);
+			const gridIndex = state.data.findIndex(w => w._id == action.payload._id);
 			_data.splice(gridIndex, 1);
 
 			return {

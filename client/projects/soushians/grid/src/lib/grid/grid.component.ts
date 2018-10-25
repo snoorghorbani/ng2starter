@@ -5,18 +5,17 @@ import { filter, map } from "rxjs/operators";
 import { MatBottomSheet, MatCheckboxChange } from "@angular/material";
 import { Observable } from "rxjs";
 
-import { getAccountInfo } from "@soushians/user";
+import { getAccountInfo, UserFacadeService } from "@soushians/user";
+// import { WidgetModel } from "@soushians/widget";
 
 import { AppState } from "../grid.reducer";
-import { GridModel } from "../models";
+import { GridModel } from "../models/grid.model";
 import { GridService } from "../services/grid.service";
 import { GridConfigurationService } from "../services/grid-configuration.service";
 import { DynamicGridItemConfigComponent } from "../grid-item/dynamic-grid-item-config.directive";
 import { GridConfigComponent } from "../grid-config/grid-config.component";
 import { IGridItemModel } from "../models/gird-item.model";
 import { UpsertGridStartAction } from "../services/api/upsert-grid/upsert-grid.actions";
-import { UserFacadeService } from "@soushians/user";
-import { WidgetSelectorComponent, WidgetModel } from "@soushians/widget";
 import { DynamicGridItemViewDirective } from "../grid-item/dynamic-grid-item-view.directive";
 
 @Component({
@@ -35,7 +34,7 @@ export class GridComponent implements OnInit {
 	@Output() initCallback = new EventEmitter();
 
 	@Input() oid: string;
-	widget: WidgetModel<any>;
+	// widget: WidgetModel<any>;
 	havePermission$: Observable<boolean>;
 	username: string;
 	options: GridsterConfig;

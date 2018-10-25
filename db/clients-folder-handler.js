@@ -19,10 +19,16 @@ const build_all_packages = () => {
 	spinner.start();
 	return new Promise((resolve, reject) => {
 		shell.cd("../client");
+		spinner.start();
 		shell.exec("npm run p_build", (a, b, c, d) => {
-			spinner.stop(true);
-			if (a == 0) resolve();
-			else reject();
+			if (a == 0) {
+				spinner.stop();
+				resolve();
+			} else {
+				spinner.stop();
+				console.log(c);
+				reject();
+			}
 		});
 	});
 };

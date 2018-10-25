@@ -3,13 +3,12 @@ import { GridsterConfig, GridsterItem } from "angular-gridster2";
 import { Store } from "@ngrx/store";
 import { MatBottomSheet, MatCheckboxChange } from "@angular/material";
 import { Observable } from "rxjs";
+import { UserFacadeService } from "@soushians/user";
 import { AppState } from "../grid.reducer";
-import { GridModel } from "../models";
+import { GridModel } from "../models/grid.model";
 import { GridService } from "../services/grid.service";
 import { GridConfigurationService } from "../services/grid-configuration.service";
 import { IGridItemModel } from "../models/gird-item.model";
-import { UserFacadeService } from "@soushians/user";
-import { WidgetModel } from "@soushians/widget";
 export declare class GridComponent implements OnInit {
     private store;
     private service;
@@ -25,7 +24,6 @@ export declare class GridComponent implements OnInit {
     destroyCallback: EventEmitter<{}>;
     initCallback: EventEmitter<{}>;
     oid: string;
-    widget: WidgetModel<any>;
     havePermission$: Observable<boolean>;
     username: string;
     options: GridsterConfig;

@@ -1,4 +1,4 @@
-import { GridModel } from "../../../models";
+import { GridModel } from "../../../models/grid.model";
 
 export namespace UpsertGridApiModel {
 	export class Request {

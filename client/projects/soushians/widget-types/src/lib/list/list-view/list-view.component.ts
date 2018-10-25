@@ -18,7 +18,6 @@ export class ListViewComponent implements OnInit, IWidgetView<ListWidgetConfigMo
 	constructor(private store: Store<any>) { }
 
 	ngOnInit() {
-		debugger;
 		this.havePermission$ = this.store.select(getFrontendAuthenticationState);
 	}
 }

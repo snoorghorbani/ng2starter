@@ -22,7 +22,7 @@
             "request": "launch",
             "name": "Mongo Version",
             "cwd": "E:/@ng2-starter/starter/db/",
-            "program": "${workspaceFolder}/db/version.js"
+            "program": "${workspaceFolder}/db/server.js"
         },
         {
             "type": "node",

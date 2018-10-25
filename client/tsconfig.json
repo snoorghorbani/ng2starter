@@ -17,6 +17,54 @@
       "dom"
     ],
     "paths": {
+      "@soushians/authentication": [
+        "dist/@soushians/authentication"
+      ],
+      "@soushians/config": [
+        "dist/@soushians/config"
+      ],
+      "@soushians/diagram": [
+        "dist/@soushians/diagram"
+      ],
+      "@soushians/form": [
+        "dist/@soushians/form"
+      ],
+      "@soushians/frontend-authentication": [
+        "dist/@soushians/frontend-authentication"
+      ],
+      "@soushians/grid": [
+        "dist/@soushians/grid"
+      ],
+      "@soushians/gwt-steps": [
+        "dist/@soushians/gwt-steps"
+      ],
+      "@soushians/layout": [
+        "dist/@soushians/layout"
+      ],
+      "@soushians/page": [
+        "dist/@soushians/page"
+      ],
+      "@soushians/rule": [
+        "dist/@soushians/rule"
+      ],
+      "@soushians/shared": [
+        "dist/@soushians/shared"
+      ],
+      "@soushians/socket": [
+        "dist/@soushians/socket"
+      ],
+      "@soushians/source": [
+        "dist/@soushians/source"
+      ],
+      "@soushians/user": [
+        "dist/@soushians/user"
+      ],
+      "@soushians/widget": [
+        "dist/@soushians/widget"
+      ],
+      "@soushians/widget-types": [
+        "dist/@soushians/widget-types"
+      ],
       "@soushians/test": [
         "dist/soushians/test"
       ],

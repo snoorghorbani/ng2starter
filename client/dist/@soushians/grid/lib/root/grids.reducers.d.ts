@@ -1,4 +1,4 @@
-import { GridModel } from "../models";
+import { GridModel } from "../models/grid.model";
 import { GridsActions } from "./widget.actions";
 export interface State {
     data: GridModel[];

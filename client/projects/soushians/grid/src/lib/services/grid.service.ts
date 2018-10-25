@@ -12,7 +12,8 @@ import { UpsertGridApiModel } from "./api/upsert-grid/upsert-grid.model";
 import { GridConfigurationService } from "./grid-configuration.service";
 import { GetGridStartAction } from "./api/get-grid/get-grid.actions";
 import { GetGridsApiModel } from "./api/get-grids/get-grids.model";
-import { GridModel, IGridItemModel } from "../models";
+import { GridModel } from "../models/grid.model";
+import { IGridItemModel } from "../models/gird-item.model";
 import { AppState } from "../grid.reducer";
 
 @Injectable({

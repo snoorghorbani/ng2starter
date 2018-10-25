@@ -55,11 +55,12 @@ packgeHandler.update_all_packages(toVersion.version).then(() => {
 			 */
 			clientsFolderHandler
 				.build_all_packages()
-				// .catch(() => {
-				// 	debugger;
-				// 	console.log("***********************************");
-				// 	console.log(`Failed on build client packages`);
-				// })
+				.catch(err => {
+					debugger;
+					console.log("***********************************");
+					console.log(err);
+					console.log(`Failed on build client packages`);
+				})
 				.then(() => {
 					debugger;
 					console.log("***********************************");

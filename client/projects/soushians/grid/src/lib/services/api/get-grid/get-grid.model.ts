@@ -1,10 +1,10 @@
-import { GridModel } from "../../../models";
+import { GridModel } from "../../../models/grid.model";
 
 export namespace GetGridApiModel {
 	export class Request {
 		_id: string;
 		constructor(initValue = {}) {
-			Object.keys(initValue).forEach((key) => (this[key] = initValue[key]));
+			Object.keys(initValue).forEach(key => (this[key] = initValue[key]));
 		}
 
 		getRequestBody() {

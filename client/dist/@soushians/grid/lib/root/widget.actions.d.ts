@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { GridModel } from "../models";
+import { GridModel } from "../models/grid.model";
 export declare enum GridsActionTypes {
     UPSERT = "[GRID][DB] UPSERT",
     DELETE = "[GRID][DB] DELETE"
