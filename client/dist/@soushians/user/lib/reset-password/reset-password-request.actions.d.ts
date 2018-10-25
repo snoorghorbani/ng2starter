@@ -13,37 +13,37 @@ export declare enum ResetPasswordRequestActionTypes {
 }
 export declare class GetResetPasswordLink implements Action {
     payload: ResetPasswordRequestModel.Request;
-    readonly type: ResetPasswordRequestActionTypes;
+    readonly type = ResetPasswordRequestActionTypes.GET_RESET_PASSWORD_LINK;
     constructor(payload: ResetPasswordRequestModel.Request);
 }
 export declare class ResetPasswordLinkRequestStart implements Action {
     payload: ResetPasswordRequestModel.Request;
-    readonly type: ResetPasswordRequestActionTypes;
+    readonly type = ResetPasswordRequestActionTypes.RESET_PASSWORD_LINK_REQUEST_START;
     constructor(payload: ResetPasswordRequestModel.Request);
 }
 export declare class ResetPasswordLinkRequestSucceed implements Action {
-    readonly type: ResetPasswordRequestActionTypes;
+    readonly type = ResetPasswordRequestActionTypes.RESET_PASSWORD_LINK_REQUEST_SUCCEED;
     constructor();
 }
 export declare class ResetPasswordLinkRequestFailed implements Action {
-    readonly type: ResetPasswordRequestActionTypes;
+    readonly type = ResetPasswordRequestActionTypes.RESET_PASSWORD_LINK_REQUEST_FAILED;
     constructor();
 }
 export declare class DisableGetLink implements Action {
-    readonly type: ResetPasswordRequestActionTypes;
+    readonly type = ResetPasswordRequestActionTypes.DISABLE_GET_LINK;
 }
 export declare class EnableGetLink implements Action {
-    readonly type: ResetPasswordRequestActionTypes;
+    readonly type = ResetPasswordRequestActionTypes.ENABLE_GET_LINK;
 }
 export declare class MaximumTryHappend implements Action {
-    readonly type: ResetPasswordRequestActionTypes;
+    readonly type = ResetPasswordRequestActionTypes.MAXIMUM_TRY_HAPPEND;
 }
 export declare class PasswordChangedSucceed implements Action {
-    readonly type: ResetPasswordRequestActionTypes;
+    readonly type = ResetPasswordRequestActionTypes.PASSWORD_CHANGED_SUCCEED;
 }
 export declare class PasswordChangedFailed implements Action {
     payload: string;
-    readonly type: ResetPasswordRequestActionTypes;
+    readonly type = ResetPasswordRequestActionTypes.PASSWORD_CHANGED_FAILED;
     constructor(payload: string);
 }
 export declare type ResetPasswordRequestAction = GetResetPasswordLink | ResetPasswordLinkRequestStart | ResetPasswordLinkRequestFailed | DisableGetLink | ResetPasswordLinkRequestSucceed | EnableGetLink | MaximumTryHappend | PasswordChangedSucceed | PasswordChangedFailed;

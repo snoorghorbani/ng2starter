@@ -5,14 +5,14 @@ export declare const enum AuthenticationActionTypes {
     FAILED_HAPPENED = "[AUTHENTICATION] FAILED_HAPPENED"
 }
 export declare class ProgressingStarted implements Action {
-    readonly type: AuthenticationActionTypes;
+    readonly type = AuthenticationActionTypes.PROGRESSING_STARTED;
 }
 export declare class ProgressingFinished implements Action {
-    readonly type: AuthenticationActionTypes;
+    readonly type = AuthenticationActionTypes.PROGRESSING_FINISHED;
 }
 export declare class FailedHappened implements Action {
     payload: any;
-    readonly type: AuthenticationActionTypes;
+    readonly type = AuthenticationActionTypes.FAILED_HAPPENED;
     constructor(payload: any);
 }
 export declare type AuthenticationAction = ProgressingStarted | ProgressingFinished | FailedHappened;

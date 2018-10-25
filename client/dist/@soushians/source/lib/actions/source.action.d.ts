@@ -7,13 +7,13 @@ export declare enum SourceActionTypes {
 }
 export declare class SourceSubmit implements Action {
     payload: UpsertSourceApiModel.Request;
-    readonly type: SourceActionTypes;
+    readonly type = SourceActionTypes.SOURCE_SUBMIT;
     constructor(payload: UpsertSourceApiModel.Request);
 }
 export declare class SourceSubmitSucceed implements Action {
-    readonly type: SourceActionTypes;
+    readonly type = SourceActionTypes.SOURCE_SUBMIT_SUCCEED;
 }
 export declare class SourceSubmitFailed implements Action {
-    readonly type: SourceActionTypes;
+    readonly type = SourceActionTypes.SOURCE_SUBMIT_FAILED;
 }
 export declare type Actions = SourceSubmit | SourceSubmitSucceed | SourceSubmitFailed;

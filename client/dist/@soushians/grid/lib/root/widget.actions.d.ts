@@ -6,12 +6,12 @@ export declare enum GridsActionTypes {
 }
 export declare class UpsertGridAction implements Action {
     payload: GridModel[];
-    readonly type: GridsActionTypes;
+    readonly type = GridsActionTypes.UPSERT;
     constructor(payload: GridModel[]);
 }
 export declare class DeleteGridAction implements Action {
     payload: GridModel;
-    readonly type: GridsActionTypes;
+    readonly type = GridsActionTypes.DELETE;
     constructor(payload: GridModel);
 }
 export declare type GridsActions = UpsertGridAction | DeleteGridAction;

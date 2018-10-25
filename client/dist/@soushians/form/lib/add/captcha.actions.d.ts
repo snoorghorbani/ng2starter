@@ -7,17 +7,17 @@ export declare enum CaptchaActionTypes {
     GET_CAPTCHA_FAILED = "[CAPTCHA][GET] GET_CAPTCHA_FAILED"
 }
 export declare class GetCaptchaAction implements Action {
-    readonly type: CaptchaActionTypes;
+    readonly type = CaptchaActionTypes.GET_CAPTCHA;
 }
 export declare class GetCaptchaStartAction implements Action {
     payload: CaptchaModel;
-    readonly type: CaptchaActionTypes;
+    readonly type = CaptchaActionTypes.GET_CAPTCHA_START;
     constructor(payload: CaptchaModel);
 }
 export declare class GetCaptchaSucceedAction implements Action {
-    readonly type: CaptchaActionTypes;
+    readonly type = CaptchaActionTypes.GET_CAPTCHA_SUCCEED;
 }
 export declare class GetCaptchaFailedAction implements Action {
-    readonly type: CaptchaActionTypes;
+    readonly type = CaptchaActionTypes.GET_CAPTCHA_FAILED;
 }
 export declare type CaptchaActions = GetCaptchaAction | GetCaptchaStartAction | GetCaptchaSucceedAction | GetCaptchaFailedAction;

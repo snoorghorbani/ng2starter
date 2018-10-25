@@ -7,17 +7,17 @@ export declare enum DiagramsActionTypes {
     GET_DIAGRAM_FAILED = "[DIAGRAM] GET_DIAGRAM_FAILED"
 }
 export declare class GetDiagrams implements Action {
-    readonly type: DiagramsActionTypes;
+    readonly type = DiagramsActionTypes.GET_DIAGRAM;
 }
 export declare class GetDiagramsStart implements Action {
-    readonly type: DiagramsActionTypes;
+    readonly type = DiagramsActionTypes.GET_DIAGRAM_START;
 }
 export declare class GetDiagramsSucceed implements Action {
     payload: GetDiagramsApiModel.Response;
-    readonly type: DiagramsActionTypes;
+    readonly type = DiagramsActionTypes.GET_DIAGRAM_SUCCEED;
     constructor(payload: GetDiagramsApiModel.Response);
 }
 export declare class GetDiagramsFailed implements Action {
-    readonly type: DiagramsActionTypes;
+    readonly type = DiagramsActionTypes.GET_DIAGRAM_FAILED;
 }
 export declare type DiagramsAction = GetDiagrams | GetDiagramsStart | GetDiagramsSucceed | GetDiagramsFailed;

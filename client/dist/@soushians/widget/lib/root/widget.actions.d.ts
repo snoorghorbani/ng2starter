@@ -6,12 +6,12 @@ export declare enum WidgetsActionTypes {
 }
 export declare class UpsertWidgetAction implements Action {
     payload: WidgetModel<any>[];
-    readonly type: WidgetsActionTypes;
+    readonly type = WidgetsActionTypes.UPSERT;
     constructor(payload: WidgetModel<any>[]);
 }
 export declare class DeleteWidgetAction implements Action {
     payload: WidgetModel<any>;
-    readonly type: WidgetsActionTypes;
+    readonly type = WidgetsActionTypes.DELETE;
     constructor(payload: WidgetModel<any>);
 }
 export declare type WidgetsActions = UpsertWidgetAction | DeleteWidgetAction;

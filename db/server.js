@@ -19,6 +19,17 @@ dotenv.config({ path: "./.env" });
   */
 const fromVersion = version.getCurrentVersion();
 const toVersion = version.getNextVersion();
+// const fromVersion = {
+// 	version        : "6.8.0",
+// 	time           : 1540467291249,
+// 	migrationIndex : "0050"
+// };
+// const toVersion = {
+// 	version        : "7.0.0",
+// 	time           : 1540467291249,
+// 	migrationIndex : "0055"
+// };
+
 /**
  * get update package.json s
  */
