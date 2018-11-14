@@ -1,6 +1,4 @@
 import { Injectable } from "@angular/core";
-import { HttpRequestBaseModel } from "@soushians/shared";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { WidgetModel } from "./widget.model";
 
 export namespace UpsertWidgetApiModel {

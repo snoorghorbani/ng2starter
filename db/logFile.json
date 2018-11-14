@@ -34,11 +34,26 @@
 			"version": "6.5.0",
 			"time": 1537197435714,
 			"migrationIndex": "0035"
+		},
+		{
+			"version": "6.6.0",
+			"time": 1537197435714,
+			"migrationIndex": "0040"
+		},
+		{
+			"version": "6.7.0",
+			"time": 1540466604479,
+			"migrationIndex": "0045"
+		},
+		{
+			"version": "6.8.0",
+			"time": 1540467291249,
+			"migrationIndex": "0050"
 		}
 	],
 	"currentVersion": {
-		"version": "6.6.0",
-		"time": 1537197435714,
-		"migrationIndex": "0040"
+		"version": "7.0.0",
+		"time": 1540486862805,
+		"migrationIndex": "0055"
 	}
 }

@@ -7,19 +7,19 @@ export declare enum ConfigActionTypes {
     CONFIG_LOADED_FAILED = "[CONFIG] load config failed"
 }
 export declare class GetConfigAction implements Action {
-    readonly type: ConfigActionTypes;
+    readonly type = ConfigActionTypes.GET_CONFIGS;
 }
 export declare class ConfigLoadedSucceedAction implements Action {
     payload: ConfigModel<any>[];
-    readonly type: ConfigActionTypes;
+    readonly type = ConfigActionTypes.CONFIG_LOADED_SUCCEED;
     constructor(payload: ConfigModel<any>[]);
 }
 export declare class UpdateConfigAction implements Action {
     payload: ConfigModel<any>;
-    readonly type: ConfigActionTypes;
+    readonly type = ConfigActionTypes.UPDATE_CONFIG;
     constructor(payload: ConfigModel<any>);
 }
 export declare class ConfigLoadedFailedAction implements Action {
-    readonly type: ConfigActionTypes;
+    readonly type = ConfigActionTypes.CONFIG_LOADED_FAILED;
 }
 export declare type Actions = GetConfigAction | ConfigLoadedSucceedAction | ConfigLoadedFailedAction | UpdateConfigAction;

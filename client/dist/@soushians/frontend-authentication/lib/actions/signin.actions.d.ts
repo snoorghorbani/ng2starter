@@ -10,33 +10,33 @@ export declare enum SignInActionTypes {
     SIGNIN_REQUIRED = "[FRONTEND_AUTHENTICATION][Signin] Required"
 }
 export declare class WhoAmIAction implements Action {
-    readonly type: SignInActionTypes;
+    readonly type = SignInActionTypes.WHO_AM_I;
 }
 export declare class Signin implements Action {
     payload: any;
-    readonly type: SignInActionTypes;
+    readonly type = SignInActionTypes.SIGNIN;
     constructor(payload: any);
 }
 export declare class SigninSecceed implements Action {
     payload: any;
-    readonly type: SignInActionTypes;
+    readonly type = SignInActionTypes.SIGNIN_SUCCEED;
     constructor(payload: any);
 }
 export declare class SigninFailed implements Action {
     payload: any;
-    readonly type: SignInActionTypes;
+    readonly type = SignInActionTypes.SIGNIN_FAILURE;
     constructor(payload: any);
 }
 export declare class SigninRedirect implements Action {
-    readonly type: SignInActionTypes;
+    readonly type = SignInActionTypes.SIGNIN_REDIRECT;
 }
 export declare class DoSignoutAction implements Action {
-    readonly type: SignInActionTypes;
+    readonly type = SignInActionTypes.DO_SIGNOUT;
 }
 export declare class SignoutAction implements Action {
-    readonly type: SignInActionTypes;
+    readonly type = SignInActionTypes.SIGNOUT;
 }
 export declare class SigninRequiredAction implements Action {
-    readonly type: SignInActionTypes;
+    readonly type = SignInActionTypes.SIGNIN_REQUIRED;
 }
 export declare type SigninAction = WhoAmIAction | Signin | SigninSecceed | SigninFailed | SigninRedirect | DoSignoutAction | SignoutAction | SigninRequiredAction;

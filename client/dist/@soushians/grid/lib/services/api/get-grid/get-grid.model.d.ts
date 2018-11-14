@@ -1,4 +1,4 @@
-import { GridModel } from "../../../models";
+import { GridModel } from "../../../models/grid.model";
 export declare namespace GetGridApiModel {
     class Request {
         _id: string;

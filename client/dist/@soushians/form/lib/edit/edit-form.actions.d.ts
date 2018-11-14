@@ -8,20 +8,20 @@ export declare enum EditFormActionTypes {
 }
 export declare class EditFormAction implements Action {
     payload: FormSchemaModel;
-    readonly type: EditFormActionTypes;
+    readonly type = EditFormActionTypes.EDIT_FORM;
     constructor(payload: FormSchemaModel);
 }
 export declare class EditFormStartAction implements Action {
     payload: FormSchemaModel;
-    readonly type: EditFormActionTypes;
+    readonly type = EditFormActionTypes.EDIT_FORM_START;
     constructor(payload: FormSchemaModel);
 }
 export declare class EditFormSucceedAction implements Action {
     payload: FormSchemaModel;
-    readonly type: EditFormActionTypes;
+    readonly type = EditFormActionTypes.EDIT_FORM_SUCCEED;
     constructor(payload: FormSchemaModel);
 }
 export declare class EditFormFailedAction implements Action {
-    readonly type: EditFormActionTypes;
+    readonly type = EditFormActionTypes.EDIT_FORM_FAILED;
 }
 export declare type EditFormActions = EditFormAction | EditFormStartAction | EditFormSucceedAction | EditFormFailedAction;

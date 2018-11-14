@@ -9,23 +9,23 @@ export declare enum SearchActionTypes {
 }
 export declare class Search implements Action {
     payload: ProfileViewModel.Request;
-    readonly type: SearchActionTypes;
+    readonly type = SearchActionTypes.SEARCH;
     constructor(payload: ProfileViewModel.Request);
 }
 export declare class SearchStartAction implements Action {
     payload: ProfileViewModel.Request;
-    readonly type: SearchActionTypes;
+    readonly type = SearchActionTypes.SEARCH_START;
     constructor(payload: ProfileViewModel.Request);
 }
 export declare class SearchSucceed implements Action {
     payload: ProfileViewModel.Response;
-    readonly type: SearchActionTypes;
+    readonly type = SearchActionTypes.SEARCH_SUCCEED;
     constructor(payload: ProfileViewModel.Response);
 }
 export declare class SearchFailed implements Action {
-    readonly type: SearchActionTypes;
+    readonly type = SearchActionTypes.SEARCH_FAILED;
 }
 export declare class ClearSearchedUser implements Action {
-    readonly type: SearchActionTypes;
+    readonly type = SearchActionTypes.CLEAR_SEARCHED_USER;
 }
 export declare type SearchAction = Search | SearchStartAction | SearchSucceed | SearchFailed | ClearSearchedUser;

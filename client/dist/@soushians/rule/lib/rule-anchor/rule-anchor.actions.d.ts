@@ -4,9 +4,9 @@ export declare enum RuleAnchorsActionTypes {
     HIDE_ANCHORS = "[RULE][ANCHORS] HIDE_ANCHORS"
 }
 export declare class ShowAnchorsAction implements Action {
-    readonly type: RuleAnchorsActionTypes;
+    readonly type = RuleAnchorsActionTypes.SHOW_ANCHORS;
 }
 export declare class HideAnchorsAction implements Action {
-    readonly type: RuleAnchorsActionTypes;
+    readonly type = RuleAnchorsActionTypes.HIDE_ANCHORS;
 }
 export declare type RuleAnchorsAction = ShowAnchorsAction | HideAnchorsAction;

@@ -21,9 +21,12 @@ const backup = nextVersion => {
 			const db = client.db(process.env.dbName);
 
 			db.collections().then(collections => {
-				let count = collections.length - eval(process.env.excludedCollection).length;
+				let count = collections.length;
 				collections.forEach(collection => {
-					if (process.env.excludedCollection.includes(collection.collectionName)) return;
+					if (eval(process.env.excludedCollection).includes(collection.collectionName)) {
+						--count;
+						return;
+					}
 
 					let _collection = db.collection(collection.collectionName);
 					_collection.find().toArray((err, docs) => {

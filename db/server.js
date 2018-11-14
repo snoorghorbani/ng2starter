@@ -19,6 +19,17 @@ dotenv.config({ path: "./.env" });
   */
 const fromVersion = version.getCurrentVersion();
 const toVersion = version.getNextVersion();
+// const fromVersion = {
+// 	version        : "6.8.0",
+// 	time           : 1540467291249,
+// 	migrationIndex : "0050"
+// };
+// const toVersion = {
+// 	version        : "7.0.0",
+// 	time           : 1540467291249,
+// 	migrationIndex : "0055"
+// };
+
 /**
  * get update package.json s
  */
@@ -55,11 +66,12 @@ packgeHandler.update_all_packages(toVersion.version).then(() => {
 			 */
 			clientsFolderHandler
 				.build_all_packages()
-				// .catch(() => {
-				// 	debugger;
-				// 	console.log("***********************************");
-				// 	console.log(`Failed on build client packages`);
-				// })
+				.catch(err => {
+					debugger;
+					console.log("***********************************");
+					console.log(err);
+					console.log(`Failed on build client packages`);
+				})
 				.then(() => {
 					debugger;
 					console.log("***********************************");

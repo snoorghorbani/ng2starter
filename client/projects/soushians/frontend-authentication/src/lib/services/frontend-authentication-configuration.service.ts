@@ -3,8 +3,6 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 import { BehaviorSubject } from "rxjs";
 
-// import { getFrontendAuthenticationModuleConfig } from "@soushians/config";
-
 import {
 	MODULE_CONFIG_TOKEN,
 	FrontendAuthenticationModuleConfig,

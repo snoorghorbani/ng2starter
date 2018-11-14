@@ -1,6 +1,6 @@
 {
   "name": "@soushians/authentication",
-  "version": "6.7.10",
+  "version": "7.0.0",
   "peerDependencies": {},
   "main": "bundles/soushians-authentication.umd.js",
   "module": "fesm5/soushians-authentication.js",

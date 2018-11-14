@@ -2,8 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { Store } from "@ngrx/store";
 
-// import { IGridItemComponent } from "@soushians/grid";
-
 import { WidgetModel } from "../models/widget.model";
 import { IWidgetViewInputInterface } from "../models/widget-view-input.interface";
 import { AppState } from "../widget.reducer";

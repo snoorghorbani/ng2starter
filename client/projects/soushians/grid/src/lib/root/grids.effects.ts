@@ -3,7 +3,7 @@ import { Actions, Effect } from "@ngrx/effects";
 import { map, pluck } from "rxjs/operators";
 import { Observable } from "rxjs";
 
-import { GridModel } from "../models";
+import { GridModel } from "../models/grid.model";
 import { UpsertGridAction } from "./widget.actions";
 import { GET_GRID_ACTION_TYPES } from "../services/api/get-grid/get-grid.actions";
 import { GET_GRIDS_ACTION_TYPES } from "../services/api/get-grids/get-grids.actions";

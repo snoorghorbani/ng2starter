@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, Effect } from "@ngrx/effects";
+import { Observable } from "rxjs";
 import { map, pluck, switchMap } from "rxjs/operators";
 
 import { GET_WIDGET_ACTION_TYPES, GET_WIDGETS_ACTION_TYPES } from "../services/api";
@@ -9,12 +10,12 @@ import { DELETE_WIDGET_ACTION_TYPES } from "../services/api/delete-widget";
 
 @Injectable()
 export class WidgetDbEffects {
-	constructor(private actions$: Actions<any>) { }
+	constructor(private actions$: Actions<any>) {}
 
 	@Effect()
 	Upsert$ = this.actions$
 		.ofType(GET_WIDGET_ACTION_TYPES.SUCCEED)
-		.pipe(pluck("payload"), map((widget: WidgetModel<any>) => new UpsertWidgetAction([widget])));
+		.pipe(pluck("payload"), map((widget: WidgetModel<any>) => new UpsertWidgetAction([ widget ])));
 
 	@Effect()
 	UpsertMany$ = this.actions$
@@ -24,6 +25,5 @@ export class WidgetDbEffects {
 	@Effect()
 	Delete$ = this.actions$
 		.ofType(DELETE_WIDGET_ACTION_TYPES.SUCCEED)
-		.pipe(pluck("payload"), map((widget: WidgetModel<any>) => new DeleteWidgetAction(widget))
-		);
+		.pipe(pluck("payload"), map((widget: WidgetModel<any>) => new DeleteWidgetAction(widget)));
 }

@@ -7,7 +7,6 @@ import { map, switchMap, take, filter, tap } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 
 // import { environment } from "../../environments/environment";
-import { stringTemplate } from "@soushians/shared";
 
 import { UserModel } from "../models/user.model";
 import { FrontendAuthenticationConfigurationService } from "./frontend-authentication-configuration.service";
@@ -38,7 +37,7 @@ export class FrontendSigninService {
 			map((response: any) => {
 				const user: any = Object.assign({}, response.Result);
 				if (user.Role) {
-					user.Roles = [user.Role];
+					user.Roles = [ user.Role ];
 				}
 				return user;
 			})
@@ -49,7 +48,7 @@ export class FrontendSigninService {
 		return this.http
 			.get(
 				this.configurationService.config.env.frontend_server +
-				this.configurationService.config.endpoints.signOut
+					this.configurationService.config.endpoints.signOut
 			)
 			.map(response => response);
 	}

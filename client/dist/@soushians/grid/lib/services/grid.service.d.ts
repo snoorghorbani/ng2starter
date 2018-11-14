@@ -4,7 +4,8 @@ import { Store } from "@ngrx/store";
 import { UserFacadeService } from "@soushians/user";
 import { UpsertGridApiModel } from "./api/upsert-grid/upsert-grid.model";
 import { GridConfigurationService } from "./grid-configuration.service";
-import { GridModel, IGridItemModel } from "../models";
+import { GridModel } from "../models/grid.model";
+import { IGridItemModel } from "../models/gird-item.model";
 import { AppState } from "../grid.reducer";
 export declare class GridService {
     private http;

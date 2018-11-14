@@ -1,4 +1,4 @@
-export { UpsertWidgetStartAction } from "./lib/services/api";
+export { UpsertWidgetStartAction } from "./lib/services/api/upsert-widget/upsert-widget.actions";
 export { DynamicWidgetViewComponent } from "./lib/view/dynamic-widget-view.component";
 export { WidgetSelectorComponent } from "./lib/widget-selector/widget-selector.component";
 export { NgsWidgetModule } from "./lib/widget.module";
