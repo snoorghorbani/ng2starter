@@ -9,20 +9,20 @@ export declare enum EditProfileActionTypes {
 }
 export declare class EditProfile implements Action {
     payload: EditProfile_ApiModel.Request;
-    readonly type = EditProfileActionTypes.EDIT_PROFILE;
+    readonly type: EditProfileActionTypes;
     constructor(payload: EditProfile_ApiModel.Request);
 }
 export declare class EditProfileStart implements Action {
     payload: EditProfile_ApiModel.Request;
-    readonly type = EditProfileActionTypes.EDIT_PROFILE_START;
+    readonly type: EditProfileActionTypes;
     constructor(payload: EditProfile_ApiModel.Request);
 }
 export declare class EditProfileSucceed implements Action {
     payload: UserModel;
-    readonly type = EditProfileActionTypes.EDIT_PROFILE_SUCCEED;
+    readonly type: EditProfileActionTypes;
     constructor(payload: UserModel);
 }
 export declare class EditProfileFailed implements Action {
-    readonly type = EditProfileActionTypes.EDIT_PROFILE_FAILED;
+    readonly type: EditProfileActionTypes;
 }
 export declare type EditProfileAction = EditProfile | EditProfileStart | EditProfileSucceed | EditProfileFailed;

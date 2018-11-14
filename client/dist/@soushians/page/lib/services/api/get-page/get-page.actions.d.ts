@@ -7,17 +7,17 @@ export declare const enum GET_PAGE_ACTION_TYPES {
 }
 export declare class GetPageStartAction implements Action {
     payload: string;
-    readonly type = GET_PAGE_ACTION_TYPES.START;
+    readonly type: GET_PAGE_ACTION_TYPES;
     constructor(payload: string);
 }
 export declare class GetPageSucceedAction implements Action {
     payload: PageModel;
-    readonly type = GET_PAGE_ACTION_TYPES.SUCCEED;
+    readonly type: GET_PAGE_ACTION_TYPES;
     constructor(payload: PageModel);
 }
 export declare class GetPageFailedAction implements Action {
     payload: any;
-    readonly type = GET_PAGE_ACTION_TYPES.FAILED;
+    readonly type: GET_PAGE_ACTION_TYPES;
     constructor(payload: any);
 }
 export declare type GetPageActions = GetPageStartAction | GetPageSucceedAction | GetPageFailedAction;

@@ -7,17 +7,17 @@ export declare const enum DELETE_WIDGET_ACTION_TYPES {
 }
 export declare class DeleteWidgetStartAction implements Action {
     payload: WidgetModel<any>;
-    readonly type = DELETE_WIDGET_ACTION_TYPES.START;
+    readonly type: DELETE_WIDGET_ACTION_TYPES;
     constructor(payload: WidgetModel<any>);
 }
 export declare class DeleteWidgetSucceedAction implements Action {
     payload: WidgetModel<any>;
-    readonly type = DELETE_WIDGET_ACTION_TYPES.SUCCEED;
+    readonly type: DELETE_WIDGET_ACTION_TYPES;
     constructor(payload: WidgetModel<any>);
 }
 export declare class DeleteWidgetFailedAction implements Action {
     payload: WidgetModel<any>;
-    readonly type = DELETE_WIDGET_ACTION_TYPES.FAILED;
+    readonly type: DELETE_WIDGET_ACTION_TYPES;
     constructor(payload: WidgetModel<any>);
 }
 export declare type DeleteWidgetActions = DeleteWidgetStartAction | DeleteWidgetSucceedAction | DeleteWidgetFailedAction;

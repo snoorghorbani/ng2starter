@@ -11,37 +11,37 @@ export declare enum FormsListActionTypes {
     FORM_SCHEMA_FETCHED = "[FORM][LIST] FORM_SCHEMA_FETCHED"
 }
 export declare class FormsListAction implements Action {
-    readonly type = FormsListActionTypes.FORMS_LIST;
+    readonly type: FormsListActionTypes;
 }
 export declare class FormsListStartAction implements Action {
-    readonly type = FormsListActionTypes.FORMS_LIST_START;
+    readonly type: FormsListActionTypes;
 }
 export declare class FormsListSucceedAction implements Action {
     payload: FormSchemaModel[];
-    readonly type = FormsListActionTypes.FORMS_LIST_SUCCEED;
+    readonly type: FormsListActionTypes;
     constructor(payload: FormSchemaModel[]);
 }
 export declare class FormsListFailedAction implements Action {
-    readonly type = FormsListActionTypes.FORMS_LIST_FAILED;
+    readonly type: FormsListActionTypes;
 }
 export declare class UpdateFormSchemaAction implements Action {
     payload: FormSchemaModel;
-    readonly type = FormsListActionTypes.FORM_SCHEMA_UPDATE;
+    readonly type: FormsListActionTypes;
     constructor(payload: FormSchemaModel);
 }
 export declare class AddFormSchemaAction implements Action {
     payload: FormSchemaModel;
-    readonly type = FormsListActionTypes.ADD_FORM_SCHEMA;
+    readonly type: FormsListActionTypes;
     constructor(payload: FormSchemaModel);
 }
 export declare class GetFormSchemaAction implements Action {
     payload: string;
-    readonly type = FormsListActionTypes.GET_FORM_SCHEMA;
+    readonly type: FormsListActionTypes;
     constructor(payload: string);
 }
 export declare class FormSchemaFechedAction implements Action {
     payload: FormSchemaModel;
-    readonly type = FormsListActionTypes.FORM_SCHEMA_FETCHED;
+    readonly type: FormsListActionTypes;
     constructor(payload: FormSchemaModel);
 }
 export declare type FormsListActions = FormsListAction | FormsListStartAction | FormsListSucceedAction | FormsListFailedAction | UpdateFormSchemaAction | AddFormSchemaAction | GetFormSchemaAction | FormSchemaFechedAction;

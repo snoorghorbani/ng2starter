@@ -3,7 +3,7 @@
  * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @enum {string} */
-var NgsUserModuleOutlets = {
+const NgsUserModuleOutlets = {
     ngs_user_profile_view: "ngs-user-profile-view",
 };
 export { NgsUserModuleOutlets };

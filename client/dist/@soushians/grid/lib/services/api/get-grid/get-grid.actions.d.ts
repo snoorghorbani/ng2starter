@@ -7,17 +7,17 @@ export declare const enum GET_GRID_ACTION_TYPES {
 }
 export declare class GetGridStartAction implements Action {
     payload: string;
-    readonly type = GET_GRID_ACTION_TYPES.START;
+    readonly type: GET_GRID_ACTION_TYPES;
     constructor(payload: string);
 }
 export declare class GetGridSucceedAction implements Action {
     payload: GridModel;
-    readonly type = GET_GRID_ACTION_TYPES.SUCCEED;
+    readonly type: GET_GRID_ACTION_TYPES;
     constructor(payload: GridModel);
 }
 export declare class GetGridFailedAction implements Action {
     payload: any;
-    readonly type = GET_GRID_ACTION_TYPES.FAILED;
+    readonly type: GET_GRID_ACTION_TYPES;
     constructor(payload: any);
 }
 export declare type GetGridActions = GetGridStartAction | GetGridSucceedAction | GetGridFailedAction;

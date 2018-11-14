@@ -7,17 +7,17 @@ export declare const enum DELETE_PAGE_ACTION_TYPES {
 }
 export declare class DeletePageStartAction implements Action {
     payload: string;
-    readonly type = DELETE_PAGE_ACTION_TYPES.START;
+    readonly type: DELETE_PAGE_ACTION_TYPES;
     constructor(payload: string);
 }
 export declare class DeletePageSucceedAction implements Action {
     payload: PageModel;
-    readonly type = DELETE_PAGE_ACTION_TYPES.SUCCEED;
+    readonly type: DELETE_PAGE_ACTION_TYPES;
     constructor(payload: PageModel);
 }
 export declare class DeletePageFailedAction implements Action {
     payload: any;
-    readonly type = DELETE_PAGE_ACTION_TYPES.FAILED;
+    readonly type: DELETE_PAGE_ACTION_TYPES;
     constructor(payload: any);
 }
 export declare type DeletePageActions = DeletePageStartAction | DeletePageSucceedAction | DeletePageFailedAction;

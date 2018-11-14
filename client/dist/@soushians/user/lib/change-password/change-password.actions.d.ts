@@ -8,20 +8,20 @@ export declare enum ChangePasswordActionTypes {
 }
 export declare class ChangePassword implements Action {
     payload: ChangePasswordModel.Request;
-    readonly type = ChangePasswordActionTypes.CHANGE_PASSWORD;
+    readonly type: ChangePasswordActionTypes;
     constructor(payload: ChangePasswordModel.Request);
 }
 export declare class ChangePasswordStart implements Action {
     payload: ChangePasswordModel.Request;
-    readonly type = ChangePasswordActionTypes.PASSWORD_CHANGED_START;
+    readonly type: ChangePasswordActionTypes;
     constructor(payload: ChangePasswordModel.Request);
 }
 export declare class ChangePasswordSucceed implements Action {
     payload: ChangePasswordModel.Response;
-    readonly type = ChangePasswordActionTypes.PASSWORD_CHANGED_SUCCEED;
+    readonly type: ChangePasswordActionTypes;
     constructor(payload: ChangePasswordModel.Response);
 }
 export declare class ChangePasswordFailed implements Action {
-    readonly type = ChangePasswordActionTypes.PASSWORD_CHANGED_FAILED;
+    readonly type: ChangePasswordActionTypes;
 }
 export declare type ChangePasswordAction = ChangePassword | ChangePasswordStart | ChangePasswordSucceed | ChangePasswordFailed;

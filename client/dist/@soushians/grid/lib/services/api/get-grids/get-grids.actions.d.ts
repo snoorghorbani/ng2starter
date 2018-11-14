@@ -6,16 +6,16 @@ export declare const enum GET_GRIDS_ACTION_TYPES {
     FAILED = "[GET_GRIDS][API][GetGrids] failed"
 }
 export declare class GetGridsStartAction implements Action {
-    readonly type = GET_GRIDS_ACTION_TYPES.START;
+    readonly type: GET_GRIDS_ACTION_TYPES;
 }
 export declare class GetGridsSucceedAction implements Action {
     payload: GridModel[];
-    readonly type = GET_GRIDS_ACTION_TYPES.SUCCEED;
+    readonly type: GET_GRIDS_ACTION_TYPES;
     constructor(payload: GridModel[]);
 }
 export declare class GetGridsFailedAction implements Action {
     payload: any;
-    readonly type = GET_GRIDS_ACTION_TYPES.FAILED;
+    readonly type: GET_GRIDS_ACTION_TYPES;
     constructor(payload: any);
 }
 export declare type GetGridsActions = GetGridsStartAction | GetGridsSucceedAction | GetGridsFailedAction;

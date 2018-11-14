@@ -8,18 +8,18 @@ export declare enum AddFormActionTypes {
 }
 export declare class AddFormAction implements Action {
     payload: FormSchemaModel;
-    readonly type = AddFormActionTypes.ADD_FORM;
+    readonly type: AddFormActionTypes;
     constructor(payload: FormSchemaModel);
 }
 export declare class AddFormStartAction implements Action {
     payload: FormSchemaModel;
-    readonly type = AddFormActionTypes.ADD_FORM_START;
+    readonly type: AddFormActionTypes;
     constructor(payload: FormSchemaModel);
 }
 export declare class AddFormSucceedAction implements Action {
-    readonly type = AddFormActionTypes.ADD_FORM_SUCCEED;
+    readonly type: AddFormActionTypes;
 }
 export declare class AddFormFailedAction implements Action {
-    readonly type = AddFormActionTypes.ADD_FORM_FAILED;
+    readonly type: AddFormActionTypes;
 }
 export declare type AddFormActions = AddFormAction | AddFormStartAction | AddFormSucceedAction | AddFormFailedAction;

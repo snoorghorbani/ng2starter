@@ -8,28 +8,28 @@ export declare const CAPTCHA_IMAGE_LOADED = "[captcha] captcha_image_loaded";
 export declare const CAPTCHA_ENTERED = "[captcha] CAPTCHA_ENTERED";
 export declare const CLEAR_CAPTCHA = "[captcha] CLEAR_CAPTCHA";
 export declare class NewCaptcha implements Action {
-    readonly type = "[captcha] new captcha";
+    readonly type: string;
 }
 export declare class TokenRequested implements Action {
-    readonly type = "[captcha] token_requested";
+    readonly type: string;
 }
 export declare class TokenReceived implements Action {
     payload: TokenModel;
-    readonly type = "[captcha] token_received";
+    readonly type: string;
     constructor(payload: TokenModel);
 }
 export declare class CaptchaImageRequested implements Action {
-    readonly type = "[captcha] captcha_image_requested";
+    readonly type: string;
 }
 export declare class CaptchaImageLoaded implements Action {
-    readonly type = "[captcha] captcha_image_loaded";
+    readonly type: string;
 }
 export declare class CaptchaEntered implements Action {
     payload: string;
-    readonly type = "[captcha] CAPTCHA_ENTERED";
+    readonly type: string;
     constructor(payload: string);
 }
 export declare class ClearCaptcha implements Action {
-    readonly type = "[captcha] CLEAR_CAPTCHA";
+    readonly type: string;
 }
 export declare type CaptchaAction = NewCaptcha | TokenRequested | TokenReceived | CaptchaImageRequested | CaptchaImageLoaded | CaptchaEntered | ClearCaptcha;

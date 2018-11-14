@@ -3,7 +3,7 @@
  * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @enum {string} */
-var GwtStepTypes = {
+const GwtStepTypes = {
     "Given": "Given",
     "When": "When",
     "Then": "Then",

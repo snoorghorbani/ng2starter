@@ -6,16 +6,16 @@ export declare const enum GET_WIDGETS_ACTION_TYPES {
     FAILED = "[GET_WIDGETS][API][GetWidgets] failed"
 }
 export declare class GetWidgetsStartAction implements Action {
-    readonly type = GET_WIDGETS_ACTION_TYPES.START;
+    readonly type: GET_WIDGETS_ACTION_TYPES;
 }
 export declare class GetWidgetsSucceedAction implements Action {
     payload: WidgetModel<any>[];
-    readonly type = GET_WIDGETS_ACTION_TYPES.SUCCEED;
+    readonly type: GET_WIDGETS_ACTION_TYPES;
     constructor(payload: WidgetModel<any>[]);
 }
 export declare class GetWidgetsFailedAction implements Action {
     payload: any;
-    readonly type = GET_WIDGETS_ACTION_TYPES.FAILED;
+    readonly type: GET_WIDGETS_ACTION_TYPES;
     constructor(payload: any);
 }
 export declare type GetWidgetsActions = GetWidgetsStartAction | GetWidgetsSucceedAction | GetWidgetsFailedAction;

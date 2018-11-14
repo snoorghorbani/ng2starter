@@ -17,63 +17,63 @@ export declare enum AddDiagramActionTypes {
 }
 export declare class AddDiagramAction implements Action {
     payload: AddDiagramApiModel.Response;
-    readonly type = AddDiagramActionTypes.ADD_DIAGRAM;
+    readonly type: AddDiagramActionTypes;
     constructor(payload: AddDiagramApiModel.Response);
 }
 export declare class AddDiagramActionStart implements Action {
     payload: AddDiagramApiModel.Response;
-    readonly type = AddDiagramActionTypes.ADD_DIAGRAM_START;
+    readonly type: AddDiagramActionTypes;
     constructor(payload: AddDiagramApiModel.Response);
 }
 export declare class AddDiagramActionSucceed implements Action {
     payload: AddDiagramApiModel.Response;
-    readonly type = AddDiagramActionTypes.ADD_DIAGRAM_SUCCEED;
+    readonly type: AddDiagramActionTypes;
     constructor(payload: AddDiagramApiModel.Response);
 }
 export declare class AddDiagramActionFailed implements Action {
-    readonly type = AddDiagramActionTypes.ADD_DIAGRAM_FAILED;
+    readonly type: AddDiagramActionTypes;
 }
 export declare class DiagramConfigChangedAction implements Action {
     payload: any;
-    readonly type = AddDiagramActionTypes.DIAGRAM_CONFIG_CHANGED;
+    readonly type: AddDiagramActionTypes;
     constructor(payload: any);
 }
 export declare class HaveEndpointAction implements Action {
     payload: any;
-    readonly type = AddDiagramActionTypes.HAVE_ENDPOINT;
+    readonly type: AddDiagramActionTypes;
     constructor(payload: any);
 }
 export declare class DataLoadedAction implements Action {
     payload: any;
-    readonly type = AddDiagramActionTypes.DATA_LOADED;
+    readonly type: AddDiagramActionTypes;
     constructor(payload: any);
 }
 export declare class StructureDefinitionStartAction implements Action {
     payload: any;
-    readonly type = AddDiagramActionTypes.STRUCTURE_DEFINITION_START;
+    readonly type: AddDiagramActionTypes;
     constructor(payload: any);
 }
 export declare class StructureDefinitionFinishedAction implements Action {
     payload: any;
-    readonly type = AddDiagramActionTypes.STRUCTURE_DEFINITION_END;
+    readonly type: AddDiagramActionTypes;
     constructor(payload: any);
 }
 export declare class ColumnsMappingChangedAction implements Action {
     payload: any;
-    readonly type = AddDiagramActionTypes.COLUMNS_MAPPING_CHANGED;
+    readonly type: AddDiagramActionTypes;
     constructor(payload: any);
 }
 export declare class DataCalculatedAction implements Action {
     payload: any;
-    readonly type = AddDiagramActionTypes.DATA_CALCULATED;
+    readonly type: AddDiagramActionTypes;
     constructor(payload: any);
 }
 export declare class GenerateDiagramAction implements Action {
     payload: any;
-    readonly type = AddDiagramActionTypes.GENERATE_DIAGRAM;
+    readonly type: AddDiagramActionTypes;
     constructor(payload: any);
 }
 export declare class ColumnAdded implements Action {
-    readonly type = AddDiagramActionTypes.COLUMN_ADDED;
+    readonly type: AddDiagramActionTypes;
 }
 export declare type AddDiagramActions = AddDiagramAction | AddDiagramActionStart | AddDiagramActionSucceed | AddDiagramActionFailed | HaveEndpointAction | DataLoadedAction | StructureDefinitionStartAction | StructureDefinitionFinishedAction | ColumnsMappingChangedAction | DataCalculatedAction | GenerateDiagramAction | DiagramConfigChangedAction;

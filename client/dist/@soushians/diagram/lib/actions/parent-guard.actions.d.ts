@@ -5,12 +5,12 @@ export declare enum ParentGuardActionTypes {
     "PARENT_GUARD_REJECTED" = "[USER][GUARD] PARENT_GUARD_REJECTED"
 }
 export declare class AskFromParentGuardAction implements Action {
-    readonly type = ParentGuardActionTypes["ASK_FROM_PARENT_GUARD"];
+    readonly type: ParentGuardActionTypes;
 }
 export declare class ParentGuardApprovedAction implements Action {
-    readonly type = ParentGuardActionTypes["PARENT_GUARD_APPROVED"];
+    readonly type: ParentGuardActionTypes;
 }
 export declare class ParentGuardRejectedAction implements Action {
-    readonly type = ParentGuardActionTypes["PARENT_GUARD_REJECTED"];
+    readonly type: ParentGuardActionTypes;
 }
 export declare type ParentGuardAction = AskFromParentGuardAction | ParentGuardApprovedAction | ParentGuardRejectedAction;

@@ -7,17 +7,17 @@ export declare const enum UPSERT_GRID_ACTION_TYPES {
 }
 export declare class UpsertGridStartAction implements Action {
     payload: GridModel;
-    readonly type = UPSERT_GRID_ACTION_TYPES.START;
+    readonly type: UPSERT_GRID_ACTION_TYPES;
     constructor(payload: GridModel);
 }
 export declare class UpsertGridSucceedAction implements Action {
     payload: GridModel;
-    readonly type = UPSERT_GRID_ACTION_TYPES.SUCCEED;
+    readonly type: UPSERT_GRID_ACTION_TYPES;
     constructor(payload: GridModel);
 }
 export declare class UpsertGridFailedAction implements Action {
     payload: any;
-    readonly type = UPSERT_GRID_ACTION_TYPES.FAILED;
+    readonly type: UPSERT_GRID_ACTION_TYPES;
     constructor(payload: any);
 }
 export declare type UpsertGridActions = UpsertGridStartAction | UpsertGridSucceedAction | UpsertGridFailedAction;

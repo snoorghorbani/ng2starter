@@ -7,17 +7,17 @@ export declare const enum UPSERT_PAGE_ACTION_TYPES {
 }
 export declare class UpsertPageStartAction implements Action {
     payload: PageModel;
-    readonly type = UPSERT_PAGE_ACTION_TYPES.START;
+    readonly type: UPSERT_PAGE_ACTION_TYPES;
     constructor(payload: PageModel);
 }
 export declare class UpsertPageSucceedAction implements Action {
     payload: PageModel;
-    readonly type = UPSERT_PAGE_ACTION_TYPES.SUCCEED;
+    readonly type: UPSERT_PAGE_ACTION_TYPES;
     constructor(payload: PageModel);
 }
 export declare class UpsertPageFailedAction implements Action {
     payload: any;
-    readonly type = UPSERT_PAGE_ACTION_TYPES.FAILED;
+    readonly type: UPSERT_PAGE_ACTION_TYPES;
     constructor(payload: any);
 }
 export declare type UpsertPageActions = UpsertPageStartAction | UpsertPageSucceedAction | UpsertPageFailedAction;

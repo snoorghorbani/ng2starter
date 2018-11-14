@@ -11,37 +11,37 @@ export declare enum ScenariosListActionTypes {
     UPDATE_DB = "[GWT][SCENARIO][DB] UPDATE_DB"
 }
 export declare class ScenariosListAction implements Action {
-    readonly type = ScenariosListActionTypes.SCENARIOS_LIST;
+    readonly type: ScenariosListActionTypes;
 }
 export declare class ScenariosListStartAction implements Action {
-    readonly type = ScenariosListActionTypes.SCENARIOS_LIST_START;
+    readonly type: ScenariosListActionTypes;
 }
 export declare class ScenariosListSucceedAction implements Action {
     payload: GwtScenarioModel[];
-    readonly type = ScenariosListActionTypes.SCENARIOS_LIST_SUCCEED;
+    readonly type: ScenariosListActionTypes;
     constructor(payload: GwtScenarioModel[]);
 }
 export declare class ScenariosListFailedAction implements Action {
-    readonly type = ScenariosListActionTypes.SCENARIOS_LIST_FAILED;
+    readonly type: ScenariosListActionTypes;
 }
 export declare class UpsertScenarioAction implements Action {
     payload: GwtScenarioModel;
-    readonly type = ScenariosListActionTypes.UPSERT;
+    readonly type: ScenariosListActionTypes;
     constructor(payload: GwtScenarioModel);
 }
 export declare class GetScenarioAction implements Action {
     payload: string;
-    readonly type = ScenariosListActionTypes.GET_SCENARIO;
+    readonly type: ScenariosListActionTypes;
     constructor(payload: string);
 }
 export declare class ScenarioFechedAction implements Action {
     payload: GwtScenarioModel;
-    readonly type = ScenariosListActionTypes.SCENARIO_FETCHED;
+    readonly type: ScenariosListActionTypes;
     constructor(payload: GwtScenarioModel);
 }
 export declare class UpdateDbAction implements Action {
     payload: GwtScenarioModel[];
-    readonly type = ScenariosListActionTypes.UPDATE_DB;
+    readonly type: ScenariosListActionTypes;
     constructor(payload: GwtScenarioModel[]);
 }
 export declare type ScenariosListActions = ScenariosListAction | ScenariosListStartAction | ScenariosListSucceedAction | ScenariosListFailedAction | UpsertScenarioAction | GetScenarioAction | ScenarioFechedAction | UpdateDbAction;

@@ -14,24 +14,24 @@ export declare enum SignInActionTypes {
     SIGNIN_REQUIRED = "[AUTHENTICATION][Signin] Required"
 }
 export declare class WhoAmIAction implements Action {
-    readonly type = SignInActionTypes.WHO_AM_I;
+    readonly type: SignInActionTypes;
 }
 /**
  * 	sign up
  */
 export declare class Signup implements Action {
     payload: Signin_ApiModel.Request;
-    readonly type = SignInActionTypes.SIGNUP;
+    readonly type: SignInActionTypes;
     constructor(payload: Signin_ApiModel.Request);
 }
 export declare class SignupSecceed implements Action {
     payload: any;
-    readonly type = SignInActionTypes.SIGNUP_SUCCEED;
+    readonly type: SignInActionTypes;
     constructor(payload: any);
 }
 export declare class SignupFailed implements Action {
     payload: any;
-    readonly type = SignInActionTypes.SIGNUP_FAILURE;
+    readonly type: SignInActionTypes;
     constructor(payload: any);
 }
 /**
@@ -39,29 +39,29 @@ export declare class SignupFailed implements Action {
  */
 export declare class Signin implements Action {
     payload: Signin_ApiModel.Request;
-    readonly type = SignInActionTypes.SIGNIN;
+    readonly type: SignInActionTypes;
     constructor(payload: Signin_ApiModel.Request);
 }
 export declare class SigninSecceed implements Action {
     payload: any;
-    readonly type = SignInActionTypes.SIGNIN_SUCCEED;
+    readonly type: SignInActionTypes;
     constructor(payload: any);
 }
 export declare class SigninFailed implements Action {
     payload: any;
-    readonly type = SignInActionTypes.SIGNIN_FAILURE;
+    readonly type: SignInActionTypes;
     constructor(payload: any);
 }
 export declare class SigninRedirect implements Action {
-    readonly type = SignInActionTypes.SIGNIN_REDIRECT;
+    readonly type: SignInActionTypes;
 }
 export declare class DoSignoutAction implements Action {
-    readonly type = SignInActionTypes.DO_SIGNOUT;
+    readonly type: SignInActionTypes;
 }
 export declare class SignoutAction implements Action {
-    readonly type = SignInActionTypes.SIGNOUT;
+    readonly type: SignInActionTypes;
 }
 export declare class SigninRequiredAction implements Action {
-    readonly type = SignInActionTypes.SIGNIN_REQUIRED;
+    readonly type: SignInActionTypes;
 }
 export declare type SigninAction = WhoAmIAction | Signup | SignupSecceed | SignupFailed | Signin | SigninSecceed | SigninFailed | SigninRedirect | DoSignoutAction | SignoutAction | SigninRequiredAction;

@@ -9,24 +9,24 @@ export declare enum ToolbarActionTypes {
     INVISIBLE = "[Layout][TOOLBAR] INVISIBLE"
 }
 export declare class ChangeToolbatToComfortableModeAction implements Action {
-    readonly type = ToolbarActionTypes.COMPORTABLE;
+    readonly type: ToolbarActionTypes;
 }
 export declare class ChangeToolbatToCompactModeAction implements Action {
-    readonly type = ToolbarActionTypes.COMPACT;
+    readonly type: ToolbarActionTypes;
 }
 export declare class ChangeToolbatToSummaryModeAction implements Action {
-    readonly type = ToolbarActionTypes.SUMMARY;
+    readonly type: ToolbarActionTypes;
 }
 export declare class EnableComfortableModeAction implements Action {
-    readonly type = ToolbarActionTypes.ENABLE_COMFORTABLE_MODE;
+    readonly type: ToolbarActionTypes;
 }
 export declare class DisableComfortableModeAction implements Action {
-    readonly type = ToolbarActionTypes.DISBALE_COMFORTABLE_MODE;
+    readonly type: ToolbarActionTypes;
 }
 export declare class VisibleToolbarAction implements Action {
-    readonly type = ToolbarActionTypes.VISIBLE;
+    readonly type: ToolbarActionTypes;
 }
 export declare class InvisibleToolbarAction implements Action {
-    readonly type = ToolbarActionTypes.INVISIBLE;
+    readonly type: ToolbarActionTypes;
 }
 export declare type ToolbarActions = ChangeToolbatToComfortableModeAction | ChangeToolbatToCompactModeAction | ChangeToolbatToSummaryModeAction | EnableComfortableModeAction | DisableComfortableModeAction | VisibleToolbarAction | InvisibleToolbarAction;
