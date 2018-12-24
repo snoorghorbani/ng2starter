@@ -1,0 +1,33 @@
+[
+    {
+        "_id": "5a2fc4c9b61159868ca19d22",
+        "updatedAt": "2018-03-01T19:34:56.437Z",
+        "createdAt": "2017-12-12T12:00:09.085Z",
+        "Username": "admin",
+        "Password": "$2a$10$0m21pNuoRsNXjBDKV8XMqeLKvVPzkj9xOpnm8bvp360attpe.P3IK",
+        "tokens": [],
+        "Roles": [
+            "User",
+            "Admin"
+        ],
+        "Groups": [
+            "test2"
+        ],
+        "__v": 0
+    },
+    {
+        "_id": "5a2fc4e0b61159868ca19d23",
+        "updatedAt": "2018-01-17T22:51:15.385Z",
+        "createdAt": "2017-12-12T12:00:32.330Z",
+        "Username": "user",
+        "Password": "$2a$10$S/Ofw4FrdhjGOwLXgvu3YO9ysdUglUaH/RO60vOfZXlWeQnYfEsde",
+        "tokens": [],
+        "Roles": [
+            "User"
+        ],
+        "Groups": [
+            "PublicWifi"
+        ],
+        "__v": 0
+    }
+]

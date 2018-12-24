@@ -10,32 +10,32 @@ export declare enum RulesListActionTypes {
     RULE_FETCHED = "[RULE][DB] RULE_FETCHED"
 }
 export declare class RulesListAction implements Action {
-    readonly type: RulesListActionTypes;
+    readonly type = RulesListActionTypes.RULES_LIST;
 }
 export declare class RulesListStartAction implements Action {
-    readonly type: RulesListActionTypes;
+    readonly type = RulesListActionTypes.RULES_LIST_START;
 }
 export declare class RulesListSucceedAction implements Action {
     payload: RuleModel[];
-    readonly type: RulesListActionTypes;
+    readonly type = RulesListActionTypes.RULES_LIST_SUCCEED;
     constructor(payload: RuleModel[]);
 }
 export declare class RulesListFailedAction implements Action {
-    readonly type: RulesListActionTypes;
+    readonly type = RulesListActionTypes.RULES_LIST_FAILED;
 }
 export declare class UpsertRuleAction implements Action {
     payload: RuleModel;
-    readonly type: RulesListActionTypes;
+    readonly type = RulesListActionTypes.RULE_UPSERT;
     constructor(payload: RuleModel);
 }
 export declare class GetRuleAction implements Action {
     payload: string;
-    readonly type: RulesListActionTypes;
+    readonly type = RulesListActionTypes.GET_RULE;
     constructor(payload: string);
 }
 export declare class RuleFechedAction implements Action {
     payload: RuleModel;
-    readonly type: RulesListActionTypes;
+    readonly type = RulesListActionTypes.RULE_FETCHED;
     constructor(payload: RuleModel);
 }
 export declare type RulesListActions = RulesListAction | RulesListStartAction | RulesListSucceedAction | RulesListFailedAction | UpsertRuleAction | GetRuleAction | RuleFechedAction;
