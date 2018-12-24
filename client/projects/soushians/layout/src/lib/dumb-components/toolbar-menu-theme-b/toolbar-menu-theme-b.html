@@ -48,7 +48,7 @@
   <mat-toolbar-row>
     <div id="secondToolbar" [@menuAnimation]="menuAnimationState">
       <router-outlet name="ngs-layout-before-toolbar-menu"></router-outlet>
-      <button mat-button *ngFor="let menu of menuItems$ | async" routerLinkActive="active" [routerLink]="[menu.route]">
+      <button mat-button *ngFor="let menu of menuItems$ | async" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
         <!-- <mat-icon mat-list-icon>{{menu.icon}}</mat-icon> -->
         <span>{{menu.title}}</span>
       </button>
