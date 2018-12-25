@@ -54,11 +54,26 @@
             "version": "7.0.0",
             "time": 1540486862805,
             "migrationIndex": "0055"
+        },
+        {
+            "version": "7.1.0",
+            "time": 1545652598676,
+            "migrationIndex": "0060"
+        },
+        {
+            "version": "7.2.0",
+            "time": 1545734967024,
+            "migrationIndex": "0065"
+        },
+        {
+            "version": "7.3.0",
+            "time": 1545737017950,
+            "migrationIndex": "0070"
         }
     ],
     "currentVersion": {
-        "version": "7.1.0",
-        "time": 1545652598676,
-        "migrationIndex": "0060"
+        "version": "7.4.0",
+        "time": 1545746729649,
+        "migrationIndex": "0075"
     }
 }

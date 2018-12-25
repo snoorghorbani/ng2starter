@@ -1,12 +1,16 @@
 {
     "name": "@soushians/starter",
-    "version": "7.1.0",
+    "version": "7.4.0",
     "repository": {
         "type": "git",
         "url": "https://github.com/snoorghorbani/ng2starter.git"
     },
     "license": "MIT",
     "dependencies": {
+        "@angular-devkit/architect": "^0.11.4",
+        "@angular-devkit/build-angular": "^0.11.4",
+        "@angular-devkit/build-ng-packagr": "^0.11.4",
+        "@angular/material": "^7.2.0",
         "semver": "^5.5.0"
     },
     "scripts": {

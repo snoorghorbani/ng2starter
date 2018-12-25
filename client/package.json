@@ -1,6 +1,6 @@
 {
     "name": "@soushians/starter-client",
-    "version": "7.1.0",
+    "version": "7.4.0",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
@@ -28,7 +28,7 @@
         "@angular-devkit/schematics": "^0.6.0",
         "@angular-devkit/schematics-cli": "^0.6.0",
         "@angular/animations": "^7.0.1",
-        "@angular/cdk": "^6.0.0",
+        "@angular/cdk": "^7.2.0",
         "@angular/common": "^7.0.1",
         "@angular/compiler": "^7.0.1",
         "@angular/core": "^7.0.1",
@@ -40,7 +40,7 @@
         "@angular/platform-browser-dynamic": "^7.0.1",
         "@angular/platform-server": "^7.0.1",
         "@angular/router": "^7.0.1",
-        "@angular/service-worker": "^6.0.0",
+        "@angular/service-worker": "^7.1.4",
         "@ngrx/effects": "^6.0.0-beta.1",
         "@ngrx/router-store": "^6.0.0-beta.1",
         "@ngrx/store": "^6.0.0-beta.1",
@@ -98,6 +98,7 @@
         "karma-coverage-istanbul-reporter": "~1.4.2",
         "lodash": "^4.17.4",
         "material-design-icons": "^3.0.1",
+        "ng-packagr": "^4.4.5",
         "node-gcm": "^0.14.9",
         "node-sass": "^4.9.2",
         "npm-ls-scripts": "^0.1.2",
@@ -110,6 +111,7 @@
         "source-map-explorer": "^1.5.0",
         "streamfilter": "^1.0.7",
         "ts-node": "~5.0.1",
+        "typescript": "^3.1.6",
         "zone.js": "^0.8.26"
     },
     "repository": {
