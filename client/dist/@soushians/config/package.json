@@ -1,0 +1,18 @@
+{
+  "name": "@soushians/config",
+  "version": "7.4.0",
+  "peerDependencies": {},
+  "main": "bundles/soushians-config.umd.js",
+  "module": "fesm5/soushians-config.js",
+  "es2015": "fesm2015/soushians-config.js",
+  "esm5": "esm5/soushians-config.js",
+  "esm2015": "esm2015/soushians-config.js",
+  "fesm5": "fesm5/soushians-config.js",
+  "fesm2015": "fesm2015/soushians-config.js",
+  "typings": "soushians-config.d.ts",
+  "metadata": "soushians-config.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}
