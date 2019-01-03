@@ -1,6 +1,6 @@
 {
   "name": "@soushians/socket",
-  "version": "7.4.0",
+  "version": "7.5.0",
   "peerDependencies": {},
   "devDependencies": {},
   "main": "bundles/soushians-socket.umd.js",

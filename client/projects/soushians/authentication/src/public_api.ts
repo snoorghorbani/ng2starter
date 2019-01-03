@@ -4,6 +4,7 @@
 
 export { AuthenticationModuleConfig } from "./lib/authentication.config";
 export { UserModel } from "./lib/models/user.model";
+
 export { SignInActionTypes, DoSignoutAction, SigninRequiredAction } from "./lib/actions/signin.actions";
 export { AuthenticationActionTypes } from "./lib/actions/authentication.actions";
 // export * from "./lib/reducers";

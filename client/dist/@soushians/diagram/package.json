@@ -1,6 +1,6 @@
 {
   "name": "@soushians/diagram",
-  "version": "7.4.0",
+  "version": "7.5.0",
   "peerDependencies": {},
   "main": "bundles/soushians-diagram.umd.js",
   "module": "fesm5/soushians-diagram.js",
