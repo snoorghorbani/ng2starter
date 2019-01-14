@@ -6,7 +6,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DataUnitPipe = /** @class */ (function () {
         function DataUnitPipe() {
@@ -64,16 +64,18 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var TimeUnitPipe = /** @class */ (function () {
         function TimeUnitPipe() {
         }
         /**
+         * @private
          * @param {?} value
          * @return {?}
          */
         TimeUnitPipe.prototype.getDays = /**
+         * @private
          * @param {?} value
          * @return {?}
          */
@@ -89,10 +91,12 @@
                 };
             };
         /**
+         * @private
          * @param {?} value
          * @return {?}
          */
         TimeUnitPipe.prototype.getHours = /**
+         * @private
          * @param {?} value
          * @return {?}
          */
@@ -108,10 +112,12 @@
                 };
             };
         /**
+         * @private
          * @param {?} value
          * @return {?}
          */
         TimeUnitPipe.prototype.getMinuts = /**
+         * @private
          * @param {?} value
          * @return {?}
          */
@@ -127,10 +133,12 @@
                 };
             };
         /**
+         * @private
          * @param {?} value
          * @return {?}
          */
         TimeUnitPipe.prototype.getSeconds = /**
+         * @private
          * @param {?} value
          * @return {?}
          */
@@ -167,7 +175,7 @@
                 /** @type {?} */
                 var minutsData = this.getMinuts(hoursData.remaining);
                 // let secondssData = this.getSeconds(minutsData.remaining);
-                return [daysData, hoursData, minutsData]
+                return [daysData, hoursData, minutsData /*, secondssData*/]
                     .filter(function (i) { return i.count; })
                     .map(function (i) { return i.value; }).join(connector);
             };
@@ -179,7 +187,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var PersianDatePipe = /** @class */ (function () {
         function PersianDatePipe() {
@@ -335,6 +343,7 @@
                     };
             })(i);
         is.not = not;
+        //TODO : impelement
         /** @type {?} */
         var all = {};
         for (i in is)
@@ -519,7 +528,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var CurrencyUnitPipe = /** @class */ (function () {
         function CurrencyUnitPipe() {
@@ -551,7 +560,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var PersianNumberPipe = /** @class */ (function () {
         function PersianNumberPipe() {
@@ -586,16 +595,18 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var TimeCounterPipe = /** @class */ (function () {
         function TimeCounterPipe() {
         }
         /**
+         * @private
          * @param {?} value
          * @return {?}
          */
         TimeCounterPipe.prototype.getHours = /**
+         * @private
          * @param {?} value
          * @return {?}
          */
@@ -611,10 +622,12 @@
                 };
             };
         /**
+         * @private
          * @param {?} value
          * @return {?}
          */
         TimeCounterPipe.prototype.getMinuts = /**
+         * @private
          * @param {?} value
          * @return {?}
          */
@@ -630,10 +643,12 @@
                 };
             };
         /**
+         * @private
          * @param {?} value
          * @return {?}
          */
         TimeCounterPipe.prototype.getSeconds = /**
+         * @private
          * @param {?} value
          * @return {?}
          */
@@ -661,6 +676,7 @@
                     return '';
                 /** @type {?} */
                 var connector = ' : ';
+                // let daysData = this.getDays(value);
                 /** @type {?} */
                 var hoursData = this.getHours(value);
                 /** @type {?} */
@@ -678,7 +694,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SharedModule = /** @class */ (function () {
         function SharedModule() {
@@ -694,7 +710,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @abstract
@@ -711,7 +727,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @abstract
@@ -767,7 +783,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var PERSIAN_MONTH_DAYS_COUNT = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 30];
@@ -933,6 +949,7 @@
                             };
                     })(i);
                 is.not = not;
+                //TODO : impelement
                 /** @type {?} */
                 var all = {};
                 for (i in is)
@@ -1217,7 +1234,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var stringTemplate = function (template, model) {
@@ -1236,12 +1253,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var Cookie = /** @class */ (function () {
         // private isConsented: boolean = false;
@@ -1335,7 +1352,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @param {?} destination
@@ -1355,12 +1372,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @template T
@@ -1375,12 +1392,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.Cookie = Cookie;

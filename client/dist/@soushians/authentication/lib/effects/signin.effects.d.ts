@@ -1,6 +1,5 @@
 import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
-import { Action } from "@ngrx/store";
 import { Actions } from "@ngrx/effects";
 import { SigninSecceed, SigninFailed, SignupSecceed, SignupFailed } from "../actions/signin.actions";
 import { SigninService } from "../services/signin.service";
@@ -17,11 +16,11 @@ export declare class SigninEffects {
     whoAmI$: Observable<SigninSecceed | SigninFailed>;
     Signin$: Observable<SigninSecceed | SigninFailed>;
     signup$: Observable<SignupSecceed | SignupFailed>;
-    signupSucceed$: Observable<Action>;
+    signupSucceed$: Observable<never>;
     SignInRequired$: Observable<any>;
     SigninSucceed$: Observable<any>;
     AfterSigninFiled$: Observable<NewCaptcha>;
     DoSignout$: Observable<any>;
-    redirectToLoginPage$: Observable<Action>;
-    redirectAfterSignout$: Observable<Action>;
+    redirectToLoginPage$: Observable<never>;
+    redirectAfterSignout$: Observable<never>;
 }

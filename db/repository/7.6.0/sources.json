@@ -1,0 +1,50 @@
+[
+    {
+        "_id": "5a4f827bff6ae751f28d9668",
+        "Endpoint": "http://localhost:3000/api/fake",
+        "Interval": 5000,
+        "updatedAt": "2018-01-10T18:09:53.316Z",
+        "Thresholds": [
+            {
+                "Message": "upload value is greater than download value",
+                "Formula": "{{obj.Upload}} > {{obj.Download}}",
+                "Name": "test scaler threshold",
+                "_id": "5a5656f16df275eec92860da",
+                "Type": "goal"
+            }
+        ],
+        "IsActive": true
+    },
+    {
+        "_id": "5a56419f443bcfefc4ed85ff",
+        "updatedAt": "2018-07-22T06:13:27.454Z",
+        "Endpoint": "http://localhost:3000/api/fake/fake2",
+        "Interval": 5000,
+        "IsActive": true,
+        "Thresholds": [
+            {
+                "Type": "critical",
+                "_id": "5b542087443145bc8c1dfcec",
+                "Name": "test",
+                "Formula": "{{status}} == true",
+                "Message": "شیس بشسیبشسیب شسیبیب "
+            },
+            {
+                "Type": "goal",
+                "_id": "5b542087443145bc8c1dfceb",
+                "Name": "",
+                "Formula": "",
+                "Message": ""
+            },
+            {
+                "Type": "critical",
+                "_id": "5b542087443145bc8c1dfcea",
+                "Name": "",
+                "Formula": "",
+                "Message": ""
+            }
+        ],
+        "__v": 0,
+        "createdAt": "2018-01-10T16:38:55.802Z"
+    }
+]

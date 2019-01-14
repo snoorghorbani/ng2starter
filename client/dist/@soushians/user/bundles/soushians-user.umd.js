@@ -6,7 +6,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var UserModel = /** @class */ (function () {
         function UserModel() {
@@ -18,7 +18,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var MODULE_DEFAULT_CONFIG = {
@@ -34,6 +34,7 @@
             editProfile: "",
             getAccountInfo: "",
             profileInformation: ""
+            // resetPassword: '',
         },
         forms: {
             profile_edit: ""
@@ -126,7 +127,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var UserConfigurationService = /** @class */ (function () {
         function UserConfigurationService(configFile, store) {
@@ -169,7 +170,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @enum {string} */
     var ProfileViewActionTypes = {
@@ -206,7 +207,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @enum {string} */
     var UserActionTypes = {
@@ -223,7 +224,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var initialState = {
@@ -256,7 +257,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ProfileViewModel;
     (function (ProfileViewModel) {
@@ -300,26 +301,30 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var EditProfile_ApiModel;
     (function (EditProfile_ApiModel) {
         var Request = /** @class */ (function () {
             function Request(initValue) {
                 if (initValue === void 0) {
-                    initValue = /** @type {?} */ ({});
+                    initValue = ( /** @type {?} */({}));
                 }
                 var _this = this;
                 Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
             }
             /**
-             * @return {?}
+             * @template THIS
+             * @this {THIS}
+             * @return {THIS}
              */
             Request.prototype.getRequestBody = /**
-             * @return {?}
+             * @template THIS
+             * @this {THIS}
+             * @return {THIS}
              */
                 function () {
-                    return this;
+                    return ( /** @type {?} */(this));
                 };
             Object.defineProperty(Request, "formGroup", {
                 get: /**
@@ -340,7 +345,7 @@
         var Response = /** @class */ (function () {
             function Response(initValue) {
                 if (initValue === void 0) {
-                    initValue = /** @type {?} */ ({});
+                    initValue = ( /** @type {?} */({}));
                 }
                 var _this = this;
                 Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
@@ -361,7 +366,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var UserService = /** @class */ (function () {
         function UserService(http, store, configurationService) {
@@ -418,14 +423,17 @@
                     .pipe(operators.map(function (response) { return new EditProfile_ApiModel.Response(response).extractData(); }));
             };
         // TODO: remove
+        // TODO: remove
         /**
          * @param {?} data
          * @return {?}
          */
-        UserService.prototype.getInfo = /**
-         * @param {?} data
-         * @return {?}
-         */
+        UserService.prototype.getInfo =
+            // TODO: remove
+            /**
+             * @param {?} data
+             * @return {?}
+             */
             function (data) {
                 /** @type {?} */
                 var model = new ProfileViewModel.Request(data);
@@ -465,7 +473,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @enum {string} */
     var EditProfileActionTypes = {
@@ -504,7 +512,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var EditProfileEffects = /** @class */ (function () {
         function EditProfileEffects(actions$, router$$1, service) {
@@ -512,19 +520,15 @@
             this.actions$ = actions$;
             this.router = router$$1;
             this.service = service;
-            this.EditProfileRequest$ = this.actions$
-                .ofType(EditProfileActionTypes.EDIT_PROFILE)
-                .pipe(operators.map(function (action) { return action.payload; }), operators.map(function (data) { return new EditProfileStart(data); }));
-            this.RequestEditProfileLink$ = this.actions$
-                .ofType(EditProfileActionTypes.EDIT_PROFILE_START)
-                .pipe(operators.map(function (action) { return action.payload; }), operators.switchMap(function (data) { return _this.service.editProfile(data); }), operators.map(function (res) { return new EditProfileSucceed(res); }), operators.catchError(function () { return rxjs.of(new EditProfileFailed()); }));
+            this.EditProfileRequest$ = this.actions$.pipe(effects.ofType(EditProfileActionTypes.EDIT_PROFILE), operators.pluck("payload"), operators.map(function (data) { return new EditProfileStart(data); }));
+            this.RequestEditProfileLink$ = this.actions$.pipe(effects.ofType(EditProfileActionTypes.EDIT_PROFILE_START), operators.pluck("payload"), operators.switchMap(function (data) { return _this.service.editProfile(data); }), operators.map(function (res) { return new EditProfileSucceed(res); }), operators.catchError(function () { return rxjs.of(new EditProfileFailed()); }));
             // .switchMap((data: EditProfile_ApiModel.Request) => {
             // 	return this.service
             // 		.editProfile(data)
             // 		.map((res) => new EditProfileSucceed(res))
             // 		.catch(() => of(new EditProfileFailed()));
             // });
-            this.goToView$ = this.actions$.ofType(EditProfileActionTypes.EDIT_PROFILE_SUCCEED).pipe(operators.map(function () {
+            this.goToView$ = this.actions$.pipe(effects.ofType(EditProfileActionTypes.EDIT_PROFILE_SUCCEED), operators.map(function () {
                 _this.router.navigate(["/user/profile"]);
                 return new GetProfile();
             }));
@@ -557,26 +561,20 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ProfileViewEffects = /** @class */ (function () {
         function ProfileViewEffects(actions$, userService) {
             var _this = this;
             this.actions$ = actions$;
             this.userService = userService;
-            this.ProfileRequest$ = this.actions$
-                .ofType(ProfileViewActionTypes.GET_PROFILE)
-                .pipe(operators.map(function (action) { return action.payload; }), operators.map(function (data) { return new GetProfileStart(); }));
-            this.getProfile$ = this.actions$
-                .ofType(ProfileViewActionTypes.GET_PROFILE_START)
-                .pipe(operators.map(function (action) { return action.payload; }), operators.switchMap(function (data) {
+            this.ProfileRequest$ = this.actions$.pipe(effects.ofType(ProfileViewActionTypes.GET_PROFILE), operators.pluck("payload"), operators.map(function (data) { return new GetProfileStart(); }));
+            this.getProfile$ = this.actions$.pipe(effects.ofType(ProfileViewActionTypes.GET_PROFILE_START), operators.pluck("payload"), operators.switchMap(function (data) {
                 return _this.userService
                     .getAccountInfo()
                     .pipe(operators.map(function (res) { return new GetProfileSucceed(res); }), operators.catchError(function () { return rxjs.of(new GetProfileFailed()); }));
             }));
-            this.refreshUserInfo$ = this.actions$
-                .ofType(ProfileViewActionTypes.GET_PROFILE_SUCCEED)
-                .pipe(operators.map(function (action) { return action.payload; }), operators.map(function (data) { return new RefreshUserInfoAction(data); }));
+            this.refreshUserInfo$ = this.actions$.pipe(effects.ofType(ProfileViewActionTypes.GET_PROFILE_SUCCEED), operators.pluck("payload"), operators.map(function (data) { return new RefreshUserInfoAction(data); }));
         }
         ProfileViewEffects.decorators = [
             { type: i0.Injectable }
@@ -605,7 +603,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var UserEffects = /** @class */ (function () {
         function UserEffects(actions$, router$$1, service) {
@@ -613,18 +611,17 @@
             this.router = router$$1;
             this.service = service;
             // @Effect()
-            // updateProfileInformation$ = this.actions$.ofType(SignInActionTypes.SIGNIN_SUCCEED).pipe(
+            // updateProfileInformation$ = this.actions$.pipe(
+            // ofType(SignInActionTypes.SIGNIN_SUCCEED),
             // 	map(action => action.payload),
             // 	map(user => {
             // 		return new GetProfileSucceed(user);
             // 	})
             // );
-            this.getAccountInfo$ = this.actions$.ofType(authentication.SignInActionTypes.SIGNIN_SUCCEED).pipe(operators.map(function () {
+            this.getAccountInfo$ = this.actions$.pipe(effects.ofType(authentication.SignInActionTypes.SIGNIN_SUCCEED), operators.map(function () {
                 return new GetProfile();
             }));
-            this.signout$ = this.actions$
-                .ofType(authentication.SignInActionTypes.SIGNOUT)
-                .pipe(operators.map(function () { return new RefreshUserInfoAction(/** @type {?} */ ({})); }));
+            this.signout$ = this.actions$.pipe(effects.ofType(authentication.SignInActionTypes.SIGNOUT), operators.map(function () { return new RefreshUserInfoAction(( /** @type {?} */({}))); }));
         }
         UserEffects.decorators = [
             { type: i0.Injectable }
@@ -650,7 +647,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @enum {string} */
     var ResetPasswordRequestActionTypes = {
@@ -667,7 +664,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var initialState$1 = {
@@ -712,7 +709,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @enum {string} */
     var ChangePasswordActionTypes = {
@@ -731,7 +728,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var initialState$2 = {
@@ -775,7 +772,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var initialState$3 = {
@@ -819,7 +816,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @enum {string} */
     var SearchActionTypes = {
@@ -839,12 +836,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var initialState$4 = {
         status: "pristine",
-        data: /** @type {?} */ ({})
+        data: ( /** @type {?} */({}))
     };
     /**
      * @param {?=} state
@@ -881,7 +878,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var UserReducers = {
@@ -891,6 +888,7 @@
         searchView: reducer$3,
         editProfile: reducer$2
     };
+    //#region selectors
     /** @type {?} */
     var selectFeatureState = i2.createFeatureSelector("user");
     /** @type {?} */
@@ -903,19 +901,21 @@
     var getNumberOfRequeseted$1 = i2.createSelector(selectResetPasswordRequestState, getNumberOfRequeseted);
     /** @type {?} */
     var getResetPasswordRequestStatus = i2.createSelector(selectResetPasswordRequestState, getStatus);
+    //#region user
     /** @type {?} */
     var selectUserInformaionState = i2.createSelector(selectFeatureState, function (state) { return state.user; });
     /** @type {?} */
     var getAccountInfo$2 = i2.createSelector(selectUserInformaionState, getAccountInfo);
+    //#endregion
+    //#region search
     /** @type {?} */
     var selectSearchState = i2.createSelector(selectFeatureState, function (state) { return state.searchView; });
     /** @type {?} */
     var getSearchStatus = i2.createSelector(selectSearchState, getStatus$3);
-    //#endregion
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SearchComponent = /** @class */ (function () {
         function SearchComponent(store) {
@@ -965,7 +965,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ChangePasswordComponent = /** @class */ (function () {
         function ChangePasswordComponent() {
@@ -1014,7 +1014,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ProfileEditComponent = /** @class */ (function () {
         function ProfileEditComponent(router$$1) {
@@ -1074,7 +1074,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DashboardLinksComponent = /** @class */ (function () {
         function DashboardLinksComponent(userConfigurationService, store) {
@@ -1088,6 +1088,13 @@
                     // description: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم",
                     icon: "person"
                 }
+                // ,
+                // {
+                // 	route: "/user/panel/password/change",
+                // 	title: "تغییر کلمه عبور",
+                // 	// description: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم",
+                // 	icon: "security"
+                // }
             ];
         }
         /**
@@ -1116,7 +1123,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ResetPasswordRequestComponent = /** @class */ (function () {
         function ResetPasswordRequestComponent(snackBar) {
@@ -1195,7 +1202,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FeatureContainerComponent = /** @class */ (function () {
         function FeatureContainerComponent(route, store) {
@@ -1204,7 +1211,7 @@
             this.store = store;
             this.route.params.subscribe(function (params) {
                 /** @type {?} */
-                var model = new ProfileViewModel.Request(/** @type {?} */ ({ Email: params["Email"] }));
+                var model = new ProfileViewModel.Request(( /** @type {?} */({ Email: params.Email })));
                 _this.store.dispatch(new Search(model));
             });
         }
@@ -1225,14 +1232,14 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ChangePasswordModel;
     (function (ChangePasswordModel) {
         var Request = /** @class */ (function () {
             function Request(initValue) {
                 if (initValue === void 0) {
-                    initValue = /** @type {?} */ ({});
+                    initValue = ( /** @type {?} */({}));
                 }
                 var _this = this;
                 Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
@@ -1273,7 +1280,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ChangePasswordContainerComponent = /** @class */ (function () {
         function ChangePasswordContainerComponent(route, store) {
@@ -1325,7 +1332,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ProfileEditContainerComponent = /** @class */ (function () {
         function ProfileEditContainerComponent(store, configService) {
@@ -1376,7 +1383,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DashboardContainerComponent = /** @class */ (function () {
         // is_agent : Observable<boolean>;
@@ -1410,7 +1417,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ProfileComponent = /** @class */ (function () {
         function ProfileComponent() {
@@ -1454,7 +1461,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ProfileContainerComponent = /** @class */ (function () {
         function ProfileContainerComponent(store) {
@@ -1485,7 +1492,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var NgsUserModule = /** @class */ (function () {
         function NgsUserModule() {
@@ -1553,8 +1560,11 @@
                             NgsUserModule,
                             i2.StoreModule.forFeature("user", UserReducers),
                             effects.EffectsModule.forFeature([
+                                // ResetPasswordRequestEffects,
                                 EditProfileEffects,
+                                // ChangePasswordEffects,
                                 ProfileViewEffects,
+                                // SearchEffects,
                                 UserEffects
                             ])
                         ]
@@ -1565,7 +1575,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var routes = [
@@ -1585,6 +1595,10 @@
                     path: "profile/edit",
                     component: ProfileEditContainerComponent
                 }
+                // {
+                // 	path: "password/change",
+                // 	component: ChangePasswordContainerComponent
+                // }
             ]
         },
         {
@@ -1599,6 +1613,10 @@
                             path: "profile-edit",
                             component: ProfileEditContainerComponent
                         }
+                        // {
+                        // 	path: "change-password",
+                        // 	component: ChangePasswordContainerComponent
+                        // }
                     ]
                 }
             ]
@@ -1609,7 +1627,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @enum {string} */
     var NgsUserModuleOutlets = {
@@ -1618,7 +1636,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var UserFacadeService = /** @class */ (function () {
         function UserFacadeService(store, configService) {
@@ -1662,12 +1680,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.UserModel = UserModel;

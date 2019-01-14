@@ -16,13 +16,13 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/switchMap';
 import { InjectionToken, Inject, Injectable, Component, Input, Output, EventEmitter, NgModule, ViewContainerRef, ComponentFactoryResolver, Compiler, Directive, defineInjectable, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Actions, Effect, EffectsModule } from '@ngrx/effects';
+import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
 import { of } from 'rxjs/observable/of';
 import { filter, map, take, switchMap, takeUntil, catchError } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var AddFormApiModel;
 (function (AddFormApiModel) {
@@ -30,7 +30,7 @@ var AddFormApiModel;
         /**
          * @param {?=} initValue
          */
-        constructor(initValue = /** @type {?} */ ({})) {
+        constructor(initValue = (/** @type {?} */ ({}))) {
             Object.keys(initValue).forEach(key => (this[key] = initValue[key]));
         }
         /**
@@ -74,7 +74,7 @@ var AddFormApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var EditFormApiModel;
 (function (EditFormApiModel) {
@@ -82,7 +82,7 @@ var EditFormApiModel;
         /**
          * @param {?=} initValue
          */
-        constructor(initValue = /** @type {?} */ ({})) {
+        constructor(initValue = (/** @type {?} */ ({}))) {
             Object.keys(initValue).forEach(key => (this[key] = initValue[key]));
         }
         /**
@@ -126,7 +126,7 @@ var EditFormApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormListApiModel;
 (function (FormListApiModel) {
@@ -134,7 +134,7 @@ var FormListApiModel;
         /**
          * @param {?=} initValue
          */
-        constructor(initValue = /** @type {?} */ ({})) {
+        constructor(initValue = (/** @type {?} */ ({}))) {
             Object.keys(initValue).forEach((key) => (this[key] = initValue[key]));
         }
         /**
@@ -165,7 +165,7 @@ var FormListApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class Validator {
     constructor() {
@@ -187,7 +187,7 @@ class Validator {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FieldConfig {
     /**
@@ -204,7 +204,7 @@ class FieldConfig {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormSchemaModel {
     constructor() {
@@ -230,12 +230,17 @@ class FormSchemaModel {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const MODULE_DEFAULT_CONFIG = {
@@ -258,7 +263,7 @@ const MODULE_CONFIG_TOKEN = new InjectionToken("FormModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormConfigurationService {
     /**
@@ -298,7 +303,7 @@ FormConfigurationService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormService {
     /**
@@ -395,7 +400,7 @@ FormService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SelectComponent {
     constructor() { }
@@ -412,12 +417,12 @@ SelectComponent.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class CheckboxComponent {
     constructor() { }
@@ -434,12 +439,12 @@ CheckboxComponent.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class EmailComponent {
     constructor() { }
@@ -460,12 +465,12 @@ EmailComponent.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ColorComponent {
     constructor() { }
@@ -490,12 +495,12 @@ ColorComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class TableComponent {
     /**
@@ -557,12 +562,12 @@ TableComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NumberComponent {
     constructor() { }
@@ -587,12 +592,12 @@ NumberComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class TextComponent {
     constructor() { }
@@ -609,20 +614,20 @@ TextComponent.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
-var FormsListActionTypes = {
+const FormsListActionTypes = {
     FORMS_LIST: "[FORM][LIST] FORMS_LIST",
     FORMS_LIST_START: "[FORM][LIST] FORMS_LIST_START",
     FORMS_LIST_SUCCEED: "[FORM][LIST] FORMS_LIST_SUCCEED",
@@ -695,7 +700,7 @@ class FormSchemaFechedAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DateFormInputControlComponent {
     constructor() { }
@@ -712,7 +717,7 @@ DateFormInputControlComponent.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FileFormInputControlComponent {
     constructor() { }
@@ -729,7 +734,7 @@ FileFormInputControlComponent.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormCaptchaService {
     /**
@@ -771,7 +776,7 @@ FormCaptchaService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class CaptchaModel {
     /**
@@ -807,7 +812,7 @@ var UpsertCaptchaApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormCaptchaComponent {
     /**
@@ -863,12 +868,12 @@ FormCaptchaComponent.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormViewComponent {
     /**
@@ -891,7 +896,7 @@ class FormViewComponent {
         this.schema$.pipe(takeUntil(this.unsubscribe)).subscribe(schema => {
             if (!schema)
                 return;
-            this.formGroup = /** @type {?} */ (this.createFrom(schema.form));
+            this.formGroup = (/** @type {?} */ (this.createFrom(schema.form)));
             if (!schema.form.name)
                 return;
             this.formGroupCreated = true;
@@ -957,16 +962,16 @@ class FormViewComponent {
             }
             /** @type {?} */
             const ctr = new FormControl(data.value, validators);
-            (/** @type {?} */ (ctr)).schema = data;
-            (/** @type {?} */ (ctr)).schema.path = parentPath;
-            (/** @type {?} */ (ctr)).schema.formGroupPath = formGroupPath;
+            ((/** @type {?} */ (ctr))).schema = data;
+            ((/** @type {?} */ (ctr))).schema.path = parentPath;
+            ((/** @type {?} */ (ctr))).schema.formGroupPath = formGroupPath;
             return ctr;
         }
         else if (data.type == "group") {
             /** @type {?} */
             const formGroup = new FormGroup({});
             if (data.parentType == undefined) {
-                parentPath = (/** @type {?} */ (data)).name;
+                parentPath = ((/** @type {?} */ (data))).name;
             }
             else if (data.parentType == "array") {
                 parentPath = `${parentPath}.controls[${((/** @type {?} */ (data))).name}]`;
@@ -974,8 +979,8 @@ class FormViewComponent {
             else if (data.parentType == "group") {
                 parentPath = `${parentPath}.controls.${((/** @type {?} */ (data))).name}`;
             }
-            (/** @type {?} */ (formGroup)).schema = data;
-            (/** @type {?} */ (formGroup)).schema.path = parentPath;
+            ((/** @type {?} */ (formGroup))).schema = data;
+            ((/** @type {?} */ (formGroup))).schema.path = parentPath;
             data.fields.forEach(item => {
                 item.parentType = "group";
                 formGroup.addControl(item.name, this.createFrom(item, parentPath));
@@ -986,9 +991,9 @@ class FormViewComponent {
             /** @type {?} */
             const formArray = new FormArray([]);
             parentPath =
-                parentPath == "" ? (/** @type {?} */ (data)).name : `${parentPath}.controls.${((/** @type {?} */ (data))).name}`;
-            (/** @type {?} */ (formArray)).schema = data;
-            (/** @type {?} */ (formArray)).schema.path = parentPath;
+                parentPath == "" ? ((/** @type {?} */ (data))).name : `${parentPath}.controls.${((/** @type {?} */ (data))).name}`;
+            ((/** @type {?} */ (formArray))).schema = data;
+            ((/** @type {?} */ (formArray))).schema.path = parentPath;
             data.fields.forEach((item, idx) => {
                 item.parentType = "array";
                 item.name = idx.toString();
@@ -1101,7 +1106,7 @@ DynamicFieldDirective.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const initialState = {
@@ -1174,7 +1179,7 @@ function reducer(state = initialState, action) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const FormReducers = {
@@ -1183,7 +1188,7 @@ const FormReducers = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormGroupComponent {
     constructor() {
@@ -1255,7 +1260,7 @@ FormGroupComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormArrayComponent {
     constructor() {
@@ -1315,7 +1320,7 @@ FormArrayComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormControlComponent {
     constructor() {
@@ -1385,10 +1390,10 @@ FormControlComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
-var EditFormActionTypes = {
+const EditFormActionTypes = {
     EDIT_FORM: "[FORM][EDIT] EDIT_FORM",
     EDIT_FORM_START: "[FORM][EDIT] EDIT_FORM_START",
     EDIT_FORM_SUCCEED: "[FORM][EDIT] EDIT_FORM_SUCCEED",
@@ -1429,10 +1434,10 @@ class EditFormFailedAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
-var AddFormActionTypes = {
+const AddFormActionTypes = {
     ADD_FORM: "[FORM][ADD] ADD_FORM_PROFILE",
     ADD_FORM_START: "[FORM][ADD] ADD_FORM_START",
     ADD_FORM_SUCCEED: "[FORM][ADD] ADD_FORM_SUCCEED",
@@ -1469,7 +1474,7 @@ class AddFormFailedAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class AddFormContainerComponent {
     /**
@@ -1520,12 +1525,12 @@ AddFormContainerComponent.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class EditFormContainerComponent extends AddFormContainerComponent {
     /**
@@ -1584,7 +1589,7 @@ EditFormContainerComponent.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class AddFormComponent {
     constructor() {
@@ -1659,12 +1664,12 @@ AddFormComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class EditFormComponent extends AddFormComponent {
     /**
@@ -1689,7 +1694,7 @@ EditFormComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormListContainerComponent {
     /**
@@ -1720,7 +1725,7 @@ FormListContainerComponent.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormListComponent {
 }
@@ -1737,7 +1742,7 @@ FormListComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class MainContainerComponent {
     /**
@@ -1762,7 +1767,7 @@ MainContainerComponent.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class AddFormEffects {
     /**
@@ -1774,12 +1779,8 @@ class AddFormEffects {
         this.actions$ = actions$;
         this.router = router;
         this.service = service;
-        this.AddForm$ = this.actions$
-            .ofType(AddFormActionTypes.ADD_FORM)
-            .pipe(map(action => action.payload), map(data => new AddFormStartAction(data)));
-        this.AddFormStart$ = this.actions$
-            .ofType(AddFormActionTypes.ADD_FORM_START)
-            .pipe(map(action => action.payload), switchMap((data) => this.service.add(data)), map(res => new AddFormSucceedAction()), catchError(() => of(new AddFormFailedAction())));
+        this.AddForm$ = this.actions$.pipe(ofType(AddFormActionTypes.ADD_FORM), map(action => action.payload), map(data => new AddFormStartAction(data)));
+        this.AddFormStart$ = this.actions$.pipe(ofType(AddFormActionTypes.ADD_FORM_START), map(action => action.payload), switchMap((data) => this.service.add(data)), map(res => new AddFormSucceedAction()), catchError(() => of(new AddFormFailedAction())));
     }
 }
 AddFormEffects.decorators = [
@@ -1802,17 +1803,17 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormsListEffects {
     /**
@@ -1824,13 +1825,9 @@ class FormsListEffects {
         this.actions$ = actions$;
         this.router = router;
         this.service = service;
-        this.EditProfileRequest$ = this.actions$.ofType(FormsListActionTypes.FORMS_LIST).map(data => new FormsListStartAction());
-        this.GetForm$ = this.actions$
-            .ofType(FormsListActionTypes.GET_FORM_SCHEMA)
-            .pipe(map(action => action.payload), switchMap(id => this.service.get(id)), map(formSchema => new FormSchemaFechedAction(formSchema)));
-        this.get_forms_list$ = this.actions$
-            .ofType(FormsListActionTypes.FORMS_LIST_START)
-            .pipe(switchMap((data) => this.service.getList()), map(res => new FormsListSucceedAction(res)), catchError(() => of(new FormsListFailedAction())));
+        this.EditProfileRequest$ = this.actions$.pipe(ofType(FormsListActionTypes.FORMS_LIST), map(data => new FormsListStartAction()));
+        this.GetForm$ = this.actions$.pipe(ofType(FormsListActionTypes.GET_FORM_SCHEMA), map(action => action.payload), switchMap(id => this.service.get(id)), map(formSchema => new FormSchemaFechedAction(formSchema)));
+        this.get_forms_list$ = this.actions$.pipe(ofType(FormsListActionTypes.FORMS_LIST_START), switchMap((data) => this.service.getList()), map(res => new FormsListSucceedAction(res)), catchError(() => of(new FormsListFailedAction())));
     }
 }
 FormsListEffects.decorators = [
@@ -1857,12 +1854,12 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class EditFormEffects {
     /**
@@ -1874,15 +1871,9 @@ class EditFormEffects {
         this.actions$ = actions$;
         this.router = router;
         this.service = service;
-        this.EditForm$ = this.actions$
-            .ofType(EditFormActionTypes.EDIT_FORM)
-            .pipe(map(action => action.payload), map(data => new EditFormStartAction(data)));
-        this.EditFormStart$ = this.actions$
-            .ofType(EditFormActionTypes.EDIT_FORM_START)
-            .pipe(map(action => action.payload), switchMap((data) => this.service.update(data)), map(formSchema => new EditFormSucceedAction(formSchema)), catchError(() => of(new EditFormFailedAction())));
-        this.UpdateFormsListStart$ = this.actions$
-            .ofType(EditFormActionTypes.EDIT_FORM_SUCCEED)
-            .pipe(map(action => action.payload), map(formSchema => new UpdateFormSchemaAction(formSchema)));
+        this.EditForm$ = this.actions$.pipe(ofType(EditFormActionTypes.EDIT_FORM), map(action => action.payload), map(data => new EditFormStartAction(data)));
+        this.EditFormStart$ = this.actions$.pipe(ofType(EditFormActionTypes.EDIT_FORM_START), map(action => action.payload), switchMap((data) => this.service.update(data)), map(formSchema => new EditFormSucceedAction(formSchema)), catchError(() => of(new EditFormFailedAction())));
+        this.UpdateFormsListStart$ = this.actions$.pipe(ofType(EditFormActionTypes.EDIT_FORM_SUCCEED), map(action => action.payload), map(formSchema => new UpdateFormSchemaAction(formSchema)));
     }
 }
 EditFormEffects.decorators = [
@@ -1909,7 +1900,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const routes = [
@@ -1937,10 +1928,10 @@ const RoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
-var CaptchaActionTypes = {
+const CaptchaActionTypes = {
     GET_CAPTCHA: "[CAPTCHA][GET] GET_CAPTCHA",
     GET_CAPTCHA_START: "[CAPTCHA][GET] GET_CAPTCHA_START",
     GET_CAPTCHA_SUCCEED: "[CAPTCHA][GET] GET_CAPTCHA_SUCCEED",
@@ -1968,7 +1959,7 @@ class GetCaptchaFailedAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class CaptchaEffects {
     /**
@@ -1980,12 +1971,8 @@ class CaptchaEffects {
         this.actions$ = actions$;
         this.router = router;
         this.service = service;
-        this.GetCaptcha$ = this.actions$
-            .ofType(CaptchaActionTypes.GET_CAPTCHA)
-            .pipe(map(action => action.payload), map(data => new GetCaptchaStartAction(data)));
-        this.AddFormStart$ = this.actions$
-            .ofType(CaptchaActionTypes.GET_CAPTCHA_START)
-            .pipe(map(action => action.payload), switchMap((data) => this.service.getCaptcha()), map(res => new GetCaptchaSucceedAction()), catchError(() => of(new GetCaptchaFailedAction())));
+        this.GetCaptcha$ = this.actions$.pipe(ofType(CaptchaActionTypes.GET_CAPTCHA), map(action => action.payload), map(data => new GetCaptchaStartAction(data)));
+        this.AddFormStart$ = this.actions$.pipe(ofType(CaptchaActionTypes.GET_CAPTCHA_START), map(action => action.payload), switchMap((data) => this.service.getCaptcha()), map(res => new GetCaptchaSucceedAction()), catchError(() => of(new GetCaptchaFailedAction())));
     }
 }
 CaptchaEffects.decorators = [
@@ -2008,7 +1995,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NgsFormModule {
     /**
@@ -2070,6 +2057,7 @@ NgsFormModule.decorators = [
                     NumberComponent,
                     TableComponent,
                     FormCaptchaComponent
+                    // NgsFormSelectorComponent
                 ],
                 entryComponents: [
                     SelectComponent,
@@ -2084,6 +2072,7 @@ NgsFormModule.decorators = [
                     FormCaptchaComponent
                 ],
                 exports: [FormViewComponent]
+                // exports: [ FormViewComponent, NgsFormSelectorComponent ]
             },] }
 ];
 class RootNgsFormModule {
@@ -2102,12 +2091,12 @@ RootNgsFormModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { FormService, FormViewComponent, DynamicFieldDirective, NgsFormModule, RootNgsFormModule, AddFormComponent as ɵi, AddFormContainerComponent as ɵg, AddFormContainerComponent as ɵl, AddFormEffects as ɵbd, AddFormComponent as ɵn, CaptchaEffects as ɵbg, FormArrayComponent as ɵp, FormControlComponent as ɵq, FormGroupComponent as ɵo, EditFormContainerComponent as ɵf, EditFormEffects as ɵbe, EditFormComponent as ɵh, RoutingModule as ɵbh, MODULE_CONFIG_TOKEN as ɵa, FormListContainerComponent as ɵj, FormListComponent as ɵk, FormsListEffects as ɵbf, reducer as ɵbc, MainContainerComponent as ɵm, FormReducers as ɵb, FormCaptchaService as ɵbb, FormConfigurationService as ɵd, CheckboxComponent as ɵs, ColorComponent as ɵu, DateFormInputControlComponent as ɵv, EmailComponent as ɵt, FileFormInputControlComponent as ɵw, FormCaptchaComponent as ɵba, NumberComponent as ɵy, SelectComponent as ɵr, TableComponent as ɵz, TextComponent as ɵx };

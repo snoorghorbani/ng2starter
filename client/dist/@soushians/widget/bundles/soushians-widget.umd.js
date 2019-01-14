@@ -6,7 +6,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var UpsertWidgetStartAction = /** @class */ (function () {
         function UpsertWidgetStartAction(payload) {
@@ -32,7 +32,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var MODULE_DEFAULT_CONFIG = {
@@ -53,7 +53,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var WidgetConfigurationService = /** @class */ (function () {
         function WidgetConfigurationService(configFile, store$$1) {
@@ -93,7 +93,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var GetWidgetsApiModel;
     (function (GetWidgetsApiModel) {
@@ -127,7 +127,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var GetWidgetsStartAction = /** @class */ (function () {
         function GetWidgetsStartAction() {
@@ -152,12 +152,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var GetWidgetApiModel;
     (function (GetWidgetApiModel) {
@@ -191,7 +191,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var GetWidgetStartAction = /** @class */ (function () {
         function GetWidgetStartAction(payload) {
@@ -217,12 +217,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @template T
@@ -235,14 +235,14 @@
             this._id = _id;
             this.name = name || "";
             this.type = type;
-            this.Config = Config || ( /** @type {?} */({}));
+            this.Config = Config || (( /** @type {?} */({})));
         }
         return WidgetModel;
     }());
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var UpsertWidgetApiModel;
     (function (UpsertWidgetApiModel) {
@@ -276,12 +276,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DeleteWidgetApiModel;
     (function (DeleteWidgetApiModel) {
@@ -315,7 +315,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DeleteWidgetStartAction = /** @class */ (function () {
         function DeleteWidgetStartAction(payload) {
@@ -341,17 +341,17 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var WidgetService = /** @class */ (function () {
         function WidgetService(http$$1, store$$1, configurationService, _location) {
@@ -460,7 +460,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DynamicWidgetViewComponent = /** @class */ (function () {
         function DynamicWidgetViewComponent(store$$1, service, configurationService, resolver, container) {
@@ -562,7 +562,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var WidgetSelectorComponent = /** @class */ (function () {
         function WidgetSelectorComponent(store$$1) {
@@ -614,7 +614,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var RootComponent = /** @class */ (function () {
         function RootComponent() {
@@ -630,7 +630,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var WidgetsManagementComponent = /** @class */ (function () {
         function WidgetsManagementComponent(store$$1) {
@@ -698,7 +698,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var UpsertComponent = /** @class */ (function () {
         function UpsertComponent() {
@@ -713,7 +713,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var routes = [
@@ -782,16 +782,14 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var GetWidgetApiEffects = /** @class */ (function () {
         function GetWidgetApiEffects(actions$, service) {
             var _this = this;
             this.actions$ = actions$;
             this.service = service;
-            this.start$ = this.actions$
-                .ofType("[WIDGET][API][GetWidget] start" /* START */)
-                .pipe(operators.map(function (action) { return action.payload; }), operators.switchMap(function (payload) { return _this.service.get(payload); }), operators.map(function (res) { return new GetWidgetSucceedAction(res); }), operators.catchError(function (err) { return rxjs.of(new GetWidgetFailedAction(err)); }));
+            this.start$ = this.actions$.pipe(effects.ofType("[WIDGET][API][GetWidget] start" /* START */), operators.pluck("payload"), operators.switchMap(function (payload) { return _this.service.get(payload); }), operators.map(function (res) { return new GetWidgetSucceedAction(res); }), operators.catchError(function (err) { return rxjs.of(new GetWidgetFailedAction(err)); }));
         }
         GetWidgetApiEffects.decorators = [
             { type: core.Injectable }
@@ -812,16 +810,14 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var UpsertWidgetApiEffects = /** @class */ (function () {
         function UpsertWidgetApiEffects(actions$, service) {
             var _this = this;
             this.actions$ = actions$;
             this.service = service;
-            this.start$ = this.actions$
-                .ofType("[UPSERT_WIDGET][API][UpsertWidget] start" /* START */)
-                .pipe(operators.map(function (action) { return action.payload; }), operators.switchMap(function (payload) { return _this.service.upsert(payload); }), operators.map(function (res) { return new UpsertWidgetSucceedAction(res); }), operators.catchError(function (err) { return rxjs.of(new UpsertWidgetFailedAction(err)); }));
+            this.start$ = this.actions$.pipe(effects.ofType("[UPSERT_WIDGET][API][UpsertWidget] start" /* START */), operators.pluck("payload"), operators.switchMap(function (payload) { return _this.service.upsert(payload); }), operators.map(function (res) { return new UpsertWidgetSucceedAction(res); }), operators.catchError(function (err) { return rxjs.of(new UpsertWidgetFailedAction(err)); }));
         }
         UpsertWidgetApiEffects.decorators = [
             { type: core.Injectable }
@@ -842,16 +838,14 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var GetWidgetsApiEffects = /** @class */ (function () {
         function GetWidgetsApiEffects(actions$, service) {
             var _this = this;
             this.actions$ = actions$;
             this.service = service;
-            this.start$ = this.actions$
-                .ofType("[GET_WIDGETS][API][GetWidgets] start" /* START */)
-                .pipe(operators.switchMap(function () {
+            this.start$ = this.actions$.pipe(effects.ofType("[GET_WIDGETS][API][GetWidgets] start" /* START */), operators.switchMap(function () {
                 return _this.service
                     .getWidgets()
                     .pipe(operators.map(function (res) { return new GetWidgetsSucceedAction(res); }), operators.catchError(function (err) { return rxjs.of(new GetWidgetsFailedAction(err)); }));
@@ -876,16 +870,14 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DeleteWidgetApiEffects = /** @class */ (function () {
         function DeleteWidgetApiEffects(actions$, service) {
             var _this = this;
             this.actions$ = actions$;
             this.service = service;
-            this.start$ = this.actions$
-                .ofType("[DELETE_WIDGET][API][DeleteWidget] start" /* START */)
-                .pipe(operators.map(function (action) { return action.payload; }), operators.switchMap(function (payload) {
+            this.start$ = this.actions$.pipe(effects.ofType("[DELETE_WIDGET][API][DeleteWidget] start" /* START */), operators.pluck("payload"), operators.switchMap(function (payload) {
                 return _this.service
                     .delete(payload)
                     .pipe(operators.map(function (res) { return new DeleteWidgetSucceedAction(res); }), operators.catchError(function (err) { return rxjs.of(new DeleteWidgetFailedAction(err)); }));
@@ -910,7 +902,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @enum {string} */
     var WidgetsActionTypes = {
@@ -934,7 +926,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ɵ0 = [];
     /** @type {?} */
@@ -988,7 +980,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var WidgetReducer = {
@@ -997,20 +989,14 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var WidgetDbEffects = /** @class */ (function () {
         function WidgetDbEffects(actions$) {
             this.actions$ = actions$;
-            this.Upsert$ = this.actions$
-                .ofType("[WIDGET][API][GetWidget] succeed" /* SUCCEED */)
-                .pipe(operators.pluck("payload"), operators.map(function (widget) { return new UpsertWidgetAction([widget]); }));
-            this.UpsertMany$ = this.actions$
-                .ofType("[GET_WIDGETS][API][GetWidgets] succeed" /* SUCCEED */)
-                .pipe(operators.pluck("payload"), operators.map(function (widgets) { return new UpsertWidgetAction(widgets); }));
-            this.Delete$ = this.actions$
-                .ofType("[DELETE_WIDGET][API][DeleteWidget] succeed" /* SUCCEED */)
-                .pipe(operators.pluck("payload"), operators.map(function (widget) { return new DeleteWidgetAction(widget); }));
+            this.Upsert$ = this.actions$.pipe(effects.ofType("[WIDGET][API][GetWidget] succeed" /* SUCCEED */), operators.pluck("payload"), operators.map(function (widget) { return new UpsertWidgetAction([widget]); }));
+            this.UpsertMany$ = this.actions$.pipe(effects.ofType("[GET_WIDGETS][API][GetWidgets] succeed" /* SUCCEED */), operators.pluck("payload"), operators.map(function (widgets) { return new UpsertWidgetAction(widgets); }));
+            this.Delete$ = this.actions$.pipe(effects.ofType("[DELETE_WIDGET][API][DeleteWidget] succeed" /* SUCCEED */), operators.pluck("payload"), operators.map(function (widget) { return new DeleteWidgetAction(widget); }));
         }
         WidgetDbEffects.decorators = [
             { type: core.Injectable }
@@ -1038,7 +1024,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DynamicWidgetConfigDirective = /** @class */ (function () {
         function DynamicWidgetConfigDirective(store$$1, route, service, configurationService, resolver, container) {
@@ -1139,7 +1125,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DynamicWidgetViewDirective = /** @class */ (function () {
         function DynamicWidgetViewDirective(store$$1, route, service, configurationService, resolver, container) {
@@ -1241,7 +1227,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var NgsWidgetModule = /** @class */ (function () {
         function NgsWidgetModule() {
@@ -1318,7 +1304,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @template T
@@ -1333,7 +1319,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @template T
@@ -1348,12 +1334,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.UpsertWidgetStartAction = UpsertWidgetStartAction;

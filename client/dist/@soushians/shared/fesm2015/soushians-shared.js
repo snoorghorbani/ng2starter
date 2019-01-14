@@ -2,7 +2,7 @@ import { Pipe, NgModule, Injectable, defineInjectable } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DataUnitPipe {
     /**
@@ -52,10 +52,11 @@ DataUnitPipe.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class TimeUnitPipe {
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
@@ -71,6 +72,7 @@ class TimeUnitPipe {
         };
     }
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
@@ -86,6 +88,7 @@ class TimeUnitPipe {
         };
     }
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
@@ -101,6 +104,7 @@ class TimeUnitPipe {
         };
     }
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
@@ -132,7 +136,7 @@ class TimeUnitPipe {
         /** @type {?} */
         let minutsData = this.getMinuts(hoursData.remaining);
         // let secondssData = this.getSeconds(minutsData.remaining);
-        return [daysData, hoursData, minutsData]
+        return [daysData, hoursData, minutsData /*, secondssData*/]
             .filter(i => i.count)
             .map(i => i.value).join(connector);
     }
@@ -143,7 +147,7 @@ TimeUnitPipe.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class PersianDatePipe {
     /**
@@ -291,6 +295,7 @@ const ɵ0 = function (_) {
                 };
         })(i);
     is.not = not;
+    //TODO : impelement
     /** @type {?} */
     var all = {};
     for (i in is)
@@ -475,7 +480,7 @@ var _ = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class CurrencyUnitPipe {
     /**
@@ -499,7 +504,7 @@ CurrencyUnitPipe.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class PersianNumberPipe {
     /**
@@ -526,10 +531,11 @@ PersianNumberPipe.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class TimeCounterPipe {
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
@@ -545,6 +551,7 @@ class TimeCounterPipe {
         };
     }
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
@@ -560,6 +567,7 @@ class TimeCounterPipe {
         };
     }
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
@@ -582,6 +590,7 @@ class TimeCounterPipe {
             return '';
         /** @type {?} */
         const connector = ' : ';
+        // let daysData = this.getDays(value);
         /** @type {?} */
         let hoursData = this.getHours(value);
         /** @type {?} */
@@ -598,7 +607,7 @@ TimeCounterPipe.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SharedModule {
 }
@@ -611,7 +620,7 @@ SharedModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @abstract
@@ -623,7 +632,7 @@ class HttpResponseBaseModel {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @abstract
@@ -635,7 +644,7 @@ class HttpRequestBaseModel {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const PERSIAN_MONTH_DAYS_COUNT = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 30];
@@ -795,6 +804,7 @@ class UtilityService {
                         };
                 })(i);
             is.not = not;
+            //TODO : impelement
             /** @type {?} */
             var all = {};
             for (i in is)
@@ -1073,7 +1083,17 @@ UtilityService.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const stringTemplate = (template, model) => {
@@ -1092,14 +1112,15 @@ const stringTemplate = (template, model) => {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class Cookie {
+    // private isConsented: boolean = false;
     constructor() {
         // this.isConsented = this.getCookie(COOKIE_CONSENT) === '1';
     }
@@ -1166,7 +1187,7 @@ class Cookie {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @param {?} destination
@@ -1186,12 +1207,12 @@ function MatchValidator(destination) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @template T
@@ -1201,12 +1222,12 @@ class IResponse {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { Cookie, SharedModule, HttpResponseBaseModel, HttpRequestBaseModel, PERSIAN_MONTH_DAYS_COUNT, PERSIAN_MONTH_NAMES, DateClass, UtilityService, stringTemplate, MatchValidator, IResponse, CurrencyUnitPipe as ɵd, DataUnitPipe as ɵa, PersianDatePipe as ɵc, PersianNumberPipe as ɵe, TimeCounterPipe as ɵf, TimeUnitPipe as ɵb };

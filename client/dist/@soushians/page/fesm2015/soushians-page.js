@@ -10,13 +10,13 @@ import { Store, StoreModule } from '@ngrx/store';
 import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { __decorate, __metadata } from 'tslib';
 import { InjectionToken, Inject, Injectable, Component, ComponentFactoryResolver, ViewContainerRef, NgModule } from '@angular/core';
-import { Actions, Effect, EffectsModule } from '@ngrx/effects';
+import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
 import { map, filter, tap, take, switchMap, combineLatest, pluck, catchError } from 'rxjs/operators';
 import { BehaviorSubject, of } from 'rxjs';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const MODULE_DEFAULT_CONFIG = {
@@ -36,7 +36,7 @@ const MODULE_CONFIG_TOKEN = new InjectionToken("PageModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class PageConfigurationService {
     /**
@@ -74,7 +74,7 @@ PageConfigurationService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetPagesApiModel;
 (function (GetPagesApiModel) {
@@ -101,7 +101,7 @@ var GetPagesApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GetPagesStartAction {
     constructor() {
@@ -129,12 +129,12 @@ class GetPagesFailedAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetPageApiModel;
 (function (GetPageApiModel) {
@@ -161,7 +161,7 @@ var GetPageApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GetPageStartAction {
     /**
@@ -193,12 +193,12 @@ class GetPageFailedAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DeletePageApiModel;
 (function (DeletePageApiModel) {
@@ -225,7 +225,7 @@ var DeletePageApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DeletePageStartAction {
     /**
@@ -257,12 +257,12 @@ class DeletePageFailedAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class PageModel {
     /**
@@ -277,7 +277,7 @@ class PageModel {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UpsertPageApiModel;
 (function (UpsertPageApiModel) {
@@ -305,7 +305,7 @@ var UpsertPageApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class UpsertPageStartAction {
     /**
@@ -337,17 +337,17 @@ class UpsertPageFailedAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class PageService {
     /**
@@ -395,6 +395,11 @@ class PageService {
         const model = new UpsertPageApiModel.Request(page);
         return this.configurationService.config$.pipe(filter(config => config.endpoints.upsert != ""), take(1), combineLatest(this.userId$), switchMap(([config, userId]) => this.http.post(config.env.frontend_server + config.endpoints.upsert, model.getRequestBody())), map((response) => response.Result), tap(() => this._location.back()));
     }
+    // delete(name: string) {
+    // 	return this.configurationService.config$
+    // 		.filter((config) => config.endpoints.deleteForm != "")
+    // 		.switchMap((config) => this.http.get(config.endpoints.deleteForm));
+    // }
     /**
      * @param {?} name
      * @return {?}
@@ -428,7 +433,7 @@ PageService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class PageViewComponent {
     /**
@@ -474,7 +479,7 @@ PageViewComponent.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class RootComponent {
 }
@@ -487,7 +492,7 @@ RootComponent.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class UpsertComponent {
     /**
@@ -558,7 +563,7 @@ UpsertComponent.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class PagesManagementComponent {
     /**
@@ -596,7 +601,7 @@ PagesManagementComponent.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const routes = [
@@ -628,10 +633,10 @@ const RoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
-var PagesActionTypes = {
+const PagesActionTypes = {
     UPSERT: "[PAGE][DB] UPSERT",
     DELETE: "[PAGE][DB] DELETE",
 };
@@ -656,7 +661,7 @@ class DeletePageAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class PageDbEffects {
     /**
@@ -664,15 +669,9 @@ class PageDbEffects {
      */
     constructor(actions$) {
         this.actions$ = actions$;
-        this.Upsert$ = this.actions$
-            .ofType("[PAGE][API][GetPage] succeed" /* SUCCEED */)
-            .pipe(pluck("payload"), map((page) => new UpsertPageAction([page])));
-        this.UpsertMany$ = this.actions$
-            .ofType("[GET_PAGES][API][GetPages] succeed" /* SUCCEED */)
-            .pipe(pluck("payload"), map((pages) => new UpsertPageAction(pages)));
-        this.delete$ = this.actions$
-            .ofType("[PAGE][API][DELETE] succeed" /* SUCCEED */)
-            .pipe(pluck("payload"), map((page) => new DeletePageAction(page)));
+        this.Upsert$ = this.actions$.pipe(ofType("[PAGE][API][GetPage] succeed" /* SUCCEED */), pluck("payload"), map((page) => new UpsertPageAction([page])));
+        this.UpsertMany$ = this.actions$.pipe(ofType("[GET_PAGES][API][GetPages] succeed" /* SUCCEED */), pluck("payload"), map((pages) => new UpsertPageAction(pages)));
+        this.delete$ = this.actions$.pipe(ofType("[PAGE][API][DELETE] succeed" /* SUCCEED */), pluck("payload"), map((page) => new DeletePageAction(page)));
     }
 }
 PageDbEffects.decorators = [
@@ -697,7 +696,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 const ɵ0 = [];
 /** @type {?} */
@@ -747,7 +746,7 @@ function Reducer(state = initialState, action) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const PageReducer = {
@@ -756,7 +755,7 @@ const PageReducer = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GetPageApiEffects {
     /**
@@ -766,9 +765,7 @@ class GetPageApiEffects {
     constructor(actions$, service) {
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$
-            .ofType("[PAGE][API][GetPage] start" /* START */)
-            .pipe(map((action) => action.payload), switchMap((payload) => this.service.get(payload)), map((res) => new GetPageSucceedAction(res)), catchError((err) => of(new GetPageFailedAction(err))));
+        this.start$ = this.actions$.pipe(ofType("[PAGE][API][GetPage] start" /* START */), map(action => action.payload), switchMap(payload => this.service.get(payload)), map(res => new GetPageSucceedAction(res)), catchError(err => of(new GetPageFailedAction(err))));
     }
 }
 GetPageApiEffects.decorators = [
@@ -786,7 +783,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GetPagesApiEffects {
     /**
@@ -796,11 +793,9 @@ class GetPagesApiEffects {
     constructor(actions$, service) {
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$
-            .ofType("[GET_PAGES][API][GetPages] start" /* START */)
-            .pipe(switchMap(() => this.service
+        this.start$ = this.actions$.pipe(ofType("[GET_PAGES][API][GetPages] start" /* START */), switchMap(() => this.service
             .getPages()
-            .pipe(map((res) => new GetPagesSucceedAction(res)), catchError((err) => of(new GetPagesFailedAction(err))))));
+            .pipe(map(res => new GetPagesSucceedAction(res)), catchError(err => of(new GetPagesFailedAction(err))))));
     }
 }
 GetPagesApiEffects.decorators = [
@@ -818,7 +813,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class UpsertPageApiEffects {
     /**
@@ -828,9 +823,7 @@ class UpsertPageApiEffects {
     constructor(actions$, service) {
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$
-            .ofType("[UPSERT_PAGE][API][UpsertPage] start" /* START */)
-            .pipe(map((action) => action.payload), switchMap((payload) => this.service.upsert(payload)), map((res) => new UpsertPageSucceedAction(res)), catchError((err) => of(new UpsertPageFailedAction(err))));
+        this.start$ = this.actions$.pipe(ofType("[UPSERT_PAGE][API][UpsertPage] start" /* START */), map(action => action.payload), switchMap(payload => this.service.upsert(payload)), map(res => new UpsertPageSucceedAction(res)), catchError(err => of(new UpsertPageFailedAction(err))));
     }
 }
 UpsertPageApiEffects.decorators = [
@@ -848,7 +841,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DeletePageApiEffects {
     /**
@@ -858,9 +851,7 @@ class DeletePageApiEffects {
     constructor(actions$, service) {
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$
-            .ofType("[PAGE][API][DELETE] start" /* START */)
-            .pipe(map((action) => action.payload), switchMap((payload) => this.service.delete(payload)), map((res) => new DeletePageSucceedAction(res)), catchError((err) => of(new DeletePageFailedAction(err))));
+        this.start$ = this.actions$.pipe(ofType("[PAGE][API][DELETE] start" /* START */), map(action => action.payload), switchMap(payload => this.service.delete(payload)), map(res => new DeletePageSucceedAction(res)), catchError(err => of(new DeletePageFailedAction(err))));
     }
 }
 DeletePageApiEffects.decorators = [
@@ -878,7 +869,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NgsPageModule {
     /**
@@ -934,12 +925,12 @@ NgsPageRootModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { NgsPageModule, NgsPageRootModule, MODULE_DEFAULT_CONFIG, MODULE_CONFIG_TOKEN, PagesManagementComponent as ɵf, RoutingModule as ɵi, PageReducer as ɵb, PageDbEffects as ɵk, Reducer as ɵj, RootComponent as ɵg, DeletePageApiEffects as ɵr, GetPageApiEffects as ɵl, GetPagesApiEffects as ɵn, UpsertPageApiEffects as ɵp, PageConfigurationService as ɵe, PageService as ɵd, UpsertComponent as ɵh, PageViewComponent as ɵa };

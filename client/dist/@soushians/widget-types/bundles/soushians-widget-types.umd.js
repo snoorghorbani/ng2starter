@@ -33,7 +33,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ArticleUpsertComponent = /** @class */ (function () {
         function ArticleUpsertComponent(store$$1) {
@@ -99,7 +99,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ArticleViewComponent = /** @class */ (function () {
         function ArticleViewComponent(store$$1) {
@@ -132,7 +132,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LinksUpsertComponent = /** @class */ (function () {
         function LinksUpsertComponent(store$$1) {
@@ -177,7 +177,7 @@
          * @return {?}
          */
             function () {
-                ( /** @type {?} */(this.configFormGroup.get("links"))).push(this._get_new_empty_link_item());
+                (( /** @type {?} */(this.configFormGroup.get("links")))).push(this._get_new_empty_link_item());
             };
         /**
          * @param {?} link
@@ -190,7 +190,7 @@
             function (link) {
                 debugger;
                 /** @type {?} */
-                var data = /** @type {?} */ (this.configFormGroup.get("links"));
+                var data = ( /** @type {?} */(this.configFormGroup.get("links")));
                 if (data.controls.length > -1) {
                     data.removeAt(link);
                 }
@@ -239,12 +239,12 @@
          */
             function (links) {
                 var _this = this;
-                ( /** @type {?} */(this.configFormGroup.get("links"))).reset();
+                (( /** @type {?} */(this.configFormGroup.get("links")))).reset();
                 links.forEach(function (link) {
                     /** @type {?} */
                     var _link = _this._get_new_empty_link_item();
                     _link.patchValue(link);
-                    ( /** @type {?} */(_this.configFormGroup.get("links"))).push(_link);
+                    (( /** @type {?} */(_this.configFormGroup.get("links")))).push(_link);
                 });
             };
         LinksUpsertComponent.decorators = [
@@ -268,7 +268,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LinksViewComponent = /** @class */ (function () {
         function LinksViewComponent(store$$1) {
@@ -319,7 +319,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ListViewComponent = /** @class */ (function () {
         function ListViewComponent(store$$1) {
@@ -352,7 +352,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ListUpsertComponent = /** @class */ (function () {
         function ListUpsertComponent(store$$1) {
@@ -391,7 +391,7 @@
          * @return {?}
          */
             function () {
-                ( /** @type {?} */(this.configFormGroup.get("list"))).push(this._get_new_empty_list_item());
+                (( /** @type {?} */(this.configFormGroup.get("list")))).push(this._get_new_empty_list_item());
             };
         /**
          * @param {?} list
@@ -404,7 +404,7 @@
             function (list) {
                 debugger;
                 /** @type {?} */
-                var data = /** @type {?} */ (this.configFormGroup.get("list"));
+                var data = ( /** @type {?} */(this.configFormGroup.get("list")));
                 if (data.controls.length > -1) {
                     data.removeAt(list);
                 }
@@ -449,12 +449,12 @@
          */
             function (list) {
                 var _this = this;
-                ( /** @type {?} */(this.configFormGroup.get("list"))).reset();
+                (( /** @type {?} */(this.configFormGroup.get("list")))).reset();
                 list.forEach(function (item) {
                     /** @type {?} */
                     var _list = _this._get_new_empty_list_item();
                     _list.patchValue(item);
-                    ( /** @type {?} */(_this.configFormGroup.get("list"))).push(_list);
+                    (( /** @type {?} */(_this.configFormGroup.get("list")))).push(_list);
                 });
             };
         ListUpsertComponent.decorators = [
@@ -478,7 +478,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var NgsWidgetTypesModule = /** @class */ (function () {
         function NgsWidgetTypesModule() {
@@ -534,12 +534,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.ArticleUpsertComponent = ArticleUpsertComponent;

@@ -6,7 +6,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var GivenUserIsAuthenticatedStepComponent = /** @class */ (function () {
         function GivenUserIsAuthenticatedStepComponent() {
@@ -42,7 +42,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var IfUserIsAuthenticatedGwtGivenStep = /** @class */ (function () {
         function IfUserIsAuthenticatedGwtGivenStep(injector) {
@@ -77,7 +77,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var IfUserHaveRoleGwtGivenStepComponent = /** @class */ (function () {
         function IfUserHaveRoleGwtGivenStepComponent() {
@@ -113,7 +113,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var IfUserHaveRoleGwtGivenStep = /** @class */ (function () {
         function IfUserHaveRoleGwtGivenStep(injector) {
@@ -142,7 +142,7 @@
                     .pipe(operators.filter(function (user$$1) { return !!user$$1.Roles; }), operators.filter(function (user$$1) { return user$$1.Roles.length > 0; }));
                 return user$.pipe(operators.map(function (user$$1) {
                     debugger;
-                    return !( /** @type {?} */(user$$1)).Roles.map(function (item) { return item.toLowerCase(); }).includes(params.role.toLowerCase());
+                    return !(( /** @type {?} */(user$$1))).Roles.map(function (item) { return item.toLowerCase(); }).includes(params.role.toLowerCase());
                 }));
             };
         return IfUserHaveRoleGwtGivenStep;
@@ -150,12 +150,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var GwtThenAuthorizeStepComponent = /** @class */ (function () {
         function GwtThenAuthorizeStepComponent() {
             var _this = this;
-            this.params$ = new rxjs.BehaviorSubject(/** @type {?} */ ({}));
+            this.params$ = new rxjs.BehaviorSubject(( /** @type {?} */({})));
             this.formGroup = this._create_formGroup();
             this.params$.subscribe(function (params) { return _this.formGroup.patchValue(params); });
         }
@@ -206,7 +206,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var GwtThenAuthorizeStep = /** @class */ (function () {
         function GwtThenAuthorizeStep(injector) {
@@ -240,7 +240,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var GwtStepsModule = /** @class */ (function () {
         function GwtStepsModule() {
@@ -289,12 +289,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.IfUserIsAuthenticatedGwtGivenStep = IfUserIsAuthenticatedGwtGivenStep;

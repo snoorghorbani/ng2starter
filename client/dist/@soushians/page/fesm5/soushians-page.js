@@ -10,13 +10,13 @@ import { Store, StoreModule } from '@ngrx/store';
 import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { __decorate, __metadata, __assign, __read } from 'tslib';
 import { InjectionToken, Inject, Injectable, Component, ComponentFactoryResolver, ViewContainerRef, NgModule } from '@angular/core';
-import { Actions, Effect, EffectsModule } from '@ngrx/effects';
+import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
 import { map, filter, tap, take, switchMap, combineLatest, pluck, catchError } from 'rxjs/operators';
 import { BehaviorSubject, of } from 'rxjs';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var MODULE_DEFAULT_CONFIG = {
@@ -36,7 +36,7 @@ var MODULE_CONFIG_TOKEN = new InjectionToken("PageModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var PageConfigurationService = /** @class */ (function () {
     function PageConfigurationService(configFile, store) {
@@ -75,7 +75,7 @@ var PageConfigurationService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetPagesApiModel;
 (function (GetPagesApiModel) {
@@ -107,7 +107,7 @@ var GetPagesApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetPagesStartAction = /** @class */ (function () {
     function GetPagesStartAction() {
@@ -132,12 +132,12 @@ var GetPagesFailedAction = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetPageApiModel;
 (function (GetPageApiModel) {
@@ -169,7 +169,7 @@ var GetPageApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetPageStartAction = /** @class */ (function () {
     function GetPageStartAction(payload) {
@@ -195,12 +195,12 @@ var GetPageFailedAction = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DeletePageApiModel;
 (function (DeletePageApiModel) {
@@ -232,7 +232,7 @@ var DeletePageApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DeletePageStartAction = /** @class */ (function () {
     function DeletePageStartAction(payload) {
@@ -258,12 +258,12 @@ var DeletePageFailedAction = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var PageModel = /** @class */ (function () {
     function PageModel(_a) {
@@ -277,7 +277,7 @@ var PageModel = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UpsertPageApiModel;
 (function (UpsertPageApiModel) {
@@ -309,7 +309,7 @@ var UpsertPageApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UpsertPageStartAction = /** @class */ (function () {
     function UpsertPageStartAction(payload) {
@@ -335,17 +335,17 @@ var UpsertPageFailedAction = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var PageService = /** @class */ (function () {
     function PageService(http, store, configurationService, _location, userFacadeService) {
@@ -422,11 +422,22 @@ var PageService = /** @class */ (function () {
     // 		.filter((config) => config.endpoints.deleteForm != "")
     // 		.switchMap((config) => this.http.get(config.endpoints.deleteForm));
     // }
+    // delete(name: string) {
+    // 	return this.configurationService.config$
+    // 		.filter((config) => config.endpoints.deleteForm != "")
+    // 		.switchMap((config) => this.http.get(config.endpoints.deleteForm));
+    // }
     /**
      * @param {?} name
      * @return {?}
      */
-    PageService.prototype.selectByName = /**
+    PageService.prototype.selectByName = 
+    // delete(name: string) {
+    // 	return this.configurationService.config$
+    // 		.filter((config) => config.endpoints.deleteForm != "")
+    // 		.switchMap((config) => this.http.get(config.endpoints.deleteForm));
+    // }
+    /**
      * @param {?} name
      * @return {?}
      */
@@ -461,7 +472,7 @@ var PageService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var PageViewComponent = /** @class */ (function () {
     function PageViewComponent(store, service, route, resolver, container) {
@@ -508,7 +519,7 @@ var PageViewComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var RootComponent = /** @class */ (function () {
     function RootComponent() {
@@ -524,7 +535,7 @@ var RootComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UpsertComponent = /** @class */ (function () {
     function UpsertComponent(store, route, service) {
@@ -616,7 +627,7 @@ var UpsertComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var PagesManagementComponent = /** @class */ (function () {
     function PagesManagementComponent(store) {
@@ -663,7 +674,7 @@ var PagesManagementComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var routes = [
@@ -695,7 +706,7 @@ var RoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var PagesActionTypes = {
@@ -719,20 +730,14 @@ var DeletePageAction = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var PageDbEffects = /** @class */ (function () {
     function PageDbEffects(actions$) {
         this.actions$ = actions$;
-        this.Upsert$ = this.actions$
-            .ofType("[PAGE][API][GetPage] succeed" /* SUCCEED */)
-            .pipe(pluck("payload"), map(function (page) { return new UpsertPageAction([page]); }));
-        this.UpsertMany$ = this.actions$
-            .ofType("[GET_PAGES][API][GetPages] succeed" /* SUCCEED */)
-            .pipe(pluck("payload"), map(function (pages) { return new UpsertPageAction(pages); }));
-        this.delete$ = this.actions$
-            .ofType("[PAGE][API][DELETE] succeed" /* SUCCEED */)
-            .pipe(pluck("payload"), map(function (page) { return new DeletePageAction(page); }));
+        this.Upsert$ = this.actions$.pipe(ofType("[PAGE][API][GetPage] succeed" /* SUCCEED */), pluck("payload"), map(function (page) { return new UpsertPageAction([page]); }));
+        this.UpsertMany$ = this.actions$.pipe(ofType("[GET_PAGES][API][GetPages] succeed" /* SUCCEED */), pluck("payload"), map(function (pages) { return new UpsertPageAction(pages); }));
+        this.delete$ = this.actions$.pipe(ofType("[PAGE][API][DELETE] succeed" /* SUCCEED */), pluck("payload"), map(function (page) { return new DeletePageAction(page); }));
     }
     PageDbEffects.decorators = [
         { type: Injectable }
@@ -758,7 +763,7 @@ var PageDbEffects = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ɵ0 = [];
 /** @type {?} */
@@ -809,7 +814,7 @@ function Reducer(state, action) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var PageReducer = {
@@ -818,16 +823,14 @@ var PageReducer = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetPageApiEffects = /** @class */ (function () {
     function GetPageApiEffects(actions$, service) {
         var _this = this;
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$
-            .ofType("[PAGE][API][GetPage] start" /* START */)
-            .pipe(map(function (action) { return action.payload; }), switchMap(function (payload) { return _this.service.get(payload); }), map(function (res) { return new GetPageSucceedAction(res); }), catchError(function (err) { return of(new GetPageFailedAction(err)); }));
+        this.start$ = this.actions$.pipe(ofType("[PAGE][API][GetPage] start" /* START */), map(function (action) { return action.payload; }), switchMap(function (payload) { return _this.service.get(payload); }), map(function (res) { return new GetPageSucceedAction(res); }), catchError(function (err) { return of(new GetPageFailedAction(err)); }));
     }
     GetPageApiEffects.decorators = [
         { type: Injectable }
@@ -846,16 +849,14 @@ var GetPageApiEffects = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetPagesApiEffects = /** @class */ (function () {
     function GetPagesApiEffects(actions$, service) {
         var _this = this;
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$
-            .ofType("[GET_PAGES][API][GetPages] start" /* START */)
-            .pipe(switchMap(function () {
+        this.start$ = this.actions$.pipe(ofType("[GET_PAGES][API][GetPages] start" /* START */), switchMap(function () {
             return _this.service
                 .getPages()
                 .pipe(map(function (res) { return new GetPagesSucceedAction(res); }), catchError(function (err) { return of(new GetPagesFailedAction(err)); }));
@@ -878,16 +879,14 @@ var GetPagesApiEffects = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UpsertPageApiEffects = /** @class */ (function () {
     function UpsertPageApiEffects(actions$, service) {
         var _this = this;
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$
-            .ofType("[UPSERT_PAGE][API][UpsertPage] start" /* START */)
-            .pipe(map(function (action) { return action.payload; }), switchMap(function (payload) { return _this.service.upsert(payload); }), map(function (res) { return new UpsertPageSucceedAction(res); }), catchError(function (err) { return of(new UpsertPageFailedAction(err)); }));
+        this.start$ = this.actions$.pipe(ofType("[UPSERT_PAGE][API][UpsertPage] start" /* START */), map(function (action) { return action.payload; }), switchMap(function (payload) { return _this.service.upsert(payload); }), map(function (res) { return new UpsertPageSucceedAction(res); }), catchError(function (err) { return of(new UpsertPageFailedAction(err)); }));
     }
     UpsertPageApiEffects.decorators = [
         { type: Injectable }
@@ -906,16 +905,14 @@ var UpsertPageApiEffects = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DeletePageApiEffects = /** @class */ (function () {
     function DeletePageApiEffects(actions$, service) {
         var _this = this;
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$
-            .ofType("[PAGE][API][DELETE] start" /* START */)
-            .pipe(map(function (action) { return action.payload; }), switchMap(function (payload) { return _this.service.delete(payload); }), map(function (res) { return new DeletePageSucceedAction(res); }), catchError(function (err) { return of(new DeletePageFailedAction(err)); }));
+        this.start$ = this.actions$.pipe(ofType("[PAGE][API][DELETE] start" /* START */), map(function (action) { return action.payload; }), switchMap(function (payload) { return _this.service.delete(payload); }), map(function (res) { return new DeletePageSucceedAction(res); }), catchError(function (err) { return of(new DeletePageFailedAction(err)); }));
     }
     DeletePageApiEffects.decorators = [
         { type: Injectable }
@@ -934,7 +931,7 @@ var DeletePageApiEffects = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NgsPageModule = /** @class */ (function () {
     function NgsPageModule() {
@@ -1000,12 +997,12 @@ var NgsPageRootModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { NgsPageModule, NgsPageRootModule, MODULE_DEFAULT_CONFIG, MODULE_CONFIG_TOKEN, PagesManagementComponent as ɵf, RoutingModule as ɵi, PageReducer as ɵb, PageDbEffects as ɵk, Reducer as ɵj, RootComponent as ɵg, DeletePageApiEffects as ɵr, GetPageApiEffects as ɵl, GetPagesApiEffects as ɵn, UpsertPageApiEffects as ɵp, PageConfigurationService as ɵe, PageService as ɵd, UpsertComponent as ɵh, PageViewComponent as ɵa };

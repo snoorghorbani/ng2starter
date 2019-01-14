@@ -6,7 +6,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @template T
@@ -21,16 +21,16 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     (function (GetConfigsApiModel) {
         var Request = /** @class */ (function () {
             function Request(initValue) {
                 if (initValue === void 0) {
-                    initValue = /** @type {?} */ ({});
+                    initValue = ( /** @type {?} */({}));
                 }
                 var _this = this;
-                Object.keys(initValue).forEach(function (key) { return (( /** @type {?} */(_this))[key] = ( /** @type {?} */(initValue))[key]); });
+                Object.keys(initValue).forEach(function (key) { return ((( /** @type {?} */(_this)))[key] = (( /** @type {?} */(initValue)))[key]); });
             }
             /**
              * @return {?}
@@ -54,16 +54,16 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     (function (EditConfigApiModel) {
         var Request = /** @class */ (function () {
             function Request(initValue) {
                 if (initValue === void 0) {
-                    initValue = /** @type {?} */ ({});
+                    initValue = ( /** @type {?} */({}));
                 }
                 var _this = this;
-                Object.keys(initValue).forEach(function (key) { return (( /** @type {?} */(_this))[key] = ( /** @type {?} */(initValue))[key]); });
+                Object.keys(initValue).forEach(function (key) { return ((( /** @type {?} */(_this)))[key] = (( /** @type {?} */(initValue)))[key]); });
             }
             /**
              * @return {?}
@@ -102,12 +102,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var MODULE_DEFAULT_CONFIG = {
@@ -162,7 +162,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @enum {string} */
     var ConfigActionTypes = {
@@ -193,7 +193,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ɵ0 = [];
     /** @type {?} */
@@ -233,22 +233,24 @@
     /** @type {?} */
     var getUserModuleConfig = function (state) { return state.data.find(function (config) { return config.Name == "user_module_config"; }); };
     /** @type {?} */
-    var getConfigModuleConfig = function (state) { return (state.data.find(function (config) { return config.Name == "config_module_config"; })); };
+    var getConfigModuleConfig = function (state) { return ( /** @type {?} */(state.data.find(function (config) { return config.Name == "config_module_config"; }))); };
     /** @type {?} */
-    var getFormModuleConfig = function (state) { return (state.data.find(function (config) { return config.Name == "form_module_config"; })); };
+    var getFormModuleConfig = function (state) { return ( /** @type {?} */(state.data.find(function (config) { return config.Name == "form_module_config"; }))); };
     /** @type {?} */
-    var getSocketModuleConfig = function (state) { return (state.data.find(function (config) { return config.Name == "socket_module_config"; })); };
+    var getSocketModuleConfig = function (state) { return ( /** @type {?} */(state.data.find(function (config) { return config.Name == "socket_module_config"; }))); };
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var ConfigReducers = {
         list: Reducer
     };
+    //#region selectors
     /** @type {?} */
     var selectConfigState = i2.createFeatureSelector("config");
+    //#endregion
     /** @type {?} */
     var getConfigListState = i2.createSelector(selectConfigState, function (state) { return state.list; });
     /** @type {?} */
@@ -268,12 +270,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ConfigurationService = /** @class */ (function () {
         function ConfigurationService(configFile, store) {
@@ -316,7 +318,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ConfigService = /** @class */ (function () {
         function ConfigService(http, store, configurationService) {
@@ -399,7 +401,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ConfigsComponent = /** @class */ (function () {
         function ConfigsComponent(store) {
@@ -424,7 +426,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ConfigEditComponent = /** @class */ (function () {
         function ConfigEditComponent(configService, formBuilder, route) {
@@ -441,7 +443,7 @@
                     _this.partialConfigModel = {
                         type: data.Result.Name,
                         inputs: {
-                            configFormGroup: /** @type {?} */ (_this.formGroup.controls["Config"])
+                            configFormGroup: ( /** @type {?} */(_this.formGroup.controls.Config))
                         }
                     };
                     _this.formGroup.patchValue({
@@ -449,7 +451,7 @@
                         Name: data.Result.Name
                     });
                     Object.keys(data.Result.Config).forEach(function (key) {
-                        _this.addControl(/** @type {?} */ (_this.formGroup.controls["Config"]), key, data.Result.Config[key]);
+                        _this.addControl(( /** @type {?} */(_this.formGroup.controls.Config)), key, data.Result.Config[key]);
                     });
                 });
             });
@@ -502,7 +504,7 @@
          * @return {?}
          */
             function () {
-                this.formGroup.controls["Config"].patchValue(this.dynConfig.config);
+                this.formGroup.controls.Config.patchValue(this.dynConfig.config);
                 if (!this.formGroup.valid)
                     return;
                 this.configService.editConfig(this.formGroup.value).subscribe(function (config) { });
@@ -530,7 +532,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ConfigAppConfigComponent = /** @class */ (function () {
         function ConfigAppConfigComponent(injector) {
@@ -574,7 +576,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var UserModuleConfigComponent = /** @class */ (function () {
         function UserModuleConfigComponent(injector) {
@@ -606,8 +608,8 @@
              */ function (configFormGroup) {
                 var _this = this;
                 this._configFormGroup = configFormGroup;
-                ( /** @type {?} */(configFormGroup.controls["dashboardLinks"])).controls.forEach(function (control) {
-                    ( /** @type {?} */(_this.formGroup.controls["dashboardLinks"])).push(new forms.FormGroup({
+                (( /** @type {?} */(configFormGroup.controls.dashboardLinks))).controls.forEach(function (control) {
+                    (( /** @type {?} */(_this.formGroup.controls.dashboardLinks))).push(new forms.FormGroup({
                         route: new forms.FormControl("", [forms.Validators.required]),
                         icon: new forms.FormControl("", [forms.Validators.required]),
                         title: new forms.FormControl("", [forms.Validators.required])
@@ -634,8 +636,8 @@
                     icon: new forms.FormControl("", [forms.Validators.required]),
                     title: new forms.FormControl("", [forms.Validators.required])
                 });
-                ( /** @type {?} */(this.formGroup.get("dashboardLinks"))).push(menuItem);
-                ( /** @type {?} */(this.configFormGroup.get("dashboardLinks"))).push(menuItem);
+                (( /** @type {?} */(this.formGroup.get("dashboardLinks")))).push(menuItem);
+                (( /** @type {?} */(this.configFormGroup.get("dashboardLinks")))).push(menuItem);
             };
         UserModuleConfigComponent.decorators = [
             { type: i0.Component, args: [{
@@ -658,7 +660,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LayoutModuleConfigComponent = /** @class */ (function () {
         function LayoutModuleConfigComponent(injector, store) {
@@ -699,8 +701,8 @@
              */ function (configFormGroup) {
                 var _this = this;
                 this._configFormGroup = configFormGroup;
-                ( /** @type {?} */(configFormGroup.controls["menuItems"])).controls.forEach(function (control) {
-                    ( /** @type {?} */(_this.formGroup.controls["menuItems"])).push(new forms.FormGroup({
+                (( /** @type {?} */(configFormGroup.controls.menuItems))).controls.forEach(function (control) {
+                    (( /** @type {?} */(_this.formGroup.controls.menuItems))).push(new forms.FormGroup({
                         route: new forms.FormControl("", [forms.Validators.required]),
                         icon: new forms.FormControl("", [forms.Validators.required]),
                         // roles: new FormArray(control.value.roles.map((i) => new FormControl("Admin"))),
@@ -728,8 +730,8 @@
                     roles: new forms.FormControl(),
                     title: new forms.FormControl("", [forms.Validators.required])
                 });
-                ( /** @type {?} */(this.formGroup.get("menuItems"))).push(menuItem);
-                ( /** @type {?} */(this.configFormGroup.get("menuItems"))).push(menuItem);
+                (( /** @type {?} */(this.formGroup.get("menuItems")))).push(menuItem);
+                (( /** @type {?} */(this.configFormGroup.get("menuItems")))).push(menuItem);
             };
         /**
          * @param {?} item
@@ -742,8 +744,8 @@
             function (item) {
                 debugger;
                 /** @type {?} */
-                var index = ( /** @type {?} */(this.formGroup.get("menuItems"))).controls.indexOf(item);
-                ( /** @type {?} */(this.formGroup.get("menuItems"))).removeAt(index);
+                var index = (( /** @type {?} */(this.formGroup.get("menuItems")))).controls.indexOf(item);
+                (( /** @type {?} */(this.formGroup.get("menuItems")))).removeAt(index);
             };
         LayoutModuleConfigComponent.decorators = [
             { type: i0.Component, args: [{
@@ -766,7 +768,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ConfigModuleContainerComponent = /** @class */ (function () {
         function ConfigModuleContainerComponent() {
@@ -791,7 +793,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var AuthenticationModuleConfigComponent = /** @class */ (function () {
         function AuthenticationModuleConfigComponent(injector) {
@@ -859,7 +861,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DynamicConfigComponentSelectorComponent = /** @class */ (function () {
         function DynamicConfigComponentSelectorComponent(resolver) {
@@ -900,7 +902,7 @@
                 var _component = this.typeMapToDiagram[data.type];
                 /** @type {?} */
                 var inputProviders = Object.keys(data.inputs).map(function (inputName) {
-                    return { provide: inputName, useValue: ( /** @type {?} */(data.inputs))[inputName] };
+                    return { provide: inputName, useValue: (( /** @type {?} */(data.inputs)))[inputName] };
                 });
                 /** @type {?} */
                 var resolvedInputs = i0.ReflectiveInjector.resolve(inputProviders);
@@ -958,16 +960,14 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LoadConfigEffects = /** @class */ (function () {
         function LoadConfigEffects(actions$, configService) {
             var _this = this;
             this.actions$ = actions$;
             this.configService = configService;
-            this.getConfigs$ = this.actions$
-                .ofType(ConfigActionTypes.GET_CONFIGS)
-                .pipe(operators.map(function (action) { return action.payload; }), operators.switchMap(function (data) { return _this.configService.getConfigs(); }), operators.map(function (configs) { return new ConfigLoadedSucceedAction(configs); }), operators.catchError(function () { return of.of(new ConfigLoadedFailedAction()); }));
+            this.getConfigs$ = this.actions$.pipe(effects.ofType(ConfigActionTypes.GET_CONFIGS), operators.map(function (action) { return action.payload; }), operators.switchMap(function (data) { return _this.configService.getConfigs(); }), operators.map(function (configs) { return new ConfigLoadedSucceedAction(configs); }), operators.catchError(function () { return of.of(new ConfigLoadedFailedAction()); }));
         }
         LoadConfigEffects.decorators = [
             { type: i0.Injectable }
@@ -988,7 +988,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var routes = [
@@ -1012,7 +1012,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var NgsConfigModule = /** @class */ (function () {
         function NgsConfigModule() {
@@ -1092,12 +1092,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.ConfigService = ConfigService;

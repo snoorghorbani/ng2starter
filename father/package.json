@@ -1,6 +1,6 @@
 {
     "name": "father",
-    "version": "7.5.0",
+    "version": "7.7.0",
     "license": "MIT",
     "dependencies": {
         "dotenv": "^6.0.0",

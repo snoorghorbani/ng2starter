@@ -22,7 +22,6 @@ import {
 	MatDatepickerModule
 } from "@angular/material";
 import { StoreModule } from "@ngrx/store";
-import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { EffectsModule, mergeEffects } from "@ngrx/effects";
 
 import { FormModuleConfig, MODULE_CONFIG_TOKEN, MODULE_DEFAULT_CONFIG } from "./form.config";

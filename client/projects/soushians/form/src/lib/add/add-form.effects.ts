@@ -6,7 +6,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import { Action } from "@ngrx/store";
-import { Actions, Effect } from "@ngrx/effects";
+import { Actions, Effect, ofType } from "@ngrx/effects";
 import { of } from "rxjs/observable/of";
 import { Store } from "@ngrx/store";
 
@@ -20,17 +20,18 @@ export class AddFormEffects {
 	constructor(private actions$: Actions<any>, private router: Router, private service: FormService) {}
 
 	@Effect()
-	AddForm$ = this.actions$
-		.ofType(AddFormActionTypes.ADD_FORM)
-		.pipe(map(action => action.payload), map(data => new AddFormStartAction(data)));
+	AddForm$ = this.actions$.pipe(
+		ofType<any>(AddFormActionTypes.ADD_FORM),
+		map(action => action.payload),
+		map(data => new AddFormStartAction(data))
+	);
 
 	@Effect()
-	AddFormStart$ = this.actions$
-		.ofType(AddFormActionTypes.ADD_FORM_START)
-		.pipe(
-			map(action => action.payload),
-			switchMap((data: AddFormApiModel.Request) => this.service.add(data)),
-			map(res => new AddFormSucceedAction()),
-			catchError(() => of(new AddFormFailedAction()))
-		);
+	AddFormStart$ = this.actions$.pipe(
+		ofType<any>(AddFormActionTypes.ADD_FORM_START),
+		map(action => action.payload),
+		switchMap((data: AddFormApiModel.Request) => this.service.add(data)),
+		map(res => new AddFormSucceedAction()),
+		catchError(() => of(new AddFormFailedAction()))
+	);
 }

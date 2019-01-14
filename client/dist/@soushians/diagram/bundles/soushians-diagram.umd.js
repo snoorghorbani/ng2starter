@@ -6,7 +6,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var MODULE_DEFAULT_CONFIG = {
@@ -62,14 +62,14 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var GetDiagramsApiModel;
     (function (GetDiagramsApiModel) {
         var Request = /** @class */ (function () {
             function Request(initValue) {
                 if (initValue === void 0) {
-                    initValue = /** @type {?} */ ({});
+                    initValue = ( /** @type {?} */({}));
                 }
                 var _this = this;
                 Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
@@ -96,7 +96,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @enum {string} */
     var DiagramsActionTypes = {
@@ -127,7 +127,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     console.log(GetDiagramsApiModel);
     /** @type {?} */
@@ -161,7 +161,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var EditDiagramApiModel;
     (function (EditDiagramApiModel) {
@@ -179,9 +179,12 @@
                 };
             Object.defineProperty(Request, "formGroup", {
                 // TODO:
-                get: /**
+                get: 
+                // TODO:
+                /**
                  * @return {?}
-                 */ function () {
+                 */
+                function () {
                     return new forms.FormGroup({
                         Name: new forms.FormControl("", [forms.Validators.required]),
                         IsActive: new forms.FormControl("true", [forms.Validators.required]),
@@ -204,7 +207,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @enum {string} */
     var EditDiagramActionTypes = {
@@ -223,13 +226,13 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     console.log(EditDiagramApiModel);
     /** @type {?} */
     var initialState$1 = {
         status: "pristine",
-        data: /** @type {?} */ ({ Result: {} })
+        data: ( /** @type {?} */({ Result: {} }))
     };
     /**
      * @param {?=} state
@@ -261,7 +264,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var initialState$2 = {
@@ -286,7 +289,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var DiagramReducers = {
@@ -294,14 +297,20 @@
         editDiagram: Reducer,
         parentGuard: ParentGuardReducer
     };
+    //#region selectors
     /** @type {?} */
     var selectFeatureState = i2.createFeatureSelector("diagram");
+    // export const getDiagramInformationStatus = createSelector(
+    //   selectFeatureState,
+    //   (state: DiagramState) => state.diagram
+    // );
+    //#region edit diagram
     /** @type {?} */
     var selectEditDiagramState = i2.createSelector(selectFeatureState, function (state) { return state.editDiagram; });
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ServerStatusDiagramComponent = /** @class */ (function () {
         function ServerStatusDiagramComponent(injector) {
@@ -371,7 +380,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DiagramPartialConfigEditComponent = /** @class */ (function () {
         function DiagramPartialConfigEditComponent(injector) {
@@ -445,7 +454,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var PieDiagramPartialConfigComponent = /** @class */ (function () {
         function PieDiagramPartialConfigComponent(injector) {
@@ -454,7 +463,7 @@
             this.dataLoaded = new BehaviorSubject.BehaviorSubject(false);
             this.formGroup = this.injector.get("formGroup");
             this.diagramService = this.injector.get("diagramService");
-            this.donutFormGroup = /** @type {?} */ (this.formGroup.controls["donut"]);
+            this.donutFormGroup = ( /** @type {?} */(this.formGroup.controls.donut));
         }
         Object.defineProperty(PieDiagramPartialConfigComponent.prototype, "formGroup", {
             get: /**
@@ -526,7 +535,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var BooleanoWidgetPartialConfigComponent = /** @class */ (function () {
         function BooleanoWidgetPartialConfigComponent(injector) {
@@ -534,7 +543,7 @@
             this.dataLoaded = new BehaviorSubject.BehaviorSubject(false);
             this.formGroup = this.injector.get("formGroup");
             this.diagramService = this.injector.get("diagramService");
-            this.booleanoFormGroup = /** @type {?} */ (this.formGroup.controls["booleano"]);
+            this.booleanoFormGroup = ( /** @type {?} */(this.formGroup.controls.booleano));
         }
         Object.defineProperty(BooleanoWidgetPartialConfigComponent.prototype, "formGroup", {
             get: /**
@@ -596,7 +605,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var NumericWidgetPartialConfigComponent = /** @class */ (function () {
         function NumericWidgetPartialConfigComponent(injector) {
@@ -604,7 +613,7 @@
             this.dataLoaded = new BehaviorSubject.BehaviorSubject(false);
             this.formGroup = this.injector.get("formGroup");
             this.diagramService = this.injector.get("diagramService");
-            this.donutFormGroup = /** @type {?} */ (this.formGroup.controls["donut"]);
+            this.donutFormGroup = ( /** @type {?} */(this.formGroup.controls.donut));
         }
         Object.defineProperty(NumericWidgetPartialConfigComponent.prototype, "formGroup", {
             get: /**
@@ -666,7 +675,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LinearDiagramPartialConfigComponent = /** @class */ (function () {
         function LinearDiagramPartialConfigComponent(injector) {
@@ -744,7 +753,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ServerConnectingTimeDiagramComponent = /** @class */ (function () {
         function ServerConnectingTimeDiagramComponent(injector) {
@@ -819,7 +828,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DiagramConfigurationService = /** @class */ (function () {
         function DiagramConfigurationService(config) {
@@ -851,14 +860,14 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var AddDiagramApiModel;
     (function (AddDiagramApiModel) {
         var Request = /** @class */ (function () {
             function Request(initValue) {
                 if (initValue === void 0) {
-                    initValue = /** @type {?} */ ({});
+                    initValue = ( /** @type {?} */({}));
                 }
                 var _this = this;
                 Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
@@ -961,7 +970,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DiagramService = /** @class */ (function () {
         function DiagramService(http, store, configurationService) {
@@ -995,7 +1004,7 @@
             function () {
                 return this.http
                     .get(this.config.env.frontend_server + "/api/source")
-                    .map(function (response) { return ( /** @type {?} */(response)).Result; })
+                    .map(function (response) { return (( /** @type {?} */(response))).Result; })
                     .catch(function (err) {
                     return Rx.Observable.throw(err);
                 });
@@ -1009,7 +1018,7 @@
             function () {
                 return this.http
                     .get(this.config.env.frontend_server + "/api/diagram/groups")
-                    .map(function (response) { return ( /** @type {?} */(response)).Result; })
+                    .map(function (response) { return (( /** @type {?} */(response))).Result; })
                     .catch(function (err) {
                     return Rx.Observable.throw(err);
                 });
@@ -1187,7 +1196,7 @@
          * @return {?}
          */
             function (data) {
-                return ( /** @type {?} */(_.report(data))).filter(function (item) { return item.isLastNode; });
+                return (( /** @type {?} */(_.report(data)))).filter(function (item) { return item.isLastNode; });
             };
         /**
          * @param {?} columns
@@ -1224,7 +1233,7 @@
             function (config, id, route, sync) {
                 var _this = this;
                 this.charts[id] = c3.generate(__assign({}, config, { bindto: "#diagram_" + id }));
-                return this.getData(/** @type {?} */ ({}), new Rx.Subject(), sync).subscribe(function (data) {
+                return this.getData(( /** @type {?} */({})), new Rx.Subject(), sync).subscribe(function (data) {
                     _this.charts[id].load({
                         columns: _this.extract_columns_from_data(data.Data, config.ColumnMappings)
                     });
@@ -1268,7 +1277,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var NumericEditDiagramComponent = /** @class */ (function () {
         function NumericEditDiagramComponent(injector, diagramService) {
@@ -1340,7 +1349,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var NumericDiagramComponent = /** @class */ (function () {
         function NumericDiagramComponent(injector, diagramService) {
@@ -1414,8 +1423,9 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    // import * as appReducer from 'app/reducers';
     var DiagramModuleContainerComponent = /** @class */ (function () {
         function DiagramModuleContainerComponent(service) {
             this.service = service;
@@ -1444,7 +1454,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DataMapperComponent = /** @class */ (function () {
         function DataMapperComponent(diagramService, store) {
@@ -1495,7 +1505,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DiagramModel = /** @class */ (function () {
         function DiagramModel() {
@@ -1505,7 +1515,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @enum {string} */
     var AddDiagramActionTypes = {
@@ -1602,7 +1612,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var AddDiagramComponent = /** @class */ (function () {
         function AddDiagramComponent(diagramService, formBuilder, store, route) {
@@ -1616,7 +1626,7 @@
             this.sources = this.diagramService.getSources();
             this.groups = this.diagramService.getGroups();
             // this.diagramModel = new DiagramModel();
-            this.columnsMappings = ( /** @type {?} */(this.formGroup.controls["ColumnMappings"])).controls;
+            this.columnsMappings = (( /** @type {?} */(this.formGroup.controls.ColumnMappings))).controls;
             this.route.params.subscribe(function (params) {
                 /** @type {?} */
                 var diagramId = params["id"];
@@ -1644,13 +1654,13 @@
                             TextColor: data.Box.TextColor
                         });
                         /** @type {?} */
-                        var colorsControl = /** @type {?} */ (_this.formGroup.controls["Colors"]);
+                        var colorsControl = ( /** @type {?} */(_this.formGroup.controls["Colors"]));
                         Object.keys(data.Chart.data.colors || {}).forEach(function (columnKey) {
                             if (!(columnKey in colorsControl.controls))
                                 colorsControl.addControl(columnKey, new forms.FormControl(data.Chart.data.colors[columnKey]));
                         });
                         /** @type {?} */
-                        var typesControl = /** @type {?} */ (_this.formGroup.controls["Types"]);
+                        var typesControl = ( /** @type {?} */(_this.formGroup.controls["Types"]));
                         Object.keys(data.Chart.data.types || {}).forEach(function (key) {
                             if (!(key in typesControl.controls))
                                 typesControl.addControl(key, new forms.FormControl(data.Chart.data.types[key]));
@@ -1695,9 +1705,9 @@
          */
             function () {
                 var _this = this;
-                this.formGroup.controls["ColumnMappings"].statusChanges.subscribe(function (status) {
+                this.formGroup.controls.ColumnMappings.statusChanges.subscribe(function (status) {
                     if (status == "VALID" &&
-                        ( /** @type {?} */(_this.formGroup.controls["ColumnMappings"])).controls.length > 0 &&
+                        (( /** @type {?} */(_this.formGroup.controls.ColumnMappings))).controls.length > 0 &&
                         _this.data)
                         _this.store.dispatch(new ColumnsMappingChangedAction(_this));
                 });
@@ -1719,12 +1729,23 @@
         //   this.dataSubscription = o$.subscribe(data => new DataLoadedAction(this))
         //   return o$;
         // }
+        // getData() {
+        //   const o$ = this.diagramService.getData(this.source);
+        //   this.dataSubscription = o$.subscribe(data => new DataLoadedAction(this))
+        //   return o$;
+        // }
         /**
          * @return {?}
          */
-        AddDiagramComponent.prototype.getDataStructure = /**
-         * @return {?}
-         */
+        AddDiagramComponent.prototype.getDataStructure =
+            // getData() {
+            //   const o$ = this.diagramService.getData(this.source);
+            //   this.dataSubscription = o$.subscribe(data => new DataLoadedAction(this))
+            //   return o$;
+            // }
+            /**
+             * @return {?}
+             */
             function () {
                 var _this = this;
                 debugger;
@@ -1753,7 +1774,7 @@
          */
             function () {
                 /** @type {?} */
-                var typesFormGroup = ( /** @type {?} */(this.formGroup.controls["Types"])).controls;
+                var typesFormGroup = (( /** @type {?} */(this.formGroup.controls.Types))).controls;
                 // tslint:disable-next-line:forin
                 for (var cb in typesFormGroup) {
                     typesFormGroup[cb].setValue(this.formGroup.value.Type);
@@ -1785,7 +1806,7 @@
                     ValuePath = "";
                 }
                 /** @type {?} */
-                var control = /** @type {?} */ (this.formGroup.controls["ColumnMappings"]);
+                var control = ( /** @type {?} */(this.formGroup.controls["ColumnMappings"]));
                 control.push(this.formBuilder.group({
                     NamePath: [NamePath],
                     ValuePath: [ValuePath, forms.Validators.required]
@@ -1815,7 +1836,7 @@
          */
             function (i) {
                 /** @type {?} */
-                var control = /** @type {?} */ (this.formGroup.controls["ColumnMappings"]);
+                var control = ( /** @type {?} */(this.formGroup.controls["ColumnMappings"]));
                 control.removeAt(i);
             };
         /**
@@ -1828,10 +1849,11 @@
                 var _this = this;
                 return Observable.Observable.create(function (obser) {
                     /** @type {?} */
-                    var columns = _this.diagramService.extract_columns_from_data(_this.data, ( /** @type {?} */(_this.formGroup.controls["ColumnMappings"])).value);
-                    _this.formGroup.controls["columns"].setValue(columns);
+                    var columns = _this.diagramService.extract_columns_from_data(_this.data, (( /** @type {?} */(_this.formGroup.controls.ColumnMappings))).value);
+                    _this.formGroup.controls.columns.setValue(columns);
+                    // add new item to this.formGroup.controls.colors form control
                     /** @type {?} */
-                    var colorsControl = /** @type {?} */ (_this.formGroup.controls["Colors"]);
+                    var colorsControl = ( /** @type {?} */(_this.formGroup.controls["Colors"]));
                     columns.forEach(function (column) {
                         /** @type {?} */
                         var columnKey = column[0];
@@ -1839,7 +1861,7 @@
                             colorsControl.addControl(columnKey, new forms.FormControl("#123456"));
                     });
                     /** @type {?} */
-                    var typesControl = /** @type {?} */ (_this.formGroup.controls["Types"]);
+                    var typesControl = ( /** @type {?} */(_this.formGroup.controls["Types"]));
                     columns.forEach(function (column) {
                         /** @type {?} */
                         var key = column[0];
@@ -1873,10 +1895,10 @@
                 temp.Chart = {
                     ColumnMappings: this.formGroup.value.ColumnMappings,
                     data: {
-                        columns: this.formGroup.controls["columns"].value,
+                        columns: this.formGroup.controls.columns.value,
                         type: this.formGroup.value.Type,
                         types: this.formGroup.value.Types,
-                        colors: this.formGroup.controls["Colors"].value
+                        colors: this.formGroup.controls.Colors.value
                     },
                     Flow: this.formGroup.value.Flow,
                     legend: {
@@ -1891,6 +1913,20 @@
                     tooltip: {
                         grouped: this.formGroup.value.Tooltip
                     }
+                    // tooltip: {
+                    //         format: {
+                    //                 value: function (value) {
+                    //                         return value + "%";
+                    //                 }
+                    //         }
+                    // },
+                    // color: {
+                    //         pattern: ['#60B044', '#F6C600', '#F97600', '#FF0000'],
+                    //         threshold: {
+                    //                 //  unit: 'value', // percentage is default
+                    //                 values: [30, 60, 90, 100]
+                    //         }
+                    // },
                 };
                 // this.componentModel = {
                 //   component: this.typeMapToDiagram[temp.Chart.data.type],
@@ -1931,7 +1967,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var diagramViewComponent = /** @class */ (function () {
         function diagramViewComponent(diagramService) {
@@ -1969,7 +2005,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DiagramsComponent = /** @class */ (function () {
         function DiagramsComponent(diagramService) {
@@ -2013,7 +2049,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var EditDiagramComponent = /** @class */ (function () {
         function EditDiagramComponent(diagramService, route, store) {
@@ -2067,7 +2103,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DiagramComponent = /** @class */ (function () {
         function DiagramComponent(store, diagramService, http, injector, route) {
@@ -2225,7 +2261,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DynamicComponentSelectorComponent = /** @class */ (function () {
         function DynamicComponentSelectorComponent(resolver) {
@@ -2326,7 +2362,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DynamicConfigComponentSelectorComponent = /** @class */ (function () {
         function DynamicConfigComponentSelectorComponent(resolver) {
@@ -2371,8 +2407,8 @@
                 var factory = this.resolver.resolveComponentFactory(_component);
                 /** @type {?} */
                 var component = factory.create(injector);
-                if (( /** @type {?} */(component.instance)).ConfigChanged)
-                    ( /** @type {?} */(component.instance)).ConfigChanged.subscribe(function () {
+                if ((( /** @type {?} */(component.instance))).ConfigChanged)
+                    (( /** @type {?} */(component.instance))).ConfigChanged.subscribe(function () {
                         _this.ConfigChanged.emit();
                     });
                 this.dynamicComponentContainer.insert(component.hostView);
@@ -2420,7 +2456,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DiagramEffects = /** @class */ (function () {
         function DiagramEffects(actions$, router$$1, diagramService) {
@@ -2428,10 +2464,8 @@
             this.actions$ = actions$;
             this.router = router$$1;
             this.diagramService = diagramService;
-            this.DiagramRequest$ = this.actions$.ofType().pipe(operators.map(function (action) { return action.payload; }), operators.map(function (data) { return new GetDiagramsStart(); }));
-            this.getDiagram$ = this.actions$
-                .ofType()
-                .pipe(operators.map(function (action) { return action.payload; }), operators.switchMap(function (data) {
+            this.DiagramRequest$ = this.actions$.pipe(effects.ofType(), operators.map(function (action) { return action.payload; }), operators.map(function (data) { return new GetDiagramsStart(); }));
+            this.getDiagram$ = this.actions$.pipe(effects.ofType(), operators.map(function (action) { return action.payload; }), operators.switchMap(function (data) {
                 return _this.diagramService
                     .getDiagrams()
                     .pipe(operators.map(function (res) { return new GetDiagramsSucceed(res); }), operators.catchError(function () { return rxjs.of(new GetDiagramsFailed()); }));
@@ -2461,7 +2495,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var AddDiagramEffects = /** @class */ (function () {
         function AddDiagramEffects(actions$, router$$1, diagramService) {
@@ -2469,42 +2503,25 @@
             this.actions$ = actions$;
             this.router = router$$1;
             this.diagramService = diagramService;
-            this.addDiagramRequest$ = this.actions$
-                .ofType(AddDiagramActionTypes.ADD_DIAGRAM)
-                .pipe(operators.map(function (action) { return action.payload; }), operators.map(function (data) { return new AddDiagramActionStart(data); }));
-            this.addDiagram$ = this.actions$
-                .ofType(AddDiagramActionTypes.ADD_DIAGRAM_START)
-                .pipe(operators.map(function (action) { return action.payload; }), operators.switchMap(function (data) {
+            this.addDiagramRequest$ = this.actions$.pipe(effects.ofType(AddDiagramActionTypes.ADD_DIAGRAM), operators.pluck("payload"), operators.map(function (data) { return new AddDiagramActionStart(data); }));
+            this.addDiagram$ = this.actions$.pipe(effects.ofType(AddDiagramActionTypes.ADD_DIAGRAM_START), operators.pluck("payload"), operators.switchMap(function (data) {
                 return _this.diagramService
                     .addDiagram(data)
                     .pipe(operators.map(function (res) { return new AddDiagramActionSucceed(res); }), operators.catchError(function () { return of.of(new AddDiagramActionFailed()); }));
             }));
-            this.ADD_DIAGRAM_SUCCEED$ = this.actions$.ofType(AddDiagramActionTypes.ADD_DIAGRAM_SUCCEED).pipe(operators.map(function (action) { return action.payload; }), operators.map(function (data) {
+            this.ADD_DIAGRAM_SUCCEED$ = this.actions$.pipe(effects.ofType(AddDiagramActionTypes.ADD_DIAGRAM_SUCCEED), operators.pluck("payload"), operators.map(function (data) {
                 _this.router.navigate(["diagrams"]);
                 return Observable.Observable.empty();
             }));
-            this.HAVE_ENDPOINT$ = this.actions$
-                .ofType(AddDiagramActionTypes.HAVE_ENDPOINT)
-                .pipe(operators.map(function (action) { return action.payload; }), operators.map(function (data) { return new DataLoadedAction(data); }));
-            this.DATA_LOADED$ = this.actions$
-                .ofType(AddDiagramActionTypes.DATA_LOADED)
-                .pipe(operators.map(function (action) { return action.payload; }), operators.map(function (data) { return new StructureDefinitionStartAction(data); }));
-            this.DIAGRAM_CONFIG_CHANGED$ = this.actions$
-                .ofType(AddDiagramActionTypes.DIAGRAM_CONFIG_CHANGED)
-                .pipe(operators.map(function (action) { return action.payload; }), operators.map(function (data) { return new GenerateDiagramAction(data); }));
-            this.STRUCTURE_DEFINITION_START$ = this.actions$
-                .ofType(AddDiagramActionTypes.STRUCTURE_DEFINITION_START)
-                .pipe(operators.map(function (action) { return action.payload; }), operators.switchMap(function (data) { return data.getDataStructure().map(function () { return new StructureDefinitionFinishedAction(data); }); }));
-            this.COLUMNS_MAPPING_CHANGED$ = this.actions$
-                .ofType(AddDiagramActionTypes.COLUMNS_MAPPING_CHANGED)
-                .pipe(operators.map(function (action) { return action.payload; }), operators.switchMap(function (data) { return data.calculateColumns().map(function () { return new StructureDefinitionFinishedAction(data); }); }));
+            this.HAVE_ENDPOINT$ = this.actions$.pipe(effects.ofType(AddDiagramActionTypes.HAVE_ENDPOINT), operators.pluck("payload"), operators.map(function (data) { return new DataLoadedAction(data); }));
+            this.DATA_LOADED$ = this.actions$.pipe(effects.ofType(AddDiagramActionTypes.DATA_LOADED), operators.pluck("payload"), operators.map(function (data) { return new StructureDefinitionStartAction(data); }));
+            this.DIAGRAM_CONFIG_CHANGED$ = this.actions$.pipe(effects.ofType(AddDiagramActionTypes.DIAGRAM_CONFIG_CHANGED), operators.pluck("payload"), operators.map(function (data) { return new GenerateDiagramAction(data); }));
+            this.STRUCTURE_DEFINITION_START$ = this.actions$.pipe(effects.ofType(AddDiagramActionTypes.STRUCTURE_DEFINITION_START), operators.pluck("payload"), operators.switchMap(function (data) { return data.getDataStructure().map(function () { return new StructureDefinitionFinishedAction(data); }); }));
+            this.COLUMNS_MAPPING_CHANGED$ = this.actions$.pipe(effects.ofType(AddDiagramActionTypes.COLUMNS_MAPPING_CHANGED), operators.pluck("payload"), operators.switchMap(function (data) { return data.calculateColumns().map(function () { return new StructureDefinitionFinishedAction(data); }); }));
             this.STRUCTURE_DEFINITION_END$ = this.actions$
-                .ofType(AddDiagramActionTypes.STRUCTURE_DEFINITION_END)
                 // .skipUntil(this.actions$.ofType(AddDiagramActionTypes.DATA_LOADED))
-                .pipe(operators.map(function (action) { return action.payload; }), operators.switchMap(function (data) { return data.calculateColumns().map(function () { return new GenerateDiagramAction(data); }); }));
-            this.GenerateDiagram$ = this.actions$
-                .ofType(AddDiagramActionTypes.GENERATE_DIAGRAM)
-                .pipe(operators.map(function (action) { return action.payload; }), operators.map(function (data) { return data.generateDiagram(); }));
+                .pipe(effects.ofType(AddDiagramActionTypes.STRUCTURE_DEFINITION_END), operators.pluck("payload"), operators.switchMap(function (data) { return data.calculateColumns().map(function () { return new GenerateDiagramAction(data); }); }));
+            this.GenerateDiagram$ = this.actions$.pipe(effects.ofType(AddDiagramActionTypes.GENERATE_DIAGRAM), operators.pluck("payload"), operators.map(function (data) { return data.generateDiagram(); }));
         }
         AddDiagramEffects.decorators = [
             { type: i0.Injectable }
@@ -2562,7 +2579,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var routes = [
@@ -2602,7 +2619,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DiagramSelectorComponent = /** @class */ (function () {
         function DiagramSelectorComponent(diagramService) {
@@ -2652,7 +2669,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var NgsDiagramModule = /** @class */ (function () {
         function NgsDiagramModule() {
@@ -2744,12 +2761,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.NgsDiagramModule = NgsDiagramModule;

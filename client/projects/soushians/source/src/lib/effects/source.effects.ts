@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { Action } from "@ngrx/store";
-import { Actions, Effect } from "@ngrx/effects";
+import { Actions, Effect, ofType } from "@ngrx/effects";
 import { of } from "rxjs/observable/of";
 import { Store } from "@ngrx/store";
-import { map, switchMap, catchError } from "rxjs/operators";
+import { map, switchMap, catchError, pluck } from "rxjs/operators";
 import { Router } from "@angular/router";
 
 import { SourceActionTypes, SourceSubmit, SourceSubmitSucceed, SourceSubmitFailed } from "../actions";
@@ -16,8 +16,9 @@ export class SourceEffects {
 	constructor(private actions$: Actions<any>, private router: Router, private sourceService: SourceService) {}
 
 	@Effect()
-	afterSubmitSource$ = this.actions$.ofType(SourceActionTypes.SOURCE_SUBMIT).pipe(
-		map(action => action.payload),
+	afterSubmitSource$ = this.actions$.pipe(
+		ofType(SourceActionTypes.SOURCE_SUBMIT),
+		pluck("payload"),
 		switchMap((data: UpsertSourceApiModel.Request) => {
 			return this.sourceService
 				.upsertSource(data)
@@ -26,7 +27,8 @@ export class SourceEffects {
 	);
 
 	@Effect()
-	SigninSucceed$ = this.actions$.ofType(SourceActionTypes.SOURCE_SUBMIT_SUCCEED).pipe(
+	SigninSucceed$ = this.actions$.pipe(
+		ofType(SourceActionTypes.SOURCE_SUBMIT_SUCCEED),
 		switchMap(() => {
 			this.router.navigate([ "source" ]);
 			return Observable.empty();

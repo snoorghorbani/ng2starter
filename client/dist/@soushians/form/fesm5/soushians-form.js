@@ -16,19 +16,19 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/switchMap';
 import { InjectionToken, Inject, Injectable, Component, Input, Output, EventEmitter, NgModule, ViewContainerRef, ComponentFactoryResolver, Compiler, Directive, defineInjectable, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Actions, Effect, EffectsModule } from '@ngrx/effects';
+import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
 import { of } from 'rxjs/observable/of';
 import { filter, map, take, switchMap, takeUntil, catchError } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var AddFormApiModel;
 (function (AddFormApiModel) {
     var Request = /** @class */ (function () {
         function Request(initValue) {
-            if (initValue === void 0) { initValue = /** @type {?} */ ({}); }
+            if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
             var _this = this;
             Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
         }
@@ -83,13 +83,13 @@ var AddFormApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var EditFormApiModel;
 (function (EditFormApiModel) {
     var Request = /** @class */ (function () {
         function Request(initValue) {
-            if (initValue === void 0) { initValue = /** @type {?} */ ({}); }
+            if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
             var _this = this;
             Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
         }
@@ -144,13 +144,13 @@ var EditFormApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormListApiModel;
 (function (FormListApiModel) {
     var Request = /** @class */ (function () {
         function Request(initValue) {
-            if (initValue === void 0) { initValue = /** @type {?} */ ({}); }
+            if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
             var _this = this;
             Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
         }
@@ -192,7 +192,7 @@ var FormListApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var Validator = /** @class */ (function () {
     function Validator() {
@@ -215,7 +215,7 @@ var Validator = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FieldConfig = /** @class */ (function () {
     function FieldConfig(type) {
@@ -230,7 +230,7 @@ var FieldConfig = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormSchemaModel = /** @class */ (function () {
     function FormSchemaModel() {
@@ -260,12 +260,17 @@ var FormSchemaModel = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var MODULE_DEFAULT_CONFIG = {
@@ -288,7 +293,7 @@ var MODULE_CONFIG_TOKEN = new InjectionToken("FormModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormConfigurationService = /** @class */ (function () {
     function FormConfigurationService(configFile, store) {
@@ -330,7 +335,7 @@ var FormConfigurationService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormService = /** @class */ (function () {
     function FormService(http, store, configurationService) {
@@ -457,7 +462,7 @@ var FormService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SelectComponent = /** @class */ (function () {
     function SelectComponent() {
@@ -476,12 +481,12 @@ var SelectComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var CheckboxComponent = /** @class */ (function () {
     function CheckboxComponent() {
@@ -500,12 +505,12 @@ var CheckboxComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var EmailComponent = /** @class */ (function () {
     function EmailComponent() {
@@ -531,12 +536,12 @@ var EmailComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ColorComponent = /** @class */ (function () {
     function ColorComponent() {
@@ -566,12 +571,12 @@ var ColorComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var TableComponent = /** @class */ (function () {
     function TableComponent(http) {
@@ -647,12 +652,12 @@ var TableComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NumberComponent = /** @class */ (function () {
     function NumberComponent() {
@@ -682,12 +687,12 @@ var NumberComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var TextComponent = /** @class */ (function () {
     function TextComponent() {
@@ -706,17 +711,17 @@ var TextComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var FormsListActionTypes = {
@@ -785,7 +790,7 @@ var FormSchemaFechedAction = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DateFormInputControlComponent = /** @class */ (function () {
     function DateFormInputControlComponent() {
@@ -804,7 +809,7 @@ var DateFormInputControlComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FileFormInputControlComponent = /** @class */ (function () {
     function FileFormInputControlComponent() {
@@ -823,7 +828,7 @@ var FileFormInputControlComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormCaptchaService = /** @class */ (function () {
     function FormCaptchaService(http, store, configurationService) {
@@ -871,7 +876,7 @@ var FormCaptchaService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var CaptchaModel = /** @class */ (function () {
     function CaptchaModel(_a) {
@@ -911,7 +916,7 @@ var UpsertCaptchaApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormCaptchaComponent = /** @class */ (function () {
     function FormCaptchaComponent(service, store, configurationService) {
@@ -973,12 +978,12 @@ var FormCaptchaComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormViewComponent = /** @class */ (function () {
     function FormViewComponent(service, compiler, resolver, store) {
@@ -996,7 +1001,7 @@ var FormViewComponent = /** @class */ (function () {
         this.schema$.pipe(takeUntil(this.unsubscribe)).subscribe(function (schema) {
             if (!schema)
                 return;
-            _this.formGroup = /** @type {?} */ (_this.createFrom(schema.form));
+            _this.formGroup = (/** @type {?} */ (_this.createFrom(schema.form)));
             if (!schema.form.name)
                 return;
             _this.formGroupCreated = true;
@@ -1085,16 +1090,16 @@ var FormViewComponent = /** @class */ (function () {
             }
             /** @type {?} */
             var ctr = new FormControl(data.value, validators);
-            (/** @type {?} */ (ctr)).schema = data;
-            (/** @type {?} */ (ctr)).schema.path = parentPath;
-            (/** @type {?} */ (ctr)).schema.formGroupPath = formGroupPath;
+            ((/** @type {?} */ (ctr))).schema = data;
+            ((/** @type {?} */ (ctr))).schema.path = parentPath;
+            ((/** @type {?} */ (ctr))).schema.formGroupPath = formGroupPath;
             return ctr;
         }
         else if (data.type == "group") {
             /** @type {?} */
             var formGroup_1 = new FormGroup({});
             if (data.parentType == undefined) {
-                parentPath = (/** @type {?} */ (data)).name;
+                parentPath = ((/** @type {?} */ (data))).name;
             }
             else if (data.parentType == "array") {
                 parentPath = parentPath + ".controls[" + ((/** @type {?} */ (data))).name + "]";
@@ -1102,8 +1107,8 @@ var FormViewComponent = /** @class */ (function () {
             else if (data.parentType == "group") {
                 parentPath = parentPath + ".controls." + ((/** @type {?} */ (data))).name;
             }
-            (/** @type {?} */ (formGroup_1)).schema = data;
-            (/** @type {?} */ (formGroup_1)).schema.path = parentPath;
+            ((/** @type {?} */ (formGroup_1))).schema = data;
+            ((/** @type {?} */ (formGroup_1))).schema.path = parentPath;
             data.fields.forEach(function (item) {
                 item.parentType = "group";
                 formGroup_1.addControl(item.name, _this.createFrom(item, parentPath));
@@ -1114,9 +1119,9 @@ var FormViewComponent = /** @class */ (function () {
             /** @type {?} */
             var formArray_1 = new FormArray([]);
             parentPath =
-                parentPath == "" ? (/** @type {?} */ (data)).name : parentPath + ".controls." + ((/** @type {?} */ (data))).name;
-            (/** @type {?} */ (formArray_1)).schema = data;
-            (/** @type {?} */ (formArray_1)).schema.path = parentPath;
+                parentPath == "" ? ((/** @type {?} */ (data))).name : parentPath + ".controls." + ((/** @type {?} */ (data))).name;
+            ((/** @type {?} */ (formArray_1))).schema = data;
+            ((/** @type {?} */ (formArray_1))).schema.path = parentPath;
             data.fields.forEach(function (item, idx) {
                 item.parentType = "array";
                 item.name = idx.toString();
@@ -1238,7 +1243,7 @@ var DynamicFieldDirective = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var initialState = {
@@ -1312,7 +1317,7 @@ function reducer(state, action) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var FormReducers = {
@@ -1321,7 +1326,7 @@ var FormReducers = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormGroupComponent = /** @class */ (function () {
     function FormGroupComponent() {
@@ -1413,7 +1418,7 @@ var FormGroupComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormArrayComponent = /** @class */ (function () {
     function FormArrayComponent() {
@@ -1489,7 +1494,7 @@ var FormArrayComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormControlComponent = /** @class */ (function () {
     function FormControlComponent() {
@@ -1573,7 +1578,7 @@ var FormControlComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var EditFormActionTypes = {
@@ -1612,7 +1617,7 @@ var EditFormFailedAction = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var AddFormActionTypes = {
@@ -1650,7 +1655,7 @@ var AddFormFailedAction = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var AddFormContainerComponent = /** @class */ (function () {
     function AddFormContainerComponent(store, service) {
@@ -1705,12 +1710,12 @@ var AddFormContainerComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var EditFormContainerComponent = /** @class */ (function (_super) {
     __extends(EditFormContainerComponent, _super);
@@ -1770,7 +1775,7 @@ var EditFormContainerComponent = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var AddFormComponent = /** @class */ (function () {
     function AddFormComponent() {
@@ -1868,12 +1873,12 @@ var AddFormComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var EditFormComponent = /** @class */ (function (_super) {
     __extends(EditFormComponent, _super);
@@ -1906,7 +1911,7 @@ var EditFormComponent = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormListContainerComponent = /** @class */ (function () {
     function FormListContainerComponent(store) {
@@ -1936,7 +1941,7 @@ var FormListContainerComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormListComponent = /** @class */ (function () {
     function FormListComponent() {
@@ -1956,7 +1961,7 @@ var FormListComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var MainContainerComponent = /** @class */ (function () {
     function MainContainerComponent(route, store) {
@@ -1978,7 +1983,7 @@ var MainContainerComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var AddFormEffects = /** @class */ (function () {
     function AddFormEffects(actions$, router, service) {
@@ -1986,12 +1991,8 @@ var AddFormEffects = /** @class */ (function () {
         this.actions$ = actions$;
         this.router = router;
         this.service = service;
-        this.AddForm$ = this.actions$
-            .ofType(AddFormActionTypes.ADD_FORM)
-            .pipe(map(function (action) { return action.payload; }), map(function (data) { return new AddFormStartAction(data); }));
-        this.AddFormStart$ = this.actions$
-            .ofType(AddFormActionTypes.ADD_FORM_START)
-            .pipe(map(function (action) { return action.payload; }), switchMap(function (data) { return _this.service.add(data); }), map(function (res) { return new AddFormSucceedAction(); }), catchError(function () { return of(new AddFormFailedAction()); }));
+        this.AddForm$ = this.actions$.pipe(ofType(AddFormActionTypes.ADD_FORM), map(function (action) { return action.payload; }), map(function (data) { return new AddFormStartAction(data); }));
+        this.AddFormStart$ = this.actions$.pipe(ofType(AddFormActionTypes.ADD_FORM_START), map(function (action) { return action.payload; }), switchMap(function (data) { return _this.service.add(data); }), map(function (res) { return new AddFormSucceedAction(); }), catchError(function () { return of(new AddFormFailedAction()); }));
     }
     AddFormEffects.decorators = [
         { type: Injectable }
@@ -2015,17 +2016,17 @@ var AddFormEffects = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormsListEffects = /** @class */ (function () {
     function FormsListEffects(actions$, router, service) {
@@ -2033,13 +2034,9 @@ var FormsListEffects = /** @class */ (function () {
         this.actions$ = actions$;
         this.router = router;
         this.service = service;
-        this.EditProfileRequest$ = this.actions$.ofType(FormsListActionTypes.FORMS_LIST).map(function (data) { return new FormsListStartAction(); });
-        this.GetForm$ = this.actions$
-            .ofType(FormsListActionTypes.GET_FORM_SCHEMA)
-            .pipe(map(function (action) { return action.payload; }), switchMap(function (id) { return _this.service.get(id); }), map(function (formSchema) { return new FormSchemaFechedAction(formSchema); }));
-        this.get_forms_list$ = this.actions$
-            .ofType(FormsListActionTypes.FORMS_LIST_START)
-            .pipe(switchMap(function (data) { return _this.service.getList(); }), map(function (res) { return new FormsListSucceedAction(res); }), catchError(function () { return of(new FormsListFailedAction()); }));
+        this.EditProfileRequest$ = this.actions$.pipe(ofType(FormsListActionTypes.FORMS_LIST), map(function (data) { return new FormsListStartAction(); }));
+        this.GetForm$ = this.actions$.pipe(ofType(FormsListActionTypes.GET_FORM_SCHEMA), map(function (action) { return action.payload; }), switchMap(function (id) { return _this.service.get(id); }), map(function (formSchema) { return new FormSchemaFechedAction(formSchema); }));
+        this.get_forms_list$ = this.actions$.pipe(ofType(FormsListActionTypes.FORMS_LIST_START), switchMap(function (data) { return _this.service.getList(); }), map(function (res) { return new FormsListSucceedAction(res); }), catchError(function () { return of(new FormsListFailedAction()); }));
     }
     FormsListEffects.decorators = [
         { type: Injectable }
@@ -2067,12 +2064,12 @@ var FormsListEffects = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var EditFormEffects = /** @class */ (function () {
     function EditFormEffects(actions$, router, service) {
@@ -2080,15 +2077,9 @@ var EditFormEffects = /** @class */ (function () {
         this.actions$ = actions$;
         this.router = router;
         this.service = service;
-        this.EditForm$ = this.actions$
-            .ofType(EditFormActionTypes.EDIT_FORM)
-            .pipe(map(function (action) { return action.payload; }), map(function (data) { return new EditFormStartAction(data); }));
-        this.EditFormStart$ = this.actions$
-            .ofType(EditFormActionTypes.EDIT_FORM_START)
-            .pipe(map(function (action) { return action.payload; }), switchMap(function (data) { return _this.service.update(data); }), map(function (formSchema) { return new EditFormSucceedAction(formSchema); }), catchError(function () { return of(new EditFormFailedAction()); }));
-        this.UpdateFormsListStart$ = this.actions$
-            .ofType(EditFormActionTypes.EDIT_FORM_SUCCEED)
-            .pipe(map(function (action) { return action.payload; }), map(function (formSchema) { return new UpdateFormSchemaAction(formSchema); }));
+        this.EditForm$ = this.actions$.pipe(ofType(EditFormActionTypes.EDIT_FORM), map(function (action) { return action.payload; }), map(function (data) { return new EditFormStartAction(data); }));
+        this.EditFormStart$ = this.actions$.pipe(ofType(EditFormActionTypes.EDIT_FORM_START), map(function (action) { return action.payload; }), switchMap(function (data) { return _this.service.update(data); }), map(function (formSchema) { return new EditFormSucceedAction(formSchema); }), catchError(function () { return of(new EditFormFailedAction()); }));
+        this.UpdateFormsListStart$ = this.actions$.pipe(ofType(EditFormActionTypes.EDIT_FORM_SUCCEED), map(function (action) { return action.payload; }), map(function (formSchema) { return new UpdateFormSchemaAction(formSchema); }));
     }
     EditFormEffects.decorators = [
         { type: Injectable }
@@ -2116,7 +2107,7 @@ var EditFormEffects = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var routes = [
@@ -2144,7 +2135,7 @@ var RoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var CaptchaActionTypes = {
@@ -2175,7 +2166,7 @@ var GetCaptchaFailedAction = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var CaptchaEffects = /** @class */ (function () {
     function CaptchaEffects(actions$, router, service) {
@@ -2183,12 +2174,8 @@ var CaptchaEffects = /** @class */ (function () {
         this.actions$ = actions$;
         this.router = router;
         this.service = service;
-        this.GetCaptcha$ = this.actions$
-            .ofType(CaptchaActionTypes.GET_CAPTCHA)
-            .pipe(map(function (action) { return action.payload; }), map(function (data) { return new GetCaptchaStartAction(data); }));
-        this.AddFormStart$ = this.actions$
-            .ofType(CaptchaActionTypes.GET_CAPTCHA_START)
-            .pipe(map(function (action) { return action.payload; }), switchMap(function (data) { return _this.service.getCaptcha(); }), map(function (res) { return new GetCaptchaSucceedAction(); }), catchError(function () { return of(new GetCaptchaFailedAction()); }));
+        this.GetCaptcha$ = this.actions$.pipe(ofType(CaptchaActionTypes.GET_CAPTCHA), map(function (action) { return action.payload; }), map(function (data) { return new GetCaptchaStartAction(data); }));
+        this.AddFormStart$ = this.actions$.pipe(ofType(CaptchaActionTypes.GET_CAPTCHA_START), map(function (action) { return action.payload; }), switchMap(function (data) { return _this.service.getCaptcha(); }), map(function (res) { return new GetCaptchaSucceedAction(); }), catchError(function () { return of(new GetCaptchaFailedAction()); }));
     }
     CaptchaEffects.decorators = [
         { type: Injectable }
@@ -2212,7 +2199,7 @@ var CaptchaEffects = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NgsFormModule = /** @class */ (function () {
     function NgsFormModule() {
@@ -2279,6 +2266,7 @@ var NgsFormModule = /** @class */ (function () {
                         NumberComponent,
                         TableComponent,
                         FormCaptchaComponent
+                        // NgsFormSelectorComponent
                     ],
                     entryComponents: [
                         SelectComponent,
@@ -2293,6 +2281,7 @@ var NgsFormModule = /** @class */ (function () {
                         FormCaptchaComponent
                     ],
                     exports: [FormViewComponent]
+                    // exports: [ FormViewComponent, NgsFormSelectorComponent ]
                 },] }
     ];
     return NgsFormModule;
@@ -2316,12 +2305,12 @@ var RootNgsFormModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { FormService, FormViewComponent, DynamicFieldDirective, NgsFormModule, RootNgsFormModule, AddFormComponent as ɵi, AddFormContainerComponent as ɵg, AddFormContainerComponent as ɵl, AddFormEffects as ɵbd, AddFormComponent as ɵn, CaptchaEffects as ɵbg, FormArrayComponent as ɵp, FormControlComponent as ɵq, FormGroupComponent as ɵo, EditFormContainerComponent as ɵf, EditFormEffects as ɵbe, EditFormComponent as ɵh, RoutingModule as ɵbh, MODULE_CONFIG_TOKEN as ɵa, FormListContainerComponent as ɵj, FormListComponent as ɵk, FormsListEffects as ɵbf, reducer as ɵbc, MainContainerComponent as ɵm, FormReducers as ɵb, FormCaptchaService as ɵbb, FormConfigurationService as ɵd, CheckboxComponent as ɵs, ColorComponent as ɵu, DateFormInputControlComponent as ɵv, EmailComponent as ɵt, FileFormInputControlComponent as ɵw, FormCaptchaComponent as ɵba, NumberComponent as ɵy, SelectComponent as ɵr, TableComponent as ɵz, TextComponent as ɵx };

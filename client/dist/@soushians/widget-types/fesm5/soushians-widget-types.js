@@ -12,7 +12,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ArticleUpsertComponent = /** @class */ (function () {
     function ArticleUpsertComponent(store) {
@@ -76,7 +76,7 @@ var ArticleUpsertComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ArticleViewComponent = /** @class */ (function () {
     function ArticleViewComponent(store) {
@@ -107,7 +107,7 @@ var ArticleViewComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var LinksUpsertComponent = /** @class */ (function () {
     function LinksUpsertComponent(store) {
@@ -152,7 +152,7 @@ var LinksUpsertComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        (/** @type {?} */ (this.configFormGroup.get("links"))).push(this._get_new_empty_link_item());
+        ((/** @type {?} */ (this.configFormGroup.get("links")))).push(this._get_new_empty_link_item());
     };
     /**
      * @param {?} link
@@ -165,7 +165,7 @@ var LinksUpsertComponent = /** @class */ (function () {
     function (link) {
         debugger;
         /** @type {?} */
-        var data = /** @type {?} */ (this.configFormGroup.get("links"));
+        var data = (/** @type {?} */ (this.configFormGroup.get("links")));
         if (data.controls.length > -1) {
             data.removeAt(link);
         }
@@ -214,12 +214,12 @@ var LinksUpsertComponent = /** @class */ (function () {
      */
     function (links) {
         var _this = this;
-        (/** @type {?} */ (this.configFormGroup.get("links"))).reset();
+        ((/** @type {?} */ (this.configFormGroup.get("links")))).reset();
         links.forEach(function (link) {
             /** @type {?} */
             var _link = _this._get_new_empty_link_item();
             _link.patchValue(link);
-            (/** @type {?} */ (_this.configFormGroup.get("links"))).push(_link);
+            ((/** @type {?} */ (_this.configFormGroup.get("links")))).push(_link);
         });
     };
     LinksUpsertComponent.decorators = [
@@ -241,7 +241,7 @@ var LinksUpsertComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var LinksViewComponent = /** @class */ (function () {
     function LinksViewComponent(store) {
@@ -292,7 +292,7 @@ var LinksViewComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ListViewComponent = /** @class */ (function () {
     function ListViewComponent(store) {
@@ -323,7 +323,7 @@ var ListViewComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ListUpsertComponent = /** @class */ (function () {
     function ListUpsertComponent(store) {
@@ -362,7 +362,7 @@ var ListUpsertComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        (/** @type {?} */ (this.configFormGroup.get("list"))).push(this._get_new_empty_list_item());
+        ((/** @type {?} */ (this.configFormGroup.get("list")))).push(this._get_new_empty_list_item());
     };
     /**
      * @param {?} list
@@ -375,7 +375,7 @@ var ListUpsertComponent = /** @class */ (function () {
     function (list) {
         debugger;
         /** @type {?} */
-        var data = /** @type {?} */ (this.configFormGroup.get("list"));
+        var data = (/** @type {?} */ (this.configFormGroup.get("list")));
         if (data.controls.length > -1) {
             data.removeAt(list);
         }
@@ -420,12 +420,12 @@ var ListUpsertComponent = /** @class */ (function () {
      */
     function (list) {
         var _this = this;
-        (/** @type {?} */ (this.configFormGroup.get("list"))).reset();
+        ((/** @type {?} */ (this.configFormGroup.get("list")))).reset();
         list.forEach(function (item) {
             /** @type {?} */
             var _list = _this._get_new_empty_list_item();
             _list.patchValue(item);
-            (/** @type {?} */ (_this.configFormGroup.get("list"))).push(_list);
+            ((/** @type {?} */ (_this.configFormGroup.get("list")))).push(_list);
         });
     };
     ListUpsertComponent.decorators = [
@@ -447,7 +447,7 @@ var ListUpsertComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NgsWidgetTypesModule = /** @class */ (function () {
     function NgsWidgetTypesModule() {
@@ -503,12 +503,12 @@ var NgsWidgetTypesModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { ArticleUpsertComponent, ArticleViewComponent, LinksUpsertComponent, LinksViewComponent, ListViewComponent, ListUpsertComponent, NgsWidgetTypesModule };

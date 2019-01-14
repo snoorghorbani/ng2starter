@@ -6,7 +6,7 @@ import { MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BehaviorSubject, of } from 'rxjs';
 import { __decorate, __metadata } from 'tslib';
-import { Actions, Effect, EffectsModule } from '@ngrx/effects';
+import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
 import { InjectionToken, Inject, Injectable, Component, ComponentFactoryResolver, ViewContainerRef, Input, Directive, NgModule } from '@angular/core';
 import { Store, StoreModule } from '@ngrx/store';
 import { map, filter, tap, take, switchMap, startWith, catchError, pluck } from 'rxjs/operators';
@@ -14,7 +14,7 @@ import { RouterModule, ActivatedRoute } from '@angular/router';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class UpsertWidgetStartAction {
     /**
@@ -46,7 +46,7 @@ class UpsertWidgetFailedAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const MODULE_DEFAULT_CONFIG = {
@@ -67,7 +67,7 @@ const MODULE_CONFIG_TOKEN = new InjectionToken("WidgetModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class WidgetConfigurationService {
     /**
@@ -105,7 +105,7 @@ WidgetConfigurationService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetWidgetsApiModel;
 (function (GetWidgetsApiModel) {
@@ -132,7 +132,7 @@ var GetWidgetsApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GetWidgetsStartAction {
     constructor() {
@@ -160,12 +160,12 @@ class GetWidgetsFailedAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetWidgetApiModel;
 (function (GetWidgetApiModel) {
@@ -192,7 +192,7 @@ var GetWidgetApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GetWidgetStartAction {
     /**
@@ -224,12 +224,12 @@ class GetWidgetFailedAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @template T
@@ -242,13 +242,13 @@ class WidgetModel {
         this._id = _id;
         this.name = name || "";
         this.type = type;
-        this.Config = Config || (/** @type {?} */ ({}));
+        this.Config = Config || ((/** @type {?} */ ({})));
     }
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UpsertWidgetApiModel;
 (function (UpsertWidgetApiModel) {
@@ -276,12 +276,12 @@ var UpsertWidgetApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DeleteWidgetApiModel;
 (function (DeleteWidgetApiModel) {
@@ -309,7 +309,7 @@ var DeleteWidgetApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DeleteWidgetStartAction {
     /**
@@ -341,17 +341,17 @@ class DeleteWidgetFailedAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class WidgetService {
     /**
@@ -432,7 +432,7 @@ WidgetService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DynamicWidgetViewComponent {
     /**
@@ -519,7 +519,7 @@ DynamicWidgetViewComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class WidgetSelectorComponent {
     /**
@@ -562,7 +562,7 @@ WidgetSelectorComponent.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class RootComponent {
 }
@@ -575,7 +575,7 @@ RootComponent.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class WidgetsManagementComponent {
     /**
@@ -633,7 +633,7 @@ WidgetsManagementComponent.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class UpsertComponent {
 }
@@ -645,7 +645,7 @@ UpsertComponent.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const routes = [
@@ -673,7 +673,7 @@ const WidgetRoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GetWidgetApiEffects {
     /**
@@ -683,9 +683,7 @@ class GetWidgetApiEffects {
     constructor(actions$, service) {
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$
-            .ofType("[WIDGET][API][GetWidget] start" /* START */)
-            .pipe(map((action) => action.payload), switchMap((payload) => this.service.get(payload)), map((res) => new GetWidgetSucceedAction(res)), catchError((err) => of(new GetWidgetFailedAction(err))));
+        this.start$ = this.actions$.pipe(ofType("[WIDGET][API][GetWidget] start" /* START */), pluck("payload"), switchMap(payload => this.service.get(payload)), map(res => new GetWidgetSucceedAction(res)), catchError(err => of(new GetWidgetFailedAction(err))));
     }
 }
 GetWidgetApiEffects.decorators = [
@@ -703,7 +701,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class UpsertWidgetApiEffects {
     /**
@@ -713,9 +711,7 @@ class UpsertWidgetApiEffects {
     constructor(actions$, service) {
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$
-            .ofType("[UPSERT_WIDGET][API][UpsertWidget] start" /* START */)
-            .pipe(map((action) => action.payload), switchMap((payload) => this.service.upsert(payload)), map((res) => new UpsertWidgetSucceedAction(res)), catchError((err) => of(new UpsertWidgetFailedAction(err))));
+        this.start$ = this.actions$.pipe(ofType("[UPSERT_WIDGET][API][UpsertWidget] start" /* START */), pluck("payload"), switchMap(payload => this.service.upsert(payload)), map(res => new UpsertWidgetSucceedAction(res)), catchError(err => of(new UpsertWidgetFailedAction(err))));
     }
 }
 UpsertWidgetApiEffects.decorators = [
@@ -733,7 +729,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GetWidgetsApiEffects {
     /**
@@ -743,11 +739,9 @@ class GetWidgetsApiEffects {
     constructor(actions$, service) {
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$
-            .ofType("[GET_WIDGETS][API][GetWidgets] start" /* START */)
-            .pipe(switchMap(() => this.service
+        this.start$ = this.actions$.pipe(ofType("[GET_WIDGETS][API][GetWidgets] start" /* START */), switchMap(() => this.service
             .getWidgets()
-            .pipe(map((res) => new GetWidgetsSucceedAction(res)), catchError((err) => of(new GetWidgetsFailedAction(err))))));
+            .pipe(map(res => new GetWidgetsSucceedAction(res)), catchError(err => of(new GetWidgetsFailedAction(err))))));
     }
 }
 GetWidgetsApiEffects.decorators = [
@@ -765,7 +759,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DeleteWidgetApiEffects {
     /**
@@ -775,11 +769,9 @@ class DeleteWidgetApiEffects {
     constructor(actions$, service) {
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$
-            .ofType("[DELETE_WIDGET][API][DeleteWidget] start" /* START */)
-            .pipe(map((action) => action.payload), switchMap((payload) => this.service
+        this.start$ = this.actions$.pipe(ofType("[DELETE_WIDGET][API][DeleteWidget] start" /* START */), pluck("payload"), switchMap((payload) => this.service
             .delete(payload)
-            .pipe(map((res) => new DeleteWidgetSucceedAction(res)), catchError((err) => of(new DeleteWidgetFailedAction(err))))));
+            .pipe(map(res => new DeleteWidgetSucceedAction(res)), catchError(err => of(new DeleteWidgetFailedAction(err))))));
     }
 }
 DeleteWidgetApiEffects.decorators = [
@@ -797,10 +789,10 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
-var WidgetsActionTypes = {
+const WidgetsActionTypes = {
     UPSERT: "[WIDGET][DB] UPSERT",
     DELETE: "[WIDGET][DB] DELETE",
 };
@@ -825,7 +817,7 @@ class DeleteWidgetAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 const ɵ0 = [];
 /** @type {?} */
@@ -876,7 +868,7 @@ function Reducer(state = initialState, action) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const WidgetReducer = {
@@ -885,7 +877,7 @@ const WidgetReducer = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class WidgetDbEffects {
     /**
@@ -893,15 +885,9 @@ class WidgetDbEffects {
      */
     constructor(actions$) {
         this.actions$ = actions$;
-        this.Upsert$ = this.actions$
-            .ofType("[WIDGET][API][GetWidget] succeed" /* SUCCEED */)
-            .pipe(pluck("payload"), map((widget) => new UpsertWidgetAction([widget])));
-        this.UpsertMany$ = this.actions$
-            .ofType("[GET_WIDGETS][API][GetWidgets] succeed" /* SUCCEED */)
-            .pipe(pluck("payload"), map((widgets) => new UpsertWidgetAction(widgets)));
-        this.Delete$ = this.actions$
-            .ofType("[DELETE_WIDGET][API][DeleteWidget] succeed" /* SUCCEED */)
-            .pipe(pluck("payload"), map((widget) => new DeleteWidgetAction(widget)));
+        this.Upsert$ = this.actions$.pipe(ofType("[WIDGET][API][GetWidget] succeed" /* SUCCEED */), pluck("payload"), map((widget) => new UpsertWidgetAction([widget])));
+        this.UpsertMany$ = this.actions$.pipe(ofType("[GET_WIDGETS][API][GetWidgets] succeed" /* SUCCEED */), pluck("payload"), map((widgets) => new UpsertWidgetAction(widgets)));
+        this.Delete$ = this.actions$.pipe(ofType("[DELETE_WIDGET][API][DeleteWidget] succeed" /* SUCCEED */), pluck("payload"), map((widget) => new DeleteWidgetAction(widget)));
     }
 }
 WidgetDbEffects.decorators = [
@@ -926,7 +912,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DynamicWidgetConfigDirective {
     /**
@@ -1016,7 +1002,7 @@ DynamicWidgetConfigDirective.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DynamicWidgetViewDirective {
     /**
@@ -1104,7 +1090,7 @@ DynamicWidgetViewDirective.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NgsWidgetModule {
     /**
@@ -1171,7 +1157,7 @@ NgsWidgetRootModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @template T
@@ -1181,7 +1167,7 @@ class IWidgetView {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @template T
@@ -1191,12 +1177,12 @@ class IWidgetUpsert {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { UpsertWidgetStartAction, DynamicWidgetViewComponent, WidgetSelectorComponent, NgsWidgetModule, WidgetModel, IWidgetView, IWidgetUpsert, WidgetsManagementComponent as ɵi, RootComponent as ɵh, WidgetDbEffects as ɵo, Reducer as ɵn, DeleteWidgetApiEffects as ɵu, GetWidgetApiEffects as ɵp, GetWidgetsApiEffects as ɵr, UpsertWidgetApiEffects as ɵt, WidgetConfigurationService as ɵg, WidgetService as ɵf, DynamicWidgetConfigDirective as ɵk, UpsertComponent as ɵj, DynamicWidgetViewDirective as ɵl, WidgetRoutingModule as ɵm, MODULE_CONFIG_TOKEN as ɵc, NgsWidgetRootModule as ɵb, WidgetReducer as ɵd };

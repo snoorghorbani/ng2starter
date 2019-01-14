@@ -3,7 +3,7 @@ import { Pipe, NgModule, Injectable, defineInjectable } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DataUnitPipe = /** @class */ (function () {
     function DataUnitPipe() {
@@ -61,16 +61,18 @@ var DataUnitPipe = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var TimeUnitPipe = /** @class */ (function () {
     function TimeUnitPipe() {
     }
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
     TimeUnitPipe.prototype.getDays = /**
+     * @private
      * @param {?} value
      * @return {?}
      */
@@ -86,10 +88,12 @@ var TimeUnitPipe = /** @class */ (function () {
         };
     };
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
     TimeUnitPipe.prototype.getHours = /**
+     * @private
      * @param {?} value
      * @return {?}
      */
@@ -105,10 +109,12 @@ var TimeUnitPipe = /** @class */ (function () {
         };
     };
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
     TimeUnitPipe.prototype.getMinuts = /**
+     * @private
      * @param {?} value
      * @return {?}
      */
@@ -124,10 +130,12 @@ var TimeUnitPipe = /** @class */ (function () {
         };
     };
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
     TimeUnitPipe.prototype.getSeconds = /**
+     * @private
      * @param {?} value
      * @return {?}
      */
@@ -164,7 +172,7 @@ var TimeUnitPipe = /** @class */ (function () {
         /** @type {?} */
         var minutsData = this.getMinuts(hoursData.remaining);
         // let secondssData = this.getSeconds(minutsData.remaining);
-        return [daysData, hoursData, minutsData]
+        return [daysData, hoursData, minutsData /*, secondssData*/]
             .filter(function (i) { return i.count; })
             .map(function (i) { return i.value; }).join(connector);
     };
@@ -176,7 +184,7 @@ var TimeUnitPipe = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var PersianDatePipe = /** @class */ (function () {
     function PersianDatePipe() {
@@ -332,6 +340,7 @@ var ɵ0 = function (_) {
                 };
         })(i);
     is.not = not;
+    //TODO : impelement
     /** @type {?} */
     var all = {};
     for (i in is)
@@ -516,7 +525,7 @@ var _ = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var CurrencyUnitPipe = /** @class */ (function () {
     function CurrencyUnitPipe() {
@@ -548,7 +557,7 @@ var CurrencyUnitPipe = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var PersianNumberPipe = /** @class */ (function () {
     function PersianNumberPipe() {
@@ -583,16 +592,18 @@ var PersianNumberPipe = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var TimeCounterPipe = /** @class */ (function () {
     function TimeCounterPipe() {
     }
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
     TimeCounterPipe.prototype.getHours = /**
+     * @private
      * @param {?} value
      * @return {?}
      */
@@ -608,10 +619,12 @@ var TimeCounterPipe = /** @class */ (function () {
         };
     };
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
     TimeCounterPipe.prototype.getMinuts = /**
+     * @private
      * @param {?} value
      * @return {?}
      */
@@ -627,10 +640,12 @@ var TimeCounterPipe = /** @class */ (function () {
         };
     };
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
     TimeCounterPipe.prototype.getSeconds = /**
+     * @private
      * @param {?} value
      * @return {?}
      */
@@ -658,6 +673,7 @@ var TimeCounterPipe = /** @class */ (function () {
             return '';
         /** @type {?} */
         var connector = ' : ';
+        // let daysData = this.getDays(value);
         /** @type {?} */
         var hoursData = this.getHours(value);
         /** @type {?} */
@@ -675,7 +691,7 @@ var TimeCounterPipe = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SharedModule = /** @class */ (function () {
     function SharedModule() {
@@ -691,7 +707,7 @@ var SharedModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @abstract
@@ -709,7 +725,7 @@ HttpResponseBaseModel = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @abstract
@@ -727,7 +743,7 @@ HttpRequestBaseModel = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var PERSIAN_MONTH_DAYS_COUNT = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 30];
@@ -891,6 +907,7 @@ var UtilityService = /** @class */ (function () {
                         };
                 })(i);
             is.not = not;
+            //TODO : impelement
             /** @type {?} */
             var all = {};
             for (i in is)
@@ -1175,7 +1192,17 @@ var UtilityService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var stringTemplate = function (template, model) {
@@ -1194,12 +1221,12 @@ var stringTemplate = function (template, model) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var Cookie = /** @class */ (function () {
     // private isConsented: boolean = false;
@@ -1291,7 +1318,7 @@ var Cookie = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @param {?} destination
@@ -1311,12 +1338,12 @@ function MatchValidator(destination) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @template T
@@ -1332,12 +1359,12 @@ IResponse = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { Cookie, SharedModule, HttpResponseBaseModel, HttpRequestBaseModel, PERSIAN_MONTH_DAYS_COUNT, PERSIAN_MONTH_NAMES, DateClass, UtilityService, stringTemplate, MatchValidator, IResponse, CurrencyUnitPipe as ɵd, DataUnitPipe as ɵa, PersianDatePipe as ɵc, PersianNumberPipe as ɵe, TimeCounterPipe as ɵf, TimeUnitPipe as ɵb };

@@ -1,6 +1,6 @@
 ﻿import { Injectable } from "@angular/core";
-import { map, switchMap, catchError } from "rxjs/operators";
-import { Actions, Effect } from "@ngrx/effects";
+import { map, switchMap, catchError, pluck } from "rxjs/operators";
+import { Actions, Effect, ofType } from "@ngrx/effects";
 import { of } from "rxjs";
 import { Observable } from "rxjs/observable";
 
@@ -13,13 +13,16 @@ export class SearchEffects {
 	constructor(private actions$: Actions<any>, private userService: UserService) {}
 
 	@Effect()
-	canSearch$ = this.actions$
-		.ofType(SearchActionTypes.SEARCH)
-		.pipe(map(action => action.payload), map(data => new SearchStartAction(data)));
+	canSearch$ = this.actions$.pipe(
+		ofType(SearchActionTypes.SEARCH),
+		pluck("payload"),
+		map((data: any) => new SearchStartAction(data))
+	);
 
 	@Effect()
-	search$ = this.actions$.ofType(SearchActionTypes.SEARCH_START).pipe(
-		map(action => action.payload),
+	search$ = this.actions$.pipe(
+		ofType(SearchActionTypes.SEARCH_START),
+		pluck("payload"),
 		switchMap((data: ProfileViewModel.Request) => {
 			return this.userService.getInfo(data).pipe(
 				map(res => {

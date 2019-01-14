@@ -11,13 +11,13 @@ import { BehaviorSubject, of } from 'rxjs';
 import { MatSnackBar, MatBottomSheet, MatIconModule, MatButtonModule, MatCardModule, MatSnackBarModule, MatSidenavModule, MatExpansionModule, MatSelectModule, MatFormFieldModule, MatListModule, MatMenuModule, MatRadioModule, MatInputModule, MatToolbarModule, MatDatepickerModule, MatProgressBarModule, MatBottomSheetModule } from '@angular/material';
 import { __decorate, __metadata, __assign } from 'tslib';
 import { Component, InjectionToken, Injectable, Inject, Input, Output, EventEmitter, NgModule, defineInjectable, inject } from '@angular/core';
-import { Actions, Effect, EffectsModule } from '@ngrx/effects';
+import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
 import { map, switchMap, take, filter, catchError, tap, pluck } from 'rxjs/operators';
 import { UserActionTypes } from '@soushians/user';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UserModel = /** @class */ (function () {
     function UserModel(params) {
@@ -30,7 +30,7 @@ var UserModel = /** @class */ (function () {
         params &&
             Object.keys(params).forEach(function (key) {
                 if (key in params)
-                    (/** @type {?} */ (_this))[key] = params[key];
+                    ((/** @type {?} */ (_this)))[key] = params[key];
             });
     }
     return UserModel;
@@ -38,7 +38,7 @@ var UserModel = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var SignInActionTypes = {
@@ -93,7 +93,7 @@ var SigninRequiredAction = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var initialState = {
@@ -120,20 +120,21 @@ function UserReducer(state, action) {
         }
     }
 }
+//#region  selectors
 /** @type {?} */
 var getLoggedIn = function (state) { return state.loggedIn; };
 /** @type {?} */
 var getUser = function (state) { return state.user; };
-//#endregion
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var FrontendAuthenticationReducers = {
     userStatus: UserReducer
 };
+//#region selectors
 /** @type {?} */
 var selectFrontendAuthenticationState = createFeatureSelector("frontend-authentication");
 /** @type {?} */
@@ -145,7 +146,7 @@ var getFrontendUser = createSelector(selectAuthState, getUser);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FrontendAuthenticationContainerComponent = /** @class */ (function () {
     function FrontendAuthenticationContainerComponent() {
@@ -160,7 +161,7 @@ var FrontendAuthenticationContainerComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var MODULE_DEFAULT_CONFIG = {
@@ -184,7 +185,7 @@ var MODULE_CONFIG_TOKEN = new InjectionToken("ModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FrontendAuthenticationConfigurationService = /** @class */ (function () {
     function FrontendAuthenticationConfigurationService(configFile, store) {
@@ -224,7 +225,7 @@ var FrontendAuthenticationConfigurationService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SigninContainerComponent = /** @class */ (function () {
     function SigninContainerComponent(configurationService, store) {
@@ -263,7 +264,7 @@ var SigninContainerComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var routes = [
@@ -284,7 +285,7 @@ var FrontendAuthenticationRoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SigninComponent = /** @class */ (function () {
     function SigninComponent() {
@@ -321,15 +322,16 @@ var SigninComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+// import { WhoAmIAction } from "../actions";
 var FrontendSigninService = /** @class */ (function () {
     function FrontendSigninService(http, store, configurationService, snackBar) {
-        // setTimeout(() => this.store.dispatch(new WhoAmIAction()), 300);
         this.http = http;
         this.store = store;
         this.configurationService = configurationService;
         this.snackBar = snackBar;
+        // setTimeout(() => this.store.dispatch(new WhoAmIAction()), 300);
     }
     /**
      * @param {?} token
@@ -394,12 +396,12 @@ var FrontendSigninService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SigninEffects = /** @class */ (function () {
     function SigninEffects(actions$, router, frontendSigninService, configurationService, bottomSheet) {
@@ -409,13 +411,9 @@ var SigninEffects = /** @class */ (function () {
         this.frontendSigninService = frontendSigninService;
         this.configurationService = configurationService;
         this.bottomSheet = bottomSheet;
-        this.whoAmI$ = this.actions$
-            .ofType(SignInActionTypes.WHO_AM_I)
-            .pipe(switchMap(function () { return _this.frontendSigninService.whoAmI(); }), map(function (user) { return new SigninSecceed(user); }), catchError(function (error) { return of(new SigninFailed(error)); }));
-        this.Signin$ = this.actions$
-            .ofType(SignInActionTypes.SIGNIN)
-            .pipe(pluck("payload"), switchMap(function (payload) { return _this.frontendSigninService.signin(payload); }), map(function (user) { return new SigninSecceed(user); }), catchError(function (error) { return of(new SigninFailed(error)); }));
-        this.SignInRequired$ = this.actions$.ofType(SignInActionTypes.SIGNIN_REQUIRED).pipe(tap(function (data) {
+        this.whoAmI$ = this.actions$.pipe(ofType(SignInActionTypes.WHO_AM_I), switchMap(function () { return _this.frontendSigninService.whoAmI(); }), map(function (user) { return new SigninSecceed(user); }), catchError(function (error) { return of(new SigninFailed(error)); }));
+        this.Signin$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN), pluck("payload"), switchMap(function (payload) { return _this.frontendSigninService.signin(payload); }), map(function (user) { return new SigninSecceed(user); }), catchError(function (error) { return of(new SigninFailed(error)); }));
+        this.SignInRequired$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_REQUIRED), tap(function (data) {
             /** @type {?} */
             var signinBottomSheetRef = _this.bottomSheet.open(SigninContainerComponent, {
                 panelClass: "clear-mat-card-box"
@@ -425,12 +423,12 @@ var SigninEffects = /** @class */ (function () {
             });
             return signinBottomSheetRef;
         }));
-        this.SigninSucceed$ = this.actions$.ofType(SignInActionTypes.SIGNIN_SUCCEED).pipe(tap(function (data) {
+        this.SigninSucceed$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_SUCCEED), tap(function (data) {
             debugger;
             if (location.pathname.indexOf("signin") > -1)
                 _this.router.navigate(["/"]);
         }));
-        this.DoSignout$ = this.actions$.ofType(SignInActionTypes.DO_SIGNOUT).pipe(switchMap(function (data) {
+        this.DoSignout$ = this.actions$.pipe(ofType(SignInActionTypes.DO_SIGNOUT), switchMap(function (data) {
             return _this.frontendSigninService.signout().pipe(map(function () { return new SignoutAction(); }), catchError(function (err) {
                 // TODO: dispatch valid action
                 debugger;
@@ -439,12 +437,8 @@ var SigninEffects = /** @class */ (function () {
         }));
         // TODO
         // @Effect() Signout$ = this.actions$.ofType(SignInActionTypes.DO_SIGNOUT).pipe(map(() => new SignoutAction()));
-        this.redirectToLoginPage$ = this.actions$
-            .ofType(SignInActionTypes.SIGNIN_REDIRECT)
-            .pipe(tap(function (authed) { return _this.router.navigate(["auth/signin"]); }));
-        this.redirectAfterSignout$ = this.actions$
-            .ofType(SignInActionTypes.SIGNOUT)
-            .pipe(tap(function (authed) { return _this.router.navigate([_this.configurationService.config$.getValue().afterSignoutRedirectTo]); }));
+        this.redirectToLoginPage$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_REDIRECT), tap(function (authed) { return _this.router.navigate(["auth/signin"]); }));
+        this.redirectAfterSignout$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNOUT), tap(function (authed) { return _this.router.navigate([_this.configurationService.config$.getValue().afterSignoutRedirectTo]); }));
     }
     SigninEffects.decorators = [
         { type: Injectable }
@@ -490,14 +484,14 @@ var SigninEffects = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FrontendAuthenticationModuleEffects = /** @class */ (function () {
     function FrontendAuthenticationModuleEffects(actions$, service) {
         var _this = this;
         this.actions$ = actions$;
         this.service = service;
-        this.goToList$ = this.actions$.ofType(UserActionTypes.REFRESH_USER_INFO).pipe(map(function (action) { return action.payload; }), filter(function (user) { return user.Token != null; }), switchMap(function (user) {
+        this.goToList$ = this.actions$.pipe(ofType(UserActionTypes.REFRESH_USER_INFO), map(function (action) { return action.payload; }), filter(function (user) { return user.Token != null; }), switchMap(function (user) {
             return _this.service.signin(user.Token).map(function (_user) {
                 return new SigninSecceed(_user);
             });
@@ -520,7 +514,7 @@ var FrontendAuthenticationModuleEffects = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NgsFrontendAuthenticationModule = /** @class */ (function () {
     function NgsFrontendAuthenticationModule() {
@@ -534,7 +528,7 @@ var NgsFrontendAuthenticationModule = /** @class */ (function () {
      * @return {?}
      */
     function (config) {
-        if (config === void 0) { config = /** @type {?} */ ({}); }
+        if (config === void 0) { config = (/** @type {?} */ ({})); }
         return {
             ngModule: RootNgsFrontendAuthenticationModule,
             providers: [{ provide: MODULE_CONFIG_TOKEN, useValue: config }, FrontendSigninService]
@@ -595,12 +589,12 @@ var RootNgsFrontendAuthenticationModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { UserModel, SignInActionTypes, DoSignoutAction, SigninRequiredAction, getFrontendAuthenticationState, getFrontendUser, NgsFrontendAuthenticationModule, SigninComponent as ɵm, SigninEffects as ɵq, FrontendAuthenticationRoutingModule as ɵr, MODULE_CONFIG_TOKEN as ɵj, FrontendAuthenticationModuleEffects as ɵo, RootNgsFrontendAuthenticationModule as ɵd, FrontendAuthenticationReducers as ɵa, selectAuthState as ɵc, selectFrontendAuthenticationState as ɵb, UserReducer as ɵe, getLoggedIn as ɵf, getUser as ɵg, FrontendAuthenticationConfigurationService as ɵi, FrontendSigninService as ɵp, FrontendAuthenticationContainerComponent as ɵn, SigninContainerComponent as ɵh };

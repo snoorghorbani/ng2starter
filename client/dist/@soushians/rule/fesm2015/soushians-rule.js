@@ -8,9 +8,9 @@ import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angul
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { BehaviorSubject as BehaviorSubject$1 } from 'rxjs/Rx';
 import { stringTemplate } from '@soushians/shared';
-import { filter, map, startWith, share, takeUntil, switchMap } from 'rxjs/operators';
 import { __decorate, __metadata } from 'tslib';
-import { Actions, Effect, EffectsModule } from '@ngrx/effects';
+import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
+import { filter, map, startWith, share, takeUntil, switchMap, pluck } from 'rxjs/operators';
 import { getFrontendAuthenticationState } from '@soushians/frontend-authentication';
 import { InjectionToken, Component, Injectable, Inject, Injector, Input, ViewContainerRef, ComponentFactoryResolver, ViewChild, Directive, ViewChildren, HostListener, ElementRef, Renderer2, NgModule } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -18,7 +18,7 @@ import { Store, StoreModule } from '@ngrx/store';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const MODULE_DEFAULT_CONFIG = {
@@ -37,7 +37,7 @@ const MODULE_CONFIG_TOKEN = new InjectionToken("RuleModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class RuleComponent {
     constructor() { }
@@ -57,13 +57,14 @@ RuleComponent.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const routes = [
     {
         path: "rule",
         component: RuleComponent
+        // children: [ {} ]
     }
 ];
 /** @type {?} */
@@ -71,10 +72,10 @@ const RoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
-var RuleAnchorsActionTypes = {
+const RuleAnchorsActionTypes = {
     SHOW_ANCHORS: "[RULE][ANCHORS] SHOW_ANCHORS",
     HIDE_ANCHORS: "[RULE][ANCHORS] HIDE_ANCHORS",
 };
@@ -91,7 +92,7 @@ class HideAnchorsAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const initialState = {
@@ -115,14 +116,13 @@ function Reducer(state = initialState, action) {
         }
     }
 }
-//#endregion
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
-var RulesListActionTypes = {
+const RulesListActionTypes = {
     RULES_LIST: "[RULE][DB] RULES_LIST",
     RULES_LIST_START: "[RULE][DB] RULES_LIST_START",
     RULES_LIST_SUCCEED: "[RULE][DB] RULES_LIST_SUCCEED",
@@ -139,7 +139,7 @@ class RulesListStartAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const initialState$1 = {
@@ -199,10 +199,10 @@ function reducer(state = initialState$1, action) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
-var ScenariosListActionTypes = {
+const ScenariosListActionTypes = {
     SCENARIOS_LIST: "[GWT][SCENARIO][DB][LIST] SCENARIOS_LIST",
     SCENARIOS_LIST_START: "[SCENARIO][DB] SCENARIOS_LIST_START",
     SCENARIOS_LIST_SUCCEED: "[SCENARIO][DB] SCENARIOS_LIST_SUCCEED",
@@ -210,6 +210,7 @@ var ScenariosListActionTypes = {
     UPSERT: "[GWT][SCENARIO][DB][UPSERT] SCENARIO_UPSERT",
     GET_SCENARIO: "[SCENARIO][DB] GET_SCENARIO",
     SCENARIO_FETCHED: "[SCENARIO][DB] SCENARIO_FETCHED",
+    /// new vision
     UPDATE_DB: "[GWT][SCENARIO][DB] UPDATE_DB",
 };
 class ScenariosListStartAction {
@@ -238,7 +239,7 @@ class ScenarioFechedAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const initialState$2 = {
@@ -315,7 +316,7 @@ function reducer$1(state = initialState$2, action) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const RuleReducers = {
@@ -326,7 +327,7 @@ const RuleReducers = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class RuleConfigurationService {
     /**
@@ -367,7 +368,7 @@ RuleConfigurationService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GwtScenarioModel {
     /**
@@ -401,7 +402,7 @@ class GwtScenarioModel {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class StepLoaderDirective {
     /**
@@ -433,6 +434,7 @@ class StepLoaderDirective {
             throw new Error(`Trying to use an unsupported type ().
 		  Supported types: `);
         }
+        // TODO: fix generic type
         /** @type {?} */
         const component = this.resolver.resolveComponentFactory(this.step.stepComponent);
         this.component = this.container.createComponent(component);
@@ -443,6 +445,8 @@ class StepLoaderDirective {
 StepLoaderDirective.decorators = [
     { type: Directive, args: [{
                 selector: "[rule-step-loader]"
+                // templateUrl: "./step-loader.component.html",
+                // styleUrls: [ "./step-loader.component.css" ]
             },] }
 ];
 /** @nocollapse */
@@ -457,7 +461,7 @@ StepLoaderDirective.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ScenarioService {
     /**
@@ -481,7 +485,7 @@ class ScenarioService {
         const model = new GwtScenarioModel(scenario);
         return this.http
             .post(this.config.env.frontend_server + this.config.endpoints.upsert, model.getRequsetBody())
-            .pipe(map(response => /** @type {?} */ (response)), share());
+            .pipe(map(response => (/** @type {?} */ (response))), share());
     }
     /**
      * @param {?} anchorId
@@ -490,7 +494,7 @@ class ScenarioService {
     getAnchorScenarios(anchorId) {
         return this.http
             .get(this.config.env.frontend_server + stringTemplate(this.config.endpoints.get, { anchorId }))
-            .map(response => /** @type {?} */ (response.Result));
+            .map(response => (/** @type {?} */ (response.Result)));
     }
     /**
      * @param {?} _id
@@ -539,7 +543,7 @@ ScenarioService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GwtViewComponent {
     /**
@@ -707,10 +711,10 @@ GwtViewComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
-var GwtStepTypes = {
+const GwtStepTypes = {
     "Given": "Given",
     "When": "When",
     "Then": "Then",
@@ -720,7 +724,7 @@ var GwtStepTypes = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class RuleAnchorDirective {
     /**
@@ -763,12 +767,14 @@ class RuleAnchorDirective {
         this.hideAnchor();
     }
     /**
+     * @private
      * @return {?}
      */
     showAnchor() {
         this.el.nativeElement.classList.add("show-anchor");
     }
     /**
+     * @private
      * @return {?}
      */
     hideAnchor() {
@@ -927,7 +933,7 @@ RuleAnchorDirective.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ScenariosDbEffects {
     /**
@@ -937,12 +943,8 @@ class ScenariosDbEffects {
     constructor(actions$, service) {
         this.actions$ = actions$;
         this.service = service;
-        this.EditProfileRequest$ = this.actions$
-            .ofType(ScenariosListActionTypes.SCENARIOS_LIST)
-            .pipe(map(() => new ScenariosListStartAction()));
-        this.UpsertScenario$ = this.actions$
-            .ofType(ScenariosListActionTypes.UPSERT)
-            .pipe(map(action => action.payload), switchMap(scenario => this.service.upsert(scenario)), map(scenario => new ScenarioFechedAction(scenario)));
+        this.EditProfileRequest$ = this.actions$.pipe(ofType(ScenariosListActionTypes.SCENARIOS_LIST), map(() => new ScenariosListStartAction()));
+        this.UpsertScenario$ = this.actions$.pipe(ofType(ScenariosListActionTypes.UPSERT), pluck("payload"), switchMap((scenario) => this.service.upsert(scenario)), map(scenario => new ScenarioFechedAction(scenario)));
     }
 }
 ScenariosDbEffects.decorators = [
@@ -964,7 +966,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class RulesListEffects {
     /**
@@ -972,7 +974,7 @@ class RulesListEffects {
      */
     constructor(actions$) {
         this.actions$ = actions$;
-        this.EditProfileRequest$ = this.actions$.ofType(RulesListActionTypes.RULES_LIST).map(() => new RulesListStartAction());
+        this.EditProfileRequest$ = this.actions$.pipe(ofType(RulesListActionTypes.RULES_LIST), map(() => new RulesListStartAction()));
     }
 }
 RulesListEffects.decorators = [
@@ -989,7 +991,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GwtModeButtonComponent {
     /**
@@ -1028,7 +1030,7 @@ GwtModeButtonComponent.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class RuleService {
     /**
@@ -1054,7 +1056,7 @@ RuleService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class RuleModule {
     /**
@@ -1119,12 +1121,12 @@ RootRuleModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { RuleModule, GwtStepTypes, ShowAnchorsAction, HideAnchorsAction, RulesListEffects as ɵp, reducer as ɵn, ScenariosDbEffects as ɵq, reducer$1 as ɵo, GwtViewComponent as ɵj, GwtModeButtonComponent as ɵl, RuleAnchorDirective as ɵd, Reducer as ɵm, RoutingModule as ɵr, RuleComponent as ɵc, MODULE_CONFIG_TOKEN as ɵb, RootRuleModule as ɵa, RuleReducers as ɵg, RuleConfigurationService as ɵi, RuleService as ɵs, ScenarioService as ɵe, StepLoaderDirective as ɵk };

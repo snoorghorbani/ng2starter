@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { getFrontendUser } from '@soushians/frontend-authentication';
 import { stringTemplate } from '@soushians/shared';
 import { BehaviorSubject, of } from 'rxjs';
-import { Actions, Effect, EffectsModule } from '@ngrx/effects';
+import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
 import { map, filter, tap, take, switchMap, skipUntil, catchError, pluck } from 'rxjs/operators';
 import { UserFacadeService, getAccountInfo } from '@soushians/user';
 import { __decorate, __metadata, __assign } from 'tslib';
@@ -17,7 +17,7 @@ import { InjectionToken, Component, Inject, Injectable, ComponentFactoryResolver
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var MODULE_DEFAULT_CONFIG = {
@@ -39,7 +39,7 @@ var MODULE_CONFIG_TOKEN = new InjectionToken("GridModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var RootComponent = /** @class */ (function () {
     function RootComponent() {
@@ -55,7 +55,7 @@ var RootComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var routes = [
@@ -70,7 +70,7 @@ var GridRoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GridModel = /** @class */ (function () {
     function GridModel(_a) {
@@ -90,7 +90,7 @@ var GridModel = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UpsertGridApiModel;
 (function (UpsertGridApiModel) {
@@ -122,7 +122,7 @@ var UpsertGridApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GridConfigurationService = /** @class */ (function () {
     function GridConfigurationService(configFile, store) {
@@ -161,7 +161,7 @@ var GridConfigurationService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetGridStartAction = /** @class */ (function () {
     function GetGridStartAction(payload) {
@@ -187,7 +187,7 @@ var GetGridFailedAction = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GridService = /** @class */ (function () {
     function GridService(http, store, userFacadeService, configurationService) {
@@ -269,11 +269,22 @@ var GridService = /** @class */ (function () {
     // 		.filter((config) => config.endpoints.deleteForm != "")
     // 		.switchMap((config) => this.http.get(config.endpoints.deleteForm));
     // }
+    // delete(_id: string) {
+    // 	return this.configurationService.config$
+    // 		.filter((config) => config.endpoints.deleteForm != "")
+    // 		.switchMap((config) => this.http.get(config.endpoints.deleteForm));
+    // }
     /**
      * @param {?} _id
      * @return {?}
      */
-    GridService.prototype.selectById = /**
+    GridService.prototype.selectById = 
+    // delete(_id: string) {
+    // 	return this.configurationService.config$
+    // 		.filter((config) => config.endpoints.deleteForm != "")
+    // 		.switchMap((config) => this.http.get(config.endpoints.deleteForm));
+    // }
+    /**
      * @param {?} _id
      * @return {?}
      */
@@ -331,16 +342,14 @@ var GridService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetGridApiEffects = /** @class */ (function () {
     function GetGridApiEffects(actions$, service) {
         var _this = this;
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$
-            .ofType("[GRID][API][GetGrid] start" /* START */)
-            .pipe(map(function (action) { return action.payload; }), switchMap(function (payload) { return _this.service.get(payload); }), map(function (res) { return new GetGridSucceedAction(res); }), catchError(function (err) { return of(new GetGridFailedAction(err)); }));
+        this.start$ = this.actions$.pipe(ofType("[GRID][API][GetGrid] start" /* START */), map(function (action) { return action.payload; }), switchMap(function (payload) { return _this.service.get(payload); }), map(function (res) { return new GetGridSucceedAction(res); }), catchError(function (err) { return of(new GetGridFailedAction(err)); }));
     }
     GetGridApiEffects.decorators = [
         { type: Injectable }
@@ -359,7 +368,7 @@ var GetGridApiEffects = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UpsertGridStartAction = /** @class */ (function () {
     function UpsertGridStartAction(payload) {
@@ -385,16 +394,14 @@ var UpsertGridFailedAction = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UpsertGridApiEffects = /** @class */ (function () {
     function UpsertGridApiEffects(actions$, service) {
         var _this = this;
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$
-            .ofType("[UPSERT_GRID][API][UpsertGrid] start" /* START */)
-            .pipe(map(function (action) { return action.payload; }), switchMap(function (payload) { return _this.service.upsert(payload); }), map(function (res) { return new UpsertGridSucceedAction(res); }), catchError(function (err) { return of(new UpsertGridFailedAction(err)); }));
+        this.start$ = this.actions$.pipe(ofType("[UPSERT_GRID][API][UpsertGrid] start" /* START */), pluck("payload"), switchMap(function (payload) { return _this.service.upsert(payload); }), map(function (res) { return new UpsertGridSucceedAction(res); }), catchError(function (err) { return of(new UpsertGridFailedAction(err)); }));
     }
     UpsertGridApiEffects.decorators = [
         { type: Injectable }
@@ -413,7 +420,7 @@ var UpsertGridApiEffects = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetGridsSucceedAction = /** @class */ (function () {
     function GetGridsSucceedAction(payload) {
@@ -432,16 +439,14 @@ var GetGridsFailedAction = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetGridsApiEffects = /** @class */ (function () {
     function GetGridsApiEffects(actions$, service) {
         var _this = this;
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$
-            .ofType("[GET_GRIDS][API][GetGrids] start" /* START */)
-            .pipe(switchMap(function () {
+        this.start$ = this.actions$.pipe(ofType("[GET_GRIDS][API][GetGrids] start" /* START */), switchMap(function () {
             return _this.service
                 .getGrids()
                 .pipe(map(function (res) { return new GetGridsSucceedAction(res); }), catchError(function (err) { return of(new GetGridsFailedAction(err)); }));
@@ -464,7 +469,7 @@ var GetGridsApiEffects = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var GridsActionTypes = {
@@ -481,7 +486,7 @@ var UpsertGridAction = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ɵ0 = [];
 /** @type {?} */
@@ -526,7 +531,7 @@ function Reducer(state, action) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var GridReducer = {
@@ -535,17 +540,13 @@ var GridReducer = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GridDbEffects = /** @class */ (function () {
     function GridDbEffects(actions$) {
         this.actions$ = actions$;
-        this.Upsert$ = this.actions$
-            .ofType("[GRID][API][GetGrid] succeed" /* SUCCEED */, "[UPSERT_GRID][API][UpsertGrid] succeed" /* SUCCEED */)
-            .pipe(pluck("payload"), map(function (grid) { return new UpsertGridAction([grid]); }));
-        this.UpsertMany$ = this.actions$
-            .ofType("[GET_GRIDS][API][GetGrids] succeed" /* SUCCEED */)
-            .pipe(pluck("payload"), map(function (grids) { return new UpsertGridAction(grids); }));
+        this.Upsert$ = this.actions$.pipe(ofType("[GRID][API][GetGrid] succeed" /* SUCCEED */, "[UPSERT_GRID][API][UpsertGrid] succeed" /* SUCCEED */), pluck("payload"), map(function (grid) { return new UpsertGridAction([grid]); }));
+        this.UpsertMany$ = this.actions$.pipe(ofType("[GET_GRIDS][API][GetGrids] succeed" /* SUCCEED */), pluck("payload"), map(function (grids) { return new UpsertGridAction(grids); }));
     }
     GridDbEffects.decorators = [
         { type: Injectable }
@@ -567,7 +568,7 @@ var GridDbEffects = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DynamicGridItremConfigDirective = /** @class */ (function () {
     function DynamicGridItremConfigDirective(configurationService, resolver, container) {
@@ -692,7 +693,7 @@ var DynamicGridItemConfigComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GridConfigComponent = /** @class */ (function () {
     function GridConfigComponent(store, data) {
@@ -745,6 +746,7 @@ var GridConfigComponent = /** @class */ (function () {
             draggable: new FormGroup({
                 enabled: new FormControl(),
                 delayStart: new FormControl(333)
+                // ignoreContent: new FormControl("false")
             }),
             resizable: new FormGroup({
                 enabled: new FormControl()
@@ -783,7 +785,7 @@ var GridConfigComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GridComponent = /** @class */ (function () {
     function GridComponent(store, service, userFacadeService, configurationService, bottomSheet) {
@@ -908,7 +910,7 @@ var GridComponent = /** @class */ (function () {
     function (e) {
         debugger;
         e.stopPropagation();
-        this.grid.items.push(/** @type {?} */ ({}));
+        this.grid.items.push((/** @type {?} */ ({})));
     };
     /**
      * @param {?} event
@@ -922,7 +924,7 @@ var GridComponent = /** @class */ (function () {
      */
     function (event, item) {
         console.log("empty cell click", event, item);
-        this.grid.items.push(/** @type {?} */ (item));
+        this.grid.items.push((/** @type {?} */ (item)));
     };
     /**
      * @param {?} e
@@ -956,10 +958,10 @@ var GridComponent = /** @class */ (function () {
         e.stopImmediatePropagation();
         e.preventDefault();
         /**
-                 * TODO:
-                 * احزار هویت در سمت نود اتحام شود
-                * کانفیگ برای گرفتن شناسه کاربر
-                 */
+         * TODO:
+         * احزار هویت در سمت نود اتحام شود
+        * کانفیگ برای گرفتن شناسه کاربر
+         */
         this.store.dispatch(new UpsertGridStartAction(this.grid));
     };
     /**
@@ -1004,10 +1006,15 @@ var GridComponent = /** @class */ (function () {
     };
     // tslint:disable-next-line:member-ordering
     // @ViewChild("DiagramViewComponent") _ngsDynamicGridItemView: DiagramViewComponent;
+    // tslint:disable-next-line:member-ordering
+    // @ViewChild("DiagramViewComponent") _ngsDynamicGridItemView: DiagramViewComponent;
     /**
      * @return {?}
      */
-    GridComponent.prototype.goToEdit = /**
+    GridComponent.prototype.goToEdit = 
+    // tslint:disable-next-line:member-ordering
+    // @ViewChild("DiagramViewComponent") _ngsDynamicGridItemView: DiagramViewComponent;
+    /**
      * @return {?}
      */
     function () {
@@ -1077,7 +1084,7 @@ var GridComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DynamicGridItemViewDirective = /** @class */ (function () {
     function DynamicGridItemViewDirective(configurationService, resolver, container) {
@@ -1150,7 +1157,7 @@ var DynamicGridItemViewDirective = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NgsGridModule = /** @class */ (function () {
     function NgsGridModule() {
@@ -1229,12 +1236,12 @@ var NgsGridRootModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { GridModel, NgsGridModule, NgsGridRootModule, MODULE_DEFAULT_CONFIG, MODULE_CONFIG_TOKEN, GridConfigComponent as ɵg, DynamicGridItemConfigComponent as ɵi, DynamicGridItremConfigDirective as ɵh, DynamicGridItemViewDirective as ɵj, GridRoutingModule as ɵk, GridReducer as ɵc, GridComponent as ɵb, GridDbEffects as ɵm, Reducer as ɵl, RootComponent as ɵa, GetGridApiEffects as ɵn, GetGridsApiEffects as ɵp, UpsertGridApiEffects as ɵr, GridConfigurationService as ɵf, GridService as ɵe };

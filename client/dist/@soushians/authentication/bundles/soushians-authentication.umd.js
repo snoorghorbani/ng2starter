@@ -1,12 +1,12 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@soushians/shared'), require('@soushians/config'), require('@angular/material/snack-bar'), require('@angular/common'), require('@angular/flex-layout'), require('@angular/platform-browser/animations'), require('@angular/forms'), require('@soushians/form'), require('rxjs/add/operator/do'), require('@angular/common/http'), require('rxjs'), require('@angular/material'), require('@angular/router'), require('rxjs/add/operator/map'), require('rxjs/add/operator/mergeMap'), require('@ngrx/effects'), require('rxjs/operators'), require('@angular/core'), require('@ngrx/store')) :
-    typeof define === 'function' && define.amd ? define('@soushians/authentication', ['exports', '@soushians/shared', '@soushians/config', '@angular/material/snack-bar', '@angular/common', '@angular/flex-layout', '@angular/platform-browser/animations', '@angular/forms', '@soushians/form', 'rxjs/add/operator/do', '@angular/common/http', 'rxjs', '@angular/material', '@angular/router', 'rxjs/add/operator/map', 'rxjs/add/operator/mergeMap', '@ngrx/effects', 'rxjs/operators', '@angular/core', '@ngrx/store'], factory) :
-    (factory((global.soushians = global.soushians || {}, global.soushians.authentication = {}),global.shared,global.config,global.ng.material['snack-bar'],global.ng.common,global.ng['flex-layout'],global.ng.platformBrowser.animations,global.ng.forms,global.form,global.rxjs['add/operator/do'],global.ng.common.http,global.rxjs,global.ng.material,global.ng.router,global.rxjs['add/operator/map'],global.rxjs['add/operator/mergeMap'],global.effects,global.rxjs.operators,global.ng.core,global.i2));
-}(this, (function (exports,shared,config,i4,common,flexLayout,animations,forms,form,_do,i1,rxjs,material,router,map,mergeMap,effects,operators,i0,i2) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@soushians/shared'), require('@soushians/config'), require('@angular/material/snack-bar'), require('@angular/common'), require('@angular/flex-layout'), require('@angular/platform-browser/animations'), require('@angular/forms'), require('@soushians/form'), require('rxjs/add/operator/do'), require('@angular/common/http'), require('@angular/router'), require('rxjs'), require('@angular/material'), require('@ngrx/effects'), require('rxjs/operators'), require('@angular/core'), require('@ngrx/store')) :
+    typeof define === 'function' && define.amd ? define('@soushians/authentication', ['exports', '@soushians/shared', '@soushians/config', '@angular/material/snack-bar', '@angular/common', '@angular/flex-layout', '@angular/platform-browser/animations', '@angular/forms', '@soushians/form', 'rxjs/add/operator/do', '@angular/common/http', '@angular/router', 'rxjs', '@angular/material', '@ngrx/effects', 'rxjs/operators', '@angular/core', '@ngrx/store'], factory) :
+    (factory((global.soushians = global.soushians || {}, global.soushians.authentication = {}),global.shared,global.config,global.ng.material['snack-bar'],global.ng.common,global.ng['flex-layout'],global.ng.platformBrowser.animations,global.ng.forms,global.form,global.rxjs['add/operator/do'],global.ng.common.http,global.ng.router,global.rxjs,global.ng.material,global.effects,global.rxjs.operators,global.ng.core,global.i2));
+}(this, (function (exports,shared,config,i4,common,flexLayout,animations,forms,form,_do,i1,router,rxjs,material,effects,operators,i0,i2) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var UserModel = /** @class */ (function () {
         function UserModel(params) {
@@ -19,7 +19,7 @@
             params &&
                 Object.keys(params).forEach(function (key) {
                     if (key in params)
-                        ( /** @type {?} */(_this))[key] = params[key];
+                        (( /** @type {?} */(_this)))[key] = params[key];
                 });
         }
         return UserModel;
@@ -27,7 +27,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @enum {string} */
     var SignInActionTypes = {
@@ -122,7 +122,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var MODULE_DEFAULT_CONFIG = {
@@ -156,7 +156,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var AuthenticationConfigurationService = /** @class */ (function () {
         function AuthenticationConfigurationService(configFile, store) {
@@ -199,7 +199,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ProgressingStarted = /** @class */ (function () {
         function ProgressingStarted() {
@@ -216,7 +216,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var NEW_CAPTCHA = '[captcha] new captcha';
@@ -229,12 +229,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COOKIE_NAME = "ngs-authentication";
@@ -291,12 +291,15 @@
                 }), operators.tap(function (user) { return _this.configurationService.config.afterSignin(user); }));
             };
         // TODO:
+        // TODO:
         /**
          * @return {?}
          */
-        SigninService.prototype.signout = /**
-         * @return {?}
-         */
+        SigninService.prototype.signout =
+            // TODO:
+            /**
+             * @return {?}
+             */
             function () {
                 shared.Cookie.deleteCookie(COOKIE_NAME);
                 return this.http
@@ -346,7 +349,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SigninContainerComponent = /** @class */ (function () {
         function SigninContainerComponent(configurationService, store) {
@@ -387,7 +390,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var AuthenticationContainerComponent = /** @class */ (function () {
         function AuthenticationContainerComponent() {
@@ -402,7 +405,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SignupContainerComponent = /** @class */ (function () {
         function SignupContainerComponent(configurationService, store, snackBar) {
@@ -457,7 +460,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var routes = [
@@ -483,7 +486,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SigninComponent = /** @class */ (function () {
         function SigninComponent() {
@@ -520,8 +523,9 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    // import { environment } from "../../../environments/environment";
     var WithCredentialInterceptor = /** @class */ (function () {
         function WithCredentialInterceptor(configurationService) {
             this.configurationService = configurationService;
@@ -538,7 +542,7 @@
          */
             function (request, next) {
                 // if (!this.configurationService.config.env.production)
-                ( /** @type {?} */(request)).withCredentials = true;
+                (( /** @type {?} */(request))).withCredentials = true;
                 return next.handle(request);
             };
         WithCredentialInterceptor.decorators = [
@@ -555,7 +559,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var UnauthorizedInterceptor = /** @class */ (function () {
         function UnauthorizedInterceptor(router$$1, store // private signinService: SigninService
@@ -650,7 +654,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var initialState = {
@@ -678,20 +682,22 @@
             }
         }
     }
+    //#region  selectors
     /** @type {?} */
     var getLoggedIn = function (state) { return state.loggedIn; };
     /** @type {?} */
     var getUser = function (state) { return state.user; };
-    //#endregion
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var AuthenticationReducers = {
         userStatus: UserReducer
+        // captcha: captchaReducer.CaptchaReducer
     };
+    //#region selectors
     /** @type {?} */
     var selectAuthenticationState = i2.createFeatureSelector("authentication");
     /** @type {?} */
@@ -700,19 +706,15 @@
     var getLoggedIn$1 = i2.createSelector(selectAuthState, getLoggedIn);
     /** @type {?} */
     var getUser$1 = i2.createSelector(selectAuthState, getUser);
-    // export const selectCaptchaState = createSelector(selectAuthenticationState, (state: AuthenticationState) => {
-    // 	return state.captcha;
-    // });
-    // export const getCaptcha = createSelector(selectCaptchaState, captchaReducer.getCaptcha);
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SigninEffects = /** @class */ (function () {
         function SigninEffects(actions$, router$$1, signinService, configurationService, bottomSheet) {
@@ -722,32 +724,26 @@
             this.signinService = signinService;
             this.configurationService = configurationService;
             this.bottomSheet = bottomSheet;
-            this.whoAmI$ = this.actions$
-                .ofType(SignInActionTypes.WHO_AM_I)
-                .pipe(operators.switchMap(function () {
+            this.whoAmI$ = this.actions$.pipe(effects.ofType(SignInActionTypes.WHO_AM_I), operators.switchMap(function () {
                 return _this.signinService
                     .whoAmI()
                     .pipe(operators.map(function (user) { return new SigninSecceed(user); }), operators.catchError(function (error) { return rxjs.of(new SigninFailed(error)); }));
             }));
-            this.Signin$ = this.actions$
-                .ofType(SignInActionTypes.SIGNIN)
-                .pipe(operators.pluck("payload"), operators.switchMap(function (payload) {
+            this.Signin$ = this.actions$.pipe(effects.ofType(SignInActionTypes.SIGNIN), operators.pluck("payload"), operators.switchMap(function (payload) {
                 return _this.signinService
                     .signin(payload)
                     .pipe(operators.map(function (user) { return new SigninSecceed(user); }), operators.catchError(function (error) { return rxjs.of(new SigninFailed(error)); }));
             }));
-            this.signup$ = this.actions$
-                .ofType(SignInActionTypes.SIGNUP)
-                .pipe(operators.pluck("payload"), operators.switchMap(function (payload) {
+            this.signup$ = this.actions$.pipe(effects.ofType(SignInActionTypes.SIGNUP), operators.pluck("payload"), operators.switchMap(function (payload) {
                 return _this.signinService
                     .signup(payload)
                     .pipe(operators.map(function (user) { return new SignupSecceed(user); }), operators.catchError(function (error) { return rxjs.of(new SignupFailed(error)); }));
             }));
-            this.signupSucceed$ = this.actions$.ofType(SignInActionTypes.SIGNUP_SUCCEED).pipe(operators.tap(function () {
+            this.signupSucceed$ = this.actions$.pipe(effects.ofType(SignInActionTypes.SIGNUP_SUCCEED), operators.tap(function () {
                 debugger;
                 _this.router.navigate(["auth/signin"]);
             }));
-            this.SignInRequired$ = this.actions$.ofType(SignInActionTypes.SIGNIN_REQUIRED).pipe(operators.tap(function (data) {
+            this.SignInRequired$ = this.actions$.pipe(effects.ofType(SignInActionTypes.SIGNIN_REQUIRED), operators.tap(function (data) {
                 /** @type {?} */
                 var signinBottomSheetRef = _this.bottomSheet.open(SigninContainerComponent, {
                     panelClass: "clear-mat-card-box"
@@ -757,12 +753,12 @@
                 });
                 return signinBottomSheetRef;
             }));
-            this.SigninSucceed$ = this.actions$.ofType(SignInActionTypes.SIGNIN_SUCCEED).pipe(operators.tap(function (data) {
+            this.SigninSucceed$ = this.actions$.pipe(effects.ofType(SignInActionTypes.SIGNIN_SUCCEED), operators.tap(function (data) {
                 if (location.pathname.indexOf("signin") > -1)
                     _this.router.navigate(["/"]);
             }));
-            this.AfterSigninFiled$ = this.actions$.ofType(SignInActionTypes.SIGNIN_FAILURE).map(function () { return new NewCaptcha(); });
-            this.DoSignout$ = this.actions$.ofType(SignInActionTypes.DO_SIGNOUT).pipe(operators.switchMap(function (data) {
+            this.AfterSigninFiled$ = this.actions$.pipe(effects.ofType(SignInActionTypes.SIGNIN_FAILURE), operators.map(function () { return new NewCaptcha(); }));
+            this.DoSignout$ = this.actions$.pipe(effects.ofType(SignInActionTypes.DO_SIGNOUT), operators.switchMap(function (data) {
                 return _this.signinService.signout().pipe(operators.map(function () { return new SignoutAction(); }), operators.catchError(function (err) {
                     // TODO: dispatch valid action
                     debugger;
@@ -771,12 +767,8 @@
             }));
             // TODO
             // @Effect() Signout$ = this.actions$.ofType(SignInActionTypes.DO_SIGNOUT).pipe(map(() => new SignoutAction()));
-            this.redirectToLoginPage$ = this.actions$
-                .ofType(SignInActionTypes.SIGNIN_REDIRECT)
-                .pipe(operators.tap(function (authed) { return _this.router.navigate(["auth/signin"]); }));
-            this.redirectAfterSignout$ = this.actions$
-                .ofType(SignInActionTypes.SIGNOUT)
-                .pipe(operators.tap(function (authed) { return _this.router.navigate([_this.configurationService.config$.getValue().afterSignoutRedirectTo]); }));
+            this.redirectToLoginPage$ = this.actions$.pipe(effects.ofType(SignInActionTypes.SIGNIN_REDIRECT), operators.tap(function (authed) { return _this.router.navigate(["auth/signin"]); }));
+            this.redirectAfterSignout$ = this.actions$.pipe(effects.ofType(SignInActionTypes.SIGNOUT), operators.tap(function (authed) { return _this.router.navigate([_this.configurationService.config$.getValue().afterSignoutRedirectTo]); }));
         }
         SigninEffects.decorators = [
             { type: i0.Injectable }
@@ -836,18 +828,13 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var AuthenticationEffects = /** @class */ (function () {
-        function AuthenticationEffects(actions$, router$$1) {
+        function AuthenticationEffects(actions$) {
             this.actions$ = actions$;
-            this.router = router$$1;
-            this.dispachProgressingStarted$ = this.actions$
-                .ofType(SignInActionTypes.SIGNIN)
-                .pipe(operators.map(function () { return new ProgressingStarted(); }));
-            this.dispachProgressingFinished$ = this.actions$
-                .ofType(SignInActionTypes.SIGNIN_FAILURE, SignInActionTypes.SIGNIN_SUCCEED)
-                .pipe(operators.map(function () { return new ProgressingFinished(); }));
+            this.dispachProgressingStarted$ = this.actions$.pipe(effects.ofType(SignInActionTypes.SIGNIN), operators.map(function () { return new ProgressingStarted(); }));
+            this.dispachProgressingFinished$ = this.actions$.pipe(effects.ofType(SignInActionTypes.SIGNIN_FAILURE, SignInActionTypes.SIGNIN_SUCCEED), operators.map(function () { return new ProgressingFinished(); }));
         }
         AuthenticationEffects.decorators = [
             { type: i0.Injectable }
@@ -855,8 +842,7 @@
         /** @nocollapse */
         AuthenticationEffects.ctorParameters = function () {
             return [
-                { type: effects.Actions },
-                { type: router.Router }
+                { type: effects.Actions }
             ];
         };
         __decorate([
@@ -872,7 +858,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SignupComponent = /** @class */ (function () {
         function SignupComponent() {
@@ -909,7 +895,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SigninGuard = /** @class */ (function () {
         function SigninGuard(store) {
@@ -942,7 +928,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var NgsAuthenticationModule = /** @class */ (function () {
         function NgsAuthenticationModule() {
@@ -957,7 +943,7 @@
          */
             function (config$$1) {
                 if (config$$1 === void 0) {
-                    config$$1 = /** @type {?} */ ({});
+                    config$$1 = ( /** @type {?} */({}));
                 }
                 return {
                     ngModule: RootNgsAuthenticationModule,
@@ -1038,12 +1024,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.UserModel = UserModel;

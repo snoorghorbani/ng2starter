@@ -10,14 +10,14 @@ import { RouterModule, Router } from '@angular/router';
 import { BehaviorSubject, of } from 'rxjs';
 import { MatSnackBar, MatBottomSheet, MatIconModule, MatButtonModule, MatCardModule, MatSnackBarModule, MatSidenavModule, MatExpansionModule, MatSelectModule, MatFormFieldModule, MatListModule, MatMenuModule, MatRadioModule, MatInputModule, MatToolbarModule, MatDatepickerModule, MatProgressBarModule, MatBottomSheetModule } from '@angular/material';
 import { __decorate, __metadata } from 'tslib';
-import { Component, InjectionToken, Injectable, Inject, Input, Output, EventEmitter, NgModule, defineInjectable, inject } from '@angular/core';
-import { Actions, Effect, EffectsModule } from '@ngrx/effects';
+import { Component, InjectionToken, Injectable, Inject, NgModule, Input, Output, EventEmitter, defineInjectable, inject } from '@angular/core';
+import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
 import { map, switchMap, take, filter, catchError, tap, pluck } from 'rxjs/operators';
 import { UserActionTypes } from '@soushians/user';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class UserModel {
     /**
@@ -32,17 +32,17 @@ class UserModel {
         params &&
             Object.keys(params).forEach(key => {
                 if (key in params)
-                    (/** @type {?} */ (this))[key] = params[key];
+                    ((/** @type {?} */ (this)))[key] = params[key];
             });
     }
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
-var SignInActionTypes = {
+const SignInActionTypes = {
     WHO_AM_I: "[FRONTEND_AUTHENTICATION] who am i",
     SIGNIN: "[FRONTEND_AUTHENTICATION] Signin",
     DO_SIGNOUT: "[FRONTEND_AUTHENTICATION] Do Signout",
@@ -97,7 +97,7 @@ class SigninRequiredAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const initialState = {
@@ -123,20 +123,21 @@ function UserReducer(state = initialState, action) {
         }
     }
 }
+//#region  selectors
 /** @type {?} */
 const getLoggedIn = (state) => state.loggedIn;
 /** @type {?} */
 const getUser = (state) => state.user;
-//#endregion
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const FrontendAuthenticationReducers = {
     userStatus: UserReducer
 };
+//#region selectors
 /** @type {?} */
 const selectFrontendAuthenticationState = createFeatureSelector("frontend-authentication");
 /** @type {?} */
@@ -148,7 +149,7 @@ const getFrontendUser = createSelector(selectAuthState, getUser);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FrontendAuthenticationContainerComponent {
 }
@@ -162,7 +163,7 @@ FrontendAuthenticationContainerComponent.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const MODULE_DEFAULT_CONFIG = {
@@ -186,7 +187,7 @@ const MODULE_CONFIG_TOKEN = new InjectionToken("ModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FrontendAuthenticationConfigurationService {
     /**
@@ -225,7 +226,7 @@ FrontendAuthenticationConfigurationService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SigninContainerComponent {
     /**
@@ -268,7 +269,7 @@ SigninContainerComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const routes = [
@@ -289,7 +290,7 @@ const FrontendAuthenticationRoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SigninComponent {
     constructor() {
@@ -321,8 +322,9 @@ SigninComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+// import { WhoAmIAction } from "../actions";
 class FrontendSigninService {
     /**
      * @param {?} http
@@ -331,11 +333,11 @@ class FrontendSigninService {
      * @param {?} snackBar
      */
     constructor(http, store, configurationService, snackBar) {
-        // setTimeout(() => this.store.dispatch(new WhoAmIAction()), 300);
         this.http = http;
         this.store = store;
         this.configurationService = configurationService;
         this.snackBar = snackBar;
+        // setTimeout(() => this.store.dispatch(new WhoAmIAction()), 300);
     }
     /**
      * @param {?} token
@@ -388,12 +390,12 @@ FrontendSigninService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SigninEffects {
     /**
@@ -409,13 +411,9 @@ class SigninEffects {
         this.frontendSigninService = frontendSigninService;
         this.configurationService = configurationService;
         this.bottomSheet = bottomSheet;
-        this.whoAmI$ = this.actions$
-            .ofType(SignInActionTypes.WHO_AM_I)
-            .pipe(switchMap(() => this.frontendSigninService.whoAmI()), map(user => new SigninSecceed(user)), catchError(error => of(new SigninFailed(error))));
-        this.Signin$ = this.actions$
-            .ofType(SignInActionTypes.SIGNIN)
-            .pipe(pluck("payload"), switchMap(payload => this.frontendSigninService.signin(payload)), map(user => new SigninSecceed(user)), catchError(error => of(new SigninFailed(error))));
-        this.SignInRequired$ = this.actions$.ofType(SignInActionTypes.SIGNIN_REQUIRED).pipe(tap((data) => {
+        this.whoAmI$ = this.actions$.pipe(ofType(SignInActionTypes.WHO_AM_I), switchMap(() => this.frontendSigninService.whoAmI()), map(user => new SigninSecceed(user)), catchError(error => of(new SigninFailed(error))));
+        this.Signin$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN), pluck("payload"), switchMap(payload => this.frontendSigninService.signin(payload)), map(user => new SigninSecceed(user)), catchError(error => of(new SigninFailed(error))));
+        this.SignInRequired$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_REQUIRED), tap((data) => {
             /** @type {?} */
             const signinBottomSheetRef = this.bottomSheet.open(SigninContainerComponent, {
                 panelClass: "clear-mat-card-box"
@@ -425,24 +423,20 @@ class SigninEffects {
             });
             return signinBottomSheetRef;
         }));
-        this.SigninSucceed$ = this.actions$.ofType(SignInActionTypes.SIGNIN_SUCCEED).pipe(tap((data) => {
+        this.SigninSucceed$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_SUCCEED), tap((data) => {
             debugger;
             if (location.pathname.indexOf("signin") > -1)
                 this.router.navigate(["/"]);
         }));
-        this.DoSignout$ = this.actions$.ofType(SignInActionTypes.DO_SIGNOUT).pipe(switchMap(data => this.frontendSigninService.signout().pipe(map(() => new SignoutAction()), catchError(err => {
+        this.DoSignout$ = this.actions$.pipe(ofType(SignInActionTypes.DO_SIGNOUT), switchMap(data => this.frontendSigninService.signout().pipe(map(() => new SignoutAction()), catchError(err => {
             // TODO: dispatch valid action
             debugger;
             return of(err);
         }))));
         // TODO
         // @Effect() Signout$ = this.actions$.ofType(SignInActionTypes.DO_SIGNOUT).pipe(map(() => new SignoutAction()));
-        this.redirectToLoginPage$ = this.actions$
-            .ofType(SignInActionTypes.SIGNIN_REDIRECT)
-            .pipe(tap(authed => this.router.navigate(["auth/signin"])));
-        this.redirectAfterSignout$ = this.actions$
-            .ofType(SignInActionTypes.SIGNOUT)
-            .pipe(tap(authed => this.router.navigate([this.configurationService.config$.getValue().afterSignoutRedirectTo])));
+        this.redirectToLoginPage$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_REDIRECT), tap(authed => this.router.navigate(["auth/signin"])));
+        this.redirectAfterSignout$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNOUT), tap(authed => this.router.navigate([this.configurationService.config$.getValue().afterSignoutRedirectTo])));
     }
 }
 SigninEffects.decorators = [
@@ -487,7 +481,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FrontendAuthenticationModuleEffects {
     /**
@@ -497,7 +491,7 @@ class FrontendAuthenticationModuleEffects {
     constructor(actions$, service) {
         this.actions$ = actions$;
         this.service = service;
-        this.goToList$ = this.actions$.ofType(UserActionTypes.REFRESH_USER_INFO).pipe(map(action => action.payload), filter(user => user.Token != null), switchMap(user => this.service.signin(user.Token).map(_user => {
+        this.goToList$ = this.actions$.pipe(ofType(UserActionTypes.REFRESH_USER_INFO), map(action => action.payload), filter(user => user.Token != null), switchMap(user => this.service.signin(user.Token).map(_user => {
             return new SigninSecceed(_user);
         })));
     }
@@ -517,14 +511,14 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NgsFrontendAuthenticationModule {
     /**
      * @param {?=} config
      * @return {?}
      */
-    static forRoot(config = /** @type {?} */ ({})) {
+    static forRoot(config = (/** @type {?} */ ({}))) {
         return {
             ngModule: RootNgsFrontendAuthenticationModule,
             providers: [{ provide: MODULE_CONFIG_TOKEN, useValue: config }, FrontendSigninService]
@@ -581,12 +575,12 @@ RootNgsFrontendAuthenticationModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { UserModel, SignInActionTypes, DoSignoutAction, SigninRequiredAction, getFrontendAuthenticationState, getFrontendUser, NgsFrontendAuthenticationModule, SigninComponent as ɵm, SigninEffects as ɵq, FrontendAuthenticationRoutingModule as ɵr, MODULE_CONFIG_TOKEN as ɵj, FrontendAuthenticationModuleEffects as ɵo, RootNgsFrontendAuthenticationModule as ɵd, FrontendAuthenticationReducers as ɵa, selectAuthState as ɵc, selectFrontendAuthenticationState as ɵb, UserReducer as ɵe, getLoggedIn as ɵf, getUser as ɵg, FrontendAuthenticationConfigurationService as ɵi, FrontendSigninService as ɵp, FrontendAuthenticationContainerComponent as ɵn, SigninContainerComponent as ɵh };

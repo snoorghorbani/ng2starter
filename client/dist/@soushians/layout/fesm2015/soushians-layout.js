@@ -13,7 +13,7 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/empty';
-import { Actions, Effect, EffectsModule } from '@ngrx/effects';
+import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
 import { SigninService, DoSignoutAction } from '@soushians/authentication';
 import { RuleModule } from '@soushians/rule';
 import { InjectionToken, Injectable, Inject, Component, Input, Output, EventEmitter, ViewChild, HostListener, NgModule, LOCALE_ID, HostBinding, defineInjectable, inject } from '@angular/core';
@@ -28,14 +28,14 @@ import { map, combineLatest, withLatestFrom } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const OPEN_SIDENAV = "[Layout] Open Sidenav";
 /** @type {?} */
 const CLOSE_SIDENAV = "[Layout] Close Sidenav";
 /** @enum {string} */
-var LayoutActionTypes = {
+const LayoutActionTypes = {
     UPDATE_LAYOUT_CONFIG: "[Layout] UPDATE_LAYOUT_CONFIG",
     DO_SIGNOUT: "[Layout] do signout",
     TITLE_CHANGED: "[LAYOUT] TITLE_CHANGED",
@@ -136,7 +136,7 @@ class ToggleFullscreenAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const initialState = {
@@ -149,7 +149,7 @@ const initialState = {
     layoutMode: "default",
     title: "",
     menuItems: [],
-    signoutAction: /** @type {?} */ ({}),
+    signoutAction: (/** @type {?} */ ({})),
     fullscreen: false
 };
 /**
@@ -213,10 +213,10 @@ const getFullscreenMode = (state$$1) => state$$1.fullscreen;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
-var ToolbarActionTypes = {
+const ToolbarActionTypes = {
     COMPORTABLE: "[Layout][TOOLBAR] COMPORTABLE",
     COMPACT: "[Layout][TOOLBAR] COMPACT",
     SUMMARY: "[Layout][TOOLBAR] SUMMARY",
@@ -263,12 +263,12 @@ class InvisibleToolbarAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const initialState$1 = {
@@ -317,15 +317,17 @@ const getToolbarMode = (state$$1) => state$$1.mode;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const LayoutReducers = {
     layout: Reducer,
     toolbar: Reducer$1
 };
+//#region selectors
 /** @type {?} */
 const selectLayoutState = createFeatureSelector("layout");
+//#endregion
 /** @type {?} */
 const getLayout = createSelector(selectLayoutState, (state$$1) => state$$1.layout);
 /** @type {?} */
@@ -342,15 +344,15 @@ const getShowSecondSidebarStatus$1 = createSelector(getLayout, getShowSecondSide
 const getSecondSidebarMode$1 = createSelector(getLayout, getSecondSidebarMode);
 /** @type {?} */
 const getFullscreenMode$1 = createSelector(getLayout, getFullscreenMode);
+//#region toolbar
 /** @type {?} */
 const getLayoutToolbar = createSelector(selectLayoutState, (state$$1) => state$$1.toolbar);
 /** @type {?} */
 const getLayoutToolbarMode = createSelector(getLayoutToolbar, getToolbarMode);
-//#endregion
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const menu_item_authorization_operator = function ([routes, user]) {
@@ -378,7 +380,7 @@ const MODULE_DEFAULT_CONFIG = {
     // | "without-margin" | "default",
     title: "",
     menuItems: [],
-    signoutAction: /** @type {?} */ ({}),
+    signoutAction: (/** @type {?} */ ({})),
     menu_item_authorization_operator
 };
 /** @type {?} */
@@ -386,7 +388,7 @@ const MODULE_CONFIG_TOKEN = new InjectionToken("LayoutModuleConfigModel");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LayoutConfigurationService {
     /**
@@ -430,7 +432,7 @@ LayoutConfigurationService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class MainMenuComponent {
     /**
@@ -500,7 +502,7 @@ MainMenuComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SearchBoxComponent {
     constructor() { }
@@ -522,7 +524,7 @@ SearchBoxComponent.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LogoContainerComponent {
     /**
@@ -546,7 +548,7 @@ LogoContainerComponent.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ToolbarMenuComponent {
     /**
@@ -844,7 +846,7 @@ ToolbarMenuComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FooterComponent {
     constructor() { }
@@ -868,7 +870,7 @@ FooterComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class TitleComponent {
     /**
@@ -942,7 +944,7 @@ TitleComponent.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NgsLayoutMainComponent {
     /**
@@ -967,7 +969,7 @@ class NgsLayoutMainComponent {
             this.theme_B = config.theme == "theme_B";
         });
         this.store.dispatch(new ChangeSideNavMode("push"));
-        this.user$ = this.store.select(s => (/** @type {?} */ (s)).user.user.data);
+        this.user$ = this.store.select(s => ((/** @type {?} */ (s))).user.user.data);
         this.displayName$ = this.userFacadeService.getDisplayName();
         this.showMainSidenav = this.store.select(getShowMainSidenav$1);
         this.mainSidenavMode = this.store.select(getMainSideNavMode$1);
@@ -983,10 +985,10 @@ class NgsLayoutMainComponent {
         this.router.events.filter(data => data instanceof NavigationEnd).subscribe(event => {
             /** @type {?} */
             const hideSituations = [
-                (/** @type {?} */ (event)).urlAfterRedirects == "/auth/signin",
-                (/** @type {?} */ (event)).urlAfterRedirects == "/auth/signup/register",
-                (/** @type {?} */ (event)).urlAfterRedirects == "/auth/signup/verification",
-                (/** @type {?} */ (event)).urlAfterRedirects == "/user/password/reset"
+                ((/** @type {?} */ (event))).urlAfterRedirects == "/auth/signin",
+                ((/** @type {?} */ (event))).urlAfterRedirects == "/auth/signup/register",
+                ((/** @type {?} */ (event))).urlAfterRedirects == "/auth/signup/verification",
+                ((/** @type {?} */ (event))).urlAfterRedirects == "/user/password/reset"
             ];
             if (hideSituations.some(i => i))
                 this.showSidebarMenu.next(false);
@@ -994,6 +996,9 @@ class NgsLayoutMainComponent {
                 this.showSidebarMenu.next(true);
         });
     }
+    // ngAfterViewInit() {
+    // 	this.store.dispatch(new ChangeLayout("with-margin"));
+    // }
     /**
      * @return {?}
      */
@@ -1057,7 +1062,7 @@ NgsLayoutMainComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LayoutEffects {
     /**
@@ -1069,12 +1074,10 @@ class LayoutEffects {
         this.actions$ = actions$;
         this.router = router;
         this.store = store;
-        this.DoSignout$ = this.actions$.ofType(LayoutActionTypes.DO_SIGNOUT).pipe(map(() => new DoSignoutAction()));
-        this.fullscreen$ = this.actions$.ofType(LayoutActionTypes.FULLSCREEN).pipe(map(() => new InvisibleToolbarAction()));
-        this.exit_fullscreen$ = this.actions$
-            .ofType(LayoutActionTypes.EXIT_FULLSCREEN)
-            .pipe(map(() => new VisibleToolbarAction()));
-        this.fullscren_toolbar$ = this.actions$.ofType(LayoutActionTypes.TOGGLE_FULLSCREEN).pipe(withLatestFrom(this.store.select(getFullscreenMode$1)), map(([action, toolbarMode]) => {
+        this.DoSignout$ = this.actions$.pipe(ofType(LayoutActionTypes.DO_SIGNOUT), map(() => new DoSignoutAction()));
+        this.fullscreen$ = this.actions$.pipe(ofType(LayoutActionTypes.FULLSCREEN), map(() => new InvisibleToolbarAction()));
+        this.exit_fullscreen$ = this.actions$.pipe(ofType(LayoutActionTypes.EXIT_FULLSCREEN), map(() => new VisibleToolbarAction()));
+        this.fullscren_toolbar$ = this.actions$.pipe(ofType(LayoutActionTypes.TOGGLE_FULLSCREEN), withLatestFrom(this.store.select(getFullscreenMode$1)), map(([action, toolbarMode]) => {
             if (toolbarMode)
                 return new ExitFullscreenAction();
             else
@@ -1110,7 +1113,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ToolbarMenuThemeBComponent {
     /**
@@ -1405,7 +1408,7 @@ ToolbarMenuThemeBComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NgsLayoutModule {
     /**
@@ -1488,10 +1491,10 @@ RootNgsLayoutModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
-var LayoutOutlets = {
+const LayoutOutlets = {
     // TODO: remove in next major version : 6.0.45
     ngs_layout_toolbar_menu: "ngs-layout-after-toolbar-menu",
     ngs_layout_after_toolbar_menu: "ngs-layout-after-toolbar-menu",
@@ -1502,12 +1505,12 @@ var LayoutOutlets = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { LayoutActionTypes, TitleChangedAction, OpenSidenavAction, CloseSidenavAction, ChangeSideNavMode, ChangeLayout, CloseSecondSidenavAction, ChangeSecondSidenavMode, OpenSecondSidenavAction, ChangeToolbatToComfortableModeAction, ChangeToolbatToCompactModeAction, DisableComfortableModeAction, EnableComfortableModeAction, VisibleToolbarAction, FullscreenAction, ExitFullscreenAction, InvisibleToolbarAction, ToggleFullscreenAction, NgsLayoutMainComponent, LayoutOutlets, NgsLayoutModule, RootNgsLayoutModule, MODULE_DEFAULT_CONFIG, MODULE_CONFIG_TOKEN, FooterComponent as ɵh, LogoContainerComponent as ɵe, MainMenuComponent as ɵa, SearchBoxComponent as ɵd, TitleComponent as ɵi, ToolbarMenuThemeBComponent as ɵg, ToolbarMenuComponent as ɵf, LayoutEffects as ɵn, LayoutReducers as ɵj, Reducer as ɵl, Reducer$1 as ɵm, LayoutConfigurationService as ɵc };

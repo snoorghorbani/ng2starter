@@ -1,0 +1,169 @@
+[
+    {
+        "_id": "5a940123bdfc033d70061cc5",
+        "updatedAt": "2018-07-22T06:13:08.075Z",
+        "createdAt": "2018-02-26T12:44:20.926Z",
+        "name": "ویرایش پروفایل",
+        "form": {
+            "title": "ویرایش اطلاعات کاربری",
+            "path": "formGroup",
+            "name": "formGroup",
+            "fields": [
+                {
+                    "width": 10,
+                    "formGroupPath": "formGroup",
+                    "path": "formGroup.controls.Email",
+                    "parentType": "group",
+                    "value": "",
+                    "inputType": "text",
+                    "title": "پست الکترونیکی",
+                    "name": "Email",
+                    "type": "control",
+                    "validator": {
+                        "required": true
+                    }
+                },
+                {
+                    "width": 10,
+                    "options": [
+                        {
+                            "value": "Admin",
+                            "key": "Admin"
+                        },
+                        {
+                            "value": "User",
+                            "key": "User"
+                        }
+                    ],
+                    "formGroupPath": "formGroup",
+                    "path": "formGroup.controls.Roles",
+                    "parentType": "group",
+                    "value": "",
+                    "inputType": "select",
+                    "title": "Roles",
+                    "name": "Roles",
+                    "type": "control",
+                    "validator": {
+                        "required": true
+                    }
+                },
+                {
+                    "options": [
+                        {
+                            "value": "g1",
+                            "key": "g1"
+                        },
+                        {
+                            "value": "g2",
+                            "key": "g2"
+                        }
+                    ],
+                    "formGroupPath": "formGroup",
+                    "path": "formGroup.controls.Groups",
+                    "parentType": "group",
+                    "inputType": "select",
+                    "title": "گروه ها",
+                    "name": "Groups",
+                    "width": 10,
+                    "type": "control",
+                    "validator": {
+                        "required": true
+                    }
+                }
+            ],
+            "type": "group",
+            "a": {
+                "required": true
+            }
+        },
+        "__v": 0,
+        "events": {
+            "accept": {
+                "show": true,
+                "text": "ثبت"
+            },
+            "cancel": {
+                "show": true,
+                "text": "انصراف"
+            }
+        }
+    },
+    {
+        "_id": "5a951cfbfd791632a09b3bc6",
+        "updatedAt": "2018-10-07T10:33:44.434Z",
+        "createdAt": "2018-02-27T08:55:23.720Z",
+        "name": "ورود به پنل مدیریت",
+        "form": {
+            "id": null,
+            "title": "ورود به پنل مدیریت",
+            "name": "formGroup",
+            "path": "formGroup",
+            "fields": [
+                {
+                    "formGroupPath": "formGroup",
+                    "path": "formGroup.controls.Username",
+                    "parentType": "group",
+                    "inputType": "text",
+                    "title": "نام کاربری",
+                    "name": "Username",
+                    "width": 10,
+                    "type": "control",
+                    "subtype": "text",
+                    "validator": {
+                        "required": {
+                            "active": true,
+                            "message": "این فیلد الزامی است"
+                        },
+                        "minlength": {
+                            "active": false,
+                            "message": "حداقل تعداد کارکترها",
+                            "value": 5
+                        },
+                        "email": {
+                            "active": false,
+                            "message": "لطفا ایمیل صحیح وارد نمایید"
+                        }
+                    }
+                },
+                {
+                    "inputType": "password",
+                    "title": "رمز عبور",
+                    "name": "Password",
+                    "formGroupPath": "formGroup",
+                    "path": "formGroup.controls.Password",
+                    "parentType": "group",
+                    "width": 10,
+                    "type": "control",
+                    "subtype": "password",
+                    "validator": {
+                        "required": {
+                            "active": true,
+                            "message": "لطفا کلمه عبور خود را وارد نمایید"
+                        },
+                        "minlength": {
+                            "active": false,
+                            "message": "حداقل تعداد کارکترها",
+                            "value": 5
+                        },
+                        "email": {
+                            "active": false,
+                            "message": "لطفا ایمیل صحیح وارد نمایید"
+                        }
+                    }
+                }
+            ],
+            "type": "group"
+        },
+        "__v": 0,
+        "events": {
+            "accept": {
+                "show": true,
+                "text": "ورود"
+            },
+            "cancel": {
+                "show": false,
+                "text": "انصراف"
+            }
+        }
+    }
+]

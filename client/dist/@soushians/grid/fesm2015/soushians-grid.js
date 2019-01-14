@@ -7,7 +7,7 @@ import { getFrontendUser } from '@soushians/frontend-authentication';
 import { stringTemplate } from '@soushians/shared';
 import { BehaviorSubject, of } from 'rxjs';
 import { __decorate, __metadata } from 'tslib';
-import { Actions, Effect, EffectsModule } from '@ngrx/effects';
+import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
 import { map, filter, tap, take, switchMap, skipUntil, catchError, pluck } from 'rxjs/operators';
 import { UserFacadeService, getAccountInfo } from '@soushians/user';
 import { Store, StoreModule } from '@ngrx/store';
@@ -17,7 +17,7 @@ import { InjectionToken, Component, Inject, Injectable, ComponentFactoryResolver
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const MODULE_DEFAULT_CONFIG = {
@@ -39,7 +39,7 @@ const MODULE_CONFIG_TOKEN = new InjectionToken("GridModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class RootComponent {
 }
@@ -52,7 +52,7 @@ RootComponent.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const routes = [
@@ -67,7 +67,7 @@ const GridRoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GridModel {
     /**
@@ -88,7 +88,7 @@ class GridModel {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UpsertGridApiModel;
 (function (UpsertGridApiModel) {
@@ -116,7 +116,7 @@ var UpsertGridApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GridConfigurationService {
     /**
@@ -154,7 +154,7 @@ GridConfigurationService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GetGridStartAction {
     /**
@@ -186,7 +186,7 @@ class GetGridFailedAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GridService {
     /**
@@ -243,6 +243,11 @@ class GridService {
             return this.http.post(config.env.frontend_server + config.endpoints.upsert, model.getRequestBody(), {});
         }), map((response) => response.Result));
     }
+    // delete(_id: string) {
+    // 	return this.configurationService.config$
+    // 		.filter((config) => config.endpoints.deleteForm != "")
+    // 		.switchMap((config) => this.http.get(config.endpoints.deleteForm));
+    // }
     /**
      * @param {?} _id
      * @return {?}
@@ -294,7 +299,7 @@ GridService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GetGridApiEffects {
     /**
@@ -304,9 +309,7 @@ class GetGridApiEffects {
     constructor(actions$, service) {
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$
-            .ofType("[GRID][API][GetGrid] start" /* START */)
-            .pipe(map((action) => action.payload), switchMap((payload) => this.service.get(payload)), map((res) => new GetGridSucceedAction(res)), catchError((err) => of(new GetGridFailedAction(err))));
+        this.start$ = this.actions$.pipe(ofType("[GRID][API][GetGrid] start" /* START */), map(action => action.payload), switchMap(payload => this.service.get(payload)), map(res => new GetGridSucceedAction(res)), catchError(err => of(new GetGridFailedAction(err))));
     }
 }
 GetGridApiEffects.decorators = [
@@ -324,7 +327,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class UpsertGridStartAction {
     /**
@@ -356,7 +359,7 @@ class UpsertGridFailedAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class UpsertGridApiEffects {
     /**
@@ -366,9 +369,7 @@ class UpsertGridApiEffects {
     constructor(actions$, service) {
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$
-            .ofType("[UPSERT_GRID][API][UpsertGrid] start" /* START */)
-            .pipe(map((action) => action.payload), switchMap((payload) => this.service.upsert(payload)), map((res) => new UpsertGridSucceedAction(res)), catchError((err) => of(new UpsertGridFailedAction(err))));
+        this.start$ = this.actions$.pipe(ofType("[UPSERT_GRID][API][UpsertGrid] start" /* START */), pluck("payload"), switchMap((payload) => this.service.upsert(payload)), map(res => new UpsertGridSucceedAction(res)), catchError(err => of(new UpsertGridFailedAction(err))));
     }
 }
 UpsertGridApiEffects.decorators = [
@@ -386,7 +387,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GetGridsSucceedAction {
     /**
@@ -409,7 +410,7 @@ class GetGridsFailedAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GetGridsApiEffects {
     /**
@@ -419,11 +420,9 @@ class GetGridsApiEffects {
     constructor(actions$, service) {
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$
-            .ofType("[GET_GRIDS][API][GetGrids] start" /* START */)
-            .pipe(switchMap(() => this.service
+        this.start$ = this.actions$.pipe(ofType("[GET_GRIDS][API][GetGrids] start" /* START */), switchMap(() => this.service
             .getGrids()
-            .pipe(map((res) => new GetGridsSucceedAction(res)), catchError((err) => of(new GetGridsFailedAction(err))))));
+            .pipe(map(res => new GetGridsSucceedAction(res)), catchError(err => of(new GetGridsFailedAction(err))))));
     }
 }
 GetGridsApiEffects.decorators = [
@@ -441,10 +440,10 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
-var GridsActionTypes = {
+const GridsActionTypes = {
     UPSERT: "[GRID][DB] UPSERT",
     DELETE: "[GRID][DB] DELETE",
 };
@@ -460,7 +459,7 @@ class UpsertGridAction {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 const ɵ0 = [];
 /** @type {?} */
@@ -504,7 +503,7 @@ function Reducer(state = initialState, action) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const GridReducer = {
@@ -513,7 +512,7 @@ const GridReducer = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GridDbEffects {
     /**
@@ -521,12 +520,8 @@ class GridDbEffects {
      */
     constructor(actions$) {
         this.actions$ = actions$;
-        this.Upsert$ = this.actions$
-            .ofType("[GRID][API][GetGrid] succeed" /* SUCCEED */, "[UPSERT_GRID][API][UpsertGrid] succeed" /* SUCCEED */)
-            .pipe(pluck("payload"), map((grid) => new UpsertGridAction([grid])));
-        this.UpsertMany$ = this.actions$
-            .ofType("[GET_GRIDS][API][GetGrids] succeed" /* SUCCEED */)
-            .pipe(pluck("payload"), map((grids) => new UpsertGridAction(grids)));
+        this.Upsert$ = this.actions$.pipe(ofType("[GRID][API][GetGrid] succeed" /* SUCCEED */, "[UPSERT_GRID][API][UpsertGrid] succeed" /* SUCCEED */), pluck("payload"), map((grid) => new UpsertGridAction([grid])));
+        this.UpsertMany$ = this.actions$.pipe(ofType("[GET_GRIDS][API][GetGrids] succeed" /* SUCCEED */), pluck("payload"), map((grids) => new UpsertGridAction(grids)));
     }
 }
 GridDbEffects.decorators = [
@@ -547,7 +542,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DynamicGridItremConfigDirective {
     /**
@@ -654,7 +649,7 @@ DynamicGridItemConfigComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GridConfigComponent {
     /**
@@ -705,6 +700,7 @@ class GridConfigComponent {
             draggable: new FormGroup({
                 enabled: new FormControl(),
                 delayStart: new FormControl(333)
+                // ignoreContent: new FormControl("false")
             }),
             resizable: new FormGroup({
                 enabled: new FormControl()
@@ -739,7 +735,7 @@ GridConfigComponent.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GridComponent {
     /**
@@ -840,7 +836,7 @@ class GridComponent {
     addItem(e) {
         debugger;
         e.stopPropagation();
-        this.grid.items.push(/** @type {?} */ ({}));
+        this.grid.items.push((/** @type {?} */ ({})));
     }
     /**
      * @param {?} event
@@ -849,7 +845,7 @@ class GridComponent {
      */
     emptyCellClick(event, item) {
         console.log("empty cell click", event, item);
-        this.grid.items.push(/** @type {?} */ (item));
+        this.grid.items.push((/** @type {?} */ (item)));
     }
     /**
      * @param {?} e
@@ -875,10 +871,10 @@ class GridComponent {
         e.stopImmediatePropagation();
         e.preventDefault();
         /**
-                 * TODO:
-                 * احزار هویت در سمت نود اتحام شود
-                * کانفیگ برای گرفتن شناسه کاربر
-                 */
+         * TODO:
+         * احزار هویت در سمت نود اتحام شود
+        * کانفیگ برای گرفتن شناسه کاربر
+         */
         this.store.dispatch(new UpsertGridStartAction(this.grid));
     }
     /**
@@ -913,6 +909,8 @@ class GridComponent {
             item.valid = bs.instance.valid;
         });
     }
+    // tslint:disable-next-line:member-ordering
+    // @ViewChild("DiagramViewComponent") _ngsDynamicGridItemView: DiagramViewComponent;
     /**
      * @return {?}
      */
@@ -974,7 +972,7 @@ GridComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DynamicGridItemViewDirective {
     /**
@@ -1040,7 +1038,7 @@ DynamicGridItemViewDirective.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NgsGridModule {
     /**
@@ -1109,12 +1107,12 @@ NgsGridRootModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { GridModel, NgsGridModule, NgsGridRootModule, MODULE_DEFAULT_CONFIG, MODULE_CONFIG_TOKEN, GridConfigComponent as ɵg, DynamicGridItemConfigComponent as ɵi, DynamicGridItremConfigDirective as ɵh, DynamicGridItemViewDirective as ɵj, GridRoutingModule as ɵk, GridReducer as ɵc, GridComponent as ɵb, GridDbEffects as ɵm, Reducer as ɵl, RootComponent as ɵa, GetGridApiEffects as ɵn, GetGridsApiEffects as ɵp, UpsertGridApiEffects as ɵr, GridConfigurationService as ɵf, GridService as ɵe };

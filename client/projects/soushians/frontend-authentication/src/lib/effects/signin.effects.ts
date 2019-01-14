@@ -2,7 +2,7 @@
 import { Router, ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import { Action } from "@ngrx/store";
-import { Actions, Effect } from "@ngrx/effects";
+import { Actions, Effect, ofType } from "@ngrx/effects";
 import { RouterAction } from "@ngrx/router-store";
 import { switchMap, map, catchError, tap, pluck } from "rxjs/operators";
 import { of } from "rxjs";
@@ -31,26 +31,25 @@ export class SigninEffects {
 	) {}
 
 	@Effect()
-	whoAmI$ = this.actions$
-		.ofType(SignInActionTypes.WHO_AM_I)
-		.pipe(
-			switchMap(() => this.frontendSigninService.whoAmI()),
-			map(user => new SigninSecceed(user)),
-			catchError(error => of(new SigninFailed(error)))
-		);
+	whoAmI$ = this.actions$.pipe(
+		ofType(SignInActionTypes.WHO_AM_I),
+		switchMap(() => this.frontendSigninService.whoAmI()),
+		map(user => new SigninSecceed(user)),
+		catchError(error => of(new SigninFailed(error)))
+	);
 
 	@Effect()
-	Signin$ = this.actions$
-		.ofType(SignInActionTypes.SIGNIN)
-		.pipe(
-			pluck("payload"),
-			switchMap(payload => this.frontendSigninService.signin(payload)),
-			map(user => new SigninSecceed(user)),
-			catchError(error => of(new SigninFailed(error)))
-		);
+	Signin$ = this.actions$.pipe(
+		ofType(SignInActionTypes.SIGNIN),
+		pluck("payload"),
+		switchMap(payload => this.frontendSigninService.signin(payload)),
+		map(user => new SigninSecceed(user)),
+		catchError(error => of(new SigninFailed(error)))
+	);
 
 	@Effect({ dispatch: false })
-	SignInRequired$ = this.actions$.ofType(SignInActionTypes.SIGNIN_REQUIRED).pipe(
+	SignInRequired$ = this.actions$.pipe(
+		ofType(SignInActionTypes.SIGNIN_REQUIRED),
 		tap((data: any) => {
 			const signinBottomSheetRef = this.bottomSheet.open(SigninContainerComponent, {
 				panelClass: "clear-mat-card-box"
@@ -63,7 +62,8 @@ export class SigninEffects {
 	);
 
 	@Effect({ dispatch: false })
-	SigninSucceed$ = this.actions$.ofType(SignInActionTypes.SIGNIN_SUCCEED).pipe(
+	SigninSucceed$ = this.actions$.pipe(
+		ofType(SignInActionTypes.SIGNIN_SUCCEED),
 		tap((data: any) => {
 			debugger;
 			if (location.pathname.indexOf("signin") > -1) this.router.navigate([ "/" ]);
@@ -71,7 +71,8 @@ export class SigninEffects {
 	);
 
 	@Effect()
-	DoSignout$ = this.actions$.ofType(SignInActionTypes.DO_SIGNOUT).pipe(
+	DoSignout$ = this.actions$.pipe(
+		ofType(SignInActionTypes.DO_SIGNOUT),
 		switchMap(data =>
 			this.frontendSigninService.signout().pipe(
 				map(() => new SignoutAction()),
@@ -88,14 +89,14 @@ export class SigninEffects {
 	// @Effect() Signout$ = this.actions$.ofType(SignInActionTypes.DO_SIGNOUT).pipe(map(() => new SignoutAction()));
 
 	@Effect({ dispatch: false })
-	redirectToLoginPage$ = this.actions$
-		.ofType(SignInActionTypes.SIGNIN_REDIRECT)
-		.pipe(tap(authed => this.router.navigate([ "auth/signin" ])));
+	redirectToLoginPage$ = this.actions$.pipe(
+		ofType(SignInActionTypes.SIGNIN_REDIRECT),
+		tap(authed => this.router.navigate([ "auth/signin" ]))
+	);
 
 	@Effect({ dispatch: false })
-	redirectAfterSignout$ = this.actions$
-		.ofType(SignInActionTypes.SIGNOUT)
-		.pipe(
-			tap(authed => this.router.navigate([ this.configurationService.config$.getValue().afterSignoutRedirectTo ]))
-		);
+	redirectAfterSignout$ = this.actions$.pipe(
+		ofType(SignInActionTypes.SIGNOUT),
+		tap(authed => this.router.navigate([ this.configurationService.config$.getValue().afterSignoutRedirectTo ]))
+	);
 }

@@ -1,15 +1,19 @@
 import { Injectable } from "@angular/core";
-import { Actions, Effect } from "@ngrx/effects";
+import { Actions, Effect, ofType } from "@ngrx/effects";
 import { Observable } from "rxjs";
 
 import { RulesListActionTypes, RulesListStartAction } from "./rule-db.actions";
+import { map } from "rxjs/operators";
 
 @Injectable()
 export class RulesListEffects {
 	constructor(private actions$: Actions<any>) {}
 
 	@Effect()
-	EditProfileRequest$ = this.actions$.ofType(RulesListActionTypes.RULES_LIST).map(() => new RulesListStartAction());
+	EditProfileRequest$ = this.actions$.pipe(
+		ofType(RulesListActionTypes.RULES_LIST),
+		map(() => new RulesListStartAction())
+	);
 
 	// @Effect()
 	// GetRule$ = this.actions$

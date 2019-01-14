@@ -1,12 +1,12 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/flex-layout'), require('@angular/platform-browser/animations'), require('@angular/router'), require('rxjs'), require('@angular/material'), require('@angular/forms'), require('rxjs/BehaviorSubject'), require('rxjs/Rx'), require('@soushians/shared'), require('rxjs/operators'), require('@ngrx/effects'), require('@soushians/frontend-authentication'), require('@angular/core'), require('@angular/common/http'), require('@ngrx/store')) :
-    typeof define === 'function' && define.amd ? define('@soushians/rule', ['exports', '@angular/common', '@angular/flex-layout', '@angular/platform-browser/animations', '@angular/router', 'rxjs', '@angular/material', '@angular/forms', 'rxjs/BehaviorSubject', 'rxjs/Rx', '@soushians/shared', 'rxjs/operators', '@ngrx/effects', '@soushians/frontend-authentication', '@angular/core', '@angular/common/http', '@ngrx/store'], factory) :
-    (factory((global.soushians = global.soushians || {}, global.soushians.rule = {}),global.ng.common,global.ng['flex-layout'],global.ng.platformBrowser.animations,global.ng.router,global.rxjs,global.ng.material,global.ng.forms,global.rxjs.BehaviorSubject,global.rxjs.Rx,global.shared,global.rxjs.operators,global.effects,global.frontendAuthentication,global.ng.core,global.ng.common.http,global.store));
-}(this, (function (exports,common,flexLayout,animations,router,rxjs,material,forms,BehaviorSubject,Rx,shared,operators,effects,frontendAuthentication,core,http,store) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/flex-layout'), require('@angular/platform-browser/animations'), require('@angular/router'), require('rxjs'), require('@angular/material'), require('@angular/forms'), require('rxjs/BehaviorSubject'), require('rxjs/Rx'), require('@soushians/shared'), require('@ngrx/effects'), require('rxjs/operators'), require('@soushians/frontend-authentication'), require('@angular/core'), require('@angular/common/http'), require('@ngrx/store')) :
+    typeof define === 'function' && define.amd ? define('@soushians/rule', ['exports', '@angular/common', '@angular/flex-layout', '@angular/platform-browser/animations', '@angular/router', 'rxjs', '@angular/material', '@angular/forms', 'rxjs/BehaviorSubject', 'rxjs/Rx', '@soushians/shared', '@ngrx/effects', 'rxjs/operators', '@soushians/frontend-authentication', '@angular/core', '@angular/common/http', '@ngrx/store'], factory) :
+    (factory((global.soushians = global.soushians || {}, global.soushians.rule = {}),global.ng.common,global.ng['flex-layout'],global.ng.platformBrowser.animations,global.ng.router,global.rxjs,global.ng.material,global.ng.forms,global.rxjs.BehaviorSubject,global.rxjs.Rx,global.shared,global.effects,global.rxjs.operators,global.frontendAuthentication,global.ng.core,global.ng.common.http,global.store));
+}(this, (function (exports,common,flexLayout,animations,router,rxjs,material,forms,BehaviorSubject,Rx,shared,effects,operators,frontendAuthentication,core,http,store) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var MODULE_DEFAULT_CONFIG = {
@@ -25,7 +25,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var RuleComponent = /** @class */ (function () {
         function RuleComponent() {
@@ -50,13 +50,14 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var routes = [
         {
             path: "rule",
             component: RuleComponent
+            // children: [ {} ]
         }
     ];
     /** @type {?} */
@@ -105,7 +106,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @enum {string} */
     var RuleAnchorsActionTypes = {
@@ -127,7 +128,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var initialState = {
@@ -154,11 +155,10 @@
             }
         }
     }
-    //#endregion
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @enum {string} */
     var RulesListActionTypes = {
@@ -179,7 +179,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var initialState$1 = {
@@ -242,7 +242,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @enum {string} */
     var ScenariosListActionTypes = {
@@ -253,6 +253,7 @@
         UPSERT: "[GWT][SCENARIO][DB][UPSERT] SCENARIO_UPSERT",
         GET_SCENARIO: "[SCENARIO][DB] GET_SCENARIO",
         SCENARIO_FETCHED: "[SCENARIO][DB] SCENARIO_FETCHED",
+        /// new vision
         UPDATE_DB: "[GWT][SCENARIO][DB] UPDATE_DB",
     };
     var ScenariosListStartAction = /** @class */ (function () {
@@ -278,7 +279,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var initialState$2 = {
@@ -358,7 +359,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var RuleReducers = {
@@ -369,7 +370,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var RuleConfigurationService = /** @class */ (function () {
         function RuleConfigurationService(configFile, store$$1, injector) {
@@ -412,7 +413,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var GwtScenarioModel = /** @class */ (function () {
         function GwtScenarioModel(_a) {
@@ -450,7 +451,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var StepLoaderDirective = /** @class */ (function () {
         function StepLoaderDirective(resolver, container) {
@@ -486,6 +487,7 @@
                     debugger;
                     throw new Error("Trying to use an unsupported type ().\n\t\t  Supported types: ");
                 }
+                // TODO: fix generic type
                 /** @type {?} */
                 var component = this.resolver.resolveComponentFactory(this.step.stepComponent);
                 this.component = this.container.createComponent(component);
@@ -495,6 +497,8 @@
         StepLoaderDirective.decorators = [
             { type: core.Directive, args: [{
                         selector: "[rule-step-loader]"
+                        // templateUrl: "./step-loader.component.html",
+                        // styleUrls: [ "./step-loader.component.css" ]
                     },] }
         ];
         /** @nocollapse */
@@ -513,7 +517,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ScenarioService = /** @class */ (function () {
         function ScenarioService(http$$1, store$$1, configService) {
@@ -537,7 +541,7 @@
                 var model = new GwtScenarioModel(scenario);
                 return this.http
                     .post(this.config.env.frontend_server + this.config.endpoints.upsert, model.getRequsetBody())
-                    .pipe(operators.map(function (response) { return (response); }), operators.share());
+                    .pipe(operators.map(function (response) { return ( /** @type {?} */(response)); }), operators.share());
             };
         /**
          * @param {?} anchorId
@@ -550,7 +554,7 @@
             function (anchorId) {
                 return this.http
                     .get(this.config.env.frontend_server + shared.stringTemplate(this.config.endpoints.get, { anchorId: anchorId }))
-                    .map(function (response) { return (response.Result); });
+                    .map(function (response) { return ( /** @type {?} */(response.Result)); });
             };
         /**
          * @param {?} _id
@@ -610,7 +614,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var GwtViewComponent = /** @class */ (function () {
         function GwtViewComponent(store$$1, configService, scenarioService, injector, data) {
@@ -821,7 +825,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @enum {string} */
     var GwtStepTypes = {
@@ -834,7 +838,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var RuleAnchorDirective = /** @class */ (function () {
         function RuleAnchorDirective(scenarioService, configService, store$$1, el, renderer, bottomSheet) {
@@ -876,18 +880,22 @@
                 this.hideAnchor();
             };
         /**
+         * @private
          * @return {?}
          */
         RuleAnchorDirective.prototype.showAnchor = /**
+         * @private
          * @return {?}
          */
             function () {
                 this.el.nativeElement.classList.add("show-anchor");
             };
         /**
+         * @private
          * @return {?}
          */
         RuleAnchorDirective.prototype.hideAnchor = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -900,9 +908,9 @@
          * @return {?}
          */
             function () {
-                var _this = this;
                 // TODO: remove
                 // this.store.dispatch(new ShowAnchorsAction());
+                var _this = this;
                 this.anchorScenarios$ = this.scenarioService
                     .getAnchorScenarios(this.anchorId) // TODO: replace service call with ngrx action
                     .pipe(operators.takeUntil(this.unsubscribe), operators.filter(function (scenario) { return scenario !== undefined; }));
@@ -1080,19 +1088,15 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ScenariosDbEffects = /** @class */ (function () {
         function ScenariosDbEffects(actions$, service) {
             var _this = this;
             this.actions$ = actions$;
             this.service = service;
-            this.EditProfileRequest$ = this.actions$
-                .ofType(ScenariosListActionTypes.SCENARIOS_LIST)
-                .pipe(operators.map(function () { return new ScenariosListStartAction(); }));
-            this.UpsertScenario$ = this.actions$
-                .ofType(ScenariosListActionTypes.UPSERT)
-                .pipe(operators.map(function (action) { return action.payload; }), operators.switchMap(function (scenario) { return _this.service.upsert(scenario); }), operators.map(function (scenario) { return new ScenarioFechedAction(scenario); }));
+            this.EditProfileRequest$ = this.actions$.pipe(effects.ofType(ScenariosListActionTypes.SCENARIOS_LIST), operators.map(function () { return new ScenariosListStartAction(); }));
+            this.UpsertScenario$ = this.actions$.pipe(effects.ofType(ScenariosListActionTypes.UPSERT), operators.pluck("payload"), operators.switchMap(function (scenario) { return _this.service.upsert(scenario); }), operators.map(function (scenario) { return new ScenarioFechedAction(scenario); }));
         }
         ScenariosDbEffects.decorators = [
             { type: core.Injectable }
@@ -1117,12 +1121,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var RulesListEffects = /** @class */ (function () {
         function RulesListEffects(actions$) {
             this.actions$ = actions$;
-            this.EditProfileRequest$ = this.actions$.ofType(RulesListActionTypes.RULES_LIST).map(function () { return new RulesListStartAction(); });
+            this.EditProfileRequest$ = this.actions$.pipe(effects.ofType(RulesListActionTypes.RULES_LIST), operators.map(function () { return new RulesListStartAction(); }));
         }
         RulesListEffects.decorators = [
             { type: core.Injectable }
@@ -1142,7 +1146,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var GwtModeButtonComponent = /** @class */ (function () {
         function GwtModeButtonComponent(store$$1) {
@@ -1184,7 +1188,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var RuleService = /** @class */ (function () {
         function RuleService(http$$1, store$$1, configurationService) {
@@ -1208,7 +1212,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var RuleModule = /** @class */ (function () {
         function RuleModule() {
@@ -1283,12 +1287,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.RuleModule = RuleModule;

@@ -11,17 +11,17 @@ import { createSelector, createFeatureSelector, Store, StoreModule } from '@ngrx
 import { __decorate, __metadata } from 'tslib';
 import { Injectable, Component, NgModule, defineInjectable, inject } from '@angular/core';
 import { Observable as Observable$1 } from 'rxjs/Observable';
-import { Actions, Effect, EffectsModule } from '@ngrx/effects';
+import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
 import { of } from 'rxjs/observable/of';
-import { map, switchMap, catchError } from 'rxjs/operators';
+import { map, switchMap, catchError, pluck } from 'rxjs/operators';
 import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
-var SourceActionTypes = {
+const SourceActionTypes = {
     SOURCE_SUBMIT: "[SOURCE] source submit",
     SOURCE_SUBMIT_SUCCEED: "[SOURCE] source submit succeed",
     SOURCE_SUBMIT_FAILED: "[SOURCE] source submit failed",
@@ -48,7 +48,7 @@ class SourceSubmitFailed {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 const ɵ0 = [];
 /** @type {?} */
@@ -75,37 +75,36 @@ function Reducer(state = initialState, action) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const SourceReducers = {
     sources: Reducer
 };
+//#region selectors
 /** @type {?} */
 const selectSourceState = createFeatureSelector("source");
+//#endregion
 /** @type {?} */
 const getSourceList = createSelector(selectSourceState, (state) => state.list);
-//export const getSourceListData = createSelector(
-//        getSourceList,
-//        sourceList.getSourceListData
-//);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetSourcesApiModel;
 (function (GetSourcesApiModel) {
+    // export class Request implements HttpRequestBaseModel<Request> {
     class Request {
         /**
          * @param {?=} initValue
          */
-        constructor(initValue = /** @type {?} */ ({})) {
+        constructor(initValue = (/** @type {?} */ ({}))) {
             Object.keys(initValue).forEach(key => (this[key] = initValue[key]));
         }
         /**
@@ -124,15 +123,16 @@ var GetSourcesApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UpsertSourceApiModel;
 (function (UpsertSourceApiModel) {
+    // export class Request implements HttpRequestBaseModel<Request> {
     class Request {
         /**
          * @param {?=} initValue
          */
-        constructor(initValue = /** @type {?} */ ({})) {
+        constructor(initValue = (/** @type {?} */ ({}))) {
             Object.keys(initValue).forEach(key => (this[key] = initValue[key]));
         }
         /**
@@ -169,12 +169,12 @@ var UpsertSourceApiModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SourceService {
     /**
@@ -251,7 +251,7 @@ SourceService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SourceModuleContainerComponent {
     /**
@@ -278,8 +278,9 @@ SourceModuleContainerComponent.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+//import { SourceUpsertAction } from 'app/actions';
 class SourceListComponent {
     /**
      * @param {?} sourceService
@@ -313,12 +314,12 @@ SourceListComponent.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SourceUpsertComponent {
     /**
@@ -336,7 +337,7 @@ class SourceUpsertComponent {
         this.formGroup = UpsertSourceApiModel.Request.formGroup;
         this.types = ["critical", "goal"];
         // this.sources = this.sourceService.getSources();
-        this.thresholds = (/** @type {?} */ (this.formGroup.controls["Thresholds"])).controls;
+        this.thresholds = ((/** @type {?} */ (this.formGroup.controls.Thresholds))).controls;
         this.route.params.subscribe(params => {
             /** @type {?} */
             const sourceId = params["id"];
@@ -366,7 +367,7 @@ class SourceUpsertComponent {
      */
     addItem(Name = "", Formula = "", Message = "", Type = "critical") {
         /** @type {?} */
-        const control = /** @type {?} */ (this.formGroup.controls["Thresholds"]);
+        const control = (/** @type {?} */ (this.formGroup.controls["Thresholds"]));
         control.push(new FormGroup({
             Name: new FormControl(Name, [Validators.required]),
             Formula: new FormControl(Formula, [Validators.required]),
@@ -385,7 +386,7 @@ class SourceUpsertComponent {
      */
     removeItem(i) {
         /** @type {?} */
-        const control = /** @type {?} */ (this.formGroup.controls["Thresholds"]);
+        const control = (/** @type {?} */ (this.formGroup.controls["Thresholds"]));
         control.removeAt(i);
     }
     /**
@@ -425,7 +426,7 @@ SourceUpsertComponent.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const routes = [
@@ -453,7 +454,7 @@ const RoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SourceEffects {
     /**
@@ -465,12 +466,12 @@ class SourceEffects {
         this.actions$ = actions$;
         this.router = router;
         this.sourceService = sourceService;
-        this.afterSubmitSource$ = this.actions$.ofType(SourceActionTypes.SOURCE_SUBMIT).pipe(map(action => action.payload), switchMap((data) => {
+        this.afterSubmitSource$ = this.actions$.pipe(ofType(SourceActionTypes.SOURCE_SUBMIT), pluck("payload"), switchMap((data) => {
             return this.sourceService
                 .upsertSource(data)
                 .pipe(map(res => new SourceSubmitSucceed()), catchError(() => of(new SourceSubmitFailed())));
         }));
-        this.SigninSucceed$ = this.actions$.ofType(SourceActionTypes.SOURCE_SUBMIT_SUCCEED).pipe(switchMap(() => {
+        this.SigninSucceed$ = this.actions$.pipe(ofType(SourceActionTypes.SOURCE_SUBMIT_SUCCEED), switchMap(() => {
             this.router.navigate(["source"]);
             return Observable$1.empty();
         }));
@@ -496,7 +497,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SourceModule {
 }
@@ -539,15 +540,12 @@ SourceModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-//services
-//actions
-//components
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { SourceModule, SourceEffects as ɵi, SourceReducers as ɵa, Reducer as ɵb, SourceService as ɵe, SourceListComponent as ɵf, SourceModuleContainerComponent as ɵd, SourceUpsertComponent as ɵg, RoutingModule as ɵc };

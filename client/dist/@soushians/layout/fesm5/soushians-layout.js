@@ -13,7 +13,7 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/empty';
-import { Actions, Effect, EffectsModule } from '@ngrx/effects';
+import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
 import { SigninService, DoSignoutAction } from '@soushians/authentication';
 import { RuleModule } from '@soushians/rule';
 import { InjectionToken, Injectable, Inject, Component, Input, Output, EventEmitter, ViewChild, HostListener, NgModule, LOCALE_ID, HostBinding, defineInjectable, inject } from '@angular/core';
@@ -28,7 +28,7 @@ import { map, combineLatest, withLatestFrom } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var OPEN_SIDENAV = "[Layout] Open Sidenav";
@@ -134,7 +134,7 @@ var ToggleFullscreenAction = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var initialState = {
@@ -147,7 +147,7 @@ var initialState = {
     layoutMode: "default",
     title: "",
     menuItems: [],
-    signoutAction: /** @type {?} */ ({}),
+    signoutAction: (/** @type {?} */ ({})),
     fullscreen: false
 };
 /**
@@ -212,7 +212,7 @@ var getFullscreenMode = function (state$$1) { return state$$1.fullscreen; };
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var ToolbarActionTypes = {
@@ -269,12 +269,12 @@ var InvisibleToolbarAction = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var initialState$1 = {
@@ -324,15 +324,17 @@ var getToolbarMode = function (state$$1) { return state$$1.mode; };
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var LayoutReducers = {
     layout: Reducer,
     toolbar: Reducer$1
 };
+//#region selectors
 /** @type {?} */
 var selectLayoutState = createFeatureSelector("layout");
+//#endregion
 /** @type {?} */
 var getLayout = createSelector(selectLayoutState, function (state$$1) { return state$$1.layout; });
 /** @type {?} */
@@ -349,15 +351,15 @@ var getShowSecondSidebarStatus$1 = createSelector(getLayout, getShowSecondSideba
 var getSecondSidebarMode$1 = createSelector(getLayout, getSecondSidebarMode);
 /** @type {?} */
 var getFullscreenMode$1 = createSelector(getLayout, getFullscreenMode);
+//#region toolbar
 /** @type {?} */
 var getLayoutToolbar = createSelector(selectLayoutState, function (state$$1) { return state$$1.toolbar; });
 /** @type {?} */
 var getLayoutToolbarMode = createSelector(getLayoutToolbar, getToolbarMode);
-//#endregion
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var menu_item_authorization_operator = function (_a) {
@@ -386,7 +388,7 @@ var MODULE_DEFAULT_CONFIG = {
     // | "without-margin" | "default",
     title: "",
     menuItems: [],
-    signoutAction: /** @type {?} */ ({}),
+    signoutAction: (/** @type {?} */ ({})),
     menu_item_authorization_operator: menu_item_authorization_operator
 };
 /** @type {?} */
@@ -394,7 +396,7 @@ var MODULE_CONFIG_TOKEN = new InjectionToken("LayoutModuleConfigModel");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var LayoutConfigurationService = /** @class */ (function () {
     function LayoutConfigurationService(configFile, store) {
@@ -440,7 +442,7 @@ var LayoutConfigurationService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var MainMenuComponent = /** @class */ (function () {
     function MainMenuComponent(store, signinService, configurationService) {
@@ -509,7 +511,7 @@ var MainMenuComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SearchBoxComponent = /** @class */ (function () {
     function SearchBoxComponent() {
@@ -536,7 +538,7 @@ var SearchBoxComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var LogoContainerComponent = /** @class */ (function () {
     function LogoContainerComponent(sdf) {
@@ -558,7 +560,7 @@ var LogoContainerComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ToolbarMenuComponent = /** @class */ (function () {
     function ToolbarMenuComponent(document, _location, store, configurationService) {
@@ -870,7 +872,7 @@ var ToolbarMenuComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FooterComponent = /** @class */ (function () {
     function FooterComponent() {
@@ -899,7 +901,7 @@ var FooterComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var TitleComponent = /** @class */ (function () {
     function TitleComponent(store, router) {
@@ -971,7 +973,7 @@ var TitleComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NgsLayoutMainComponent = /** @class */ (function () {
     function NgsLayoutMainComponent(store, router, configService, translateService, userFacadeService) {
@@ -990,7 +992,7 @@ var NgsLayoutMainComponent = /** @class */ (function () {
             _this.theme_B = config.theme == "theme_B";
         });
         this.store.dispatch(new ChangeSideNavMode("push"));
-        this.user$ = this.store.select(function (s) { return (/** @type {?} */ (s)).user.user.data; });
+        this.user$ = this.store.select(function (s) { return ((/** @type {?} */ (s))).user.user.data; });
         this.displayName$ = this.userFacadeService.getDisplayName();
         this.showMainSidenav = this.store.select(getShowMainSidenav$1);
         this.mainSidenavMode = this.store.select(getMainSideNavMode$1);
@@ -1006,10 +1008,10 @@ var NgsLayoutMainComponent = /** @class */ (function () {
         this.router.events.filter(function (data) { return data instanceof NavigationEnd; }).subscribe(function (event) {
             /** @type {?} */
             var hideSituations = [
-                (/** @type {?} */ (event)).urlAfterRedirects == "/auth/signin",
-                (/** @type {?} */ (event)).urlAfterRedirects == "/auth/signup/register",
-                (/** @type {?} */ (event)).urlAfterRedirects == "/auth/signup/verification",
-                (/** @type {?} */ (event)).urlAfterRedirects == "/user/password/reset"
+                ((/** @type {?} */ (event))).urlAfterRedirects == "/auth/signin",
+                ((/** @type {?} */ (event))).urlAfterRedirects == "/auth/signup/register",
+                ((/** @type {?} */ (event))).urlAfterRedirects == "/auth/signup/verification",
+                ((/** @type {?} */ (event))).urlAfterRedirects == "/user/password/reset"
             ];
             if (hideSituations.some(function (i) { return i; }))
                 _this.showSidebarMenu.next(false);
@@ -1020,10 +1022,17 @@ var NgsLayoutMainComponent = /** @class */ (function () {
     // ngAfterViewInit() {
     // 	this.store.dispatch(new ChangeLayout("with-margin"));
     // }
+    // ngAfterViewInit() {
+    // 	this.store.dispatch(new ChangeLayout("with-margin"));
+    // }
     /**
      * @return {?}
      */
-    NgsLayoutMainComponent.prototype.onSecondSidebarClosedStart = /**
+    NgsLayoutMainComponent.prototype.onSecondSidebarClosedStart = 
+    // ngAfterViewInit() {
+    // 	this.store.dispatch(new ChangeLayout("with-margin"));
+    // }
+    /**
      * @return {?}
      */
     function () {
@@ -1097,19 +1106,17 @@ var NgsLayoutMainComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var LayoutEffects = /** @class */ (function () {
     function LayoutEffects(actions$, router, store) {
         this.actions$ = actions$;
         this.router = router;
         this.store = store;
-        this.DoSignout$ = this.actions$.ofType(LayoutActionTypes.DO_SIGNOUT).pipe(map(function () { return new DoSignoutAction(); }));
-        this.fullscreen$ = this.actions$.ofType(LayoutActionTypes.FULLSCREEN).pipe(map(function () { return new InvisibleToolbarAction(); }));
-        this.exit_fullscreen$ = this.actions$
-            .ofType(LayoutActionTypes.EXIT_FULLSCREEN)
-            .pipe(map(function () { return new VisibleToolbarAction(); }));
-        this.fullscren_toolbar$ = this.actions$.ofType(LayoutActionTypes.TOGGLE_FULLSCREEN).pipe(withLatestFrom(this.store.select(getFullscreenMode$1)), map(function (_a) {
+        this.DoSignout$ = this.actions$.pipe(ofType(LayoutActionTypes.DO_SIGNOUT), map(function () { return new DoSignoutAction(); }));
+        this.fullscreen$ = this.actions$.pipe(ofType(LayoutActionTypes.FULLSCREEN), map(function () { return new InvisibleToolbarAction(); }));
+        this.exit_fullscreen$ = this.actions$.pipe(ofType(LayoutActionTypes.EXIT_FULLSCREEN), map(function () { return new VisibleToolbarAction(); }));
+        this.fullscren_toolbar$ = this.actions$.pipe(ofType(LayoutActionTypes.TOGGLE_FULLSCREEN), withLatestFrom(this.store.select(getFullscreenMode$1)), map(function (_a) {
             var _b = __read(_a, 2), action = _b[0], toolbarMode = _b[1];
             if (toolbarMode)
                 return new ExitFullscreenAction();
@@ -1147,7 +1154,7 @@ var LayoutEffects = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ToolbarMenuThemeBComponent = /** @class */ (function () {
     function ToolbarMenuThemeBComponent(document, _location, store, translateService, configurationService) {
@@ -1455,7 +1462,7 @@ var ToolbarMenuThemeBComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NgsLayoutModule = /** @class */ (function () {
     function NgsLayoutModule() {
@@ -1548,7 +1555,7 @@ var RootNgsLayoutModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var LayoutOutlets = {
@@ -1562,12 +1569,12 @@ var LayoutOutlets = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { LayoutActionTypes, TitleChangedAction, OpenSidenavAction, CloseSidenavAction, ChangeSideNavMode, ChangeLayout, CloseSecondSidenavAction, ChangeSecondSidenavMode, OpenSecondSidenavAction, ChangeToolbatToComfortableModeAction, ChangeToolbatToCompactModeAction, DisableComfortableModeAction, EnableComfortableModeAction, VisibleToolbarAction, FullscreenAction, ExitFullscreenAction, InvisibleToolbarAction, ToggleFullscreenAction, NgsLayoutMainComponent, LayoutOutlets, NgsLayoutModule, RootNgsLayoutModule, MODULE_DEFAULT_CONFIG, MODULE_CONFIG_TOKEN, FooterComponent as ɵh, LogoContainerComponent as ɵe, MainMenuComponent as ɵa, SearchBoxComponent as ɵd, TitleComponent as ɵi, ToolbarMenuThemeBComponent as ɵg, ToolbarMenuComponent as ɵf, LayoutEffects as ɵn, LayoutReducers as ɵj, Reducer as ɵl, Reducer$1 as ɵm, LayoutConfigurationService as ɵc };

@@ -14,7 +14,7 @@ import { MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, 
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GivenUserIsAuthenticatedStepComponent {
     constructor() {
@@ -47,7 +47,7 @@ GivenUserIsAuthenticatedStepComponent.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class IfUserIsAuthenticatedGwtGivenStep {
     /**
@@ -79,7 +79,7 @@ class IfUserIsAuthenticatedGwtGivenStep {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class IfUserHaveRoleGwtGivenStepComponent {
     constructor() {
@@ -112,7 +112,7 @@ IfUserHaveRoleGwtGivenStepComponent.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class IfUserHaveRoleGwtGivenStep {
     /**
@@ -139,18 +139,18 @@ class IfUserHaveRoleGwtGivenStep {
             .pipe(filter(user => !!user.Roles), filter(user => user.Roles.length > 0));
         return user$.pipe(map(user => {
             debugger;
-            return !(/** @type {?} */ (user)).Roles.map(item => item.toLowerCase()).includes(params.role.toLowerCase());
+            return !((/** @type {?} */ (user))).Roles.map(item => item.toLowerCase()).includes(params.role.toLowerCase());
         }));
     }
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GwtThenAuthorizeStepComponent {
     constructor() {
-        this.params$ = new BehaviorSubject(/** @type {?} */ ({}));
+        this.params$ = new BehaviorSubject((/** @type {?} */ ({})));
         this.formGroup = this._create_formGroup();
         this.params$.subscribe(params => this.formGroup.patchValue(params));
     }
@@ -191,7 +191,7 @@ GwtThenAuthorizeStepComponent.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GwtThenAuthorizeStep {
     /**
@@ -222,7 +222,7 @@ class GwtThenAuthorizeStep {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GwtStepsModule {
 }
@@ -268,12 +268,12 @@ GwtStepsModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { IfUserIsAuthenticatedGwtGivenStep, IfUserHaveRoleGwtGivenStep, GwtThenAuthorizeStep, GwtStepsModule, GivenUserIsAuthenticatedStepComponent as ɵc, IfUserHaveRoleGwtGivenStepComponent as ɵb, GwtThenAuthorizeStepComponent as ɵa };
