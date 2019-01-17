@@ -10,7 +10,7 @@ import { BehaviorSubject as BehaviorSubject$1 } from 'rxjs/Rx';
 import { stringTemplate } from '@soushians/shared';
 import { __decorate, __metadata, __assign } from 'tslib';
 import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
-import { filter, map, startWith, share, takeUntil, switchMap, pluck } from 'rxjs/operators';
+import { filter, map, startWith, share, takeUntil, switchMap } from 'rxjs/operators';
 import { getFrontendAuthenticationState } from '@soushians/frontend-authentication';
 import { InjectionToken, Component, Injectable, Inject, Injector, Input, ViewContainerRef, ComponentFactoryResolver, ViewChild, Directive, ViewChildren, HostListener, ElementRef, Renderer2, NgModule } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -486,6 +486,7 @@ var ScenarioService = /** @class */ (function () {
         this.http = http;
         this.store = store;
         this.configService = configService;
+        this.scenarios = {};
         this.config$ = this.configService.config$;
         this.config$.subscribe(function (config) { return (_this.config = config); });
     }
@@ -513,9 +514,15 @@ var ScenarioService = /** @class */ (function () {
      * @return {?}
      */
     function (anchorId) {
-        return this.http
-            .get(this.config.env.frontend_server + stringTemplate(this.config.endpoints.get, { anchorId: anchorId }))
-            .map(function (response) { return (/** @type {?} */ (response.Result)); });
+        var _this = this;
+        if (!this.scenarios[anchorId]) {
+            this.scenarios[anchorId] = new BehaviorSubject$1([]);
+            this.http
+                .get(this.config.env.frontend_server + stringTemplate(this.config.endpoints.get, { anchorId: anchorId }))
+                .pipe(map(function (response) { return (/** @type {?} */ (response.Result)); }))
+                .subscribe(function (scenarios) { return _this.scenarios[anchorId].next(scenarios); });
+        }
+        return this.scenarios[anchorId];
     };
     /**
      * @param {?} _id
@@ -819,6 +826,8 @@ var RuleAnchorDirective = /** @class */ (function () {
      * @return {?}
      */
     function () {
+        debugger;
+        this.el;
         if (!this.active) {
             return;
         }
@@ -831,10 +840,13 @@ var RuleAnchorDirective = /** @class */ (function () {
      * @return {?}
      */
     function () {
+        var _this = this;
         if (!this.active) {
             return;
         }
-        this.hideAnchor();
+        setTimeout(function () {
+            _this.hideAnchor();
+        }, 999);
     };
     /**
      * @private
@@ -1051,7 +1063,7 @@ var ScenariosDbEffects = /** @class */ (function () {
         this.actions$ = actions$;
         this.service = service;
         this.EditProfileRequest$ = this.actions$.pipe(ofType(ScenariosListActionTypes.SCENARIOS_LIST), map(function () { return new ScenariosListStartAction(); }));
-        this.UpsertScenario$ = this.actions$.pipe(ofType(ScenariosListActionTypes.UPSERT), pluck("payload"), switchMap(function (scenario) { return _this.service.upsert(scenario); }), map(function (scenario) { return new ScenarioFechedAction(scenario); }));
+        this.UpsertScenario$ = this.actions$.pipe(ofType(ScenariosListActionTypes.UPSERT), map(function (action) { return action.payload; }), switchMap(function (scenario) { return _this.service.upsert(scenario); }), map(function (scenario) { return new ScenarioFechedAction(scenario); }));
     }
     ScenariosDbEffects.decorators = [
         { type: Injectable }

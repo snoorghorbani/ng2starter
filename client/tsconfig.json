@@ -36,7 +36,8 @@
         "dist/@soushians/frontend-authentication"
       ],
       "@soushians/grid": [
-        "dist/@soushians/grid"
+        // "dist/@soushians/grid"
+        "projects/soushians/grid/src/public_api"
       ],
       "@soushians/gwt-steps": [
         "dist/@soushians/gwt-steps"

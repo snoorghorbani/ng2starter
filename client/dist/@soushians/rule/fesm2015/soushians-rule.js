@@ -10,7 +10,7 @@ import { BehaviorSubject as BehaviorSubject$1 } from 'rxjs/Rx';
 import { stringTemplate } from '@soushians/shared';
 import { __decorate, __metadata } from 'tslib';
 import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
-import { filter, map, startWith, share, takeUntil, switchMap, pluck } from 'rxjs/operators';
+import { filter, map, startWith, share, takeUntil, switchMap } from 'rxjs/operators';
 import { getFrontendAuthenticationState } from '@soushians/frontend-authentication';
 import { InjectionToken, Component, Injectable, Inject, Injector, Input, ViewContainerRef, ComponentFactoryResolver, ViewChild, Directive, ViewChildren, HostListener, ElementRef, Renderer2, NgModule } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -473,6 +473,7 @@ class ScenarioService {
         this.http = http;
         this.store = store;
         this.configService = configService;
+        this.scenarios = {};
         this.config$ = this.configService.config$;
         this.config$.subscribe(config => (this.config = config));
     }
@@ -492,9 +493,14 @@ class ScenarioService {
      * @return {?}
      */
     getAnchorScenarios(anchorId) {
-        return this.http
-            .get(this.config.env.frontend_server + stringTemplate(this.config.endpoints.get, { anchorId }))
-            .map(response => (/** @type {?} */ (response.Result)));
+        if (!this.scenarios[anchorId]) {
+            this.scenarios[anchorId] = new BehaviorSubject$1([]);
+            this.http
+                .get(this.config.env.frontend_server + stringTemplate(this.config.endpoints.get, { anchorId }))
+                .pipe(map(response => (/** @type {?} */ (response.Result))))
+                .subscribe(scenarios => this.scenarios[anchorId].next(scenarios));
+        }
+        return this.scenarios[anchorId];
     }
     /**
      * @param {?} _id
@@ -752,6 +758,8 @@ class RuleAnchorDirective {
      * @return {?}
      */
     onMouseEnter() {
+        debugger;
+        this.el;
         if (!this.active) {
             return;
         }
@@ -764,7 +772,9 @@ class RuleAnchorDirective {
         if (!this.active) {
             return;
         }
-        this.hideAnchor();
+        setTimeout(() => {
+            this.hideAnchor();
+        }, 999);
     }
     /**
      * @private
@@ -944,7 +954,7 @@ class ScenariosDbEffects {
         this.actions$ = actions$;
         this.service = service;
         this.EditProfileRequest$ = this.actions$.pipe(ofType(ScenariosListActionTypes.SCENARIOS_LIST), map(() => new ScenariosListStartAction()));
-        this.UpsertScenario$ = this.actions$.pipe(ofType(ScenariosListActionTypes.UPSERT), pluck("payload"), switchMap((scenario) => this.service.upsert(scenario)), map(scenario => new ScenarioFechedAction(scenario)));
+        this.UpsertScenario$ = this.actions$.pipe(ofType(ScenariosListActionTypes.UPSERT), map(action => action.payload), switchMap(scenario => this.service.upsert(scenario)), map(scenario => new ScenarioFechedAction(scenario)));
     }
 }
 ScenariosDbEffects.decorators = [

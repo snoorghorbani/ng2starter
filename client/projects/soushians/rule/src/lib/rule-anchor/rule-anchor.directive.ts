@@ -39,14 +39,22 @@ export class RuleAnchorDirective implements OnInit, OnDestroy {
 
 	@HostListener("mouseenter")
 	onMouseEnter() {
-		if (!this.active) { return; }
+		debugger;
+		this.el;
+		if (!this.active) {
+			return;
+		}
 		this.showAnchor();
 	}
 
 	@HostListener("mouseleave")
 	onMouseLeave() {
-		if (!this.active) { return; }
-		this.hideAnchor();
+		if (!this.active) {
+			return;
+		}
+		setTimeout(() => {
+			this.hideAnchor();
+		}, 999);
 	}
 
 	private showAnchor() {
@@ -64,7 +72,11 @@ export class RuleAnchorDirective implements OnInit, OnDestroy {
 			.getAnchorScenarios(this.anchorId) // TODO: replace service call with ngrx action
 			.pipe(takeUntil(this.unsubscribe), filter(scenario => scenario !== undefined));
 		this.active$.subscribe(active => {
-			if (active) { this._activate_anchor(); } else { this._deactivate_anchor(); }
+			if (active) {
+				this._activate_anchor();
+			} else {
+				this._deactivate_anchor();
+			}
 		});
 		this.anchorScenarios$.subscribe(scenarios => {
 			scenarios.forEach(scenario => {
@@ -119,7 +131,9 @@ export class RuleAnchorDirective implements OnInit, OnDestroy {
 		this.renderer.appendChild(this.el.nativeElement, this.button);
 	}
 	_remove_anchor() {
-		if (!this.button) { return; }
+		if (!this.button) {
+			return;
+		}
 		this.button.parentNode.removeChild(this.button);
 	}
 	_do_scenario(_scenario: GwtScenarioModel) {
@@ -142,9 +156,11 @@ export class RuleAnchorDirective implements OnInit, OnDestroy {
 						return combineLatest
 							.apply(null, thenStepInterpretors)
 							.pipe(map((values: boolean[]) => values.every(value => value === true)));
-					} else { return of(false); }
+					} else {
+						return of(false);
+					}
 				})
 			)
-			.subscribe(() => { });
+			.subscribe(() => {});
 	}
 }

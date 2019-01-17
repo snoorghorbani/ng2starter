@@ -1,11 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from "@ngrx/effects";
-import { map, switchMap, pluck } from "rxjs/operators";
+import { map, switchMap } from "rxjs/operators";
 import { Observable } from "rxjs";
 
 import { ScenariosListActionTypes, ScenariosListStartAction, ScenarioFechedAction } from "./scenario-db.actions";
 import { ScenarioService } from "../services/scenario.service";
-import { GwtScenarioModel } from "../models/gwt-scenario.model";
 
 @Injectable()
 export class ScenariosDbEffects {
@@ -19,9 +18,9 @@ export class ScenariosDbEffects {
 
 	@Effect()
 	UpsertScenario$ = this.actions$.pipe(
-		ofType(ScenariosListActionTypes.UPSERT),
-		pluck("payload"),
-		switchMap((scenario: GwtScenarioModel) => this.service.upsert(scenario)),
+		ofType<any>(ScenariosListActionTypes.UPSERT),
+		map(action => action.payload),
+		switchMap(scenario => this.service.upsert(scenario)),
 		map(scenario => new ScenarioFechedAction(scenario))
 	);
 

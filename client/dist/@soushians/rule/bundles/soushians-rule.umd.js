@@ -525,6 +525,7 @@
             this.http = http$$1;
             this.store = store$$1;
             this.configService = configService;
+            this.scenarios = {};
             this.config$ = this.configService.config$;
             this.config$.subscribe(function (config) { return (_this.config = config); });
         }
@@ -552,9 +553,15 @@
          * @return {?}
          */
             function (anchorId) {
-                return this.http
-                    .get(this.config.env.frontend_server + shared.stringTemplate(this.config.endpoints.get, { anchorId: anchorId }))
-                    .map(function (response) { return ( /** @type {?} */(response.Result)); });
+                var _this = this;
+                if (!this.scenarios[anchorId]) {
+                    this.scenarios[anchorId] = new Rx.BehaviorSubject([]);
+                    this.http
+                        .get(this.config.env.frontend_server + shared.stringTemplate(this.config.endpoints.get, { anchorId: anchorId }))
+                        .pipe(operators.map(function (response) { return ( /** @type {?} */(response.Result)); }))
+                        .subscribe(function (scenarios) { return _this.scenarios[anchorId].next(scenarios); });
+                }
+                return this.scenarios[anchorId];
             };
         /**
          * @param {?} _id
@@ -862,6 +869,8 @@
          * @return {?}
          */
             function () {
+                debugger;
+                this.el;
                 if (!this.active) {
                     return;
                 }
@@ -874,10 +883,13 @@
          * @return {?}
          */
             function () {
+                var _this = this;
                 if (!this.active) {
                     return;
                 }
-                this.hideAnchor();
+                setTimeout(function () {
+                    _this.hideAnchor();
+                }, 999);
             };
         /**
          * @private
@@ -1096,7 +1108,7 @@
             this.actions$ = actions$;
             this.service = service;
             this.EditProfileRequest$ = this.actions$.pipe(effects.ofType(ScenariosListActionTypes.SCENARIOS_LIST), operators.map(function () { return new ScenariosListStartAction(); }));
-            this.UpsertScenario$ = this.actions$.pipe(effects.ofType(ScenariosListActionTypes.UPSERT), operators.pluck("payload"), operators.switchMap(function (scenario) { return _this.service.upsert(scenario); }), operators.map(function (scenario) { return new ScenarioFechedAction(scenario); }));
+            this.UpsertScenario$ = this.actions$.pipe(effects.ofType(ScenariosListActionTypes.UPSERT), operators.map(function (action) { return action.payload; }), operators.switchMap(function (scenario) { return _this.service.upsert(scenario); }), operators.map(function (scenario) { return new ScenarioFechedAction(scenario); }));
         }
         ScenariosDbEffects.decorators = [
             { type: core.Injectable }

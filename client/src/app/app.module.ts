@@ -63,7 +63,7 @@ import { DashboardModule } from "./dashboard/dashboard.module";
 
 		SharedModule,
 		SourceModule,
-		// NgsFrontendAuthenticationModule.forRoot(NgsFrontendAuthenticationModuleConfig),
+		NgsFrontendAuthenticationModule.forRoot(NgsFrontendAuthenticationModuleConfig),
 		NgsUserModule.forRoot(NgsUserModuleConfig),
 		NgsAuthenticationModule.forRoot(NgsAuthenticationModuleConfig),
 		NgsDiagramModule.forRoot(NgsDiagramModuleConfig),
