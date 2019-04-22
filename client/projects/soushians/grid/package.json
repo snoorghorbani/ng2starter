@@ -1,6 +1,6 @@
 {
-    "name": "@soushians/grid",
-    "version": "7.7.0",
-    "peerDependencies": {},
-    "devDependencies": {}
+	"name": "@soushians/grid",
+	"version": "7.7.1",
+	"peerDependencies": {},
+	"devDependencies": {}
 }

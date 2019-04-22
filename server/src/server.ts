@@ -67,16 +67,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 
-const originsWhitelist = [process.env.TEST_SERVER_ADDRESS, process.env.SERVER_ADDRESS];
+const originsWhitelist = [ process.env.TEST_SERVER_ADDRESS, process.env.SERVER_ADDRESS ];
 const corsOptions = {
-	origin: function (origin: any, callback: any) {
+	origin: function(origin: any, callback: any) {
 		const isWhitelisted = originsWhitelist.indexOf(origin) !== -1;
 		callback(undefined, isWhitelisted);
 	},
 	credentials: true
 };
 app.use(cors(corsOptions));
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
 	res.setHeader("Vary", "origin");
 	next();
 });
@@ -96,9 +96,7 @@ if (app.get("env") === "production") {
 	app.set("trust proxy", 1); // trust first proxy
 	(sess.cookie as any).secure = true; // serve secure cookies
 }
-app.use(
-	express_session(sess)
-);
+app.use(express_session(sess));
 // app.use(cookieSession({
 //   name: "session",
 //   keys: ["key1"],
