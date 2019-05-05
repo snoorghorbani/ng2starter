@@ -133,6 +133,7 @@
         server: "frontend_server",
         endpoints: {
             signOut: "",
+            signOutMethod: "get",
             signIn: "",
             signUp: "",
             whoAmI: ""
@@ -278,9 +279,7 @@
          */
             function (model) {
                 var _this = this;
-                return this.configurationService.config$.pipe(operators.filter(function (config$$1) { return config$$1.endpoints.signIn != ""; }), operators.take(1), operators.switchMap(function (config$$1) {
-                    return _this.http.post(config$$1.env[config$$1.server] + config$$1.endpoints.signIn, model);
-                }), operators.map(this.configurationService.config.responseToUser), operators.map(function (user) {
+                return this.configurationService.config$.pipe(operators.filter(function (config$$1) { return config$$1.endpoints.signIn != ""; }), operators.take(1), operators.switchMap(function (config$$1) { return _this.http.post(config$$1.env[config$$1.server] + config$$1.endpoints.signIn, model); }), operators.map(this.configurationService.config.responseToUser), operators.map(function (user) {
                     if (user.Role) {
                         user.Roles = [user.Role];
                     }
@@ -301,10 +300,18 @@
              * @return {?}
              */
             function () {
-                shared.Cookie.deleteCookie(COOKIE_NAME);
-                return this.http
-                    .get(this.configurationService.config.env[this.configurationService.config.server] + this.configurationService.config.endpoints.signOut)
-                    .pipe(operators.tap(function () {
+                /** @type {?} */
+                var config$$1 = this.configurationService.config;
+                /** @type {?} */
+                var tokenObject = JSON.parse(shared.Cookie.getCookie(COOKIE_NAME));
+                /** @type {?} */
+                var endpoint = shared.stringTemplate(config$$1.env[config$$1.server] + config$$1.endpoints.signOut, tokenObject);
+                /** @type {?} */
+                var method = config$$1.endpoints.signOutMethod || "get";
+                if (["get", "put", "post", "patch", "delete"].indexOf(method) === -1) {
+                    rxjs.throwError(method + " is not valid http method. [ @starter/authentication/signinservice/singout ]");
+                }
+                return this.http[method](endpoint).pipe(operators.tap(function () {
                     shared.Cookie.deleteCookie(COOKIE_NAME);
                 }));
             };

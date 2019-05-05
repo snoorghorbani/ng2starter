@@ -148,6 +148,7 @@ var MODULE_DEFAULT_CONFIG = {
     server: "frontend_server",
     endpoints: {
         signOut: "",
+        signOutMethod: "get",
         signIn: "",
         signUp: "",
         whoAmI: ""
@@ -292,9 +293,7 @@ var SigninService = /** @class */ (function () {
      */
     function (model) {
         var _this = this;
-        return this.configurationService.config$.pipe(filter(function (config) { return config.endpoints.signIn != ""; }), take(1), switchMap(function (config) {
-            return _this.http.post(config.env[config.server] + config.endpoints.signIn, model);
-        }), map(this.configurationService.config.responseToUser), map(function (user) {
+        return this.configurationService.config$.pipe(filter(function (config) { return config.endpoints.signIn != ""; }), take(1), switchMap(function (config) { return _this.http.post(config.env[config.server] + config.endpoints.signIn, model); }), map(this.configurationService.config.responseToUser), map(function (user) {
             if (user.Role) {
                 user.Roles = [user.Role];
             }
@@ -315,10 +314,18 @@ var SigninService = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        Cookie.deleteCookie(COOKIE_NAME);
-        return this.http
-            .get(this.configurationService.config.env[this.configurationService.config.server] + this.configurationService.config.endpoints.signOut)
-            .pipe(tap(function () {
+        /** @type {?} */
+        var config = this.configurationService.config;
+        /** @type {?} */
+        var tokenObject = JSON.parse(Cookie.getCookie(COOKIE_NAME));
+        /** @type {?} */
+        var endpoint = stringTemplate(config.env[config.server] + config.endpoints.signOut, tokenObject);
+        /** @type {?} */
+        var method = config.endpoints.signOutMethod || "get";
+        if (["get", "put", "post", "patch", "delete"].indexOf(method) === -1) {
+            throwError(method + " is not valid http method. [ @starter/authentication/signinservice/singout ]");
+        }
+        return this.http[method](endpoint).pipe(tap(function () {
             Cookie.deleteCookie(COOKIE_NAME);
         }));
     };

@@ -151,6 +151,7 @@ const MODULE_DEFAULT_CONFIG = {
     server: "frontend_server",
     endpoints: {
         signOut: "",
+        signOutMethod: "get",
         signIn: "",
         signUp: "",
         whoAmI: ""
@@ -166,7 +167,7 @@ const MODULE_DEFAULT_CONFIG = {
     },
     afterSignoutRedirectTo: "/",
     signupValidator: value => of(true),
-    afterSignin: (user) => { },
+    afterSignin: user => { },
     responseToUser: user => user
 };
 /** @type {?} */
@@ -283,7 +284,7 @@ class SigninService {
      * @return {?}
      */
     signin(model) {
-        return this.configurationService.config$.pipe(filter(config => config.endpoints.signIn != ""), take(1), switchMap(config => this.http.post(config.env[config.server] + config.endpoints.signIn, model)), map(this.configurationService.config.responseToUser), map((user) => {
+        return this.configurationService.config$.pipe(filter(config => config.endpoints.signIn != ""), take(1), switchMap(config => this.http.post(config.env[config.server] + config.endpoints.signIn, model)), map(this.configurationService.config.responseToUser), map(user => {
             if (user.Role) {
                 user.Roles = [user.Role];
             }
@@ -291,17 +292,25 @@ class SigninService {
         }), tap(user => {
             if (this.configurationService.config.mode == "token-base")
                 Cookie.setCookie(COOKIE_NAME, JSON.stringify(user), this.configurationService.config.token.time);
-        }), tap((user) => this.configurationService.config.afterSignin(user)));
+        }), tap(user => this.configurationService.config.afterSignin(user)));
     }
     // TODO:
     /**
      * @return {?}
      */
     signout() {
-        Cookie.deleteCookie(COOKIE_NAME);
-        return this.http
-            .get(this.configurationService.config.env[this.configurationService.config.server] + this.configurationService.config.endpoints.signOut)
-            .pipe(tap(() => {
+        /** @type {?} */
+        const config = this.configurationService.config;
+        /** @type {?} */
+        const tokenObject = JSON.parse(Cookie.getCookie(COOKIE_NAME));
+        /** @type {?} */
+        const endpoint = stringTemplate(config.env[config.server] + config.endpoints.signOut, tokenObject);
+        /** @type {?} */
+        const method = config.endpoints.signOutMethod || "get";
+        if (["get", "put", "post", "patch", "delete"].indexOf(method) === -1) {
+            throwError(`${method} is not valid http method. [ @starter/authentication/signinservice/singout ]`);
+        }
+        return this.http[method](endpoint).pipe(tap(() => {
             Cookie.deleteCookie(COOKIE_NAME);
         }));
     }
