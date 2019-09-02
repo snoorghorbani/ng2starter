@@ -1,59 +1,94 @@
 {
-	"versions": [
-		{
-			"version": "6.0.44",
-			"time": "",
-			"migrationIndex": ""
-		},
-		{
-			"version": "6.0.45",
-			"time": 1533491165533,
-			"migrationIndex": "0010"
-		},
-		{
-			"version": "6.1.0",
-			"time": 1534090176277,
-			"migrationIndex": "0015"
-		},
-		{
-			"version": "6.2.0",
-			"time": 1536389283219,
-			"migrationIndex": "0020"
-		},
-		{
-			"version": "6.3.0",
-			"time": 1537195261488,
-			"migrationIndex": "0025"
-		},
-		{
-			"version": "6.4.0",
-			"time": 1537196204442,
-			"migrationIndex": "0030"
-		},
-		{
-			"version": "6.5.0",
-			"time": 1537197435714,
-			"migrationIndex": "0035"
-		},
-		{
-			"version": "6.6.0",
-			"time": 1537197435714,
-			"migrationIndex": "0040"
-		},
-		{
-			"version": "6.7.0",
-			"time": 1540466604479,
-			"migrationIndex": "0045"
-		},
-		{
-			"version": "6.8.0",
-			"time": 1540467291249,
-			"migrationIndex": "0050"
-		}
-	],
-	"currentVersion": {
-		"version": "7.0.0",
-		"time": 1540486862805,
-		"migrationIndex": "0055"
-	}
+    "versions": [
+        {
+            "version": "6.0.44",
+            "time": "",
+            "migrationIndex": ""
+        },
+        {
+            "version": "6.0.45",
+            "time": 1533491165533,
+            "migrationIndex": "0010"
+        },
+        {
+            "version": "6.1.0",
+            "time": 1534090176277,
+            "migrationIndex": "0015"
+        },
+        {
+            "version": "6.2.0",
+            "time": 1536389283219,
+            "migrationIndex": "0020"
+        },
+        {
+            "version": "6.3.0",
+            "time": 1537195261488,
+            "migrationIndex": "0025"
+        },
+        {
+            "version": "6.4.0",
+            "time": 1537196204442,
+            "migrationIndex": "0030"
+        },
+        {
+            "version": "6.5.0",
+            "time": 1537197435714,
+            "migrationIndex": "0035"
+        },
+        {
+            "version": "6.6.0",
+            "time": 1537197435714,
+            "migrationIndex": "0040"
+        },
+        {
+            "version": "6.7.0",
+            "time": 1540466604479,
+            "migrationIndex": "0045"
+        },
+        {
+            "version": "6.8.0",
+            "time": 1540467291249,
+            "migrationIndex": "0050"
+        },
+        {
+            "version": "7.0.0",
+            "time": 1540486862805,
+            "migrationIndex": "0055"
+        },
+        {
+            "version": "7.1.0",
+            "time": 1545652598676,
+            "migrationIndex": "0060"
+        },
+        {
+            "version": "7.2.0",
+            "time": 1545734967024,
+            "migrationIndex": "0065"
+        },
+        {
+            "version": "7.3.0",
+            "time": 1545737017950,
+            "migrationIndex": "0070"
+        },
+        {
+            "version": "7.4.0",
+            "time": 1545746729649,
+            "migrationIndex": "0075"
+        },
+        {
+            "version": "7.5.0",
+            "time": 1546523318567,
+            "migrationIndex": "0080"
+        },
+        {
+            "version": "7.6.0",
+            "time": 1546528599346,
+            "migrationIndex": "0085"
+        }
+    ],
+    "currentVersion": {
+        "version": "7.7.0",
+        "time": 1547487172330,
+        "migrationIndex": "0090"
+    }
 }

@@ -1,4 +1,4 @@
-import { filter, map, startWith, share } from "rxjs/operators";
+import { filter, map, startWith, share, tap } from "rxjs/operators";
 import { Observable, BehaviorSubject } from "rxjs/Rx";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
@@ -10,11 +10,13 @@ import { RuleConfigurationService } from "./rule-configuration.service";
 import { GwtScenarioModel } from "../models/gwt-scenario.model";
 import { RuleModuleConfig } from "../rule.config";
 import { AppState } from "../rule.reducers";
+import { of } from "rxjs";
 
 @Injectable()
 export class ScenarioService {
 	config$: Observable<RuleModuleConfig>;
 	config: RuleModuleConfig;
+	scenarios = {};
 	constructor(
 		private http: HttpClient,
 		private store: Store<AppState>,
@@ -30,11 +32,20 @@ export class ScenarioService {
 			.post(this.config.env.frontend_server + this.config.endpoints.upsert, model.getRequsetBody())
 			.pipe(map(response => response as GwtScenarioModel), share());
 	}
+
 	getAnchorScenarios(anchorId: string): Observable<GwtScenarioModel[]> {
-		return this.http
-			.get<any>(this.config.env.frontend_server + stringTemplate(this.config.endpoints.get, { anchorId }))
-			.map(response => response.Result as GwtScenarioModel[]);
+		if (!this.scenarios[anchorId]) {
+			this.scenarios[anchorId] = new BehaviorSubject<GwtScenarioModel[]>([]);
+
+			this.http
+				.get<any>(this.config.env.frontend_server + stringTemplate(this.config.endpoints.get, { anchorId }))
+				.pipe(map(response => response.Result as GwtScenarioModel[]))
+				.subscribe(scenarios => this.scenarios[anchorId].next(scenarios));
+		}
+
+		return this.scenarios[anchorId];
 	}
+
 	selectScenarioById(_id: string): Observable<GwtScenarioModel> {
 		const subject = new BehaviorSubject<GwtScenarioModel>(undefined);
 		this.store
@@ -51,6 +62,7 @@ export class ScenarioService {
 			});
 		return subject.asObservable();
 	}
+
 	selectAnchorScenarios(anchorId: string): Observable<GwtScenarioModel[]> {
 		const subject = new BehaviorSubject<GwtScenarioModel[]>(undefined);
 		this.store

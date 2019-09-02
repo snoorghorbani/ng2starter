@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Actions, Effect } from "@ngrx/effects";
+import { Actions, Effect, ofType } from "@ngrx/effects";
 import { map, pluck } from "rxjs/operators";
 import { Observable } from "rxjs";
 
@@ -14,12 +14,16 @@ export class GridDbEffects {
 	constructor(private actions$: Actions<any>) {}
 
 	@Effect()
-	Upsert$ = this.actions$
-		.ofType(GET_GRID_ACTION_TYPES.SUCCEED, UPSERT_GRID_ACTION_TYPES.SUCCEED)
-		.pipe(pluck("payload"), map((grid: GridModel) => new UpsertGridAction([ grid ])));
+	Upsert$ = this.actions$.pipe(
+		ofType(GET_GRID_ACTION_TYPES.SUCCEED, UPSERT_GRID_ACTION_TYPES.SUCCEED),
+		pluck("payload"),
+		map((grid: GridModel) => new UpsertGridAction([ grid ]))
+	);
 
 	@Effect()
-	UpsertMany$ = this.actions$
-		.ofType(GET_GRIDS_ACTION_TYPES.SUCCEED)
-		.pipe(pluck("payload"), map((grids: GridModel[]) => new UpsertGridAction(grids)));
+	UpsertMany$ = this.actions$.pipe(
+		ofType(GET_GRIDS_ACTION_TYPES.SUCCEED),
+		pluck("payload"),
+		map((grids: GridModel[]) => new UpsertGridAction(grids))
+	);
 }

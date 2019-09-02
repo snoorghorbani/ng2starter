@@ -2,10 +2,10 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import { Action } from "@ngrx/store";
-import { Actions, Effect } from "@ngrx/effects";
+import { Actions, Effect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { of } from "rxjs";
-import { map, switchMap } from "rxjs/operators";
+import { map, switchMap, pluck } from "rxjs/operators";
 
 import { ChangePasswordModel } from "../models/change-password.model";
 
@@ -22,13 +22,16 @@ export class ChangePasswordEffects {
 	constructor(private actions$: Actions<any>, private router: Router, private passwordService: PasswordService) {}
 
 	@Effect()
-	ChangePasswordRequest$ = this.actions$
-		.ofType(ChangePasswordActionTypes.CHANGE_PASSWORD)
-		.pipe(map(action => action.payload), map(data => new ChangePasswordStart(data)));
+	ChangePasswordRequest$ = this.actions$.pipe(
+		ofType(ChangePasswordActionTypes.CHANGE_PASSWORD),
+		pluck("payload"),
+		map((data: any) => new ChangePasswordStart(data))
+	);
 
 	@Effect()
-	RequestChangePasswordLink$ = this.actions$.ofType(ChangePasswordActionTypes.PASSWORD_CHANGED_START).pipe(
-		map(action => action.payload),
+	RequestChangePasswordLink$ = this.actions$.pipe(
+		ofType(ChangePasswordActionTypes.PASSWORD_CHANGED_START),
+		pluck("payload"),
 		switchMap((data: ChangePasswordModel.Request) => {
 			return this.passwordService
 				.changePassword(data)

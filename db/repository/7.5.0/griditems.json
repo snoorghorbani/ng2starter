@@ -1,0 +1,204 @@
+[
+    {
+        "_id": "5b7a6e4abd56e8d284f5d9d7",
+        "updatedAt": "2018-08-20T07:31:22.885Z",
+        "owner": "admin",
+        "rows": 1,
+        "cols": 1,
+        "y": 0,
+        "x": 2,
+        "__v": 0,
+        "createdAt": "2018-08-20T07:31:22.885Z"
+    },
+    {
+        "_id": "5b7a6e4abd56e8d284f5d9d8",
+        "updatedAt": "2018-08-20T07:31:22.885Z",
+        "owner": "admin",
+        "rows": 1,
+        "cols": 1,
+        "y": 0,
+        "x": 4,
+        "__v": 0,
+        "createdAt": "2018-08-20T07:31:22.885Z"
+    },
+    {
+        "_id": "5b9f74465fbd3b7598d32bde",
+        "createdAt": "2018-09-17T09:45:38.656Z",
+        "updatedAt": "2018-09-17T09:30:46.662Z",
+        "__v": 0,
+        "x": 0,
+        "y": 0,
+        "cols": 1,
+        "rows": 1,
+        "owner": null,
+        "access": "private"
+    },
+    {
+        "_id": "5b9f74a45fbd3b7598d32bdf",
+        "createdAt": "2018-09-17T09:45:38.656Z",
+        "updatedAt": "2018-09-17T09:32:20.582Z",
+        "owner": null,
+        "rows": 1,
+        "cols": 2,
+        "y": 0,
+        "x": 1,
+        "__v": 0,
+        "access": "private"
+    },
+    {
+        "_id": "5b9f74a45fbd3b7598d32be0",
+        "createdAt": "2018-09-17T09:45:38.656Z",
+        "updatedAt": "2018-09-17T09:32:20.582Z",
+        "owner": null,
+        "y": 0,
+        "x": 3,
+        "__v": 0,
+        "access": "private"
+    },
+    {
+        "_id": "5b9f74a45fbd3b7598d32be1",
+        "createdAt": "2018-09-17T09:45:38.656Z",
+        "updatedAt": "2018-09-17T09:32:20.582Z",
+        "owner": null,
+        "rows": 2,
+        "cols": 1,
+        "y": 1,
+        "x": 1,
+        "__v": 0,
+        "type": "widget",
+        "config": {
+            "oid": "5b5303c0443145bc8c1dfce9"
+        },
+        "valid": true,
+        "access": "private"
+    },
+    {
+        "_id": "5b9f74a45fbd3b7598d32be2",
+        "createdAt": "2018-09-17T09:45:38.656Z",
+        "updatedAt": "2018-09-17T09:32:20.582Z",
+        "owner": null,
+        "rows": 1,
+        "cols": 1,
+        "y": 1,
+        "x": 2,
+        "__v": 0,
+        "access": "private"
+    },
+    {
+        "_id": "5b9f74a45fbd3b7598d32be3",
+        "createdAt": "2018-09-17T09:45:38.656Z",
+        "updatedAt": "2018-09-17T09:32:20.582Z",
+        "owner": null,
+        "y": 0,
+        "x": 4,
+        "__v": 0,
+        "access": "private"
+    },
+    {
+        "_id": "5b9f74a45fbd3b7598d32be6",
+        "createdAt": "2018-09-17T09:45:38.656Z",
+        "updatedAt": "2018-09-17T09:32:20.582Z",
+        "owner": null,
+        "y": 1,
+        "x": 0,
+        "__v": 0,
+        "access": "private"
+    },
+    {
+        "_id": "5b9f74a45fbd3b7598d32be4",
+        "createdAt": "2018-09-17T09:45:38.656Z",
+        "updatedAt": "2018-09-17T09:32:20.582Z",
+        "owner": null,
+        "rows": 1,
+        "cols": 1,
+        "y": 1,
+        "x": 3,
+        "__v": 0,
+        "access": "private"
+    },
+    {
+        "_id": "5b9f82494c9c8f3a649b9357",
+        "createdAt": "2018-10-06T12:56:39.808Z",
+        "updatedAt": "2018-09-17T10:30:33.637Z",
+        "owner": "5a2fc4c9b61159868ca19d22",
+        "rows": 1,
+        "cols": 1,
+        "y": 0,
+        "x": 4,
+        "__v": 0,
+        "type": "widget",
+        "config": {
+            "oid": "5b5303c0443145bc8c1dfce9"
+        },
+        "valid": true,
+        "access": "private"
+    },
+    {
+        "_id": "5bb8a4951780b720a46a3c24",
+        "createdAt": "2018-10-06T12:56:39.808Z",
+        "updatedAt": "2018-10-06T12:03:33.980Z",
+        "owner": "5a2fc4c9b61159868ca19d22",
+        "rows": 1,
+        "cols": 2,
+        "valid": true,
+        "config": {
+            "diagramId": "5a4b1243ff6ae751f281af92"
+        },
+        "type": "diagram",
+        "y": 1,
+        "x": 3,
+        "__v": 0,
+        "access": "private"
+    },
+    {
+        "_id": "5ba0f4c4ef685d2924b41c59",
+        "createdAt": "2018-10-06T12:56:39.808Z",
+        "updatedAt": "2018-09-18T12:51:16.406Z",
+        "rows": 2,
+        "cols": 2,
+        "valid": true,
+        "config": {
+            "oid": "5b31e9a009e89a2fc0814518"
+        },
+        "type": "widget",
+        "__v": 0,
+        "x": 0,
+        "y": 0,
+        "owner": "5a2fc4c9b61159868ca19d22",
+        "access": "private"
+    },
+    {
+        "_id": "5bb8b1031780b720a46a44c4",
+        "createdAt": "2018-10-06T12:56:39.808Z",
+        "updatedAt": "2018-10-06T12:56:35.576Z",
+        "__v": 0,
+        "x": 2,
+        "y": 0,
+        "type": "widget",
+        "config": {
+            "oid": "5bb3613dc6c2704b24b56f58"
+        },
+        "valid": true,
+        "cols": 1,
+        "rows": 2,
+        "owner": "5a2fc4c9b61159868ca19d22",
+        "access": "private"
+    },
+    {
+        "_id": "5bb8a4951780b720a46a3c25",
+        "createdAt": "2018-10-06T12:56:39.808Z",
+        "updatedAt": "2018-10-06T12:03:33.980Z",
+        "owner": "5a2fc4c9b61159868ca19d22",
+        "valid": true,
+        "config": {
+            "diagramId": "5a4b11e6ff6ae751f281ae55"
+        },
+        "type": "diagram",
+        "rows": 1,
+        "cols": 1,
+        "y": 0,
+        "x": 3,
+        "__v": 0,
+        "access": "private"
+    }
+]

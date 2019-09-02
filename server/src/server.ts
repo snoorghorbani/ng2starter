@@ -13,7 +13,6 @@ const MongoDBStore = require("connect-mongodb-session");
 import * as path from "path";
 import * as mongoose from "mongoose";
 import * as passport from "passport";
-import * as cors from "cors";
 import expressValidator = require("express-validator");
 
 /**
@@ -67,17 +66,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 
-const originsWhitelist = [process.env.TEST_SERVER_ADDRESS, process.env.SERVER_ADDRESS];
-const corsOptions = {
-	origin: function (origin: any, callback: any) {
-		const isWhitelisted = originsWhitelist.indexOf(origin) !== -1;
-		callback(undefined, isWhitelisted);
-	},
-	credentials: true
-};
-app.use(cors(corsOptions));
-app.use(function (req, res, next) {
-	res.setHeader("Vary", "origin");
+app.use(function(req, res, next) {
+	res.setHeader("Access-Control-Allow-Origin", req.get("origin"));
+	res.setHeader("Access-Control-Allow-Credentials", "true");
 	next();
 });
 
@@ -96,9 +87,7 @@ if (app.get("env") === "production") {
 	app.set("trust proxy", 1); // trust first proxy
 	(sess.cookie as any).secure = true; // serve secure cookies
 }
-app.use(
-	express_session(sess)
-);
+app.use(express_session(sess));
 // app.use(cookieSession({
 //   name: "session",
 //   keys: ["key1"],

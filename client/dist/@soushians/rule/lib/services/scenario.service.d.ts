@@ -11,6 +11,7 @@ export declare class ScenarioService {
     private configService;
     config$: Observable<RuleModuleConfig>;
     config: RuleModuleConfig;
+    scenarios: {};
     constructor(http: HttpClient, store: Store<AppState>, configService: RuleConfigurationService);
     upsert(scenario: GwtScenarioModel): Observable<GwtScenarioModel>;
     getAnchorScenarios(anchorId: string): Observable<GwtScenarioModel[]>;

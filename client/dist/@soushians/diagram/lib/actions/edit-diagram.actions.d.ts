@@ -8,20 +8,20 @@ export declare enum EditDiagramActionTypes {
 }
 export declare class EditDiagramAction implements Action {
     payload: EditDiagramApiModel.Response;
-    readonly type: EditDiagramActionTypes;
+    readonly type = EditDiagramActionTypes.EDIT_DIAGRAM;
     constructor(payload: EditDiagramApiModel.Response);
 }
 export declare class EditDiagramActionStart implements Action {
     payload: EditDiagramApiModel.Response;
-    readonly type: EditDiagramActionTypes;
+    readonly type = EditDiagramActionTypes.EDIT_DIAGRAM_START;
     constructor(payload: EditDiagramApiModel.Response);
 }
 export declare class EditDiagramActionSucceed implements Action {
     payload: EditDiagramApiModel.Response;
-    readonly type: EditDiagramActionTypes;
+    readonly type = EditDiagramActionTypes.EDIT_DIAGRAM_SUCCEED;
     constructor(payload: EditDiagramApiModel.Response);
 }
 export declare class EditDiagramActionFailed implements Action {
-    readonly type: EditDiagramActionTypes;
+    readonly type = EditDiagramActionTypes.EDIT_DIAGRAM_FAILED;
 }
 export declare type EditDiagramActions = EditDiagramAction | EditDiagramActionStart | EditDiagramActionSucceed | EditDiagramActionFailed;

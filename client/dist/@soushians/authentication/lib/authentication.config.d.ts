@@ -8,6 +8,7 @@ export interface AuthenticationModuleConfig {
     server?: string;
     endpoints?: {
         signOut?: string;
+        signOutMethod?: string;
         signIn?: string;
         signUp?: string;
         whoAmI?: string;

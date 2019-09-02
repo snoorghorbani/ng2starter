@@ -62,7 +62,7 @@ export class TitleComponent {
 					}
 				});
 
-				this.store.dispatch(new TitleChangedAction("/ " + title || ""));
+				this.store.dispatch(new TitleChangedAction("" + title || ""));
 			}
 		});
 	}

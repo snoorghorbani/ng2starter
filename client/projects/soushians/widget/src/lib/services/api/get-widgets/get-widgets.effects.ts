@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/Observable";
-import { Actions, Effect } from "@ngrx/effects";
+import { Actions, Effect, ofType } from "@ngrx/effects";
 import { map, switchMap, catchError } from "rxjs/operators";
 import { of } from "rxjs";
 
@@ -17,16 +17,15 @@ export class GetWidgetsApiEffects {
 	constructor(private actions$: Actions<GetWidgetsActions>, private service: WidgetService) {}
 
 	@Effect()
-	start$ = this.actions$
-		.ofType(GET_WIDGETS_ACTION_TYPES.START)
-		.pipe(
-			switchMap(() =>
-				this.service
-					.getWidgets()
-					.pipe(
-						map((res) => new GetWidgetsSucceedAction(res)),
-						catchError((err) => of(new GetWidgetsFailedAction(err)))
-					)
-			)
-		);
+	start$ = this.actions$.pipe(
+		ofType(GET_WIDGETS_ACTION_TYPES.START),
+		switchMap(() =>
+			this.service
+				.getWidgets()
+				.pipe(
+					map(res => new GetWidgetsSucceedAction(res)),
+					catchError(err => of(new GetWidgetsFailedAction(err)))
+				)
+		)
+	);
 }

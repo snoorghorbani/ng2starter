@@ -6,12 +6,12 @@ export declare enum UserActionTypes {
 }
 export declare class UserSelectedAction implements Action {
     payload: UserModel;
-    readonly type: UserActionTypes;
+    readonly type = UserActionTypes.USER_SELECTED;
     constructor(payload: UserModel);
 }
 export declare class RefreshUserInfoAction implements Action {
     payload: UserModel;
-    readonly type: UserActionTypes;
+    readonly type = UserActionTypes.REFRESH_USER_INFO;
     constructor(payload: UserModel);
 }
 export declare type UserAction = UserSelectedAction | RefreshUserInfoAction;

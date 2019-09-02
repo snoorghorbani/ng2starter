@@ -2,9 +2,9 @@
 import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import { Action } from "@ngrx/store";
-import { Actions, Effect } from "@ngrx/effects";
+import { Actions, Effect, ofType } from "@ngrx/effects";
 import { of } from "rxjs";
-import { map, catchError, switchMap } from "rxjs/operators";
+import { map, catchError, switchMap, pluck } from "rxjs/operators";
 
 import { UserService } from "../services/user.service";
 import { EditProfile_ApiModel } from "../models/profile-edit.model";
@@ -21,19 +21,20 @@ export class EditProfileEffects {
 	constructor(private actions$: Actions<any>, private router: Router, private service: UserService) {}
 
 	@Effect()
-	EditProfileRequest$ = this.actions$
-		.ofType(EditProfileActionTypes.EDIT_PROFILE)
-		.pipe(map(action => action.payload), map(data => new EditProfileStart(data)));
+	EditProfileRequest$ = this.actions$.pipe(
+		ofType(EditProfileActionTypes.EDIT_PROFILE),
+		pluck("payload"),
+		map((data: any) => new EditProfileStart(data))
+	);
 
 	@Effect()
-	RequestEditProfileLink$ = this.actions$
-		.ofType(EditProfileActionTypes.EDIT_PROFILE_START)
-		.pipe(
-			map(action => action.payload),
-			switchMap((data: EditProfile_ApiModel.Request) => this.service.editProfile(data)),
-			map(res => new EditProfileSucceed(res)),
-			catchError(() => of(new EditProfileFailed()))
-		);
+	RequestEditProfileLink$ = this.actions$.pipe(
+		ofType(EditProfileActionTypes.EDIT_PROFILE_START),
+		pluck("payload"),
+		switchMap((data: EditProfile_ApiModel.Request) => this.service.editProfile(data)),
+		map(res => new EditProfileSucceed(res)),
+		catchError(() => of(new EditProfileFailed()))
+	);
 	// .switchMap((data: EditProfile_ApiModel.Request) => {
 	// 	return this.service
 	// 		.editProfile(data)
@@ -42,7 +43,8 @@ export class EditProfileEffects {
 	// });
 
 	@Effect()
-	goToView$ = this.actions$.ofType(EditProfileActionTypes.EDIT_PROFILE_SUCCEED).pipe(
+	goToView$ = this.actions$.pipe(
+		ofType(EditProfileActionTypes.EDIT_PROFILE_SUCCEED),
 		map(() => {
 			this.router.navigate([ "/user/profile" ]);
 			return new GetProfile();

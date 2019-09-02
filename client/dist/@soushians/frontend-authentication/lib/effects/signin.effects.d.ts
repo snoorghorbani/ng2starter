@@ -1,6 +1,5 @@
 import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
-import { Action } from "@ngrx/store";
 import { Actions } from "@ngrx/effects";
 import { SigninSecceed, SigninFailed } from "../actions/signin.actions";
 import { FrontendSigninService } from "../services/signin.service";
@@ -18,6 +17,6 @@ export declare class SigninEffects {
     SignInRequired$: Observable<any>;
     SigninSucceed$: Observable<any>;
     DoSignout$: Observable<any>;
-    redirectToLoginPage$: Observable<Action>;
-    redirectAfterSignout$: Observable<Action>;
+    redirectToLoginPage$: Observable<never>;
+    redirectAfterSignout$: Observable<never>;
 }

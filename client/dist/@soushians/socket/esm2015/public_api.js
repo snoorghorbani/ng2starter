@@ -1,11 +1,10 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /*
  * Public API Surface of socket
  */
 export { NgsSocketModule } from "./lib/socket.module";
 export { SocketService } from "./lib/services/socket.service";
-
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0Bzb3VzaGlhbnMvc29ja2V0LyIsInNvdXJjZXMiOlsicHVibGljX2FwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7O0FBSUEsT0FBTyxFQUFFLGVBQWUsRUFBRSxNQUFNLHFCQUFxQixDQUFDO0FBQ3RELE9BQU8sRUFBRSxhQUFhLEVBQUUsTUFBTSwrQkFBK0IsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qXHJcbiAqIFB1YmxpYyBBUEkgU3VyZmFjZSBvZiBzb2NrZXRcclxuICovXHJcblxyXG5leHBvcnQgeyBOZ3NTb2NrZXRNb2R1bGUgfSBmcm9tIFwiLi9saWIvc29ja2V0Lm1vZHVsZVwiO1xyXG5leHBvcnQgeyBTb2NrZXRTZXJ2aWNlIH0gZnJvbSBcIi4vbGliL3NlcnZpY2VzL3NvY2tldC5zZXJ2aWNlXCI7XHJcbiJdfQ==

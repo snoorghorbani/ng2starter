@@ -23,7 +23,6 @@ import {
 	MatAutocompleteModule
 } from "@angular/material";
 import { StoreModule } from "@ngrx/store";
-import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { EffectsModule, mergeEffects } from "@ngrx/effects";
 
 import { SharedModule } from "@soushians/shared";

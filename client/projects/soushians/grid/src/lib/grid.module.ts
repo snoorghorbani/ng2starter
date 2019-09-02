@@ -1,5 +1,4 @@
 ﻿import { NgModule, ModuleWithProviders } from "@angular/core";
-import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { CommonModule } from "@angular/common";
 import { StoreModule } from "@ngrx/store";
 import { RouterModule } from "@angular/router";

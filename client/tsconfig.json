@@ -36,7 +36,8 @@
         "dist/@soushians/frontend-authentication"
       ],
       "@soushians/grid": [
-        "dist/@soushians/grid"
+        // "dist/@soushians/grid"
+        "projects/soushians/grid/src/public_api"
       ],
       "@soushians/gwt-steps": [
         "dist/@soushians/gwt-steps"
@@ -73,7 +74,6 @@
         "dist/soushians/test"
       ],
       "configs": [
-        //  "dist/configs"
         "projects/configs/src/public_api"
       ],
       "socket.io-client": [

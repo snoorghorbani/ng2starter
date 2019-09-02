@@ -21,7 +21,7 @@ export class SocketService {
 			.pipe(
 				map(config => config.env.frontend_server),
 				map(uri => {
-					console.log(uri, this.configService.config);
+					// console.log(uri, this.configService.config);
 					this.socket = io(uri);
 					return this.store.dispatch(new SocketRunSuccessfullyAction());
 				})

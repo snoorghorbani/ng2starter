@@ -1,0 +1,765 @@
+[
+    {
+        "_id": "5a3fb11d45831a6f14b56cf1",
+        "updatedAt": "2018-01-06T19:50:45.389Z",
+        "createdAt": "2017-12-24T13:52:56.980Z",
+        "Name": "نونو",
+        "Chart": {
+            "tooltip": {
+                "grouped": false
+            },
+            "zoom": {
+                "enabled": false
+            },
+            "subchart": {
+                "show": false
+            },
+            "legend": {
+                "show": false
+            },
+            "ColumnMappings": [
+                {
+                    "ValuePath": "data.value",
+                    "NamePath": "data.name",
+                    "_id": "5a512895a5aa336761a9844f"
+                },
+                {
+                    "ValuePath": "data.value",
+                    "NamePath": "",
+                    "_id": "5a512895a5aa336761a9844e"
+                }
+            ],
+            "data": {
+                "types": {
+                    "value": "area-spline",
+                    "": "line",
+                    "data4": "donut",
+                    "data3": "bar",
+                    "data2": "bar",
+                    "data1": "donut"
+                },
+                "colors": {
+                    "value": "#123456",
+                    "": "#123456",
+                    "data4": "#02665c",
+                    "data3": "#123456",
+                    "data2": "#16521e",
+                    "data1": "#450a5f"
+                },
+                "columns": [
+                    [
+                        "data1",
+                        20
+                    ],
+                    [
+                        "data2",
+                        160
+                    ],
+                    [
+                        "data3",
+                        26
+                    ],
+                    [
+                        "data4",
+                        473
+                    ],
+                    [
+                        "value",
+                        20,
+                        160,
+                        26,
+                        473
+                    ]
+                ],
+                "type": "line"
+            }
+        },
+        "Source": "5a4f827bff6ae751f28d9668",
+        "Box": {
+            "BackgroundColor": "#ffffff",
+            "TextColor": "#555",
+            "Rows": 6,
+            "Cols": 4
+        },
+        "IsActive": false,
+        "__v": 0,
+        "Type": "line",
+        "Widget": {
+            "booleano": {
+                "FailureMessage": "FailureMessage",
+                "SuccessMessage": "SuccessMessage"
+            }
+        },
+        "Groups": [
+            "PublicWifi"
+        ]
+    },
+    {
+        "_id": "5a40c962509578422cd5baf0",
+        "updatedAt": "2018-10-07T08:42:06.074Z",
+        "createdAt": "2017-12-25T09:48:18.614Z",
+        "Name": "کاپیتان",
+        "Chart": {
+            "data": {
+                "type": "bar",
+                "columns": [
+                    [
+                        65,
+                        65
+                    ]
+                ],
+                "colors": {
+                    "65": "#123456",
+                    "value": "#123456",
+                    "Upload": "#123456",
+                    "data4": "#645ada",
+                    "data3": "#f4ef13",
+                    "data2": "#fb1afb",
+                    "data1": "#1fc1f8",
+                    "asdfasf": "#123456"
+                },
+                "types": {
+                    "65": "bar",
+                    "Upload": "bar",
+                    "asdfasf": "bar"
+                }
+            },
+            "ColumnMappings": [
+                {
+                    "_id": "5bb9c6de1780b720a46b06e3",
+                    "NamePath": "obj.Upload",
+                    "ValuePath": "obj.Upload"
+                }
+            ],
+            "legend": {
+                "show": true
+            },
+            "subchart": {
+                "show": false
+            },
+            "zoom": {
+                "enabled": false
+            },
+            "tooltip": {
+                "grouped": false
+            }
+        },
+        "Source": "5a4f827bff6ae751f28d9668",
+        "Box": {
+            "Cols": 3,
+            "Rows": 3,
+            "TextColor": "#17cff0",
+            "BackgroundColor": "#ffffff"
+        },
+        "IsActive": true,
+        "__v": 0,
+        "Widget": {
+            "booleano": {
+                "SuccessMessage": "SuccessMessage",
+                "FailureMessage": "FailureMessage"
+            }
+        },
+        "Type": "bar",
+        "Groups": [
+            "PublicWifi",
+            "TIF"
+        ]
+    },
+    {
+        "_id": "5a40cd56509578422cd5bcfc",
+        "updatedAt": "2018-10-07T08:34:56.029Z",
+        "createdAt": "2017-12-25T10:05:10.860Z",
+        "Name": "طه",
+        "Chart": {
+            "data": {
+                "type": "pie",
+                "columns": [
+                    [
+                        "data1",
+                        66
+                    ],
+                    [
+                        "data2",
+                        18
+                    ],
+                    [
+                        "data3",
+                        124
+                    ],
+                    [
+                        "data4",
+                        347
+                    ]
+                ],
+                "colors": {
+                    "data4": "#123456",
+                    "data3": "#3d1f49",
+                    "data2": "#606503",
+                    "data1": "#c0c507"
+                },
+                "types": {
+                    "data4": "pie",
+                    "data3": "pie",
+                    "data2": "pie",
+                    "data1": "pie"
+                }
+            },
+            "ColumnMappings": [
+                {
+                    "_id": "5bb9c5301780b720a46b05aa",
+                    "NamePath": "data.name",
+                    "ValuePath": "data.value"
+                }
+            ],
+            "legend": {
+                "show": true
+            },
+            "subchart": {
+                "show": false
+            },
+            "zoom": {
+                "enabled": false
+            },
+            "tooltip": {
+                "grouped": false
+            }
+        },
+        "Source": "5a4f827bff6ae751f28d9668",
+        "Box": {
+            "Cols": 3,
+            "Rows": 4,
+            "TextColor": "#555",
+            "BackgroundColor": "fff"
+        },
+        "IsActive": true,
+        "__v": 0,
+        "Type": "pie",
+        "Widget": {
+            "booleano": {
+                "SuccessMessage": "SuccessMessage",
+                "FailureMessage": "FailureMessage"
+            }
+        },
+        "Groups": [
+            "TIF"
+        ]
+    },
+    {
+        "_id": "5a420ee60f091b540c66fd56",
+        "updatedAt": "2018-01-02T05:13:20.154Z",
+        "createdAt": "2017-12-24T13:52:56.980Z",
+        "Name": "سارا",
+        "Chart": {
+            "tooltip": {
+                "grouped": false
+            },
+            "zoom": {
+                "enabled": false
+            },
+            "subchart": {
+                "show": true
+            },
+            "legend": {
+                "show": false
+            },
+            "ColumnMappings": [
+                {
+                    "ValuePath": "data.value",
+                    "NamePath": "data.name",
+                    "_id": "5a4b14f0e3e746e2407ae3e7"
+                }
+            ],
+            "data": {
+                "colors": {
+                    "data4": "#2365a7",
+                    "data3": "#1e5791",
+                    "data2": "#1b4e81",
+                    "data1": "#123456"
+                },
+                "columns": [
+                    [
+                        "data1",
+                        192
+                    ],
+                    [
+                        "data2",
+                        75
+                    ],
+                    [
+                        "data3",
+                        136
+                    ],
+                    [
+                        "data4",
+                        226
+                    ]
+                ],
+                "type": "bar"
+            }
+        },
+        "Source": "5a4f827bff6ae751f28d9668",
+        "Box": {
+            "BackgroundColor": "#ffffff",
+            "TextColor": "#555",
+            "Rows": 6,
+            "Cols": 4
+        },
+        "IsActive": false,
+        "__v": 0,
+        "Type": "bar",
+        "Widget": {
+            "booleano": {
+                "FailureMessage": "FailureMessage",
+                "SuccessMessage": "SuccessMessage"
+            }
+        },
+        "Groups": [
+            "TIF2"
+        ]
+    },
+    {
+        "_id": "5a4b11e6ff6ae751f281ae55",
+        "updatedAt": "2018-10-07T08:42:33.634Z",
+        "createdAt": "2017-12-25T09:48:18.614Z",
+        "Name": "پگاه",
+        "Chart": {
+            "data": {
+                "type": "numero",
+                "columns": [
+                    [
+                        "value",
+                        66,
+                        18,
+                        124,
+                        347
+                    ]
+                ],
+                "colors": {
+                    "value": "#123456",
+                    "Upload": "#123456",
+                    "data4": "#645ada",
+                    "data3": "#f4ef13",
+                    "data2": "#fb1afb",
+                    "data1": "#1fc1f8"
+                },
+                "types": {
+                    "value": "numero"
+                }
+            },
+            "ColumnMappings": [
+                {
+                    "_id": "5bb9c6f91780b720a46b06f7",
+                    "NamePath": null,
+                    "ValuePath": "data.value"
+                }
+            ],
+            "legend": {
+                "show": true
+            },
+            "subchart": {
+                "show": false
+            },
+            "zoom": {
+                "enabled": false
+            },
+            "tooltip": {
+                "grouped": false
+            }
+        },
+        "Source": "5a4f827bff6ae751f28d9668",
+        "Box": {
+            "Cols": 2,
+            "Rows": 4,
+            "TextColor": "#17cff0",
+            "BackgroundColor": "#c1e2bc"
+        },
+        "IsActive": true,
+        "__v": 0,
+        "Widget": {
+            "booleano": {
+                "SuccessMessage": "SuccessMessage",
+                "FailureMessage": "FailureMessage"
+            }
+        },
+        "Type": "numero",
+        "Groups": [
+            "TIF"
+        ]
+    },
+    {
+        "_id": "5a4b1243ff6ae751f281af92",
+        "updatedAt": "2018-10-07T08:34:37.555Z",
+        "createdAt": "2017-12-25T09:48:18.614Z",
+        "Name": "علی",
+        "Chart": {
+            "data": {
+                "type": "line",
+                "columns": [
+                    [
+                        "value",
+                        66,
+                        18,
+                        124,
+                        347
+                    ]
+                ],
+                "colors": {
+                    "value": "#3a8b8b",
+                    "Upload": "#123456",
+                    "data4": "#645ada",
+                    "data3": "#f4ef13",
+                    "data2": "#fb1afb",
+                    "data1": "#1fc1f8"
+                },
+                "types": {
+                    "value": "area-spline"
+                }
+            },
+            "ColumnMappings": [
+                {
+                    "_id": "5bb9c51d1780b720a46b059c",
+                    "NamePath": null,
+                    "ValuePath": "data.value"
+                }
+            ],
+            "Flow": true,
+            "legend": {
+                "show": true
+            },
+            "subchart": {
+                "show": true
+            },
+            "zoom": {
+                "enabled": true
+            },
+            "tooltip": {
+                "grouped": true
+            }
+        },
+        "Source": "5a4f827bff6ae751f28d9668",
+        "Box": {
+            "Cols": 4,
+            "Rows": 4,
+            "TextColor": "#17cff0",
+            "BackgroundColor": "#9edbed"
+        },
+        "IsActive": true,
+        "__v": 0,
+        "Widget": {
+            "booleano": {
+                "SuccessMessage": "SuccessMessage",
+                "FailureMessage": "FailureMessage"
+            }
+        },
+        "Type": "line",
+        "Groups": [
+            "TIF3"
+        ]
+    },
+    {
+        "_id": "5a4c94661dc653346ccb28d2",
+        "updatedAt": "2018-10-07T10:24:47.960Z",
+        "createdAt": "2018-01-03T08:29:26.868Z",
+        "Name": "test",
+        "Chart": {
+            "data": {
+                "type": "bar",
+                "columns": [
+                    [
+                        "data1",
+                        66
+                    ],
+                    [
+                        "data2",
+                        18
+                    ],
+                    [
+                        "data3",
+                        124
+                    ],
+                    [
+                        "data4",
+                        347
+                    ],
+                    [
+                        65,
+                        88
+                    ]
+                ],
+                "colors": {
+                    "9": "#1f77b4",
+                    "65": "#5f0750",
+                    "data4": "#800000",
+                    "data3": "#ff8000",
+                    "data2": "#123456",
+                    "data1": "#0e5a17"
+                },
+                "types": {
+                    "9": "bar",
+                    "11": "bar",
+                    "63": "bar",
+                    "65": "bar",
+                    "data4": "bar",
+                    "data3": "bar",
+                    "data2": "bar",
+                    "data1": "bar"
+                }
+            },
+            "ColumnMappings": [
+                {
+                    "_id": "5bb9deef1780b720a46b17c3",
+                    "NamePath": "data.name",
+                    "ValuePath": "data.value"
+                },
+                {
+                    "_id": "5bb9deef1780b720a46b17c2",
+                    "NamePath": "obj.Upload",
+                    "ValuePath": "obj.Download"
+                }
+            ],
+            "legend": {
+                "show": true
+            },
+            "subchart": {
+                "show": false
+            },
+            "zoom": {
+                "enabled": false
+            },
+            "tooltip": {
+                "grouped": false
+            }
+        },
+        "Widget": {
+            "booleano": {
+                "SuccessMessage": "SuccessMessage",
+                "FailureMessage": "FailureMessage"
+            }
+        },
+        "Type": "bar",
+        "Source": "5a4f827bff6ae751f28d9668",
+        "Box": {
+            "Cols": 3,
+            "Rows": 4,
+            "TextColor": "#000000",
+            "BackgroundColor": "#e5e5e5"
+        },
+        "IsActive": true,
+        "__v": 0,
+        "Groups": [
+            "TIF"
+        ]
+    },
+    {
+        "_id": "5a587249169ff8381a3c5fb5",
+        "updatedAt": "2018-10-07T08:38:15.918Z",
+        "createdAt": "2018-01-12T08:31:05.843Z",
+        "Name": "1111111",
+        "Source": "5a56419f443bcfefc4ed85ff",
+        "Chart": {
+            "data": {
+                "type": "line",
+                "columns": [
+                    [
+                        "data1",
+                        275,
+                        254,
+                        163,
+                        172,
+                        64,
+                        53,
+                        57,
+                        183,
+                        34,
+                        345,
+                        48,
+                        317,
+                        123,
+                        277
+                    ],
+                    [
+                        "data2",
+                        378,
+                        372,
+                        198,
+                        289,
+                        62,
+                        98,
+                        98,
+                        284,
+                        76,
+                        167,
+                        370,
+                        254,
+                        108,
+                        181
+                    ],
+                    [
+                        "data3",
+                        318,
+                        199,
+                        211,
+                        286,
+                        340,
+                        302,
+                        268,
+                        366,
+                        260,
+                        182,
+                        210,
+                        104,
+                        162,
+                        355
+                    ],
+                    [
+                        "data4",
+                        208,
+                        89,
+                        274,
+                        129,
+                        272,
+                        219,
+                        379,
+                        179,
+                        77,
+                        121,
+                        326,
+                        295,
+                        155,
+                        352
+                    ]
+                ],
+                "colors": {
+                    "data4": "#123456",
+                    "data3": "#123456",
+                    "data2": "#123456",
+                    "data1": "#12564e"
+                },
+                "types": {
+                    "data4": "line",
+                    "data3": "line",
+                    "data2": "line",
+                    "data1": "area"
+                }
+            },
+            "ColumnMappings": [
+                {
+                    "_id": "5bb9c5f71780b720a46b063f",
+                    "NamePath": "data.name",
+                    "ValuePath": "data.value"
+                }
+            ],
+            "Flow": true,
+            "legend": {
+                "show": true
+            },
+            "subchart": {
+                "show": false
+            },
+            "zoom": {
+                "enabled": false
+            },
+            "tooltip": {
+                "grouped": false
+            }
+        },
+        "Widget": {
+            "booleano": {
+                "SuccessMessage": "SuccessMessage",
+                "FailureMessage": "FailureMessage"
+            }
+        },
+        "Type": "line",
+        "Box": {
+            "Cols": 9,
+            "Rows": 3,
+            "TextColor": "#000000",
+            "BackgroundColor": "#ffffff"
+        },
+        "IsActive": true,
+        "__v": 0,
+        "Groups": [
+            "TIF"
+        ]
+    },
+    {
+        "_id": "5ac9c93e5f0aa921e4328f88",
+        "updatedAt": "2018-10-07T08:40:44.781Z",
+        "createdAt": "2018-04-08T07:48:14.085Z",
+        "Name": "",
+        "Source": "5a4f827bff6ae751f28d9668",
+        "Chart": {
+            "data": {
+                "type": "pie",
+                "columns": [
+                    [
+                        "data1",
+                        66
+                    ],
+                    [
+                        "data2",
+                        18
+                    ],
+                    [
+                        "data3",
+                        124
+                    ],
+                    [
+                        "data4",
+                        347
+                    ]
+                ],
+                "colors": {
+                    "data4": "#123456",
+                    "data3": "#123456",
+                    "data2": "#123456",
+                    "data1": "#165f0a"
+                },
+                "types": {
+                    "data4": "pie",
+                    "data3": "pie",
+                    "data2": "pie",
+                    "data1": "pie"
+                }
+            },
+            "ColumnMappings": [
+                {
+                    "_id": "5bb9c68c1780b720a46b06aa",
+                    "NamePath": "data.name",
+                    "ValuePath": "data.value"
+                }
+            ],
+            "Flow": true,
+            "legend": {
+                "show": true
+            },
+            "subchart": {
+                "show": false
+            },
+            "zoom": {
+                "enabled": false
+            },
+            "tooltip": {
+                "grouped": false
+            }
+        },
+        "Widget": {
+            "booleano": {
+                "SuccessMessage": "SuccessMessage",
+                "FailureMessage": "FailureMessage"
+            }
+        },
+        "Type": "pie",
+        "Box": {
+            "Cols": 4,
+            "Rows": 4,
+            "TextColor": "#000000",
+            "BackgroundColor": "#ffffff"
+        },
+        "Groups": [
+            ""
+        ],
+        "IsActive": true,
+        "__v": 0
+    }
+]
