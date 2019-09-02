@@ -60,6 +60,7 @@
         "dist/@soushians/source"
       ],
       "@soushians/user": [
+        // "projects/soushians/user/src/public_api"
         "dist/@soushians/user"
       ],
       "@soushians/widget": [

@@ -1,4 +1,15 @@
-﻿<div fxLayout='row' fxLayoutWrap id="con">
+﻿<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="25px" class="main-container">
+
+    <div class="content-action">
+      <mat-card class="with-sticky-action">
+            <mat-card-header>
+                    <mat-card-title fxLayout="row" fxLayoutGap="5px">
+                      <mat-icon>person</mat-icon>
+                      <span>تنظیمات پروفایل</span>
+                    </mat-card-title>
+                 
+                  </mat-card-header>
+          <div fxLayout='row' fxLayoutWrap id="con">
     <button fxFlex="31" class='link' mat-raised-button [routerLink]='link.route' *ngFor='let link of links'>
         <div fxLayout='column' fxLayoutAlign='center center'>
             <mat-icon color='primary'>{{link.icon}}</mat-icon>
@@ -13,4 +24,7 @@
             <div class='description'>{{link.description}}</div>
         </div>
     </button>
+</div>
+</mat-card>
+</div>
 </div>

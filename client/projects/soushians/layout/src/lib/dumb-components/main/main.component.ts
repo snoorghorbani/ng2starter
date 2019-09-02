@@ -132,7 +132,7 @@ export class NgsLayoutMainComponent {
 		this.translateService.setTranslation("fa", {
 			__signin: "ورود",
 			__signup: "ثبت نام",
-			__account_mangement: "مدریت کاربری",
+			__account_mangement: "مدیریت کاربری",
 			__signout: "خروج"
 		});
 	}
