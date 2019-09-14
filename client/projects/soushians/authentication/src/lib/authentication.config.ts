@@ -53,7 +53,7 @@ export const MODULE_DEFAULT_CONFIG: AuthenticationModuleConfig = {
 	},
 	afterSignoutRedirectTo: "/",
 	signupValidator: value => of(true),
-	afterSignin: user => {},
+	afterSignin: user => { },
 	responseToUser: user => user
 };
 

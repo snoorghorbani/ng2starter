@@ -1,0 +1,19 @@
+{
+  "name": "@soushians/socket",
+  "version": "7.7.0",
+  "peerDependencies": {},
+  "devDependencies": {},
+  "main": "bundles/soushians-socket.umd.js",
+  "module": "fesm5/soushians-socket.js",
+  "es2015": "fesm2015/soushians-socket.js",
+  "esm5": "esm5/soushians-socket.js",
+  "esm2015": "esm2015/soushians-socket.js",
+  "fesm5": "fesm5/soushians-socket.js",
+  "fesm2015": "fesm2015/soushians-socket.js",
+  "typings": "soushians-socket.d.ts",
+  "metadata": "soushians-socket.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

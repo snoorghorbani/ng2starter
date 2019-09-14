@@ -1,0 +1,9 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+{
+    "name": "@soushians/authentication",
+    "version": "7.8.0",
+    "peerDependencies": {}
+}

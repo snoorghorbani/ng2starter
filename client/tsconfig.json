@@ -11,6 +11,7 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "resolveJsonModule": true,
     "target": "es5",
     "typeRoots": [
       "node_modules/@types"
@@ -20,55 +21,9 @@
       "dom"
     ],
     "paths": {
-      "@soushians/authentication": [
-        "dist/@soushians/authentication"
-      ],
-      "@soushians/config": [
-        "dist/@soushians/config"
-      ],
-      "@soushians/diagram": [
-        "dist/@soushians/diagram"
-      ],
-      "@soushians/form": [
-        "dist/@soushians/form"
-      ],
-      "@soushians/frontend-authentication": [
-        "dist/@soushians/frontend-authentication"
-      ],
-      "@soushians/grid": [
-        // "dist/@soushians/grid"
-        "projects/soushians/grid/src/public_api"
-      ],
-      "@soushians/gwt-steps": [
-        "dist/@soushians/gwt-steps"
-      ],
-      "@soushians/layout": [
-        "dist/@soushians/layout"
-      ],
-      "@soushians/page": [
-        "dist/@soushians/page"
-      ],
-      "@soushians/rule": [
-        "dist/@soushians/rule"
-      ],
-      "@soushians/shared": [
-        "dist/@soushians/shared"
-      ],
-      "@soushians/socket": [
-        "dist/@soushians/socket"
-      ],
-      "@soushians/source": [
-        "dist/@soushians/source"
-      ],
-      "@soushians/user": [
-        // "projects/soushians/user/src/public_api"
-        "dist/@soushians/user"
-      ],
-      "@soushians/widget": [
-        "dist/@soushians/widget"
-      ],
-      "@soushians/widget-types": [
-        "dist/@soushians/widget-types"
+      "@soushians/*": [
+        "dist/@soushians/*"
+        // "projects/soushians/*/src/public_api"
       ],
       "@soushians/test": [
         "dist/soushians/test"

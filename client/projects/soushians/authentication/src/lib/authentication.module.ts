@@ -1,4 +1,6 @@
-﻿import { NgModule, ModuleWithProviders, InjectionToken, Injectable, Inject } from "@angular/core";
+﻿// import { name, version } from "../../package.json";
+
+import { NgModule, ModuleWithProviders, InjectionToken, Injectable, Inject } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
@@ -115,4 +117,9 @@ export class NgsAuthenticationModule {
 		NgsAuthenticationModule
 	]
 })
-export class RootNgsAuthenticationModule { }
+export class RootNgsAuthenticationModule {
+	constructor() {
+		(<any>window).___starter = (<any>window).___starter || {};
+		(<any>window).___starter.authentication = "7.8.0";
+	}
+}

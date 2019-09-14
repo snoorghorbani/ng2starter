@@ -1,4 +1,3 @@
-import { Injectable } from "@angular/core";
 import { HttpRequestBaseModel } from "@soushians/shared";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ConfigModel } from "../models";
@@ -19,7 +18,7 @@ export namespace EditConfigApiModel {
 		}
 		static get formGroup() {
 			return new FormGroup({
-				Name: new FormControl("", [ Validators.required ]),
+				Name: new FormControl("", [Validators.required]),
 				Config: new FormGroup({})
 			});
 		}
@@ -27,6 +26,6 @@ export namespace EditConfigApiModel {
 
 	export class Response {
 		Result: ConfigModel<any>;
-		constructor() {}
+		constructor() { }
 	}
 }

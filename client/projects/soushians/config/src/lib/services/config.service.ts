@@ -2,13 +2,13 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
+import { take, map, catchError } from "rxjs/operators";
 
 import { EditConfigApiModel, GetConfigsApiModel, ConfigModel } from "../models";
 
 import { ConfigState } from "../reducers";
 import { GetConfigAction } from "../actions";
 import { ConfigurationService } from "./configuration.service";
-import { take, map, catchError } from "rxjs/operators";
 
 @Injectable({
 	providedIn: "root"

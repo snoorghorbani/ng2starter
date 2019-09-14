@@ -1,4 +1,3 @@
-import { ConfigModel } from "./config.model";
 import { Action } from "@ngrx/store";
 
 export interface LayoutConfigModel {

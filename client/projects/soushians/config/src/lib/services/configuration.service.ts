@@ -1,10 +1,9 @@
 import { Injectable, Inject } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { Observable } from "rxjs/Observable";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 import { ConfigModuleConfig, MODULE_CONFIG_TOKEN, MODULE_DEFAULT_CONFIG } from "../config.config";
 import { getConfigModuleConfig } from "../reducers";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 @Injectable({
 	providedIn: "root"
