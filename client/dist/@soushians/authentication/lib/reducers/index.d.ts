@@ -10,7 +10,7 @@ export interface FeatureState {
 export declare const AuthenticationReducers: {
     userStatus: typeof userReducer.UserReducer;
 };
-export declare const selectAuthenticationState: MemoizedSelector<object, AuthenticationState>;
-export declare const selectAuthState: MemoizedSelector<object, userReducer.State>;
-export declare const getLoggedIn: MemoizedSelector<object, boolean>;
-export declare const getUser: MemoizedSelector<object, UserModel>;
+export declare const selectAuthenticationState: MemoizedSelector<object, AuthenticationState, import("@ngrx/store").DefaultProjectorFn<AuthenticationState>>;
+export declare const selectAuthState: MemoizedSelector<object, userReducer.State, import("@ngrx/store").DefaultProjectorFn<userReducer.State>>;
+export declare const getLoggedIn: MemoizedSelector<object, boolean, import("@ngrx/store").DefaultProjectorFn<boolean>>;
+export declare const getUser: MemoizedSelector<object, UserModel, import("@ngrx/store").DefaultProjectorFn<UserModel>>;

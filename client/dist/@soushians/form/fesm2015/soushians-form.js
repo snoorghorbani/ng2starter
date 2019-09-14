@@ -1,28 +1,28 @@
-import { stringTemplate } from '@soushians/shared';
-import { getFormModuleConfig } from '@soushians/config';
+import { InjectionToken, Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, Component, Input, EventEmitter, Compiler, ComponentFactoryResolver, Output, Directive, ViewContainerRef, NgModule } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Store, StoreModule } from '@ngrx/store';
 import { BehaviorSubject as BehaviorSubject$1 } from 'rxjs/BehaviorSubject';
+import { filter, map, take, switchMap, takeUntil, catchError } from 'rxjs/operators';
+import { stringTemplate } from '@soushians/shared';
+import { FormGroup, FormControl, Validators, FormArray, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { getFormModuleConfig } from '@soushians/config';
+import { MatTableDataSource, MatExpansionModule, MatSnackBarModule, MatIconModule, MatDatepickerModule, MatButtonModule, MatCardModule, MatCheckboxModule, MatTableModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatDividerModule, MatRadioModule, MatSlideToggleModule } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatTableDataSource, MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatRadioModule, MatSlideToggleModule, MatDividerModule, MatCheckboxModule, MatTableModule, MatDatepickerModule } from '@angular/material';
-import { FormGroup, FormControl, Validators, FormArray, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ofType, Actions, Effect, EffectsModule } from '@ngrx/effects';
 import 'rxjs/Observable';
-import { Store, StoreModule } from '@ngrx/store';
 import { __decorate, __metadata } from 'tslib';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/switchMap';
-import { InjectionToken, Inject, Injectable, Component, EventEmitter, Output, Input, NgModule, ViewContainerRef, ComponentFactoryResolver, Compiler, Directive, defineInjectable, inject } from '@angular/core';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
 import { of } from 'rxjs/observable/of';
-import { filter, map, take, switchMap, takeUntil, catchError } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var AddFormApiModel;
 (function (AddFormApiModel) {
@@ -31,7 +31,11 @@ var AddFormApiModel;
          * @param {?=} initValue
          */
         constructor(initValue = (/** @type {?} */ ({}))) {
-            Object.keys(initValue).forEach(key => (this[key] = initValue[key]));
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            key => (this[key] = initValue[key])));
         }
         /**
          * @return {?}
@@ -66,15 +70,29 @@ var AddFormApiModel;
         }
     }
     AddFormApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype._id;
+        /** @type {?} */
+        Request.prototype.name;
+        /** @type {?} */
+        Request.prototype.form;
+        /** @type {?} */
+        Request.prototype.events;
+    }
     class Response {
         constructor() { }
     }
     AddFormApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(AddFormApiModel || (AddFormApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var EditFormApiModel;
 (function (EditFormApiModel) {
@@ -83,7 +101,11 @@ var EditFormApiModel;
          * @param {?=} initValue
          */
         constructor(initValue = (/** @type {?} */ ({}))) {
-            Object.keys(initValue).forEach(key => (this[key] = initValue[key]));
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            key => (this[key] = initValue[key])));
         }
         /**
          * @return {?}
@@ -118,15 +140,29 @@ var EditFormApiModel;
         }
     }
     EditFormApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype._id;
+        /** @type {?} */
+        Request.prototype.name;
+        /** @type {?} */
+        Request.prototype.form;
+        /** @type {?} */
+        Request.prototype.events;
+    }
     class Response {
         constructor() { }
     }
     EditFormApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(EditFormApiModel || (EditFormApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormListApiModel;
 (function (FormListApiModel) {
@@ -135,7 +171,11 @@ var FormListApiModel;
          * @param {?=} initValue
          */
         constructor(initValue = (/** @type {?} */ ({}))) {
-            Object.keys(initValue).forEach((key) => (this[key] = initValue[key]));
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            (key) => (this[key] = initValue[key])));
         }
         /**
          * @return {?}
@@ -157,16 +197,38 @@ var FormListApiModel;
         }
     }
     FormListApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype.Name;
+        /** @type {?} */
+        Request.prototype.Controls;
+    }
     class Response {
         constructor() { }
     }
     FormListApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(FormListApiModel || (FormListApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function validation() { }
+if (false) {
+    /** @type {?} */
+    validation.prototype.active;
+    /** @type {?} */
+    validation.prototype.message;
+    /** @type {?|undefined} */
+    validation.prototype.value;
+}
 class Validator {
     constructor() {
         this.required = {
@@ -184,10 +246,18 @@ class Validator {
         };
     }
 }
+if (false) {
+    /** @type {?} */
+    Validator.prototype.required;
+    /** @type {?} */
+    Validator.prototype.minlength;
+    /** @type {?} */
+    Validator.prototype.email;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FieldConfig {
     /**
@@ -201,10 +271,48 @@ class FieldConfig {
         this.validator = new Validator();
     }
 }
+if (false) {
+    /** @type {?} */
+    FieldConfig.prototype.id;
+    /** @type {?} */
+    FieldConfig.prototype.type;
+    /** @type {?} */
+    FieldConfig.prototype.name;
+    /** @type {?} */
+    FieldConfig.prototype.subtype;
+    /** @type {?} */
+    FieldConfig.prototype.disabled;
+    /** @type {?} */
+    FieldConfig.prototype.title;
+    /** @type {?} */
+    FieldConfig.prototype.parentType;
+    /** @type {?} */
+    FieldConfig.prototype.formGroupPath;
+    /** @type {?} */
+    FieldConfig.prototype.path;
+    /** @type {?} */
+    FieldConfig.prototype.inputType;
+    /** @type {?} */
+    FieldConfig.prototype.value;
+    /** @type {?} */
+    FieldConfig.prototype.order;
+    /** @type {?} */
+    FieldConfig.prototype.width;
+    /** @type {?} */
+    FieldConfig.prototype.options;
+    /** @type {?} */
+    FieldConfig.prototype.dataEndpoint;
+    /** @type {?} */
+    FieldConfig.prototype.optionsEndpoint;
+    /** @type {?} */
+    FieldConfig.prototype.fields;
+    /** @type {?} */
+    FieldConfig.prototype.validator;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormSchemaModel {
     constructor() {
@@ -227,21 +335,53 @@ class FormSchemaModel {
         this._id = (Math.random() * 10).toString();
     }
 }
+if (false) {
+    /** @type {?} */
+    FormSchemaModel.prototype._id;
+    /** @type {?} */
+    FormSchemaModel.prototype.name;
+    /** @type {?} */
+    FormSchemaModel.prototype.description;
+    /** @type {?} */
+    FormSchemaModel.prototype.form;
+    /** @type {?} */
+    FormSchemaModel.prototype.events;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function Field() { }
+if (false) {
+    /** @type {?} */
+    Field.prototype.config;
+    /** @type {?} */
+    Field.prototype.group;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-
 /**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @record
  */
+function FormModuleConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    FormModuleConfig.prototype.env;
+    /** @type {?|undefined} */
+    FormModuleConfig.prototype.endpoints;
+}
 /** @type {?} */
 const MODULE_DEFAULT_CONFIG = {
     env: {
@@ -263,7 +403,7 @@ const MODULE_CONFIG_TOKEN = new InjectionToken("FormModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormConfigurationService {
     /**
@@ -275,12 +415,16 @@ class FormConfigurationService {
         this.config$ = new BehaviorSubject(MODULE_DEFAULT_CONFIG);
         this._config = Object.assign({}, MODULE_DEFAULT_CONFIG, configFile);
         this.config$.next(this._config);
-        this.store.select(getFormModuleConfig).subscribe(userConfig => {
+        this.store.select(getFormModuleConfig).subscribe((/**
+         * @param {?} userConfig
+         * @return {?}
+         */
+        userConfig => {
             if (!userConfig)
                 return;
             this._config = Object.assign({}, this._config, userConfig.Config);
             this.config$.next(this._config);
-        });
+        }));
     }
     /**
      * @return {?}
@@ -299,11 +443,25 @@ FormConfigurationService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [MODULE_CONFIG_TOKEN,] }] },
     { type: Store }
 ];
-/** @nocollapse */ FormConfigurationService.ngInjectableDef = defineInjectable({ factory: function FormConfigurationService_Factory() { return new FormConfigurationService(inject(MODULE_CONFIG_TOKEN), inject(Store)); }, token: FormConfigurationService, providedIn: "root" });
+/** @nocollapse */ FormConfigurationService.ngInjectableDef = ɵɵdefineInjectable({ factory: function FormConfigurationService_Factory() { return new FormConfigurationService(ɵɵinject(MODULE_CONFIG_TOKEN), ɵɵinject(Store)); }, token: FormConfigurationService, providedIn: "root" });
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FormConfigurationService.prototype._config;
+    /** @type {?} */
+    FormConfigurationService.prototype.config$;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormConfigurationService.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormService {
     /**
@@ -324,10 +482,22 @@ class FormService {
         /** @type {?} */
         const model = new AddFormApiModel.Request(data);
         return this.configurationService.config$
-            .filter((config) => config.endpoints.addForm != "")
+            .filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        (config) => config.endpoints.addForm != ""))
             .take(1)
-            .switchMap((config) => this.http.post(config.env.frontend_server + config.endpoints.addForm, model.getRequestBody()))
-            .map((response) => response.Result);
+            .switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        (config) => this.http.post(config.env.frontend_server + config.endpoints.addForm, model.getRequestBody())))
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        (response) => response.Result));
     }
     /**
      * @param {?} _id
@@ -335,19 +505,43 @@ class FormService {
      */
     get(_id) {
         return this.configurationService.config$
-            .filter((config) => config.endpoints.getForm != "")
+            .filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        (config) => config.endpoints.getForm != ""))
             .take(1)
-            .switchMap((config) => this.http.get(stringTemplate(config.env.frontend_server + config.endpoints.getForm, { _id })))
-            .map((response) => response.Result);
+            .switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        (config) => this.http.get(stringTemplate(config.env.frontend_server + config.endpoints.getForm, { _id }))))
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        (response) => response.Result));
     }
     /**
      * @return {?}
      */
     getList() {
         return this.configurationService.config$
-            .filter((config) => config.endpoints.getList != "")
-            .switchMap((config) => this.http.get(config.env.frontend_server + config.endpoints.getList))
-            .map((response) => response.Result);
+            .filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        (config) => config.endpoints.getList != ""))
+            .switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        (config) => this.http.get(config.env.frontend_server + config.endpoints.getList)))
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        (response) => response.Result));
     }
     /**
      * @param {?} data
@@ -357,10 +551,22 @@ class FormService {
         /** @type {?} */
         const model = new EditFormApiModel.Request(data);
         return this.configurationService.config$
-            .filter((config) => config.endpoints.editForm != "")
+            .filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        (config) => config.endpoints.editForm != ""))
             .take(1)
-            .switchMap((config) => this.http.put(config.env.frontend_server + config.endpoints.editForm, model.getRequestBody()))
-            .map((response) => response.Result);
+            .switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        (config) => this.http.put(config.env.frontend_server + config.endpoints.editForm, model.getRequestBody())))
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        (response) => response.Result));
     }
     /**
      * @param {?} _id
@@ -368,8 +574,16 @@ class FormService {
      */
     delete(_id) {
         return this.configurationService.config$
-            .filter((config) => config.endpoints.deleteForm != "")
-            .switchMap((config) => this.http.get(config.env.frontend_server + config.endpoints.deleteForm));
+            .filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        (config) => config.endpoints.deleteForm != ""))
+            .switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        (config) => this.http.get(config.env.frontend_server + config.endpoints.deleteForm)));
     }
     /**
      * @param {?} _id
@@ -379,9 +593,29 @@ class FormService {
         /** @type {?} */
         const subject = new BehaviorSubject$1(undefined);
         this.store
-            .select((state) => state.form.list.data)
-            .pipe(filter((forms) => forms != null), map((forms) => forms.find((form) => form._id == _id)))
-            .subscribe((formSchemaModel) => subject.next(formSchemaModel));
+            .select((/**
+         * @param {?} state
+         * @return {?}
+         */
+        (state) => state.form.list.data))
+            .pipe(filter((/**
+         * @param {?} forms
+         * @return {?}
+         */
+        (forms) => forms != null)), map((/**
+         * @param {?} forms
+         * @return {?}
+         */
+        (forms) => forms.find((/**
+         * @param {?} form
+         * @return {?}
+         */
+        (form) => form._id == _id)))))
+            .subscribe((/**
+         * @param {?} formSchemaModel
+         * @return {?}
+         */
+        (formSchemaModel) => subject.next(formSchemaModel)));
         return subject.asObservable();
     }
 }
@@ -396,11 +630,28 @@ FormService.ctorParameters = () => [
     { type: Store },
     { type: FormConfigurationService }
 ];
-/** @nocollapse */ FormService.ngInjectableDef = defineInjectable({ factory: function FormService_Factory() { return new FormService(inject(HttpClient), inject(Store), inject(FormConfigurationService)); }, token: FormService, providedIn: "root" });
+/** @nocollapse */ FormService.ngInjectableDef = ɵɵdefineInjectable({ factory: function FormService_Factory() { return new FormService(ɵɵinject(HttpClient), ɵɵinject(Store), ɵɵinject(FormConfigurationService)); }, token: FormService, providedIn: "root" });
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FormService.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormService.prototype.configurationService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SelectComponent {
     constructor() { }
@@ -414,15 +665,21 @@ SelectComponent.decorators = [
 ];
 /** @nocollapse */
 SelectComponent.ctorParameters = () => [];
+if (false) {
+    /** @type {?} */
+    SelectComponent.prototype.config;
+    /** @type {?} */
+    SelectComponent.prototype.group;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class CheckboxComponent {
     constructor() { }
@@ -436,15 +693,21 @@ CheckboxComponent.decorators = [
 ];
 /** @nocollapse */
 CheckboxComponent.ctorParameters = () => [];
+if (false) {
+    /** @type {?} */
+    CheckboxComponent.prototype.config;
+    /** @type {?} */
+    CheckboxComponent.prototype.group;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class EmailComponent {
     constructor() { }
@@ -462,15 +725,21 @@ EmailComponent.decorators = [
 ];
 /** @nocollapse */
 EmailComponent.ctorParameters = () => [];
+if (false) {
+    /** @type {?} */
+    EmailComponent.prototype.config;
+    /** @type {?} */
+    EmailComponent.prototype.group;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ColorComponent {
     constructor() { }
@@ -492,15 +761,25 @@ ColorComponent.propDecorators = {
     form: [{ type: Input }],
     schema: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    ColorComponent.prototype.config;
+    /** @type {?} */
+    ColorComponent.prototype.group;
+    /** @type {?} */
+    ColorComponent.prototype.form;
+    /** @type {?} */
+    ColorComponent.prototype.schema;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class TableComponent {
     /**
@@ -515,12 +794,16 @@ class TableComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.http.get(this.schema.dataEndpoint).subscribe((data) => {
+        this.http.get(this.schema.dataEndpoint).subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        (data) => {
             this.ready = true;
             this.displayedColumns = data.displayedColumns;
             this.filedDisplayedColumns = data.filedDisplayedColumns;
             this.dataSource = new MatTableDataSource(data.dataSource);
-        });
+        }));
     }
     /**
      * Whether the number of selected elements matches the total number of rows.
@@ -541,7 +824,11 @@ class TableComponent {
      * @return {?}
      */
     masterToggle() {
-        this.isAllSelected() ? this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
+        this.isAllSelected() ? this.selection.clear() : this.dataSource.data.forEach((/**
+         * @param {?} row
+         * @return {?}
+         */
+        row => this.selection.select(row)));
     }
 }
 TableComponent.decorators = [
@@ -559,15 +846,40 @@ TableComponent.propDecorators = {
     form: [{ type: Input }],
     schema: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    TableComponent.prototype.config;
+    /** @type {?} */
+    TableComponent.prototype.group;
+    /** @type {?} */
+    TableComponent.prototype.form;
+    /** @type {?} */
+    TableComponent.prototype.schema;
+    /** @type {?} */
+    TableComponent.prototype.ready;
+    /** @type {?} */
+    TableComponent.prototype.displayedColumns;
+    /** @type {?} */
+    TableComponent.prototype.filedDisplayedColumns;
+    /** @type {?} */
+    TableComponent.prototype.dataSource;
+    /** @type {?} */
+    TableComponent.prototype.selection;
+    /**
+     * @type {?}
+     * @private
+     */
+    TableComponent.prototype.http;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NumberComponent {
     constructor() { }
@@ -589,15 +901,21 @@ NumberComponent.propDecorators = {
     form: [{ type: Input }],
     schema: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    NumberComponent.prototype.form;
+    /** @type {?} */
+    NumberComponent.prototype.schema;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class TextComponent {
     constructor() { }
@@ -611,20 +929,26 @@ TextComponent.decorators = [
 ];
 /** @nocollapse */
 TextComponent.ctorParameters = () => [];
+if (false) {
+    /** @type {?} */
+    TextComponent.prototype.config;
+    /** @type {?} */
+    TextComponent.prototype.group;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const FormsListActionTypes = {
@@ -642,10 +966,18 @@ class FormsListAction {
         this.type = FormsListActionTypes.FORMS_LIST;
     }
 }
+if (false) {
+    /** @type {?} */
+    FormsListAction.prototype.type;
+}
 class FormsListStartAction {
     constructor() {
         this.type = FormsListActionTypes.FORMS_LIST_START;
     }
+}
+if (false) {
+    /** @type {?} */
+    FormsListStartAction.prototype.type;
 }
 class FormsListSucceedAction {
     /**
@@ -656,10 +988,20 @@ class FormsListSucceedAction {
         this.type = FormsListActionTypes.FORMS_LIST_SUCCEED;
     }
 }
+if (false) {
+    /** @type {?} */
+    FormsListSucceedAction.prototype.type;
+    /** @type {?} */
+    FormsListSucceedAction.prototype.payload;
+}
 class FormsListFailedAction {
     constructor() {
         this.type = FormsListActionTypes.FORMS_LIST_FAILED;
     }
+}
+if (false) {
+    /** @type {?} */
+    FormsListFailedAction.prototype.type;
 }
 class UpdateFormSchemaAction {
     /**
@@ -670,6 +1012,12 @@ class UpdateFormSchemaAction {
         this.type = FormsListActionTypes.FORM_SCHEMA_UPDATE;
     }
 }
+if (false) {
+    /** @type {?} */
+    UpdateFormSchemaAction.prototype.type;
+    /** @type {?} */
+    UpdateFormSchemaAction.prototype.payload;
+}
 class AddFormSchemaAction {
     /**
      * @param {?} payload
@@ -678,6 +1026,12 @@ class AddFormSchemaAction {
         this.payload = payload;
         this.type = FormsListActionTypes.ADD_FORM_SCHEMA;
     }
+}
+if (false) {
+    /** @type {?} */
+    AddFormSchemaAction.prototype.type;
+    /** @type {?} */
+    AddFormSchemaAction.prototype.payload;
 }
 class GetFormSchemaAction {
     /**
@@ -688,6 +1042,12 @@ class GetFormSchemaAction {
         this.type = FormsListActionTypes.GET_FORM_SCHEMA;
     }
 }
+if (false) {
+    /** @type {?} */
+    GetFormSchemaAction.prototype.type;
+    /** @type {?} */
+    GetFormSchemaAction.prototype.payload;
+}
 class FormSchemaFechedAction {
     /**
      * @param {?} payload
@@ -697,10 +1057,16 @@ class FormSchemaFechedAction {
         this.type = FormsListActionTypes.FORM_SCHEMA_FETCHED;
     }
 }
+if (false) {
+    /** @type {?} */
+    FormSchemaFechedAction.prototype.type;
+    /** @type {?} */
+    FormSchemaFechedAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DateFormInputControlComponent {
     constructor() { }
@@ -714,10 +1080,16 @@ DateFormInputControlComponent.decorators = [
 ];
 /** @nocollapse */
 DateFormInputControlComponent.ctorParameters = () => [];
+if (false) {
+    /** @type {?} */
+    DateFormInputControlComponent.prototype.config;
+    /** @type {?} */
+    DateFormInputControlComponent.prototype.group;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FileFormInputControlComponent {
     constructor() { }
@@ -731,10 +1103,16 @@ FileFormInputControlComponent.decorators = [
 ];
 /** @nocollapse */
 FileFormInputControlComponent.ctorParameters = () => [];
+if (false) {
+    /** @type {?} */
+    FileFormInputControlComponent.prototype.config;
+    /** @type {?} */
+    FileFormInputControlComponent.prototype.group;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormCaptchaService {
     /**
@@ -752,13 +1130,37 @@ class FormCaptchaService {
      */
     getCaptcha() {
         debugger;
-        return this.configurationService.config$.pipe(filter((captcha) => captcha.endpoints.captchaUrl != ""), take(1), switchMap((captcha) => this.http.get(captcha.env.server + captcha.endpoints.captchaUrl)), map((response) => response.Result));
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} captcha
+         * @return {?}
+         */
+        (captcha) => captcha.endpoints.captchaUrl != "")), take(1), switchMap((/**
+         * @param {?} captcha
+         * @return {?}
+         */
+        (captcha) => this.http.get(captcha.env.server + captcha.endpoints.captchaUrl))), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        (response) => response.Result)));
     }
     /**
      * @return {?}
      */
     sendCaptcha() {
-        return this.configurationService.config$.pipe(filter((config) => config.endpoints.getList != ""), switchMap((config) => this.http.get(config.env.server + config.endpoints.getList)), map((response) => response.Result));
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        (config) => config.endpoints.getList != "")), switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        (config) => this.http.get(config.env.server + config.endpoints.getList))), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        (response) => response.Result)));
     }
 }
 FormCaptchaService.decorators = [
@@ -772,11 +1174,28 @@ FormCaptchaService.ctorParameters = () => [
     { type: Store },
     { type: FormConfigurationService }
 ];
-/** @nocollapse */ FormCaptchaService.ngInjectableDef = defineInjectable({ factory: function FormCaptchaService_Factory() { return new FormCaptchaService(inject(HttpClient), inject(Store), inject(FormConfigurationService)); }, token: FormCaptchaService, providedIn: "root" });
+/** @nocollapse */ FormCaptchaService.ngInjectableDef = ɵɵdefineInjectable({ factory: function FormCaptchaService_Factory() { return new FormCaptchaService(ɵɵinject(HttpClient), ɵɵinject(Store), ɵɵinject(FormConfigurationService)); }, token: FormCaptchaService, providedIn: "root" });
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FormCaptchaService.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormCaptchaService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormCaptchaService.prototype.configurationService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class CaptchaModel {
     /**
@@ -787,6 +1206,12 @@ class CaptchaModel {
         this.captchaCode = captchaCode || "";
     }
 }
+if (false) {
+    /** @type {?} */
+    CaptchaModel.prototype.captchaImg;
+    /** @type {?} */
+    CaptchaModel.prototype.captchaCode;
+}
 var UpsertCaptchaApiModel;
 (function (UpsertCaptchaApiModel) {
     class Request {
@@ -794,7 +1219,11 @@ var UpsertCaptchaApiModel;
          * @param {?=} initValue
          */
         constructor(initValue = {}) {
-            Object.keys(initValue).forEach(key => (this[key] = initValue[key]));
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            key => (this[key] = initValue[key])));
         }
         /**
          * @return {?}
@@ -804,15 +1233,23 @@ var UpsertCaptchaApiModel;
         }
     }
     UpsertCaptchaApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype.Captcha;
+    }
     class Response {
         constructor() { }
     }
     UpsertCaptchaApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(UpsertCaptchaApiModel || (UpsertCaptchaApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormCaptchaComponent {
     /**
@@ -845,11 +1282,19 @@ class FormCaptchaComponent {
      * @return {?}
      */
     _captcha_generate() {
-        this.configurationService.config$.pipe(map(config => config.env.server + config.endpoints.captchaUrl)).subscribe(captcha => {
+        this.configurationService.config$.pipe(map((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => config.env.server + config.endpoints.captchaUrl))).subscribe((/**
+         * @param {?} captcha
+         * @return {?}
+         */
+        captcha => {
             this.captcha = new CaptchaModel({
                 captchaImg: captcha
             });
-        });
+        }));
     }
 }
 FormCaptchaComponent.decorators = [
@@ -865,15 +1310,40 @@ FormCaptchaComponent.ctorParameters = () => [
     { type: Store },
     { type: FormConfigurationService }
 ];
+if (false) {
+    /** @type {?} */
+    FormCaptchaComponent.prototype.config;
+    /** @type {?} */
+    FormCaptchaComponent.prototype.group;
+    /** @type {?} */
+    FormCaptchaComponent.prototype.captcha;
+    /** @type {?} */
+    FormCaptchaComponent.prototype.captchaSrc;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormCaptchaComponent.prototype.service;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormCaptchaComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormCaptchaComponent.prototype.configurationService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormViewComponent {
     /**
@@ -893,14 +1363,18 @@ class FormViewComponent {
         this.card = false;
         this.formGroupCreated = false;
         this.schema$ = new BehaviorSubject$1(undefined);
-        this.schema$.pipe(takeUntil(this.unsubscribe)).subscribe(schema => {
+        this.schema$.pipe(takeUntil(this.unsubscribe)).subscribe((/**
+         * @param {?} schema
+         * @return {?}
+         */
+        schema => {
             if (!schema)
                 return;
             this.formGroup = (/** @type {?} */ (this.createFrom(schema.form)));
             if (!schema.form.name)
                 return;
             this.formGroupCreated = true;
-        });
+        }));
     }
     /**
      * @param {?} id
@@ -912,7 +1386,11 @@ class FormViewComponent {
         this.service
             .selectFormById(id)
             .pipe(takeUntil(this.unsubscribe))
-            .subscribe(schema => this.schema$.next(schema));
+            .subscribe((/**
+         * @param {?} schema
+         * @return {?}
+         */
+        schema => this.schema$.next(schema)));
     }
     /**
      * @param {?} schema
@@ -944,7 +1422,9 @@ class FormViewComponent {
         if (data.type == "control") {
             /** @type {?} */
             let formGroupPath;
-            if (data.parentType == "array") ;
+            if (data.parentType == "array") {
+                // parentPath = `${parentPath}.controls[${(data as FieldConfig).name}]`;
+            }
             else if (data.parentType == "group") {
                 formGroupPath = parentPath;
                 parentPath = `${parentPath}.controls.${((/** @type {?} */ (data))).name}`;
@@ -981,10 +1461,14 @@ class FormViewComponent {
             }
             ((/** @type {?} */ (formGroup))).schema = data;
             ((/** @type {?} */ (formGroup))).schema.path = parentPath;
-            data.fields.forEach(item => {
+            data.fields.forEach((/**
+             * @param {?} item
+             * @return {?}
+             */
+            item => {
                 item.parentType = "group";
                 formGroup.addControl(item.name, this.createFrom(item, parentPath));
-            });
+            }));
             return formGroup;
         }
         else {
@@ -994,11 +1478,16 @@ class FormViewComponent {
                 parentPath == "" ? ((/** @type {?} */ (data))).name : `${parentPath}.controls.${((/** @type {?} */ (data))).name}`;
             ((/** @type {?} */ (formArray))).schema = data;
             ((/** @type {?} */ (formArray))).schema.path = parentPath;
-            data.fields.forEach((item, idx) => {
+            data.fields.forEach((/**
+             * @param {?} item
+             * @param {?} idx
+             * @return {?}
+             */
+            (item, idx) => {
                 item.parentType = "array";
                 item.name = idx.toString();
                 formArray.controls.push(this.createFrom(item, parentPath));
-            });
+            }));
             return formArray;
         }
     }
@@ -1037,6 +1526,46 @@ FormViewComponent.propDecorators = {
     id: [{ type: Input }],
     schema: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    FormViewComponent.prototype.unsubscribe;
+    /** @type {?} */
+    FormViewComponent.prototype.accept;
+    /** @type {?} */
+    FormViewComponent.prototype.cancel;
+    /** @type {?} */
+    FormViewComponent.prototype.local;
+    /** @type {?} */
+    FormViewComponent.prototype.card;
+    /** @type {?} */
+    FormViewComponent.prototype._id;
+    /** @type {?} */
+    FormViewComponent.prototype.formGroup;
+    /** @type {?} */
+    FormViewComponent.prototype.formGroupCreated;
+    /** @type {?} */
+    FormViewComponent.prototype.schema$;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormViewComponent.prototype.service;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormViewComponent.prototype.compiler;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormViewComponent.prototype.resolver;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormViewComponent.prototype.store;
+}
 /** @type {?} */
 const components = {
     checkbox: CheckboxComponent,
@@ -1103,15 +1632,44 @@ DynamicFieldDirective.propDecorators = {
     config: [{ type: Input }],
     group: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    DynamicFieldDirective.prototype.config;
+    /** @type {?} */
+    DynamicFieldDirective.prototype.group;
+    /** @type {?} */
+    DynamicFieldDirective.prototype.component;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicFieldDirective.prototype.resolver;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicFieldDirective.prototype.container;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State() { }
+if (false) {
+    /** @type {?} */
+    State.prototype.status;
+    /** @type {?} */
+    State.prototype.data;
+}
+const ɵ0 = [];
 /** @type {?} */
 const initialState = {
     status: "pristine",
-    data: []
+    data: ɵ0
 };
 /**
  * @param {?=} state
@@ -1136,7 +1694,11 @@ function reducer(state = initialState, action) {
             /** @type {?} */
             const data = state.data.concat();
             /** @type {?} */
-            var entityIdx = state.data.findIndex(form => form._id == action.payload._id);
+            var entityIdx = state.data.findIndex((/**
+             * @param {?} form
+             * @return {?}
+             */
+            form => form._id == action.payload._id));
             if (entityIdx > -1) {
                 data[entityIdx] = Object.assign({}, data[entityIdx], action.payload);
             }
@@ -1149,7 +1711,11 @@ function reducer(state = initialState, action) {
             /** @type {?} */
             const data = state.data.concat();
             /** @type {?} */
-            var entityIdx = state.data.findIndex(form => form._id == action.payload._id);
+            var entityIdx = state.data.findIndex((/**
+             * @param {?} form
+             * @return {?}
+             */
+            form => form._id == action.payload._id));
             if (entityIdx > -1) {
                 data[entityIdx] = Object.assign({}, data[entityIdx], action.payload);
             }
@@ -1162,7 +1728,11 @@ function reducer(state = initialState, action) {
             /** @type {?} */
             const data = state.data.concat();
             /** @type {?} */
-            var entityIdx = state.data.findIndex(form => form._id == action.payload._id);
+            var entityIdx = state.data.findIndex((/**
+             * @param {?} form
+             * @return {?}
+             */
+            form => form._id == action.payload._id));
             if (entityIdx > -1) {
                 data[entityIdx] = Object.assign({}, data[entityIdx], action.payload);
             }
@@ -1176,19 +1746,41 @@ function reducer(state = initialState, action) {
         }
     }
 }
+/** @type {?} */
+var getStatus = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.status);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function FormState() { }
+if (false) {
+    /** @type {?} */
+    FormState.prototype.list;
+}
 /** @type {?} */
 const FormReducers = {
     list: reducer
 };
+/**
+ * @record
+ */
+function MainContainerState() { }
+if (false) {
+    /** @type {?} */
+    MainContainerState.prototype.form;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormGroupComponent {
     constructor() {
@@ -1257,10 +1849,20 @@ FormGroupComponent.propDecorators = {
     changes: [{ type: Output }],
     delete: [{ type: Output }]
 };
+if (false) {
+    /** @type {?} */
+    FormGroupComponent.prototype.schema;
+    /** @type {?} */
+    FormGroupComponent.prototype.noHeader;
+    /** @type {?} */
+    FormGroupComponent.prototype.changes;
+    /** @type {?} */
+    FormGroupComponent.prototype.delete;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormArrayComponent {
     constructor() {
@@ -1317,10 +1919,16 @@ FormArrayComponent.propDecorators = {
     schema: [{ type: Input }],
     changes: [{ type: Output }]
 };
+if (false) {
+    /** @type {?} */
+    FormArrayComponent.prototype.schema;
+    /** @type {?} */
+    FormArrayComponent.prototype.changes;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormControlComponent {
     constructor() {
@@ -1341,7 +1949,11 @@ class FormControlComponent {
      * @return {?}
      */
     changed() {
-        if ([this.schema.name, this.schema.title, this.schema.inputType].some(item => !item))
+        if ([this.schema.name, this.schema.title, this.schema.inputType].some((/**
+         * @param {?} item
+         * @return {?}
+         */
+        item => !item)))
             return true;
         if (this.schema.inputType == "table") {
             this.schema.options = this.tableOptions.value;
@@ -1387,10 +1999,24 @@ FormControlComponent.propDecorators = {
     changes: [{ type: Output }],
     delete: [{ type: Output }]
 };
+if (false) {
+    /** @type {?} */
+    FormControlComponent.prototype.schema;
+    /** @type {?} */
+    FormControlComponent.prototype.changes;
+    /** @type {?} */
+    FormControlComponent.prototype.delete;
+    /** @type {?} */
+    FormControlComponent.prototype.width;
+    /** @type {?} */
+    FormControlComponent.prototype.options;
+    /** @type {?} */
+    FormControlComponent.prototype.tableOptions;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const EditFormActionTypes = {
@@ -1408,6 +2034,12 @@ class EditFormAction {
         this.type = EditFormActionTypes.EDIT_FORM;
     }
 }
+if (false) {
+    /** @type {?} */
+    EditFormAction.prototype.type;
+    /** @type {?} */
+    EditFormAction.prototype.payload;
+}
 class EditFormStartAction {
     /**
      * @param {?} payload
@@ -1416,6 +2048,12 @@ class EditFormStartAction {
         this.payload = payload;
         this.type = EditFormActionTypes.EDIT_FORM_START;
     }
+}
+if (false) {
+    /** @type {?} */
+    EditFormStartAction.prototype.type;
+    /** @type {?} */
+    EditFormStartAction.prototype.payload;
 }
 class EditFormSucceedAction {
     /**
@@ -1426,15 +2064,25 @@ class EditFormSucceedAction {
         this.type = EditFormActionTypes.EDIT_FORM_SUCCEED;
     }
 }
+if (false) {
+    /** @type {?} */
+    EditFormSucceedAction.prototype.type;
+    /** @type {?} */
+    EditFormSucceedAction.prototype.payload;
+}
 class EditFormFailedAction {
     constructor() {
         this.type = EditFormActionTypes.EDIT_FORM_FAILED;
     }
 }
+if (false) {
+    /** @type {?} */
+    EditFormFailedAction.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const AddFormActionTypes = {
@@ -1452,6 +2100,12 @@ class AddFormAction {
         this.type = AddFormActionTypes.ADD_FORM;
     }
 }
+if (false) {
+    /** @type {?} */
+    AddFormAction.prototype.type;
+    /** @type {?} */
+    AddFormAction.prototype.payload;
+}
 class AddFormStartAction {
     /**
      * @param {?} payload
@@ -1461,20 +2115,34 @@ class AddFormStartAction {
         this.type = AddFormActionTypes.ADD_FORM_START;
     }
 }
+if (false) {
+    /** @type {?} */
+    AddFormStartAction.prototype.type;
+    /** @type {?} */
+    AddFormStartAction.prototype.payload;
+}
 class AddFormSucceedAction {
     constructor() {
         this.type = AddFormActionTypes.ADD_FORM_SUCCEED;
     }
+}
+if (false) {
+    /** @type {?} */
+    AddFormSucceedAction.prototype.type;
 }
 class AddFormFailedAction {
     constructor() {
         this.type = AddFormActionTypes.ADD_FORM_FAILED;
     }
 }
+if (false) {
+    /** @type {?} */
+    AddFormFailedAction.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class AddFormContainerComponent {
     /**
@@ -1522,15 +2190,23 @@ AddFormContainerComponent.ctorParameters = () => [
     { type: Store },
     { type: FormService }
 ];
+if (false) {
+    /** @type {?} */
+    AddFormContainerComponent.prototype.schema;
+    /** @type {?} */
+    AddFormContainerComponent.prototype.store;
+    /** @type {?} */
+    AddFormContainerComponent.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class EditFormContainerComponent extends AddFormContainerComponent {
     /**
@@ -1550,17 +2226,41 @@ class EditFormContainerComponent extends AddFormContainerComponent {
      */
     ngOnInit() {
         this.route.params
-            .map((params) => params["_id"])
-            .subscribe((id) => this.store.dispatch(new GetFormSchemaAction(id)));
+            .map((/**
+         * @param {?} params
+         * @return {?}
+         */
+        (params) => params["_id"]))
+            .subscribe((/**
+         * @param {?} id
+         * @return {?}
+         */
+        (id) => this.store.dispatch(new GetFormSchemaAction(id))));
         this.route.params
-            .map((params) => params["_id"])
-            .switchMap((id) => this.service.selectFormById(id))
-            .filter((data) => data != null)
+            .map((/**
+         * @param {?} params
+         * @return {?}
+         */
+        (params) => params["_id"]))
+            .switchMap((/**
+         * @param {?} id
+         * @return {?}
+         */
+        (id) => this.service.selectFormById(id)))
+            .filter((/**
+         * @param {?} data
+         * @return {?}
+         */
+        (data) => data != null))
             .take(1)
-            .subscribe((formSchema) => {
+            .subscribe((/**
+         * @param {?} formSchema
+         * @return {?}
+         */
+        (formSchema) => {
             this.schema = formSchema;
             this.formGroup.patchValue(formSchema);
-        });
+        }));
     }
     /**
      * @param {?} data
@@ -1586,10 +2286,23 @@ EditFormContainerComponent.ctorParameters = () => [
     { type: ActivatedRoute },
     { type: Store }
 ];
+if (false) {
+    /** @type {?} */
+    EditFormContainerComponent.prototype.formGroup;
+    /** @type {?} */
+    EditFormContainerComponent.prototype.service;
+    /**
+     * @type {?}
+     * @private
+     */
+    EditFormContainerComponent.prototype.route;
+    /** @type {?} */
+    EditFormContainerComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class AddFormComponent {
     constructor() {
@@ -1661,15 +2374,25 @@ AddFormComponent.propDecorators = {
     submited: [{ type: Output }],
     changes: [{ type: Output }]
 };
+if (false) {
+    /** @type {?} */
+    AddFormComponent.prototype.schema;
+    /** @type {?} */
+    AddFormComponent.prototype.formGroup;
+    /** @type {?} */
+    AddFormComponent.prototype.submited;
+    /** @type {?} */
+    AddFormComponent.prototype.changes;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class EditFormComponent extends AddFormComponent {
     /**
@@ -1691,10 +2414,14 @@ EditFormComponent.decorators = [
 EditFormComponent.propDecorators = {
     schema: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    EditFormComponent.prototype.schema;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormListContainerComponent {
     /**
@@ -1702,7 +2429,11 @@ class FormListContainerComponent {
      */
     constructor(store) {
         this.store = store;
-        this.data$ = this.store.select(state => state.form.list.data);
+        this.data$ = this.store.select((/**
+         * @param {?} state
+         * @return {?}
+         */
+        state => state.form.list.data));
     }
     /**
      * @return {?}
@@ -1722,10 +2453,16 @@ FormListContainerComponent.decorators = [
 FormListContainerComponent.ctorParameters = () => [
     { type: Store }
 ];
+if (false) {
+    /** @type {?} */
+    FormListContainerComponent.prototype.data$;
+    /** @type {?} */
+    FormListContainerComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormListComponent {
 }
@@ -1739,10 +2476,14 @@ FormListComponent.decorators = [
 FormListComponent.propDecorators = {
     data$: [{ type: Input, args: ["data",] }]
 };
+if (false) {
+    /** @type {?} */
+    FormListComponent.prototype.data$;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class MainContainerComponent {
     /**
@@ -1764,10 +2505,22 @@ MainContainerComponent.ctorParameters = () => [
     { type: ActivatedRoute },
     { type: Store }
 ];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    MainContainerComponent.prototype.route;
+    /**
+     * @type {?}
+     * @private
+     */
+    MainContainerComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class AddFormEffects {
     /**
@@ -1779,8 +2532,31 @@ class AddFormEffects {
         this.actions$ = actions$;
         this.router = router;
         this.service = service;
-        this.AddForm$ = this.actions$.pipe(ofType(AddFormActionTypes.ADD_FORM), map(action => action.payload), map(data => new AddFormStartAction(data)));
-        this.AddFormStart$ = this.actions$.pipe(ofType(AddFormActionTypes.ADD_FORM_START), map(action => action.payload), switchMap((data) => this.service.add(data)), map(res => new AddFormSucceedAction()), catchError(() => of(new AddFormFailedAction())));
+        this.AddForm$ = this.actions$.pipe(ofType(AddFormActionTypes.ADD_FORM), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        action => action.payload)), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => new AddFormStartAction(data))));
+        this.AddFormStart$ = this.actions$.pipe(ofType(AddFormActionTypes.ADD_FORM_START), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        action => action.payload)), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        (data) => this.service.add(data))), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => new AddFormSucceedAction())), catchError((/**
+         * @return {?}
+         */
+        () => of(new AddFormFailedAction()))));
     }
 }
 AddFormEffects.decorators = [
@@ -1800,20 +2576,41 @@ __decorate([
     Effect(),
     __metadata("design:type", Object)
 ], AddFormEffects.prototype, "AddFormStart$", void 0);
+if (false) {
+    /** @type {?} */
+    AddFormEffects.prototype.AddForm$;
+    /** @type {?} */
+    AddFormEffects.prototype.AddFormStart$;
+    /**
+     * @type {?}
+     * @private
+     */
+    AddFormEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    AddFormEffects.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    AddFormEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FormsListEffects {
     /**
@@ -1825,9 +2622,36 @@ class FormsListEffects {
         this.actions$ = actions$;
         this.router = router;
         this.service = service;
-        this.EditProfileRequest$ = this.actions$.pipe(ofType(FormsListActionTypes.FORMS_LIST), map(data => new FormsListStartAction()));
-        this.GetForm$ = this.actions$.pipe(ofType(FormsListActionTypes.GET_FORM_SCHEMA), map(action => action.payload), switchMap(id => this.service.get(id)), map(formSchema => new FormSchemaFechedAction(formSchema)));
-        this.get_forms_list$ = this.actions$.pipe(ofType(FormsListActionTypes.FORMS_LIST_START), switchMap((data) => this.service.getList()), map(res => new FormsListSucceedAction(res)), catchError(() => of(new FormsListFailedAction())));
+        this.EditProfileRequest$ = this.actions$.pipe(ofType(FormsListActionTypes.FORMS_LIST), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => new FormsListStartAction())));
+        this.GetForm$ = this.actions$.pipe(ofType(FormsListActionTypes.GET_FORM_SCHEMA), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        action => action.payload)), switchMap((/**
+         * @param {?} id
+         * @return {?}
+         */
+        id => this.service.get(id))), map((/**
+         * @param {?} formSchema
+         * @return {?}
+         */
+        formSchema => new FormSchemaFechedAction(formSchema))));
+        this.get_forms_list$ = this.actions$.pipe(ofType(FormsListActionTypes.FORMS_LIST_START), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        (data) => this.service.getList())), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => new FormsListSucceedAction(res))), catchError((/**
+         * @return {?}
+         */
+        () => of(new FormsListFailedAction()))));
     }
 }
 FormsListEffects.decorators = [
@@ -1851,15 +2675,38 @@ __decorate([
     Effect(),
     __metadata("design:type", Object)
 ], FormsListEffects.prototype, "get_forms_list$", void 0);
+if (false) {
+    /** @type {?} */
+    FormsListEffects.prototype.EditProfileRequest$;
+    /** @type {?} */
+    FormsListEffects.prototype.GetForm$;
+    /** @type {?} */
+    FormsListEffects.prototype.get_forms_list$;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormsListEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormsListEffects.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormsListEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class EditFormEffects {
     /**
@@ -1871,9 +2718,40 @@ class EditFormEffects {
         this.actions$ = actions$;
         this.router = router;
         this.service = service;
-        this.EditForm$ = this.actions$.pipe(ofType(EditFormActionTypes.EDIT_FORM), map(action => action.payload), map(data => new EditFormStartAction(data)));
-        this.EditFormStart$ = this.actions$.pipe(ofType(EditFormActionTypes.EDIT_FORM_START), map(action => action.payload), switchMap((data) => this.service.update(data)), map(formSchema => new EditFormSucceedAction(formSchema)), catchError(() => of(new EditFormFailedAction())));
-        this.UpdateFormsListStart$ = this.actions$.pipe(ofType(EditFormActionTypes.EDIT_FORM_SUCCEED), map(action => action.payload), map(formSchema => new UpdateFormSchemaAction(formSchema)));
+        this.EditForm$ = this.actions$.pipe(ofType(EditFormActionTypes.EDIT_FORM), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        action => action.payload)), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => new EditFormStartAction(data))));
+        this.EditFormStart$ = this.actions$.pipe(ofType(EditFormActionTypes.EDIT_FORM_START), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        action => action.payload)), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        (data) => this.service.update(data))), map((/**
+         * @param {?} formSchema
+         * @return {?}
+         */
+        formSchema => new EditFormSucceedAction(formSchema))), catchError((/**
+         * @return {?}
+         */
+        () => of(new EditFormFailedAction()))));
+        this.UpdateFormsListStart$ = this.actions$.pipe(ofType(EditFormActionTypes.EDIT_FORM_SUCCEED), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        action => action.payload)), map((/**
+         * @param {?} formSchema
+         * @return {?}
+         */
+        formSchema => new UpdateFormSchemaAction(formSchema))));
     }
 }
 EditFormEffects.decorators = [
@@ -1897,10 +2775,33 @@ __decorate([
     Effect(),
     __metadata("design:type", Object)
 ], EditFormEffects.prototype, "UpdateFormsListStart$", void 0);
+if (false) {
+    /** @type {?} */
+    EditFormEffects.prototype.EditForm$;
+    /** @type {?} */
+    EditFormEffects.prototype.EditFormStart$;
+    /** @type {?} */
+    EditFormEffects.prototype.UpdateFormsListStart$;
+    /**
+     * @type {?}
+     * @private
+     */
+    EditFormEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    EditFormEffects.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    EditFormEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const routes = [
@@ -1928,7 +2829,7 @@ const RoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const CaptchaActionTypes = {
@@ -1937,6 +2838,16 @@ const CaptchaActionTypes = {
     GET_CAPTCHA_SUCCEED: "[CAPTCHA][GET] GET_CAPTCHA_SUCCEED",
     GET_CAPTCHA_FAILED: "[CAPTCHA][GET] GET_CAPTCHA_FAILED",
 };
+class GetCaptchaAction {
+    constructor() {
+        this.type = CaptchaActionTypes.GET_CAPTCHA;
+        // constructor(public payload: CaptchaModel) { }
+    }
+}
+if (false) {
+    /** @type {?} */
+    GetCaptchaAction.prototype.type;
+}
 class GetCaptchaStartAction {
     /**
      * @param {?} payload
@@ -1946,20 +2857,34 @@ class GetCaptchaStartAction {
         this.type = CaptchaActionTypes.GET_CAPTCHA_START;
     }
 }
+if (false) {
+    /** @type {?} */
+    GetCaptchaStartAction.prototype.type;
+    /** @type {?} */
+    GetCaptchaStartAction.prototype.payload;
+}
 class GetCaptchaSucceedAction {
     constructor() {
         this.type = CaptchaActionTypes.GET_CAPTCHA_SUCCEED;
     }
+}
+if (false) {
+    /** @type {?} */
+    GetCaptchaSucceedAction.prototype.type;
 }
 class GetCaptchaFailedAction {
     constructor() {
         this.type = CaptchaActionTypes.GET_CAPTCHA_FAILED;
     }
 }
+if (false) {
+    /** @type {?} */
+    GetCaptchaFailedAction.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class CaptchaEffects {
     /**
@@ -1971,8 +2896,31 @@ class CaptchaEffects {
         this.actions$ = actions$;
         this.router = router;
         this.service = service;
-        this.GetCaptcha$ = this.actions$.pipe(ofType(CaptchaActionTypes.GET_CAPTCHA), map(action => action.payload), map(data => new GetCaptchaStartAction(data)));
-        this.AddFormStart$ = this.actions$.pipe(ofType(CaptchaActionTypes.GET_CAPTCHA_START), map(action => action.payload), switchMap((data) => this.service.getCaptcha()), map(res => new GetCaptchaSucceedAction()), catchError(() => of(new GetCaptchaFailedAction())));
+        this.GetCaptcha$ = this.actions$.pipe(ofType(CaptchaActionTypes.GET_CAPTCHA), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        action => action.payload)), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => new GetCaptchaStartAction(data))));
+        this.AddFormStart$ = this.actions$.pipe(ofType(CaptchaActionTypes.GET_CAPTCHA_START), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        action => action.payload)), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        (data) => this.service.getCaptcha())), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => new GetCaptchaSucceedAction())), catchError((/**
+         * @return {?}
+         */
+        () => of(new GetCaptchaFailedAction()))));
     }
 }
 CaptchaEffects.decorators = [
@@ -1992,10 +2940,31 @@ __decorate([
     Effect(),
     __metadata("design:type", Object)
 ], CaptchaEffects.prototype, "AddFormStart$", void 0);
+if (false) {
+    /** @type {?} */
+    CaptchaEffects.prototype.GetCaptcha$;
+    /** @type {?} */
+    CaptchaEffects.prototype.AddFormStart$;
+    /**
+     * @type {?}
+     * @private
+     */
+    CaptchaEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    CaptchaEffects.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    CaptchaEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NgsFormModule {
     /**
@@ -2076,6 +3045,10 @@ NgsFormModule.decorators = [
             },] }
 ];
 class RootNgsFormModule {
+    constructor() {
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.form = "8.0.10";
+    }
 }
 RootNgsFormModule.decorators = [
     { type: NgModule, args: [{
@@ -2088,17 +3061,18 @@ RootNgsFormModule.decorators = [
                 exports: [NgsFormModule]
             },] }
 ];
+/** @nocollapse */
+RootNgsFormModule.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { FormService, FormViewComponent, DynamicFieldDirective, NgsFormModule, RootNgsFormModule, AddFormComponent as ɵi, AddFormContainerComponent as ɵg, AddFormContainerComponent as ɵl, AddFormEffects as ɵbd, AddFormComponent as ɵn, CaptchaEffects as ɵbg, FormArrayComponent as ɵp, FormControlComponent as ɵq, FormGroupComponent as ɵo, EditFormContainerComponent as ɵf, EditFormEffects as ɵbe, EditFormComponent as ɵh, RoutingModule as ɵbh, MODULE_CONFIG_TOKEN as ɵa, FormListContainerComponent as ɵj, FormListComponent as ɵk, FormsListEffects as ɵbf, reducer as ɵbc, MainContainerComponent as ɵm, FormReducers as ɵb, FormCaptchaService as ɵbb, FormConfigurationService as ɵd, CheckboxComponent as ɵs, ColorComponent as ɵu, DateFormInputControlComponent as ɵv, EmailComponent as ɵt, FileFormInputControlComponent as ɵw, FormCaptchaComponent as ɵba, NumberComponent as ɵy, SelectComponent as ɵr, TableComponent as ɵz, TextComponent as ɵx };
-
+export { DynamicFieldDirective, FormService, FormViewComponent, NgsFormModule, RootNgsFormModule, MODULE_CONFIG_TOKEN as ɵa, FormReducers as ɵb, FormCaptchaComponent as ɵba, FormCaptchaService as ɵbb, reducer as ɵbc, AddFormEffects as ɵbd, EditFormEffects as ɵbe, FormsListEffects as ɵbf, CaptchaEffects as ɵbg, RoutingModule as ɵbh, FormConfigurationService as ɵd, EditFormContainerComponent as ɵf, AddFormContainerComponent as ɵg, EditFormComponent as ɵh, AddFormComponent as ɵi, FormListContainerComponent as ɵj, FormListComponent as ɵk, AddFormContainerComponent as ɵl, MainContainerComponent as ɵm, AddFormComponent as ɵn, FormGroupComponent as ɵo, FormArrayComponent as ɵp, FormControlComponent as ɵq, SelectComponent as ɵr, CheckboxComponent as ɵs, EmailComponent as ɵt, ColorComponent as ɵu, DateFormInputControlComponent as ɵv, FileFormInputControlComponent as ɵw, TextComponent as ɵx, NumberComponent as ɵy, TableComponent as ɵz };
 //# sourceMappingURL=soushians-form.js.map

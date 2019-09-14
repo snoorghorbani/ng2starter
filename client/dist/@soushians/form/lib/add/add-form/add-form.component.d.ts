@@ -4,8 +4,8 @@ import { FormSchemaModel, FieldConfig } from "../../models";
 export declare class AddFormComponent {
     schema: FormSchemaModel;
     formGroup: FormGroup;
-    submited: EventEmitter<{}>;
-    changes: EventEmitter<{}>;
+    submited: EventEmitter<any>;
+    changes: EventEmitter<any>;
     emit(): void;
     changed(): void;
     changeOrder($event: any): void;

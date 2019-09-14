@@ -4,4 +4,5 @@ export declare class NgsWidgetModule {
     static forRoot(config?: WidgetModuleConfig): ModuleWithProviders;
 }
 export declare class NgsWidgetRootModule {
+    constructor();
 }

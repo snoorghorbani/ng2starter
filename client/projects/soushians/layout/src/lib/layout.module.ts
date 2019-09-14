@@ -107,8 +107,13 @@ export class NgsLayoutModule {
 	imports: [
 		NgsLayoutModule,
 		StoreModule.forFeature("layout", LayoutReducers),
-		EffectsModule.forFeature([ LayoutEffects ])
+		EffectsModule.forFeature([LayoutEffects])
 	],
-	exports: [ NgsLayoutModule ]
+	exports: [NgsLayoutModule]
 })
-export class RootNgsLayoutModule {}
+export class RootNgsLayoutModule {
+	constructor() {
+		(<any>window).___starter = (<any>window).___starter || {};
+		(<any>window).___starter.layout = "8.0.10";
+	}
+}

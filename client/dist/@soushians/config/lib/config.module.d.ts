@@ -4,4 +4,5 @@ export declare class NgsConfigModule {
     static forRoot(config: ConfigModuleConfig): ModuleWithProviders;
 }
 export declare class RootNgsConfigModule {
+    constructor();
 }

@@ -104,15 +104,15 @@ import { DiagramSelectorComponent } from "./smart-components/diagram-selector/di
 		LinearDiagramPartialConfigComponent,
 		DiagramSelectorComponent
 	],
-	entryComponents: [ DiagramSelectorComponent, diagramViewComponent ],
-	exports: [ DiagramSelectorComponent ],
+	entryComponents: [DiagramSelectorComponent, diagramViewComponent],
+	exports: [DiagramSelectorComponent],
 	providers: []
 })
 export class NgsDiagramModule {
 	static forRoot(config?: DiagramModuleConfig): ModuleWithProviders {
 		return {
 			ngModule: RootNgsDiagramModule,
-			providers: [ { provide: MODULE_CONFIG_TOKEN, useValue: config } ]
+			providers: [{ provide: MODULE_CONFIG_TOKEN, useValue: config }]
 		};
 	}
 }
@@ -121,9 +121,14 @@ export class NgsDiagramModule {
 	imports: [
 		NgsDiagramModule,
 		StoreModule.forFeature("diagram", DiagramReducers),
-		EffectsModule.forFeature([ DiagramEffects, AddDiagramEffects ]),
+		EffectsModule.forFeature([DiagramEffects, AddDiagramEffects]),
 		RoutingModule
 	],
-	exports: [ NgsDiagramModule ]
+	exports: [NgsDiagramModule]
 })
-export class RootNgsDiagramModule {}
+export class RootNgsDiagramModule {
+	constructor() {
+		(<any>window).___starter = (<any>window).___starter || {};
+		(<any>window).___starter.diagram = "8.0.10";
+	}
+}

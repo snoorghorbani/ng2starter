@@ -1,34 +1,34 @@
+import { InjectionToken, Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, EventEmitter, Component, Output, Input, ViewChild, HostListener, HostBinding, LOCALE_ID, NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { createFeatureSelector, createSelector, Store, StoreModule } from '@ngrx/store';
+import { DOCUMENT, Location, CommonModule } from '@angular/common';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ofType, Actions, Effect, EffectsModule } from '@ngrx/effects';
 import { MatIconModule, MatButtonModule, MatCardModule, MatSnackBarModule, MatSidenavModule, MatExpansionModule, MatSelectModule, MatFormFieldModule, MatListModule, MatMenuModule, MatRadioModule, MatInputModule, MatToolbarModule, MatDatepickerModule, MatProgressBarModule } from '@angular/material';
-import 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { BehaviorSubject as BehaviorSubject$1 } from 'rxjs';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { getConfigs, NgsConfigModule } from '@soushians/config';
+import 'rxjs/Observable';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+import { SigninService, DoSignoutAction as DoSignoutAction$1 } from '@soushians/authentication';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { map, combineLatest, withLatestFrom } from 'rxjs/operators';
+import { getAccountInfo, UserFacadeService } from '@soushians/user';
+import { fromEvent } from 'rxjs/observable/fromEvent';
+import { BehaviorSubject as BehaviorSubject$1 } from 'rxjs';
 import { __decorate, __metadata } from 'tslib';
-import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/empty';
-import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
-import { SigninService, DoSignoutAction } from '@soushians/authentication';
 import { RuleModule } from '@soushians/rule';
-import { InjectionToken, Injectable, Inject, Component, Input, Output, EventEmitter, ViewChild, HostListener, NgModule, LOCALE_ID, HostBinding, defineInjectable, inject } from '@angular/core';
-import { createSelector, createFeatureSelector, Store, StoreModule } from '@ngrx/store';
-import { Location, CommonModule } from '@angular/common';
-import { DOCUMENT, BrowserModule } from '@angular/platform-browser';
-import { fromEvent } from 'rxjs/observable/fromEvent';
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import { TranslateService, TranslateModule } from '@ngx-translate/core';
-import { getAccountInfo, UserFacadeService } from '@soushians/user';
-import { map, combineLatest, withLatestFrom } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const OPEN_SIDENAV = "[Layout] Open Sidenav";
@@ -57,15 +57,29 @@ class UpdateLayoutConfigAction {
         this.type = LayoutActionTypes.UPDATE_LAYOUT_CONFIG;
     }
 }
+if (false) {
+    /** @type {?} */
+    UpdateLayoutConfigAction.prototype.type;
+    /** @type {?} */
+    UpdateLayoutConfigAction.prototype.payload;
+}
 class OpenSidenavAction {
     constructor() {
         this.type = OPEN_SIDENAV;
     }
 }
+if (false) {
+    /** @type {?} */
+    OpenSidenavAction.prototype.type;
+}
 class CloseSidenavAction {
     constructor() {
         this.type = CLOSE_SIDENAV;
     }
+}
+if (false) {
+    /** @type {?} */
+    CloseSidenavAction.prototype.type;
 }
 class ChangeLayout {
     /**
@@ -76,6 +90,12 @@ class ChangeLayout {
         this.type = LayoutActionTypes.CHANGE_LAYOUT;
     }
 }
+if (false) {
+    /** @type {?} */
+    ChangeLayout.prototype.type;
+    /** @type {?} */
+    ChangeLayout.prototype.name;
+}
 class ChangeSideNavMode {
     /**
      * @param {?} mode
@@ -84,6 +104,12 @@ class ChangeSideNavMode {
         this.mode = mode;
         this.type = LayoutActionTypes.CHANGE_MAIN_SIDENAVE_MODE;
     }
+}
+if (false) {
+    /** @type {?} */
+    ChangeSideNavMode.prototype.type;
+    /** @type {?} */
+    ChangeSideNavMode.prototype.mode;
 }
 class ChangeSecondSidenavMode {
     /**
@@ -94,10 +120,20 @@ class ChangeSecondSidenavMode {
         this.type = LayoutActionTypes.CHANGE_SECOND_SIDENAV_MODE;
     }
 }
-class DoSignoutAction$1 {
+if (false) {
+    /** @type {?} */
+    ChangeSecondSidenavMode.prototype.type;
+    /** @type {?} */
+    ChangeSecondSidenavMode.prototype.mode;
+}
+class DoSignoutAction {
     constructor() {
         this.type = LayoutActionTypes.DO_SIGNOUT;
     }
+}
+if (false) {
+    /** @type {?} */
+    DoSignoutAction.prototype.type;
 }
 class TitleChangedAction {
     /**
@@ -108,36 +144,90 @@ class TitleChangedAction {
         this.type = LayoutActionTypes.TITLE_CHANGED;
     }
 }
+if (false) {
+    /** @type {?} */
+    TitleChangedAction.prototype.type;
+    /** @type {?} */
+    TitleChangedAction.prototype.title;
+}
 class OpenSecondSidenavAction {
     constructor() {
         this.type = LayoutActionTypes.OPEN_SECOND_SIDEBAR;
     }
+}
+if (false) {
+    /** @type {?} */
+    OpenSecondSidenavAction.prototype.type;
 }
 class CloseSecondSidenavAction {
     constructor() {
         this.type = LayoutActionTypes.CLOSE_SECOND_SIDEBAR;
     }
 }
+if (false) {
+    /** @type {?} */
+    CloseSecondSidenavAction.prototype.type;
+}
 class FullscreenAction {
     constructor() {
         this.type = LayoutActionTypes.FULLSCREEN;
     }
+}
+if (false) {
+    /** @type {?} */
+    FullscreenAction.prototype.type;
 }
 class ExitFullscreenAction {
     constructor() {
         this.type = LayoutActionTypes.EXIT_FULLSCREEN;
     }
 }
+if (false) {
+    /** @type {?} */
+    ExitFullscreenAction.prototype.type;
+}
 class ToggleFullscreenAction {
     constructor() {
         this.type = LayoutActionTypes.TOGGLE_FULLSCREEN;
     }
 }
+if (false) {
+    /** @type {?} */
+    ToggleFullscreenAction.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State() { }
+if (false) {
+    /** @type {?|undefined} */
+    State.prototype.showMainSidenav;
+    /** @type {?|undefined} */
+    State.prototype.showSecondSideNav;
+    /** @type {?|undefined} */
+    State.prototype.secondSideNavMode;
+    /** @type {?|undefined} */
+    State.prototype.mainSideNavMode;
+    /** @type {?|undefined} */
+    State.prototype.menuItems;
+    /** @type {?|undefined} */
+    State.prototype.showLeftNavBar;
+    /** @type {?|undefined} */
+    State.prototype.stickyLeftNavBar;
+    /** @type {?|undefined} */
+    State.prototype.layoutMode;
+    /** @type {?|undefined} */
+    State.prototype.title;
+    /** @type {?} */
+    State.prototype.signoutAction;
+    /** @type {?} */
+    State.prototype.fullscreen;
+}
 /** @type {?} */
 const initialState = {
     showMainSidenav: false,
@@ -157,63 +247,101 @@ const initialState = {
  * @param {?=} action
  * @return {?}
  */
-function Reducer(state$$1 = initialState, action) {
+function Reducer(state = initialState, action) {
     switch (action.type) {
         case LayoutActionTypes.UPDATE_LAYOUT_CONFIG:
             /** @type {?} */
             const _state = {};
-            Object.keys(action.payload).forEach(k => {
-                if (k in state$$1)
+            Object.keys(action.payload).forEach((/**
+             * @param {?} k
+             * @return {?}
+             */
+            k => {
+                if (k in state)
                     _state[k] = action.payload[k];
-            });
-            return Object.assign({}, state$$1, _state);
+            }));
+            return Object.assign({}, state, _state);
         case CLOSE_SIDENAV:
-            return Object.assign({}, state$$1, { showMainSidenav: false });
+            return Object.assign({}, state, { showMainSidenav: false });
         case OPEN_SIDENAV:
-            return Object.assign({}, state$$1, { showMainSidenav: true });
+            return Object.assign({}, state, { showMainSidenav: true });
         case LayoutActionTypes.TITLE_CHANGED:
-            return Object.assign({}, state$$1, { title: action.title });
+            return Object.assign({}, state, { title: action.title });
         case LayoutActionTypes.CHANGE_LAYOUT:
-            return Object.assign({}, state$$1, { layoutMode: action.name });
+            return Object.assign({}, state, { layoutMode: action.name });
         case LayoutActionTypes.CHANGE_MAIN_SIDENAVE_MODE:
-            return Object.assign({}, state$$1, { mainSideNavMode: action.mode });
+            return Object.assign({}, state, { mainSideNavMode: action.mode });
         case LayoutActionTypes.CLOSE_SECOND_SIDEBAR:
-            return Object.assign({}, state$$1, { showSecondSideNav: false });
+            return Object.assign({}, state, { showSecondSideNav: false });
         case LayoutActionTypes.OPEN_SECOND_SIDEBAR:
-            return Object.assign({}, state$$1, { showSecondSideNav: true });
+            return Object.assign({}, state, { showSecondSideNav: true });
         case LayoutActionTypes.CHANGE_SECOND_SIDENAV_MODE:
-            return Object.assign({}, state$$1, { secondSideNavMode: action.mode });
+            return Object.assign({}, state, { secondSideNavMode: action.mode });
         case LayoutActionTypes.FULLSCREEN:
-            return Object.assign({}, state$$1, { fullscreen: true });
+            return Object.assign({}, state, { fullscreen: true });
         case LayoutActionTypes.EXIT_FULLSCREEN:
-            return Object.assign({}, state$$1, { fullscreen: false });
+            return Object.assign({}, state, { fullscreen: false });
         // case layout.LayoutActionTypes.TOGGLE_FULLSCREEN:
         // 	return {
         // 		...state,
         // 		fullscreen: state.fullscreen === true ? false : true
         // 	};
         default:
-            return state$$1;
+            return state;
     }
 }
 /** @type {?} */
-const getTitle = (state$$1) => state$$1.title;
+const getShowSidenav = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.showMainSidenav);
 /** @type {?} */
-const getShowMainSidenav = (state$$1) => state$$1.showMainSidenav;
+const getTitle = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.title);
 /** @type {?} */
-const getMainSideNavMode = (state$$1) => state$$1.mainSideNavMode;
+const getShowMainSidenav = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.showMainSidenav);
 /** @type {?} */
-const getLayoutMode = (state$$1) => state$$1.layoutMode;
+const getMainSideNavMode = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.mainSideNavMode);
 /** @type {?} */
-const getShowSecondSidebarStatus = (state$$1) => state$$1.showSecondSideNav;
+const getLayoutMode = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.layoutMode);
 /** @type {?} */
-const getSecondSidebarMode = (state$$1) => state$$1.secondSideNavMode;
+const getShowSecondSidebarStatus = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.showSecondSideNav);
 /** @type {?} */
-const getFullscreenMode = (state$$1) => state$$1.fullscreen;
+const getSecondSidebarMode = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.secondSideNavMode);
+/** @type {?} */
+const getFullscreenMode = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.fullscreen);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const ToolbarActionTypes = {
@@ -230,46 +358,88 @@ class ChangeToolbatToComfortableModeAction {
         this.type = ToolbarActionTypes.COMPORTABLE;
     }
 }
+if (false) {
+    /** @type {?} */
+    ChangeToolbatToComfortableModeAction.prototype.type;
+}
 class ChangeToolbatToCompactModeAction {
     constructor() {
         this.type = ToolbarActionTypes.COMPACT;
     }
+}
+if (false) {
+    /** @type {?} */
+    ChangeToolbatToCompactModeAction.prototype.type;
 }
 class ChangeToolbatToSummaryModeAction {
     constructor() {
         this.type = ToolbarActionTypes.SUMMARY;
     }
 }
+if (false) {
+    /** @type {?} */
+    ChangeToolbatToSummaryModeAction.prototype.type;
+}
 class EnableComfortableModeAction {
     constructor() {
         this.type = ToolbarActionTypes.ENABLE_COMFORTABLE_MODE;
     }
+}
+if (false) {
+    /** @type {?} */
+    EnableComfortableModeAction.prototype.type;
 }
 class DisableComfortableModeAction {
     constructor() {
         this.type = ToolbarActionTypes.DISBALE_COMFORTABLE_MODE;
     }
 }
+if (false) {
+    /** @type {?} */
+    DisableComfortableModeAction.prototype.type;
+}
 class VisibleToolbarAction {
     constructor() {
         this.type = ToolbarActionTypes.VISIBLE;
     }
+}
+if (false) {
+    /** @type {?} */
+    VisibleToolbarAction.prototype.type;
 }
 class InvisibleToolbarAction {
     constructor() {
         this.type = ToolbarActionTypes.INVISIBLE;
     }
 }
+if (false) {
+    /** @type {?} */
+    InvisibleToolbarAction.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State$1() { }
+if (false) {
+    /** @type {?} */
+    State$1.prototype.mode;
+    /** @type {?} */
+    State$1.prototype.enableComfortableMode;
+    /** @type {?} */
+    State$1.prototype.comfortableModeHaveBeenDone;
+    /** @type {?} */
+    State$1.prototype.visibility;
+}
 /** @type {?} */
 const initialState$1 = {
     mode: "compact",
@@ -282,54 +452,83 @@ const initialState$1 = {
  * @param {?=} action
  * @return {?}
  */
-function Reducer$1(state$$1 = initialState$1, action) {
+function Reducer$1(state = initialState$1, action) {
     switch (action.type) {
         case ToolbarActionTypes.COMPACT:
-            if (!state$$1.visibility)
-                return Object.assign({}, state$$1, { mode: "hide" });
-            return Object.assign({}, state$$1, { mode: "compact" });
+            if (!state.visibility)
+                return Object.assign({}, state, { mode: "hide" });
+            return Object.assign({}, state, { mode: "compact" });
         case ToolbarActionTypes.COMPORTABLE:
-            if (!state$$1.visibility)
-                return Object.assign({}, state$$1, { mode: "hide" });
-            return Object.assign({}, state$$1, { mode: state$$1.enableComfortableMode ? "comfortable" : "compact" });
+            if (!state.visibility)
+                return Object.assign({}, state, { mode: "hide" });
+            return Object.assign({}, state, { mode: state.enableComfortableMode ? "comfortable" : "compact" });
         case ToolbarActionTypes.SUMMARY:
-            if (!state$$1.visibility)
-                return Object.assign({}, state$$1, { mode: "hide" });
-            return Object.assign({}, state$$1, { mode: "summary" });
+            if (!state.visibility)
+                return Object.assign({}, state, { mode: "hide" });
+            return Object.assign({}, state, { mode: "summary" });
         case ToolbarActionTypes.ENABLE_COMFORTABLE_MODE:
-            if (!state$$1.visibility)
-                return Object.assign({}, state$$1, { mode: "hide" });
-            return Object.assign({}, state$$1, { enableComfortableMode: true });
+            if (!state.visibility)
+                return Object.assign({}, state, { mode: "hide" });
+            return Object.assign({}, state, { enableComfortableMode: true });
         case ToolbarActionTypes.DISBALE_COMFORTABLE_MODE:
-            if (!state$$1.visibility)
-                return Object.assign({}, state$$1, { mode: "hide" });
-            return Object.assign({}, state$$1, { mode: "compact", enableComfortableMode: false });
+            if (!state.visibility)
+                return Object.assign({}, state, { mode: "hide" });
+            return Object.assign({}, state, { mode: "compact", enableComfortableMode: false });
         case ToolbarActionTypes.VISIBLE:
-            return Object.assign({}, state$$1, { mode: "compact", visibility: true });
+            return Object.assign({}, state, { mode: "compact", visibility: true });
         case ToolbarActionTypes.INVISIBLE:
-            return Object.assign({}, state$$1, { mode: "hide", visibility: false });
+            return Object.assign({}, state, { mode: "hide", visibility: false });
         default:
-            return state$$1;
+            return state;
     }
 }
 /** @type {?} */
-const getToolbarMode = (state$$1) => state$$1.mode;
+const getToolbarMode = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.mode);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function LayoutState() { }
+if (false) {
+    /** @type {?} */
+    LayoutState.prototype.layout;
+    /** @type {?} */
+    LayoutState.prototype.toolbar;
+}
 /** @type {?} */
 const LayoutReducers = {
     layout: Reducer,
     toolbar: Reducer$1
 };
+/**
+ * @record
+ */
+function FeatureState() { }
+if (false) {
+    /** @type {?} */
+    FeatureState.prototype.layout;
+    /** @type {?} */
+    FeatureState.prototype.toolbar;
+}
 //#region selectors
 /** @type {?} */
 const selectLayoutState = createFeatureSelector("layout");
 //#endregion
+const ɵ0 = /**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.layout;
 /** @type {?} */
-const getLayout = createSelector(selectLayoutState, (state$$1) => state$$1.layout);
+const getLayout = createSelector(selectLayoutState, (ɵ0));
 /** @type {?} */
 const getTitle$1 = createSelector(getLayout, getTitle);
 /** @type {?} */
@@ -345,26 +544,74 @@ const getSecondSidebarMode$1 = createSelector(getLayout, getSecondSidebarMode);
 /** @type {?} */
 const getFullscreenMode$1 = createSelector(getLayout, getFullscreenMode);
 //#region toolbar
+const ɵ1 = /**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.toolbar;
 /** @type {?} */
-const getLayoutToolbar = createSelector(selectLayoutState, (state$$1) => state$$1.toolbar);
+const getLayoutToolbar = createSelector(selectLayoutState, (ɵ1));
 /** @type {?} */
 const getLayoutToolbarMode = createSelector(getLayoutToolbar, getToolbarMode);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function LayoutModuleConfigModel() { }
+if (false) {
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.showMainSidenav;
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.showSecondSideNav;
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.secondSideNavMode;
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.mainSideNavMode;
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.menuItems;
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.showLeftNavBar;
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.stickyLeftNavBar;
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.layoutMode;
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.title;
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.signoutAction;
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.menu_item_authorization_operator;
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.theme;
+}
 /** @type {?} */
-const menu_item_authorization_operator = function ([routes, user]) {
+const menu_item_authorization_operator = (/**
+ * @param {?} __0
+ * @return {?}
+ */
+function ([routes, user]) {
     if (!user.Roles)
         return [];
     if (user.Roles.length == 0) {
         return [];
     }
     else {
-        return routes.filter(route => user.Roles.some(userRole => route.roles.indexOf(userRole) > -1));
+        return routes.filter((/**
+         * @param {?} route
+         * @return {?}
+         */
+        route => user.Roles.some((/**
+         * @param {?} userRole
+         * @return {?}
+         */
+        userRole => route.roles.indexOf(userRole) > -1))));
     }
-};
+});
+const ɵ0$1 = menu_item_authorization_operator;
 /** @type {?} */
 const MODULE_DEFAULT_CONFIG = {
     theme: "theme_B",
@@ -388,7 +635,7 @@ const MODULE_CONFIG_TOKEN = new InjectionToken("LayoutModuleConfigModel");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LayoutConfigurationService {
     /**
@@ -402,14 +649,26 @@ class LayoutConfigurationService {
         this.config$.next(this._config);
         this.store
             .select(getConfigs)
-            .map(configs => configs.find(config => config.Name == "layout_config"))
-            .subscribe(config => {
+            .map((/**
+         * @param {?} configs
+         * @return {?}
+         */
+        configs => configs.find((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => config.Name == "layout_config"))))
+            .subscribe((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => {
             if (!config)
                 return;
             this.store.dispatch(new UpdateLayoutConfigAction(config.Config));
             this._config = Object.assign({}, this._config, config.Config);
             this.config$.next(this._config);
-        });
+        }));
     }
     /**
      * @return {?}
@@ -428,11 +687,25 @@ LayoutConfigurationService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [MODULE_CONFIG_TOKEN,] }] },
     { type: Store }
 ];
-/** @nocollapse */ LayoutConfigurationService.ngInjectableDef = defineInjectable({ factory: function LayoutConfigurationService_Factory() { return new LayoutConfigurationService(inject(MODULE_CONFIG_TOKEN), inject(Store)); }, token: LayoutConfigurationService, providedIn: "root" });
+/** @nocollapse */ LayoutConfigurationService.ngInjectableDef = ɵɵdefineInjectable({ factory: function LayoutConfigurationService_Factory() { return new LayoutConfigurationService(ɵɵinject(MODULE_CONFIG_TOKEN), ɵɵinject(Store)); }, token: LayoutConfigurationService, providedIn: "root" });
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    LayoutConfigurationService.prototype._config;
+    /** @type {?} */
+    LayoutConfigurationService.prototype.config$;
+    /**
+     * @type {?}
+     * @private
+     */
+    LayoutConfigurationService.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class MainMenuComponent {
     /**
@@ -452,7 +725,11 @@ class MainMenuComponent {
      * @return {?}
      */
     _observe_on_layout_config_and_filter_routes() {
-        this.routes$ = this.configurationService.config$.pipe(map(config => config.menuItems), combineLatest(this.user$), map(this.configurationService.config$.getValue().menu_item_authorization_operator));
+        this.routes$ = this.configurationService.config$.pipe(map((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => config.menuItems)), combineLatest(this.user$), map(this.configurationService.config$.getValue().menu_item_authorization_operator));
     }
 }
 MainMenuComponent.decorators = [
@@ -497,12 +774,35 @@ MainMenuComponent.ctorParameters = () => [
 MainMenuComponent.propDecorators = {
     closeSidebar: [{ type: Output }],
     authenticated: [{ type: Input }],
-    customerMobileInput: [{ type: ViewChild, args: ["customerMobileInput",] }]
+    customerMobileInput: [{ type: ViewChild, args: ["customerMobileInput", { static: false },] }]
 };
+if (false) {
+    /** @type {?} */
+    MainMenuComponent.prototype.closeSidebar;
+    /** @type {?} */
+    MainMenuComponent.prototype.authenticated;
+    /** @type {?} */
+    MainMenuComponent.prototype.user$;
+    /** @type {?} */
+    MainMenuComponent.prototype.customerStatus$;
+    /** @type {?} */
+    MainMenuComponent.prototype.routes$;
+    /** @type {?} */
+    MainMenuComponent.prototype.customerMobileInput;
+    /**
+     * @type {?}
+     * @private
+     */
+    MainMenuComponent.prototype.store;
+    /** @type {?} */
+    MainMenuComponent.prototype.signinService;
+    /** @type {?} */
+    MainMenuComponent.prototype.configurationService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SearchBoxComponent {
     constructor() { }
@@ -524,7 +824,7 @@ SearchBoxComponent.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LogoContainerComponent {
     /**
@@ -545,10 +845,19 @@ LogoContainerComponent.decorators = [
 LogoContainerComponent.ctorParameters = () => [
     { type: LayoutConfigurationService }
 ];
+if (false) {
+    /** @type {?} */
+    LogoContainerComponent.prototype.toolbarAnimationState;
+    /**
+     * @type {?}
+     * @private
+     */
+    LogoContainerComponent.prototype.sdf;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ToolbarMenuComponent {
     /**
@@ -570,18 +879,41 @@ class ToolbarMenuComponent {
         this.user$ = this.store.select(getAccountInfo);
         this.store.dispatch(new ChangeToolbatToComfortableModeAction());
         this.config$ = this.store.select(getLayoutToolbar);
-        this.config$.subscribe(config => (this.config = config));
+        this.config$.subscribe((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => (this.config = config)));
         this.lastScroll = this.document.body.scrollTop;
         this.showSecondSidenav = this.store.select(getShowSecondSidebarStatus$1);
         this.showMainSidenav = this.store.select(getShowMainSidenav$1);
-        this.store.select(getLayoutToolbarMode).subscribe(state$$1 => {
-            setTimeout(() => (this.menuAnimationState = state$$1), 1);
-            setTimeout(() => (this.logoAnimationState = state$$1), 1);
-            setTimeout(() => (this.titleAnimationState = state$$1), 1);
-            setTimeout(() => (this.toolbarAnimationState = state$$1), 1);
-        });
+        this.store.select(getLayoutToolbarMode).subscribe((/**
+         * @param {?} state
+         * @return {?}
+         */
+        state => {
+            setTimeout((/**
+             * @return {?}
+             */
+            () => (this.menuAnimationState = state)), 1);
+            setTimeout((/**
+             * @return {?}
+             */
+            () => (this.logoAnimationState = state)), 1);
+            setTimeout((/**
+             * @return {?}
+             */
+            () => (this.titleAnimationState = state)), 1);
+            setTimeout((/**
+             * @return {?}
+             */
+            () => (this.toolbarAnimationState = state)), 1);
+        }));
         this._observe_on_layout_config_and_filter_routes();
-        fromEvent(this.document.body, "scroll").subscribe(() => {
+        fromEvent(this.document.body, "scroll").subscribe((/**
+         * @return {?}
+         */
+        () => {
             /** @type {?} */
             const scrolledAmount = this.document.body.scrollTop;
             /** @type {?} */
@@ -605,7 +937,7 @@ class ToolbarMenuComponent {
                     return;
                 this.store.dispatch(new ChangeToolbatToSummaryModeAction());
             }
-        });
+        }));
     }
     /**
      * @return {?}
@@ -617,7 +949,7 @@ class ToolbarMenuComponent {
      * @return {?}
      */
     signout() {
-        this.store.dispatch(new DoSignoutAction$1());
+        this.store.dispatch(new DoSignoutAction());
     }
     /**
      * @return {?}
@@ -631,9 +963,13 @@ class ToolbarMenuComponent {
     toggleSecondSidebar() {
         /** @type {?} */
         let action;
-        this.showSecondSidenav.subscribe(state$$1 => {
-            action = state$$1 ? new CloseSecondSidenavAction() : new OpenSecondSidenavAction();
-        });
+        this.showSecondSidenav.subscribe((/**
+         * @param {?} state
+         * @return {?}
+         */
+        state => {
+            action = state ? new CloseSecondSidenavAction() : new OpenSecondSidenavAction();
+        }));
         this.store.dispatch(action);
     }
     /**
@@ -642,16 +978,24 @@ class ToolbarMenuComponent {
     toggleMainSidebar() {
         /** @type {?} */
         let action;
-        this.showMainSidenav.subscribe(state$$1 => {
-            action = state$$1 ? new CloseSidenavAction() : new OpenSidenavAction();
-        });
+        this.showMainSidenav.subscribe((/**
+         * @param {?} state
+         * @return {?}
+         */
+        state => {
+            action = state ? new CloseSidenavAction() : new OpenSidenavAction();
+        }));
         this.store.dispatch(action);
     }
     /**
      * @return {?}
      */
     _observe_on_layout_config_and_filter_routes() {
-        this.menuItems$ = this.configurationService.config$.pipe(map(config => config.menuItems), combineLatest(this.user$), map(this.configurationService.config$.getValue().menu_item_authorization_operator));
+        this.menuItems$ = this.configurationService.config$.pipe(map((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => config.menuItems)), combineLatest(this.user$), map(this.configurationService.config$.getValue().menu_item_authorization_operator));
     }
 }
 ToolbarMenuComponent.decorators = [
@@ -843,10 +1187,61 @@ ToolbarMenuComponent.propDecorators = {
     displayName: [{ type: Input }],
     onWindowScroll: [{ type: HostListener, args: ["body:scroll", [],] }]
 };
+if (false) {
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.showSecondSidenav;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.showSidebarMenu;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.app_config;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.user;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.displayName;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.user$;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.showMainSidenav;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.toolbarAnimationState;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.menuAnimationState;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.logoAnimationState;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.titleAnimationState;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.menuItems$;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.lastScroll;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.config;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.config$;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.anchorsMode;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToolbarMenuComponent.prototype.document;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToolbarMenuComponent.prototype._location;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToolbarMenuComponent.prototype.store;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.configurationService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FooterComponent {
     constructor() { }
@@ -867,10 +1262,14 @@ FooterComponent.ctorParameters = () => [];
 FooterComponent.propDecorators = {
     app_config: [{ type: Input, args: ["app-config",] }]
 };
+if (false) {
+    /** @type {?} */
+    FooterComponent.prototype.app_config;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class TitleComponent {
     /**
@@ -909,11 +1308,19 @@ class TitleComponent {
         //     return (event.url.endsWith('/change-password')) ? 'تغییر کلمه عبور' : null;
         // });
         this.title$ = this.store.select(getTitle$1);
-        this.router.events.subscribe(event => {
+        this.router.events.subscribe((/**
+         * @param {?} event
+         * @return {?}
+         */
+        event => {
             if (event instanceof NavigationEnd) {
                 /** @type {?} */
                 var title = "";
-                this.mapper.forEach(mapper => {
+                this.mapper.forEach((/**
+                 * @param {?} mapper
+                 * @return {?}
+                 */
+                mapper => {
                     /** @type {?} */
                     let res = mapper(event);
                     if (res) {
@@ -923,10 +1330,10 @@ class TitleComponent {
                     else {
                         return false;
                     }
-                });
+                }));
                 this.store.dispatch(new TitleChangedAction("" + title || ""));
             }
-        });
+        }));
     }
 }
 TitleComponent.decorators = [
@@ -941,10 +1348,26 @@ TitleComponent.ctorParameters = () => [
     { type: Store },
     { type: Router }
 ];
+if (false) {
+    /** @type {?} */
+    TitleComponent.prototype.title$;
+    /** @type {?} */
+    TitleComponent.prototype.mapper;
+    /**
+     * @type {?}
+     * @private
+     */
+    TitleComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    TitleComponent.prototype.router;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NgsLayoutMainComponent {
     /**
@@ -963,26 +1386,46 @@ class NgsLayoutMainComponent {
         this.showSidebarMenu = new BehaviorSubject$1(true);
         this.width = 100;
         this._set_i18n_resource();
-        this.configService.config$.subscribe(config => {
+        this.configService.config$.subscribe((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => {
             this.theme = config.theme;
             this.theme_A = config.theme == "theme_A";
             this.theme_B = config.theme == "theme_B";
-        });
+        }));
         this.store.dispatch(new ChangeSideNavMode("push"));
-        this.user$ = this.store.select(s => ((/** @type {?} */ (s))).user.user.data);
+        this.user$ = this.store.select((/**
+         * @param {?} s
+         * @return {?}
+         */
+        s => ((/** @type {?} */ (s))).user.user.data));
         this.displayName$ = this.userFacadeService.getDisplayName();
         this.showMainSidenav = this.store.select(getShowMainSidenav$1);
         this.mainSidenavMode = this.store.select(getMainSideNavMode$1);
         this.toolbarAnimationState = this.store.select(getLayoutToolbarMode);
         this.isFullscreen$ = this.store.select(getFullscreenMode$1);
-        this.mode$ = this.isFullscreen$.map(mode => (mode ? "invisible" : "visible"));
+        this.mode$ = this.isFullscreen$.map((/**
+         * @param {?} mode
+         * @return {?}
+         */
+        mode => (mode ? "invisible" : "visible")));
         //#region manage second sidebar
         this.store.dispatch(new ChangeSecondSidenavMode("push"));
         this.showSecondSidenav = this.store.select(getShowSecondSidebarStatus$1);
         this.secondSidenavMode = this.store.select(getSecondSidebarMode$1);
         //#endregion manage second sidebar
         this.layoutMode = this.store.select(getLayoutMode$1);
-        this.router.events.filter(data => data instanceof NavigationEnd).subscribe(event => {
+        this.router.events.filter((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => data instanceof NavigationEnd)).subscribe((/**
+         * @param {?} event
+         * @return {?}
+         */
+        event => {
             /** @type {?} */
             const hideSituations = [
                 ((/** @type {?} */ (event))).urlAfterRedirects == "/auth/signin",
@@ -990,11 +1433,15 @@ class NgsLayoutMainComponent {
                 ((/** @type {?} */ (event))).urlAfterRedirects == "/auth/signup/verification",
                 ((/** @type {?} */ (event))).urlAfterRedirects == "/user/password/reset"
             ];
-            if (hideSituations.some(i => i))
+            if (hideSituations.some((/**
+             * @param {?} i
+             * @return {?}
+             */
+            i => i)))
                 this.showSidebarMenu.next(false);
             else
                 this.showSidebarMenu.next(true);
-        });
+        }));
     }
     // ngAfterViewInit() {
     // 	this.store.dispatch(new ChangeLayout("with-margin"));
@@ -1055,14 +1502,77 @@ NgsLayoutMainComponent.ctorParameters = () => [
 ];
 NgsLayoutMainComponent.propDecorators = {
     app_config: [{ type: Input, args: ["app-config",] }],
-    mainSideNav: [{ type: ViewChild, args: ["mainSideNav",] }],
+    mainSideNav: [{ type: ViewChild, args: ["mainSideNav", { static: false },] }],
     theme_A: [{ type: HostBinding, args: ["class.theme_A",] }],
     theme_B: [{ type: HostBinding, args: ["class.theme_B",] }]
 };
+if (false) {
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.app_config;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.mode$;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.theme;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.user$;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.displayName$;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.isFullscreen$;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.progressStatus$;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.showSidebarMenu;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.showMainSidenav;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.mainSidenavMode;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.layoutMode;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.width;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.showSecondSidenav;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.secondSidenavMode;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.toolbarAnimationState;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.mainSideNav;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.theme_A;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.theme_B;
+    /**
+     * @type {?}
+     * @private
+     */
+    NgsLayoutMainComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    NgsLayoutMainComponent.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    NgsLayoutMainComponent.prototype.configService;
+    /**
+     * @type {?}
+     * @private
+     */
+    NgsLayoutMainComponent.prototype.translateService;
+    /**
+     * @type {?}
+     * @private
+     */
+    NgsLayoutMainComponent.prototype.userFacadeService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LayoutEffects {
     /**
@@ -1074,15 +1584,28 @@ class LayoutEffects {
         this.actions$ = actions$;
         this.router = router;
         this.store = store;
-        this.DoSignout$ = this.actions$.pipe(ofType(LayoutActionTypes.DO_SIGNOUT), map(() => new DoSignoutAction()));
-        this.fullscreen$ = this.actions$.pipe(ofType(LayoutActionTypes.FULLSCREEN), map(() => new InvisibleToolbarAction()));
-        this.exit_fullscreen$ = this.actions$.pipe(ofType(LayoutActionTypes.EXIT_FULLSCREEN), map(() => new VisibleToolbarAction()));
-        this.fullscren_toolbar$ = this.actions$.pipe(ofType(LayoutActionTypes.TOGGLE_FULLSCREEN), withLatestFrom(this.store.select(getFullscreenMode$1)), map(([action, toolbarMode]) => {
+        this.DoSignout$ = this.actions$.pipe(ofType(LayoutActionTypes.DO_SIGNOUT), map((/**
+         * @return {?}
+         */
+        () => new DoSignoutAction$1())));
+        this.fullscreen$ = this.actions$.pipe(ofType(LayoutActionTypes.FULLSCREEN), map((/**
+         * @return {?}
+         */
+        () => new InvisibleToolbarAction())));
+        this.exit_fullscreen$ = this.actions$.pipe(ofType(LayoutActionTypes.EXIT_FULLSCREEN), map((/**
+         * @return {?}
+         */
+        () => new VisibleToolbarAction())));
+        this.fullscren_toolbar$ = this.actions$.pipe(ofType(LayoutActionTypes.TOGGLE_FULLSCREEN), withLatestFrom(this.store.select(getFullscreenMode$1)), map((/**
+         * @param {?} __0
+         * @return {?}
+         */
+        ([action, toolbarMode]) => {
             if (toolbarMode)
                 return new ExitFullscreenAction();
             else
                 return new FullscreenAction();
-        }));
+        })));
     }
 }
 LayoutEffects.decorators = [
@@ -1110,10 +1633,35 @@ __decorate([
     Effect(),
     __metadata("design:type", Object)
 ], LayoutEffects.prototype, "fullscren_toolbar$", void 0);
+if (false) {
+    /** @type {?} */
+    LayoutEffects.prototype.DoSignout$;
+    /** @type {?} */
+    LayoutEffects.prototype.fullscreen$;
+    /** @type {?} */
+    LayoutEffects.prototype.exit_fullscreen$;
+    /** @type {?} */
+    LayoutEffects.prototype.fullscren_toolbar$;
+    /**
+     * @type {?}
+     * @private
+     */
+    LayoutEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    LayoutEffects.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    LayoutEffects.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ToolbarMenuThemeBComponent {
     /**
@@ -1137,18 +1685,41 @@ class ToolbarMenuThemeBComponent {
         this.user$ = this.store.select(getAccountInfo);
         this.store.dispatch(new ChangeToolbatToComfortableModeAction());
         this.config$ = this.store.select(getLayoutToolbar);
-        this.config$.subscribe(config => (this.config = config));
+        this.config$.subscribe((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => (this.config = config)));
         this.lastScroll = this.document.body.scrollTop;
         this.showSecondSidenav = this.store.select(getShowSecondSidebarStatus$1);
         this.showMainSidenav = this.store.select(getShowMainSidenav$1);
-        this.store.select(getLayoutToolbarMode).subscribe(state$$1 => {
-            setTimeout(() => (this.menuAnimationState = state$$1), 1);
-            setTimeout(() => (this.logoAnimationState = state$$1), 1);
-            setTimeout(() => (this.titleAnimationState = state$$1), 1);
-            setTimeout(() => (this.toolbarAnimationState = state$$1), 1);
-        });
+        this.store.select(getLayoutToolbarMode).subscribe((/**
+         * @param {?} state
+         * @return {?}
+         */
+        state => {
+            setTimeout((/**
+             * @return {?}
+             */
+            () => (this.menuAnimationState = state)), 1);
+            setTimeout((/**
+             * @return {?}
+             */
+            () => (this.logoAnimationState = state)), 1);
+            setTimeout((/**
+             * @return {?}
+             */
+            () => (this.titleAnimationState = state)), 1);
+            setTimeout((/**
+             * @return {?}
+             */
+            () => (this.toolbarAnimationState = state)), 1);
+        }));
         this._observe_on_layout_config_and_filter_routes();
-        fromEvent(this.document.body, "scroll").subscribe(() => {
+        fromEvent(this.document.body, "scroll").subscribe((/**
+         * @return {?}
+         */
+        () => {
             /** @type {?} */
             let scrolledAmount = this.document.body.scrollTop;
             /** @type {?} */
@@ -1173,7 +1744,7 @@ class ToolbarMenuThemeBComponent {
                     return;
                 this.store.dispatch(new ChangeToolbatToSummaryModeAction());
             }
-        });
+        }));
     }
     /**
      * @return {?}
@@ -1185,7 +1756,7 @@ class ToolbarMenuThemeBComponent {
      * @return {?}
      */
     signout() {
-        this.store.dispatch(new DoSignoutAction$1());
+        this.store.dispatch(new DoSignoutAction());
     }
     /**
      * @return {?}
@@ -1199,9 +1770,13 @@ class ToolbarMenuThemeBComponent {
     toggleSecondSidebar() {
         /** @type {?} */
         let action;
-        this.showSecondSidenav.subscribe(state$$1 => {
-            action = state$$1 ? new CloseSecondSidenavAction() : new OpenSecondSidenavAction();
-        });
+        this.showSecondSidenav.subscribe((/**
+         * @param {?} state
+         * @return {?}
+         */
+        state => {
+            action = state ? new CloseSecondSidenavAction() : new OpenSecondSidenavAction();
+        }));
         this.store.dispatch(action);
     }
     /**
@@ -1210,16 +1785,24 @@ class ToolbarMenuThemeBComponent {
     toggleMainSidebar() {
         /** @type {?} */
         let action;
-        this.showMainSidenav.subscribe(state$$1 => {
-            action = state$$1 ? new CloseSidenavAction() : new OpenSidenavAction();
-        });
+        this.showMainSidenav.subscribe((/**
+         * @param {?} state
+         * @return {?}
+         */
+        state => {
+            action = state ? new CloseSidenavAction() : new OpenSidenavAction();
+        }));
         this.store.dispatch(action);
     }
     /**
      * @return {?}
      */
     _observe_on_layout_config_and_filter_routes() {
-        this.menuItems$ = this.configurationService.config$.pipe(map(config => config.menuItems), combineLatest(this.user$), map(this.configurationService.config$.getValue().menu_item_authorization_operator));
+        this.menuItems$ = this.configurationService.config$.pipe(map((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => config.menuItems)), combineLatest(this.user$), map(this.configurationService.config$.getValue().menu_item_authorization_operator));
     }
 }
 ToolbarMenuThemeBComponent.decorators = [
@@ -1405,10 +1988,66 @@ ToolbarMenuThemeBComponent.propDecorators = {
     displayName: [{ type: Input }],
     onWindowScroll: [{ type: HostListener, args: ["body:scroll", [],] }]
 };
+if (false) {
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.showSecondSidenav;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.showSidebarMenu;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.app_config;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.user;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.displayName;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.user$;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.showMainSidenav;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.toolbarAnimationState;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.menuAnimationState;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.logoAnimationState;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.titleAnimationState;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.menuItems$;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.lastScroll;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.config;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.config$;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.anchorsMode;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToolbarMenuThemeBComponent.prototype.document;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToolbarMenuThemeBComponent.prototype._location;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToolbarMenuThemeBComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToolbarMenuThemeBComponent.prototype.translateService;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.configurationService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NgsLayoutModule {
     /**
@@ -1477,6 +2116,10 @@ NgsLayoutModule.decorators = [
             },] }
 ];
 class RootNgsLayoutModule {
+    constructor() {
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.layout = "8.0.10";
+    }
 }
 RootNgsLayoutModule.decorators = [
     { type: NgModule, args: [{
@@ -1488,10 +2131,12 @@ RootNgsLayoutModule.decorators = [
                 exports: [NgsLayoutModule]
             },] }
 ];
+/** @nocollapse */
+RootNgsLayoutModule.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const LayoutOutlets = {
@@ -1505,14 +2150,13 @@ const LayoutOutlets = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { LayoutActionTypes, TitleChangedAction, OpenSidenavAction, CloseSidenavAction, ChangeSideNavMode, ChangeLayout, CloseSecondSidenavAction, ChangeSecondSidenavMode, OpenSecondSidenavAction, ChangeToolbatToComfortableModeAction, ChangeToolbatToCompactModeAction, DisableComfortableModeAction, EnableComfortableModeAction, VisibleToolbarAction, FullscreenAction, ExitFullscreenAction, InvisibleToolbarAction, ToggleFullscreenAction, NgsLayoutMainComponent, LayoutOutlets, NgsLayoutModule, RootNgsLayoutModule, MODULE_DEFAULT_CONFIG, MODULE_CONFIG_TOKEN, FooterComponent as ɵh, LogoContainerComponent as ɵe, MainMenuComponent as ɵa, SearchBoxComponent as ɵd, TitleComponent as ɵi, ToolbarMenuThemeBComponent as ɵg, ToolbarMenuComponent as ɵf, LayoutEffects as ɵn, LayoutReducers as ɵj, Reducer as ɵl, Reducer$1 as ɵm, LayoutConfigurationService as ɵc };
-
+export { ChangeLayout, ChangeSecondSidenavMode, ChangeSideNavMode, ChangeToolbatToComfortableModeAction, ChangeToolbatToCompactModeAction, CloseSecondSidenavAction, CloseSidenavAction, DisableComfortableModeAction, EnableComfortableModeAction, ExitFullscreenAction, FullscreenAction, InvisibleToolbarAction, LayoutActionTypes, LayoutOutlets, MODULE_CONFIG_TOKEN, MODULE_DEFAULT_CONFIG, NgsLayoutMainComponent, NgsLayoutModule, OpenSecondSidenavAction, OpenSidenavAction, RootNgsLayoutModule, TitleChangedAction, ToggleFullscreenAction, VisibleToolbarAction, MainMenuComponent as ɵa, LayoutConfigurationService as ɵc, SearchBoxComponent as ɵd, LogoContainerComponent as ɵe, ToolbarMenuComponent as ɵf, ToolbarMenuThemeBComponent as ɵg, FooterComponent as ɵh, TitleComponent as ɵi, LayoutReducers as ɵj, Reducer as ɵl, Reducer$1 as ɵm, LayoutEffects as ɵn };
 //# sourceMappingURL=soushians-layout.js.map

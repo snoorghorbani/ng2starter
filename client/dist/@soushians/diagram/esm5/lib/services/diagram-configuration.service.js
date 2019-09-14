@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { Injectable, Inject } from "@angular/core";
 import { MODULE_CONFIG_TOKEN, MODULE_DEFAULT_CONFIG } from "../diagram.config";
@@ -29,7 +29,7 @@ var DiagramConfigurationService = /** @class */ (function () {
     DiagramConfigurationService.ctorParameters = function () { return [
         { type: undefined, decorators: [{ type: Inject, args: [MODULE_CONFIG_TOKEN,] }] }
     ]; };
-    /** @nocollapse */ DiagramConfigurationService.ngInjectableDef = i0.defineInjectable({ factory: function DiagramConfigurationService_Factory() { return new DiagramConfigurationService(i0.inject(i1.MODULE_CONFIG_TOKEN)); }, token: DiagramConfigurationService, providedIn: "root" });
+    /** @nocollapse */ DiagramConfigurationService.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function DiagramConfigurationService_Factory() { return new DiagramConfigurationService(i0.ɵɵinject(i1.MODULE_CONFIG_TOKEN)); }, token: DiagramConfigurationService, providedIn: "root" });
     return DiagramConfigurationService;
 }());
 export { DiagramConfigurationService };

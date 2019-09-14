@@ -4,7 +4,7 @@ import { Observable } from "rxjs/Observable";
 import { Router } from "@angular/router";
 export declare class ProfileEditComponent implements OnInit {
     private router;
-    submited: EventEmitter<{}>;
+    submited: EventEmitter<any>;
     userInfo: any;
     formId: string;
     roles$: Observable<string[]>;

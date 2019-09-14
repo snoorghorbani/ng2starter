@@ -1,26 +1,26 @@
+import { InjectionToken, Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, Component, EventEmitter, Input, Output, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
+import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgsFormModule } from '@soushians/form';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
-import { getUser, SignInActionTypes } from '@soushians/authentication';
-import { __assign, __decorate, __metadata, __read, __extends } from 'tslib';
-import { Observable } from 'rxjs/Observable';
 import { MatSnackBar, MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatRadioModule } from '@angular/material';
-import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { stringTemplate, MatchValidator } from '@soushians/shared';
+import { Store, createFeatureSelector, createSelector, StoreModule } from '@ngrx/store';
+import { ofType, Actions, Effect, EffectsModule } from '@ngrx/effects';
+import { NgsFormModule } from '@soushians/form';
+import { map, filter, take, combineLatest, switchMap, catchError, pluck, takeWhile } from 'rxjs/operators';
+import { __assign, __extends, __read, __decorate, __metadata } from 'tslib';
 import { of, BehaviorSubject as BehaviorSubject$1 } from 'rxjs';
-import { getUserModuleConfig, getAppConfig } from '@soushians/config';
-import { map, filter, take, switchMap, combineLatest, catchError, pluck, takeWhile } from 'rxjs/operators';
+import { stringTemplate, MatchValidator } from '@soushians/shared';
+import { getUser, SignInActionTypes } from '@soushians/authentication';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Router, ActivatedRoute, RouterModule } from '@angular/router';
-import { InjectionToken, Injectable, Inject, NgModule, Component, Input, Output, EventEmitter, defineInjectable, inject } from '@angular/core';
-import { Store, createSelector, createFeatureSelector, StoreModule } from '@ngrx/store';
+import { getUserModuleConfig, getAppConfig } from '@soushians/config';
+import { Observable } from 'rxjs/Observable';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UserModel = /** @class */ (function () {
     function UserModel() {
@@ -29,11 +29,56 @@ var UserModel = /** @class */ (function () {
     }
     return UserModel;
 }());
+if (false) {
+    /** @type {?} */
+    UserModel.prototype._id;
+    /** @type {?} */
+    UserModel.prototype.DisplayName;
+    /** @type {?} */
+    UserModel.prototype.Email;
+    /** @type {?} */
+    UserModel.prototype.Roles;
+    /** @type {?} */
+    UserModel.prototype.Groups;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function UserModuleConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    UserModuleConfig.prototype.server;
+    /** @type {?|undefined} */
+    UserModuleConfig.prototype.env;
+    /** @type {?|undefined} */
+    UserModuleConfig.prototype.endpoints;
+    /** @type {?|undefined} */
+    UserModuleConfig.prototype.forms;
+    /** @type {?|undefined} */
+    UserModuleConfig.prototype.dashboardLinks;
+    /** @type {?|undefined} */
+    UserModuleConfig.prototype.responseToUserInfo;
+    /** @type {?|undefined} */
+    UserModuleConfig.prototype.mapUserDisplayName;
+}
+var ɵ0 = /**
+ * @param {?} user$
+ * @return {?}
+ */
+function (user$) { return user$; }, ɵ1 = /**
+ * @param {?} user$
+ * @return {?}
+ */
+function (user$) { return user$.pipe(map((/**
+ * @param {?} user
+ * @return {?}
+ */
+function (user) { return user.Username; }))); };
 /** @type {?} */
 var MODULE_DEFAULT_CONFIG = {
     server: "frontend_server",
@@ -54,15 +99,15 @@ var MODULE_DEFAULT_CONFIG = {
         profile_edit: ""
     },
     dashboardLinks: [],
-    responseToUserInfo: function (user$) { return user$; },
-    mapUserDisplayName: function (user$) { return user$.pipe(map(function (user) { return user.Username; })); }
+    responseToUserInfo: (ɵ0),
+    mapUserDisplayName: (ɵ1)
 };
 /** @type {?} */
 var MODULE_CONFIG_TOKEN = new InjectionToken("UserModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UserConfigurationService = /** @class */ (function () {
     function UserConfigurationService(configFile, store) {
@@ -71,12 +116,16 @@ var UserConfigurationService = /** @class */ (function () {
         this.config$ = new BehaviorSubject(this._config);
         this._config = Object.assign({}, MODULE_DEFAULT_CONFIG, configFile);
         this.config$.next(this._config);
-        this.store.select(getUserModuleConfig).subscribe(function (userConfig) {
+        this.store.select(getUserModuleConfig).subscribe((/**
+         * @param {?} userConfig
+         * @return {?}
+         */
+        function (userConfig) {
             if (!userConfig)
                 return;
             _this._config = Object.assign({}, _this._config, userConfig.Config);
             _this.config$.next(_this._config);
-        });
+        }));
     }
     Object.defineProperty(UserConfigurationService.prototype, "config", {
         get: /**
@@ -98,13 +147,27 @@ var UserConfigurationService = /** @class */ (function () {
         { type: undefined, decorators: [{ type: Inject, args: [MODULE_CONFIG_TOKEN,] }] },
         { type: Store }
     ]; };
-    /** @nocollapse */ UserConfigurationService.ngInjectableDef = defineInjectable({ factory: function UserConfigurationService_Factory() { return new UserConfigurationService(inject(MODULE_CONFIG_TOKEN), inject(Store)); }, token: UserConfigurationService, providedIn: "root" });
+    /** @nocollapse */ UserConfigurationService.ngInjectableDef = ɵɵdefineInjectable({ factory: function UserConfigurationService_Factory() { return new UserConfigurationService(ɵɵinject(MODULE_CONFIG_TOKEN), ɵɵinject(Store)); }, token: UserConfigurationService, providedIn: "root" });
     return UserConfigurationService;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UserConfigurationService.prototype._config;
+    /** @type {?} */
+    UserConfigurationService.prototype.config$;
+    /**
+     * @type {?}
+     * @private
+     */
+    UserConfigurationService.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var ProfileViewActionTypes = {
@@ -119,12 +182,20 @@ var GetProfile = /** @class */ (function () {
     }
     return GetProfile;
 }());
+if (false) {
+    /** @type {?} */
+    GetProfile.prototype.type;
+}
 var GetProfileStart = /** @class */ (function () {
     function GetProfileStart() {
         this.type = ProfileViewActionTypes.GET_PROFILE_START;
     }
     return GetProfileStart;
 }());
+if (false) {
+    /** @type {?} */
+    GetProfileStart.prototype.type;
+}
 var GetProfileSucceed = /** @class */ (function () {
     function GetProfileSucceed(payload) {
         this.payload = payload;
@@ -132,22 +203,45 @@ var GetProfileSucceed = /** @class */ (function () {
     }
     return GetProfileSucceed;
 }());
+if (false) {
+    /** @type {?} */
+    GetProfileSucceed.prototype.type;
+    /** @type {?} */
+    GetProfileSucceed.prototype.payload;
+}
 var GetProfileFailed = /** @class */ (function () {
     function GetProfileFailed() {
         this.type = ProfileViewActionTypes.GET_PROFILE_FAILED;
     }
     return GetProfileFailed;
 }());
+if (false) {
+    /** @type {?} */
+    GetProfileFailed.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var UserActionTypes = {
     USER_SELECTED: "[USER] USER_SELECTED",
     REFRESH_USER_INFO: "[USER] REFRESH_USER_INFO",
 };
+var UserSelectedAction = /** @class */ (function () {
+    function UserSelectedAction(payload) {
+        this.payload = payload;
+        this.type = UserActionTypes.USER_SELECTED;
+    }
+    return UserSelectedAction;
+}());
+if (false) {
+    /** @type {?} */
+    UserSelectedAction.prototype.type;
+    /** @type {?} */
+    UserSelectedAction.prototype.payload;
+}
 var RefreshUserInfoAction = /** @class */ (function () {
     function RefreshUserInfoAction(payload) {
         this.payload = payload;
@@ -155,15 +249,32 @@ var RefreshUserInfoAction = /** @class */ (function () {
     }
     return RefreshUserInfoAction;
 }());
+if (false) {
+    /** @type {?} */
+    RefreshUserInfoAction.prototype.type;
+    /** @type {?} */
+    RefreshUserInfoAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State() { }
+if (false) {
+    /** @type {?} */
+    State.prototype.loaded;
+    /** @type {?} */
+    State.prototype.data;
+}
+var ɵ0$1 = new UserModel();
 /** @type {?} */
 var initialState = {
     loaded: false,
-    data: new UserModel()
+    data: ɵ0$1
 };
 /**
  * @param {?=} state
@@ -185,18 +296,26 @@ function userReducer(state, action) {
     }
 }
 /** @type {?} */
-var getAccountInfo = function (state) { return state.data; };
+var getAccountInfo = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.data; });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ProfileViewModel;
 (function (ProfileViewModel) {
     var Request = /** @class */ (function () {
         function Request(initValue) {
             var _this = this;
-            Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) { return (_this[key] = initValue[key]); }));
         }
         /**
          * @return {?}
@@ -222,6 +341,10 @@ var ProfileViewModel;
         return Request;
     }());
     ProfileViewModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype.Email;
+    }
     var Response = /** @class */ (function (_super) {
         __extends(Response, _super);
         function Response() {
@@ -234,15 +357,19 @@ var ProfileViewModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var EditProfile_ApiModel;
 (function (EditProfile_ApiModel) {
     var Request = /** @class */ (function () {
         function Request(initValue) {
-            if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
             var _this = this;
-            Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
+            if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) { return (_this[key] = initValue[key]); }));
         }
         /**
          * @template THIS
@@ -274,11 +401,23 @@ var EditProfile_ApiModel;
         return Request;
     }());
     EditProfile_ApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype.Email;
+        /** @type {?} */
+        Request.prototype.Roles;
+        /** @type {?} */
+        Request.prototype.Groups;
+    }
     var Response = /** @class */ (function () {
         function Response(initValue) {
-            if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
             var _this = this;
-            Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
+            if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) { return (_this[key] = initValue[key]); }));
         }
         /**
          * @return {?}
@@ -292,11 +431,15 @@ var EditProfile_ApiModel;
         return Response;
     }());
     EditProfile_ApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(EditProfile_ApiModel || (EditProfile_ApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UserService = /** @class */ (function () {
     function UserService(http, store, configurationService) {
@@ -304,10 +447,17 @@ var UserService = /** @class */ (function () {
         this.http = http;
         this.store = store;
         this.configurationService = configurationService;
-        this.configurationService.config$.subscribe(function (config) { return (_this.config = config); });
-        setTimeout(function () {
+        this.configurationService.config$.subscribe((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return (_this.config = config); }));
+        setTimeout((/**
+         * @return {?}
+         */
+        function () {
             _this.store.dispatch(new GetProfile());
-        }, 999);
+        }), 999);
     }
     /**
      * @return {?}
@@ -317,25 +467,45 @@ var UserService = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        return this.configurationService.config$.pipe(filter(function (config) { return config.endpoints.profileInformation != ""; }), take(1), combineLatest(this.store.select(getUser)), filter(function (_a) {
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.endpoints.profileInformation != ""; })), take(1), combineLatest(this.store.select(getUser)), filter((/**
+         * @param {?} __0
+         * @return {?}
+         */
+        function (_a) {
             var _b = __read(_a, 2), config = _b[0], user = _b[1];
             return user != undefined;
-        }), switchMap(function (_a) {
+        })), switchMap((/**
+         * @param {?} __0
+         * @return {?}
+         */
+        function (_a) {
             var _b = __read(_a, 2), config = _b[0], user = _b[1];
             return _this.http
                 .get(stringTemplate(config.env[config.server] + config.endpoints.profileInformation, {
                 user: user || {}
             }))
                 .let(config.responseToUserInfo)
-                .pipe(map(function (response) {
+                .pipe(map((/**
+             * @param {?} response
+             * @return {?}
+             */
+            function (response) {
                 /** @type {?} */
                 var _user = Object.assign({}, response);
                 if (_user.Role) {
                     _user.Roles = [_user.Role];
                 }
                 return _user;
-            }), catchError(function (err) { return of(false); }));
-        }));
+            })), catchError((/**
+             * @param {?} err
+             * @return {?}
+             */
+            function (err) { return of(false); })));
+        })));
     };
     /**
      * @param {?} data
@@ -350,7 +520,11 @@ var UserService = /** @class */ (function () {
         var model = new EditProfile_ApiModel.Request(data);
         return this.http
             .put(stringTemplate(this.config.env[this.config.server] + this.config.endpoints.editProfile, model), model.getRequestBody())
-            .pipe(map(function (response) { return new EditProfile_ApiModel.Response(response).extractData(); }));
+            .pipe(map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return new EditProfile_ApiModel.Response(response).extractData(); })));
     };
     // TODO: remove
     // TODO: remove
@@ -369,7 +543,11 @@ var UserService = /** @class */ (function () {
         var model = new ProfileViewModel.Request(data);
         return this.http
             .get(stringTemplate(this.config.env[this.config.server] + this.config.endpoints.getAccountInfo, model))
-            .pipe(map(function (response) { return response; }));
+            .pipe(map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response; })));
     };
     /**
      * @param {?} role
@@ -382,7 +560,15 @@ var UserService = /** @class */ (function () {
     function (role) {
         return this.store
             .select(getAccountInfo)
-            .pipe(filter(function (user) { return user && user.Roles != undefined; }), take(1), map(function (user) { return user.Roles.indexOf(role) > -1; }));
+            .pipe(filter((/**
+         * @param {?} user
+         * @return {?}
+         */
+        function (user) { return user && user.Roles != undefined; })), take(1), map((/**
+         * @param {?} user
+         * @return {?}
+         */
+        function (user) { return user.Roles.indexOf(role) > -1; })));
     };
     UserService.decorators = [
         { type: Injectable, args: [{
@@ -395,13 +581,32 @@ var UserService = /** @class */ (function () {
         { type: Store },
         { type: UserConfigurationService }
     ]; };
-    /** @nocollapse */ UserService.ngInjectableDef = defineInjectable({ factory: function UserService_Factory() { return new UserService(inject(HttpClient), inject(Store), inject(UserConfigurationService)); }, token: UserService, providedIn: "root" });
+    /** @nocollapse */ UserService.ngInjectableDef = ɵɵdefineInjectable({ factory: function UserService_Factory() { return new UserService(ɵɵinject(HttpClient), ɵɵinject(Store), ɵɵinject(UserConfigurationService)); }, token: UserService, providedIn: "root" });
     return UserService;
 }());
+if (false) {
+    /** @type {?} */
+    UserService.prototype.config;
+    /**
+     * @type {?}
+     * @private
+     */
+    UserService.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    UserService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    UserService.prototype.configurationService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var EditProfileActionTypes = {
@@ -417,6 +622,12 @@ var EditProfile = /** @class */ (function () {
     }
     return EditProfile;
 }());
+if (false) {
+    /** @type {?} */
+    EditProfile.prototype.type;
+    /** @type {?} */
+    EditProfile.prototype.payload;
+}
 var EditProfileStart = /** @class */ (function () {
     function EditProfileStart(payload) {
         this.payload = payload;
@@ -424,6 +635,12 @@ var EditProfileStart = /** @class */ (function () {
     }
     return EditProfileStart;
 }());
+if (false) {
+    /** @type {?} */
+    EditProfileStart.prototype.type;
+    /** @type {?} */
+    EditProfileStart.prototype.payload;
+}
 var EditProfileSucceed = /** @class */ (function () {
     function EditProfileSucceed(payload) {
         this.payload = payload;
@@ -431,16 +648,26 @@ var EditProfileSucceed = /** @class */ (function () {
     }
     return EditProfileSucceed;
 }());
+if (false) {
+    /** @type {?} */
+    EditProfileSucceed.prototype.type;
+    /** @type {?} */
+    EditProfileSucceed.prototype.payload;
+}
 var EditProfileFailed = /** @class */ (function () {
     function EditProfileFailed() {
         this.type = EditProfileActionTypes.EDIT_PROFILE_FAILED;
     }
     return EditProfileFailed;
 }());
+if (false) {
+    /** @type {?} */
+    EditProfileFailed.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var EditProfileEffects = /** @class */ (function () {
     function EditProfileEffects(actions$, router, service) {
@@ -448,18 +675,36 @@ var EditProfileEffects = /** @class */ (function () {
         this.actions$ = actions$;
         this.router = router;
         this.service = service;
-        this.EditProfileRequest$ = this.actions$.pipe(ofType(EditProfileActionTypes.EDIT_PROFILE), pluck("payload"), map(function (data) { return new EditProfileStart(data); }));
-        this.RequestEditProfileLink$ = this.actions$.pipe(ofType(EditProfileActionTypes.EDIT_PROFILE_START), pluck("payload"), switchMap(function (data) { return _this.service.editProfile(data); }), map(function (res) { return new EditProfileSucceed(res); }), catchError(function () { return of(new EditProfileFailed()); }));
+        this.EditProfileRequest$ = this.actions$.pipe(ofType(EditProfileActionTypes.EDIT_PROFILE), pluck("payload"), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return new EditProfileStart(data); })));
+        this.RequestEditProfileLink$ = this.actions$.pipe(ofType(EditProfileActionTypes.EDIT_PROFILE_START), pluck("payload"), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return _this.service.editProfile(data); })), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) { return new EditProfileSucceed(res); })), catchError((/**
+         * @return {?}
+         */
+        function () { return of(new EditProfileFailed()); })));
         // .switchMap((data: EditProfile_ApiModel.Request) => {
         // 	return this.service
         // 		.editProfile(data)
         // 		.map((res) => new EditProfileSucceed(res))
         // 		.catch(() => of(new EditProfileFailed()));
         // });
-        this.goToView$ = this.actions$.pipe(ofType(EditProfileActionTypes.EDIT_PROFILE_SUCCEED), map(function () {
+        this.goToView$ = this.actions$.pipe(ofType(EditProfileActionTypes.EDIT_PROFILE_SUCCEED), map((/**
+         * @return {?}
+         */
+        function () {
             _this.router.navigate(["/user/profile"]);
             return new GetProfile();
-        }));
+        })));
     }
     EditProfileEffects.decorators = [
         { type: Injectable }
@@ -484,23 +729,65 @@ var EditProfileEffects = /** @class */ (function () {
     ], EditProfileEffects.prototype, "goToView$", void 0);
     return EditProfileEffects;
 }());
+if (false) {
+    /** @type {?} */
+    EditProfileEffects.prototype.EditProfileRequest$;
+    /** @type {?} */
+    EditProfileEffects.prototype.RequestEditProfileLink$;
+    /** @type {?} */
+    EditProfileEffects.prototype.goToView$;
+    /**
+     * @type {?}
+     * @private
+     */
+    EditProfileEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    EditProfileEffects.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    EditProfileEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ProfileViewEffects = /** @class */ (function () {
     function ProfileViewEffects(actions$, userService) {
         var _this = this;
         this.actions$ = actions$;
         this.userService = userService;
-        this.ProfileRequest$ = this.actions$.pipe(ofType(ProfileViewActionTypes.GET_PROFILE), pluck("payload"), map(function (data) { return new GetProfileStart(); }));
-        this.getProfile$ = this.actions$.pipe(ofType(ProfileViewActionTypes.GET_PROFILE_START), pluck("payload"), switchMap(function (data) {
+        this.ProfileRequest$ = this.actions$.pipe(ofType(ProfileViewActionTypes.GET_PROFILE), pluck("payload"), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return new GetProfileStart(); })));
+        this.getProfile$ = this.actions$.pipe(ofType(ProfileViewActionTypes.GET_PROFILE_START), pluck("payload"), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) {
             return _this.userService
                 .getAccountInfo()
-                .pipe(map(function (res) { return new GetProfileSucceed(res); }), catchError(function () { return of(new GetProfileFailed()); }));
-        }));
-        this.refreshUserInfo$ = this.actions$.pipe(ofType(ProfileViewActionTypes.GET_PROFILE_SUCCEED), pluck("payload"), map(function (data) { return new RefreshUserInfoAction(data); }));
+                .pipe(map((/**
+             * @param {?} res
+             * @return {?}
+             */
+            function (res) { return new GetProfileSucceed(res); })), catchError((/**
+             * @return {?}
+             */
+            function () { return of(new GetProfileFailed()); })));
+        })));
+        this.refreshUserInfo$ = this.actions$.pipe(ofType(ProfileViewActionTypes.GET_PROFILE_SUCCEED), pluck("payload"), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return new RefreshUserInfoAction(data); })));
     }
     ProfileViewEffects.decorators = [
         { type: Injectable }
@@ -524,10 +811,28 @@ var ProfileViewEffects = /** @class */ (function () {
     ], ProfileViewEffects.prototype, "refreshUserInfo$", void 0);
     return ProfileViewEffects;
 }());
+if (false) {
+    /** @type {?} */
+    ProfileViewEffects.prototype.ProfileRequest$;
+    /** @type {?} */
+    ProfileViewEffects.prototype.getProfile$;
+    /** @type {?} */
+    ProfileViewEffects.prototype.refreshUserInfo$;
+    /**
+     * @type {?}
+     * @private
+     */
+    ProfileViewEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    ProfileViewEffects.prototype.userService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UserEffects = /** @class */ (function () {
     function UserEffects(actions$, router, service) {
@@ -542,10 +847,16 @@ var UserEffects = /** @class */ (function () {
         // 		return new GetProfileSucceed(user);
         // 	})
         // );
-        this.getAccountInfo$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_SUCCEED), map(function () {
+        this.getAccountInfo$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_SUCCEED), map((/**
+         * @return {?}
+         */
+        function () {
             return new GetProfile();
-        }));
-        this.signout$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNOUT), map(function () { return new RefreshUserInfoAction((/** @type {?} */ ({}))); }));
+        })));
+        this.signout$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNOUT), map((/**
+         * @return {?}
+         */
+        function () { return new RefreshUserInfoAction((/** @type {?} */ ({}))); })));
     }
     UserEffects.decorators = [
         { type: Injectable }
@@ -566,10 +877,31 @@ var UserEffects = /** @class */ (function () {
     ], UserEffects.prototype, "signout$", void 0);
     return UserEffects;
 }());
+if (false) {
+    /** @type {?} */
+    UserEffects.prototype.getAccountInfo$;
+    /** @type {?} */
+    UserEffects.prototype.signout$;
+    /**
+     * @type {?}
+     * @private
+     */
+    UserEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    UserEffects.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    UserEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var ResetPasswordRequestActionTypes = {
@@ -583,11 +915,122 @@ var ResetPasswordRequestActionTypes = {
     PASSWORD_CHANGED_SUCCEED: "[USER][PASSWORD] PASSWORD_CHANGED_SUCCEED",
     PASSWORD_CHANGED_FAILED: "[USER][PASSWORD] PASSWORD_CHANGED_FAILED",
 };
+var GetResetPasswordLink = /** @class */ (function () {
+    function GetResetPasswordLink(payload) {
+        this.payload = payload;
+        this.type = ResetPasswordRequestActionTypes.GET_RESET_PASSWORD_LINK;
+    }
+    return GetResetPasswordLink;
+}());
+if (false) {
+    /** @type {?} */
+    GetResetPasswordLink.prototype.type;
+    /** @type {?} */
+    GetResetPasswordLink.prototype.payload;
+}
+var ResetPasswordLinkRequestStart = /** @class */ (function () {
+    function ResetPasswordLinkRequestStart(payload) {
+        this.payload = payload;
+        this.type = ResetPasswordRequestActionTypes.RESET_PASSWORD_LINK_REQUEST_START;
+    }
+    return ResetPasswordLinkRequestStart;
+}());
+if (false) {
+    /** @type {?} */
+    ResetPasswordLinkRequestStart.prototype.type;
+    /** @type {?} */
+    ResetPasswordLinkRequestStart.prototype.payload;
+}
+var ResetPasswordLinkRequestSucceed = /** @class */ (function () {
+    function ResetPasswordLinkRequestSucceed() {
+        this.type = ResetPasswordRequestActionTypes.RESET_PASSWORD_LINK_REQUEST_SUCCEED;
+    }
+    return ResetPasswordLinkRequestSucceed;
+}());
+if (false) {
+    /** @type {?} */
+    ResetPasswordLinkRequestSucceed.prototype.type;
+}
+var ResetPasswordLinkRequestFailed = /** @class */ (function () {
+    function ResetPasswordLinkRequestFailed() {
+        this.type = ResetPasswordRequestActionTypes.RESET_PASSWORD_LINK_REQUEST_FAILED;
+    }
+    return ResetPasswordLinkRequestFailed;
+}());
+if (false) {
+    /** @type {?} */
+    ResetPasswordLinkRequestFailed.prototype.type;
+}
+var DisableGetLink = /** @class */ (function () {
+    function DisableGetLink() {
+        this.type = ResetPasswordRequestActionTypes.DISABLE_GET_LINK;
+    }
+    return DisableGetLink;
+}());
+if (false) {
+    /** @type {?} */
+    DisableGetLink.prototype.type;
+}
+var EnableGetLink = /** @class */ (function () {
+    function EnableGetLink() {
+        this.type = ResetPasswordRequestActionTypes.ENABLE_GET_LINK;
+    }
+    return EnableGetLink;
+}());
+if (false) {
+    /** @type {?} */
+    EnableGetLink.prototype.type;
+}
+var MaximumTryHappend = /** @class */ (function () {
+    function MaximumTryHappend() {
+        this.type = ResetPasswordRequestActionTypes.MAXIMUM_TRY_HAPPEND;
+    }
+    return MaximumTryHappend;
+}());
+if (false) {
+    /** @type {?} */
+    MaximumTryHappend.prototype.type;
+}
+var PasswordChangedSucceed = /** @class */ (function () {
+    function PasswordChangedSucceed() {
+        this.type = ResetPasswordRequestActionTypes.PASSWORD_CHANGED_SUCCEED;
+    }
+    return PasswordChangedSucceed;
+}());
+if (false) {
+    /** @type {?} */
+    PasswordChangedSucceed.prototype.type;
+}
+var PasswordChangedFailed = /** @class */ (function () {
+    function PasswordChangedFailed(payload) {
+        this.payload = payload;
+        this.type = ResetPasswordRequestActionTypes.PASSWORD_CHANGED_FAILED;
+    }
+    return PasswordChangedFailed;
+}());
+if (false) {
+    /** @type {?} */
+    PasswordChangedFailed.prototype.type;
+    /** @type {?} */
+    PasswordChangedFailed.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State$1() { }
+if (false) {
+    /** @type {?} */
+    State$1.prototype.numberOfRequested;
+    /** @type {?} */
+    State$1.prototype.lastRequestedTime;
+    /** @type {?} */
+    State$1.prototype.disable;
+}
 /** @type {?} */
 var initialState$1 = {
     numberOfRequested: 0,
@@ -623,13 +1066,21 @@ function reducer(state, action) {
     }
 }
 /** @type {?} */
-var getNumberOfRequeseted = function (state) { return state.numberOfRequested; };
+var getNumberOfRequeseted = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.numberOfRequested; });
 /** @type {?} */
-var getStatus = function (state) { return state.disable; };
+var getStatus = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.disable; });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var ChangePasswordActionTypes = {
@@ -645,11 +1096,61 @@ var ChangePassword = /** @class */ (function () {
     }
     return ChangePassword;
 }());
+if (false) {
+    /** @type {?} */
+    ChangePassword.prototype.type;
+    /** @type {?} */
+    ChangePassword.prototype.payload;
+}
+var ChangePasswordStart = /** @class */ (function () {
+    function ChangePasswordStart(payload) {
+        this.payload = payload;
+        this.type = ChangePasswordActionTypes.PASSWORD_CHANGED_START;
+    }
+    return ChangePasswordStart;
+}());
+if (false) {
+    /** @type {?} */
+    ChangePasswordStart.prototype.type;
+    /** @type {?} */
+    ChangePasswordStart.prototype.payload;
+}
+var ChangePasswordSucceed = /** @class */ (function () {
+    function ChangePasswordSucceed(payload) {
+        this.payload = payload;
+        this.type = ChangePasswordActionTypes.PASSWORD_CHANGED_SUCCEED;
+    }
+    return ChangePasswordSucceed;
+}());
+if (false) {
+    /** @type {?} */
+    ChangePasswordSucceed.prototype.type;
+    /** @type {?} */
+    ChangePasswordSucceed.prototype.payload;
+}
+var ChangePasswordFailed = /** @class */ (function () {
+    function ChangePasswordFailed() {
+        this.type = ChangePasswordActionTypes.PASSWORD_CHANGED_FAILED;
+    }
+    return ChangePasswordFailed;
+}());
+if (false) {
+    /** @type {?} */
+    ChangePasswordFailed.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State$2() { }
+if (false) {
+    /** @type {?} */
+    State$2.prototype.status;
+}
 /** @type {?} */
 var initialState$2 = {
     status: "pristine"
@@ -687,11 +1188,25 @@ function reducer$1(state, action) {
         }
     }
 }
+/** @type {?} */
+var getStatus$1 = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.status; });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State$3() { }
+if (false) {
+    /** @type {?} */
+    State$3.prototype.status;
+}
 /** @type {?} */
 var initialState$3 = {
     status: "pristine"
@@ -729,10 +1244,16 @@ function reducer$2(state, action) {
         }
     }
 }
+/** @type {?} */
+var getStatus$2 = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.status; });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var SearchActionTypes = {
@@ -749,15 +1270,78 @@ var Search = /** @class */ (function () {
     }
     return Search;
 }());
+if (false) {
+    /** @type {?} */
+    Search.prototype.type;
+    /** @type {?} */
+    Search.prototype.payload;
+}
+var SearchStartAction = /** @class */ (function () {
+    function SearchStartAction(payload) {
+        this.payload = payload;
+        this.type = SearchActionTypes.SEARCH_START;
+    }
+    return SearchStartAction;
+}());
+if (false) {
+    /** @type {?} */
+    SearchStartAction.prototype.type;
+    /** @type {?} */
+    SearchStartAction.prototype.payload;
+}
+var SearchSucceed = /** @class */ (function () {
+    function SearchSucceed(payload) {
+        this.payload = payload;
+        this.type = SearchActionTypes.SEARCH_SUCCEED;
+    }
+    return SearchSucceed;
+}());
+if (false) {
+    /** @type {?} */
+    SearchSucceed.prototype.type;
+    /** @type {?} */
+    SearchSucceed.prototype.payload;
+}
+var SearchFailed = /** @class */ (function () {
+    function SearchFailed() {
+        this.type = SearchActionTypes.SEARCH_FAILED;
+    }
+    return SearchFailed;
+}());
+if (false) {
+    /** @type {?} */
+    SearchFailed.prototype.type;
+}
+var ClearSearchedUser = /** @class */ (function () {
+    function ClearSearchedUser() {
+        this.type = SearchActionTypes.CLEAR_SEARCHED_USER;
+    }
+    return ClearSearchedUser;
+}());
+if (false) {
+    /** @type {?} */
+    ClearSearchedUser.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State$4() { }
+if (false) {
+    /** @type {?} */
+    State$4.prototype.status;
+    /** @type {?} */
+    State$4.prototype.data;
+}
+var ɵ0$2 = ({});
 /** @type {?} */
 var initialState$4 = {
     status: "pristine",
-    data: (/** @type {?} */ ({}))
+    data: (/** @type {?} */ (ɵ0$2))
 };
 /**
  * @param {?=} state
@@ -788,12 +1372,38 @@ function reducer$3(state, action) {
     }
 }
 /** @type {?} */
-var getStatus$3 = function (state) { return state.status; };
+var getStatus$3 = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.status; });
+/** @type {?} */
+var getAccountInfo$1 = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.data; });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function UserState() { }
+if (false) {
+    /** @type {?} */
+    UserState.prototype.user;
+    /** @type {?} */
+    UserState.prototype.resetPasswordRequest;
+    /** @type {?} */
+    UserState.prototype.searchView;
+    /** @type {?} */
+    UserState.prototype.changePassword;
+    /** @type {?} */
+    UserState.prototype.editProfile;
+}
 /** @type {?} */
 var UserReducers = {
     user: userReducer,
@@ -802,34 +1412,67 @@ var UserReducers = {
     searchView: reducer$3,
     editProfile: reducer$2
 };
+/**
+ * @record
+ */
+function AppState() { }
+if (false) {
+    /** @type {?} */
+    AppState.prototype.user;
+}
 //#region selectors
 /** @type {?} */
 var selectFeatureState = createFeatureSelector("user");
+var ɵ0$3 = /**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.user.loaded; };
 /** @type {?} */
-var getUserInforamtionStatus = createSelector(selectFeatureState, function (state) { return state.user.loaded; });
+var getUserInforamtionStatus = createSelector(selectFeatureState, (ɵ0$3));
+var ɵ1$1 = /**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.user.loaded; };
 /** @type {?} */
-var isSignedIn = createSelector(selectFeatureState, function (state) { return state.user.loaded; });
+var isSignedIn = createSelector(selectFeatureState, (ɵ1$1));
+var ɵ2 = /**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.resetPasswordRequest; };
 /** @type {?} */
-var selectResetPasswordRequestState = createSelector(selectFeatureState, function (state) { return state.resetPasswordRequest; });
+var selectResetPasswordRequestState = createSelector(selectFeatureState, (ɵ2));
 /** @type {?} */
 var getNumberOfRequeseted$1 = createSelector(selectResetPasswordRequestState, getNumberOfRequeseted);
 /** @type {?} */
 var getResetPasswordRequestStatus = createSelector(selectResetPasswordRequestState, getStatus);
 //#region user
+var ɵ3 = /**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.user; };
 /** @type {?} */
-var selectUserInformaionState = createSelector(selectFeatureState, function (state) { return state.user; });
+var selectUserInformaionState = createSelector(selectFeatureState, (ɵ3));
 /** @type {?} */
 var getAccountInfo$2 = createSelector(selectUserInformaionState, getAccountInfo);
 //#endregion
 //#region search
+var ɵ4 = /**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.searchView; };
 /** @type {?} */
-var selectSearchState = createSelector(selectFeatureState, function (state) { return state.searchView; });
+var selectSearchState = createSelector(selectFeatureState, (ɵ4));
 /** @type {?} */
 var getSearchStatus = createSelector(selectSearchState, getStatus$3);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SearchComponent = /** @class */ (function () {
     function SearchComponent(store) {
@@ -848,7 +1491,11 @@ var SearchComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.userStatus$.subscribe(function (value) { return _this.userDataLoaded$.next(!"pristine|dirty|pending".includes(value)); });
+        this.userStatus$.subscribe((/**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) { return _this.userDataLoaded$.next(!"pristine|dirty|pending".includes(value)); }));
     };
     /**
      * @return {?}
@@ -874,10 +1521,27 @@ var SearchComponent = /** @class */ (function () {
     ]; };
     return SearchComponent;
 }());
+if (false) {
+    /** @type {?} */
+    SearchComponent.prototype.user;
+    /** @type {?} */
+    SearchComponent.prototype.userStatus$;
+    /** @type {?} */
+    SearchComponent.prototype.formGroup;
+    /** @type {?} */
+    SearchComponent.prototype.userDataLoaded$;
+    /** @type {?} */
+    SearchComponent.prototype.userNotFound$;
+    /**
+     * @type {?}
+     * @private
+     */
+    SearchComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ChangePasswordComponent = /** @class */ (function () {
     function ChangePasswordComponent() {
@@ -923,10 +1587,16 @@ var ChangePasswordComponent = /** @class */ (function () {
     };
     return ChangePasswordComponent;
 }());
+if (false) {
+    /** @type {?} */
+    ChangePasswordComponent.prototype.formGroup;
+    /** @type {?} */
+    ChangePasswordComponent.prototype.submited;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ProfileEditComponent = /** @class */ (function () {
     function ProfileEditComponent(router) {
@@ -981,16 +1651,37 @@ var ProfileEditComponent = /** @class */ (function () {
     };
     return ProfileEditComponent;
 }());
+if (false) {
+    /** @type {?} */
+    ProfileEditComponent.prototype.submited;
+    /** @type {?} */
+    ProfileEditComponent.prototype.userInfo;
+    /** @type {?} */
+    ProfileEditComponent.prototype.formId;
+    /** @type {?} */
+    ProfileEditComponent.prototype.roles$;
+    /** @type {?} */
+    ProfileEditComponent.prototype.groups;
+    /**
+     * @type {?}
+     * @private
+     */
+    ProfileEditComponent.prototype.router;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DashboardLinksComponent = /** @class */ (function () {
     function DashboardLinksComponent(userConfigurationService, store) {
         this.userConfigurationService = userConfigurationService;
         this.store = store;
-        this.links$ = this.userConfigurationService.config$.pipe(map(function (data) { return data.dashboardLinks; }));
+        this.links$ = this.userConfigurationService.config$.pipe(map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return data.dashboardLinks; })));
         this.links = [
             {
                 title: "مشاهده حساب کاربری",
@@ -1028,17 +1719,45 @@ var DashboardLinksComponent = /** @class */ (function () {
     ]; };
     return DashboardLinksComponent;
 }());
+if (false) {
+    /** @type {?} */
+    DashboardLinksComponent.prototype.links;
+    /** @type {?} */
+    DashboardLinksComponent.prototype.links$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DashboardLinksComponent.prototype.userConfigurationService;
+    /**
+     * @type {?}
+     * @private
+     */
+    DashboardLinksComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ResetPasswordRequestComponent = /** @class */ (function () {
     function ResetPasswordRequestComponent(snackBar) {
         this.snackBar = snackBar;
         this.submitted = new EventEmitter();
         this.maximumResendingHappend$ = new BehaviorSubject(false);
-        this.timer$ = Observable.timer(0, 100).pipe(map(function (i) { return i + 1; }), takeWhile(function (i) { return i * 100 <= 3000; }), map(function (i) { return 3000 - i * 100; }));
+        this.timer$ = Observable.timer(0, 100).pipe(map((/**
+         * @param {?} i
+         * @return {?}
+         */
+        function (i) { return i + 1; })), takeWhile((/**
+         * @param {?} i
+         * @return {?}
+         */
+        function (i) { return i * 100 <= 3000; })), map((/**
+         * @param {?} i
+         * @return {?}
+         */
+        function (i) { return 3000 - i * 100; })));
     }
     Object.defineProperty(ResetPasswordRequestComponent.prototype, "pending", {
         set: /**
@@ -1062,11 +1781,15 @@ var ResetPasswordRequestComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.numberOfRequested.subscribe(function (data) {
+        this.numberOfRequested.subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) {
             if (data > 2) {
                 _this.maximumResendingHappend$.next(true);
             }
-        });
+        }));
     };
     /**
      * @return {?}
@@ -1106,21 +1829,41 @@ var ResetPasswordRequestComponent = /** @class */ (function () {
     };
     return ResetPasswordRequestComponent;
 }());
+if (false) {
+    /** @type {?} */
+    ResetPasswordRequestComponent.prototype.submitted;
+    /** @type {?} */
+    ResetPasswordRequestComponent.prototype.formGroup;
+    /** @type {?} */
+    ResetPasswordRequestComponent.prototype.numberOfRequested;
+    /** @type {?} */
+    ResetPasswordRequestComponent.prototype.canRequestPin;
+    /** @type {?} */
+    ResetPasswordRequestComponent.prototype.timer$;
+    /** @type {?} */
+    ResetPasswordRequestComponent.prototype.maximumResendingHappend$;
+    /** @type {?} */
+    ResetPasswordRequestComponent.prototype.snackBar;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FeatureContainerComponent = /** @class */ (function () {
     function FeatureContainerComponent(route, store) {
         var _this = this;
         this.route = route;
         this.store = store;
-        this.route.params.subscribe(function (params) {
+        this.route.params.subscribe((/**
+         * @param {?} params
+         * @return {?}
+         */
+        function (params) {
             /** @type {?} */
             var model = new ProfileViewModel.Request((/** @type {?} */ ({ Email: params.Email })));
             _this.store.dispatch(new Search(model));
-        });
+        }));
     }
     FeatureContainerComponent.decorators = [
         { type: Component, args: [{
@@ -1134,18 +1877,34 @@ var FeatureContainerComponent = /** @class */ (function () {
     ]; };
     return FeatureContainerComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FeatureContainerComponent.prototype.route;
+    /**
+     * @type {?}
+     * @private
+     */
+    FeatureContainerComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ChangePasswordModel;
 (function (ChangePasswordModel) {
     var Request = /** @class */ (function () {
         function Request(initValue) {
-            if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
             var _this = this;
-            Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
+            if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) { return (_this[key] = initValue[key]); }));
         }
         /**
          * @return {?}
@@ -1174,6 +1933,12 @@ var ChangePasswordModel;
         return Request;
     }());
     ChangePasswordModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype.Username;
+        /** @type {?} */
+        Request.prototype.Password;
+    }
     var Response = /** @class */ (function () {
         function Response() {
         }
@@ -1184,7 +1949,7 @@ var ChangePasswordModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ChangePasswordContainerComponent = /** @class */ (function () {
     function ChangePasswordContainerComponent(route, store) {
@@ -1200,12 +1965,16 @@ var ChangePasswordContainerComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.store.select(getAccountInfo$2).subscribe(function (userInfo) {
+        this.store.select(getAccountInfo$2).subscribe((/**
+         * @param {?} userInfo
+         * @return {?}
+         */
+        function (userInfo) {
             if (!userInfo)
                 return;
             // TODO:
             // this.ChangePasswordModel.Username = userInfo.Username;
-        });
+        }));
     };
     /**
      * @param {?} event
@@ -1231,10 +2000,26 @@ var ChangePasswordContainerComponent = /** @class */ (function () {
     ]; };
     return ChangePasswordContainerComponent;
 }());
+if (false) {
+    /** @type {?} */
+    ChangePasswordContainerComponent.prototype.formGroup;
+    /** @type {?} */
+    ChangePasswordContainerComponent.prototype.ChangePasswordModel;
+    /**
+     * @type {?}
+     * @private
+     */
+    ChangePasswordContainerComponent.prototype.route;
+    /**
+     * @type {?}
+     * @private
+     */
+    ChangePasswordContainerComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ProfileEditContainerComponent = /** @class */ (function () {
     function ProfileEditContainerComponent(store, configService) {
@@ -1243,7 +2028,15 @@ var ProfileEditContainerComponent = /** @class */ (function () {
         this.userInforamation$ = this.store.select(getAccountInfo$2);
         this.roles$ = this.store
             .select(getAppConfig)
-            .pipe(filter(function (config) { return config != undefined; }), map(function (config) { return config.Config.Roles; }));
+            .pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config != undefined; })), map((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.Config.Roles; })));
         // TODO:
         // this.groups = this.diagramService.getGroups();
         this.groups = of(["test1", "test2"]);
@@ -1280,10 +2073,30 @@ var ProfileEditContainerComponent = /** @class */ (function () {
     ]; };
     return ProfileEditContainerComponent;
 }());
+if (false) {
+    /** @type {?} */
+    ProfileEditContainerComponent.prototype.userInforamation$;
+    /** @type {?} */
+    ProfileEditContainerComponent.prototype.roles$;
+    /** @type {?} */
+    ProfileEditContainerComponent.prototype.groups;
+    /** @type {?} */
+    ProfileEditContainerComponent.prototype.config$;
+    /**
+     * @type {?}
+     * @private
+     */
+    ProfileEditContainerComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    ProfileEditContainerComponent.prototype.configService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DashboardContainerComponent = /** @class */ (function () {
     // is_agent : Observable<boolean>;
@@ -1312,10 +2125,19 @@ var DashboardContainerComponent = /** @class */ (function () {
     ]; };
     return DashboardContainerComponent;
 }());
+if (false) {
+    /** @type {?} */
+    DashboardContainerComponent.prototype.user$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DashboardContainerComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ProfileComponent = /** @class */ (function () {
     function ProfileComponent() {
@@ -1330,7 +2152,11 @@ var ProfileComponent = /** @class */ (function () {
             var _this = this;
             if (!information)
                 return;
-            Object.keys(information).forEach(function (k) { return _this.info.push([k, information[k]]); });
+            Object.keys(information).forEach((/**
+             * @param {?} k
+             * @return {?}
+             */
+            function (k) { return _this.info.push([k, information[k]]); }));
         },
         enumerable: true,
         configurable: true
@@ -1357,10 +2183,16 @@ var ProfileComponent = /** @class */ (function () {
     };
     return ProfileComponent;
 }());
+if (false) {
+    /** @type {?} */
+    ProfileComponent.prototype.dataStatus$;
+    /** @type {?} */
+    ProfileComponent.prototype.info;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ProfileContainerComponent = /** @class */ (function () {
     function ProfileContainerComponent(store) {
@@ -1386,10 +2218,21 @@ var ProfileContainerComponent = /** @class */ (function () {
     ]; };
     return ProfileContainerComponent;
 }());
+if (false) {
+    /** @type {?} */
+    ProfileContainerComponent.prototype.data$;
+    /** @type {?} */
+    ProfileContainerComponent.prototype.dataStatus$;
+    /**
+     * @type {?}
+     * @private
+     */
+    ProfileContainerComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NgsUserModule = /** @class */ (function () {
     function NgsUserModule() {
@@ -1450,6 +2293,8 @@ var NgsUserModule = /** @class */ (function () {
 }());
 var RootNgsUserModule = /** @class */ (function () {
     function RootNgsUserModule() {
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.user = "8.0.10";
     }
     RootNgsUserModule.decorators = [
         { type: NgModule, args: [{
@@ -1467,12 +2312,14 @@ var RootNgsUserModule = /** @class */ (function () {
                     ]
                 },] }
     ];
+    /** @nocollapse */
+    RootNgsUserModule.ctorParameters = function () { return []; };
     return RootNgsUserModule;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var routes = [
@@ -1524,7 +2371,7 @@ var NgsUserRoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var NgsUserModuleOutlets = {
@@ -1533,7 +2380,7 @@ var NgsUserModuleOutlets = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UserFacadeService = /** @class */ (function () {
     function UserFacadeService(store, configService) {
@@ -1569,20 +2416,31 @@ var UserFacadeService = /** @class */ (function () {
         { type: Store },
         { type: UserConfigurationService }
     ]; };
-    /** @nocollapse */ UserFacadeService.ngInjectableDef = defineInjectable({ factory: function UserFacadeService_Factory() { return new UserFacadeService(inject(Store), inject(UserConfigurationService)); }, token: UserFacadeService, providedIn: "root" });
+    /** @nocollapse */ UserFacadeService.ngInjectableDef = ɵɵdefineInjectable({ factory: function UserFacadeService_Factory() { return new UserFacadeService(ɵɵinject(Store), ɵɵinject(UserConfigurationService)); }, token: UserFacadeService, providedIn: "root" });
     return UserFacadeService;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UserFacadeService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    UserFacadeService.prototype.configService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { UserModel, NgsUserModule, NgsUserRoutingModule, NgsUserModuleOutlets, UserService, UserFacadeService, getAccountInfo$2 as getAccountInfo, UserActionTypes, ChangePasswordContainerComponent as ɵr, reducer$1 as ɵw, ChangePasswordComponent as ɵj, getAccountInfo as ɵu, userReducer as ɵt, DashboardContainerComponent as ɵq, DashboardLinksComponent as ɵm, FeatureContainerComponent as ɵp, UserEffects as ɵbb, EditProfileEffects as ɵz, reducer$2 as ɵy, ProfileEditContainerComponent as ɵs, ProfileEditComponent as ɵk, ProfileContainerComponent as ɵl, ProfileViewEffects as ɵba, ProfileComponent as ɵi, reducer as ɵv, ResetPasswordRequestComponent as ɵo, reducer$3 as ɵx, SearchComponent as ɵh, UserConfigurationService as ɵn, MODULE_CONFIG_TOKEN as ɵa, RootNgsUserModule as ɵb, UserReducers as ɵd, selectFeatureState as ɵf, selectUserInformaionState as ɵg, routes as ɵc };
-
+export { NgsUserModule, NgsUserModuleOutlets, NgsUserRoutingModule, UserActionTypes, UserFacadeService, UserModel, UserService, getAccountInfo$2 as getAccountInfo, MODULE_CONFIG_TOKEN as ɵa, RootNgsUserModule as ɵb, ProfileViewEffects as ɵba, UserEffects as ɵbb, routes as ɵc, UserReducers as ɵd, selectFeatureState as ɵf, selectUserInformaionState as ɵg, SearchComponent as ɵh, ProfileComponent as ɵi, ChangePasswordComponent as ɵj, ProfileEditComponent as ɵk, ProfileContainerComponent as ɵl, DashboardLinksComponent as ɵm, UserConfigurationService as ɵn, ResetPasswordRequestComponent as ɵo, FeatureContainerComponent as ɵp, DashboardContainerComponent as ɵq, ChangePasswordContainerComponent as ɵr, ProfileEditContainerComponent as ɵs, userReducer as ɵt, getAccountInfo as ɵu, reducer as ɵv, reducer$1 as ɵw, reducer$3 as ɵx, reducer$2 as ɵy, EditProfileEffects as ɵz };
 //# sourceMappingURL=soushians-user.js.map

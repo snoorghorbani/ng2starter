@@ -1,6 +1,6 @@
 {
   "name": "@soushians/widget-types",
-  "version": "7.7.0",
+  "version": "8.0.10",
   "peerDependencies": {},
   "devDependencies": {},
   "main": "bundles/soushians-widget-types.umd.js",

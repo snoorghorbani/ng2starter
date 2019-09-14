@@ -81,7 +81,7 @@ export class NgsConfigModule {
 	static forRoot(config: ConfigModuleConfig): ModuleWithProviders {
 		return {
 			ngModule: RootNgsConfigModule,
-			providers: [ { provide: MODULE_CONFIG_TOKEN, useValue: config } ]
+			providers: [{ provide: MODULE_CONFIG_TOKEN, useValue: config }]
 		};
 	}
 }
@@ -90,9 +90,14 @@ export class NgsConfigModule {
 	imports: [
 		NgsConfigModule,
 		StoreModule.forFeature("config", ConfigReducers),
-		EffectsModule.forFeature([ LoadConfigEffects ]),
+		EffectsModule.forFeature([LoadConfigEffects]),
 		RoutingModule
 	],
-	exports: [ NgsConfigModule ]
+	exports: [NgsConfigModule]
 })
-export class RootNgsConfigModule {}
+export class RootNgsConfigModule {
+	constructor() {
+		(<any>window).___starter = (<any>window).___starter || {};
+		(<any>window).___starter.config = "8.0.10";
+	}
+}

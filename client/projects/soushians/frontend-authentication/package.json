@@ -1,5 +1,5 @@
 {
-    "name": "@soushians/frontend-authentication",
-    "version": "7.7.0",
-    "peerDependencies": {}
+	"name": "@soushians/frontend-authentication",
+	"version": "8.0.10",
+	"peerDependencies": {}
 }

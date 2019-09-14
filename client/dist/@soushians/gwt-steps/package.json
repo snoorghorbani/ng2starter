@@ -1,6 +1,6 @@
 {
   "name": "@soushians/gwt-steps",
-  "version": "7.7.0",
+  "version": "8.0.10",
   "peerDependencies": {},
   "main": "bundles/soushians-gwt-steps.umd.js",
   "module": "fesm5/soushians-gwt-steps.js",

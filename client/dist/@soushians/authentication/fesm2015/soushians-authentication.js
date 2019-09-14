@@ -1,25 +1,25 @@
-import { stringTemplate, Cookie } from '@soushians/shared';
+import { InjectionToken, Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, EventEmitter, Component, Output, Input, NgModule } from '@angular/core';
+import { HttpClient, HttpResponse, HttpErrorResponse, HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { of, BehaviorSubject, throwError } from 'rxjs';
+import { MatSnackBar, MatBottomSheet, MatIconModule, MatButtonModule, MatCardModule, MatSnackBarModule, MatSidenavModule, MatExpansionModule, MatSelectModule, MatBottomSheetModule, MatFormFieldModule, MatListModule, MatMenuModule, MatRadioModule, MatInputModule, MatToolbarModule, MatDatepickerModule, MatProgressBarModule } from '@angular/material';
+import { filter, take, switchMap, map, tap, catchError, pluck } from 'rxjs/operators';
+import { Store, createFeatureSelector, createSelector, StoreModule } from '@ngrx/store';
+import { Cookie, stringTemplate } from '@soushians/shared';
 import { getAuthenticationModuleConfig } from '@soushians/config';
 import { MatSnackBar as MatSnackBar$1 } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
+import { RouterModule, Router } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ofType, Actions, Effect, EffectsModule } from '@ngrx/effects';
 import { NgsFormModule } from '@soushians/form';
 import 'rxjs/add/operator/do';
-import { HttpClient, HttpResponse, HttpErrorResponse, HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { RouterModule, Router } from '@angular/router';
-import { of, BehaviorSubject, throwError } from 'rxjs';
-import { MatSnackBar, MatBottomSheet, MatIconModule, MatButtonModule, MatCardModule, MatSnackBarModule, MatSidenavModule, MatExpansionModule, MatSelectModule, MatFormFieldModule, MatListModule, MatMenuModule, MatRadioModule, MatInputModule, MatToolbarModule, MatDatepickerModule, MatProgressBarModule, MatBottomSheetModule } from '@angular/material';
 import { __decorate, __metadata } from 'tslib';
-import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
-import { map, switchMap, take, filter, tap, catchError, pluck } from 'rxjs/operators';
-import { InjectionToken, Injectable, Inject, NgModule, Component, Input, Output, EventEmitter, defineInjectable, inject } from '@angular/core';
-import { Store, createSelector, createFeatureSelector, StoreModule } from '@ngrx/store';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class UserModel {
     /**
@@ -32,16 +32,30 @@ class UserModel {
         // UserType: string;
         this.Roles = [];
         params &&
-            Object.keys(params).forEach(key => {
+            Object.keys(params).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            key => {
                 if (key in params)
                     ((/** @type {?} */ (this)))[key] = params[key];
-            });
+            }));
     }
+}
+if (false) {
+    /** @type {?} */
+    UserModel.prototype._id;
+    /** @type {?} */
+    UserModel.prototype.Username;
+    /** @type {?} */
+    UserModel.prototype.Email;
+    /** @type {?} */
+    UserModel.prototype.Roles;
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const SignInActionTypes = {
@@ -62,6 +76,10 @@ class WhoAmIAction {
         this.type = SignInActionTypes.WHO_AM_I;
     }
 }
+if (false) {
+    /** @type {?} */
+    WhoAmIAction.prototype.type;
+}
 /**
  * 	sign up
  */
@@ -74,6 +92,12 @@ class Signup {
         this.type = SignInActionTypes.SIGNUP;
     }
 }
+if (false) {
+    /** @type {?} */
+    Signup.prototype.type;
+    /** @type {?} */
+    Signup.prototype.payload;
+}
 class SignupSecceed {
     /**
      * @param {?} payload
@@ -83,6 +107,12 @@ class SignupSecceed {
         this.type = SignInActionTypes.SIGNUP_SUCCEED;
     }
 }
+if (false) {
+    /** @type {?} */
+    SignupSecceed.prototype.type;
+    /** @type {?} */
+    SignupSecceed.prototype.payload;
+}
 class SignupFailed {
     /**
      * @param {?} payload
@@ -91,6 +121,12 @@ class SignupFailed {
         this.payload = payload;
         this.type = SignInActionTypes.SIGNUP_FAILURE;
     }
+}
+if (false) {
+    /** @type {?} */
+    SignupFailed.prototype.type;
+    /** @type {?} */
+    SignupFailed.prototype.payload;
 }
 /**
  * Sign in
@@ -104,6 +140,12 @@ class Signin {
         this.type = SignInActionTypes.SIGNIN;
     }
 }
+if (false) {
+    /** @type {?} */
+    Signin.prototype.type;
+    /** @type {?} */
+    Signin.prototype.payload;
+}
 class SigninSecceed {
     /**
      * @param {?} payload
@@ -112,6 +154,12 @@ class SigninSecceed {
         this.payload = payload;
         this.type = SignInActionTypes.SIGNIN_SUCCEED;
     }
+}
+if (false) {
+    /** @type {?} */
+    SigninSecceed.prototype.type;
+    /** @type {?} */
+    SigninSecceed.prototype.payload;
 }
 class SigninFailed {
     /**
@@ -122,26 +170,92 @@ class SigninFailed {
         this.type = SignInActionTypes.SIGNIN_FAILURE;
     }
 }
+if (false) {
+    /** @type {?} */
+    SigninFailed.prototype.type;
+    /** @type {?} */
+    SigninFailed.prototype.payload;
+}
+class SigninRedirect {
+    constructor() {
+        this.type = SignInActionTypes.SIGNIN_REDIRECT;
+    }
+}
+if (false) {
+    /** @type {?} */
+    SigninRedirect.prototype.type;
+}
 class DoSignoutAction {
     constructor() {
         this.type = SignInActionTypes.DO_SIGNOUT;
     }
+}
+if (false) {
+    /** @type {?} */
+    DoSignoutAction.prototype.type;
 }
 class SignoutAction {
     constructor() {
         this.type = SignInActionTypes.SIGNOUT;
     }
 }
+if (false) {
+    /** @type {?} */
+    SignoutAction.prototype.type;
+}
 class SigninRequiredAction {
     constructor() {
         this.type = SignInActionTypes.SIGNIN_REQUIRED;
     }
 }
+if (false) {
+    /** @type {?} */
+    SigninRequiredAction.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function AuthenticationModuleConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    AuthenticationModuleConfig.prototype.mode;
+    /** @type {?|undefined} */
+    AuthenticationModuleConfig.prototype.token;
+    /** @type {?|undefined} */
+    AuthenticationModuleConfig.prototype.server;
+    /** @type {?|undefined} */
+    AuthenticationModuleConfig.prototype.endpoints;
+    /** @type {?|undefined} */
+    AuthenticationModuleConfig.prototype.forms;
+    /** @type {?|undefined} */
+    AuthenticationModuleConfig.prototype.env;
+    /** @type {?|undefined} */
+    AuthenticationModuleConfig.prototype.afterSignoutRedirectTo;
+    /** @type {?|undefined} */
+    AuthenticationModuleConfig.prototype.signupValidator;
+    /** @type {?|undefined} */
+    AuthenticationModuleConfig.prototype.afterSignin;
+    /** @type {?|undefined} */
+    AuthenticationModuleConfig.prototype.responseToUser;
+}
+const ɵ0 = /**
+ * @param {?} value
+ * @return {?}
+ */
+value => of(true), ɵ1 = /**
+ * @param {?} user
+ * @return {?}
+ */
+user => { }, ɵ2 = /**
+ * @param {?} user
+ * @return {?}
+ */
+user => user;
 /** @type {?} */
 const MODULE_DEFAULT_CONFIG = {
     mode: "cookie-base",
@@ -166,16 +280,16 @@ const MODULE_DEFAULT_CONFIG = {
         server: "auth/module/server/did/not/set"
     },
     afterSignoutRedirectTo: "/",
-    signupValidator: value => of(true),
-    afterSignin: user => { },
-    responseToUser: user => user
+    signupValidator: (ɵ0),
+    afterSignin: (ɵ1),
+    responseToUser: (ɵ2)
 };
 /** @type {?} */
 const MODULE_CONFIG_TOKEN = new InjectionToken("ModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class AuthenticationConfigurationService {
     /**
@@ -187,12 +301,16 @@ class AuthenticationConfigurationService {
         this.config$ = new BehaviorSubject(this._config);
         this._config = Object.assign({}, MODULE_DEFAULT_CONFIG, configFile);
         this.config$.next(this._config);
-        this.store.select(getAuthenticationModuleConfig).subscribe(storeConfig => {
+        this.store.select(getAuthenticationModuleConfig).subscribe((/**
+         * @param {?} storeConfig
+         * @return {?}
+         */
+        storeConfig => {
             if (!storeConfig)
                 return;
             this._config = Object.assign({}, this._config, storeConfig.Config);
             this.config$.next(this._config);
-        });
+        }));
     }
     /**
      * @return {?}
@@ -211,43 +329,168 @@ AuthenticationConfigurationService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [MODULE_CONFIG_TOKEN,] }] },
     { type: Store }
 ];
-/** @nocollapse */ AuthenticationConfigurationService.ngInjectableDef = defineInjectable({ factory: function AuthenticationConfigurationService_Factory() { return new AuthenticationConfigurationService(inject(MODULE_CONFIG_TOKEN), inject(Store)); }, token: AuthenticationConfigurationService, providedIn: "root" });
+/** @nocollapse */ AuthenticationConfigurationService.ngInjectableDef = ɵɵdefineInjectable({ factory: function AuthenticationConfigurationService_Factory() { return new AuthenticationConfigurationService(ɵɵinject(MODULE_CONFIG_TOKEN), ɵɵinject(Store)); }, token: AuthenticationConfigurationService, providedIn: "root" });
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    AuthenticationConfigurationService.prototype._config;
+    /** @type {?} */
+    AuthenticationConfigurationService.prototype.config$;
+    /**
+     * @type {?}
+     * @private
+     */
+    AuthenticationConfigurationService.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {string} */
+const AuthenticationActionTypes = {
+    PROGRESSING_STARTED: '[AUTHENTICATION] PROGRESSING_STARTED',
+    PROGRESSING_FINISHED: '[AUTHENTICATION] PROGRESSING_FINISHED',
+    FAILED_HAPPENED: '[AUTHENTICATION] FAILED_HAPPENED',
+};
 class ProgressingStarted {
     constructor() {
         this.type = "[AUTHENTICATION] PROGRESSING_STARTED" /* PROGRESSING_STARTED */;
     }
+}
+if (false) {
+    /** @type {?} */
+    ProgressingStarted.prototype.type;
 }
 class ProgressingFinished {
     constructor() {
         this.type = "[AUTHENTICATION] PROGRESSING_FINISHED" /* PROGRESSING_FINISHED */;
     }
 }
+if (false) {
+    /** @type {?} */
+    ProgressingFinished.prototype.type;
+}
+class FailedHappened {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = "[AUTHENTICATION] FAILED_HAPPENED" /* FAILED_HAPPENED */;
+    }
+}
+if (false) {
+    /** @type {?} */
+    FailedHappened.prototype.type;
+    /** @type {?} */
+    FailedHappened.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const NEW_CAPTCHA = '[captcha] new captcha';
+/** @type {?} */
+const TOKEN_REQUESTED = '[captcha] token_requested';
+/** @type {?} */
+const TOKEN_RECEIVED = '[captcha] token_received';
+/** @type {?} */
+const CAPTCHA_IMAGE_REQUESTED = '[captcha] captcha_image_requested';
+/** @type {?} */
+const CAPTCHA_IMAGE_LOADED = '[captcha] captcha_image_loaded';
+/** @type {?} */
+const CAPTCHA_ENTERED = '[captcha] CAPTCHA_ENTERED';
+/** @type {?} */
+const CLEAR_CAPTCHA = '[captcha] CLEAR_CAPTCHA';
 class NewCaptcha {
     constructor() {
         this.type = NEW_CAPTCHA;
     }
 }
+if (false) {
+    /** @type {?} */
+    NewCaptcha.prototype.type;
+}
+class TokenRequested {
+    constructor() {
+        this.type = TOKEN_REQUESTED;
+    }
+}
+if (false) {
+    /** @type {?} */
+    TokenRequested.prototype.type;
+}
+class TokenReceived {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = TOKEN_RECEIVED;
+    }
+}
+if (false) {
+    /** @type {?} */
+    TokenReceived.prototype.type;
+    /** @type {?} */
+    TokenReceived.prototype.payload;
+}
+class CaptchaImageRequested {
+    constructor() {
+        this.type = CAPTCHA_IMAGE_REQUESTED;
+    }
+}
+if (false) {
+    /** @type {?} */
+    CaptchaImageRequested.prototype.type;
+}
+class CaptchaImageLoaded {
+    constructor() {
+        this.type = CAPTCHA_IMAGE_LOADED;
+    }
+}
+if (false) {
+    /** @type {?} */
+    CaptchaImageLoaded.prototype.type;
+}
+class CaptchaEntered {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = CAPTCHA_ENTERED;
+    }
+}
+if (false) {
+    /** @type {?} */
+    CaptchaEntered.prototype.type;
+    /** @type {?} */
+    CaptchaEntered.prototype.payload;
+}
+class ClearCaptcha {
+    constructor() {
+        this.type = CLEAR_CAPTCHA;
+    }
+}
+if (false) {
+    /** @type {?} */
+    ClearCaptcha.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COOKIE_NAME = "ngs-authentication";
@@ -263,36 +506,71 @@ class SigninService {
         this.store = store;
         this.configurationService = configurationService;
         this.snackBar = snackBar;
-        setTimeout(() => this.store.dispatch(new WhoAmIAction()), 300);
+        setTimeout((/**
+         * @return {?}
+         */
+        () => this.store.dispatch(new WhoAmIAction())), 300);
     }
     /**
      * @param {?} model
      * @return {?}
      */
     signup(model) {
-        return this.configurationService.config$.pipe(filter(config => config.endpoints.signUp != ""), take(1), switchMap(config => this.http.post(config.env[config.server] + config.endpoints.signUp, model)), map(response => {
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => config.endpoints.signUp != "")), take(1), switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => this.http.post(config.env[config.server] + config.endpoints.signUp, model))), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        response => {
             /** @type {?} */
             const user = Object.assign({}, response.Result);
             if (user.Role) {
                 user.Roles = [user.Role];
             }
             return user;
-        }));
+        })));
     }
     /**
      * @param {?} model
      * @return {?}
      */
     signin(model) {
-        return this.configurationService.config$.pipe(filter(config => config.endpoints.signIn != ""), take(1), switchMap(config => this.http.post(config.env[config.server] + config.endpoints.signIn, model)), map(this.configurationService.config.responseToUser), map(user => {
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => config.endpoints.signIn != "")), take(1), switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => this.http.post(config.env[config.server] + config.endpoints.signIn, model))), map(this.configurationService.config.responseToUser), map((/**
+         * @param {?} user
+         * @return {?}
+         */
+        user => {
             if (user.Role) {
                 user.Roles = [user.Role];
             }
             return user;
-        }), tap(user => {
+        })), tap((/**
+         * @param {?} user
+         * @return {?}
+         */
+        user => {
             if (this.configurationService.config.mode == "token-base")
                 Cookie.setCookie(COOKIE_NAME, JSON.stringify(user), this.configurationService.config.token.time);
-        }), tap(user => this.configurationService.config.afterSignin(user)));
+        })), tap((/**
+         * @param {?} user
+         * @return {?}
+         */
+        user => this.configurationService.config.afterSignin(user))));
     }
     // TODO:
     /**
@@ -310,9 +588,12 @@ class SigninService {
         if (["get", "put", "post", "patch", "delete"].indexOf(method) === -1) {
             throwError(`${method} is not valid http method. [ @starter/authentication/signinservice/singout ]`);
         }
-        return this.http[method](endpoint).pipe(tap(() => {
+        return this.http[method](endpoint).pipe(tap((/**
+         * @return {?}
+         */
+        () => {
             Cookie.deleteCookie(COOKIE_NAME);
-        }));
+        })));
     }
     /**
      * @return {?}
@@ -327,7 +608,15 @@ class SigninService {
             }
             catch (error) { }
         }
-        return this.configurationService.config$.pipe(filter(config => config.endpoints.whoAmI != ""), take(1), switchMap(config => this.http.get(stringTemplate(config.env[config.server] + config.endpoints.whoAmI, { user }))));
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => config.endpoints.whoAmI != "")), take(1), switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => this.http.get(stringTemplate(config.env[config.server] + config.endpoints.whoAmI, { user })))));
     }
 }
 SigninService.decorators = [
@@ -342,11 +631,33 @@ SigninService.ctorParameters = () => [
     { type: AuthenticationConfigurationService },
     { type: MatSnackBar }
 ];
-/** @nocollapse */ SigninService.ngInjectableDef = defineInjectable({ factory: function SigninService_Factory() { return new SigninService(inject(HttpClient), inject(Store), inject(AuthenticationConfigurationService), inject(MatSnackBar$1)); }, token: SigninService, providedIn: "root" });
+/** @nocollapse */ SigninService.ngInjectableDef = ɵɵdefineInjectable({ factory: function SigninService_Factory() { return new SigninService(ɵɵinject(HttpClient), ɵɵinject(Store), ɵɵinject(AuthenticationConfigurationService), ɵɵinject(MatSnackBar$1)); }, token: SigninService, providedIn: "root" });
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SigninService.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    SigninService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    SigninService.prototype.configurationService;
+    /**
+     * @type {?}
+     * @private
+     */
+    SigninService.prototype.snackBar;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SigninContainerComponent {
     /**
@@ -357,7 +668,11 @@ class SigninContainerComponent {
         this.configurationService = configurationService;
         this.store = store;
         this.signedIn$ = new EventEmitter();
-        this.formId$ = this.configurationService.config$.map(config => config.forms.signIn);
+        this.formId$ = this.configurationService.config$.map((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => config.forms.signIn));
     }
     /**
      * @param {?} formValue
@@ -386,10 +701,26 @@ SigninContainerComponent.ctorParameters = () => [
 SigninContainerComponent.propDecorators = {
     signedIn$: [{ type: Output }]
 };
+if (false) {
+    /** @type {?} */
+    SigninContainerComponent.prototype.formId$;
+    /** @type {?} */
+    SigninContainerComponent.prototype.signedIn$;
+    /**
+     * @type {?}
+     * @private
+     */
+    SigninContainerComponent.prototype.configurationService;
+    /**
+     * @type {?}
+     * @private
+     */
+    SigninContainerComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class AuthenticationContainerComponent {
 }
@@ -403,7 +734,7 @@ AuthenticationContainerComponent.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SignupContainerComponent {
     /**
@@ -416,7 +747,11 @@ class SignupContainerComponent {
         this.store = store;
         this.snackBar = snackBar;
         this.signedUp$ = new EventEmitter();
-        this.formId$ = this.configurationService.config$.map(config => config.forms.signUp);
+        this.formId$ = this.configurationService.config$.map((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => config.forms.signUp));
     }
     /**
      * @param {?} formValue
@@ -424,8 +759,16 @@ class SignupContainerComponent {
      */
     signup(formValue) {
         this.configurationService.config$
-            .pipe(take(1), switchMap(config => config.signupValidator(formValue)))
-            .subscribe(validation => {
+            .pipe(take(1), switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => config.signupValidator(formValue))))
+            .subscribe((/**
+         * @param {?} validation
+         * @return {?}
+         */
+        validation => {
             if (validation) {
                 this.store.dispatch(new Signup(formValue));
                 this.signedUp$.emit(true);
@@ -435,7 +778,7 @@ class SignupContainerComponent {
                     duration: 2222
                 });
             }
-        });
+        }));
     }
 }
 SignupContainerComponent.decorators = [
@@ -457,10 +800,31 @@ SignupContainerComponent.ctorParameters = () => [
 SignupContainerComponent.propDecorators = {
     signedUp$: [{ type: Output }]
 };
+if (false) {
+    /** @type {?} */
+    SignupContainerComponent.prototype.formId$;
+    /** @type {?} */
+    SignupContainerComponent.prototype.signedUp$;
+    /**
+     * @type {?}
+     * @private
+     */
+    SignupContainerComponent.prototype.configurationService;
+    /**
+     * @type {?}
+     * @private
+     */
+    SignupContainerComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    SignupContainerComponent.prototype.snackBar;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const routes = [
@@ -486,7 +850,7 @@ const AuthenticationRoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SigninComponent {
     constructor() {
@@ -515,10 +879,16 @@ SigninComponent.propDecorators = {
     signedin: [{ type: Output }],
     formId: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    SigninComponent.prototype.signedin;
+    /** @type {?} */
+    SigninComponent.prototype.formId;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 // import { environment } from "../../../environments/environment";
 class WithCredentialInterceptor {
@@ -546,10 +916,17 @@ WithCredentialInterceptor.decorators = [
 WithCredentialInterceptor.ctorParameters = () => [
     { type: AuthenticationConfigurationService }
 ];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    WithCredentialInterceptor.prototype.configurationService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class UnauthorizedInterceptor {
     /**
@@ -569,11 +946,19 @@ class UnauthorizedInterceptor {
     intercept(request, next) {
         return next
             .handle(request)
-            .map((event) => {
+            .map((/**
+         * @param {?} event
+         * @return {?}
+         */
+        (event) => {
             if (event instanceof HttpResponse)
                 return event;
-        })
-            .catch(err => {
+        }))
+            .catch((/**
+         * @param {?} err
+         * @return {?}
+         */
+        err => {
             if (!(err instanceof HttpErrorResponse))
                 return throwError(err);
             if (err.status != 401)
@@ -584,7 +969,7 @@ class UnauthorizedInterceptor {
                 return throwError(err);
             this.store.dispatch(new SignoutAction());
             return throwError("Unauthorized");
-        });
+        }));
     }
 }
 UnauthorizedInterceptor.decorators = [
@@ -595,11 +980,33 @@ UnauthorizedInterceptor.ctorParameters = () => [
     { type: Router },
     { type: Store }
 ];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UnauthorizedInterceptor.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    UnauthorizedInterceptor.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State() { }
+if (false) {
+    /** @type {?} */
+    State.prototype.loggedIn;
+    /** @type {?} */
+    State.prototype.user;
+}
 /** @type {?} */
 const initialState = {
     loggedIn: false,
@@ -625,14 +1032,38 @@ function UserReducer(state = initialState, action) {
 }
 //#region  selectors
 /** @type {?} */
-const getLoggedIn = (state) => state.loggedIn;
+const getLoggedIn = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.loggedIn);
 /** @type {?} */
-const getUser = (state) => state.user;
+const getUser = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.user);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function AuthenticationState() { }
+if (false) {
+    /** @type {?} */
+    AuthenticationState.prototype.userStatus;
+}
+/**
+ * @record
+ */
+function FeatureState() { }
+if (false) {
+    /** @type {?} */
+    FeatureState.prototype.authentication;
+}
 /** @type {?} */
 const AuthenticationReducers = {
     userStatus: UserReducer
@@ -641,8 +1072,13 @@ const AuthenticationReducers = {
 //#region selectors
 /** @type {?} */
 const selectAuthenticationState = createFeatureSelector("authentication");
+const ɵ0$1 = /**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.userStatus;
 /** @type {?} */
-const selectAuthState = createSelector(selectAuthenticationState, (state) => state.userStatus);
+const selectAuthState = createSelector(selectAuthenticationState, (ɵ0$1));
 /** @type {?} */
 const getLoggedIn$1 = createSelector(selectAuthState, getLoggedIn);
 /** @type {?} */
@@ -650,12 +1086,12 @@ const getUser$1 = createSelector(selectAuthState, getUser);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SigninEffects {
     /**
@@ -671,43 +1107,114 @@ class SigninEffects {
         this.signinService = signinService;
         this.configurationService = configurationService;
         this.bottomSheet = bottomSheet;
-        this.whoAmI$ = this.actions$.pipe(ofType(SignInActionTypes.WHO_AM_I), switchMap(() => this.signinService
+        this.whoAmI$ = this.actions$.pipe(ofType(SignInActionTypes.WHO_AM_I), switchMap((/**
+         * @return {?}
+         */
+        () => this.signinService
             .whoAmI()
-            .pipe(map(user => new SigninSecceed(user)), catchError(error => of(new SigninFailed(error))))));
-        this.Signin$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN), pluck("payload"), switchMap(payload => this.signinService
+            .pipe(map((/**
+         * @param {?} user
+         * @return {?}
+         */
+        user => new SigninSecceed(user))), catchError((/**
+         * @param {?} error
+         * @return {?}
+         */
+        error => of(new SigninFailed(error))))))));
+        this.Signin$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN), pluck("payload"), switchMap((/**
+         * @param {?} payload
+         * @return {?}
+         */
+        payload => this.signinService
             .signin(payload)
-            .pipe(map(user => new SigninSecceed(user)), catchError(error => of(new SigninFailed(error))))));
-        this.signup$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNUP), pluck("payload"), switchMap(payload => this.signinService
+            .pipe(map((/**
+         * @param {?} user
+         * @return {?}
+         */
+        user => new SigninSecceed(user))), catchError((/**
+         * @param {?} error
+         * @return {?}
+         */
+        error => of(new SigninFailed(error))))))));
+        this.signup$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNUP), pluck("payload"), switchMap((/**
+         * @param {?} payload
+         * @return {?}
+         */
+        payload => this.signinService
             .signup(payload)
-            .pipe(map(user => new SignupSecceed(user)), catchError(error => of(new SignupFailed(error))))));
-        this.signupSucceed$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNUP_SUCCEED), tap(() => {
+            .pipe(map((/**
+         * @param {?} user
+         * @return {?}
+         */
+        user => new SignupSecceed(user))), catchError((/**
+         * @param {?} error
+         * @return {?}
+         */
+        error => of(new SignupFailed(error))))))));
+        this.signupSucceed$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNUP_SUCCEED), tap((/**
+         * @return {?}
+         */
+        () => {
             debugger;
             this.router.navigate(["auth/signin"]);
-        }));
-        this.SignInRequired$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_REQUIRED), tap((data) => {
+        })));
+        this.SignInRequired$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_REQUIRED), tap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        (data) => {
             /** @type {?} */
             const signinBottomSheetRef = this.bottomSheet.open(SigninContainerComponent, {
                 panelClass: "clear-mat-card-box"
             });
-            signinBottomSheetRef.instance.signedIn$.subscribe(() => {
+            signinBottomSheetRef.instance.signedIn$.subscribe((/**
+             * @return {?}
+             */
+            () => {
                 signinBottomSheetRef.dismiss();
-            });
+            }));
             return signinBottomSheetRef;
-        }));
-        this.SigninSucceed$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_SUCCEED), tap((data) => {
+        })));
+        this.SigninSucceed$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_SUCCEED), tap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        (data) => {
             if (location.pathname.indexOf("signin") > -1)
                 this.router.navigate(["/"]);
-        }));
-        this.AfterSigninFiled$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_FAILURE), map(() => new NewCaptcha()));
-        this.DoSignout$ = this.actions$.pipe(ofType(SignInActionTypes.DO_SIGNOUT), switchMap(data => this.signinService.signout().pipe(map(() => new SignoutAction()), catchError(err => {
+        })));
+        this.AfterSigninFiled$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_FAILURE), map((/**
+         * @return {?}
+         */
+        () => new NewCaptcha())));
+        this.DoSignout$ = this.actions$.pipe(ofType(SignInActionTypes.DO_SIGNOUT), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => this.signinService.signout().pipe(map((/**
+         * @return {?}
+         */
+        () => new SignoutAction())), catchError((/**
+         * @param {?} err
+         * @return {?}
+         */
+        err => {
             // TODO: dispatch valid action
             debugger;
             return of(err);
-        }))));
+        }))))));
         // TODO
         // @Effect() Signout$ = this.actions$.ofType(SignInActionTypes.DO_SIGNOUT).pipe(map(() => new SignoutAction()));
-        this.redirectToLoginPage$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_REDIRECT), tap(authed => this.router.navigate(["auth/signin"])));
-        this.redirectAfterSignout$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNOUT), tap(authed => this.router.navigate([this.configurationService.config$.getValue().afterSignoutRedirectTo])));
+        this.redirectToLoginPage$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_REDIRECT), tap((/**
+         * @param {?} authed
+         * @return {?}
+         */
+        authed => this.router.navigate(["auth/signin"]))));
+        this.redirectAfterSignout$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNOUT), tap((/**
+         * @param {?} authed
+         * @return {?}
+         */
+        authed => this.router.navigate([this.configurationService.config$.getValue().afterSignoutRedirectTo]))));
     }
 }
 SigninEffects.decorators = [
@@ -761,10 +1268,51 @@ __decorate([
     Effect({ dispatch: false }),
     __metadata("design:type", Object)
 ], SigninEffects.prototype, "redirectAfterSignout$", void 0);
+if (false) {
+    /** @type {?} */
+    SigninEffects.prototype.whoAmI$;
+    /** @type {?} */
+    SigninEffects.prototype.Signin$;
+    /** @type {?} */
+    SigninEffects.prototype.signup$;
+    /** @type {?} */
+    SigninEffects.prototype.signupSucceed$;
+    /** @type {?} */
+    SigninEffects.prototype.SignInRequired$;
+    /** @type {?} */
+    SigninEffects.prototype.SigninSucceed$;
+    /** @type {?} */
+    SigninEffects.prototype.AfterSigninFiled$;
+    /** @type {?} */
+    SigninEffects.prototype.DoSignout$;
+    /** @type {?} */
+    SigninEffects.prototype.redirectToLoginPage$;
+    /** @type {?} */
+    SigninEffects.prototype.redirectAfterSignout$;
+    /**
+     * @type {?}
+     * @private
+     */
+    SigninEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    SigninEffects.prototype.router;
+    /** @type {?} */
+    SigninEffects.prototype.signinService;
+    /** @type {?} */
+    SigninEffects.prototype.configurationService;
+    /**
+     * @type {?}
+     * @private
+     */
+    SigninEffects.prototype.bottomSheet;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class AuthenticationEffects {
     /**
@@ -772,8 +1320,14 @@ class AuthenticationEffects {
      */
     constructor(actions$) {
         this.actions$ = actions$;
-        this.dispachProgressingStarted$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN), map(() => new ProgressingStarted()));
-        this.dispachProgressingFinished$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_FAILURE, SignInActionTypes.SIGNIN_SUCCEED), map(() => new ProgressingFinished()));
+        this.dispachProgressingStarted$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN), map((/**
+         * @return {?}
+         */
+        () => new ProgressingStarted())));
+        this.dispachProgressingFinished$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_FAILURE, SignInActionTypes.SIGNIN_SUCCEED), map((/**
+         * @return {?}
+         */
+        () => new ProgressingFinished())));
     }
 }
 AuthenticationEffects.decorators = [
@@ -791,10 +1345,21 @@ __decorate([
     Effect(),
     __metadata("design:type", Object)
 ], AuthenticationEffects.prototype, "dispachProgressingFinished$", void 0);
+if (false) {
+    /** @type {?} */
+    AuthenticationEffects.prototype.dispachProgressingStarted$;
+    /** @type {?} */
+    AuthenticationEffects.prototype.dispachProgressingFinished$;
+    /**
+     * @type {?}
+     * @private
+     */
+    AuthenticationEffects.prototype.actions$;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SignupComponent {
     constructor() {
@@ -823,10 +1388,16 @@ SignupComponent.propDecorators = {
     signedup: [{ type: Output }],
     formId: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    SignupComponent.prototype.signedup;
+    /** @type {?} */
+    SignupComponent.prototype.formId;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SigninGuard {
     /**
@@ -841,7 +1412,11 @@ class SigninGuard {
      * @return {?}
      */
     canActivate(route, state) {
-        return this.store.select(getLoggedIn$1).take(1).map(authed => !authed);
+        return this.store.select(getLoggedIn$1).take(1).map((/**
+         * @param {?} authed
+         * @return {?}
+         */
+        authed => !authed));
     }
 }
 SigninGuard.decorators = [
@@ -851,10 +1426,17 @@ SigninGuard.decorators = [
 SigninGuard.ctorParameters = () => [
     { type: Store }
 ];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SigninGuard.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NgsAuthenticationModule {
     /**
@@ -925,7 +1507,7 @@ NgsAuthenticationModule.decorators = [
 class RootNgsAuthenticationModule {
     constructor() {
         ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
-        ((/** @type {?} */ (window))).___starter.authentication = "7.8.0";
+        ((/** @type {?} */ (window))).___starter.authentication = "8.0.10";
     }
 }
 RootNgsAuthenticationModule.decorators = [
@@ -943,14 +1525,13 @@ RootNgsAuthenticationModule.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { UserModel, SignInActionTypes, DoSignoutAction, SigninRequiredAction, SigninService, SigninContainerComponent, NgsAuthenticationModule, getUser$1 as getUser, AuthenticationRoutingModule as ɵr, MODULE_CONFIG_TOKEN as ɵa, RootNgsAuthenticationModule as ɵb, SigninComponent as ɵi, SignupComponent as ɵl, AuthenticationEffects as ɵq, SigninEffects as ɵp, UnauthorizedInterceptor as ɵs, WithCredentialInterceptor as ɵt, AuthenticationReducers as ɵc, selectAuthState as ɵe, selectAuthenticationState as ɵd, UserReducer as ɵn, getUser as ɵo, SigninGuard as ɵm, AuthenticationConfigurationService as ɵh, AuthenticationContainerComponent as ɵj, SignupContainerComponent as ɵk };
-
+export { DoSignoutAction, NgsAuthenticationModule, SignInActionTypes, SigninContainerComponent, SigninRequiredAction, SigninService, UserModel, getUser$1 as getUser, MODULE_CONFIG_TOKEN as ɵa, RootNgsAuthenticationModule as ɵb, AuthenticationReducers as ɵc, selectAuthenticationState as ɵd, selectAuthState as ɵe, AuthenticationConfigurationService as ɵh, SigninComponent as ɵi, AuthenticationContainerComponent as ɵj, SignupContainerComponent as ɵk, SignupComponent as ɵl, SigninGuard as ɵm, UserReducer as ɵn, getUser as ɵo, SigninEffects as ɵp, AuthenticationEffects as ɵq, AuthenticationRoutingModule as ɵr, UnauthorizedInterceptor as ɵs, WithCredentialInterceptor as ɵt };
 //# sourceMappingURL=soushians-authentication.js.map

@@ -1,6 +1,6 @@
 {
   "name": "@soushians/rule",
-  "version": "7.7.2",
+  "version": "8.0.10",
   "peerDependencies": {},
   "dependencies": {
     "tslib": "^1.9.0"

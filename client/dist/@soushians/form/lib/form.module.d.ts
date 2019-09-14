@@ -4,4 +4,5 @@ export declare class NgsFormModule {
     static forRoot(config?: FormModuleConfig): ModuleWithProviders;
 }
 export declare class RootNgsFormModule {
+    constructor();
 }

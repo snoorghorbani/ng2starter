@@ -120,6 +120,6 @@ export class NgsAuthenticationModule {
 export class RootNgsAuthenticationModule {
 	constructor() {
 		(<any>window).___starter = (<any>window).___starter || {};
-		(<any>window).___starter.authentication = "7.8.0";
+		(<any>window).___starter.authentication = "8.0.10";
 	}
 }

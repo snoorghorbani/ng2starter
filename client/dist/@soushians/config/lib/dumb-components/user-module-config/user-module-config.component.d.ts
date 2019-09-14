@@ -5,7 +5,7 @@ export declare class UserModuleConfigComponent {
     formGroup: FormGroup;
     _configFormGroup: FormGroup;
     configFormGroup: FormGroup;
-    configChanged: EventEmitter<{}>;
+    configChanged: EventEmitter<any>;
     constructor(injector: Injector);
     addMenu(): void;
 }

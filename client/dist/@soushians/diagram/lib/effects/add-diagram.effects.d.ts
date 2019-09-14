@@ -14,8 +14,8 @@ export declare class AddDiagramEffects {
     HAVE_ENDPOINT$: Observable<DataLoadedAction>;
     DATA_LOADED$: Observable<StructureDefinitionStartAction>;
     DIAGRAM_CONFIG_CHANGED$: Observable<GenerateDiagramAction>;
-    STRUCTURE_DEFINITION_START$: Observable<{}>;
-    COLUMNS_MAPPING_CHANGED$: Observable<{}>;
-    STRUCTURE_DEFINITION_END$: Observable<{}>;
+    STRUCTURE_DEFINITION_START$: Observable<unknown>;
+    COLUMNS_MAPPING_CHANGED$: Observable<unknown>;
+    STRUCTURE_DEFINITION_END$: Observable<unknown>;
     GenerateDiagram$: Observable<any>;
 }

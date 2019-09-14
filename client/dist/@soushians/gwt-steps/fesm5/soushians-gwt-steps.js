@@ -1,20 +1,20 @@
+import { Store } from '@ngrx/store';
 import { map, filter } from 'rxjs/operators';
 import { UserFacadeService, getAccountInfo } from '@soushians/user';
-import { Store } from '@ngrx/store';
 import { GwtStepTypes } from '@soushians/rule';
-import { BehaviorSubject, of } from 'rxjs';
 import { Component, NgModule } from '@angular/core';
+import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BehaviorSubject, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatRadioModule, MatSlideToggleModule, MatDividerModule, MatCheckboxModule, MatTableModule, MatAutocompleteModule } from '@angular/material';
+import { MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatCheckboxModule, MatTableModule, MatSelectModule, MatAutocompleteModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatDividerModule, MatRadioModule, MatSlideToggleModule } from '@angular/material';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GivenUserIsAuthenticatedStepComponent = /** @class */ (function () {
     function GivenUserIsAuthenticatedStepComponent() {
@@ -49,10 +49,14 @@ var GivenUserIsAuthenticatedStepComponent = /** @class */ (function () {
     GivenUserIsAuthenticatedStepComponent.ctorParameters = function () { return []; };
     return GivenUserIsAuthenticatedStepComponent;
 }());
+if (false) {
+    /** @type {?} */
+    GivenUserIsAuthenticatedStepComponent.prototype.formGroup;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var IfUserIsAuthenticatedGwtGivenStep = /** @class */ (function () {
     function IfUserIsAuthenticatedGwtGivenStep(injector) {
@@ -77,17 +81,43 @@ var IfUserIsAuthenticatedGwtGivenStep = /** @class */ (function () {
      * @return {?}
      */
     function (params, elementRef) {
-        return this.userFacadeService.getDisplayName().pipe(map(function (userDispalyName) {
+        return this.userFacadeService.getDisplayName().pipe(map((/**
+         * @param {?} userDispalyName
+         * @return {?}
+         */
+        function (userDispalyName) {
             debugger;
             return !!userDispalyName;
-        }));
+        })));
     };
     return IfUserIsAuthenticatedGwtGivenStep;
 }());
+if (false) {
+    /** @type {?} */
+    IfUserIsAuthenticatedGwtGivenStep.prototype.id;
+    /** @type {?} */
+    IfUserIsAuthenticatedGwtGivenStep.prototype.name;
+    /** @type {?} */
+    IfUserIsAuthenticatedGwtGivenStep.prototype.opposite;
+    /** @type {?} */
+    IfUserIsAuthenticatedGwtGivenStep.prototype.description;
+    /** @type {?} */
+    IfUserIsAuthenticatedGwtGivenStep.prototype.type;
+    /** @type {?} */
+    IfUserIsAuthenticatedGwtGivenStep.prototype.params;
+    /** @type {?} */
+    IfUserIsAuthenticatedGwtGivenStep.prototype.stepComponent;
+    /** @type {?} */
+    IfUserIsAuthenticatedGwtGivenStep.prototype.store;
+    /** @type {?} */
+    IfUserIsAuthenticatedGwtGivenStep.prototype.userFacadeService;
+    /** @type {?} */
+    IfUserIsAuthenticatedGwtGivenStep.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var IfUserHaveRoleGwtGivenStepComponent = /** @class */ (function () {
     function IfUserHaveRoleGwtGivenStepComponent() {
@@ -122,11 +152,23 @@ var IfUserHaveRoleGwtGivenStepComponent = /** @class */ (function () {
     IfUserHaveRoleGwtGivenStepComponent.ctorParameters = function () { return []; };
     return IfUserHaveRoleGwtGivenStepComponent;
 }());
+if (false) {
+    /** @type {?} */
+    IfUserHaveRoleGwtGivenStepComponent.prototype.formGroup;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function IfUserHaveRoleGwtGivenStepParams() { }
+if (false) {
+    /** @type {?} */
+    IfUserHaveRoleGwtGivenStepParams.prototype.role;
+}
 var IfUserHaveRoleGwtGivenStep = /** @class */ (function () {
     function IfUserHaveRoleGwtGivenStep(injector) {
         this.injector = injector;
@@ -151,25 +193,65 @@ var IfUserHaveRoleGwtGivenStep = /** @class */ (function () {
         /** @type {?} */
         var user$ = this.store
             .select(getAccountInfo)
-            .pipe(filter(function (user) { return !!user.Roles; }), filter(function (user) { return user.Roles.length > 0; }));
-        return user$.pipe(map(function (user) {
+            .pipe(filter((/**
+         * @param {?} user
+         * @return {?}
+         */
+        function (user) { return !!user.Roles; })), filter((/**
+         * @param {?} user
+         * @return {?}
+         */
+        function (user) { return user.Roles.length > 0; })));
+        return user$.pipe(map((/**
+         * @param {?} user
+         * @return {?}
+         */
+        function (user) {
             debugger;
-            return !((/** @type {?} */ (user))).Roles.map(function (item) { return item.toLowerCase(); }).includes(params.role.toLowerCase());
-        }));
+            return !((/** @type {?} */ (user))).Roles.map((/**
+             * @param {?} item
+             * @return {?}
+             */
+            function (item) { return item.toLowerCase(); })).includes(params.role.toLowerCase());
+        })));
     };
     return IfUserHaveRoleGwtGivenStep;
 }());
+if (false) {
+    /** @type {?} */
+    IfUserHaveRoleGwtGivenStep.prototype.id;
+    /** @type {?} */
+    IfUserHaveRoleGwtGivenStep.prototype.name;
+    /** @type {?} */
+    IfUserHaveRoleGwtGivenStep.prototype.opposite;
+    /** @type {?} */
+    IfUserHaveRoleGwtGivenStep.prototype.description;
+    /** @type {?} */
+    IfUserHaveRoleGwtGivenStep.prototype.type;
+    /** @type {?} */
+    IfUserHaveRoleGwtGivenStep.prototype.params;
+    /** @type {?} */
+    IfUserHaveRoleGwtGivenStep.prototype.stepComponent;
+    /** @type {?} */
+    IfUserHaveRoleGwtGivenStep.prototype.store;
+    /** @type {?} */
+    IfUserHaveRoleGwtGivenStep.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GwtThenAuthorizeStepComponent = /** @class */ (function () {
     function GwtThenAuthorizeStepComponent() {
         var _this = this;
         this.params$ = new BehaviorSubject((/** @type {?} */ ({})));
         this.formGroup = this._create_formGroup();
-        this.params$.subscribe(function (params) { return _this.formGroup.patchValue(params); });
+        this.params$.subscribe((/**
+         * @param {?} params
+         * @return {?}
+         */
+        function (params) { return _this.formGroup.patchValue(params); }));
     }
     Object.defineProperty(GwtThenAuthorizeStepComponent.prototype, "params", {
         get: /**
@@ -217,11 +299,25 @@ var GwtThenAuthorizeStepComponent = /** @class */ (function () {
     GwtThenAuthorizeStepComponent.ctorParameters = function () { return []; };
     return GwtThenAuthorizeStepComponent;
 }());
+if (false) {
+    /** @type {?} */
+    GwtThenAuthorizeStepComponent.prototype.formGroup;
+    /** @type {?} */
+    GwtThenAuthorizeStepComponent.prototype.params$;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function ThenShowBlockGwtStepParams() { }
+if (false) {
+    /** @type {?} */
+    ThenShowBlockGwtStepParams.prototype.verb;
+}
 var GwtThenAuthorizeStep = /** @class */ (function () {
     function GwtThenAuthorizeStep(injector) {
         this.injector = injector;
@@ -251,13 +347,38 @@ var GwtThenAuthorizeStep = /** @class */ (function () {
     };
     return GwtThenAuthorizeStep;
 }());
+if (false) {
+    /** @type {?} */
+    GwtThenAuthorizeStep.prototype.id;
+    /** @type {?} */
+    GwtThenAuthorizeStep.prototype.name;
+    /** @type {?} */
+    GwtThenAuthorizeStep.prototype.opposite;
+    /** @type {?} */
+    GwtThenAuthorizeStep.prototype.description;
+    /** @type {?} */
+    GwtThenAuthorizeStep.prototype.type;
+    /** @type {?} */
+    GwtThenAuthorizeStep.prototype.params;
+    /** @type {?} */
+    GwtThenAuthorizeStep.prototype.stepComponent;
+    /** @type {?} */
+    GwtThenAuthorizeStep.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    GwtThenAuthorizeStep.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GwtStepsModule = /** @class */ (function () {
     function GwtStepsModule() {
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.gwt_steps = "8.0.10";
     }
     GwtStepsModule.decorators = [
         { type: NgModule, args: [{
@@ -298,19 +419,20 @@ var GwtStepsModule = /** @class */ (function () {
                     exports: []
                 },] }
     ];
+    /** @nocollapse */
+    GwtStepsModule.ctorParameters = function () { return []; };
     return GwtStepsModule;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { IfUserIsAuthenticatedGwtGivenStep, IfUserHaveRoleGwtGivenStep, GwtThenAuthorizeStep, GwtStepsModule, GivenUserIsAuthenticatedStepComponent as ɵc, IfUserHaveRoleGwtGivenStepComponent as ɵb, GwtThenAuthorizeStepComponent as ɵa };
-
+export { GwtStepsModule, GwtThenAuthorizeStep, IfUserHaveRoleGwtGivenStep, IfUserIsAuthenticatedGwtGivenStep, GwtThenAuthorizeStepComponent as ɵa, IfUserHaveRoleGwtGivenStepComponent as ɵb, GivenUserIsAuthenticatedStepComponent as ɵc };
 //# sourceMappingURL=soushians-gwt-steps.js.map

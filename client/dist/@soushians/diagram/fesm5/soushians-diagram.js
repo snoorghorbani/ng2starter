@@ -1,25 +1,35 @@
+import { InjectionToken, Component, Injector, Input, EventEmitter, Output, Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, ReflectiveInjector, ComponentFactoryResolver, ViewChild, ViewContainerRef, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatTooltipModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatRadioModule, MatCheckboxModule, MatGridListModule, MatSliderModule, MatAutocompleteModule } from '@angular/material';
-import { Observable, Subject } from 'rxjs/Rx';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { BehaviorSubject as BehaviorSubject$1 } from 'rxjs/BehaviorSubject';
-import { createSelector, createFeatureSelector, Store, StoreModule } from '@ngrx/store';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatSelectModule, MatSliderModule, MatInputModule, MatCheckboxModule, MatFormFieldModule, MatTabsModule, MatRadioModule, MatTooltipModule, MatGridListModule, MatAutocompleteModule } from '@angular/material';
+import { createFeatureSelector, createSelector, Store, StoreModule } from '@ngrx/store';
+import { ofType, Actions, Effect, EffectsModule } from '@ngrx/effects';
+import { __assign, __decorate, __metadata } from 'tslib';
 import { BehaviorSubject, Subject as Subject$1, of } from 'rxjs';
-import { __decorate, __metadata, __assign } from 'tslib';
+import { BehaviorSubject as BehaviorSubject$1 } from 'rxjs/BehaviorSubject';
+import { Observable, Subject } from 'rxjs/Rx';
+import { takeUntil, switchMap, map, filter, catchError, pluck } from 'rxjs/operators';
 import { Observable as Observable$1 } from 'rxjs/Observable';
-import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
 import { of as of$1 } from 'rxjs/observable/of';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { InjectionToken, Component, Input, Injector, Output, EventEmitter, Injectable, Inject, NgModule, ComponentFactoryResolver, ViewChild, ViewContainerRef, ReflectiveInjector, defineInjectable, inject } from '@angular/core';
-import { switchMap, map, takeUntil, filter, catchError, pluck } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function DiagramModuleConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    DiagramModuleConfig.prototype.endpoints;
+    /** @type {?|undefined} */
+    DiagramModuleConfig.prototype.env;
+}
 /** @type {?} */
 var MODULE_DEFAULT_CONFIG = {
     endpoints: {},
@@ -33,15 +43,19 @@ var MODULE_CONFIG_TOKEN = new InjectionToken("DiagramModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetDiagramsApiModel;
 (function (GetDiagramsApiModel) {
     var Request = /** @class */ (function () {
         function Request(initValue) {
-            if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
             var _this = this;
-            Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
+            if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) { return (_this[key] = initValue[key]); }));
         }
         /**
          * @return {?}
@@ -55,17 +69,25 @@ var GetDiagramsApiModel;
         return Request;
     }());
     GetDiagramsApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype.diagram;
+    }
     var Response = /** @class */ (function () {
         function Response() {
         }
         return Response;
     }());
     GetDiagramsApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(GetDiagramsApiModel || (GetDiagramsApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var DiagramsActionTypes = {
@@ -74,12 +96,26 @@ var DiagramsActionTypes = {
     GET_DIAGRAM_SUCCEED: "[DIAGRAM] GET_DIAGRAM_SUCCEED",
     GET_DIAGRAM_FAILED: "[DIAGRAM] GET_DIAGRAM_FAILED",
 };
+var GetDiagrams = /** @class */ (function () {
+    function GetDiagrams() {
+        this.type = DiagramsActionTypes.GET_DIAGRAM;
+    }
+    return GetDiagrams;
+}());
+if (false) {
+    /** @type {?} */
+    GetDiagrams.prototype.type;
+}
 var GetDiagramsStart = /** @class */ (function () {
     function GetDiagramsStart() {
         this.type = DiagramsActionTypes.GET_DIAGRAM_START;
     }
     return GetDiagramsStart;
 }());
+if (false) {
+    /** @type {?} */
+    GetDiagramsStart.prototype.type;
+}
 var GetDiagramsSucceed = /** @class */ (function () {
     function GetDiagramsSucceed(payload) {
         this.payload = payload;
@@ -87,18 +123,38 @@ var GetDiagramsSucceed = /** @class */ (function () {
     }
     return GetDiagramsSucceed;
 }());
+if (false) {
+    /** @type {?} */
+    GetDiagramsSucceed.prototype.type;
+    /** @type {?} */
+    GetDiagramsSucceed.prototype.payload;
+}
 var GetDiagramsFailed = /** @class */ (function () {
     function GetDiagramsFailed() {
         this.type = DiagramsActionTypes.GET_DIAGRAM_FAILED;
     }
     return GetDiagramsFailed;
 }());
+if (false) {
+    /** @type {?} */
+    GetDiagramsFailed.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 console.log(GetDiagramsApiModel);
+/**
+ * @record
+ */
+function State() { }
+if (false) {
+    /** @type {?} */
+    State.prototype.loaded;
+    /** @type {?} */
+    State.prototype.diagram;
+}
 /** @type {?} */
 var initialState = {
     loaded: false,
@@ -125,10 +181,16 @@ function diagramReducer(state, action) {
         }
     }
 }
+/** @type {?} */
+var DiagramInfo = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.diagram; });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var EditDiagramApiModel;
 (function (EditDiagramApiModel) {
@@ -170,11 +232,15 @@ var EditDiagramApiModel;
         return Response;
     }());
     EditDiagramApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(EditDiagramApiModel || (EditDiagramApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var EditDiagramActionTypes = {
@@ -190,16 +256,69 @@ var EditDiagramAction = /** @class */ (function () {
     }
     return EditDiagramAction;
 }());
+if (false) {
+    /** @type {?} */
+    EditDiagramAction.prototype.type;
+    /** @type {?} */
+    EditDiagramAction.prototype.payload;
+}
+var EditDiagramActionStart = /** @class */ (function () {
+    function EditDiagramActionStart(payload) {
+        this.payload = payload;
+        this.type = EditDiagramActionTypes.EDIT_DIAGRAM_START;
+    }
+    return EditDiagramActionStart;
+}());
+if (false) {
+    /** @type {?} */
+    EditDiagramActionStart.prototype.type;
+    /** @type {?} */
+    EditDiagramActionStart.prototype.payload;
+}
+var EditDiagramActionSucceed = /** @class */ (function () {
+    function EditDiagramActionSucceed(payload) {
+        this.payload = payload;
+        this.type = EditDiagramActionTypes.EDIT_DIAGRAM_SUCCEED;
+    }
+    return EditDiagramActionSucceed;
+}());
+if (false) {
+    /** @type {?} */
+    EditDiagramActionSucceed.prototype.type;
+    /** @type {?} */
+    EditDiagramActionSucceed.prototype.payload;
+}
+var EditDiagramActionFailed = /** @class */ (function () {
+    function EditDiagramActionFailed() {
+        this.type = EditDiagramActionTypes.EDIT_DIAGRAM_FAILED;
+    }
+    return EditDiagramActionFailed;
+}());
+if (false) {
+    /** @type {?} */
+    EditDiagramActionFailed.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 console.log(EditDiagramApiModel);
+/**
+ * @record
+ */
+function State$1() { }
+if (false) {
+    /** @type {?} */
+    State$1.prototype.status;
+    /** @type {?} */
+    State$1.prototype.data;
+}
+var ɵ0 = ({ Result: {} });
 /** @type {?} */
 var initialState$1 = {
     status: "pristine",
-    data: (/** @type {?} */ ({ Result: {} }))
+    data: (/** @type {?} */ (ɵ0))
 };
 /**
  * @param {?=} state
@@ -226,11 +345,27 @@ function Reducer(state, action) {
         }
     }
 }
+/** @type {?} */
+var EditDiagramInfo = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.data; });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State$2() { }
+if (false) {
+    /** @type {?} */
+    State$2.prototype.route;
+    /** @type {?} */
+    State$2.prototype.result;
+}
 /** @type {?} */
 var initialState$2 = {
     route: "",
@@ -249,17 +384,43 @@ function ParentGuardReducer(state, action) {
         }
     }
 }
+/** @type {?} */
+var getParentRoutingGuard = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state; });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function DiagramState() { }
+if (false) {
+    /** @type {?} */
+    DiagramState.prototype.diagrams;
+    /** @type {?} */
+    DiagramState.prototype.editDiagram;
+    /** @type {?} */
+    DiagramState.prototype.parentGuard;
+}
 /** @type {?} */
 var DiagramReducers = {
     diagrams: diagramReducer,
     editDiagram: Reducer,
     parentGuard: ParentGuardReducer
 };
+/**
+ * @record
+ */
+function FeatureState() { }
+if (false) {
+    /** @type {?} */
+    FeatureState.prototype.diagram;
+}
 //#region selectors
 /** @type {?} */
 var selectFeatureState = createFeatureSelector("diagram");
@@ -268,12 +429,17 @@ var selectFeatureState = createFeatureSelector("diagram");
 //   (state: DiagramState) => state.diagram
 // );
 //#region edit diagram
+var ɵ0$1 = /**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.editDiagram; };
 /** @type {?} */
-var selectEditDiagramState = createSelector(selectFeatureState, function (state) { return state.editDiagram; });
+var selectEditDiagramState = createSelector(selectFeatureState, (ɵ0$1));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ServerStatusDiagramComponent = /** @class */ (function () {
     function ServerStatusDiagramComponent(injector) {
@@ -340,10 +506,23 @@ var ServerStatusDiagramComponent = /** @class */ (function () {
     };
     return ServerStatusDiagramComponent;
 }());
+if (false) {
+    /** @type {?} */
+    ServerStatusDiagramComponent.prototype.dataSubscribtion;
+    /** @type {?} */
+    ServerStatusDiagramComponent.prototype.dataLoaded;
+    /** @type {?} */
+    ServerStatusDiagramComponent.prototype._data;
+    /**
+     * @type {?}
+     * @private
+     */
+    ServerStatusDiagramComponent.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DiagramPartialConfigEditComponent = /** @class */ (function () {
     function DiagramPartialConfigEditComponent(injector) {
@@ -414,10 +593,27 @@ var DiagramPartialConfigEditComponent = /** @class */ (function () {
     };
     return DiagramPartialConfigEditComponent;
 }());
+if (false) {
+    /** @type {?} */
+    DiagramPartialConfigEditComponent.prototype.dataSubscribtion;
+    /** @type {?} */
+    DiagramPartialConfigEditComponent.prototype.dataLoaded;
+    /** @type {?} */
+    DiagramPartialConfigEditComponent.prototype._data;
+    /** @type {?} */
+    DiagramPartialConfigEditComponent.prototype.diagramService;
+    /** @type {?} */
+    DiagramPartialConfigEditComponent.prototype.formGroup;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramPartialConfigEditComponent.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var PieDiagramPartialConfigComponent = /** @class */ (function () {
     function PieDiagramPartialConfigComponent(injector) {
@@ -495,10 +691,29 @@ var PieDiagramPartialConfigComponent = /** @class */ (function () {
     };
     return PieDiagramPartialConfigComponent;
 }());
+if (false) {
+    /** @type {?} */
+    PieDiagramPartialConfigComponent.prototype.ConfigChanged;
+    /** @type {?} */
+    PieDiagramPartialConfigComponent.prototype.dataSubscribtion;
+    /** @type {?} */
+    PieDiagramPartialConfigComponent.prototype.dataLoaded;
+    /** @type {?} */
+    PieDiagramPartialConfigComponent.prototype._dataLoaded;
+    /** @type {?} */
+    PieDiagramPartialConfigComponent.prototype.donutFormGroup;
+    /** @type {?} */
+    PieDiagramPartialConfigComponent.prototype.diagramService;
+    /**
+     * @type {?}
+     * @private
+     */
+    PieDiagramPartialConfigComponent.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var BooleanoWidgetPartialConfigComponent = /** @class */ (function () {
     function BooleanoWidgetPartialConfigComponent(injector) {
@@ -565,10 +780,27 @@ var BooleanoWidgetPartialConfigComponent = /** @class */ (function () {
     };
     return BooleanoWidgetPartialConfigComponent;
 }());
+if (false) {
+    /** @type {?} */
+    BooleanoWidgetPartialConfigComponent.prototype.dataSubscribtion;
+    /** @type {?} */
+    BooleanoWidgetPartialConfigComponent.prototype.dataLoaded;
+    /** @type {?} */
+    BooleanoWidgetPartialConfigComponent.prototype._dataLoaded;
+    /** @type {?} */
+    BooleanoWidgetPartialConfigComponent.prototype.booleanoFormGroup;
+    /** @type {?} */
+    BooleanoWidgetPartialConfigComponent.prototype.diagramService;
+    /**
+     * @type {?}
+     * @private
+     */
+    BooleanoWidgetPartialConfigComponent.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NumericWidgetPartialConfigComponent = /** @class */ (function () {
     function NumericWidgetPartialConfigComponent(injector) {
@@ -635,10 +867,27 @@ var NumericWidgetPartialConfigComponent = /** @class */ (function () {
     };
     return NumericWidgetPartialConfigComponent;
 }());
+if (false) {
+    /** @type {?} */
+    NumericWidgetPartialConfigComponent.prototype.dataSubscribtion;
+    /** @type {?} */
+    NumericWidgetPartialConfigComponent.prototype.dataLoaded;
+    /** @type {?} */
+    NumericWidgetPartialConfigComponent.prototype._dataLoaded;
+    /** @type {?} */
+    NumericWidgetPartialConfigComponent.prototype.donutFormGroup;
+    /** @type {?} */
+    NumericWidgetPartialConfigComponent.prototype.diagramService;
+    /**
+     * @type {?}
+     * @private
+     */
+    NumericWidgetPartialConfigComponent.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var LinearDiagramPartialConfigComponent = /** @class */ (function () {
     function LinearDiagramPartialConfigComponent(injector) {
@@ -713,10 +962,29 @@ var LinearDiagramPartialConfigComponent = /** @class */ (function () {
     };
     return LinearDiagramPartialConfigComponent;
 }());
+if (false) {
+    /** @type {?} */
+    LinearDiagramPartialConfigComponent.prototype.dataSubscribtion;
+    /** @type {?} */
+    LinearDiagramPartialConfigComponent.prototype.dataLoaded;
+    /** @type {?} */
+    LinearDiagramPartialConfigComponent.prototype._data;
+    /** @type {?} */
+    LinearDiagramPartialConfigComponent.prototype.ConfigChanged;
+    /** @type {?} */
+    LinearDiagramPartialConfigComponent.prototype.diagramService;
+    /** @type {?} */
+    LinearDiagramPartialConfigComponent.prototype.formGroup;
+    /**
+     * @type {?}
+     * @private
+     */
+    LinearDiagramPartialConfigComponent.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ServerConnectingTimeDiagramComponent = /** @class */ (function () {
     function ServerConnectingTimeDiagramComponent(injector) {
@@ -725,9 +993,12 @@ var ServerConnectingTimeDiagramComponent = /** @class */ (function () {
         this.time = 0;
         this.dataLoaded = new BehaviorSubject(false);
         this.data = this.injector.get("data");
-        setInterval(function () {
+        setInterval((/**
+         * @return {?}
+         */
+        function () {
             _this.time = _this.time + 1;
-        }, 1000);
+        }), 1000);
     }
     Object.defineProperty(ServerConnectingTimeDiagramComponent.prototype, "data", {
         get: /**
@@ -788,10 +1059,23 @@ var ServerConnectingTimeDiagramComponent = /** @class */ (function () {
     };
     return ServerConnectingTimeDiagramComponent;
 }());
+if (false) {
+    /** @type {?} */
+    ServerConnectingTimeDiagramComponent.prototype.time;
+    /** @type {?} */
+    ServerConnectingTimeDiagramComponent.prototype.dataLoaded;
+    /** @type {?} */
+    ServerConnectingTimeDiagramComponent.prototype._data;
+    /**
+     * @type {?}
+     * @private
+     */
+    ServerConnectingTimeDiagramComponent.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DiagramConfigurationService = /** @class */ (function () {
     function DiagramConfigurationService(config) {
@@ -816,21 +1100,32 @@ var DiagramConfigurationService = /** @class */ (function () {
     DiagramConfigurationService.ctorParameters = function () { return [
         { type: undefined, decorators: [{ type: Inject, args: [MODULE_CONFIG_TOKEN,] }] }
     ]; };
-    /** @nocollapse */ DiagramConfigurationService.ngInjectableDef = defineInjectable({ factory: function DiagramConfigurationService_Factory() { return new DiagramConfigurationService(inject(MODULE_CONFIG_TOKEN)); }, token: DiagramConfigurationService, providedIn: "root" });
+    /** @nocollapse */ DiagramConfigurationService.ngInjectableDef = ɵɵdefineInjectable({ factory: function DiagramConfigurationService_Factory() { return new DiagramConfigurationService(ɵɵinject(MODULE_CONFIG_TOKEN)); }, token: DiagramConfigurationService, providedIn: "root" });
     return DiagramConfigurationService;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramConfigurationService.prototype._config;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var AddDiagramApiModel;
 (function (AddDiagramApiModel) {
     var Request = /** @class */ (function () {
         function Request(initValue) {
-            if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
             var _this = this;
-            Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
+            if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) { return (_this[key] = initValue[key]); }));
         }
         /**
          * @return {?}
@@ -921,17 +1216,67 @@ var AddDiagramApiModel;
         return Request;
     }());
     AddDiagramApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype._id;
+        /** @type {?} */
+        Request.prototype.Name;
+        /** @type {?} */
+        Request.prototype.IsActive;
+        /** @type {?} */
+        Request.prototype.Type;
+        /** @type {?} */
+        Request.prototype.Types;
+        /** @type {?} */
+        Request.prototype.Legend;
+        /** @type {?} */
+        Request.prototype.Subchart;
+        /** @type {?} */
+        Request.prototype.Zoom;
+        /** @type {?} */
+        Request.prototype.Tooltip;
+        /** @type {?} */
+        Request.prototype.Route;
+        /** @type {?} */
+        Request.prototype.Sync;
+        /** @type {?} */
+        Request.prototype.Colors;
+        /** @type {?} */
+        Request.prototype.ColumnMappings;
+        /** @type {?} */
+        Request.prototype.Flow;
+        /** @type {?} */
+        Request.prototype.columns;
+        /** @type {?} */
+        Request.prototype.Cols;
+        /** @type {?} */
+        Request.prototype.Rows;
+        /** @type {?} */
+        Request.prototype.TextColor;
+        /** @type {?} */
+        Request.prototype.BackgroundColor;
+        /** @type {?} */
+        Request.prototype.booleano;
+        /** @type {?} */
+        Request.prototype.Source;
+        /** @type {?} */
+        Request.prototype.Groups;
+    }
     var Response = /** @class */ (function () {
         function Response() {
         }
         return Response;
     }());
     AddDiagramApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(AddDiagramApiModel || (AddDiagramApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DiagramService = /** @class */ (function () {
     function DiagramService(http, store, configurationService) {
@@ -951,10 +1296,18 @@ var DiagramService = /** @class */ (function () {
     function () {
         return this.http
             .get(this.config.env.frontend_server + "/api/diagram")
-            .map(function (response) { return response; })
-            .catch(function (err) {
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response; }))
+            .catch((/**
+         * @param {?} err
+         * @return {?}
+         */
+        function (err) {
             return Observable.throw(err);
-        });
+        }));
     };
     /**
      * @return {?}
@@ -965,10 +1318,18 @@ var DiagramService = /** @class */ (function () {
     function () {
         return this.http
             .get(this.config.env.frontend_server + "/api/source")
-            .map(function (response) { return ((/** @type {?} */ (response))).Result; })
-            .catch(function (err) {
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return ((/** @type {?} */ (response))).Result; }))
+            .catch((/**
+         * @param {?} err
+         * @return {?}
+         */
+        function (err) {
             return Observable.throw(err);
-        });
+        }));
     };
     /**
      * @return {?}
@@ -979,10 +1340,18 @@ var DiagramService = /** @class */ (function () {
     function () {
         return this.http
             .get(this.config.env.frontend_server + "/api/diagram/groups")
-            .map(function (response) { return ((/** @type {?} */ (response))).Result; })
-            .catch(function (err) {
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return ((/** @type {?} */ (response))).Result; }))
+            .catch((/**
+         * @param {?} err
+         * @return {?}
+         */
+        function (err) {
             return Observable.throw(err);
-        });
+        }));
     };
     /**
      * @param {?} id
@@ -997,10 +1366,18 @@ var DiagramService = /** @class */ (function () {
             debugger;
         return this.http
             .get(this.config.env.frontend_server + ("/api/diagram/" + id))
-            .map(function (response) { return response; })
-            .catch(function (err) {
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response; }))
+            .catch((/**
+         * @param {?} err
+         * @return {?}
+         */
+        function (err) {
             return Observable.throw(err);
-        });
+        }));
     };
     /**
      * @param {?} data
@@ -1015,10 +1392,18 @@ var DiagramService = /** @class */ (function () {
         var model = new AddDiagramApiModel.Request(data);
         return this.http
             .post(this.config.env.frontend_server + "/api/diagram", model.getRequestBody())
-            .map(function (response) { return response; })
-            .catch(function (err) {
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response; }))
+            .catch((/**
+         * @param {?} err
+         * @return {?}
+         */
+        function (err) {
             return Observable.throw(err);
-        });
+        }));
     };
     /**
      * @param {?} body
@@ -1031,10 +1416,18 @@ var DiagramService = /** @class */ (function () {
     function (body) {
         return this.http
             .put(this.config.env.frontend_server + "/api/diagram", body)
-            .map(function (response) { return response; })
-            .catch(function (err) {
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response; }))
+            .catch((/**
+         * @param {?} err
+         * @return {?}
+         */
+        function (err) {
             return Observable.throw(err);
-        });
+        }));
     };
     /**
      * @param {?} id
@@ -1047,10 +1440,18 @@ var DiagramService = /** @class */ (function () {
     function (id) {
         return this.http
             .delete(this.config.env.frontend_server + "/api/diagram/" + id)
-            .map(function (response) { return response; })
-            .catch(function (err) {
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response; }))
+            .catch((/**
+         * @param {?} err
+         * @return {?}
+         */
+        function (err) {
             return Observable.throw(err);
-        });
+        }));
     };
     /**
      * @param {?} source
@@ -1078,7 +1479,11 @@ var DiagramService = /** @class */ (function () {
                     time: this.getFloorTime(source.Interval, time).toString()
                 }
             })
-                .map(function (res) { return res.Result; });
+                .map((/**
+             * @param {?} res
+             * @return {?}
+             */
+            function (res) { return res.Result; }));
         }
         else if (source.Interval == 0) {
             return this.http
@@ -1088,19 +1493,31 @@ var DiagramService = /** @class */ (function () {
                     time: null
                 }
             })
-                .map(function (res) { return res.Result; });
+                .map((/**
+             * @param {?} res
+             * @return {?}
+             */
+            function (res) { return res.Result; }));
         }
         else {
             time = time || Date.now();
-            return Observable.timer(0, source.Interval).pipe(takeUntil(unsubscribe), switchMap(function (i) {
+            return Observable.timer(0, source.Interval).pipe(takeUntil(unsubscribe), switchMap((/**
+             * @param {?} i
+             * @return {?}
+             */
+            function (i) {
                 return _this.http
                     .get(_this.config.env.frontend_server + "/api/data", {
                     params: {
                         sourceId: source._id,
                         time: _this.getFloorTime(source.Interval, time).toString()
                     }
-                }).pipe(map(function (res) { return res.Result; }));
-            }));
+                }).pipe(map((/**
+                 * @param {?} res
+                 * @return {?}
+                 */
+                function (res) { return res.Result; })));
+            })));
         }
     };
     /**
@@ -1116,7 +1533,11 @@ var DiagramService = /** @class */ (function () {
     function (data, columnsMappings) {
         /** @type {?} */
         var res = [];
-        columnsMappings.forEach(function (item) {
+        columnsMappings.forEach((/**
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) {
             /** @type {?} */
             var ValueData = _.getValue(data, item.ValuePath);
             if (!item.NamePath) {
@@ -1125,12 +1546,17 @@ var DiagramService = /** @class */ (function () {
             /** @type {?} */
             var NameData = _.getValue(data, item.NamePath);
             if (_.is.array(NameData)) {
-                return (res = res.concat(NameData.map(function (_item, i) { return [_item].concat(ValueData[i]); })));
+                return (res = res.concat(NameData.map((/**
+                 * @param {?} _item
+                 * @param {?} i
+                 * @return {?}
+                 */
+                function (_item, i) { return [_item].concat(ValueData[i]); }))));
             }
             else {
                 return res.push([NameData].concat(ValueData));
             }
-        });
+        }));
         return res;
     };
     /**
@@ -1153,7 +1579,11 @@ var DiagramService = /** @class */ (function () {
      * @return {?}
      */
     function (data) {
-        return ((/** @type {?} */ (_.report(data)))).filter(function (item) { return item.isLastNode; });
+        return ((/** @type {?} */ (_.report(data)))).filter((/**
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) { return item.isLastNode; }));
     };
     /**
      * @param {?} columns
@@ -1190,11 +1620,15 @@ var DiagramService = /** @class */ (function () {
     function (config, id, route, sync) {
         var _this = this;
         this.charts[id] = c3.generate(__assign({}, config, { bindto: "#diagram_" + id }));
-        return this.getData((/** @type {?} */ ({})), new Subject(), sync).subscribe(function (data) {
+        return this.getData((/** @type {?} */ ({})), new Subject(), sync).subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) {
             _this.charts[id].load({
                 columns: _this.extract_columns_from_data(data.Data, config.ColumnMappings)
             });
-        });
+        }));
     };
     /**
      * @param {?=} precision
@@ -1222,13 +1656,34 @@ var DiagramService = /** @class */ (function () {
         { type: Store },
         { type: DiagramConfigurationService }
     ]; };
-    /** @nocollapse */ DiagramService.ngInjectableDef = defineInjectable({ factory: function DiagramService_Factory() { return new DiagramService(inject(HttpClient), inject(Store), inject(DiagramConfigurationService)); }, token: DiagramService, providedIn: "root" });
+    /** @nocollapse */ DiagramService.ngInjectableDef = ɵɵdefineInjectable({ factory: function DiagramService_Factory() { return new DiagramService(ɵɵinject(HttpClient), ɵɵinject(Store), ɵɵinject(DiagramConfigurationService)); }, token: DiagramService, providedIn: "root" });
     return DiagramService;
 }());
+if (false) {
+    /** @type {?} */
+    DiagramService.prototype.config;
+    /** @type {?} */
+    DiagramService.prototype.charts;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramService.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramService.prototype.configurationService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NumericEditDiagramComponent = /** @class */ (function () {
     function NumericEditDiagramComponent(injector, diagramService) {
@@ -1264,9 +1719,17 @@ var NumericEditDiagramComponent = /** @class */ (function () {
      */
     function () {
         // this.dataSubscribtion = this.diagramService.getData(this.data.Source.Route)
-        this.diagramService.getData(this.data.Source, this.unsubscribe).pipe(filter(function (data) { return data != undefined; }), takeUntil(this.unsubscribe)).subscribe(function (data) {
+        this.diagramService.getData(this.data.Source, this.unsubscribe).pipe(filter((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return data != undefined; })), takeUntil(this.unsubscribe)).subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) {
             debugger;
-        });
+        }));
     };
     /**
      * @return {?}
@@ -1297,10 +1760,28 @@ var NumericEditDiagramComponent = /** @class */ (function () {
     };
     return NumericEditDiagramComponent;
 }());
+if (false) {
+    /** @type {?} */
+    NumericEditDiagramComponent.prototype.unsubscribe;
+    /** @type {?} */
+    NumericEditDiagramComponent.prototype.dataLoaded;
+    /** @type {?} */
+    NumericEditDiagramComponent.prototype._data;
+    /**
+     * @type {?}
+     * @private
+     */
+    NumericEditDiagramComponent.prototype.injector;
+    /**
+     * @type {?}
+     * @private
+     */
+    NumericEditDiagramComponent.prototype.diagramService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NumericDiagramComponent = /** @class */ (function () {
     function NumericDiagramComponent(injector, diagramService) {
@@ -1337,11 +1818,15 @@ var NumericDiagramComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.dataSubscribtion = this.diagramService.getData(this.data.Source, this.unsubscribe).pipe(takeUntil(this.unsubscribe)).subscribe(function (data) {
+        this.dataSubscribtion = this.diagramService.getData(this.data.Source, this.unsubscribe).pipe(takeUntil(this.unsubscribe)).subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) {
             /** @type {?} */
             var counter = _this.diagramService.extract_columns_from_data(data.Data, _this.data.Chart.ColumnMappings);
             _this.counter = counter[0][1];
-        });
+        }));
     };
     /**
      * @return {?}
@@ -1371,10 +1856,32 @@ var NumericDiagramComponent = /** @class */ (function () {
     };
     return NumericDiagramComponent;
 }());
+if (false) {
+    /** @type {?} */
+    NumericDiagramComponent.prototype.unsubscribe;
+    /** @type {?} */
+    NumericDiagramComponent.prototype.dataLoaded;
+    /** @type {?} */
+    NumericDiagramComponent.prototype._data;
+    /** @type {?} */
+    NumericDiagramComponent.prototype.counter;
+    /** @type {?} */
+    NumericDiagramComponent.prototype.dataSubscribtion;
+    /**
+     * @type {?}
+     * @private
+     */
+    NumericDiagramComponent.prototype.injector;
+    /**
+     * @type {?}
+     * @private
+     */
+    NumericDiagramComponent.prototype.diagramService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 // import * as appReducer from 'app/reducers';
 var DiagramModuleContainerComponent = /** @class */ (function () {
@@ -1400,10 +1907,17 @@ var DiagramModuleContainerComponent = /** @class */ (function () {
     ]; };
     return DiagramModuleContainerComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramModuleContainerComponent.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DataMapperComponent = /** @class */ (function () {
     function DataMapperComponent(diagramService, store) {
@@ -1450,20 +1964,58 @@ var DataMapperComponent = /** @class */ (function () {
     };
     return DataMapperComponent;
 }());
+if (false) {
+    /** @type {?} */
+    DataMapperComponent.prototype.destination;
+    /** @type {?} */
+    DataMapperComponent.prototype._data;
+    /** @type {?} */
+    DataMapperComponent.prototype.dataReport;
+    /**
+     * @type {?}
+     * @private
+     */
+    DataMapperComponent.prototype.diagramService;
+    /**
+     * @type {?}
+     * @private
+     */
+    DataMapperComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DiagramModel = /** @class */ (function () {
     function DiagramModel() {
     }
     return DiagramModel;
 }());
+if (false) {
+    /** @type {?} */
+    DiagramModel.prototype._id;
+    /** @type {?} */
+    DiagramModel.prototype.Name;
+    /** @type {?} */
+    DiagramModel.prototype.IsActive;
+    /** @type {?} */
+    DiagramModel.prototype.Description;
+    /** @type {?} */
+    DiagramModel.prototype.Groups;
+    /** @type {?} */
+    DiagramModel.prototype.Box;
+    /** @type {?} */
+    DiagramModel.prototype.Source;
+    /** @type {?} */
+    DiagramModel.prototype.Widget;
+    /** @type {?} */
+    DiagramModel.prototype.Chart;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var AddDiagramActionTypes = {
@@ -1488,6 +2040,12 @@ var AddDiagramAction = /** @class */ (function () {
     }
     return AddDiagramAction;
 }());
+if (false) {
+    /** @type {?} */
+    AddDiagramAction.prototype.type;
+    /** @type {?} */
+    AddDiagramAction.prototype.payload;
+}
 var AddDiagramActionStart = /** @class */ (function () {
     function AddDiagramActionStart(payload) {
         this.payload = payload;
@@ -1495,6 +2053,12 @@ var AddDiagramActionStart = /** @class */ (function () {
     }
     return AddDiagramActionStart;
 }());
+if (false) {
+    /** @type {?} */
+    AddDiagramActionStart.prototype.type;
+    /** @type {?} */
+    AddDiagramActionStart.prototype.payload;
+}
 var AddDiagramActionSucceed = /** @class */ (function () {
     function AddDiagramActionSucceed(payload) {
         this.payload = payload;
@@ -1502,12 +2066,22 @@ var AddDiagramActionSucceed = /** @class */ (function () {
     }
     return AddDiagramActionSucceed;
 }());
+if (false) {
+    /** @type {?} */
+    AddDiagramActionSucceed.prototype.type;
+    /** @type {?} */
+    AddDiagramActionSucceed.prototype.payload;
+}
 var AddDiagramActionFailed = /** @class */ (function () {
     function AddDiagramActionFailed() {
         this.type = AddDiagramActionTypes.ADD_DIAGRAM_FAILED;
     }
     return AddDiagramActionFailed;
 }());
+if (false) {
+    /** @type {?} */
+    AddDiagramActionFailed.prototype.type;
+}
 var DiagramConfigChangedAction = /** @class */ (function () {
     function DiagramConfigChangedAction(payload) {
         this.payload = payload;
@@ -1515,6 +2089,12 @@ var DiagramConfigChangedAction = /** @class */ (function () {
     }
     return DiagramConfigChangedAction;
 }());
+if (false) {
+    /** @type {?} */
+    DiagramConfigChangedAction.prototype.type;
+    /** @type {?} */
+    DiagramConfigChangedAction.prototype.payload;
+}
 var HaveEndpointAction = /** @class */ (function () {
     function HaveEndpointAction(payload) {
         this.payload = payload;
@@ -1522,6 +2102,12 @@ var HaveEndpointAction = /** @class */ (function () {
     }
     return HaveEndpointAction;
 }());
+if (false) {
+    /** @type {?} */
+    HaveEndpointAction.prototype.type;
+    /** @type {?} */
+    HaveEndpointAction.prototype.payload;
+}
 var DataLoadedAction = /** @class */ (function () {
     function DataLoadedAction(payload) {
         this.payload = payload;
@@ -1529,6 +2115,12 @@ var DataLoadedAction = /** @class */ (function () {
     }
     return DataLoadedAction;
 }());
+if (false) {
+    /** @type {?} */
+    DataLoadedAction.prototype.type;
+    /** @type {?} */
+    DataLoadedAction.prototype.payload;
+}
 var StructureDefinitionStartAction = /** @class */ (function () {
     function StructureDefinitionStartAction(payload) {
         this.payload = payload;
@@ -1536,6 +2128,12 @@ var StructureDefinitionStartAction = /** @class */ (function () {
     }
     return StructureDefinitionStartAction;
 }());
+if (false) {
+    /** @type {?} */
+    StructureDefinitionStartAction.prototype.type;
+    /** @type {?} */
+    StructureDefinitionStartAction.prototype.payload;
+}
 var StructureDefinitionFinishedAction = /** @class */ (function () {
     function StructureDefinitionFinishedAction(payload) {
         this.payload = payload;
@@ -1543,6 +2141,12 @@ var StructureDefinitionFinishedAction = /** @class */ (function () {
     }
     return StructureDefinitionFinishedAction;
 }());
+if (false) {
+    /** @type {?} */
+    StructureDefinitionFinishedAction.prototype.type;
+    /** @type {?} */
+    StructureDefinitionFinishedAction.prototype.payload;
+}
 var ColumnsMappingChangedAction = /** @class */ (function () {
     function ColumnsMappingChangedAction(payload) {
         this.payload = payload;
@@ -1550,6 +2154,25 @@ var ColumnsMappingChangedAction = /** @class */ (function () {
     }
     return ColumnsMappingChangedAction;
 }());
+if (false) {
+    /** @type {?} */
+    ColumnsMappingChangedAction.prototype.type;
+    /** @type {?} */
+    ColumnsMappingChangedAction.prototype.payload;
+}
+var DataCalculatedAction = /** @class */ (function () {
+    function DataCalculatedAction(payload) {
+        this.payload = payload;
+        this.type = AddDiagramActionTypes.DATA_CALCULATED;
+    }
+    return DataCalculatedAction;
+}());
+if (false) {
+    /** @type {?} */
+    DataCalculatedAction.prototype.type;
+    /** @type {?} */
+    DataCalculatedAction.prototype.payload;
+}
 var GenerateDiagramAction = /** @class */ (function () {
     function GenerateDiagramAction(payload) {
         this.payload = payload;
@@ -1557,10 +2180,26 @@ var GenerateDiagramAction = /** @class */ (function () {
     }
     return GenerateDiagramAction;
 }());
+if (false) {
+    /** @type {?} */
+    GenerateDiagramAction.prototype.type;
+    /** @type {?} */
+    GenerateDiagramAction.prototype.payload;
+}
+var ColumnAdded = /** @class */ (function () {
+    function ColumnAdded() {
+        this.type = AddDiagramActionTypes.COLUMN_ADDED;
+    }
+    return ColumnAdded;
+}());
+if (false) {
+    /** @type {?} */
+    ColumnAdded.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var AddDiagramComponent = /** @class */ (function () {
     function AddDiagramComponent(diagramService, formBuilder, store, route) {
@@ -1575,12 +2214,20 @@ var AddDiagramComponent = /** @class */ (function () {
         this.groups = this.diagramService.getGroups();
         // this.diagramModel = new DiagramModel();
         this.columnsMappings = ((/** @type {?} */ (this.formGroup.controls.ColumnMappings))).controls;
-        this.route.params.subscribe(function (params) {
+        this.route.params.subscribe((/**
+         * @param {?} params
+         * @return {?}
+         */
+        function (params) {
             /** @type {?} */
             var diagramId = params["id"];
             // tslint:disable-next-line:no-unused-expression
             diagramId &&
-                _this.diagramService.getDiagram(diagramId).subscribe(function (data) {
+                _this.diagramService.getDiagram(diagramId).subscribe((/**
+                 * @param {?} data
+                 * @return {?}
+                 */
+                function (data) {
                     _this.formGroup.patchValue({
                         _id: data._id,
                         Name: data.Name,
@@ -1603,17 +2250,29 @@ var AddDiagramComponent = /** @class */ (function () {
                     });
                     /** @type {?} */
                     var colorsControl = (/** @type {?} */ (_this.formGroup.controls["Colors"]));
-                    Object.keys(data.Chart.data.colors || {}).forEach(function (columnKey) {
+                    Object.keys(data.Chart.data.colors || {}).forEach((/**
+                     * @param {?} columnKey
+                     * @return {?}
+                     */
+                    function (columnKey) {
                         if (!(columnKey in colorsControl.controls))
                             colorsControl.addControl(columnKey, new FormControl(data.Chart.data.colors[columnKey]));
-                    });
+                    }));
                     /** @type {?} */
                     var typesControl = (/** @type {?} */ (_this.formGroup.controls["Types"]));
-                    Object.keys(data.Chart.data.types || {}).forEach(function (key) {
+                    Object.keys(data.Chart.data.types || {}).forEach((/**
+                     * @param {?} key
+                     * @return {?}
+                     */
+                    function (key) {
                         if (!(key in typesControl.controls))
                             typesControl.addControl(key, new FormControl(data.Chart.data.types[key]));
-                    });
-                    data.Chart.ColumnMappings.forEach(function (mapping) { return _this.addColumn(mapping.NamePath, mapping.ValuePath); });
+                    }));
+                    data.Chart.ColumnMappings.forEach((/**
+                     * @param {?} mapping
+                     * @return {?}
+                     */
+                    function (mapping) { return _this.addColumn(mapping.NamePath, mapping.ValuePath); }));
                     _this.source = data.Source;
                     _this.store.dispatch(new HaveEndpointAction(_this));
                     _this.diagramPartialConfig = {
@@ -1623,7 +2282,7 @@ var AddDiagramComponent = /** @class */ (function () {
                             diagramService: _this.diagramService
                         }
                     };
-                });
+                }));
             _this.diagramPartialConfig = {
                 type: _this.formGroup.value.Type,
                 inputs: {
@@ -1631,7 +2290,7 @@ var AddDiagramComponent = /** @class */ (function () {
                     diagramService: _this.diagramService
                 }
             };
-        });
+        }));
         this.diagramTypes = [
             "bar",
             "donut",
@@ -1653,12 +2312,16 @@ var AddDiagramComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.formGroup.controls.ColumnMappings.statusChanges.subscribe(function (status) {
+        this.formGroup.controls.ColumnMappings.statusChanges.subscribe((/**
+         * @param {?} status
+         * @return {?}
+         */
+        function (status) {
             if (status == "VALID" &&
                 ((/** @type {?} */ (_this.formGroup.controls.ColumnMappings))).controls.length > 0 &&
                 _this.data)
                 _this.store.dispatch(new ColumnsMappingChangedAction(_this));
-        });
+        }));
     };
     /**
      * @return {?}
@@ -1699,10 +2362,14 @@ var AddDiagramComponent = /** @class */ (function () {
         debugger;
         /** @type {?} */
         var observer = this.diagramService.getData(__assign({}, this.source, { Interval: 0 }), this.unsubscribe, Date.now() - 10000);
-        this.dataSubscription = observer.subscribe(function (data) {
+        this.dataSubscription = observer.subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) {
             _this.data = data.Data;
             _this.pathOptions = _this.diagramService.get_data_report(data.Data);
-        });
+        }));
         return observer;
     };
     /**
@@ -1791,29 +2458,45 @@ var AddDiagramComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        return Observable$1.create(function (obser) {
+        return Observable$1.create((/**
+         * @param {?} obser
+         * @return {?}
+         */
+        function (obser) {
+            /** @type {?} */
+            var columnsMApping = {
+            // NameVAlue:  (this.formGroup.controls.ColumnMappings as FormArray).controls.values
+            };
             /** @type {?} */
             var columns = _this.diagramService.extract_columns_from_data(_this.data, ((/** @type {?} */ (_this.formGroup.controls.ColumnMappings))).value);
             _this.formGroup.controls.columns.setValue(columns);
             // add new item to this.formGroup.controls.colors form control
             /** @type {?} */
             var colorsControl = (/** @type {?} */ (_this.formGroup.controls["Colors"]));
-            columns.forEach(function (column) {
+            columns.forEach((/**
+             * @param {?} column
+             * @return {?}
+             */
+            function (column) {
                 /** @type {?} */
                 var columnKey = column[0];
                 if (!(columnKey in colorsControl.controls))
                     colorsControl.addControl(columnKey, new FormControl("#123456"));
-            });
+            }));
             /** @type {?} */
             var typesControl = (/** @type {?} */ (_this.formGroup.controls["Types"]));
-            columns.forEach(function (column) {
+            columns.forEach((/**
+             * @param {?} column
+             * @return {?}
+             */
+            function (column) {
                 /** @type {?} */
                 var key = column[0];
                 if (!(key in typesControl.controls))
                     typesControl.addControl(key, new FormControl(_this.formGroup.value.Type));
-            });
+            }));
             obser.next();
-        });
+        }));
     };
     /**
      * @return {?}
@@ -1906,10 +2589,64 @@ var AddDiagramComponent = /** @class */ (function () {
     ]; };
     return AddDiagramComponent;
 }());
+if (false) {
+    /** @type {?} */
+    AddDiagramComponent.prototype.unsubscribe;
+    /** @type {?} */
+    AddDiagramComponent.prototype.formGroup;
+    /** @type {?} */
+    AddDiagramComponent.prototype.data;
+    /** @type {?} */
+    AddDiagramComponent.prototype.columns;
+    /** @type {?} */
+    AddDiagramComponent.prototype.chart;
+    /** @type {?} */
+    AddDiagramComponent.prototype.diagramTypes;
+    /** @type {?} */
+    AddDiagramComponent.prototype.pathOptions;
+    /** @type {?} */
+    AddDiagramComponent.prototype.columnsMappings;
+    /** @type {?} */
+    AddDiagramComponent.prototype.dataSubscription;
+    /** @type {?} */
+    AddDiagramComponent.prototype.diagramModel;
+    /** @type {?} */
+    AddDiagramComponent.prototype.componentModel;
+    /** @type {?} */
+    AddDiagramComponent.prototype.typeMapToDiagram;
+    /** @type {?} */
+    AddDiagramComponent.prototype.diagramPartialConfig;
+    /** @type {?} */
+    AddDiagramComponent.prototype.sources;
+    /** @type {?} */
+    AddDiagramComponent.prototype.groups;
+    /** @type {?} */
+    AddDiagramComponent.prototype.source;
+    /**
+     * @type {?}
+     * @private
+     */
+    AddDiagramComponent.prototype.diagramService;
+    /**
+     * @type {?}
+     * @private
+     */
+    AddDiagramComponent.prototype.formBuilder;
+    /**
+     * @type {?}
+     * @private
+     */
+    AddDiagramComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    AddDiagramComponent.prototype.route;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var diagramViewComponent = /** @class */ (function () {
     function diagramViewComponent(diagramService) {
@@ -1942,10 +2679,25 @@ var diagramViewComponent = /** @class */ (function () {
     };
     return diagramViewComponent;
 }());
+if (false) {
+    /** @type {?} */
+    diagramViewComponent.prototype.diagrams;
+    /** @type {?} */
+    diagramViewComponent.prototype.width;
+    /** @type {?} */
+    diagramViewComponent.prototype.diagramData$;
+    /** @type {?} */
+    diagramViewComponent.prototype.diagramId;
+    /**
+     * @type {?}
+     * @private
+     */
+    diagramViewComponent.prototype.diagramService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DiagramsComponent = /** @class */ (function () {
     function DiagramsComponent(diagramService) {
@@ -1984,10 +2736,21 @@ var DiagramsComponent = /** @class */ (function () {
     ]; };
     return DiagramsComponent;
 }());
+if (false) {
+    /** @type {?} */
+    DiagramsComponent.prototype.diagrams;
+    /** @type {?} */
+    DiagramsComponent.prototype.width;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramsComponent.prototype.diagramService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var EditDiagramComponent = /** @class */ (function () {
     function EditDiagramComponent(diagramService, route, store) {
@@ -1997,11 +2760,19 @@ var EditDiagramComponent = /** @class */ (function () {
         this.store = store;
         this.formGroup = EditDiagramApiModel.Request.formGroup;
         /** @type {?} */
-        var Route = this.route.params.subscribe(function (params) {
+        var Route = this.route.params.subscribe((/**
+         * @param {?} params
+         * @return {?}
+         */
+        function (params) {
             /** @type {?} */
             var diagramId = params["id"];
-            _this.diagramService.getDiagram(diagramId).subscribe(function (data) { return _this.formGroup.patchValue(data); });
-        });
+            _this.diagramService.getDiagram(diagramId).subscribe((/**
+             * @param {?} data
+             * @return {?}
+             */
+            function (data) { return _this.formGroup.patchValue(data); }));
+        }));
     }
     /**
      * @return {?}
@@ -2036,10 +2807,29 @@ var EditDiagramComponent = /** @class */ (function () {
     ]; };
     return EditDiagramComponent;
 }());
+if (false) {
+    /** @type {?} */
+    EditDiagramComponent.prototype.formGroup;
+    /**
+     * @type {?}
+     * @private
+     */
+    EditDiagramComponent.prototype.diagramService;
+    /**
+     * @type {?}
+     * @private
+     */
+    EditDiagramComponent.prototype.route;
+    /**
+     * @type {?}
+     * @private
+     */
+    EditDiagramComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DiagramComponent = /** @class */ (function () {
     function DiagramComponent(store, diagramService, http, injector, route) {
@@ -2054,15 +2844,23 @@ var DiagramComponent = /** @class */ (function () {
         this.now = Date.now();
         debugger;
         this.data = this.injector.get("data");
-        this.route.params.subscribe(function (params) {
+        this.route.params.subscribe((/**
+         * @param {?} params
+         * @return {?}
+         */
+        function (params) {
             /** @type {?} */
             var diagramId = params["id"];
             // tslint:disable-next-line:no-unused-expression
             diagramId &&
-                _this.diagramService.getDiagram(diagramId).subscribe(function (data) {
+                _this.diagramService.getDiagram(diagramId).subscribe((/**
+                 * @param {?} data
+                 * @return {?}
+                 */
+                function (data) {
                     console.log(data);
-                });
-        });
+                }));
+        }));
     }
     Object.defineProperty(DiagramComponent.prototype, "data", {
         get: /**
@@ -2105,12 +2903,28 @@ var DiagramComponent = /** @class */ (function () {
         //         )
         //         // .switchMap((res: any) => of(res.Result.Data))
         //         .map((res: any) => res.Result.Data)
-        this.modelIsCorrect.delay(300).filter(function (data) { return data; }).subscribe(function (state) {
+        this.modelIsCorrect.delay(300).filter((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return data; })).subscribe((/**
+         * @param {?} state
+         * @return {?}
+         */
+        function (state) {
             _this.chart = c3.generate(__assign({}, _this.data.Chart, { bindto: "#diagram_" + _this.data._id }));
             _this.dataSubscribtion = _this.diagramService
                 .getData(_this.data.Source, _this.unsubscribe)
-                .pipe(filter(function (data) { return data != undefined; }), takeUntil(_this.unsubscribe))
-                .subscribe(function (data) {
+                .pipe(filter((/**
+             * @param {?} data
+             * @return {?}
+             */
+            function (data) { return data != undefined; })), takeUntil(_this.unsubscribe))
+                .subscribe((/**
+             * @param {?} data
+             * @return {?}
+             */
+            function (data) {
                 _this.now = Date.now();
                 _this.time = data.Time;
                 if (_this.data.Chart.Flow) {
@@ -2124,8 +2938,8 @@ var DiagramComponent = /** @class */ (function () {
                         columns: _this.diagramService.extract_columns_from_data(data.Data, _this.data.Chart.ColumnMappings)
                     });
                 }
-            });
-        });
+            }));
+        }));
         // this.dataSubscribtion = this.diagramService.generateDiagram(
         //         this.model.Chart,
         //         this.model._id,
@@ -2159,7 +2973,11 @@ var DiagramComponent = /** @class */ (function () {
         // this.diagramService.getData(this.data.Source, Date.now() - ((1000 - e.value) * this.data.Source.Interval), true)
         this.dataSubscribtion = this.diagramService
             .getData(this.data.Source, this.unsubscribe, Date.now() - (1000 - e.value) * this.data.Source.Interval, true)
-            .subscribe(function (data) {
+            .subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) {
             _this.time = data.Time;
             _this.now = Date.now();
             // const columns = this.diagramService
@@ -2172,7 +2990,7 @@ var DiagramComponent = /** @class */ (function () {
             _this.chart.load({
                 columns: _this.diagramService.extract_columns_from_data(data.Data, _this.data.Chart.ColumnMappings)
             });
-        });
+        }));
     };
     DiagramComponent.decorators = [
         { type: Component, args: [{
@@ -2194,10 +3012,51 @@ var DiagramComponent = /** @class */ (function () {
     };
     return DiagramComponent;
 }());
+if (false) {
+    /** @type {?} */
+    DiagramComponent.prototype.unsubscribe;
+    /** @type {?} */
+    DiagramComponent.prototype.modelIsCorrect;
+    /** @type {?} */
+    DiagramComponent.prototype._model;
+    /** @type {?} */
+    DiagramComponent.prototype.dataSubscribtion;
+    /** @type {?} */
+    DiagramComponent.prototype.chart;
+    /** @type {?} */
+    DiagramComponent.prototype.time;
+    /** @type {?} */
+    DiagramComponent.prototype.now;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramComponent.prototype.diagramService;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramComponent.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramComponent.prototype.injector;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramComponent.prototype.route;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DynamicComponentSelectorComponent = /** @class */ (function () {
     function DynamicComponentSelectorComponent(resolver) {
@@ -2232,9 +3091,13 @@ var DynamicComponentSelectorComponent = /** @class */ (function () {
             /** @type {?} */
             var _component = this.typeMapToDiagram[data.Chart.data.type];
             /** @type {?} */
-            var inputProviders = Object.keys(raw).map(function (inputName) {
+            var inputProviders = Object.keys(raw).map((/**
+             * @param {?} inputName
+             * @return {?}
+             */
+            function (inputName) {
                 return { provide: inputName, useValue: raw[inputName] };
-            });
+            }));
             /** @type {?} */
             var resolvedInputs = ReflectiveInjector.resolve(inputProviders);
             /** @type {?} */
@@ -2288,16 +3151,35 @@ var DynamicComponentSelectorComponent = /** @class */ (function () {
         { type: ComponentFactoryResolver }
     ]; };
     DynamicComponentSelectorComponent.propDecorators = {
-        dynamicComponentContainer: [{ type: ViewChild, args: ["dynamicComponentContainer", { read: ViewContainerRef },] }],
-        widgetComponent: [{ type: ViewChild, args: [DiagramComponent,] }],
+        dynamicComponentContainer: [{ type: ViewChild, args: ["dynamicComponentContainer", { read: ViewContainerRef, static: false },] }],
+        widgetComponent: [{ type: ViewChild, args: [DiagramComponent, { static: false },] }],
         data: [{ type: Input }]
     };
     return DynamicComponentSelectorComponent;
 }());
+if (false) {
+    /** @type {?} */
+    DynamicComponentSelectorComponent.prototype.typeMapToDiagram;
+    /** @type {?} */
+    DynamicComponentSelectorComponent.prototype.dynamicComponentContainer;
+    /** @type {?} */
+    DynamicComponentSelectorComponent.prototype.widgetComponent;
+    /** @type {?} */
+    DynamicComponentSelectorComponent.prototype.currentComponent;
+    /** @type {?} */
+    DynamicComponentSelectorComponent.prototype._data;
+    /** @type {?} */
+    DynamicComponentSelectorComponent.prototype.backgroundColor;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicComponentSelectorComponent.prototype.resolver;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DynamicConfigComponentSelectorComponent = /** @class */ (function () {
     function DynamicConfigComponentSelectorComponent(resolver) {
@@ -2332,9 +3214,13 @@ var DynamicConfigComponentSelectorComponent = /** @class */ (function () {
             /** @type {?} */
             var _component = this.typeMapToDiagram[data.type];
             /** @type {?} */
-            var inputProviders = Object.keys(data.inputs).map(function (inputName) {
+            var inputProviders = Object.keys(data.inputs).map((/**
+             * @param {?} inputName
+             * @return {?}
+             */
+            function (inputName) {
                 return { provide: inputName, useValue: data.inputs[inputName] };
-            });
+            }));
             /** @type {?} */
             var resolvedInputs = ReflectiveInjector.resolve(inputProviders);
             /** @type {?} */
@@ -2344,9 +3230,12 @@ var DynamicConfigComponentSelectorComponent = /** @class */ (function () {
             /** @type {?} */
             var component = factory.create(injector);
             if (((/** @type {?} */ (component.instance))).ConfigChanged)
-                ((/** @type {?} */ (component.instance))).ConfigChanged.subscribe(function () {
+                ((/** @type {?} */ (component.instance))).ConfigChanged.subscribe((/**
+                 * @return {?}
+                 */
+                function () {
                     _this.ConfigChanged.emit();
-                });
+                }));
             this.dynamicComponentContainer.insert(component.hostView);
             if (this.currentComponent) {
                 this.currentComponent.destroy();
@@ -2381,16 +3270,31 @@ var DynamicConfigComponentSelectorComponent = /** @class */ (function () {
         { type: ComponentFactoryResolver }
     ]; };
     DynamicConfigComponentSelectorComponent.propDecorators = {
-        dynamicComponentContainer: [{ type: ViewChild, args: ["dynamicComponentContainer", { read: ViewContainerRef },] }],
+        dynamicComponentContainer: [{ type: ViewChild, args: ["dynamicComponentContainer", { read: ViewContainerRef, static: false },] }],
         ConfigChanged: [{ type: Output }],
         data: [{ type: Input }]
     };
     return DynamicConfigComponentSelectorComponent;
 }());
+if (false) {
+    /** @type {?} */
+    DynamicConfigComponentSelectorComponent.prototype.typeMapToDiagram;
+    /** @type {?} */
+    DynamicConfigComponentSelectorComponent.prototype.dynamicComponentContainer;
+    /** @type {?} */
+    DynamicConfigComponentSelectorComponent.prototype.ConfigChanged;
+    /** @type {?} */
+    DynamicConfigComponentSelectorComponent.prototype.currentComponent;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicConfigComponentSelectorComponent.prototype.resolver;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DiagramEffects = /** @class */ (function () {
     function DiagramEffects(actions$, router, diagramService) {
@@ -2398,12 +3302,35 @@ var DiagramEffects = /** @class */ (function () {
         this.actions$ = actions$;
         this.router = router;
         this.diagramService = diagramService;
-        this.DiagramRequest$ = this.actions$.pipe(ofType(), map(function (action) { return action.payload; }), map(function (data) { return new GetDiagramsStart(); }));
-        this.getDiagram$ = this.actions$.pipe(ofType(), map(function (action) { return action.payload; }), switchMap(function (data) {
+        this.DiagramRequest$ = this.actions$.pipe(ofType(), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        function (action) { return action.payload; })), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return new GetDiagramsStart(); })));
+        this.getDiagram$ = this.actions$.pipe(ofType(), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        function (action) { return action.payload; })), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) {
             return _this.diagramService
                 .getDiagrams()
-                .pipe(map(function (res) { return new GetDiagramsSucceed(res); }), catchError(function () { return of(new GetDiagramsFailed()); }));
-        }));
+                .pipe(map((/**
+             * @param {?} res
+             * @return {?}
+             */
+            function (res) { return new GetDiagramsSucceed(res); })), catchError((/**
+             * @return {?}
+             */
+            function () { return of(new GetDiagramsFailed()); })));
+        })));
     }
     DiagramEffects.decorators = [
         { type: Injectable }
@@ -2424,10 +3351,31 @@ var DiagramEffects = /** @class */ (function () {
     ], DiagramEffects.prototype, "getDiagram$", void 0);
     return DiagramEffects;
 }());
+if (false) {
+    /** @type {?} */
+    DiagramEffects.prototype.DiagramRequest$;
+    /** @type {?} */
+    DiagramEffects.prototype.getDiagram$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramEffects.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramEffects.prototype.diagramService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var AddDiagramEffects = /** @class */ (function () {
     function AddDiagramEffects(actions$, router, diagramService) {
@@ -2435,25 +3383,81 @@ var AddDiagramEffects = /** @class */ (function () {
         this.actions$ = actions$;
         this.router = router;
         this.diagramService = diagramService;
-        this.addDiagramRequest$ = this.actions$.pipe(ofType(AddDiagramActionTypes.ADD_DIAGRAM), pluck("payload"), map(function (data) { return new AddDiagramActionStart(data); }));
-        this.addDiagram$ = this.actions$.pipe(ofType(AddDiagramActionTypes.ADD_DIAGRAM_START), pluck("payload"), switchMap(function (data) {
+        this.addDiagramRequest$ = this.actions$.pipe(ofType(AddDiagramActionTypes.ADD_DIAGRAM), pluck("payload"), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return new AddDiagramActionStart(data); })));
+        this.addDiagram$ = this.actions$.pipe(ofType(AddDiagramActionTypes.ADD_DIAGRAM_START), pluck("payload"), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) {
             return _this.diagramService
                 .addDiagram(data)
-                .pipe(map(function (res) { return new AddDiagramActionSucceed(res); }), catchError(function () { return of$1(new AddDiagramActionFailed()); }));
-        }));
-        this.ADD_DIAGRAM_SUCCEED$ = this.actions$.pipe(ofType(AddDiagramActionTypes.ADD_DIAGRAM_SUCCEED), pluck("payload"), map(function (data) {
+                .pipe(map((/**
+             * @param {?} res
+             * @return {?}
+             */
+            function (res) { return new AddDiagramActionSucceed(res); })), catchError((/**
+             * @return {?}
+             */
+            function () { return of$1(new AddDiagramActionFailed()); })));
+        })));
+        this.ADD_DIAGRAM_SUCCEED$ = this.actions$.pipe(ofType(AddDiagramActionTypes.ADD_DIAGRAM_SUCCEED), pluck("payload"), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) {
             _this.router.navigate(["diagrams"]);
             return Observable$1.empty();
-        }));
-        this.HAVE_ENDPOINT$ = this.actions$.pipe(ofType(AddDiagramActionTypes.HAVE_ENDPOINT), pluck("payload"), map(function (data) { return new DataLoadedAction(data); }));
-        this.DATA_LOADED$ = this.actions$.pipe(ofType(AddDiagramActionTypes.DATA_LOADED), pluck("payload"), map(function (data) { return new StructureDefinitionStartAction(data); }));
-        this.DIAGRAM_CONFIG_CHANGED$ = this.actions$.pipe(ofType(AddDiagramActionTypes.DIAGRAM_CONFIG_CHANGED), pluck("payload"), map(function (data) { return new GenerateDiagramAction(data); }));
-        this.STRUCTURE_DEFINITION_START$ = this.actions$.pipe(ofType(AddDiagramActionTypes.STRUCTURE_DEFINITION_START), pluck("payload"), switchMap(function (data) { return data.getDataStructure().map(function () { return new StructureDefinitionFinishedAction(data); }); }));
-        this.COLUMNS_MAPPING_CHANGED$ = this.actions$.pipe(ofType(AddDiagramActionTypes.COLUMNS_MAPPING_CHANGED), pluck("payload"), switchMap(function (data) { return data.calculateColumns().map(function () { return new StructureDefinitionFinishedAction(data); }); }));
+        })));
+        this.HAVE_ENDPOINT$ = this.actions$.pipe(ofType(AddDiagramActionTypes.HAVE_ENDPOINT), pluck("payload"), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return new DataLoadedAction(data); })));
+        this.DATA_LOADED$ = this.actions$.pipe(ofType(AddDiagramActionTypes.DATA_LOADED), pluck("payload"), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return new StructureDefinitionStartAction(data); })));
+        this.DIAGRAM_CONFIG_CHANGED$ = this.actions$.pipe(ofType(AddDiagramActionTypes.DIAGRAM_CONFIG_CHANGED), pluck("payload"), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return new GenerateDiagramAction(data); })));
+        this.STRUCTURE_DEFINITION_START$ = this.actions$.pipe(ofType(AddDiagramActionTypes.STRUCTURE_DEFINITION_START), pluck("payload"), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return data.getDataStructure().map((/**
+         * @return {?}
+         */
+        function () { return new StructureDefinitionFinishedAction(data); })); })));
+        this.COLUMNS_MAPPING_CHANGED$ = this.actions$.pipe(ofType(AddDiagramActionTypes.COLUMNS_MAPPING_CHANGED), pluck("payload"), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return data.calculateColumns().map((/**
+         * @return {?}
+         */
+        function () { return new StructureDefinitionFinishedAction(data); })); })));
         this.STRUCTURE_DEFINITION_END$ = this.actions$
             // .skipUntil(this.actions$.ofType(AddDiagramActionTypes.DATA_LOADED))
-            .pipe(ofType(AddDiagramActionTypes.STRUCTURE_DEFINITION_END), pluck("payload"), switchMap(function (data) { return data.calculateColumns().map(function () { return new GenerateDiagramAction(data); }); }));
-        this.GenerateDiagram$ = this.actions$.pipe(ofType(AddDiagramActionTypes.GENERATE_DIAGRAM), pluck("payload"), map(function (data) { return data.generateDiagram(); }));
+            .pipe(ofType(AddDiagramActionTypes.STRUCTURE_DEFINITION_END), pluck("payload"), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return data.calculateColumns().map((/**
+         * @return {?}
+         */
+        function () { return new GenerateDiagramAction(data); })); })));
+        this.GenerateDiagram$ = this.actions$.pipe(ofType(AddDiagramActionTypes.GENERATE_DIAGRAM), pluck("payload"), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return data.generateDiagram(); })));
     }
     AddDiagramEffects.decorators = [
         { type: Injectable }
@@ -2506,10 +3510,47 @@ var AddDiagramEffects = /** @class */ (function () {
     ], AddDiagramEffects.prototype, "GenerateDiagram$", void 0);
     return AddDiagramEffects;
 }());
+if (false) {
+    /** @type {?} */
+    AddDiagramEffects.prototype.addDiagramRequest$;
+    /** @type {?} */
+    AddDiagramEffects.prototype.addDiagram$;
+    /** @type {?} */
+    AddDiagramEffects.prototype.ADD_DIAGRAM_SUCCEED$;
+    /** @type {?} */
+    AddDiagramEffects.prototype.HAVE_ENDPOINT$;
+    /** @type {?} */
+    AddDiagramEffects.prototype.DATA_LOADED$;
+    /** @type {?} */
+    AddDiagramEffects.prototype.DIAGRAM_CONFIG_CHANGED$;
+    /** @type {?} */
+    AddDiagramEffects.prototype.STRUCTURE_DEFINITION_START$;
+    /** @type {?} */
+    AddDiagramEffects.prototype.COLUMNS_MAPPING_CHANGED$;
+    /** @type {?} */
+    AddDiagramEffects.prototype.STRUCTURE_DEFINITION_END$;
+    /** @type {?} */
+    AddDiagramEffects.prototype.GenerateDiagram$;
+    /**
+     * @type {?}
+     * @private
+     */
+    AddDiagramEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    AddDiagramEffects.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    AddDiagramEffects.prototype.diagramService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var routes = [
@@ -2549,12 +3590,16 @@ var RoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DiagramSelectorComponent = /** @class */ (function () {
     function DiagramSelectorComponent(diagramService) {
         this.diagramService = diagramService;
-        this.diagrams$ = this.diagramService.getDiagrams().pipe(map(function (res) { return res.Result; }));
+        this.diagrams$ = this.diagramService.getDiagrams().pipe(map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) { return res.Result; })));
     }
     Object.defineProperty(DiagramSelectorComponent.prototype, "valid", {
         get: /**
@@ -2596,10 +3641,21 @@ var DiagramSelectorComponent = /** @class */ (function () {
     ]; };
     return DiagramSelectorComponent;
 }());
+if (false) {
+    /** @type {?} */
+    DiagramSelectorComponent.prototype.diagrams$;
+    /** @type {?} */
+    DiagramSelectorComponent.prototype.selectedDiagramId;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramSelectorComponent.prototype.diagramService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NgsDiagramModule = /** @class */ (function () {
     function NgsDiagramModule() {
@@ -2674,6 +3730,8 @@ var NgsDiagramModule = /** @class */ (function () {
 }());
 var RootNgsDiagramModule = /** @class */ (function () {
     function RootNgsDiagramModule() {
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.diagram = "8.0.10";
     }
     RootNgsDiagramModule.decorators = [
         { type: NgModule, args: [{
@@ -2686,19 +3744,20 @@ var RootNgsDiagramModule = /** @class */ (function () {
                     exports: [NgsDiagramModule]
                 },] }
     ];
+    /** @nocollapse */
+    RootNgsDiagramModule.ctorParameters = function () { return []; };
     return RootNgsDiagramModule;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { NgsDiagramModule, DiagramSelectorComponent, diagramViewComponent, RoutingModule as ɵbc, MODULE_CONFIG_TOKEN as ɵb, RootNgsDiagramModule as ɵa, BooleanoWidgetPartialConfigComponent as ɵm, DiagramPartialConfigEditComponent as ɵj, LinearDiagramPartialConfigComponent as ɵl, NumericDiagramComponent as ɵp, NumericEditDiagramComponent as ɵv, NumericWidgetPartialConfigComponent as ɵu, PieDiagramPartialConfigComponent as ɵk, ServerConnectingTimeDiagramComponent as ɵq, ServerStatusDiagramComponent as ɵr, AddDiagramEffects as ɵbb, DiagramEffects as ɵba, diagramReducer as ɵx, Reducer as ɵy, DiagramReducers as ɵw, ParentGuardReducer as ɵz, DiagramConfigurationService as ɵf, DiagramService as ɵd, AddDiagramComponent as ɵc, DataMapperComponent as ɵt, DiagramModuleContainerComponent as ɵs, DiagramComponent as ɵn, DiagramsComponent as ɵg, DynamicComponentSelectorComponent as ɵo, DynamicConfigComponentSelectorComponent as ɵi, EditDiagramComponent as ɵh };
-
+export { DiagramSelectorComponent, NgsDiagramModule, diagramViewComponent, RootNgsDiagramModule as ɵa, MODULE_CONFIG_TOKEN as ɵb, DiagramEffects as ɵba, AddDiagramEffects as ɵbb, RoutingModule as ɵbc, AddDiagramComponent as ɵc, DiagramService as ɵd, DiagramConfigurationService as ɵf, DiagramsComponent as ɵg, EditDiagramComponent as ɵh, DynamicConfigComponentSelectorComponent as ɵi, DiagramPartialConfigEditComponent as ɵj, PieDiagramPartialConfigComponent as ɵk, LinearDiagramPartialConfigComponent as ɵl, BooleanoWidgetPartialConfigComponent as ɵm, DiagramComponent as ɵn, DynamicComponentSelectorComponent as ɵo, NumericDiagramComponent as ɵp, ServerConnectingTimeDiagramComponent as ɵq, ServerStatusDiagramComponent as ɵr, DiagramModuleContainerComponent as ɵs, DataMapperComponent as ɵt, NumericWidgetPartialConfigComponent as ɵu, NumericEditDiagramComponent as ɵv, DiagramReducers as ɵw, diagramReducer as ɵx, Reducer as ɵy, ParentGuardReducer as ɵz };
 //# sourceMappingURL=soushians-diagram.js.map

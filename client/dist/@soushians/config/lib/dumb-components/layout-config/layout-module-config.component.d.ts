@@ -6,7 +6,7 @@ import { FeatureState } from "../../reducers";
 export declare class LayoutModuleConfigComponent {
     private injector;
     private store;
-    configChanged: EventEmitter<{}>;
+    configChanged: EventEmitter<any>;
     _configFormGroup: FormGroup;
     configFormGroup: FormGroup;
     sideNavModes: string[];

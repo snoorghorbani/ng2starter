@@ -1,6 +1,6 @@
 {
-    "name": "@soushians/form",
-    "version": "7.7.0",
-    "peerDependencies": {},
-    "dependencies": {}
+	"name": "@soushians/form",
+	"version": "8.0.10",
+	"peerDependencies": {},
+	"dependencies": {}
 }

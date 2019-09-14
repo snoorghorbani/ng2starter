@@ -1,8 +1,8 @@
-import { Pipe, NgModule, Injectable, defineInjectable } from '@angular/core';
+import { Pipe, NgModule, Injectable, ɵɵdefineInjectable } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DataUnitPipe {
     /**
@@ -52,8 +52,20 @@ DataUnitPipe.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function TimeUnitExtractor() { }
+if (false) {
+    /** @type {?} */
+    TimeUnitExtractor.prototype.count;
+    /** @type {?} */
+    TimeUnitExtractor.prototype.value;
+    /** @type {?} */
+    TimeUnitExtractor.prototype.remaining;
+}
 class TimeUnitPipe {
     /**
      * @private
@@ -137,8 +149,16 @@ class TimeUnitPipe {
         let minutsData = this.getMinuts(hoursData.remaining);
         // let secondssData = this.getSeconds(minutsData.remaining);
         return [daysData, hoursData, minutsData /*, secondssData*/]
-            .filter(i => i.count)
-            .map(i => i.value).join(connector);
+            .filter((/**
+         * @param {?} i
+         * @return {?}
+         */
+        i => i.count))
+            .map((/**
+         * @param {?} i
+         * @return {?}
+         */
+        i => i.value)).join(connector);
     }
 }
 TimeUnitPipe.decorators = [
@@ -147,8 +167,20 @@ TimeUnitPipe.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function PersianDateExtractor() { }
+if (false) {
+    /** @type {?} */
+    PersianDateExtractor.prototype.count;
+    /** @type {?} */
+    PersianDateExtractor.prototype.value;
+    /** @type {?} */
+    PersianDateExtractor.prototype.remaining;
+}
 class PersianDatePipe {
     /**
      * @param {?} value
@@ -178,65 +210,141 @@ class PersianDatePipe {
 PersianDatePipe.decorators = [
     { type: Pipe, args: [{ name: "persianDate" },] }
 ];
-const ɵ0 = function (_) {
+const ɵ0 = /**
+ * @param {?} _
+ * @return {?}
+ */
+function (_) {
     /** @type {?} */
-    var is = function (node, selector) {
+    var is = (/**
+     * @param {?} node
+     * @param {?} selector
+     * @return {?}
+     */
+    function (node, selector) {
         if (node.matches)
             return node.matches(selector);
         /** @type {?} */
         var nodes = this.argToArray(node.parentNode.querySelectorAll(selector));
         return nodes.indexOf(node) > -1 ? true : false;
-    };
-    is.object = function (_var) {
+    });
+    is.object = (/**
+     * @param {?} _var
+     * @return {?}
+     */
+    function (_var) {
         return Object.prototype.toString.call(_var) === "[object Object]";
-    };
-    is.nodeList = function (obj) {
+    });
+    is.nodeList = (/**
+     * @param {?} obj
+     * @return {?}
+     */
+    function (obj) {
         if (_.is.not.ie())
             return Object.prototype.toString.call(obj) === "[object NodeList]";
         else
             return (obj.length !== undefined &&
                 obj.push === undefined &&
                 (obj.length > 0 ? obj[0].tagName !== undefined : true));
-    };
-    is.element = function (obj) {
+    });
+    is.element = (/**
+     * @param {?} obj
+     * @return {?}
+     */
+    function (obj) {
         return Object.prototype.toString.call(obj).search("Element") > -1;
         //return !!Object.prototype.toString.call(_var).toLowerCase().search('element');;
-    };
-    is.HTMLCollection = function (obj) {
+    });
+    is.HTMLCollection = (/**
+     * @param {?} obj
+     * @return {?}
+     */
+    function (obj) {
         return Object.prototype.toString.call(obj) === "[object HTMLCollection]";
-    };
-    is.array = function (_var) {
+    });
+    is.array = (/**
+     * @param {?} _var
+     * @return {?}
+     */
+    function (_var) {
         return Object.prototype.toString.call(_var) === "[object Array]";
-    };
-    is.number = function (_var) {
+    });
+    is.number = (/**
+     * @param {?} _var
+     * @return {?}
+     */
+    function (_var) {
         return Object.prototype.toString.call(_var) === "[object Number]";
-    };
-    is["function"] = function (_var) {
+    });
+    is["function"] = (/**
+     * @param {?} _var
+     * @return {?}
+     */
+    function (_var) {
         return Object.prototype.toString.call(_var) === "[object Function]";
-    };
-    is.string = function (_var) {
+    });
+    is.string = (/**
+     * @param {?} _var
+     * @return {?}
+     */
+    function (_var) {
         return Object.prototype.toString.call(_var) === "[object String]"; //&& ((isEmpty));
-    };
-    is.undefined = function (_var) {
+    });
+    is.undefined = (/**
+     * @param {?} _var
+     * @return {?}
+     */
+    function (_var) {
         return Object.prototype.toString.call(_var) === "[object Undefined]";
-    };
-    is.event = function (_var) {
+    });
+    is.event = (/**
+     * @param {?} _var
+     * @return {?}
+     */
+    function (_var) {
         return Object.prototype.toString.call(_var).toLowerCase().search("event") > -1;
-    };
-    is.defined = function (_var) {
+    });
+    is.defined = (/**
+     * @param {?} _var
+     * @return {?}
+     */
+    function (_var) {
         //return Object.prototype.toString.call(_var) !== '[object Undefined]' && Object.prototype.toString.call(_var) !== '[object Null]' && Object !== '';
         return _var !== undefined && _var !== null && _var !== "";
-    };
-    is.json = function () { };
-    is.error = function () { };
-    is.startWith = function (str, prefix) {
+    });
+    is.json = (/**
+     * @return {?}
+     */
+    function () { });
+    is.error = (/**
+     * @return {?}
+     */
+    function () { });
+    is.startWith = (/**
+     * @param {?} str
+     * @param {?} prefix
+     * @return {?}
+     */
+    function (str, prefix) {
         return str.indexOf(prefix) === 0;
-    };
-    is.endWith = function (str) { };
-    is.value = function (_var) {
+    });
+    is.endWith = (/**
+     * @param {?} str
+     * @return {?}
+     */
+    function (str) { });
+    is.value = (/**
+     * @param {?} _var
+     * @return {?}
+     */
+    function (_var) {
         return _var ? true : false;
-    };
-    is.empty = function (o) {
+    });
+    is.empty = (/**
+     * @param {?} o
+     * @return {?}
+     */
+    function (o) {
         if (_.is.object(0))
             for (var i in o)
                 if (o.hasOwnProperty(i))
@@ -244,83 +352,169 @@ const ɵ0 = function (_) {
         if (_.is.array(o))
             return o.length === 0;
         return true;
-    };
-    is.truthy = function () { };
-    is.scalar = function (_var) {
+    });
+    is.truthy = (/**
+     * @return {?}
+     */
+    function () { });
+    is.scalar = (/**
+     * @param {?} _var
+     * @return {?}
+     */
+    function (_var) {
         //TODO : improve
         return is.defined(_var) && is.not.array(_var) && is.not.object(_var) && is.not["function"](_var);
-    };
-    is.prototypeProp = function (obj, prop) {
+    });
+    is.prototypeProp = (/**
+     * @param {?} obj
+     * @param {?} prop
+     * @return {?}
+     */
+    function (obj, prop) {
         return obj[prop] && !obj.hasOwnProperty(prop);
-    };
-    is.equal = function (fv, sv) {
+    });
+    is.equal = (/**
+     * @param {?} fv
+     * @param {?} sv
+     * @return {?}
+     */
+    function (fv, sv) {
         //if (!fv) that.warn('equal function :' + fv + ' is Not Object');
         //if (!sv) that.warn('equal function :' + sv + ' is Not Object');
         return JSON.stringify(fv) == JSON.stringify(sv) ? true : false;
-    };
-    is.equalText = function (fv, sv) {
+    });
+    is.equalText = (/**
+     * @param {?} fv
+     * @param {?} sv
+     * @return {?}
+     */
+    function (fv, sv) {
         return fv.toLowerCase(fv) === sv.toLowerCase(sv) ? true : false;
-    };
-    is.closet = function (fo, so) {
+    });
+    is.closet = (/**
+     * @param {?} fo
+     * @param {?} so
+     * @return {?}
+     */
+    function (fo, so) {
         return _.is.equal(_.partial(fo, _.report.skeleton(so)), so);
-    };
-    is.contain = function (str, searchStr) {
+    });
+    is.contain = (/**
+     * @param {?} str
+     * @param {?} searchStr
+     * @return {?}
+     */
+    function (str, searchStr) {
         /** @type {?} */
         var reg = _.is.regex(searchStr) ? searchStr : new RegExp(searchStr, "g");
         return str.match(reg) && str.match(reg).length > 0;
-    };
-    is.regex = function (r) {
+    });
+    is.regex = (/**
+     * @param {?} r
+     * @return {?}
+     */
+    function (r) {
         return r.constructor.name === "RegExp";
-    };
-    is.same = function (fv, sv) {
+    });
+    is.same = (/**
+     * @param {?} fv
+     * @param {?} sv
+     * @return {?}
+     */
+    function (fv, sv) {
         //if (!fv) that.warn('equal function :' + fv + ' is Not Object');
         //if (!sv) that.warn('equal function :' + sv + ' is Not Object');
         return fv.isEqualNode ? fv.isEqualNode(sv) : fv === sv;
-    };
-    is.persianLeapYear = function (year) {
+    });
+    is.persianLeapYear = (/**
+     * @param {?} year
+     * @return {?}
+     */
+    function (year) {
         return (((year - (year > 0 ? 474 : 473)) % 2820 + 474 + 38) * 682) % 2816 < 682;
-    };
-    is.georgianLeapYear = function (year) {
+    });
+    is.georgianLeapYear = (/**
+     * @param {?} year
+     * @return {?}
+     */
+    function (year) {
         return year % 4 == 0 && !(year % 100 == 0 && year % 400 != 0);
-    };
+    });
     /** @type {?} */
     var not = {};
     /** @type {?} */
     var i;
     for (i in is)
-        (function (i) {
+        ((/**
+         * @param {?} i
+         * @return {?}
+         */
+        function (i) {
             if (is.hasOwnProperty(i))
-                not[i] = function (a, b, c) {
+                not[i] = (/**
+                 * @param {?} a
+                 * @param {?} b
+                 * @param {?} c
+                 * @return {?}
+                 */
+                function (a, b, c) {
                     return !is[i](a, b, c);
-                };
-        })(i);
+                });
+        }))(i);
     is.not = not;
     //TODO : impelement
     /** @type {?} */
     var all = {};
     for (i in is)
-        (function (i) {
+        ((/**
+         * @param {?} i
+         * @return {?}
+         */
+        function (i) {
             if (is.hasOwnProperty(i))
-                all[i] = function (o) { };
-        })(i);
+                all[i] = (/**
+                 * @param {?} o
+                 * @return {?}
+                 */
+                function (o) { });
+        }))(i);
     is.all = all;
     /** @type {?} */
     var any = {};
     for (var j in is)
-        (function (j) {
+        ((/**
+         * @param {?} j
+         * @return {?}
+         */
+        function (j) {
             if (is.hasOwnProperty(j))
-                any[j] = function (o) { };
-        })(j);
+                any[j] = (/**
+                 * @param {?} o
+                 * @return {?}
+                 */
+                function (o) { });
+        }))(j);
     is.any = any;
     return is;
-}, ɵ1 = function () {
+}, ɵ1 = /**
+ * @return {?}
+ */
+function () {
     /** @type {?} */
     var math = {};
-    math.mod = function (a, b) {
+    math.mod = (/**
+     * @param {?} a
+     * @param {?} b
+     * @return {?}
+     */
+    function (a, b) {
         return a - b * Math.floor(a / b);
-    };
+    });
     return math;
-}, ɵ2 = function () {
+}, ɵ2 = /**
+ * @return {?}
+ */
+function () {
     /** @type {?} */
     var PERSIAN_EPOCH = 1948320.5;
     /** @type {?} */
@@ -334,11 +528,21 @@ const ɵ0 = function (_) {
     date.julian = {};
     date.julian.to = {};
     /** @type {?} */
-    var insertZero = function (i) {
+    var insertZero = (/**
+     * @param {?} i
+     * @return {?}
+     */
+    function (i) {
         i = i.toString();
         return i.length == 1 ? "0" + i : i;
-    };
-    date.persian.to.julian = function (year, month, day) {
+    });
+    date.persian.to.julian = (/**
+     * @param {?} year
+     * @param {?} month
+     * @param {?} day
+     * @return {?}
+     */
+    function (year, month, day) {
         /** @type {?} */
         var epbase;
         /** @type {?} */
@@ -354,13 +558,26 @@ const ɵ0 = function (_) {
             (epyear - 1) * 365 +
             Math.floor(epbase / 2820) * 1029983 +
             (PERSIAN_EPOCH - 1));
-    };
-    date.persian.to.georgian = function (year, month, day, joinCharacter) {
+    });
+    date.persian.to.georgian = (/**
+     * @param {?} year
+     * @param {?} month
+     * @param {?} day
+     * @param {?} joinCharacter
+     * @return {?}
+     */
+    function (year, month, day, joinCharacter) {
         /** @type {?} */
         var dateArray = date.julian.to.georgian(date.persian.to.julian(parseInt(year), parseInt(month) + 1, parseInt(day)));
         return joinCharacter ? dateArray.join(joinCharacter) : dateArray;
-    };
-    date.georgian.to.julian = function (year, month, day) {
+    });
+    date.georgian.to.julian = (/**
+     * @param {?} year
+     * @param {?} month
+     * @param {?} day
+     * @return {?}
+     */
+    function (year, month, day) {
         year = parseInt(year);
         month = parseInt(month);
         day = parseInt(day);
@@ -371,13 +588,24 @@ const ɵ0 = function (_) {
             -Math.floor((year - 1) / 100) +
             Math.floor((year - 1) / 400) +
             Math.floor((367 * month - 362) / 12 + (month <= 2 ? 0 : _.is.georgianLeapYear(year) ? -1 : -2) + day));
-    };
-    date.georgian.to.persian = function (year, month, day, joinCharacter) {
+    });
+    date.georgian.to.persian = (/**
+     * @param {?} year
+     * @param {?} month
+     * @param {?} day
+     * @param {?} joinCharacter
+     * @return {?}
+     */
+    function (year, month, day, joinCharacter) {
         /** @type {?} */
         var dateArray = date.julian.to.persian(date.georgian.to.julian(parseInt(year), parseInt(month), parseInt(day)));
         return joinCharacter ? dateArray.join(joinCharacter) : dateArray;
-    };
-    date.julian.to.georgian = function (jd) {
+    });
+    date.julian.to.georgian = (/**
+     * @param {?} jd
+     * @return {?}
+     */
+    function (jd) {
         /** @type {?} */
         var wjd;
         /** @type {?} */
@@ -396,6 +624,8 @@ const ɵ0 = function (_) {
         var dquad;
         /** @type {?} */
         var yindex;
+        /** @type {?} */
+        var dyindex;
         /** @type {?} */
         var year;
         /** @type {?} */
@@ -425,8 +655,12 @@ const ɵ0 = function (_) {
         month = Math.floor(((yearday + leapadj) * 12 + 373) / 367);
         day = wjd - _.date.georgian.to.julian(year, month, 1) + 1;
         return new Array(insertZero(year), insertZero(month), insertZero(day));
-    };
-    date.julian.to.persian = function (jd) {
+    });
+    date.julian.to.persian = (/**
+     * @param {?} jd
+     * @return {?}
+     */
+    function (jd) {
         /** @type {?} */
         var year;
         /** @type {?} */
@@ -468,19 +702,19 @@ const ɵ0 = function (_) {
         month = yday <= 186 ? Math.ceil(yday / 31) : Math.ceil((yday - 6) / 30);
         day = jd - _.date.persian.to.julian(year, month, 1) + 1;
         return new Array(insertZero(year), insertZero(month), insertZero(day));
-    };
+    });
     return date;
 };
 /** @type {?} */
 var _ = {
-    is: (ɵ0)(this),
-    math: (ɵ1)(),
-    date: (ɵ2)()
+    is: ((ɵ0))(this),
+    math: ((ɵ1))(),
+    date: ((ɵ2))()
 };
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class CurrencyUnitPipe {
     /**
@@ -504,7 +738,7 @@ CurrencyUnitPipe.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class PersianNumberPipe {
     /**
@@ -531,8 +765,20 @@ PersianNumberPipe.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function TimeCounterExtractor() { }
+if (false) {
+    /** @type {?} */
+    TimeCounterExtractor.prototype.count;
+    /** @type {?} */
+    TimeCounterExtractor.prototype.value;
+    /** @type {?} */
+    TimeCounterExtractor.prototype.remaining;
+}
 class TimeCounterPipe {
     /**
      * @private
@@ -598,7 +844,11 @@ class TimeCounterPipe {
         /** @type {?} */
         let secondssData = this.getSeconds(minutsData.remaining);
         return [secondssData, minutsData, hoursData]
-            .map(i => i.count).join(connector);
+            .map((/**
+         * @param {?} i
+         * @return {?}
+         */
+        i => i.count)).join(connector);
     }
 }
 TimeCounterPipe.decorators = [
@@ -607,9 +857,13 @@ TimeCounterPipe.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SharedModule {
+    constructor() {
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.shared = "8.0.10";
+    }
 }
 SharedModule.decorators = [
     { type: NgModule, args: [{
@@ -617,10 +871,12 @@ SharedModule.decorators = [
                 exports: [DataUnitPipe, TimeUnitPipe, PersianDatePipe, CurrencyUnitPipe, PersianNumberPipe, TimeCounterPipe]
             },] }
 ];
+/** @nocollapse */
+SharedModule.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @abstract
@@ -629,10 +885,19 @@ SharedModule.decorators = [
 class HttpResponseBaseModel {
     constructor() { }
 }
+if (false) {
+    /** @type {?} */
+    HttpResponseBaseModel.prototype.Result;
+    /**
+     * @abstract
+     * @return {?}
+     */
+    HttpResponseBaseModel.prototype.extractData = function () { };
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @abstract
@@ -641,10 +906,26 @@ class HttpResponseBaseModel {
 class HttpRequestBaseModel {
     constructor() { }
 }
+if (false) {
+    /**
+     * @abstract
+     * @template K
+     * @param {?} keys
+     * @return {?}
+     */
+    HttpRequestBaseModel.prototype.getRequestBody = function (keys) { };
+    /**
+     * @abstract
+     * @template K
+     * @param {?} keys
+     * @return {?}
+     */
+    HttpRequestBaseModel.prototype.getRequestQueryParams = function (keys) { };
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const PERSIAN_MONTH_DAYS_COUNT = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 30];
@@ -688,67 +969,152 @@ class DateClass {
         return new Date(parseInt(this.year), parseInt(this.month) - 1, parseInt(this.date));
     }
 }
+if (false) {
+    /** @type {?} */
+    DateClass.prototype.year;
+    /** @type {?} */
+    DateClass.prototype.month;
+    /** @type {?} */
+    DateClass.prototype.date;
+}
 class UtilityService {
     constructor() {
-        this.is = (function (_, undefined) {
+        this.is = ((/**
+         * @param {?} _
+         * @param {?} undefined
+         * @return {?}
+         */
+        function (_, undefined$1) {
             /** @type {?} */
-            var is = function (node, selector) {
+            var is = (/**
+             * @param {?} node
+             * @param {?} selector
+             * @return {?}
+             */
+            function (node, selector) {
                 if (node.matches)
                     return node.matches(selector);
                 /** @type {?} */
                 var nodes = this.argToArray(node.parentNode.querySelectorAll(selector));
                 return nodes.indexOf(node) > -1 ? true : false;
-            };
-            is.object = function (_var) {
+            });
+            is.object = (/**
+             * @param {?} _var
+             * @return {?}
+             */
+            function (_var) {
                 return Object.prototype.toString.call(_var) === "[object Object]";
-            };
-            is.nodeList = function (obj) {
+            });
+            is.nodeList = (/**
+             * @param {?} obj
+             * @return {?}
+             */
+            function (obj) {
                 if (_.is.not.ie())
                     return Object.prototype.toString.call(obj) === "[object NodeList]";
                 else
-                    return (obj.length !== undefined &&
-                        obj.push === undefined &&
-                        (obj.length > 0 ? obj[0].tagName !== undefined : true));
-            };
-            is.element = function (obj) {
+                    return (obj.length !== undefined$1 &&
+                        obj.push === undefined$1 &&
+                        (obj.length > 0 ? obj[0].tagName !== undefined$1 : true));
+            });
+            is.element = (/**
+             * @param {?} obj
+             * @return {?}
+             */
+            function (obj) {
                 return Object.prototype.toString.call(obj).search("Element") > -1;
                 //return !!Object.prototype.toString.call(_var).toLowerCase().search('element');;
-            };
-            is.HTMLCollection = function (obj) {
+            });
+            is.HTMLCollection = (/**
+             * @param {?} obj
+             * @return {?}
+             */
+            function (obj) {
                 return Object.prototype.toString.call(obj) === "[object HTMLCollection]";
-            };
-            is.array = function (_var) {
+            });
+            is.array = (/**
+             * @param {?} _var
+             * @return {?}
+             */
+            function (_var) {
                 return Object.prototype.toString.call(_var) === "[object Array]";
-            };
-            is.number = function (_var) {
+            });
+            is.number = (/**
+             * @param {?} _var
+             * @return {?}
+             */
+            function (_var) {
                 return Object.prototype.toString.call(_var) === "[object Number]";
-            };
-            is["function"] = function (_var) {
+            });
+            is["function"] = (/**
+             * @param {?} _var
+             * @return {?}
+             */
+            function (_var) {
                 return Object.prototype.toString.call(_var) === "[object Function]";
-            };
-            is.string = function (_var) {
+            });
+            is.string = (/**
+             * @param {?} _var
+             * @return {?}
+             */
+            function (_var) {
                 return Object.prototype.toString.call(_var) === "[object String]"; //&& ((isEmpty));
-            };
-            is.undefined = function (_var) {
+            });
+            is.undefined = (/**
+             * @param {?} _var
+             * @return {?}
+             */
+            function (_var) {
                 return Object.prototype.toString.call(_var) === "[object Undefined]";
-            };
-            is.event = function (_var) {
+            });
+            is.event = (/**
+             * @param {?} _var
+             * @return {?}
+             */
+            function (_var) {
                 return Object.prototype.toString.call(_var).toLowerCase().search("event") > -1;
-            };
-            is.defined = function (_var) {
+            });
+            is.defined = (/**
+             * @param {?} _var
+             * @return {?}
+             */
+            function (_var) {
                 //return Object.prototype.toString.call(_var) !== '[object Undefined]' && Object.prototype.toString.call(_var) !== '[object Null]' && Object !== '';
-                return _var !== undefined && _var !== null && _var !== "";
-            };
-            is.json = function () { };
-            is.error = function () { };
-            is.startWith = function (str, prefix) {
+                return _var !== undefined$1 && _var !== null && _var !== "";
+            });
+            is.json = (/**
+             * @return {?}
+             */
+            function () { });
+            is.error = (/**
+             * @return {?}
+             */
+            function () { });
+            is.startWith = (/**
+             * @param {?} str
+             * @param {?} prefix
+             * @return {?}
+             */
+            function (str, prefix) {
                 return str.indexOf(prefix) === 0;
-            };
-            is.endWith = function (str) { };
-            is.value = function (_var) {
+            });
+            is.endWith = (/**
+             * @param {?} str
+             * @return {?}
+             */
+            function (str) { });
+            is.value = (/**
+             * @param {?} _var
+             * @return {?}
+             */
+            function (_var) {
                 return _var ? true : false;
-            };
-            is.empty = function (o) {
+            });
+            is.empty = (/**
+             * @param {?} o
+             * @return {?}
+             */
+            function (o) {
                 if (_.is.object(0))
                     for (var i in o)
                         if (o.hasOwnProperty(i))
@@ -756,82 +1122,165 @@ class UtilityService {
                 if (_.is.array(o))
                     return o.length === 0;
                 return true;
-            };
-            is.truthy = function () { };
-            is.scalar = function (_var) {
+            });
+            is.truthy = (/**
+             * @return {?}
+             */
+            function () { });
+            is.scalar = (/**
+             * @param {?} _var
+             * @return {?}
+             */
+            function (_var) {
                 //TODO : improve
                 return is.defined(_var) && is.not.array(_var) && is.not.object(_var) && is.not["function"](_var);
-            };
-            is.prototypeProp = function (obj, prop) {
+            });
+            is.prototypeProp = (/**
+             * @param {?} obj
+             * @param {?} prop
+             * @return {?}
+             */
+            function (obj, prop) {
                 return obj[prop] && !obj.hasOwnProperty(prop);
-            };
-            is.equal = function (fv, sv) {
+            });
+            is.equal = (/**
+             * @param {?} fv
+             * @param {?} sv
+             * @return {?}
+             */
+            function (fv, sv) {
                 //if (!fv) that.warn('equal function :' + fv + ' is Not Object');
                 //if (!sv) that.warn('equal function :' + sv + ' is Not Object');
                 return JSON.stringify(fv) == JSON.stringify(sv) ? true : false;
-            };
-            is.equalText = function (fv, sv) {
+            });
+            is.equalText = (/**
+             * @param {?} fv
+             * @param {?} sv
+             * @return {?}
+             */
+            function (fv, sv) {
                 return fv.toLowerCase(fv) === sv.toLowerCase(sv) ? true : false;
-            };
-            is.contain = function (str, searchStr) {
+            });
+            is.contain = (/**
+             * @param {?} str
+             * @param {?} searchStr
+             * @return {?}
+             */
+            function (str, searchStr) {
                 /** @type {?} */
                 var reg = _.is.regex(searchStr) ? searchStr : new RegExp(searchStr, "g");
                 return str.match(reg) && str.match(reg).length > 0;
-            };
-            is.regex = function (r) {
+            });
+            is.regex = (/**
+             * @param {?} r
+             * @return {?}
+             */
+            function (r) {
                 return r.constructor.name === "RegExp";
-            };
-            is.same = function (fv, sv) {
+            });
+            is.same = (/**
+             * @param {?} fv
+             * @param {?} sv
+             * @return {?}
+             */
+            function (fv, sv) {
                 //if (!fv) that.warn('equal function :' + fv + ' is Not Object');
                 //if (!sv) that.warn('equal function :' + sv + ' is Not Object');
                 return fv.isEqualNode ? fv.isEqualNode(sv) : fv === sv;
-            };
-            is.persianLeapYear = function (year) {
+            });
+            is.persianLeapYear = (/**
+             * @param {?} year
+             * @return {?}
+             */
+            function (year) {
                 return (((year - (year > 0 ? 474 : 473)) % 2820 + 474 + 38) * 682) % 2816 < 682;
-            };
-            is.georgianLeapYear = function (year) {
+            });
+            is.georgianLeapYear = (/**
+             * @param {?} year
+             * @return {?}
+             */
+            function (year) {
                 return year % 4 == 0 && !(year % 100 == 0 && year % 400 != 0);
-            };
+            });
             /** @type {?} */
             var not = {};
             /** @type {?} */
             var i;
             for (i in is)
-                (function (i) {
+                ((/**
+                 * @param {?} i
+                 * @return {?}
+                 */
+                function (i) {
                     if (is.hasOwnProperty(i))
-                        not[i] = function (a, b, c) {
+                        not[i] = (/**
+                         * @param {?} a
+                         * @param {?} b
+                         * @param {?} c
+                         * @return {?}
+                         */
+                        function (a, b, c) {
                             return !is[i](a, b, c);
-                        };
-                })(i);
+                        });
+                }))(i);
             is.not = not;
             //TODO : impelement
             /** @type {?} */
             var all = {};
             for (i in is)
-                (function (i) {
+                ((/**
+                 * @param {?} i
+                 * @return {?}
+                 */
+                function (i) {
                     if (is.hasOwnProperty(i))
-                        all[i] = function (o) { };
-                })(i);
+                        all[i] = (/**
+                         * @param {?} o
+                         * @return {?}
+                         */
+                        function (o) { });
+                }))(i);
             is.all = all;
             /** @type {?} */
             var any = {};
             for (var j in is)
-                (function (j) {
+                ((/**
+                 * @param {?} j
+                 * @return {?}
+                 */
+                function (j) {
                     if (is.hasOwnProperty(j))
-                        any[j] = function (o) { };
-                })(j);
+                        any[j] = (/**
+                         * @param {?} o
+                         * @return {?}
+                         */
+                        function (o) { });
+                }))(j);
             is.any = any;
             return is;
-        })(this);
-        this.math = (function (_) {
+        }))(this);
+        this.math = ((/**
+         * @param {?} _
+         * @return {?}
+         */
+        function (_) {
             /** @type {?} */
             var math = {};
-            math.mod = function (a, b) {
+            math.mod = (/**
+             * @param {?} a
+             * @param {?} b
+             * @return {?}
+             */
+            function (a, b) {
                 return a - b * Math.floor(a / b);
-            };
+            });
             return math;
-        })(this);
-        this.date = (function (_) {
+        }))(this);
+        this.date = ((/**
+         * @param {?} _
+         * @return {?}
+         */
+        function (_) {
             /** @type {?} */
             var PERSIAN_EPOCH = 1948320.5;
             /** @type {?} */
@@ -840,34 +1289,88 @@ class UtilityService {
             var date = {
                 persian: {
                     PERSIAN_MONTH_DAYS_COUNT: [],
-                    now: () => null,
-                    create: (y, m, d) => null,
-                    getDaysOfoMonth: (idx) => null,
-                    getDayOfWeek: (y, m, d) => null,
-                    foretimeMonthOfYear: () => [],
+                    now: (/**
+                     * @return {?}
+                     */
+                    () => null),
+                    create: (/**
+                     * @param {?} y
+                     * @param {?} m
+                     * @param {?} d
+                     * @return {?}
+                     */
+                    (y, m, d) => null),
+                    getDaysOfoMonth: (/**
+                     * @param {?} idx
+                     * @return {?}
+                     */
+                    (idx) => null),
+                    getDayOfWeek: (/**
+                     * @param {?} y
+                     * @param {?} m
+                     * @param {?} d
+                     * @return {?}
+                     */
+                    (y, m, d) => null),
+                    foretimeMonthOfYear: (/**
+                     * @return {?}
+                     */
+                    () => []),
                     to: {
-                        georgian: () => null,
-                        julian: () => null
+                        georgian: (/**
+                         * @return {?}
+                         */
+                        () => null),
+                        julian: (/**
+                         * @return {?}
+                         */
+                        () => null)
                     }
                 },
                 julian: {
                     to: {
-                        georgian: () => null,
-                        persian: () => null
+                        georgian: (/**
+                         * @return {?}
+                         */
+                        () => null),
+                        persian: (/**
+                         * @return {?}
+                         */
+                        () => null)
                     }
                 },
                 georgian: {
                     // getFutureDate: (n: number) => null,
-                    now: () => null,
-                    getRelativeDay: (n) => null,
-                    parse: (date) => null,
+                    now: (/**
+                     * @return {?}
+                     */
+                    () => null),
+                    getRelativeDay: (/**
+                     * @param {?} n
+                     * @return {?}
+                     */
+                    (n) => null),
+                    parse: (/**
+                     * @param {?} date
+                     * @return {?}
+                     */
+                    (date) => null),
                     to: {
-                        persian: () => null,
-                        julian: () => null
+                        persian: (/**
+                         * @return {?}
+                         */
+                        () => null),
+                        julian: (/**
+                         * @return {?}
+                         */
+                        () => null)
                     }
                 },
                 as: {
-                    Date: () => null
+                    Date: (/**
+                     * @return {?}
+                     */
+                    () => null)
                 }
             };
             // date.persian = {};
@@ -877,20 +1380,41 @@ class UtilityService {
             // date.julian = {};
             // date.julian.to = {};
             // date.as = {};
-            date.as.Date = ([y, m, d]) => new Date(parseInt(y), parseInt(m) - 1, parseInt(d));
+            date.as.Date = (/**
+             * @param {?} __0
+             * @return {?}
+             */
+            ([y, m, d]) => new Date(parseInt(y), parseInt(m) - 1, parseInt(d)));
             /** @type {?} */
-            var insertZero = function (i) {
+            var insertZero = (/**
+             * @param {?} i
+             * @return {?}
+             */
+            function (i) {
                 i = i.toString();
                 return i.length == 1 ? "0" + i : i;
-            };
+            });
             date.persian.PERSIAN_MONTH_DAYS_COUNT = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 30, 30];
-            date.persian.now = function () {
+            date.persian.now = (/**
+             * @return {?}
+             */
+            function () {
                 /** @type {?} */
                 let now = new Date();
                 return date.georgian.to.persian(now.getFullYear(), now.getMonth(), now.getDate());
-            };
-            date.persian.create = (y, m, d) => new DateClass(y, m, d);
-            date.persian.getDaysOfoMonth = (idx) => {
+            });
+            date.persian.create = (/**
+             * @param {?} y
+             * @param {?} m
+             * @param {?} d
+             * @return {?}
+             */
+            (y, m, d) => new DateClass(y, m, d));
+            date.persian.getDaysOfoMonth = (/**
+             * @param {?} idx
+             * @return {?}
+             */
+            (idx) => {
                 /** @type {?} */
                 var count = PERSIAN_MONTH_DAYS_COUNT[idx];
                 /** @type {?} */
@@ -901,8 +1425,14 @@ class UtilityService {
                     res.push(dayName);
                 }
                 return res;
-            };
-            date.persian.getDayOfWeek = (y, m, d) => {
+            });
+            date.persian.getDayOfWeek = (/**
+             * @param {?} y
+             * @param {?} m
+             * @param {?} d
+             * @return {?}
+             */
+            (y, m, d) => {
                 /** @type {?} */
                 let persianHoliday = date.persian.create("1396", "1", "1");
                 /** @type {?} */
@@ -912,19 +1442,39 @@ class UtilityService {
                 /** @type {?} */
                 var day = +d;
                 /** @type {?} */
-                var daysOfYear = PERSIAN_MONTH_DAYS_COUNT.reduce((a, b, idx) => {
+                var daysOfYear = PERSIAN_MONTH_DAYS_COUNT.reduce((/**
+                 * @param {?} a
+                 * @param {?} b
+                 * @param {?} idx
+                 * @return {?}
+                 */
+                (a, b, idx) => {
                     if (idx == month)
                         return a + day;
                     if (idx > month)
                         return a;
                     return a + b;
-                });
+                }));
                 return (daysOfYear + persianHolidayInGeorgian.getDay() - 1) % 7;
-            };
-            date.persian.foretimeMonthOfYear = () => {
-                return PERSIAN_MONTH_NAMES.filter((item, idx) => idx <= +date.persian.now().month - 1);
-            };
-            date.persian.to.julian = function (year, month, day) {
+            });
+            date.persian.foretimeMonthOfYear = (/**
+             * @return {?}
+             */
+            () => {
+                return PERSIAN_MONTH_NAMES.filter((/**
+                 * @param {?} item
+                 * @param {?} idx
+                 * @return {?}
+                 */
+                (item, idx) => idx <= +date.persian.now().month - 1));
+            });
+            date.persian.to.julian = (/**
+             * @param {?} year
+             * @param {?} month
+             * @param {?} day
+             * @return {?}
+             */
+            function (year, month, day) {
                 /** @type {?} */
                 var epbase;
                 /** @type {?} */
@@ -940,14 +1490,30 @@ class UtilityService {
                     (epyear - 1) * 365 +
                     Math.floor(epbase / 2820) * 1029983 +
                     (PERSIAN_EPOCH - 1));
-            };
-            date.persian.to.georgian = function (year, month, day) {
+            });
+            date.persian.to.georgian = (/**
+             * @param {?} year
+             * @param {?} month
+             * @param {?} day
+             * @return {?}
+             */
+            function (year, month, day) {
                 /** @type {?} */
                 var dateArray = date.julian.to.georgian(date.persian.to.julian(parseInt(year.toString()), parseInt(month.toString()), parseInt(day.toString())));
                 return new DateClass(dateArray[0], parseInt(dateArray[1]), dateArray[2]);
-            };
-            date.georgian.parse = (date) => new DateClass(date.getFullYear(), date.getMonth() + 1, date.getDate());
-            date.georgian.to.julian = function (year, month, day) {
+            });
+            date.georgian.parse = (/**
+             * @param {?} date
+             * @return {?}
+             */
+            (date) => new DateClass(date.getFullYear(), date.getMonth() + 1, date.getDate()));
+            date.georgian.to.julian = (/**
+             * @param {?} year
+             * @param {?} month
+             * @param {?} day
+             * @return {?}
+             */
+            function (year, month, day) {
                 year = parseInt(year.toString());
                 month = parseInt(month.toString()) + 1;
                 day = parseInt(day.toString());
@@ -958,27 +1524,44 @@ class UtilityService {
                     -Math.floor((year - 1) / 100) +
                     Math.floor((year - 1) / 400) +
                     Math.floor((367 * month - 362) / 12 + (month <= 2 ? 0 : _.is.georgianLeapYear(year) ? -1 : -2) + day));
-            };
-            date.georgian.to.persian = function (year, month, day) {
+            });
+            date.georgian.to.persian = (/**
+             * @param {?} year
+             * @param {?} month
+             * @param {?} day
+             * @return {?}
+             */
+            function (year, month, day) {
                 /** @type {?} */
                 var dateArray = date.julian.to.persian(date.georgian.to.julian(parseInt(year.toString()), parseInt(month.toString()), parseInt(day.toString())));
                 return new DateClass(dateArray[0], dateArray[1], dateArray[2]);
-            };
+            });
             // date.georgian.getFutureDate = function (n) {
             //     var now = new Date();
             //     return new Date(now.getFullYear(), now.getMonth(), now.getDate() + n);
             // }
-            date.georgian.now = function () {
+            date.georgian.now = (/**
+             * @return {?}
+             */
+            function () {
                 /** @type {?} */
                 let now = new Date();
                 return new DateClass(now.getFullYear(), now.getMonth() + 1, now.getDate());
-            };
-            (date.georgian.getRelativeDay = (n) => {
+            });
+            (date.georgian.getRelativeDay = (/**
+             * @param {?} n
+             * @return {?}
+             */
+            (n) => {
                 /** @type {?} */
                 let date = new Date(Date.now() + -1 * n * 24 * 60 * 60 * 1000);
                 return new DateClass(date.getFullYear(), date.getMonth() + 1, date.getDate());
-            }),
-                (date.julian.to.georgian = function (jd) {
+            })),
+                (date.julian.to.georgian = (/**
+                 * @param {?} jd
+                 * @return {?}
+                 */
+                function (jd) {
                     /** @type {?} */
                     var wjd;
                     /** @type {?} */
@@ -997,6 +1580,8 @@ class UtilityService {
                     var dquad;
                     /** @type {?} */
                     var yindex;
+                    /** @type {?} */
+                    var dyindex;
                     /** @type {?} */
                     var year;
                     /** @type {?} */
@@ -1026,8 +1611,12 @@ class UtilityService {
                     month = Math.floor(((yearday + leapadj) * 12 + 373) / 367);
                     day = wjd - _.date.georgian.to.julian(year, month - 1, 1) + 1;
                     return new Array(insertZero(year), insertZero(month), insertZero(day));
-                });
-            date.julian.to.persian = function (jd) {
+                }));
+            date.julian.to.persian = (/**
+             * @param {?} jd
+             * @return {?}
+             */
+            function (jd) {
                 /** @type {?} */
                 var year;
                 /** @type {?} */
@@ -1069,9 +1658,9 @@ class UtilityService {
                 month = yday <= 186 ? Math.ceil(yday / 31) : Math.ceil((yday - 6) / 30);
                 day = jd - _.date.persian.to.julian(year, month, 1) + 1;
                 return new Array(insertZero(year), insertZero(month), insertZero(day));
-            };
+            });
             return date;
-        })(this);
+        }))(this);
     }
 }
 UtilityService.decorators = [
@@ -1079,24 +1668,37 @@ UtilityService.decorators = [
                 providedIn: "root"
             },] }
 ];
-/** @nocollapse */ UtilityService.ngInjectableDef = defineInjectable({ factory: function UtilityService_Factory() { return new UtilityService(); }, token: UtilityService, providedIn: "root" });
+/** @nocollapse */ UtilityService.ngInjectableDef = ɵɵdefineInjectable({ factory: function UtilityService_Factory() { return new UtilityService(); }, token: UtilityService, providedIn: "root" });
+if (false) {
+    /** @type {?} */
+    UtilityService.prototype.is;
+    /** @type {?} */
+    UtilityService.prototype.math;
+    /** @type {?} */
+    UtilityService.prototype.date;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const stringTemplate = (template, model) => {
+const stringTemplate = (/**
+ * @param {?} template
+ * @param {?} model
+ * @return {?}
+ */
+(template, model) => {
     /** @type {?} */
     let url;
     try {
@@ -1108,16 +1710,16 @@ const stringTemplate = (template, model) => {
         url = "";
     }
     return url;
-};
+});
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class Cookie {
     // private isConsented: boolean = false;
@@ -1187,14 +1789,18 @@ class Cookie {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @param {?} destination
  * @return {?}
  */
 function MatchValidator(destination) {
-    return (control) => {
+    return (/**
+     * @param {?} control
+     * @return {?}
+     */
+    (control) => {
         if (!control.root.value)
             return;
         /** @type {?} */
@@ -1202,34 +1808,37 @@ function MatchValidator(destination) {
         return (destinationValue == control.value)
             ? null
             : { key: "don't matched" };
-    };
+    });
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @template T
  */
 class IResponse {
 }
+if (false) {
+    /** @type {?} */
+    IResponse.prototype.Result;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { Cookie, SharedModule, HttpResponseBaseModel, HttpRequestBaseModel, PERSIAN_MONTH_DAYS_COUNT, PERSIAN_MONTH_NAMES, DateClass, UtilityService, stringTemplate, MatchValidator, IResponse, CurrencyUnitPipe as ɵd, DataUnitPipe as ɵa, PersianDatePipe as ɵc, PersianNumberPipe as ɵe, TimeCounterPipe as ɵf, TimeUnitPipe as ɵb };
-
+export { Cookie, DateClass, HttpRequestBaseModel, HttpResponseBaseModel, IResponse, MatchValidator, PERSIAN_MONTH_DAYS_COUNT, PERSIAN_MONTH_NAMES, SharedModule, UtilityService, stringTemplate, DataUnitPipe as ɵa, TimeUnitPipe as ɵb, PersianDatePipe as ɵc, CurrencyUnitPipe as ɵd, PersianNumberPipe as ɵe, TimeCounterPipe as ɵf };
 //# sourceMappingURL=soushians-shared.js.map

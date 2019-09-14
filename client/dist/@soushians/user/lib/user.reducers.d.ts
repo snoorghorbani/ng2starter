@@ -23,13 +23,13 @@ export declare const UserReducers: {
 export interface AppState {
     "user": UserState;
 }
-export declare const selectFeatureState: MemoizedSelector<object, UserState>;
-export declare const getUserInforamtionStatus: MemoizedSelector<object, boolean>;
-export declare const isSignedIn: MemoizedSelector<object, boolean>;
-export declare const selectResetPasswordRequestState: MemoizedSelector<object, resetPasswordRequestReducer.State>;
-export declare const getNumberOfRequeseted: MemoizedSelector<object, number>;
-export declare const getResetPasswordRequestStatus: MemoizedSelector<object, boolean>;
-export declare const selectUserInformaionState: MemoizedSelector<object, userReducer.State>;
-export declare const getAccountInfo: MemoizedSelector<object, UserModel>;
-export declare const selectSearchState: MemoizedSelector<object, searchReducer.State>;
-export declare const getSearchStatus: MemoizedSelector<object, responseStatusTypes>;
+export declare const selectFeatureState: MemoizedSelector<object, UserState, import("@ngrx/store").DefaultProjectorFn<UserState>>;
+export declare const getUserInforamtionStatus: MemoizedSelector<object, boolean, import("@ngrx/store").DefaultProjectorFn<boolean>>;
+export declare const isSignedIn: MemoizedSelector<object, boolean, import("@ngrx/store").DefaultProjectorFn<boolean>>;
+export declare const selectResetPasswordRequestState: MemoizedSelector<object, resetPasswordRequestReducer.State, import("@ngrx/store").DefaultProjectorFn<resetPasswordRequestReducer.State>>;
+export declare const getNumberOfRequeseted: MemoizedSelector<object, number, import("@ngrx/store").DefaultProjectorFn<number>>;
+export declare const getResetPasswordRequestStatus: MemoizedSelector<object, boolean, import("@ngrx/store").DefaultProjectorFn<boolean>>;
+export declare const selectUserInformaionState: MemoizedSelector<object, userReducer.State, import("@ngrx/store").DefaultProjectorFn<userReducer.State>>;
+export declare const getAccountInfo: MemoizedSelector<object, UserModel, import("@ngrx/store").DefaultProjectorFn<UserModel>>;
+export declare const selectSearchState: MemoizedSelector<object, searchReducer.State, import("@ngrx/store").DefaultProjectorFn<searchReducer.State>>;
+export declare const getSearchStatus: MemoizedSelector<object, responseStatusTypes, import("@ngrx/store").DefaultProjectorFn<responseStatusTypes>>;

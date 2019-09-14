@@ -1,6 +1,6 @@
 {
   "name": "@soushians/form",
-  "version": "7.7.0",
+  "version": "8.0.10",
   "peerDependencies": {},
   "dependencies": {
     "tslib": "^1.9.0"

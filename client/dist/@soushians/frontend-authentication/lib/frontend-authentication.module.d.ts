@@ -4,4 +4,5 @@ export declare class NgsFrontendAuthenticationModule {
     static forRoot(config?: FrontendAuthenticationModuleConfig): ModuleWithProviders;
 }
 export declare class RootNgsFrontendAuthenticationModule {
+    constructor();
 }

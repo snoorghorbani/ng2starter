@@ -79,7 +79,7 @@ export class NgsUserModule {
 	static forRoot(config?: UserModuleConfig): ModuleWithProviders {
 		return {
 			ngModule: RootNgsUserModule,
-			providers: [ { provide: MODULE_CONFIG_TOKEN, useValue: config } ]
+			providers: [{ provide: MODULE_CONFIG_TOKEN, useValue: config }]
 		};
 	}
 }
@@ -98,4 +98,9 @@ export class NgsUserModule {
 		])
 	]
 })
-export class RootNgsUserModule {}
+export class RootNgsUserModule {
+	constructor() {
+		(<any>window).___starter = (<any>window).___starter || {};
+		(<any>window).___starter.user = "8.0.10";
+	}
+}

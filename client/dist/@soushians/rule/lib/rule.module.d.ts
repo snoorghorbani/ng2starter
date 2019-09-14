@@ -4,4 +4,5 @@ export declare class RuleModule {
     static forRoot(config?: RuleModuleConfig): ModuleWithProviders;
 }
 export declare class RootRuleModule {
+    constructor();
 }

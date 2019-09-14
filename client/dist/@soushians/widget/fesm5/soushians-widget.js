@@ -1,21 +1,27 @@
+import { InjectionToken, Injectable, Inject, Component, ComponentFactoryResolver, ViewContainerRef, Input, Directive, NgModule } from '@angular/core';
+import { Store, StoreModule } from '@ngrx/store';
+import { filter, take, switchMap, map, tap, startWith, pluck, catchError } from 'rxjs/operators';
+import { BehaviorSubject, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { stringTemplate } from '@soushians/shared';
 import { Location, CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatRadioModule, MatSlideToggleModule, MatDividerModule, MatMenuModule, MatCheckboxModule, MatTableModule } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { BehaviorSubject, of } from 'rxjs';
-import { __decorate, __metadata, __assign } from 'tslib';
-import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
-import { InjectionToken, Inject, Injectable, Component, ComponentFactoryResolver, ViewContainerRef, Input, Directive, NgModule } from '@angular/core';
-import { Store, StoreModule } from '@ngrx/store';
-import { map, filter, tap, take, switchMap, startWith, catchError, pluck } from 'rxjs/operators';
 import { RouterModule, ActivatedRoute } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatRadioModule, MatSlideToggleModule, MatDividerModule, MatCheckboxModule, MatTableModule, MatMenuModule } from '@angular/material';
+import { ofType, Actions, Effect, EffectsModule } from '@ngrx/effects';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { __decorate, __metadata, __assign } from 'tslib';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {string} */
+var UPSERT_WIDGET_ACTION_TYPES = {
+    START: "[UPSERT_WIDGET][API][UpsertWidget] start",
+    SUCCEED: "[UPSERT_WIDGET][API][UpsertWidget] succeed",
+    FAILED: "[UPSERT_WIDGET][API][UpsertWidget] failed",
+};
 var UpsertWidgetStartAction = /** @class */ (function () {
     function UpsertWidgetStartAction(payload) {
         this.payload = payload;
@@ -23,6 +29,12 @@ var UpsertWidgetStartAction = /** @class */ (function () {
     }
     return UpsertWidgetStartAction;
 }());
+if (false) {
+    /** @type {?} */
+    UpsertWidgetStartAction.prototype.type;
+    /** @type {?} */
+    UpsertWidgetStartAction.prototype.payload;
+}
 var UpsertWidgetSucceedAction = /** @class */ (function () {
     function UpsertWidgetSucceedAction(payload) {
         this.payload = payload;
@@ -30,6 +42,12 @@ var UpsertWidgetSucceedAction = /** @class */ (function () {
     }
     return UpsertWidgetSucceedAction;
 }());
+if (false) {
+    /** @type {?} */
+    UpsertWidgetSucceedAction.prototype.type;
+    /** @type {?} */
+    UpsertWidgetSucceedAction.prototype.payload;
+}
 var UpsertWidgetFailedAction = /** @class */ (function () {
     function UpsertWidgetFailedAction(payload) {
         this.payload = payload;
@@ -37,11 +55,33 @@ var UpsertWidgetFailedAction = /** @class */ (function () {
     }
     return UpsertWidgetFailedAction;
 }());
+if (false) {
+    /** @type {?} */
+    UpsertWidgetFailedAction.prototype.type;
+    /** @type {?} */
+    UpsertWidgetFailedAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function WidgetModuleConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    WidgetModuleConfig.prototype.development_uri;
+    /** @type {?|undefined} */
+    WidgetModuleConfig.prototype.production_uri;
+    /** @type {?|undefined} */
+    WidgetModuleConfig.prototype.env;
+    /** @type {?|undefined} */
+    WidgetModuleConfig.prototype.endpoints;
+    /** @type {?|undefined} */
+    WidgetModuleConfig.prototype.types;
+}
 /** @type {?} */
 var MODULE_DEFAULT_CONFIG = {
     env: {
@@ -61,7 +101,7 @@ var MODULE_CONFIG_TOKEN = new InjectionToken("WidgetModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var WidgetConfigurationService = /** @class */ (function () {
     function WidgetConfigurationService(configFile, store) {
@@ -97,18 +137,36 @@ var WidgetConfigurationService = /** @class */ (function () {
     ]; };
     return WidgetConfigurationService;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    WidgetConfigurationService.prototype._config;
+    /** @type {?} */
+    WidgetConfigurationService.prototype.config$;
+    /**
+     * @type {?}
+     * @private
+     */
+    WidgetConfigurationService.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetWidgetsApiModel;
 (function (GetWidgetsApiModel) {
     var Request = /** @class */ (function () {
         function Request(initValue) {
-            if (initValue === void 0) { initValue = {}; }
             var _this = this;
-            Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
+            if (initValue === void 0) { initValue = {}; }
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) { return (_this[key] = initValue[key]); }));
         }
         /**
          * @return {?}
@@ -128,18 +186,32 @@ var GetWidgetsApiModel;
         return Response;
     }());
     GetWidgetsApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(GetWidgetsApiModel || (GetWidgetsApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {string} */
+var GET_WIDGETS_ACTION_TYPES = {
+    START: "[GET_WIDGETS][API][GetWidgets] start",
+    SUCCEED: "[GET_WIDGETS][API][GetWidgets] succeed",
+    FAILED: "[GET_WIDGETS][API][GetWidgets] failed",
+};
 var GetWidgetsStartAction = /** @class */ (function () {
     function GetWidgetsStartAction() {
         this.type = "[GET_WIDGETS][API][GetWidgets] start" /* START */;
     }
     return GetWidgetsStartAction;
 }());
+if (false) {
+    /** @type {?} */
+    GetWidgetsStartAction.prototype.type;
+}
 var GetWidgetsSucceedAction = /** @class */ (function () {
     function GetWidgetsSucceedAction(payload) {
         this.payload = payload;
@@ -147,6 +219,12 @@ var GetWidgetsSucceedAction = /** @class */ (function () {
     }
     return GetWidgetsSucceedAction;
 }());
+if (false) {
+    /** @type {?} */
+    GetWidgetsSucceedAction.prototype.type;
+    /** @type {?} */
+    GetWidgetsSucceedAction.prototype.payload;
+}
 var GetWidgetsFailedAction = /** @class */ (function () {
     function GetWidgetsFailedAction(payload) {
         this.payload = payload;
@@ -154,23 +232,33 @@ var GetWidgetsFailedAction = /** @class */ (function () {
     }
     return GetWidgetsFailedAction;
 }());
+if (false) {
+    /** @type {?} */
+    GetWidgetsFailedAction.prototype.type;
+    /** @type {?} */
+    GetWidgetsFailedAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetWidgetApiModel;
 (function (GetWidgetApiModel) {
     var Request = /** @class */ (function () {
         function Request(initValue) {
-            if (initValue === void 0) { initValue = {}; }
             var _this = this;
-            Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
+            if (initValue === void 0) { initValue = {}; }
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) { return (_this[key] = initValue[key]); }));
         }
         /**
          * @return {?}
@@ -184,18 +272,32 @@ var GetWidgetApiModel;
         return Request;
     }());
     GetWidgetApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype._id;
+    }
     var Response = /** @class */ (function () {
         function Response() {
         }
         return Response;
     }());
     GetWidgetApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(GetWidgetApiModel || (GetWidgetApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {string} */
+var GET_WIDGET_ACTION_TYPES = {
+    START: "[WIDGET][API][GetWidget] start",
+    SUCCEED: "[WIDGET][API][GetWidget] succeed",
+    FAILED: "[WIDGET][API][GetWidget] failed",
+};
 var GetWidgetStartAction = /** @class */ (function () {
     function GetWidgetStartAction(payload) {
         this.payload = payload;
@@ -203,6 +305,12 @@ var GetWidgetStartAction = /** @class */ (function () {
     }
     return GetWidgetStartAction;
 }());
+if (false) {
+    /** @type {?} */
+    GetWidgetStartAction.prototype.type;
+    /** @type {?} */
+    GetWidgetStartAction.prototype.payload;
+}
 var GetWidgetSucceedAction = /** @class */ (function () {
     function GetWidgetSucceedAction(payload) {
         this.payload = payload;
@@ -210,6 +318,12 @@ var GetWidgetSucceedAction = /** @class */ (function () {
     }
     return GetWidgetSucceedAction;
 }());
+if (false) {
+    /** @type {?} */
+    GetWidgetSucceedAction.prototype.type;
+    /** @type {?} */
+    GetWidgetSucceedAction.prototype.payload;
+}
 var GetWidgetFailedAction = /** @class */ (function () {
     function GetWidgetFailedAction(payload) {
         this.payload = payload;
@@ -217,15 +331,21 @@ var GetWidgetFailedAction = /** @class */ (function () {
     }
     return GetWidgetFailedAction;
 }());
+if (false) {
+    /** @type {?} */
+    GetWidgetFailedAction.prototype.type;
+    /** @type {?} */
+    GetWidgetFailedAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @template T
@@ -243,10 +363,20 @@ WidgetModel = /** @class */ (function () {
     }
     return WidgetModel;
 }());
+if (false) {
+    /** @type {?} */
+    WidgetModel.prototype._id;
+    /** @type {?} */
+    WidgetModel.prototype.name;
+    /** @type {?} */
+    WidgetModel.prototype.type;
+    /** @type {?} */
+    WidgetModel.prototype.Config;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UpsertWidgetApiModel;
 (function (UpsertWidgetApiModel) {
@@ -268,22 +398,30 @@ var UpsertWidgetApiModel;
         return Request;
     }());
     UpsertWidgetApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype.widget;
+    }
     var Response = /** @class */ (function () {
         function Response() {
         }
         return Response;
     }());
     UpsertWidgetApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(UpsertWidgetApiModel || (UpsertWidgetApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DeleteWidgetApiModel;
 (function (DeleteWidgetApiModel) {
@@ -305,18 +443,32 @@ var DeleteWidgetApiModel;
         return Request;
     }());
     DeleteWidgetApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype.widget;
+    }
     var Response = /** @class */ (function () {
         function Response() {
         }
         return Response;
     }());
     DeleteWidgetApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(DeleteWidgetApiModel || (DeleteWidgetApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {string} */
+var DELETE_WIDGET_ACTION_TYPES = {
+    START: "[DELETE_WIDGET][API][DeleteWidget] start",
+    SUCCEED: "[DELETE_WIDGET][API][DeleteWidget] succeed",
+    FAILED: "[DELETE_WIDGET][API][DeleteWidget] failed",
+};
 var DeleteWidgetStartAction = /** @class */ (function () {
     function DeleteWidgetStartAction(payload) {
         this.payload = payload;
@@ -324,6 +476,12 @@ var DeleteWidgetStartAction = /** @class */ (function () {
     }
     return DeleteWidgetStartAction;
 }());
+if (false) {
+    /** @type {?} */
+    DeleteWidgetStartAction.prototype.type;
+    /** @type {?} */
+    DeleteWidgetStartAction.prototype.payload;
+}
 var DeleteWidgetSucceedAction = /** @class */ (function () {
     function DeleteWidgetSucceedAction(payload) {
         this.payload = payload;
@@ -331,6 +489,12 @@ var DeleteWidgetSucceedAction = /** @class */ (function () {
     }
     return DeleteWidgetSucceedAction;
 }());
+if (false) {
+    /** @type {?} */
+    DeleteWidgetSucceedAction.prototype.type;
+    /** @type {?} */
+    DeleteWidgetSucceedAction.prototype.payload;
+}
 var DeleteWidgetFailedAction = /** @class */ (function () {
     function DeleteWidgetFailedAction(payload) {
         this.payload = payload;
@@ -338,20 +502,26 @@ var DeleteWidgetFailedAction = /** @class */ (function () {
     }
     return DeleteWidgetFailedAction;
 }());
+if (false) {
+    /** @type {?} */
+    DeleteWidgetFailedAction.prototype.type;
+    /** @type {?} */
+    DeleteWidgetFailedAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var WidgetService = /** @class */ (function () {
     function WidgetService(http, store, configurationService, _location) {
@@ -372,9 +542,21 @@ var WidgetService = /** @class */ (function () {
      */
     function (_id) {
         var _this = this;
-        return this.configurationService.config$.pipe(filter(function (config) { return config.endpoints.get !== ""; }), take(1), switchMap(function (config) {
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.endpoints.get !== ""; })), take(1), switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) {
             return _this.http.get(stringTemplate(config.env.frontend_server + config.endpoints.get, { _id: _id }));
-        }), map(function (response) { return response.Result; }));
+        })), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response.Result; })));
     };
     /**
      * @return {?}
@@ -384,7 +566,19 @@ var WidgetService = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        return this.configurationService.config$.pipe(filter(function (config) { return config.endpoints.find != ""; }), switchMap(function (config) { return _this.http.get(config.env.frontend_server + config.endpoints.find); }), map(function (response) { return response.Result; }));
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.endpoints.find != ""; })), switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return _this.http.get(config.env.frontend_server + config.endpoints.find); })), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response.Result; })));
     };
     /**
      * @template T
@@ -400,9 +594,24 @@ var WidgetService = /** @class */ (function () {
         var _this = this;
         /** @type {?} */
         var model = new UpsertWidgetApiModel.Request(widget);
-        return this.configurationService.config$.pipe(filter(function (config) { return config.endpoints.upsert != ""; }), take(1), switchMap(function (config) {
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.endpoints.upsert != ""; })), take(1), switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) {
             return _this.http.post(config.env.frontend_server + config.endpoints.upsert, model.getRequestBody());
-        }), map(function (response) { return response.Result; }), tap(function () { return _this._location.back(); }));
+        })), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response.Result; })), tap((/**
+         * @return {?}
+         */
+        function () { return _this._location.back(); })));
     };
     /**
      * @param {?} widget
@@ -417,7 +626,19 @@ var WidgetService = /** @class */ (function () {
         debugger;
         /** @type {?} */
         var widgetId = widget._id;
-        return this.configurationService.config$.pipe(filter(function (config) { return config.endpoints.deleteItem != ""; }), switchMap(function (config) { return _this.http.delete(stringTemplate(config.env.frontend_server + config.endpoints.deleteItem, { widgetId: widgetId })).pipe(map(function (response) { return response.Result; })); }));
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.endpoints.deleteItem != ""; })), switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return _this.http.delete(stringTemplate(config.env.frontend_server + config.endpoints.deleteItem, { widgetId: widgetId })).pipe(map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response.Result; }))); })));
     };
     /**
      * @template T
@@ -434,13 +655,37 @@ var WidgetService = /** @class */ (function () {
         /** @type {?} */
         var subject = new BehaviorSubject(undefined);
         this.store
-            .select(function (state) { return state.widgets.db.data; })
-            .pipe(filter(function (widgets) { return widgets != null; }), map(function (widgets) { return widgets.find(function (widget) { return widget._id == _id; }); }), tap(function (widget) {
+            .select((/**
+         * @param {?} state
+         * @return {?}
+         */
+        function (state) { return state.widgets.db.data; }))
+            .pipe(filter((/**
+         * @param {?} widgets
+         * @return {?}
+         */
+        function (widgets) { return widgets != null; })), map((/**
+         * @param {?} widgets
+         * @return {?}
+         */
+        function (widgets) { return widgets.find((/**
+         * @param {?} widget
+         * @return {?}
+         */
+        function (widget) { return widget._id == _id; })); })), tap((/**
+         * @param {?} widget
+         * @return {?}
+         */
+        function (widget) {
             if (widget == null) {
                 _this.store.dispatch(new GetWidgetStartAction(_id));
             }
-        }))
-            .subscribe(function (widget) { return subject.next(widget); });
+        })))
+            .subscribe((/**
+         * @param {?} widget
+         * @return {?}
+         */
+        function (widget) { return subject.next(widget); }));
         return subject.asObservable();
     };
     WidgetService.decorators = [
@@ -455,10 +700,32 @@ var WidgetService = /** @class */ (function () {
     ]; };
     return WidgetService;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    WidgetService.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    WidgetService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    WidgetService.prototype.configurationService;
+    /**
+     * @type {?}
+     * @private
+     */
+    WidgetService.prototype._location;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DynamicWidgetViewComponent = /** @class */ (function () {
     function DynamicWidgetViewComponent(store, service, configurationService, resolver, container) {
@@ -488,9 +755,17 @@ var DynamicWidgetViewComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.widget$.pipe(filter(function (widget) { return widget != undefined; })).subscribe(function (widget) {
+        this.widget$.pipe(filter((/**
+         * @param {?} widget
+         * @return {?}
+         */
+        function (widget) { return widget != undefined; }))).subscribe((/**
+         * @param {?} widget
+         * @return {?}
+         */
+        function (widget) {
             _this._resolve_correct_component_base_on_widget_type(widget);
-        });
+        }));
     };
     /**
      * @return {?}
@@ -500,10 +775,18 @@ var DynamicWidgetViewComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.configurationService.config$.pipe(map(function (config) { return config.types; }), startWith({})).subscribe(function (types) {
+        this.configurationService.config$.pipe(map((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.types; })), startWith({})).subscribe((/**
+         * @param {?} types
+         * @return {?}
+         */
+        function (types) {
             debugger;
             _this.mapTypeToComponent = types;
-        });
+        }));
     };
     /**
      * @param {?} id
@@ -535,7 +818,11 @@ var DynamicWidgetViewComponent = /** @class */ (function () {
         /** @type {?} */
         var component = this.resolver.resolveComponentFactory(this.mapTypeToComponent[widget.type].view);
         this.component = this.container.createComponent(component);
-        this.widget$.subscribe(function (w) { return (_this.component.instance.widget = w); });
+        this.widget$.subscribe((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return (_this.component.instance.widget = w); }));
     };
     DynamicWidgetViewComponent.decorators = [
         { type: Component, args: [{
@@ -556,15 +843,49 @@ var DynamicWidgetViewComponent = /** @class */ (function () {
     };
     return DynamicWidgetViewComponent;
 }());
+if (false) {
+    /** @type {?} */
+    DynamicWidgetViewComponent.prototype.widget$;
+    /** @type {?} */
+    DynamicWidgetViewComponent.prototype.component;
+    /** @type {?} */
+    DynamicWidgetViewComponent.prototype.mapTypeToComponent;
+    /** @type {?} */
+    DynamicWidgetViewComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetViewComponent.prototype.service;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetViewComponent.prototype.configurationService;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetViewComponent.prototype.resolver;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetViewComponent.prototype.container;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var WidgetSelectorComponent = /** @class */ (function () {
     function WidgetSelectorComponent(store) {
         this.store = store;
-        this.widgets$ = this.store.select(function (state) { return state.widgets.db.data; });
+        this.widgets$ = this.store.select((/**
+         * @param {?} state
+         * @return {?}
+         */
+        function (state) { return state.widgets.db.data; }));
     }
     Object.defineProperty(WidgetSelectorComponent.prototype, "valid", {
         get: /**
@@ -608,10 +929,18 @@ var WidgetSelectorComponent = /** @class */ (function () {
     ]; };
     return WidgetSelectorComponent;
 }());
+if (false) {
+    /** @type {?} */
+    WidgetSelectorComponent.prototype.widgets$;
+    /** @type {?} */
+    WidgetSelectorComponent.prototype.selectedWidgetId;
+    /** @type {?} */
+    WidgetSelectorComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var RootComponent = /** @class */ (function () {
     function RootComponent() {
@@ -627,12 +956,16 @@ var RootComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var WidgetsManagementComponent = /** @class */ (function () {
     function WidgetsManagementComponent(store) {
         this.store = store;
-        this.widgets$ = this.store.select(function (state) { return state.widgets.db.data; });
+        this.widgets$ = this.store.select((/**
+         * @param {?} state
+         * @return {?}
+         */
+        function (state) { return state.widgets.db.data; }));
         this._fill_anghazi();
     }
     /**
@@ -690,10 +1023,18 @@ var WidgetsManagementComponent = /** @class */ (function () {
     ]; };
     return WidgetsManagementComponent;
 }());
+if (false) {
+    /** @type {?} */
+    WidgetsManagementComponent.prototype.anghazi;
+    /** @type {?} */
+    WidgetsManagementComponent.prototype.widgets$;
+    /** @type {?} */
+    WidgetsManagementComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UpsertComponent = /** @class */ (function () {
     function UpsertComponent() {
@@ -708,7 +1049,7 @@ var UpsertComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var routes = [
@@ -736,14 +1077,26 @@ var WidgetRoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetWidgetApiEffects = /** @class */ (function () {
     function GetWidgetApiEffects(actions$, service) {
         var _this = this;
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$.pipe(ofType("[WIDGET][API][GetWidget] start" /* START */), pluck("payload"), switchMap(function (payload) { return _this.service.get(payload); }), map(function (res) { return new GetWidgetSucceedAction(res); }), catchError(function (err) { return of(new GetWidgetFailedAction(err)); }));
+        this.start$ = this.actions$.pipe(ofType("[WIDGET][API][GetWidget] start" /* START */), pluck("payload"), switchMap((/**
+         * @param {?} payload
+         * @return {?}
+         */
+        function (payload) { return _this.service.get(payload); })), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) { return new GetWidgetSucceedAction(res); })), catchError((/**
+         * @param {?} err
+         * @return {?}
+         */
+        function (err) { return of(new GetWidgetFailedAction(err)); })));
     }
     GetWidgetApiEffects.decorators = [
         { type: Injectable }
@@ -759,17 +1112,43 @@ var GetWidgetApiEffects = /** @class */ (function () {
     ], GetWidgetApiEffects.prototype, "start$", void 0);
     return GetWidgetApiEffects;
 }());
+if (false) {
+    /** @type {?} */
+    GetWidgetApiEffects.prototype.start$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GetWidgetApiEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GetWidgetApiEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UpsertWidgetApiEffects = /** @class */ (function () {
     function UpsertWidgetApiEffects(actions$, service) {
         var _this = this;
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$.pipe(ofType("[UPSERT_WIDGET][API][UpsertWidget] start" /* START */), pluck("payload"), switchMap(function (payload) { return _this.service.upsert(payload); }), map(function (res) { return new UpsertWidgetSucceedAction(res); }), catchError(function (err) { return of(new UpsertWidgetFailedAction(err)); }));
+        this.start$ = this.actions$.pipe(ofType("[UPSERT_WIDGET][API][UpsertWidget] start" /* START */), pluck("payload"), switchMap((/**
+         * @param {?} payload
+         * @return {?}
+         */
+        function (payload) { return _this.service.upsert(payload); })), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) { return new UpsertWidgetSucceedAction(res); })), catchError((/**
+         * @param {?} err
+         * @return {?}
+         */
+        function (err) { return of(new UpsertWidgetFailedAction(err)); })));
     }
     UpsertWidgetApiEffects.decorators = [
         { type: Injectable }
@@ -785,21 +1164,46 @@ var UpsertWidgetApiEffects = /** @class */ (function () {
     ], UpsertWidgetApiEffects.prototype, "start$", void 0);
     return UpsertWidgetApiEffects;
 }());
+if (false) {
+    /** @type {?} */
+    UpsertWidgetApiEffects.prototype.start$;
+    /**
+     * @type {?}
+     * @private
+     */
+    UpsertWidgetApiEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    UpsertWidgetApiEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetWidgetsApiEffects = /** @class */ (function () {
     function GetWidgetsApiEffects(actions$, service) {
         var _this = this;
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$.pipe(ofType("[GET_WIDGETS][API][GetWidgets] start" /* START */), switchMap(function () {
+        this.start$ = this.actions$.pipe(ofType("[GET_WIDGETS][API][GetWidgets] start" /* START */), switchMap((/**
+         * @return {?}
+         */
+        function () {
             return _this.service
                 .getWidgets()
-                .pipe(map(function (res) { return new GetWidgetsSucceedAction(res); }), catchError(function (err) { return of(new GetWidgetsFailedAction(err)); }));
-        }));
+                .pipe(map((/**
+             * @param {?} res
+             * @return {?}
+             */
+            function (res) { return new GetWidgetsSucceedAction(res); })), catchError((/**
+             * @param {?} err
+             * @return {?}
+             */
+            function (err) { return of(new GetWidgetsFailedAction(err)); })));
+        })));
     }
     GetWidgetsApiEffects.decorators = [
         { type: Injectable }
@@ -815,21 +1219,47 @@ var GetWidgetsApiEffects = /** @class */ (function () {
     ], GetWidgetsApiEffects.prototype, "start$", void 0);
     return GetWidgetsApiEffects;
 }());
+if (false) {
+    /** @type {?} */
+    GetWidgetsApiEffects.prototype.start$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GetWidgetsApiEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GetWidgetsApiEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DeleteWidgetApiEffects = /** @class */ (function () {
     function DeleteWidgetApiEffects(actions$, service) {
         var _this = this;
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$.pipe(ofType("[DELETE_WIDGET][API][DeleteWidget] start" /* START */), pluck("payload"), switchMap(function (payload) {
+        this.start$ = this.actions$.pipe(ofType("[DELETE_WIDGET][API][DeleteWidget] start" /* START */), pluck("payload"), switchMap((/**
+         * @param {?} payload
+         * @return {?}
+         */
+        function (payload) {
             return _this.service
                 .delete(payload)
-                .pipe(map(function (res) { return new DeleteWidgetSucceedAction(res); }), catchError(function (err) { return of(new DeleteWidgetFailedAction(err)); }));
-        }));
+                .pipe(map((/**
+             * @param {?} res
+             * @return {?}
+             */
+            function (res) { return new DeleteWidgetSucceedAction(res); })), catchError((/**
+             * @param {?} err
+             * @return {?}
+             */
+            function (err) { return of(new DeleteWidgetFailedAction(err)); })));
+        })));
     }
     DeleteWidgetApiEffects.decorators = [
         { type: Injectable }
@@ -845,10 +1275,24 @@ var DeleteWidgetApiEffects = /** @class */ (function () {
     ], DeleteWidgetApiEffects.prototype, "start$", void 0);
     return DeleteWidgetApiEffects;
 }());
+if (false) {
+    /** @type {?} */
+    DeleteWidgetApiEffects.prototype.start$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DeleteWidgetApiEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DeleteWidgetApiEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var WidgetsActionTypes = {
@@ -862,6 +1306,12 @@ var UpsertWidgetAction = /** @class */ (function () {
     }
     return UpsertWidgetAction;
 }());
+if (false) {
+    /** @type {?} */
+    UpsertWidgetAction.prototype.type;
+    /** @type {?} */
+    UpsertWidgetAction.prototype.payload;
+}
 var DeleteWidgetAction = /** @class */ (function () {
     function DeleteWidgetAction(payload) {
         this.payload = payload;
@@ -869,11 +1319,25 @@ var DeleteWidgetAction = /** @class */ (function () {
     }
     return DeleteWidgetAction;
 }());
+if (false) {
+    /** @type {?} */
+    DeleteWidgetAction.prototype.type;
+    /** @type {?} */
+    DeleteWidgetAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State() { }
+if (false) {
+    /** @type {?} */
+    State.prototype.data;
+}
 var ɵ0 = [];
 /** @type {?} */
 var initialState = {
@@ -897,22 +1361,34 @@ function Reducer(state, action) {
                 newWidgets = [newWidgets];
                 console.error("'WidgetsActionTypes.UPSERT' does not get array payload");
             }
-            newWidgets.forEach(function (newWidget) {
+            newWidgets.forEach((/**
+             * @param {?} newWidget
+             * @return {?}
+             */
+            function (newWidget) {
                 /** @type {?} */
-                var existedWidgetIndex = _data.findIndex(function (w) { return w._id == newWidget._id; });
+                var existedWidgetIndex = _data.findIndex((/**
+                 * @param {?} w
+                 * @return {?}
+                 */
+                function (w) { return w._id == newWidget._id; }));
                 if (existedWidgetIndex > -1) {
                     _data.splice(existedWidgetIndex, 1, newWidget);
                 }
                 else {
                     _data.push(newWidget);
                 }
-            });
+            }));
             return __assign({}, state, { data: _data });
         case WidgetsActionTypes.DELETE:
             debugger;
             _data = state.data.concat();
             /** @type {?} */
-            var widgetIndex = state.data.findIndex(function (w) { return w._id == action.payload._id; });
+            var widgetIndex = state.data.findIndex((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return w._id == action.payload._id; }));
             if (widgetIndex > -1) {
                 _data.splice(widgetIndex, 1);
             }
@@ -921,26 +1397,60 @@ function Reducer(state, action) {
             return state;
     }
 }
+/** @type {?} */
+var getWidgets = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.data; });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function WidgetState() { }
+if (false) {
+    /** @type {?} */
+    WidgetState.prototype.db;
+}
 /** @type {?} */
 var WidgetReducer = {
     db: Reducer
 };
+/**
+ * @record
+ */
+function AppState() { }
+if (false) {
+    /** @type {?} */
+    AppState.prototype.widgets;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var WidgetDbEffects = /** @class */ (function () {
     function WidgetDbEffects(actions$) {
         this.actions$ = actions$;
-        this.Upsert$ = this.actions$.pipe(ofType("[WIDGET][API][GetWidget] succeed" /* SUCCEED */), pluck("payload"), map(function (widget) { return new UpsertWidgetAction([widget]); }));
-        this.UpsertMany$ = this.actions$.pipe(ofType("[GET_WIDGETS][API][GetWidgets] succeed" /* SUCCEED */), pluck("payload"), map(function (widgets) { return new UpsertWidgetAction(widgets); }));
-        this.Delete$ = this.actions$.pipe(ofType("[DELETE_WIDGET][API][DeleteWidget] succeed" /* SUCCEED */), pluck("payload"), map(function (widget) { return new DeleteWidgetAction(widget); }));
+        this.Upsert$ = this.actions$.pipe(ofType("[WIDGET][API][GetWidget] succeed" /* SUCCEED */), pluck("payload"), map((/**
+         * @param {?} widget
+         * @return {?}
+         */
+        function (widget) { return new UpsertWidgetAction([widget]); })));
+        this.UpsertMany$ = this.actions$.pipe(ofType("[GET_WIDGETS][API][GetWidgets] succeed" /* SUCCEED */), pluck("payload"), map((/**
+         * @param {?} widgets
+         * @return {?}
+         */
+        function (widgets) { return new UpsertWidgetAction(widgets); })));
+        this.Delete$ = this.actions$.pipe(ofType("[DELETE_WIDGET][API][DeleteWidget] succeed" /* SUCCEED */), pluck("payload"), map((/**
+         * @param {?} widget
+         * @return {?}
+         */
+        function (widget) { return new DeleteWidgetAction(widget); })));
     }
     WidgetDbEffects.decorators = [
         { type: Injectable }
@@ -963,10 +1473,23 @@ var WidgetDbEffects = /** @class */ (function () {
     ], WidgetDbEffects.prototype, "Delete$", void 0);
     return WidgetDbEffects;
 }());
+if (false) {
+    /** @type {?} */
+    WidgetDbEffects.prototype.Upsert$;
+    /** @type {?} */
+    WidgetDbEffects.prototype.UpsertMany$;
+    /** @type {?} */
+    WidgetDbEffects.prototype.Delete$;
+    /**
+     * @type {?}
+     * @private
+     */
+    WidgetDbEffects.prototype.actions$;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DynamicWidgetConfigDirective = /** @class */ (function () {
     function DynamicWidgetConfigDirective(store, route, service, configurationService, resolver, container) {
@@ -995,10 +1518,18 @@ var DynamicWidgetConfigDirective = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.configurationService.config$.pipe(map(function (config) { return config.types; }), startWith({})).subscribe(function (types) {
+        this.configurationService.config$.pipe(map((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.types; })), startWith({})).subscribe((/**
+         * @param {?} types
+         * @return {?}
+         */
+        function (types) {
             debugger;
             _this.mapTypeToComponent = types;
-        });
+        }));
     };
     /**
      * @return {?}
@@ -1008,17 +1539,25 @@ var DynamicWidgetConfigDirective = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.route.params.subscribe(function (_a) {
+        this.route.params.subscribe((/**
+         * @param {?} __0
+         * @return {?}
+         */
+        function (_a) {
             var type = _a.type, _id = _a._id;
             if (_id) {
-                _this.service.selectById(_id).subscribe(function (widget) {
+                _this.service.selectById(_id).subscribe((/**
+                 * @param {?} widget
+                 * @return {?}
+                 */
+                function (widget) {
                     _this._resolve_correct_component_base_on_widget_type(type, widget);
-                });
+                }));
             }
             else {
                 _this._resolve_correct_component_base_on_widget_type(type);
             }
-        });
+        }));
     };
     /**
      * @param {?} type
@@ -1062,10 +1601,43 @@ var DynamicWidgetConfigDirective = /** @class */ (function () {
     ]; };
     return DynamicWidgetConfigDirective;
 }());
+if (false) {
+    /** @type {?} */
+    DynamicWidgetConfigDirective.prototype.component;
+    /** @type {?} */
+    DynamicWidgetConfigDirective.prototype.mapTypeToComponent;
+    /** @type {?} */
+    DynamicWidgetConfigDirective.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetConfigDirective.prototype.route;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetConfigDirective.prototype.service;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetConfigDirective.prototype.configurationService;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetConfigDirective.prototype.resolver;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetConfigDirective.prototype.container;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DynamicWidgetViewDirective = /** @class */ (function () {
     function DynamicWidgetViewDirective(store, route, service, configurationService, resolver, container) {
@@ -1096,9 +1668,17 @@ var DynamicWidgetViewDirective = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.widget$.pipe(filter(function (widget) { return widget != undefined; })).subscribe(function (widget) {
+        this.widget$.pipe(filter((/**
+         * @param {?} widget
+         * @return {?}
+         */
+        function (widget) { return widget != undefined; }))).subscribe((/**
+         * @param {?} widget
+         * @return {?}
+         */
+        function (widget) {
             _this._resolve_correct_component_base_on_widget_type(widget);
-        });
+        }));
     };
     /**
      * @return {?}
@@ -1108,10 +1688,18 @@ var DynamicWidgetViewDirective = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.configurationService.config$.pipe(map(function (config) { return config.types; }), startWith({})).subscribe(function (types) {
+        this.configurationService.config$.pipe(map((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.types; })), startWith({})).subscribe((/**
+         * @param {?} types
+         * @return {?}
+         */
+        function (types) {
             debugger;
             _this.mapTypeToComponent = types;
-        });
+        }));
     };
     /**
      * @param {?} id
@@ -1142,7 +1730,11 @@ var DynamicWidgetViewDirective = /** @class */ (function () {
         /** @type {?} */
         var component = this.resolver.resolveComponentFactory(this.mapTypeToComponent[widget.type].view);
         this.component = this.container.createComponent(component);
-        this.widget$.subscribe(function (w) { return (_this.component.instance.widget = w); });
+        this.widget$.subscribe((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return (_this.component.instance.widget = w); }));
     };
     DynamicWidgetViewDirective.decorators = [
         { type: Directive, args: [{
@@ -1163,10 +1755,45 @@ var DynamicWidgetViewDirective = /** @class */ (function () {
     };
     return DynamicWidgetViewDirective;
 }());
+if (false) {
+    /** @type {?} */
+    DynamicWidgetViewDirective.prototype.widget$;
+    /** @type {?} */
+    DynamicWidgetViewDirective.prototype.component;
+    /** @type {?} */
+    DynamicWidgetViewDirective.prototype.mapTypeToComponent;
+    /** @type {?} */
+    DynamicWidgetViewDirective.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetViewDirective.prototype.route;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetViewDirective.prototype.service;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetViewDirective.prototype.configurationService;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetViewDirective.prototype.resolver;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetViewDirective.prototype.container;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NgsWidgetModule = /** @class */ (function () {
     function NgsWidgetModule() {
@@ -1226,6 +1853,8 @@ var NgsWidgetModule = /** @class */ (function () {
 }());
 var NgsWidgetRootModule = /** @class */ (function () {
     function NgsWidgetRootModule() {
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.widget = "8.0.10";
     }
     NgsWidgetRootModule.decorators = [
         { type: NgModule, args: [{
@@ -1244,12 +1873,14 @@ var NgsWidgetRootModule = /** @class */ (function () {
                     exports: [NgsWidgetModule]
                 },] }
     ];
+    /** @nocollapse */
+    NgsWidgetRootModule.ctorParameters = function () { return []; };
     return NgsWidgetRootModule;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @template T
@@ -1262,10 +1893,16 @@ IWidgetView = /** @class */ (function () {
     }
     return IWidgetView;
 }());
+if (false) {
+    /** @type {?} */
+    IWidgetView.prototype.widget;
+    /** @type {?} */
+    IWidgetView.prototype.goToEdit;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @template T
@@ -1278,17 +1915,20 @@ IWidgetUpsert = /** @class */ (function () {
     }
     return IWidgetUpsert;
 }());
+if (false) {
+    /** @type {?} */
+    IWidgetUpsert.prototype.widget;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { UpsertWidgetStartAction, DynamicWidgetViewComponent, WidgetSelectorComponent, NgsWidgetModule, WidgetModel, IWidgetView, IWidgetUpsert, WidgetsManagementComponent as ɵi, RootComponent as ɵh, WidgetDbEffects as ɵo, Reducer as ɵn, DeleteWidgetApiEffects as ɵu, GetWidgetApiEffects as ɵp, GetWidgetsApiEffects as ɵr, UpsertWidgetApiEffects as ɵt, WidgetConfigurationService as ɵg, WidgetService as ɵf, DynamicWidgetConfigDirective as ɵk, UpsertComponent as ɵj, DynamicWidgetViewDirective as ɵl, WidgetRoutingModule as ɵm, MODULE_CONFIG_TOKEN as ɵc, NgsWidgetRootModule as ɵb, WidgetReducer as ɵd };
-
+export { DynamicWidgetViewComponent, IWidgetUpsert, IWidgetView, NgsWidgetModule, UpsertWidgetStartAction, WidgetModel, WidgetSelectorComponent, NgsWidgetRootModule as ɵb, MODULE_CONFIG_TOKEN as ɵc, WidgetReducer as ɵd, WidgetService as ɵf, WidgetConfigurationService as ɵg, RootComponent as ɵh, WidgetsManagementComponent as ɵi, UpsertComponent as ɵj, DynamicWidgetConfigDirective as ɵk, DynamicWidgetViewDirective as ɵl, WidgetRoutingModule as ɵm, Reducer as ɵn, WidgetDbEffects as ɵo, GetWidgetApiEffects as ɵp, GetWidgetsApiEffects as ɵr, UpsertWidgetApiEffects as ɵt, DeleteWidgetApiEffects as ɵu };
 //# sourceMappingURL=soushians-widget.js.map

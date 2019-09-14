@@ -1,36 +1,40 @@
-import { stringTemplate } from '@soushians/shared';
-import { getFormModuleConfig } from '@soushians/config';
+import { InjectionToken, Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, Component, Input, EventEmitter, Compiler, ComponentFactoryResolver, Output, Directive, ViewContainerRef, NgModule } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Store, StoreModule } from '@ngrx/store';
 import { BehaviorSubject as BehaviorSubject$1 } from 'rxjs/BehaviorSubject';
+import { filter, map, take, switchMap, takeUntil, catchError } from 'rxjs/operators';
+import { stringTemplate } from '@soushians/shared';
+import { FormGroup, FormControl, Validators, FormArray, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { getFormModuleConfig } from '@soushians/config';
+import { MatTableDataSource, MatExpansionModule, MatSnackBarModule, MatIconModule, MatDatepickerModule, MatButtonModule, MatCardModule, MatCheckboxModule, MatTableModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatDividerModule, MatRadioModule, MatSlideToggleModule } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatTableDataSource, MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatRadioModule, MatSlideToggleModule, MatDividerModule, MatCheckboxModule, MatTableModule, MatDatepickerModule } from '@angular/material';
-import { FormGroup, FormControl, Validators, FormArray, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ofType, Actions, Effect, EffectsModule } from '@ngrx/effects';
+import { __assign, __extends, __decorate, __metadata } from 'tslib';
 import 'rxjs/Observable';
-import { Store, StoreModule } from '@ngrx/store';
-import { __decorate, __metadata, __extends, __assign } from 'tslib';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/switchMap';
-import { InjectionToken, Inject, Injectable, Component, Input, Output, EventEmitter, NgModule, ViewContainerRef, ComponentFactoryResolver, Compiler, Directive, defineInjectable, inject } from '@angular/core';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
 import { of } from 'rxjs/observable/of';
-import { filter, map, take, switchMap, takeUntil, catchError } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var AddFormApiModel;
 (function (AddFormApiModel) {
     var Request = /** @class */ (function () {
         function Request(initValue) {
-            if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
             var _this = this;
-            Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
+            if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) { return (_this[key] = initValue[key]); }));
         }
         /**
          * @return {?}
@@ -73,25 +77,43 @@ var AddFormApiModel;
         return Request;
     }());
     AddFormApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype._id;
+        /** @type {?} */
+        Request.prototype.name;
+        /** @type {?} */
+        Request.prototype.form;
+        /** @type {?} */
+        Request.prototype.events;
+    }
     var Response = /** @class */ (function () {
         function Response() {
         }
         return Response;
     }());
     AddFormApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(AddFormApiModel || (AddFormApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var EditFormApiModel;
 (function (EditFormApiModel) {
     var Request = /** @class */ (function () {
         function Request(initValue) {
-            if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
             var _this = this;
-            Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
+            if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) { return (_this[key] = initValue[key]); }));
         }
         /**
          * @return {?}
@@ -134,25 +156,43 @@ var EditFormApiModel;
         return Request;
     }());
     EditFormApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype._id;
+        /** @type {?} */
+        Request.prototype.name;
+        /** @type {?} */
+        Request.prototype.form;
+        /** @type {?} */
+        Request.prototype.events;
+    }
     var Response = /** @class */ (function () {
         function Response() {
         }
         return Response;
     }());
     EditFormApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(EditFormApiModel || (EditFormApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormListApiModel;
 (function (FormListApiModel) {
     var Request = /** @class */ (function () {
         function Request(initValue) {
-            if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
             var _this = this;
-            Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
+            if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) { return (_this[key] = initValue[key]); }));
         }
         /**
          * @return {?}
@@ -182,18 +222,40 @@ var FormListApiModel;
         return Request;
     }());
     FormListApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype.Name;
+        /** @type {?} */
+        Request.prototype.Controls;
+    }
     var Response = /** @class */ (function () {
         function Response() {
         }
         return Response;
     }());
     FormListApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(FormListApiModel || (FormListApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function validation() { }
+if (false) {
+    /** @type {?} */
+    validation.prototype.active;
+    /** @type {?} */
+    validation.prototype.message;
+    /** @type {?|undefined} */
+    validation.prototype.value;
+}
 var Validator = /** @class */ (function () {
     function Validator() {
         this.required = {
@@ -212,10 +274,18 @@ var Validator = /** @class */ (function () {
     }
     return Validator;
 }());
+if (false) {
+    /** @type {?} */
+    Validator.prototype.required;
+    /** @type {?} */
+    Validator.prototype.minlength;
+    /** @type {?} */
+    Validator.prototype.email;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FieldConfig = /** @class */ (function () {
     function FieldConfig(type) {
@@ -227,10 +297,48 @@ var FieldConfig = /** @class */ (function () {
     }
     return FieldConfig;
 }());
+if (false) {
+    /** @type {?} */
+    FieldConfig.prototype.id;
+    /** @type {?} */
+    FieldConfig.prototype.type;
+    /** @type {?} */
+    FieldConfig.prototype.name;
+    /** @type {?} */
+    FieldConfig.prototype.subtype;
+    /** @type {?} */
+    FieldConfig.prototype.disabled;
+    /** @type {?} */
+    FieldConfig.prototype.title;
+    /** @type {?} */
+    FieldConfig.prototype.parentType;
+    /** @type {?} */
+    FieldConfig.prototype.formGroupPath;
+    /** @type {?} */
+    FieldConfig.prototype.path;
+    /** @type {?} */
+    FieldConfig.prototype.inputType;
+    /** @type {?} */
+    FieldConfig.prototype.value;
+    /** @type {?} */
+    FieldConfig.prototype.order;
+    /** @type {?} */
+    FieldConfig.prototype.width;
+    /** @type {?} */
+    FieldConfig.prototype.options;
+    /** @type {?} */
+    FieldConfig.prototype.dataEndpoint;
+    /** @type {?} */
+    FieldConfig.prototype.optionsEndpoint;
+    /** @type {?} */
+    FieldConfig.prototype.fields;
+    /** @type {?} */
+    FieldConfig.prototype.validator;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormSchemaModel = /** @class */ (function () {
     function FormSchemaModel() {
@@ -257,21 +365,53 @@ var FormSchemaModel = /** @class */ (function () {
     };
     return FormSchemaModel;
 }());
+if (false) {
+    /** @type {?} */
+    FormSchemaModel.prototype._id;
+    /** @type {?} */
+    FormSchemaModel.prototype.name;
+    /** @type {?} */
+    FormSchemaModel.prototype.description;
+    /** @type {?} */
+    FormSchemaModel.prototype.form;
+    /** @type {?} */
+    FormSchemaModel.prototype.events;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function Field() { }
+if (false) {
+    /** @type {?} */
+    Field.prototype.config;
+    /** @type {?} */
+    Field.prototype.group;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-
 /**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @record
  */
+function FormModuleConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    FormModuleConfig.prototype.env;
+    /** @type {?|undefined} */
+    FormModuleConfig.prototype.endpoints;
+}
 /** @type {?} */
 var MODULE_DEFAULT_CONFIG = {
     env: {
@@ -293,7 +433,7 @@ var MODULE_CONFIG_TOKEN = new InjectionToken("FormModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormConfigurationService = /** @class */ (function () {
     function FormConfigurationService(configFile, store) {
@@ -302,12 +442,16 @@ var FormConfigurationService = /** @class */ (function () {
         this.config$ = new BehaviorSubject(MODULE_DEFAULT_CONFIG);
         this._config = Object.assign({}, MODULE_DEFAULT_CONFIG, configFile);
         this.config$.next(this._config);
-        this.store.select(getFormModuleConfig).subscribe(function (userConfig) {
+        this.store.select(getFormModuleConfig).subscribe((/**
+         * @param {?} userConfig
+         * @return {?}
+         */
+        function (userConfig) {
             if (!userConfig)
                 return;
             _this._config = Object.assign({}, _this._config, userConfig.Config);
             _this.config$.next(_this._config);
-        });
+        }));
     }
     Object.defineProperty(FormConfigurationService.prototype, "config", {
         get: /**
@@ -329,13 +473,27 @@ var FormConfigurationService = /** @class */ (function () {
         { type: undefined, decorators: [{ type: Inject, args: [MODULE_CONFIG_TOKEN,] }] },
         { type: Store }
     ]; };
-    /** @nocollapse */ FormConfigurationService.ngInjectableDef = defineInjectable({ factory: function FormConfigurationService_Factory() { return new FormConfigurationService(inject(MODULE_CONFIG_TOKEN), inject(Store)); }, token: FormConfigurationService, providedIn: "root" });
+    /** @nocollapse */ FormConfigurationService.ngInjectableDef = ɵɵdefineInjectable({ factory: function FormConfigurationService_Factory() { return new FormConfigurationService(ɵɵinject(MODULE_CONFIG_TOKEN), ɵɵinject(Store)); }, token: FormConfigurationService, providedIn: "root" });
     return FormConfigurationService;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FormConfigurationService.prototype._config;
+    /** @type {?} */
+    FormConfigurationService.prototype.config$;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormConfigurationService.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormService = /** @class */ (function () {
     function FormService(http, store, configurationService) {
@@ -356,12 +514,24 @@ var FormService = /** @class */ (function () {
         /** @type {?} */
         var model = new AddFormApiModel.Request(data);
         return this.configurationService.config$
-            .filter(function (config) { return config.endpoints.addForm != ""; })
+            .filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.endpoints.addForm != ""; }))
             .take(1)
-            .switchMap(function (config) {
+            .switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) {
             return _this.http.post(config.env.frontend_server + config.endpoints.addForm, model.getRequestBody());
-        })
-            .map(function (response) { return response.Result; });
+        }))
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response.Result; }));
     };
     /**
      * @param {?} _id
@@ -374,12 +544,24 @@ var FormService = /** @class */ (function () {
     function (_id) {
         var _this = this;
         return this.configurationService.config$
-            .filter(function (config) { return config.endpoints.getForm != ""; })
+            .filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.endpoints.getForm != ""; }))
             .take(1)
-            .switchMap(function (config) {
+            .switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) {
             return _this.http.get(stringTemplate(config.env.frontend_server + config.endpoints.getForm, { _id: _id }));
-        })
-            .map(function (response) { return response.Result; });
+        }))
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response.Result; }));
     };
     /**
      * @return {?}
@@ -390,9 +572,21 @@ var FormService = /** @class */ (function () {
     function () {
         var _this = this;
         return this.configurationService.config$
-            .filter(function (config) { return config.endpoints.getList != ""; })
-            .switchMap(function (config) { return _this.http.get(config.env.frontend_server + config.endpoints.getList); })
-            .map(function (response) { return response.Result; });
+            .filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.endpoints.getList != ""; }))
+            .switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return _this.http.get(config.env.frontend_server + config.endpoints.getList); }))
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response.Result; }));
     };
     /**
      * @param {?} data
@@ -407,12 +601,24 @@ var FormService = /** @class */ (function () {
         /** @type {?} */
         var model = new EditFormApiModel.Request(data);
         return this.configurationService.config$
-            .filter(function (config) { return config.endpoints.editForm != ""; })
+            .filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.endpoints.editForm != ""; }))
             .take(1)
-            .switchMap(function (config) {
+            .switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) {
             return _this.http.put(config.env.frontend_server + config.endpoints.editForm, model.getRequestBody());
-        })
-            .map(function (response) { return response.Result; });
+        }))
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response.Result; }));
     };
     /**
      * @param {?} _id
@@ -425,8 +631,16 @@ var FormService = /** @class */ (function () {
     function (_id) {
         var _this = this;
         return this.configurationService.config$
-            .filter(function (config) { return config.endpoints.deleteForm != ""; })
-            .switchMap(function (config) { return _this.http.get(config.env.frontend_server + config.endpoints.deleteForm); });
+            .filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.endpoints.deleteForm != ""; }))
+            .switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return _this.http.get(config.env.frontend_server + config.endpoints.deleteForm); }));
     };
     /**
      * @param {?} _id
@@ -440,9 +654,29 @@ var FormService = /** @class */ (function () {
         /** @type {?} */
         var subject = new BehaviorSubject$1(undefined);
         this.store
-            .select(function (state) { return state.form.list.data; })
-            .pipe(filter(function (forms) { return forms != null; }), map(function (forms) { return forms.find(function (form) { return form._id == _id; }); }))
-            .subscribe(function (formSchemaModel) { return subject.next(formSchemaModel); });
+            .select((/**
+         * @param {?} state
+         * @return {?}
+         */
+        function (state) { return state.form.list.data; }))
+            .pipe(filter((/**
+         * @param {?} forms
+         * @return {?}
+         */
+        function (forms) { return forms != null; })), map((/**
+         * @param {?} forms
+         * @return {?}
+         */
+        function (forms) { return forms.find((/**
+         * @param {?} form
+         * @return {?}
+         */
+        function (form) { return form._id == _id; })); })))
+            .subscribe((/**
+         * @param {?} formSchemaModel
+         * @return {?}
+         */
+        function (formSchemaModel) { return subject.next(formSchemaModel); }));
         return subject.asObservable();
     };
     FormService.decorators = [
@@ -456,13 +690,30 @@ var FormService = /** @class */ (function () {
         { type: Store },
         { type: FormConfigurationService }
     ]; };
-    /** @nocollapse */ FormService.ngInjectableDef = defineInjectable({ factory: function FormService_Factory() { return new FormService(inject(HttpClient), inject(Store), inject(FormConfigurationService)); }, token: FormService, providedIn: "root" });
+    /** @nocollapse */ FormService.ngInjectableDef = ɵɵdefineInjectable({ factory: function FormService_Factory() { return new FormService(ɵɵinject(HttpClient), ɵɵinject(Store), ɵɵinject(FormConfigurationService)); }, token: FormService, providedIn: "root" });
     return FormService;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FormService.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormService.prototype.configurationService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SelectComponent = /** @class */ (function () {
     function SelectComponent() {
@@ -478,15 +729,21 @@ var SelectComponent = /** @class */ (function () {
     SelectComponent.ctorParameters = function () { return []; };
     return SelectComponent;
 }());
+if (false) {
+    /** @type {?} */
+    SelectComponent.prototype.config;
+    /** @type {?} */
+    SelectComponent.prototype.group;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var CheckboxComponent = /** @class */ (function () {
     function CheckboxComponent() {
@@ -502,15 +759,21 @@ var CheckboxComponent = /** @class */ (function () {
     CheckboxComponent.ctorParameters = function () { return []; };
     return CheckboxComponent;
 }());
+if (false) {
+    /** @type {?} */
+    CheckboxComponent.prototype.config;
+    /** @type {?} */
+    CheckboxComponent.prototype.group;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var EmailComponent = /** @class */ (function () {
     function EmailComponent() {
@@ -533,15 +796,21 @@ var EmailComponent = /** @class */ (function () {
     EmailComponent.ctorParameters = function () { return []; };
     return EmailComponent;
 }());
+if (false) {
+    /** @type {?} */
+    EmailComponent.prototype.config;
+    /** @type {?} */
+    EmailComponent.prototype.group;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ColorComponent = /** @class */ (function () {
     function ColorComponent() {
@@ -568,15 +837,25 @@ var ColorComponent = /** @class */ (function () {
     };
     return ColorComponent;
 }());
+if (false) {
+    /** @type {?} */
+    ColorComponent.prototype.config;
+    /** @type {?} */
+    ColorComponent.prototype.group;
+    /** @type {?} */
+    ColorComponent.prototype.form;
+    /** @type {?} */
+    ColorComponent.prototype.schema;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var TableComponent = /** @class */ (function () {
     function TableComponent(http) {
@@ -592,12 +871,16 @@ var TableComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.http.get(this.schema.dataEndpoint).subscribe(function (data) {
+        this.http.get(this.schema.dataEndpoint).subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) {
             _this.ready = true;
             _this.displayedColumns = data.displayedColumns;
             _this.filedDisplayedColumns = data.filedDisplayedColumns;
             _this.dataSource = new MatTableDataSource(data.dataSource);
-        });
+        }));
     };
     /** Whether the number of selected elements matches the total number of rows. */
     /**
@@ -630,7 +913,11 @@ var TableComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.isAllSelected() ? this.selection.clear() : this.dataSource.data.forEach(function (row) { return _this.selection.select(row); });
+        this.isAllSelected() ? this.selection.clear() : this.dataSource.data.forEach((/**
+         * @param {?} row
+         * @return {?}
+         */
+        function (row) { return _this.selection.select(row); }));
     };
     TableComponent.decorators = [
         { type: Component, args: [{
@@ -649,15 +936,40 @@ var TableComponent = /** @class */ (function () {
     };
     return TableComponent;
 }());
+if (false) {
+    /** @type {?} */
+    TableComponent.prototype.config;
+    /** @type {?} */
+    TableComponent.prototype.group;
+    /** @type {?} */
+    TableComponent.prototype.form;
+    /** @type {?} */
+    TableComponent.prototype.schema;
+    /** @type {?} */
+    TableComponent.prototype.ready;
+    /** @type {?} */
+    TableComponent.prototype.displayedColumns;
+    /** @type {?} */
+    TableComponent.prototype.filedDisplayedColumns;
+    /** @type {?} */
+    TableComponent.prototype.dataSource;
+    /** @type {?} */
+    TableComponent.prototype.selection;
+    /**
+     * @type {?}
+     * @private
+     */
+    TableComponent.prototype.http;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NumberComponent = /** @class */ (function () {
     function NumberComponent() {
@@ -684,15 +996,21 @@ var NumberComponent = /** @class */ (function () {
     };
     return NumberComponent;
 }());
+if (false) {
+    /** @type {?} */
+    NumberComponent.prototype.form;
+    /** @type {?} */
+    NumberComponent.prototype.schema;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var TextComponent = /** @class */ (function () {
     function TextComponent() {
@@ -708,20 +1026,26 @@ var TextComponent = /** @class */ (function () {
     TextComponent.ctorParameters = function () { return []; };
     return TextComponent;
 }());
+if (false) {
+    /** @type {?} */
+    TextComponent.prototype.config;
+    /** @type {?} */
+    TextComponent.prototype.group;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var FormsListActionTypes = {
@@ -740,12 +1064,20 @@ var FormsListAction = /** @class */ (function () {
     }
     return FormsListAction;
 }());
+if (false) {
+    /** @type {?} */
+    FormsListAction.prototype.type;
+}
 var FormsListStartAction = /** @class */ (function () {
     function FormsListStartAction() {
         this.type = FormsListActionTypes.FORMS_LIST_START;
     }
     return FormsListStartAction;
 }());
+if (false) {
+    /** @type {?} */
+    FormsListStartAction.prototype.type;
+}
 var FormsListSucceedAction = /** @class */ (function () {
     function FormsListSucceedAction(payload) {
         this.payload = payload;
@@ -753,12 +1085,22 @@ var FormsListSucceedAction = /** @class */ (function () {
     }
     return FormsListSucceedAction;
 }());
+if (false) {
+    /** @type {?} */
+    FormsListSucceedAction.prototype.type;
+    /** @type {?} */
+    FormsListSucceedAction.prototype.payload;
+}
 var FormsListFailedAction = /** @class */ (function () {
     function FormsListFailedAction() {
         this.type = FormsListActionTypes.FORMS_LIST_FAILED;
     }
     return FormsListFailedAction;
 }());
+if (false) {
+    /** @type {?} */
+    FormsListFailedAction.prototype.type;
+}
 var UpdateFormSchemaAction = /** @class */ (function () {
     function UpdateFormSchemaAction(payload) {
         this.payload = payload;
@@ -766,6 +1108,12 @@ var UpdateFormSchemaAction = /** @class */ (function () {
     }
     return UpdateFormSchemaAction;
 }());
+if (false) {
+    /** @type {?} */
+    UpdateFormSchemaAction.prototype.type;
+    /** @type {?} */
+    UpdateFormSchemaAction.prototype.payload;
+}
 var AddFormSchemaAction = /** @class */ (function () {
     function AddFormSchemaAction(payload) {
         this.payload = payload;
@@ -773,6 +1121,12 @@ var AddFormSchemaAction = /** @class */ (function () {
     }
     return AddFormSchemaAction;
 }());
+if (false) {
+    /** @type {?} */
+    AddFormSchemaAction.prototype.type;
+    /** @type {?} */
+    AddFormSchemaAction.prototype.payload;
+}
 var GetFormSchemaAction = /** @class */ (function () {
     function GetFormSchemaAction(payload) {
         this.payload = payload;
@@ -780,6 +1134,12 @@ var GetFormSchemaAction = /** @class */ (function () {
     }
     return GetFormSchemaAction;
 }());
+if (false) {
+    /** @type {?} */
+    GetFormSchemaAction.prototype.type;
+    /** @type {?} */
+    GetFormSchemaAction.prototype.payload;
+}
 var FormSchemaFechedAction = /** @class */ (function () {
     function FormSchemaFechedAction(payload) {
         this.payload = payload;
@@ -787,10 +1147,16 @@ var FormSchemaFechedAction = /** @class */ (function () {
     }
     return FormSchemaFechedAction;
 }());
+if (false) {
+    /** @type {?} */
+    FormSchemaFechedAction.prototype.type;
+    /** @type {?} */
+    FormSchemaFechedAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DateFormInputControlComponent = /** @class */ (function () {
     function DateFormInputControlComponent() {
@@ -806,10 +1172,16 @@ var DateFormInputControlComponent = /** @class */ (function () {
     DateFormInputControlComponent.ctorParameters = function () { return []; };
     return DateFormInputControlComponent;
 }());
+if (false) {
+    /** @type {?} */
+    DateFormInputControlComponent.prototype.config;
+    /** @type {?} */
+    DateFormInputControlComponent.prototype.group;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FileFormInputControlComponent = /** @class */ (function () {
     function FileFormInputControlComponent() {
@@ -825,10 +1197,16 @@ var FileFormInputControlComponent = /** @class */ (function () {
     FileFormInputControlComponent.ctorParameters = function () { return []; };
     return FileFormInputControlComponent;
 }());
+if (false) {
+    /** @type {?} */
+    FileFormInputControlComponent.prototype.config;
+    /** @type {?} */
+    FileFormInputControlComponent.prototype.group;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormCaptchaService = /** @class */ (function () {
     function FormCaptchaService(http, store, configurationService) {
@@ -845,9 +1223,21 @@ var FormCaptchaService = /** @class */ (function () {
     function () {
         var _this = this;
         debugger;
-        return this.configurationService.config$.pipe(filter(function (captcha) { return captcha.endpoints.captchaUrl != ""; }), take(1), switchMap(function (captcha) {
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} captcha
+         * @return {?}
+         */
+        function (captcha) { return captcha.endpoints.captchaUrl != ""; })), take(1), switchMap((/**
+         * @param {?} captcha
+         * @return {?}
+         */
+        function (captcha) {
             return _this.http.get(captcha.env.server + captcha.endpoints.captchaUrl);
-        }), map(function (response) { return response.Result; }));
+        })), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response.Result; })));
     };
     /**
      * @return {?}
@@ -857,7 +1247,19 @@ var FormCaptchaService = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        return this.configurationService.config$.pipe(filter(function (config) { return config.endpoints.getList != ""; }), switchMap(function (config) { return _this.http.get(config.env.server + config.endpoints.getList); }), map(function (response) { return response.Result; }));
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.endpoints.getList != ""; })), switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return _this.http.get(config.env.server + config.endpoints.getList); })), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response.Result; })));
     };
     FormCaptchaService.decorators = [
         { type: Injectable, args: [{
@@ -870,13 +1272,30 @@ var FormCaptchaService = /** @class */ (function () {
         { type: Store },
         { type: FormConfigurationService }
     ]; };
-    /** @nocollapse */ FormCaptchaService.ngInjectableDef = defineInjectable({ factory: function FormCaptchaService_Factory() { return new FormCaptchaService(inject(HttpClient), inject(Store), inject(FormConfigurationService)); }, token: FormCaptchaService, providedIn: "root" });
+    /** @nocollapse */ FormCaptchaService.ngInjectableDef = ɵɵdefineInjectable({ factory: function FormCaptchaService_Factory() { return new FormCaptchaService(ɵɵinject(HttpClient), ɵɵinject(Store), ɵɵinject(FormConfigurationService)); }, token: FormCaptchaService, providedIn: "root" });
     return FormCaptchaService;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FormCaptchaService.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormCaptchaService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormCaptchaService.prototype.configurationService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var CaptchaModel = /** @class */ (function () {
     function CaptchaModel(_a) {
@@ -886,13 +1305,23 @@ var CaptchaModel = /** @class */ (function () {
     }
     return CaptchaModel;
 }());
+if (false) {
+    /** @type {?} */
+    CaptchaModel.prototype.captchaImg;
+    /** @type {?} */
+    CaptchaModel.prototype.captchaCode;
+}
 var UpsertCaptchaApiModel;
 (function (UpsertCaptchaApiModel) {
     var Request = /** @class */ (function () {
         function Request(initValue) {
-            if (initValue === void 0) { initValue = {}; }
             var _this = this;
-            Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
+            if (initValue === void 0) { initValue = {}; }
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) { return (_this[key] = initValue[key]); }));
         }
         /**
          * @return {?}
@@ -906,17 +1335,25 @@ var UpsertCaptchaApiModel;
         return Request;
     }());
     UpsertCaptchaApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype.Captcha;
+    }
     var Response = /** @class */ (function () {
         function Response() {
         }
         return Response;
     }());
     UpsertCaptchaApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(UpsertCaptchaApiModel || (UpsertCaptchaApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormCaptchaComponent = /** @class */ (function () {
     function FormCaptchaComponent(service, store, configurationService) {
@@ -954,11 +1391,19 @@ var FormCaptchaComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.configurationService.config$.pipe(map(function (config) { return config.env.server + config.endpoints.captchaUrl; })).subscribe(function (captcha) {
+        this.configurationService.config$.pipe(map((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.env.server + config.endpoints.captchaUrl; }))).subscribe((/**
+         * @param {?} captcha
+         * @return {?}
+         */
+        function (captcha) {
             _this.captcha = new CaptchaModel({
                 captchaImg: captcha
             });
-        });
+        }));
     };
     FormCaptchaComponent.decorators = [
         { type: Component, args: [{
@@ -975,15 +1420,40 @@ var FormCaptchaComponent = /** @class */ (function () {
     ]; };
     return FormCaptchaComponent;
 }());
+if (false) {
+    /** @type {?} */
+    FormCaptchaComponent.prototype.config;
+    /** @type {?} */
+    FormCaptchaComponent.prototype.group;
+    /** @type {?} */
+    FormCaptchaComponent.prototype.captcha;
+    /** @type {?} */
+    FormCaptchaComponent.prototype.captchaSrc;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormCaptchaComponent.prototype.service;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormCaptchaComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormCaptchaComponent.prototype.configurationService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormViewComponent = /** @class */ (function () {
     function FormViewComponent(service, compiler, resolver, store) {
@@ -998,14 +1468,18 @@ var FormViewComponent = /** @class */ (function () {
         this.card = false;
         this.formGroupCreated = false;
         this.schema$ = new BehaviorSubject$1(undefined);
-        this.schema$.pipe(takeUntil(this.unsubscribe)).subscribe(function (schema) {
+        this.schema$.pipe(takeUntil(this.unsubscribe)).subscribe((/**
+         * @param {?} schema
+         * @return {?}
+         */
+        function (schema) {
             if (!schema)
                 return;
             _this.formGroup = (/** @type {?} */ (_this.createFrom(schema.form)));
             if (!schema.form.name)
                 return;
             _this.formGroupCreated = true;
-        });
+        }));
     }
     Object.defineProperty(FormViewComponent.prototype, "id", {
         set: /**
@@ -1019,7 +1493,11 @@ var FormViewComponent = /** @class */ (function () {
             this.service
                 .selectFormById(id)
                 .pipe(takeUntil(this.unsubscribe))
-                .subscribe(function (schema) { return _this.schema$.next(schema); });
+                .subscribe((/**
+             * @param {?} schema
+             * @return {?}
+             */
+            function (schema) { return _this.schema$.next(schema); }));
         },
         enumerable: true,
         configurable: true
@@ -1072,7 +1550,9 @@ var FormViewComponent = /** @class */ (function () {
         if (data.type == "control") {
             /** @type {?} */
             var formGroupPath = void 0;
-            if (data.parentType == "array") ;
+            if (data.parentType == "array") {
+                // parentPath = `${parentPath}.controls[${(data as FieldConfig).name}]`;
+            }
             else if (data.parentType == "group") {
                 formGroupPath = parentPath;
                 parentPath = parentPath + ".controls." + ((/** @type {?} */ (data))).name;
@@ -1109,10 +1589,14 @@ var FormViewComponent = /** @class */ (function () {
             }
             ((/** @type {?} */ (formGroup_1))).schema = data;
             ((/** @type {?} */ (formGroup_1))).schema.path = parentPath;
-            data.fields.forEach(function (item) {
+            data.fields.forEach((/**
+             * @param {?} item
+             * @return {?}
+             */
+            function (item) {
                 item.parentType = "group";
                 formGroup_1.addControl(item.name, _this.createFrom(item, parentPath));
-            });
+            }));
             return formGroup_1;
         }
         else {
@@ -1122,11 +1606,16 @@ var FormViewComponent = /** @class */ (function () {
                 parentPath == "" ? ((/** @type {?} */ (data))).name : parentPath + ".controls." + ((/** @type {?} */ (data))).name;
             ((/** @type {?} */ (formArray_1))).schema = data;
             ((/** @type {?} */ (formArray_1))).schema.path = parentPath;
-            data.fields.forEach(function (item, idx) {
+            data.fields.forEach((/**
+             * @param {?} item
+             * @param {?} idx
+             * @return {?}
+             */
+            function (item, idx) {
                 item.parentType = "array";
                 item.name = idx.toString();
                 formArray_1.controls.push(_this.createFrom(item, parentPath));
-            });
+            }));
             return formArray_1;
         }
     };
@@ -1172,6 +1661,46 @@ var FormViewComponent = /** @class */ (function () {
     };
     return FormViewComponent;
 }());
+if (false) {
+    /** @type {?} */
+    FormViewComponent.prototype.unsubscribe;
+    /** @type {?} */
+    FormViewComponent.prototype.accept;
+    /** @type {?} */
+    FormViewComponent.prototype.cancel;
+    /** @type {?} */
+    FormViewComponent.prototype.local;
+    /** @type {?} */
+    FormViewComponent.prototype.card;
+    /** @type {?} */
+    FormViewComponent.prototype._id;
+    /** @type {?} */
+    FormViewComponent.prototype.formGroup;
+    /** @type {?} */
+    FormViewComponent.prototype.formGroupCreated;
+    /** @type {?} */
+    FormViewComponent.prototype.schema$;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormViewComponent.prototype.service;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormViewComponent.prototype.compiler;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormViewComponent.prototype.resolver;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormViewComponent.prototype.store;
+}
 /** @type {?} */
 var components = {
     checkbox: CheckboxComponent,
@@ -1240,15 +1769,44 @@ var DynamicFieldDirective = /** @class */ (function () {
     };
     return DynamicFieldDirective;
 }());
+if (false) {
+    /** @type {?} */
+    DynamicFieldDirective.prototype.config;
+    /** @type {?} */
+    DynamicFieldDirective.prototype.group;
+    /** @type {?} */
+    DynamicFieldDirective.prototype.component;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicFieldDirective.prototype.resolver;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicFieldDirective.prototype.container;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State() { }
+if (false) {
+    /** @type {?} */
+    State.prototype.status;
+    /** @type {?} */
+    State.prototype.data;
+}
+var ɵ0 = [];
 /** @type {?} */
 var initialState = {
     status: "pristine",
-    data: []
+    data: ɵ0
 };
 /**
  * @param {?=} state
@@ -1274,7 +1832,11 @@ function reducer(state, action) {
             /** @type {?} */
             var data = state.data.concat();
             /** @type {?} */
-            var entityIdx = state.data.findIndex(function (form) { return form._id == action.payload._id; });
+            var entityIdx = state.data.findIndex((/**
+             * @param {?} form
+             * @return {?}
+             */
+            function (form) { return form._id == action.payload._id; }));
             if (entityIdx > -1) {
                 data[entityIdx] = Object.assign({}, data[entityIdx], action.payload);
             }
@@ -1287,7 +1849,11 @@ function reducer(state, action) {
             /** @type {?} */
             var data = state.data.concat();
             /** @type {?} */
-            var entityIdx = state.data.findIndex(function (form) { return form._id == action.payload._id; });
+            var entityIdx = state.data.findIndex((/**
+             * @param {?} form
+             * @return {?}
+             */
+            function (form) { return form._id == action.payload._id; }));
             if (entityIdx > -1) {
                 data[entityIdx] = Object.assign({}, data[entityIdx], action.payload);
             }
@@ -1300,7 +1866,11 @@ function reducer(state, action) {
             /** @type {?} */
             var data = state.data.concat();
             /** @type {?} */
-            var entityIdx = state.data.findIndex(function (form) { return form._id == action.payload._id; });
+            var entityIdx = state.data.findIndex((/**
+             * @param {?} form
+             * @return {?}
+             */
+            function (form) { return form._id == action.payload._id; }));
             if (entityIdx > -1) {
                 data[entityIdx] = Object.assign({}, data[entityIdx], action.payload);
             }
@@ -1314,19 +1884,41 @@ function reducer(state, action) {
         }
     }
 }
+/** @type {?} */
+var getStatus = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.status; });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function FormState() { }
+if (false) {
+    /** @type {?} */
+    FormState.prototype.list;
+}
 /** @type {?} */
 var FormReducers = {
     list: reducer
 };
+/**
+ * @record
+ */
+function MainContainerState() { }
+if (false) {
+    /** @type {?} */
+    MainContainerState.prototype.form;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormGroupComponent = /** @class */ (function () {
     function FormGroupComponent() {
@@ -1415,10 +2007,20 @@ var FormGroupComponent = /** @class */ (function () {
     };
     return FormGroupComponent;
 }());
+if (false) {
+    /** @type {?} */
+    FormGroupComponent.prototype.schema;
+    /** @type {?} */
+    FormGroupComponent.prototype.noHeader;
+    /** @type {?} */
+    FormGroupComponent.prototype.changes;
+    /** @type {?} */
+    FormGroupComponent.prototype.delete;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormArrayComponent = /** @class */ (function () {
     function FormArrayComponent() {
@@ -1491,10 +2093,16 @@ var FormArrayComponent = /** @class */ (function () {
     };
     return FormArrayComponent;
 }());
+if (false) {
+    /** @type {?} */
+    FormArrayComponent.prototype.schema;
+    /** @type {?} */
+    FormArrayComponent.prototype.changes;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormControlComponent = /** @class */ (function () {
     function FormControlComponent() {
@@ -1518,7 +2126,11 @@ var FormControlComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        if ([this.schema.name, this.schema.title, this.schema.inputType].some(function (item) { return !item; }))
+        if ([this.schema.name, this.schema.title, this.schema.inputType].some((/**
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) { return !item; })))
             return true;
         if (this.schema.inputType == "table") {
             this.schema.options = this.tableOptions.value;
@@ -1575,10 +2187,24 @@ var FormControlComponent = /** @class */ (function () {
     };
     return FormControlComponent;
 }());
+if (false) {
+    /** @type {?} */
+    FormControlComponent.prototype.schema;
+    /** @type {?} */
+    FormControlComponent.prototype.changes;
+    /** @type {?} */
+    FormControlComponent.prototype.delete;
+    /** @type {?} */
+    FormControlComponent.prototype.width;
+    /** @type {?} */
+    FormControlComponent.prototype.options;
+    /** @type {?} */
+    FormControlComponent.prototype.tableOptions;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var EditFormActionTypes = {
@@ -1594,6 +2220,12 @@ var EditFormAction = /** @class */ (function () {
     }
     return EditFormAction;
 }());
+if (false) {
+    /** @type {?} */
+    EditFormAction.prototype.type;
+    /** @type {?} */
+    EditFormAction.prototype.payload;
+}
 var EditFormStartAction = /** @class */ (function () {
     function EditFormStartAction(payload) {
         this.payload = payload;
@@ -1601,6 +2233,12 @@ var EditFormStartAction = /** @class */ (function () {
     }
     return EditFormStartAction;
 }());
+if (false) {
+    /** @type {?} */
+    EditFormStartAction.prototype.type;
+    /** @type {?} */
+    EditFormStartAction.prototype.payload;
+}
 var EditFormSucceedAction = /** @class */ (function () {
     function EditFormSucceedAction(payload) {
         this.payload = payload;
@@ -1608,16 +2246,26 @@ var EditFormSucceedAction = /** @class */ (function () {
     }
     return EditFormSucceedAction;
 }());
+if (false) {
+    /** @type {?} */
+    EditFormSucceedAction.prototype.type;
+    /** @type {?} */
+    EditFormSucceedAction.prototype.payload;
+}
 var EditFormFailedAction = /** @class */ (function () {
     function EditFormFailedAction() {
         this.type = EditFormActionTypes.EDIT_FORM_FAILED;
     }
     return EditFormFailedAction;
 }());
+if (false) {
+    /** @type {?} */
+    EditFormFailedAction.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var AddFormActionTypes = {
@@ -1633,6 +2281,12 @@ var AddFormAction = /** @class */ (function () {
     }
     return AddFormAction;
 }());
+if (false) {
+    /** @type {?} */
+    AddFormAction.prototype.type;
+    /** @type {?} */
+    AddFormAction.prototype.payload;
+}
 var AddFormStartAction = /** @class */ (function () {
     function AddFormStartAction(payload) {
         this.payload = payload;
@@ -1640,22 +2294,36 @@ var AddFormStartAction = /** @class */ (function () {
     }
     return AddFormStartAction;
 }());
+if (false) {
+    /** @type {?} */
+    AddFormStartAction.prototype.type;
+    /** @type {?} */
+    AddFormStartAction.prototype.payload;
+}
 var AddFormSucceedAction = /** @class */ (function () {
     function AddFormSucceedAction() {
         this.type = AddFormActionTypes.ADD_FORM_SUCCEED;
     }
     return AddFormSucceedAction;
 }());
+if (false) {
+    /** @type {?} */
+    AddFormSucceedAction.prototype.type;
+}
 var AddFormFailedAction = /** @class */ (function () {
     function AddFormFailedAction() {
         this.type = AddFormActionTypes.ADD_FORM_FAILED;
     }
     return AddFormFailedAction;
 }());
+if (false) {
+    /** @type {?} */
+    AddFormFailedAction.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var AddFormContainerComponent = /** @class */ (function () {
     function AddFormContainerComponent(store, service) {
@@ -1707,15 +2375,23 @@ var AddFormContainerComponent = /** @class */ (function () {
     ]; };
     return AddFormContainerComponent;
 }());
+if (false) {
+    /** @type {?} */
+    AddFormContainerComponent.prototype.schema;
+    /** @type {?} */
+    AddFormContainerComponent.prototype.store;
+    /** @type {?} */
+    AddFormContainerComponent.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var EditFormContainerComponent = /** @class */ (function (_super) {
     __extends(EditFormContainerComponent, _super);
@@ -1736,17 +2412,41 @@ var EditFormContainerComponent = /** @class */ (function (_super) {
     function () {
         var _this = this;
         this.route.params
-            .map(function (params) { return params["_id"]; })
-            .subscribe(function (id) { return _this.store.dispatch(new GetFormSchemaAction(id)); });
+            .map((/**
+         * @param {?} params
+         * @return {?}
+         */
+        function (params) { return params["_id"]; }))
+            .subscribe((/**
+         * @param {?} id
+         * @return {?}
+         */
+        function (id) { return _this.store.dispatch(new GetFormSchemaAction(id)); }));
         this.route.params
-            .map(function (params) { return params["_id"]; })
-            .switchMap(function (id) { return _this.service.selectFormById(id); })
-            .filter(function (data) { return data != null; })
+            .map((/**
+         * @param {?} params
+         * @return {?}
+         */
+        function (params) { return params["_id"]; }))
+            .switchMap((/**
+         * @param {?} id
+         * @return {?}
+         */
+        function (id) { return _this.service.selectFormById(id); }))
+            .filter((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return data != null; }))
             .take(1)
-            .subscribe(function (formSchema) {
+            .subscribe((/**
+         * @param {?} formSchema
+         * @return {?}
+         */
+        function (formSchema) {
             _this.schema = formSchema;
             _this.formGroup.patchValue(formSchema);
-        });
+        }));
     };
     /**
      * @param {?} data
@@ -1772,10 +2472,23 @@ var EditFormContainerComponent = /** @class */ (function (_super) {
     ]; };
     return EditFormContainerComponent;
 }(AddFormContainerComponent));
+if (false) {
+    /** @type {?} */
+    EditFormContainerComponent.prototype.formGroup;
+    /** @type {?} */
+    EditFormContainerComponent.prototype.service;
+    /**
+     * @type {?}
+     * @private
+     */
+    EditFormContainerComponent.prototype.route;
+    /** @type {?} */
+    EditFormContainerComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var AddFormComponent = /** @class */ (function () {
     function AddFormComponent() {
@@ -1870,15 +2583,25 @@ var AddFormComponent = /** @class */ (function () {
     };
     return AddFormComponent;
 }());
+if (false) {
+    /** @type {?} */
+    AddFormComponent.prototype.schema;
+    /** @type {?} */
+    AddFormComponent.prototype.formGroup;
+    /** @type {?} */
+    AddFormComponent.prototype.submited;
+    /** @type {?} */
+    AddFormComponent.prototype.changes;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var EditFormComponent = /** @class */ (function (_super) {
     __extends(EditFormComponent, _super);
@@ -1908,15 +2631,23 @@ var EditFormComponent = /** @class */ (function (_super) {
     };
     return EditFormComponent;
 }(AddFormComponent));
+if (false) {
+    /** @type {?} */
+    EditFormComponent.prototype.schema;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormListContainerComponent = /** @class */ (function () {
     function FormListContainerComponent(store) {
         this.store = store;
-        this.data$ = this.store.select(function (state) { return state.form.list.data; });
+        this.data$ = this.store.select((/**
+         * @param {?} state
+         * @return {?}
+         */
+        function (state) { return state.form.list.data; }));
     }
     /**
      * @return {?}
@@ -1938,10 +2669,16 @@ var FormListContainerComponent = /** @class */ (function () {
     ]; };
     return FormListContainerComponent;
 }());
+if (false) {
+    /** @type {?} */
+    FormListContainerComponent.prototype.data$;
+    /** @type {?} */
+    FormListContainerComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormListComponent = /** @class */ (function () {
     function FormListComponent() {
@@ -1958,10 +2695,14 @@ var FormListComponent = /** @class */ (function () {
     };
     return FormListComponent;
 }());
+if (false) {
+    /** @type {?} */
+    FormListComponent.prototype.data$;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var MainContainerComponent = /** @class */ (function () {
     function MainContainerComponent(route, store) {
@@ -1980,10 +2721,22 @@ var MainContainerComponent = /** @class */ (function () {
     ]; };
     return MainContainerComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    MainContainerComponent.prototype.route;
+    /**
+     * @type {?}
+     * @private
+     */
+    MainContainerComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var AddFormEffects = /** @class */ (function () {
     function AddFormEffects(actions$, router, service) {
@@ -1991,8 +2744,31 @@ var AddFormEffects = /** @class */ (function () {
         this.actions$ = actions$;
         this.router = router;
         this.service = service;
-        this.AddForm$ = this.actions$.pipe(ofType(AddFormActionTypes.ADD_FORM), map(function (action) { return action.payload; }), map(function (data) { return new AddFormStartAction(data); }));
-        this.AddFormStart$ = this.actions$.pipe(ofType(AddFormActionTypes.ADD_FORM_START), map(function (action) { return action.payload; }), switchMap(function (data) { return _this.service.add(data); }), map(function (res) { return new AddFormSucceedAction(); }), catchError(function () { return of(new AddFormFailedAction()); }));
+        this.AddForm$ = this.actions$.pipe(ofType(AddFormActionTypes.ADD_FORM), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        function (action) { return action.payload; })), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return new AddFormStartAction(data); })));
+        this.AddFormStart$ = this.actions$.pipe(ofType(AddFormActionTypes.ADD_FORM_START), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        function (action) { return action.payload; })), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return _this.service.add(data); })), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) { return new AddFormSucceedAction(); })), catchError((/**
+         * @return {?}
+         */
+        function () { return of(new AddFormFailedAction()); })));
     }
     AddFormEffects.decorators = [
         { type: Injectable }
@@ -2013,20 +2789,41 @@ var AddFormEffects = /** @class */ (function () {
     ], AddFormEffects.prototype, "AddFormStart$", void 0);
     return AddFormEffects;
 }());
+if (false) {
+    /** @type {?} */
+    AddFormEffects.prototype.AddForm$;
+    /** @type {?} */
+    AddFormEffects.prototype.AddFormStart$;
+    /**
+     * @type {?}
+     * @private
+     */
+    AddFormEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    AddFormEffects.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    AddFormEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormsListEffects = /** @class */ (function () {
     function FormsListEffects(actions$, router, service) {
@@ -2034,9 +2831,36 @@ var FormsListEffects = /** @class */ (function () {
         this.actions$ = actions$;
         this.router = router;
         this.service = service;
-        this.EditProfileRequest$ = this.actions$.pipe(ofType(FormsListActionTypes.FORMS_LIST), map(function (data) { return new FormsListStartAction(); }));
-        this.GetForm$ = this.actions$.pipe(ofType(FormsListActionTypes.GET_FORM_SCHEMA), map(function (action) { return action.payload; }), switchMap(function (id) { return _this.service.get(id); }), map(function (formSchema) { return new FormSchemaFechedAction(formSchema); }));
-        this.get_forms_list$ = this.actions$.pipe(ofType(FormsListActionTypes.FORMS_LIST_START), switchMap(function (data) { return _this.service.getList(); }), map(function (res) { return new FormsListSucceedAction(res); }), catchError(function () { return of(new FormsListFailedAction()); }));
+        this.EditProfileRequest$ = this.actions$.pipe(ofType(FormsListActionTypes.FORMS_LIST), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return new FormsListStartAction(); })));
+        this.GetForm$ = this.actions$.pipe(ofType(FormsListActionTypes.GET_FORM_SCHEMA), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        function (action) { return action.payload; })), switchMap((/**
+         * @param {?} id
+         * @return {?}
+         */
+        function (id) { return _this.service.get(id); })), map((/**
+         * @param {?} formSchema
+         * @return {?}
+         */
+        function (formSchema) { return new FormSchemaFechedAction(formSchema); })));
+        this.get_forms_list$ = this.actions$.pipe(ofType(FormsListActionTypes.FORMS_LIST_START), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return _this.service.getList(); })), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) { return new FormsListSucceedAction(res); })), catchError((/**
+         * @return {?}
+         */
+        function () { return of(new FormsListFailedAction()); })));
     }
     FormsListEffects.decorators = [
         { type: Injectable }
@@ -2061,15 +2885,38 @@ var FormsListEffects = /** @class */ (function () {
     ], FormsListEffects.prototype, "get_forms_list$", void 0);
     return FormsListEffects;
 }());
+if (false) {
+    /** @type {?} */
+    FormsListEffects.prototype.EditProfileRequest$;
+    /** @type {?} */
+    FormsListEffects.prototype.GetForm$;
+    /** @type {?} */
+    FormsListEffects.prototype.get_forms_list$;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormsListEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormsListEffects.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormsListEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var EditFormEffects = /** @class */ (function () {
     function EditFormEffects(actions$, router, service) {
@@ -2077,9 +2924,40 @@ var EditFormEffects = /** @class */ (function () {
         this.actions$ = actions$;
         this.router = router;
         this.service = service;
-        this.EditForm$ = this.actions$.pipe(ofType(EditFormActionTypes.EDIT_FORM), map(function (action) { return action.payload; }), map(function (data) { return new EditFormStartAction(data); }));
-        this.EditFormStart$ = this.actions$.pipe(ofType(EditFormActionTypes.EDIT_FORM_START), map(function (action) { return action.payload; }), switchMap(function (data) { return _this.service.update(data); }), map(function (formSchema) { return new EditFormSucceedAction(formSchema); }), catchError(function () { return of(new EditFormFailedAction()); }));
-        this.UpdateFormsListStart$ = this.actions$.pipe(ofType(EditFormActionTypes.EDIT_FORM_SUCCEED), map(function (action) { return action.payload; }), map(function (formSchema) { return new UpdateFormSchemaAction(formSchema); }));
+        this.EditForm$ = this.actions$.pipe(ofType(EditFormActionTypes.EDIT_FORM), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        function (action) { return action.payload; })), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return new EditFormStartAction(data); })));
+        this.EditFormStart$ = this.actions$.pipe(ofType(EditFormActionTypes.EDIT_FORM_START), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        function (action) { return action.payload; })), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return _this.service.update(data); })), map((/**
+         * @param {?} formSchema
+         * @return {?}
+         */
+        function (formSchema) { return new EditFormSucceedAction(formSchema); })), catchError((/**
+         * @return {?}
+         */
+        function () { return of(new EditFormFailedAction()); })));
+        this.UpdateFormsListStart$ = this.actions$.pipe(ofType(EditFormActionTypes.EDIT_FORM_SUCCEED), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        function (action) { return action.payload; })), map((/**
+         * @param {?} formSchema
+         * @return {?}
+         */
+        function (formSchema) { return new UpdateFormSchemaAction(formSchema); })));
     }
     EditFormEffects.decorators = [
         { type: Injectable }
@@ -2104,10 +2982,33 @@ var EditFormEffects = /** @class */ (function () {
     ], EditFormEffects.prototype, "UpdateFormsListStart$", void 0);
     return EditFormEffects;
 }());
+if (false) {
+    /** @type {?} */
+    EditFormEffects.prototype.EditForm$;
+    /** @type {?} */
+    EditFormEffects.prototype.EditFormStart$;
+    /** @type {?} */
+    EditFormEffects.prototype.UpdateFormsListStart$;
+    /**
+     * @type {?}
+     * @private
+     */
+    EditFormEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    EditFormEffects.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    EditFormEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var routes = [
@@ -2135,7 +3036,7 @@ var RoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var CaptchaActionTypes = {
@@ -2144,6 +3045,17 @@ var CaptchaActionTypes = {
     GET_CAPTCHA_SUCCEED: "[CAPTCHA][GET] GET_CAPTCHA_SUCCEED",
     GET_CAPTCHA_FAILED: "[CAPTCHA][GET] GET_CAPTCHA_FAILED",
 };
+var GetCaptchaAction = /** @class */ (function () {
+    function GetCaptchaAction() {
+        this.type = CaptchaActionTypes.GET_CAPTCHA;
+        // constructor(public payload: CaptchaModel) { }
+    }
+    return GetCaptchaAction;
+}());
+if (false) {
+    /** @type {?} */
+    GetCaptchaAction.prototype.type;
+}
 var GetCaptchaStartAction = /** @class */ (function () {
     function GetCaptchaStartAction(payload) {
         this.payload = payload;
@@ -2151,22 +3063,36 @@ var GetCaptchaStartAction = /** @class */ (function () {
     }
     return GetCaptchaStartAction;
 }());
+if (false) {
+    /** @type {?} */
+    GetCaptchaStartAction.prototype.type;
+    /** @type {?} */
+    GetCaptchaStartAction.prototype.payload;
+}
 var GetCaptchaSucceedAction = /** @class */ (function () {
     function GetCaptchaSucceedAction() {
         this.type = CaptchaActionTypes.GET_CAPTCHA_SUCCEED;
     }
     return GetCaptchaSucceedAction;
 }());
+if (false) {
+    /** @type {?} */
+    GetCaptchaSucceedAction.prototype.type;
+}
 var GetCaptchaFailedAction = /** @class */ (function () {
     function GetCaptchaFailedAction() {
         this.type = CaptchaActionTypes.GET_CAPTCHA_FAILED;
     }
     return GetCaptchaFailedAction;
 }());
+if (false) {
+    /** @type {?} */
+    GetCaptchaFailedAction.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var CaptchaEffects = /** @class */ (function () {
     function CaptchaEffects(actions$, router, service) {
@@ -2174,8 +3100,31 @@ var CaptchaEffects = /** @class */ (function () {
         this.actions$ = actions$;
         this.router = router;
         this.service = service;
-        this.GetCaptcha$ = this.actions$.pipe(ofType(CaptchaActionTypes.GET_CAPTCHA), map(function (action) { return action.payload; }), map(function (data) { return new GetCaptchaStartAction(data); }));
-        this.AddFormStart$ = this.actions$.pipe(ofType(CaptchaActionTypes.GET_CAPTCHA_START), map(function (action) { return action.payload; }), switchMap(function (data) { return _this.service.getCaptcha(); }), map(function (res) { return new GetCaptchaSucceedAction(); }), catchError(function () { return of(new GetCaptchaFailedAction()); }));
+        this.GetCaptcha$ = this.actions$.pipe(ofType(CaptchaActionTypes.GET_CAPTCHA), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        function (action) { return action.payload; })), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return new GetCaptchaStartAction(data); })));
+        this.AddFormStart$ = this.actions$.pipe(ofType(CaptchaActionTypes.GET_CAPTCHA_START), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        function (action) { return action.payload; })), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return _this.service.getCaptcha(); })), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) { return new GetCaptchaSucceedAction(); })), catchError((/**
+         * @return {?}
+         */
+        function () { return of(new GetCaptchaFailedAction()); })));
     }
     CaptchaEffects.decorators = [
         { type: Injectable }
@@ -2196,10 +3145,31 @@ var CaptchaEffects = /** @class */ (function () {
     ], CaptchaEffects.prototype, "AddFormStart$", void 0);
     return CaptchaEffects;
 }());
+if (false) {
+    /** @type {?} */
+    CaptchaEffects.prototype.GetCaptcha$;
+    /** @type {?} */
+    CaptchaEffects.prototype.AddFormStart$;
+    /**
+     * @type {?}
+     * @private
+     */
+    CaptchaEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    CaptchaEffects.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    CaptchaEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NgsFormModule = /** @class */ (function () {
     function NgsFormModule() {
@@ -2288,6 +3258,8 @@ var NgsFormModule = /** @class */ (function () {
 }());
 var RootNgsFormModule = /** @class */ (function () {
     function RootNgsFormModule() {
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.form = "8.0.10";
     }
     RootNgsFormModule.decorators = [
         { type: NgModule, args: [{
@@ -2300,19 +3272,20 @@ var RootNgsFormModule = /** @class */ (function () {
                     exports: [NgsFormModule]
                 },] }
     ];
+    /** @nocollapse */
+    RootNgsFormModule.ctorParameters = function () { return []; };
     return RootNgsFormModule;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { FormService, FormViewComponent, DynamicFieldDirective, NgsFormModule, RootNgsFormModule, AddFormComponent as ɵi, AddFormContainerComponent as ɵg, AddFormContainerComponent as ɵl, AddFormEffects as ɵbd, AddFormComponent as ɵn, CaptchaEffects as ɵbg, FormArrayComponent as ɵp, FormControlComponent as ɵq, FormGroupComponent as ɵo, EditFormContainerComponent as ɵf, EditFormEffects as ɵbe, EditFormComponent as ɵh, RoutingModule as ɵbh, MODULE_CONFIG_TOKEN as ɵa, FormListContainerComponent as ɵj, FormListComponent as ɵk, FormsListEffects as ɵbf, reducer as ɵbc, MainContainerComponent as ɵm, FormReducers as ɵb, FormCaptchaService as ɵbb, FormConfigurationService as ɵd, CheckboxComponent as ɵs, ColorComponent as ɵu, DateFormInputControlComponent as ɵv, EmailComponent as ɵt, FileFormInputControlComponent as ɵw, FormCaptchaComponent as ɵba, NumberComponent as ɵy, SelectComponent as ɵr, TableComponent as ɵz, TextComponent as ɵx };
-
+export { DynamicFieldDirective, FormService, FormViewComponent, NgsFormModule, RootNgsFormModule, MODULE_CONFIG_TOKEN as ɵa, FormReducers as ɵb, FormCaptchaComponent as ɵba, FormCaptchaService as ɵbb, reducer as ɵbc, AddFormEffects as ɵbd, EditFormEffects as ɵbe, FormsListEffects as ɵbf, CaptchaEffects as ɵbg, RoutingModule as ɵbh, FormConfigurationService as ɵd, EditFormContainerComponent as ɵf, AddFormContainerComponent as ɵg, EditFormComponent as ɵh, AddFormComponent as ɵi, FormListContainerComponent as ɵj, FormListComponent as ɵk, AddFormContainerComponent as ɵl, MainContainerComponent as ɵm, AddFormComponent as ɵn, FormGroupComponent as ɵo, FormArrayComponent as ɵp, FormControlComponent as ɵq, SelectComponent as ɵr, CheckboxComponent as ɵs, EmailComponent as ɵt, ColorComponent as ɵu, DateFormInputControlComponent as ɵv, FileFormInputControlComponent as ɵw, TextComponent as ɵx, NumberComponent as ɵy, TableComponent as ɵz };
 //# sourceMappingURL=soushians-form.js.map

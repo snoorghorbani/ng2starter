@@ -20,7 +20,7 @@ import { FormControl, FormGroup, FormArray, AbstractControl, Validators } from "
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
-import { ComponentRef } from "@angular/core/src/linker/component_factory";
+import { ComponentRef } from "@angular/core";
 import { Store } from "@ngrx/store";
 
 import {

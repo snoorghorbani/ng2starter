@@ -1,24 +1,50 @@
+import { InjectionToken, Component, Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, Directive, ComponentFactoryResolver, ViewContainerRef, Input, ViewChild, EventEmitter, Output, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Store, StoreModule } from '@ngrx/store';
+import { RouterModule } from '@angular/router';
+import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MAT_BOTTOM_SHEET_DATA, MatBottomSheet, MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatBottomSheetModule, MatRadioModule, MatMenuModule, MatToolbarModule, MatSlideToggleModule, MatDividerModule, MatCheckboxModule, MatTableModule } from '@angular/material';
+import { ofType, Actions, Effect, EffectsModule } from '@ngrx/effects';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { GridsterModule } from 'angular-gridster2';
-import { RouterModule } from '@angular/router';
+import { __decorate, __metadata, __assign } from 'tslib';
+import { filter, take, skipUntil, switchMap, map, tap, catchError, pluck } from 'rxjs/operators';
+import { BehaviorSubject, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { getFrontendUser } from '@soushians/frontend-authentication';
-import { stringTemplate } from '@soushians/shared';
-import { BehaviorSubject, of } from 'rxjs';
-import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
-import { map, filter, tap, take, switchMap, skipUntil, catchError, pluck } from 'rxjs/operators';
 import { UserFacadeService, getAccountInfo } from '@soushians/user';
-import { __assign, __decorate, __metadata } from 'tslib';
-import { Store, StoreModule } from '@ngrx/store';
-import { MAT_BOTTOM_SHEET_DATA, MatBottomSheet, MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatRadioModule, MatSlideToggleModule, MatDividerModule, MatCheckboxModule, MatTableModule, MatBottomSheetModule, MatMenuModule, MatToolbarModule } from '@angular/material';
-import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InjectionToken, Component, Inject, Injectable, ComponentFactoryResolver, ViewContainerRef, Directive, Input, ViewChild, NgModule, EventEmitter, Output, defineInjectable, inject } from '@angular/core';
+import { stringTemplate } from '@soushians/shared';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function IGridType() { }
+if (false) {
+    /** @type {?|undefined} */
+    IGridType.prototype.upsertComponet;
+    /** @type {?|undefined} */
+    IGridType.prototype.configComponent;
+    /** @type {?|undefined} */
+    IGridType.prototype.type;
+    /** @type {?} */
+    IGridType.prototype.viewComponent;
+}
+/**
+ * @record
+ */
+function GridModuleConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    GridModuleConfig.prototype.env;
+    /** @type {?|undefined} */
+    GridModuleConfig.prototype.endpoints;
+    /** @type {?|undefined} */
+    GridModuleConfig.prototype.types;
+}
 /** @type {?} */
 var MODULE_DEFAULT_CONFIG = {
     env: {
@@ -39,7 +65,7 @@ var MODULE_CONFIG_TOKEN = new InjectionToken("GridModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var RootComponent = /** @class */ (function () {
     function RootComponent() {
@@ -55,7 +81,7 @@ var RootComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var routes = [
@@ -70,7 +96,7 @@ var GridRoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GridModel = /** @class */ (function () {
     function GridModel(_a) {
@@ -87,10 +113,26 @@ var GridModel = /** @class */ (function () {
     }
     return GridModel;
 }());
+if (false) {
+    /** @type {?} */
+    GridModel.prototype._id;
+    /** @type {?} */
+    GridModel.prototype.oid;
+    /** @type {?} */
+    GridModel.prototype.name;
+    /** @type {?} */
+    GridModel.prototype.type;
+    /** @type {?} */
+    GridModel.prototype.owner;
+    /** @type {?} */
+    GridModel.prototype.config;
+    /** @type {?} */
+    GridModel.prototype.items;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UpsertGridApiModel;
 (function (UpsertGridApiModel) {
@@ -112,17 +154,25 @@ var UpsertGridApiModel;
         return Request;
     }());
     UpsertGridApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype.grid;
+    }
     var Response = /** @class */ (function () {
         function Response() {
         }
         return Response;
     }());
     UpsertGridApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(UpsertGridApiModel || (UpsertGridApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GridConfigurationService = /** @class */ (function () {
     function GridConfigurationService(configFile, store) {
@@ -158,11 +208,31 @@ var GridConfigurationService = /** @class */ (function () {
     ]; };
     return GridConfigurationService;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    GridConfigurationService.prototype._config;
+    /** @type {?} */
+    GridConfigurationService.prototype.config$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GridConfigurationService.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {string} */
+var GET_GRID_ACTION_TYPES = {
+    START: "[GRID][API][GetGrid] start",
+    SUCCEED: "[GRID][API][GetGrid] succeed",
+    FAILED: "[GRID][API][GetGrid] failed",
+};
 var GetGridStartAction = /** @class */ (function () {
     function GetGridStartAction(payload) {
         this.payload = payload;
@@ -170,6 +240,12 @@ var GetGridStartAction = /** @class */ (function () {
     }
     return GetGridStartAction;
 }());
+if (false) {
+    /** @type {?} */
+    GetGridStartAction.prototype.type;
+    /** @type {?} */
+    GetGridStartAction.prototype.payload;
+}
 var GetGridSucceedAction = /** @class */ (function () {
     function GetGridSucceedAction(payload) {
         this.payload = payload;
@@ -177,6 +253,12 @@ var GetGridSucceedAction = /** @class */ (function () {
     }
     return GetGridSucceedAction;
 }());
+if (false) {
+    /** @type {?} */
+    GetGridSucceedAction.prototype.type;
+    /** @type {?} */
+    GetGridSucceedAction.prototype.payload;
+}
 var GetGridFailedAction = /** @class */ (function () {
     function GetGridFailedAction(payload) {
         this.payload = payload;
@@ -184,10 +266,16 @@ var GetGridFailedAction = /** @class */ (function () {
     }
     return GetGridFailedAction;
 }());
+if (false) {
+    /** @type {?} */
+    GetGridFailedAction.prototype.type;
+    /** @type {?} */
+    GetGridFailedAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GridService = /** @class */ (function () {
     function GridService(http, store, userFacadeService, configurationService) {
@@ -206,11 +294,23 @@ var GridService = /** @class */ (function () {
      */
     function (_id) {
         var _this = this;
-        return this.configurationService.config$.pipe(filter(function (config) { return config.endpoints.get !== ""; }), take(1), skipUntil(this.store.select(getFrontendUser)), switchMap(function (config) {
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.endpoints.get !== ""; })), take(1), skipUntil(this.store.select(getFrontendUser)), switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) {
             return _this.http
                 .get(stringTemplate(config.env.frontend_server + config.endpoints.get, { _id: _id }), {})
-                .pipe(map(function (response) { return response.Result; }));
-        }));
+                .pipe(map((/**
+             * @param {?} response
+             * @return {?}
+             */
+            function (response) { return response.Result; })));
+        })));
     };
     /**
      * @return {?}
@@ -220,7 +320,19 @@ var GridService = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        return this.configurationService.config$.pipe(filter(function (config) { return config.endpoints.find != ""; }), switchMap(function (config) { return _this.http.get(config.env.frontend_server + config.endpoints.find); }), map(function (response) { return response.Result; }));
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.endpoints.find != ""; })), switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return _this.http.get(config.env.frontend_server + config.endpoints.find); })), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response.Result; })));
     };
     /**
      * @param {?} item
@@ -232,7 +344,19 @@ var GridService = /** @class */ (function () {
      */
     function (item) {
         var _this = this;
-        return this.configurationService.config$.pipe(filter(function (config) { return config.endpoints.update_item != ""; }), switchMap(function (config) { return _this.http.patch(config.env.frontend_server + config.endpoints.update_item, item); }), map(function (response) { return response.Result; }));
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.endpoints.update_item != ""; })), switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return _this.http.patch(config.env.frontend_server + config.endpoints.update_item, item); })), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response.Result; })));
     };
     /**
      * @param {?} item
@@ -244,9 +368,21 @@ var GridService = /** @class */ (function () {
      */
     function (item) {
         var _this = this;
-        return this.configurationService.config$.pipe(filter(function (config) { return config.endpoints.update_item_access != ""; }), switchMap(function (config) {
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.endpoints.update_item_access != ""; })), switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) {
             return _this.http.patch(config.env.frontend_server + config.endpoints.update_item_access, item);
-        }), map(function (response) { return response.Result; }));
+        })), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response.Result; })));
     };
     /**
      * @param {?} grid
@@ -260,9 +396,21 @@ var GridService = /** @class */ (function () {
         var _this = this;
         /** @type {?} */
         var model = new UpsertGridApiModel.Request(grid);
-        return this.configurationService.config$.pipe(filter(function (config) { return config.endpoints.upsert != ""; }), take(1), switchMap(function (config) {
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.endpoints.upsert != ""; })), take(1), switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) {
             return _this.http.post(config.env.frontend_server + config.endpoints.upsert, model.getRequestBody(), {});
-        }), map(function (response) { return response.Result; }));
+        })), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response.Result; })));
     };
     // delete(_id: string) {
     // 	return this.configurationService.config$
@@ -293,13 +441,37 @@ var GridService = /** @class */ (function () {
         /** @type {?} */
         var subject = new BehaviorSubject(undefined);
         this.store
-            .select(function (state) { return state.grids.db.data; })
-            .pipe(filter(function (grids) { return grids != null; }), map(function (grids) { return grids.find(function (grid) { return grid._id == _id; }); }), tap(function (grid) {
+            .select((/**
+         * @param {?} state
+         * @return {?}
+         */
+        function (state) { return state.grids.db.data; }))
+            .pipe(filter((/**
+         * @param {?} grids
+         * @return {?}
+         */
+        function (grids) { return grids != null; })), map((/**
+         * @param {?} grids
+         * @return {?}
+         */
+        function (grids) { return grids.find((/**
+         * @param {?} grid
+         * @return {?}
+         */
+        function (grid) { return grid._id == _id; })); })), tap((/**
+         * @param {?} grid
+         * @return {?}
+         */
+        function (grid) {
             if (grid == null) {
                 _this.store.dispatch(new GetGridStartAction(_id));
             }
-        }))
-            .subscribe(function (FormSchemaModel) { return subject.next(FormSchemaModel); });
+        })))
+            .subscribe((/**
+         * @param {?} FormSchemaModel
+         * @return {?}
+         */
+        function (FormSchemaModel) { return subject.next(FormSchemaModel); }));
         return subject.asObservable();
     };
     /**
@@ -315,13 +487,37 @@ var GridService = /** @class */ (function () {
         /** @type {?} */
         var subject = new BehaviorSubject(undefined);
         this.store
-            .select(function (state) { return state.grids.db.data; })
-            .pipe(filter(function (grids) { return grids != null; }), map(function (grids) { return grids.find(function (grid) { return grid._id == _id; }); }), tap(function (grid) {
+            .select((/**
+         * @param {?} state
+         * @return {?}
+         */
+        function (state) { return state.grids.db.data; }))
+            .pipe(filter((/**
+         * @param {?} grids
+         * @return {?}
+         */
+        function (grids) { return grids != null; })), map((/**
+         * @param {?} grids
+         * @return {?}
+         */
+        function (grids) { return grids.find((/**
+         * @param {?} grid
+         * @return {?}
+         */
+        function (grid) { return grid._id == _id; })); })), tap((/**
+         * @param {?} grid
+         * @return {?}
+         */
+        function (grid) {
             if (grid == null) {
                 _this.store.dispatch(new GetGridStartAction(_id));
             }
-        }))
-            .subscribe(function (FormSchemaModel) { return subject.next(FormSchemaModel); });
+        })))
+            .subscribe((/**
+         * @param {?} FormSchemaModel
+         * @return {?}
+         */
+        function (FormSchemaModel) { return subject.next(FormSchemaModel); }));
         return subject.asObservable();
     };
     GridService.decorators = [
@@ -336,20 +532,58 @@ var GridService = /** @class */ (function () {
         { type: UserFacadeService },
         { type: GridConfigurationService }
     ]; };
-    /** @nocollapse */ GridService.ngInjectableDef = defineInjectable({ factory: function GridService_Factory() { return new GridService(inject(HttpClient), inject(Store), inject(UserFacadeService), inject(GridConfigurationService)); }, token: GridService, providedIn: "root" });
+    /** @nocollapse */ GridService.ngInjectableDef = ɵɵdefineInjectable({ factory: function GridService_Factory() { return new GridService(ɵɵinject(HttpClient), ɵɵinject(Store), ɵɵinject(UserFacadeService), ɵɵinject(GridConfigurationService)); }, token: GridService, providedIn: "root" });
     return GridService;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    GridService.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    GridService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    GridService.prototype.userFacadeService;
+    /**
+     * @type {?}
+     * @private
+     */
+    GridService.prototype.configurationService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetGridApiEffects = /** @class */ (function () {
     function GetGridApiEffects(actions$, service) {
         var _this = this;
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$.pipe(ofType("[GRID][API][GetGrid] start" /* START */), map(function (action) { return action.payload; }), switchMap(function (payload) { return _this.service.get(payload); }), map(function (res) { return new GetGridSucceedAction(res); }), catchError(function (err) { return of(new GetGridFailedAction(err)); }));
+        this.start$ = this.actions$.pipe(ofType("[GRID][API][GetGrid] start" /* START */), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        function (action) { return action.payload; })), switchMap((/**
+         * @param {?} payload
+         * @return {?}
+         */
+        function (payload) { return _this.service.get(payload); })), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) { return new GetGridSucceedAction(res); })), catchError((/**
+         * @param {?} err
+         * @return {?}
+         */
+        function (err) { return of(new GetGridFailedAction(err)); })));
     }
     GetGridApiEffects.decorators = [
         { type: Injectable }
@@ -365,11 +599,31 @@ var GetGridApiEffects = /** @class */ (function () {
     ], GetGridApiEffects.prototype, "start$", void 0);
     return GetGridApiEffects;
 }());
+if (false) {
+    /** @type {?} */
+    GetGridApiEffects.prototype.start$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GetGridApiEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GetGridApiEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {string} */
+var UPSERT_GRID_ACTION_TYPES = {
+    START: "[UPSERT_GRID][API][UpsertGrid] start",
+    SUCCEED: "[UPSERT_GRID][API][UpsertGrid] succeed",
+    FAILED: "[UPSERT_GRID][API][UpsertGrid] failed",
+};
 var UpsertGridStartAction = /** @class */ (function () {
     function UpsertGridStartAction(payload) {
         this.payload = payload;
@@ -377,6 +631,12 @@ var UpsertGridStartAction = /** @class */ (function () {
     }
     return UpsertGridStartAction;
 }());
+if (false) {
+    /** @type {?} */
+    UpsertGridStartAction.prototype.type;
+    /** @type {?} */
+    UpsertGridStartAction.prototype.payload;
+}
 var UpsertGridSucceedAction = /** @class */ (function () {
     function UpsertGridSucceedAction(payload) {
         this.payload = payload;
@@ -384,6 +644,12 @@ var UpsertGridSucceedAction = /** @class */ (function () {
     }
     return UpsertGridSucceedAction;
 }());
+if (false) {
+    /** @type {?} */
+    UpsertGridSucceedAction.prototype.type;
+    /** @type {?} */
+    UpsertGridSucceedAction.prototype.payload;
+}
 var UpsertGridFailedAction = /** @class */ (function () {
     function UpsertGridFailedAction(payload) {
         this.payload = payload;
@@ -391,17 +657,35 @@ var UpsertGridFailedAction = /** @class */ (function () {
     }
     return UpsertGridFailedAction;
 }());
+if (false) {
+    /** @type {?} */
+    UpsertGridFailedAction.prototype.type;
+    /** @type {?} */
+    UpsertGridFailedAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UpsertGridApiEffects = /** @class */ (function () {
     function UpsertGridApiEffects(actions$, service) {
         var _this = this;
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$.pipe(ofType("[UPSERT_GRID][API][UpsertGrid] start" /* START */), pluck("payload"), switchMap(function (payload) { return _this.service.upsert(payload); }), map(function (res) { return new UpsertGridSucceedAction(res); }), catchError(function (err) { return of(new UpsertGridFailedAction(err)); }));
+        this.start$ = this.actions$.pipe(ofType("[UPSERT_GRID][API][UpsertGrid] start" /* START */), pluck("payload"), switchMap((/**
+         * @param {?} payload
+         * @return {?}
+         */
+        function (payload) { return _this.service.upsert(payload); })), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) { return new UpsertGridSucceedAction(res); })), catchError((/**
+         * @param {?} err
+         * @return {?}
+         */
+        function (err) { return of(new UpsertGridFailedAction(err)); })));
     }
     UpsertGridApiEffects.decorators = [
         { type: Injectable }
@@ -417,11 +701,41 @@ var UpsertGridApiEffects = /** @class */ (function () {
     ], UpsertGridApiEffects.prototype, "start$", void 0);
     return UpsertGridApiEffects;
 }());
+if (false) {
+    /** @type {?} */
+    UpsertGridApiEffects.prototype.start$;
+    /**
+     * @type {?}
+     * @private
+     */
+    UpsertGridApiEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    UpsertGridApiEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {string} */
+var GET_GRIDS_ACTION_TYPES = {
+    START: "[GET_GRIDS][API][GetGrids] start",
+    SUCCEED: "[GET_GRIDS][API][GetGrids] succeed",
+    FAILED: "[GET_GRIDS][API][GetGrids] failed",
+};
+var GetGridsStartAction = /** @class */ (function () {
+    function GetGridsStartAction() {
+        this.type = "[GET_GRIDS][API][GetGrids] start" /* START */;
+    }
+    return GetGridsStartAction;
+}());
+if (false) {
+    /** @type {?} */
+    GetGridsStartAction.prototype.type;
+}
 var GetGridsSucceedAction = /** @class */ (function () {
     function GetGridsSucceedAction(payload) {
         this.payload = payload;
@@ -429,6 +743,12 @@ var GetGridsSucceedAction = /** @class */ (function () {
     }
     return GetGridsSucceedAction;
 }());
+if (false) {
+    /** @type {?} */
+    GetGridsSucceedAction.prototype.type;
+    /** @type {?} */
+    GetGridsSucceedAction.prototype.payload;
+}
 var GetGridsFailedAction = /** @class */ (function () {
     function GetGridsFailedAction(payload) {
         this.payload = payload;
@@ -436,21 +756,38 @@ var GetGridsFailedAction = /** @class */ (function () {
     }
     return GetGridsFailedAction;
 }());
+if (false) {
+    /** @type {?} */
+    GetGridsFailedAction.prototype.type;
+    /** @type {?} */
+    GetGridsFailedAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetGridsApiEffects = /** @class */ (function () {
     function GetGridsApiEffects(actions$, service) {
         var _this = this;
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$.pipe(ofType("[GET_GRIDS][API][GetGrids] start" /* START */), switchMap(function () {
+        this.start$ = this.actions$.pipe(ofType("[GET_GRIDS][API][GetGrids] start" /* START */), switchMap((/**
+         * @return {?}
+         */
+        function () {
             return _this.service
                 .getGrids()
-                .pipe(map(function (res) { return new GetGridsSucceedAction(res); }), catchError(function (err) { return of(new GetGridsFailedAction(err)); }));
-        }));
+                .pipe(map((/**
+             * @param {?} res
+             * @return {?}
+             */
+            function (res) { return new GetGridsSucceedAction(res); })), catchError((/**
+             * @param {?} err
+             * @return {?}
+             */
+            function (err) { return of(new GetGridsFailedAction(err)); })));
+        })));
     }
     GetGridsApiEffects.decorators = [
         { type: Injectable }
@@ -466,10 +803,24 @@ var GetGridsApiEffects = /** @class */ (function () {
     ], GetGridsApiEffects.prototype, "start$", void 0);
     return GetGridsApiEffects;
 }());
+if (false) {
+    /** @type {?} */
+    GetGridsApiEffects.prototype.start$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GetGridsApiEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GetGridsApiEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var GridsActionTypes = {
@@ -483,11 +834,38 @@ var UpsertGridAction = /** @class */ (function () {
     }
     return UpsertGridAction;
 }());
+if (false) {
+    /** @type {?} */
+    UpsertGridAction.prototype.type;
+    /** @type {?} */
+    UpsertGridAction.prototype.payload;
+}
+var DeleteGridAction = /** @class */ (function () {
+    function DeleteGridAction(payload) {
+        this.payload = payload;
+        this.type = GridsActionTypes.DELETE;
+    }
+    return DeleteGridAction;
+}());
+if (false) {
+    /** @type {?} */
+    DeleteGridAction.prototype.type;
+    /** @type {?} */
+    DeleteGridAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State() { }
+if (false) {
+    /** @type {?} */
+    State.prototype.data;
+}
 var ɵ0 = [];
 /** @type {?} */
 var initialState = {
@@ -507,46 +885,88 @@ function Reducer(state, action) {
             _data = state.data.concat();
             /** @type {?} */
             var newGrids = action.payload;
-            newGrids.forEach(function (newGrid) {
+            newGrids.forEach((/**
+             * @param {?} newGrid
+             * @return {?}
+             */
+            function (newGrid) {
                 /** @type {?} */
-                var existedGridIndex = _data.findIndex(function (w) { return w._id == newGrid._id; });
+                var existedGridIndex = _data.findIndex((/**
+                 * @param {?} w
+                 * @return {?}
+                 */
+                function (w) { return w._id == newGrid._id; }));
                 if (existedGridIndex > -1) {
                     _data.splice(existedGridIndex, 1, newGrid);
                 }
                 else {
                     _data.push(newGrid);
                 }
-            });
+            }));
             return __assign({}, state, { data: _data });
         case GridsActionTypes.DELETE:
             _data = Object.assign({}, state.data);
             /** @type {?} */
-            var gridIndex = state.data.findIndex(function (w) { return w._id == action.payload._id; });
+            var gridIndex = state.data.findIndex((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return w._id == action.payload._id; }));
             _data.splice(gridIndex, 1);
             return __assign({}, state, { data: _data });
         default:
             return state;
     }
 }
+/** @type {?} */
+var getGrids = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.data; });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function GridState() { }
+if (false) {
+    /** @type {?} */
+    GridState.prototype.db;
+}
 /** @type {?} */
 var GridReducer = {
     db: Reducer
 };
+/**
+ * @record
+ */
+function AppState() { }
+if (false) {
+    /** @type {?} */
+    AppState.prototype.grids;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GridDbEffects = /** @class */ (function () {
     function GridDbEffects(actions$) {
         this.actions$ = actions$;
-        this.Upsert$ = this.actions$.pipe(ofType("[GRID][API][GetGrid] succeed" /* SUCCEED */, "[UPSERT_GRID][API][UpsertGrid] succeed" /* SUCCEED */), pluck("payload"), map(function (grid) { return new UpsertGridAction([grid]); }));
-        this.UpsertMany$ = this.actions$.pipe(ofType("[GET_GRIDS][API][GetGrids] succeed" /* SUCCEED */), pluck("payload"), map(function (grids) { return new UpsertGridAction(grids); }));
+        this.Upsert$ = this.actions$.pipe(ofType("[GRID][API][GetGrid] succeed" /* SUCCEED */, "[UPSERT_GRID][API][UpsertGrid] succeed" /* SUCCEED */), pluck("payload"), map((/**
+         * @param {?} grid
+         * @return {?}
+         */
+        function (grid) { return new UpsertGridAction([grid]); })));
+        this.UpsertMany$ = this.actions$.pipe(ofType("[GET_GRIDS][API][GetGrids] succeed" /* SUCCEED */), pluck("payload"), map((/**
+         * @param {?} grids
+         * @return {?}
+         */
+        function (grids) { return new UpsertGridAction(grids); })));
     }
     GridDbEffects.decorators = [
         { type: Injectable }
@@ -565,10 +985,21 @@ var GridDbEffects = /** @class */ (function () {
     ], GridDbEffects.prototype, "UpsertMany$", void 0);
     return GridDbEffects;
 }());
+if (false) {
+    /** @type {?} */
+    GridDbEffects.prototype.Upsert$;
+    /** @type {?} */
+    GridDbEffects.prototype.UpsertMany$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GridDbEffects.prototype.actions$;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DynamicGridItremConfigDirective = /** @class */ (function () {
     function DynamicGridItremConfigDirective(configurationService, resolver, container) {
@@ -652,6 +1083,27 @@ var DynamicGridItremConfigDirective = /** @class */ (function () {
     };
     return DynamicGridItremConfigDirective;
 }());
+if (false) {
+    /** @type {?} */
+    DynamicGridItremConfigDirective.prototype.component;
+    /** @type {?} */
+    DynamicGridItremConfigDirective.prototype.mapTypeToComponent;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicGridItremConfigDirective.prototype.configurationService;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicGridItremConfigDirective.prototype.resolver;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicGridItremConfigDirective.prototype.container;
+}
 var DynamicGridItemConfigComponent = /** @class */ (function () {
     function DynamicGridItemConfigComponent(data) {
         this.data = data;
@@ -686,14 +1138,20 @@ var DynamicGridItemConfigComponent = /** @class */ (function () {
         { type: undefined, decorators: [{ type: Inject, args: [MAT_BOTTOM_SHEET_DATA,] }] }
     ]; };
     DynamicGridItemConfigComponent.propDecorators = {
-        DynamicWidgetRef: [{ type: ViewChild, args: [DynamicGridItremConfigDirective,] }]
+        DynamicWidgetRef: [{ type: ViewChild, args: [DynamicGridItremConfigDirective, { static: false },] }]
     };
     return DynamicGridItemConfigComponent;
 }());
+if (false) {
+    /** @type {?} */
+    DynamicGridItemConfigComponent.prototype.DynamicWidgetRef;
+    /** @type {?} */
+    DynamicGridItemConfigComponent.prototype.data;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GridConfigComponent = /** @class */ (function () {
     function GridConfigComponent(store, data) {
@@ -782,10 +1240,36 @@ var GridConfigComponent = /** @class */ (function () {
     ]; };
     return GridConfigComponent;
 }());
+if (false) {
+    /** @type {?} */
+    GridConfigComponent.prototype.gridTypes;
+    /** @type {?} */
+    GridConfigComponent.prototype.compactType;
+    /** @type {?} */
+    GridConfigComponent.prototype.displayGridTypes;
+    /** @type {?} */
+    GridConfigComponent.prototype.grid;
+    /** @type {?} */
+    GridConfigComponent.prototype.oid;
+    /** @type {?} */
+    GridConfigComponent.prototype.configFormGroup;
+    /** @type {?} */
+    GridConfigComponent.prototype.gridFormGroup;
+    /**
+     * @type {?}
+     * @private
+     */
+    GridConfigComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    GridConfigComponent.prototype.data;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GridComponent = /** @class */ (function () {
     function GridComponent(store, service, userFacadeService, configurationService, bottomSheet) {
@@ -807,18 +1291,38 @@ var GridComponent = /** @class */ (function () {
         this.options = {};
         this.userFacadeService
             .getInfo()
-            .pipe(filter(function (user) { return user.CurrentSession != undefined; }), map(function (user) { return user.CurrentSession.Username; }))
-            .subscribe(function (username) {
+            .pipe(filter((/**
+         * @param {?} user
+         * @return {?}
+         */
+        function (user) { return user.CurrentSession != undefined; })), map((/**
+         * @param {?} user
+         * @return {?}
+         */
+        function (user) { return user.CurrentSession.Username; })))
+            .subscribe((/**
+         * @param {?} username
+         * @return {?}
+         */
+        function (username) {
             _this.username = username;
-        });
+        }));
         this.gridItemTypes = Object.keys(this.configurationService.config$.getValue().types);
-        this.havePermission$ = this.store.select(getAccountInfo).pipe(map(function (user) {
+        this.havePermission$ = this.store.select(getAccountInfo).pipe(map((/**
+         * @param {?} user
+         * @return {?}
+         */
+        function (user) {
             /** @type {?} */
             var criteria = [user, user._id, _this.grid, _this.grid.owner];
-            if (criteria.some(function (i) { return !i; }))
+            if (criteria.some((/**
+             * @param {?} i
+             * @return {?}
+             */
+            function (i) { return !i; })))
                 return false;
             return user._id == _this.grid.owner;
-        }));
+        })));
     }
     /**
      * @param {?} item
@@ -895,9 +1399,13 @@ var GridComponent = /** @class */ (function () {
     function (item, event) {
         debugger;
         item.access = event.checked ? "public" : "private";
-        this.service.update_item_access(item).subscribe(function (item) {
+        this.service.update_item_access(item).subscribe((/**
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) {
             debugger;
-        });
+        }));
     };
     /**
      * @param {?} e
@@ -979,10 +1487,14 @@ var GridComponent = /** @class */ (function () {
                 type: item.type
             }
         });
-        bs.afterDismissed().subscribe(function (data) {
+        bs.afterDismissed().subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) {
             item.config = bs.instance.config;
             item.valid = bs.instance.valid;
-        });
+        }));
     };
     /**
      * @param {?} item
@@ -999,10 +1511,14 @@ var GridComponent = /** @class */ (function () {
                 type: item.type
             }
         });
-        bs.afterDismissed().subscribe(function (data) {
+        bs.afterDismissed().subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) {
             item.config = bs.instance.config;
             item.valid = bs.instance.valid;
-        });
+        }));
     };
     // tslint:disable-next-line:member-ordering
     // @ViewChild("DiagramViewComponent") _ngsDynamicGridItemView: DiagramViewComponent;
@@ -1035,7 +1551,15 @@ var GridComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.service.selectById(this.oid).pipe(filter(function (data) { return data != undefined; })).subscribe(function (data) {
+        this.service.selectById(this.oid).pipe(filter((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return data != undefined; }))).subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) {
             _this.grid = data;
             debugger;
             data.config.outerMarginBottom = +data.config.outerMarginBottom;
@@ -1051,7 +1575,7 @@ var GridComponent = /** @class */ (function () {
             // if (this.options.enableEmptyCellClick) this.options.emptyCellClickCallback = this.emptyCellClick.bind(this);
             _this.ready = true;
             // this.options.api.optionsChanged();
-        });
+        }));
     };
     GridComponent.decorators = [
         { type: Component, args: [{
@@ -1081,10 +1605,67 @@ var GridComponent = /** @class */ (function () {
     };
     return GridComponent;
 }());
+if (false) {
+    /** @type {?} */
+    GridComponent.prototype.itemValidateCallback;
+    /** @type {?} */
+    GridComponent.prototype.itemRemovedCallback;
+    /** @type {?} */
+    GridComponent.prototype.itemInitCallback;
+    /** @type {?} */
+    GridComponent.prototype.itemResizeCallback;
+    /** @type {?} */
+    GridComponent.prototype.itemChangeCallback;
+    /** @type {?} */
+    GridComponent.prototype.gridSizeChangedCallback;
+    /** @type {?} */
+    GridComponent.prototype.destroyCallback;
+    /** @type {?} */
+    GridComponent.prototype.initCallback;
+    /** @type {?} */
+    GridComponent.prototype.oid;
+    /** @type {?} */
+    GridComponent.prototype.havePermission$;
+    /** @type {?} */
+    GridComponent.prototype.username;
+    /** @type {?} */
+    GridComponent.prototype.options;
+    /** @type {?} */
+    GridComponent.prototype.grid;
+    /** @type {?} */
+    GridComponent.prototype.ready;
+    /** @type {?} */
+    GridComponent.prototype.gridItemTypes;
+    /**
+     * @type {?}
+     * @private
+     */
+    GridComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    GridComponent.prototype.service;
+    /**
+     * @type {?}
+     * @private
+     */
+    GridComponent.prototype.userFacadeService;
+    /**
+     * @type {?}
+     * @private
+     */
+    GridComponent.prototype.configurationService;
+    /**
+     * @type {?}
+     * @private
+     */
+    GridComponent.prototype.bottomSheet;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DynamicGridItemViewDirective = /** @class */ (function () {
     function DynamicGridItemViewDirective(configurationService, resolver, container) {
@@ -1134,9 +1715,13 @@ var DynamicGridItemViewDirective = /** @class */ (function () {
         /** @type {?} */
         var componentFactory = this.resolver.resolveComponentFactory(this.mapTypeToComponent[item.type].viewComponent);
         this.component = this.container.createComponent(componentFactory);
-        Object.keys(item.config || {}).forEach(function (key) {
+        Object.keys(item.config || {}).forEach((/**
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) {
             _this.component.instance[key] = item.config[key];
-        });
+        }));
     };
     DynamicGridItemViewDirective.decorators = [
         { type: Directive, args: [{
@@ -1154,10 +1739,31 @@ var DynamicGridItemViewDirective = /** @class */ (function () {
     };
     return DynamicGridItemViewDirective;
 }());
+if (false) {
+    /** @type {?} */
+    DynamicGridItemViewDirective.prototype.component;
+    /** @type {?} */
+    DynamicGridItemViewDirective.prototype.mapTypeToComponent;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicGridItemViewDirective.prototype.configurationService;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicGridItemViewDirective.prototype.resolver;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicGridItemViewDirective.prototype.container;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NgsGridModule = /** @class */ (function () {
     function NgsGridModule() {
@@ -1219,6 +1825,8 @@ var NgsGridModule = /** @class */ (function () {
 }());
 var NgsGridRootModule = /** @class */ (function () {
     function NgsGridRootModule() {
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.grid = "8.0.10";
     }
     NgsGridRootModule.decorators = [
         { type: NgModule, args: [{
@@ -1231,19 +1839,20 @@ var NgsGridRootModule = /** @class */ (function () {
                     exports: [NgsGridModule]
                 },] }
     ];
+    /** @nocollapse */
+    NgsGridRootModule.ctorParameters = function () { return []; };
     return NgsGridRootModule;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { GridModel, NgsGridModule, NgsGridRootModule, MODULE_DEFAULT_CONFIG, MODULE_CONFIG_TOKEN, GridConfigComponent as ɵg, DynamicGridItemConfigComponent as ɵi, DynamicGridItremConfigDirective as ɵh, DynamicGridItemViewDirective as ɵj, GridRoutingModule as ɵk, GridReducer as ɵc, GridComponent as ɵb, GridDbEffects as ɵm, Reducer as ɵl, RootComponent as ɵa, GetGridApiEffects as ɵn, GetGridsApiEffects as ɵp, UpsertGridApiEffects as ɵr, GridConfigurationService as ɵf, GridService as ɵe };
-
+export { GridModel, MODULE_CONFIG_TOKEN, MODULE_DEFAULT_CONFIG, NgsGridModule, NgsGridRootModule, RootComponent as ɵa, GridComponent as ɵb, GridReducer as ɵc, GridService as ɵe, GridConfigurationService as ɵf, GridConfigComponent as ɵg, DynamicGridItremConfigDirective as ɵh, DynamicGridItemConfigComponent as ɵi, DynamicGridItemViewDirective as ɵj, GridRoutingModule as ɵk, Reducer as ɵl, GridDbEffects as ɵm, GetGridApiEffects as ɵn, GetGridsApiEffects as ɵp, UpsertGridApiEffects as ɵr };
 //# sourceMappingURL=soushians-grid.js.map

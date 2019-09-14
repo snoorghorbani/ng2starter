@@ -2,7 +2,7 @@ import { OnInit, ViewContainerRef, ComponentFactoryResolver, Compiler, EventEmit
 import { FormGroup, AbstractControl } from "@angular/forms";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Subject } from "rxjs";
-import { ComponentRef } from "@angular/core/src/linker/component_factory";
+import { ComponentRef } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { FormService } from "../../services/form.service";
 import { MainContainerState } from "../../main-container/main-container.reducers";

@@ -1,23 +1,23 @@
+import { createFeatureSelector, createSelector, Store, StoreModule } from '@ngrx/store';
+import { __assign, __decorate, __metadata } from 'tslib';
+import { Component, InjectionToken, Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, EventEmitter, Output, Input, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule, Router } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatSnackBar, MatBottomSheet, MatIconModule, MatButtonModule, MatCardModule, MatSnackBarModule, MatSidenavModule, MatExpansionModule, MatSelectModule, MatBottomSheetModule, MatFormFieldModule, MatListModule, MatMenuModule, MatRadioModule, MatInputModule, MatToolbarModule, MatDatepickerModule, MatProgressBarModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ofType, Actions, Effect, EffectsModule } from '@ngrx/effects';
 import { NgsFormModule } from '@soushians/form';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { createSelector, createFeatureSelector, Store, StoreModule } from '@ngrx/store';
-import { MatSnackBar as MatSnackBar$1 } from '@angular/material/snack-bar';
-import { RouterModule, Router } from '@angular/router';
 import { BehaviorSubject, of } from 'rxjs';
-import { MatSnackBar, MatBottomSheet, MatIconModule, MatButtonModule, MatCardModule, MatSnackBarModule, MatSidenavModule, MatExpansionModule, MatSelectModule, MatFormFieldModule, MatListModule, MatMenuModule, MatRadioModule, MatInputModule, MatToolbarModule, MatDatepickerModule, MatProgressBarModule, MatBottomSheetModule } from '@angular/material';
-import { __decorate, __metadata, __assign } from 'tslib';
-import { Component, InjectionToken, Injectable, Inject, NgModule, Input, Output, EventEmitter, defineInjectable, inject } from '@angular/core';
-import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
-import { map, switchMap, take, filter, catchError, tap, pluck } from 'rxjs/operators';
+import { filter, take, switchMap, map, catchError, pluck, tap } from 'rxjs/operators';
+import { MatSnackBar as MatSnackBar$1 } from '@angular/material/snack-bar';
 import { UserActionTypes } from '@soushians/user';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UserModel = /** @class */ (function () {
     function UserModel(params) {
@@ -28,17 +28,31 @@ var UserModel = /** @class */ (function () {
         // UserType: string;
         this.Roles = [];
         params &&
-            Object.keys(params).forEach(function (key) {
+            Object.keys(params).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) {
                 if (key in params)
                     ((/** @type {?} */ (_this)))[key] = params[key];
-            });
+            }));
     }
     return UserModel;
 }());
+if (false) {
+    /** @type {?} */
+    UserModel.prototype._id;
+    /** @type {?} */
+    UserModel.prototype.Username;
+    /** @type {?} */
+    UserModel.prototype.Email;
+    /** @type {?} */
+    UserModel.prototype.Roles;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var SignInActionTypes = {
@@ -51,6 +65,16 @@ var SignInActionTypes = {
     SIGNIN_REDIRECT: "[FRONTEND_AUTHENTICATION][Signin] Redirect",
     SIGNIN_REQUIRED: "[FRONTEND_AUTHENTICATION][Signin] Required",
 };
+var WhoAmIAction = /** @class */ (function () {
+    function WhoAmIAction() {
+        this.type = SignInActionTypes.WHO_AM_I;
+    }
+    return WhoAmIAction;
+}());
+if (false) {
+    /** @type {?} */
+    WhoAmIAction.prototype.type;
+}
 var Signin = /** @class */ (function () {
     function Signin(payload) {
         this.payload = payload;
@@ -58,6 +82,12 @@ var Signin = /** @class */ (function () {
     }
     return Signin;
 }());
+if (false) {
+    /** @type {?} */
+    Signin.prototype.type;
+    /** @type {?} */
+    Signin.prototype.payload;
+}
 var SigninSecceed = /** @class */ (function () {
     function SigninSecceed(payload) {
         this.payload = payload;
@@ -65,6 +95,12 @@ var SigninSecceed = /** @class */ (function () {
     }
     return SigninSecceed;
 }());
+if (false) {
+    /** @type {?} */
+    SigninSecceed.prototype.type;
+    /** @type {?} */
+    SigninSecceed.prototype.payload;
+}
 var SigninFailed = /** @class */ (function () {
     function SigninFailed(payload) {
         this.payload = payload;
@@ -72,29 +108,67 @@ var SigninFailed = /** @class */ (function () {
     }
     return SigninFailed;
 }());
+if (false) {
+    /** @type {?} */
+    SigninFailed.prototype.type;
+    /** @type {?} */
+    SigninFailed.prototype.payload;
+}
+var SigninRedirect = /** @class */ (function () {
+    function SigninRedirect() {
+        this.type = SignInActionTypes.SIGNIN_REDIRECT;
+    }
+    return SigninRedirect;
+}());
+if (false) {
+    /** @type {?} */
+    SigninRedirect.prototype.type;
+}
 var DoSignoutAction = /** @class */ (function () {
     function DoSignoutAction() {
         this.type = SignInActionTypes.DO_SIGNOUT;
     }
     return DoSignoutAction;
 }());
+if (false) {
+    /** @type {?} */
+    DoSignoutAction.prototype.type;
+}
 var SignoutAction = /** @class */ (function () {
     function SignoutAction() {
         this.type = SignInActionTypes.SIGNOUT;
     }
     return SignoutAction;
 }());
+if (false) {
+    /** @type {?} */
+    SignoutAction.prototype.type;
+}
 var SigninRequiredAction = /** @class */ (function () {
     function SigninRequiredAction() {
         this.type = SignInActionTypes.SIGNIN_REQUIRED;
     }
     return SigninRequiredAction;
 }());
+if (false) {
+    /** @type {?} */
+    SigninRequiredAction.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State() { }
+if (false) {
+    /** @type {?} */
+    State.prototype.loggedIn;
+    /** @type {?} */
+    State.prototype.user;
+}
 /** @type {?} */
 var initialState = {
     loggedIn: false,
@@ -122,14 +196,38 @@ function UserReducer(state, action) {
 }
 //#region  selectors
 /** @type {?} */
-var getLoggedIn = function (state) { return state.loggedIn; };
+var getLoggedIn = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.loggedIn; });
 /** @type {?} */
-var getUser = function (state) { return state.user; };
+var getUser = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.user; });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function FrontendAuthenticationState() { }
+if (false) {
+    /** @type {?} */
+    FrontendAuthenticationState.prototype.userStatus;
+}
+/**
+ * @record
+ */
+function FeatureState() { }
+if (false) {
+    /* Skipping unnamed member:
+    "frontend-authentication": FrontendAuthenticationState;*/
+}
 /** @type {?} */
 var FrontendAuthenticationReducers = {
     userStatus: UserReducer
@@ -137,8 +235,13 @@ var FrontendAuthenticationReducers = {
 //#region selectors
 /** @type {?} */
 var selectFrontendAuthenticationState = createFeatureSelector("frontend-authentication");
+var ɵ0 = /**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.userStatus; };
 /** @type {?} */
-var selectAuthState = createSelector(selectFrontendAuthenticationState, function (state) { return state.userStatus; });
+var selectAuthState = createSelector(selectFrontendAuthenticationState, (ɵ0));
 /** @type {?} */
 var getFrontendAuthenticationState = createSelector(selectAuthState, getLoggedIn);
 /** @type {?} */
@@ -146,7 +249,7 @@ var getFrontendUser = createSelector(selectAuthState, getUser);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FrontendAuthenticationContainerComponent = /** @class */ (function () {
     function FrontendAuthenticationContainerComponent() {
@@ -161,8 +264,22 @@ var FrontendAuthenticationContainerComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function FrontendAuthenticationModuleConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    FrontendAuthenticationModuleConfig.prototype.endpoints;
+    /** @type {?|undefined} */
+    FrontendAuthenticationModuleConfig.prototype.forms;
+    /** @type {?|undefined} */
+    FrontendAuthenticationModuleConfig.prototype.env;
+    /** @type {?|undefined} */
+    FrontendAuthenticationModuleConfig.prototype.afterSignoutRedirectTo;
+}
 /** @type {?} */
 var MODULE_DEFAULT_CONFIG = {
     endpoints: {
@@ -185,7 +302,7 @@ var MODULE_CONFIG_TOKEN = new InjectionToken("ModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FrontendAuthenticationConfigurationService = /** @class */ (function () {
     function FrontendAuthenticationConfigurationService(configFile, store) {
@@ -219,20 +336,38 @@ var FrontendAuthenticationConfigurationService = /** @class */ (function () {
         { type: undefined, decorators: [{ type: Inject, args: [MODULE_CONFIG_TOKEN,] }] },
         { type: Store }
     ]; };
-    /** @nocollapse */ FrontendAuthenticationConfigurationService.ngInjectableDef = defineInjectable({ factory: function FrontendAuthenticationConfigurationService_Factory() { return new FrontendAuthenticationConfigurationService(inject(MODULE_CONFIG_TOKEN), inject(Store)); }, token: FrontendAuthenticationConfigurationService, providedIn: "root" });
+    /** @nocollapse */ FrontendAuthenticationConfigurationService.ngInjectableDef = ɵɵdefineInjectable({ factory: function FrontendAuthenticationConfigurationService_Factory() { return new FrontendAuthenticationConfigurationService(ɵɵinject(MODULE_CONFIG_TOKEN), ɵɵinject(Store)); }, token: FrontendAuthenticationConfigurationService, providedIn: "root" });
     return FrontendAuthenticationConfigurationService;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FrontendAuthenticationConfigurationService.prototype._config;
+    /** @type {?} */
+    FrontendAuthenticationConfigurationService.prototype.config$;
+    /**
+     * @type {?}
+     * @private
+     */
+    FrontendAuthenticationConfigurationService.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SigninContainerComponent = /** @class */ (function () {
     function SigninContainerComponent(configurationService, store) {
         this.configurationService = configurationService;
         this.store = store;
         this.signedIn$ = new EventEmitter();
-        this.formId$ = this.configurationService.config$.map(function (config) { return config.forms.signIn; });
+        this.formId$ = this.configurationService.config$.map((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.forms.signIn; }));
     }
     /**
      * @param {?} formValue
@@ -261,10 +396,26 @@ var SigninContainerComponent = /** @class */ (function () {
     };
     return SigninContainerComponent;
 }());
+if (false) {
+    /** @type {?} */
+    SigninContainerComponent.prototype.formId$;
+    /** @type {?} */
+    SigninContainerComponent.prototype.signedIn$;
+    /**
+     * @type {?}
+     * @private
+     */
+    SigninContainerComponent.prototype.configurationService;
+    /**
+     * @type {?}
+     * @private
+     */
+    SigninContainerComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var routes = [
@@ -285,7 +436,7 @@ var FrontendAuthenticationRoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SigninComponent = /** @class */ (function () {
     function SigninComponent() {
@@ -319,10 +470,16 @@ var SigninComponent = /** @class */ (function () {
     };
     return SigninComponent;
 }());
+if (false) {
+    /** @type {?} */
+    SigninComponent.prototype.signedin;
+    /** @type {?} */
+    SigninComponent.prototype.formId;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 // import { WhoAmIAction } from "../actions";
 var FrontendSigninService = /** @class */ (function () {
@@ -343,17 +500,33 @@ var FrontendSigninService = /** @class */ (function () {
      */
     function (token) {
         var _this = this;
-        this.configurationService.config$.subscribe(function (c) {
+        this.configurationService.config$.subscribe((/**
+         * @param {?} c
+         * @return {?}
+         */
+        function (c) {
             debugger;
-        });
-        return this.configurationService.config$.pipe(filter(function (config) { return config.endpoints.signIn != ""; }), take(1), switchMap(function (config) { return _this.http.post(config.env.frontend_server + config.endpoints.signIn, { token: token }); }), map(function (response) {
+        }));
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.endpoints.signIn != ""; })), take(1), switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return _this.http.post(config.env.frontend_server + config.endpoints.signIn, { token: token }); })), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) {
             /** @type {?} */
             var user = Object.assign({}, response.Result);
             if (user.Role) {
                 user.Roles = [user.Role];
             }
             return user;
-        }));
+        })));
     };
     /**
      * @return {?}
@@ -365,7 +538,11 @@ var FrontendSigninService = /** @class */ (function () {
         return this.http
             .get(this.configurationService.config.env.frontend_server +
             this.configurationService.config.endpoints.signOut)
-            .map(function (response) { return response; });
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response; }));
     };
     /**
      * @return {?}
@@ -376,7 +553,11 @@ var FrontendSigninService = /** @class */ (function () {
     function () {
         return this.http
             .get(this.configurationService.config.env.frontend_server + this.configurationService.config.endpoints.whoAmI)
-            .map(function (response) { return response; });
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response; }));
     };
     FrontendSigninService.decorators = [
         { type: Injectable, args: [{
@@ -390,18 +571,42 @@ var FrontendSigninService = /** @class */ (function () {
         { type: FrontendAuthenticationConfigurationService },
         { type: MatSnackBar }
     ]; };
-    /** @nocollapse */ FrontendSigninService.ngInjectableDef = defineInjectable({ factory: function FrontendSigninService_Factory() { return new FrontendSigninService(inject(HttpClient), inject(Store), inject(FrontendAuthenticationConfigurationService), inject(MatSnackBar$1)); }, token: FrontendSigninService, providedIn: "root" });
+    /** @nocollapse */ FrontendSigninService.ngInjectableDef = ɵɵdefineInjectable({ factory: function FrontendSigninService_Factory() { return new FrontendSigninService(ɵɵinject(HttpClient), ɵɵinject(Store), ɵɵinject(FrontendAuthenticationConfigurationService), ɵɵinject(MatSnackBar$1)); }, token: FrontendSigninService, providedIn: "root" });
     return FrontendSigninService;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FrontendSigninService.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    FrontendSigninService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    FrontendSigninService.prototype.configurationService;
+    /**
+     * @type {?}
+     * @private
+     */
+    FrontendSigninService.prototype.snackBar;
+}
+/** @type {?} */
+var FrontendSigninServiceStub = {};
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SigninEffects = /** @class */ (function () {
     function SigninEffects(actions$, router, frontendSigninService, configurationService, bottomSheet) {
@@ -411,34 +616,87 @@ var SigninEffects = /** @class */ (function () {
         this.frontendSigninService = frontendSigninService;
         this.configurationService = configurationService;
         this.bottomSheet = bottomSheet;
-        this.whoAmI$ = this.actions$.pipe(ofType(SignInActionTypes.WHO_AM_I), switchMap(function () { return _this.frontendSigninService.whoAmI(); }), map(function (user) { return new SigninSecceed(user); }), catchError(function (error) { return of(new SigninFailed(error)); }));
-        this.Signin$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN), pluck("payload"), switchMap(function (payload) { return _this.frontendSigninService.signin(payload); }), map(function (user) { return new SigninSecceed(user); }), catchError(function (error) { return of(new SigninFailed(error)); }));
-        this.SignInRequired$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_REQUIRED), tap(function (data) {
+        this.whoAmI$ = this.actions$.pipe(ofType(SignInActionTypes.WHO_AM_I), switchMap((/**
+         * @return {?}
+         */
+        function () { return _this.frontendSigninService.whoAmI(); })), map((/**
+         * @param {?} user
+         * @return {?}
+         */
+        function (user) { return new SigninSecceed(user); })), catchError((/**
+         * @param {?} error
+         * @return {?}
+         */
+        function (error) { return of(new SigninFailed(error)); })));
+        this.Signin$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN), pluck("payload"), switchMap((/**
+         * @param {?} payload
+         * @return {?}
+         */
+        function (payload) { return _this.frontendSigninService.signin(payload); })), map((/**
+         * @param {?} user
+         * @return {?}
+         */
+        function (user) { return new SigninSecceed(user); })), catchError((/**
+         * @param {?} error
+         * @return {?}
+         */
+        function (error) { return of(new SigninFailed(error)); })));
+        this.SignInRequired$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_REQUIRED), tap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) {
             /** @type {?} */
             var signinBottomSheetRef = _this.bottomSheet.open(SigninContainerComponent, {
                 panelClass: "clear-mat-card-box"
             });
-            signinBottomSheetRef.instance.signedIn$.subscribe(function () {
+            signinBottomSheetRef.instance.signedIn$.subscribe((/**
+             * @return {?}
+             */
+            function () {
                 signinBottomSheetRef.dismiss();
-            });
+            }));
             return signinBottomSheetRef;
-        }));
-        this.SigninSucceed$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_SUCCEED), tap(function (data) {
+        })));
+        this.SigninSucceed$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_SUCCEED), tap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) {
             debugger;
             if (location.pathname.indexOf("signin") > -1)
                 _this.router.navigate(["/"]);
-        }));
-        this.DoSignout$ = this.actions$.pipe(ofType(SignInActionTypes.DO_SIGNOUT), switchMap(function (data) {
-            return _this.frontendSigninService.signout().pipe(map(function () { return new SignoutAction(); }), catchError(function (err) {
+        })));
+        this.DoSignout$ = this.actions$.pipe(ofType(SignInActionTypes.DO_SIGNOUT), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) {
+            return _this.frontendSigninService.signout().pipe(map((/**
+             * @return {?}
+             */
+            function () { return new SignoutAction(); })), catchError((/**
+             * @param {?} err
+             * @return {?}
+             */
+            function (err) {
                 // TODO: dispatch valid action
                 debugger;
                 return of(err);
-            }));
-        }));
+            })));
+        })));
         // TODO
         // @Effect() Signout$ = this.actions$.ofType(SignInActionTypes.DO_SIGNOUT).pipe(map(() => new SignoutAction()));
-        this.redirectToLoginPage$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_REDIRECT), tap(function (authed) { return _this.router.navigate(["auth/signin"]); }));
-        this.redirectAfterSignout$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNOUT), tap(function (authed) { return _this.router.navigate([_this.configurationService.config$.getValue().afterSignoutRedirectTo]); }));
+        this.redirectToLoginPage$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_REDIRECT), tap((/**
+         * @param {?} authed
+         * @return {?}
+         */
+        function (authed) { return _this.router.navigate(["auth/signin"]); })));
+        this.redirectAfterSignout$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNOUT), tap((/**
+         * @param {?} authed
+         * @return {?}
+         */
+        function (authed) { return _this.router.navigate([_this.configurationService.config$.getValue().afterSignoutRedirectTo]); })));
     }
     SigninEffects.decorators = [
         { type: Injectable }
@@ -481,21 +739,72 @@ var SigninEffects = /** @class */ (function () {
     ], SigninEffects.prototype, "redirectAfterSignout$", void 0);
     return SigninEffects;
 }());
+if (false) {
+    /** @type {?} */
+    SigninEffects.prototype.whoAmI$;
+    /** @type {?} */
+    SigninEffects.prototype.Signin$;
+    /** @type {?} */
+    SigninEffects.prototype.SignInRequired$;
+    /** @type {?} */
+    SigninEffects.prototype.SigninSucceed$;
+    /** @type {?} */
+    SigninEffects.prototype.DoSignout$;
+    /** @type {?} */
+    SigninEffects.prototype.redirectToLoginPage$;
+    /** @type {?} */
+    SigninEffects.prototype.redirectAfterSignout$;
+    /**
+     * @type {?}
+     * @private
+     */
+    SigninEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    SigninEffects.prototype.router;
+    /** @type {?} */
+    SigninEffects.prototype.frontendSigninService;
+    /** @type {?} */
+    SigninEffects.prototype.configurationService;
+    /**
+     * @type {?}
+     * @private
+     */
+    SigninEffects.prototype.bottomSheet;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FrontendAuthenticationModuleEffects = /** @class */ (function () {
     function FrontendAuthenticationModuleEffects(actions$, service) {
         var _this = this;
         this.actions$ = actions$;
         this.service = service;
-        this.goToList$ = this.actions$.pipe(ofType(UserActionTypes.REFRESH_USER_INFO), map(function (action) { return action.payload; }), filter(function (user) { return user.Token != null; }), switchMap(function (user) {
-            return _this.service.signin(user.Token).map(function (_user) {
+        this.goToList$ = this.actions$.pipe(ofType(UserActionTypes.REFRESH_USER_INFO), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        function (action) { return action.payload; })), filter((/**
+         * @param {?} user
+         * @return {?}
+         */
+        function (user) { return user.Token != null; })), switchMap((/**
+         * @param {?} user
+         * @return {?}
+         */
+        function (user) {
+            return _this.service.signin(user.Token).map((/**
+             * @param {?} _user
+             * @return {?}
+             */
+            function (_user) {
                 return new SigninSecceed(_user);
-            });
-        }));
+            }));
+        })));
     }
     FrontendAuthenticationModuleEffects.decorators = [
         { type: Injectable }
@@ -511,10 +820,24 @@ var FrontendAuthenticationModuleEffects = /** @class */ (function () {
     ], FrontendAuthenticationModuleEffects.prototype, "goToList$", void 0);
     return FrontendAuthenticationModuleEffects;
 }());
+if (false) {
+    /** @type {?} */
+    FrontendAuthenticationModuleEffects.prototype.goToList$;
+    /**
+     * @type {?}
+     * @private
+     */
+    FrontendAuthenticationModuleEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    FrontendAuthenticationModuleEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NgsFrontendAuthenticationModule = /** @class */ (function () {
     function NgsFrontendAuthenticationModule() {
@@ -573,6 +896,8 @@ var NgsFrontendAuthenticationModule = /** @class */ (function () {
 }());
 var RootNgsFrontendAuthenticationModule = /** @class */ (function () {
     function RootNgsFrontendAuthenticationModule() {
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.frontend_authentication = "8.0.10";
     }
     RootNgsFrontendAuthenticationModule.decorators = [
         { type: NgModule, args: [{
@@ -584,19 +909,20 @@ var RootNgsFrontendAuthenticationModule = /** @class */ (function () {
                     ]
                 },] }
     ];
+    /** @nocollapse */
+    RootNgsFrontendAuthenticationModule.ctorParameters = function () { return []; };
     return RootNgsFrontendAuthenticationModule;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { UserModel, SignInActionTypes, DoSignoutAction, SigninRequiredAction, getFrontendAuthenticationState, getFrontendUser, NgsFrontendAuthenticationModule, SigninComponent as ɵm, SigninEffects as ɵq, FrontendAuthenticationRoutingModule as ɵr, MODULE_CONFIG_TOKEN as ɵj, FrontendAuthenticationModuleEffects as ɵo, RootNgsFrontendAuthenticationModule as ɵd, FrontendAuthenticationReducers as ɵa, selectAuthState as ɵc, selectFrontendAuthenticationState as ɵb, UserReducer as ɵe, getLoggedIn as ɵf, getUser as ɵg, FrontendAuthenticationConfigurationService as ɵi, FrontendSigninService as ɵp, FrontendAuthenticationContainerComponent as ɵn, SigninContainerComponent as ɵh };
-
+export { DoSignoutAction, NgsFrontendAuthenticationModule, SignInActionTypes, SigninRequiredAction, UserModel, getFrontendAuthenticationState, getFrontendUser, FrontendAuthenticationReducers as ɵa, selectFrontendAuthenticationState as ɵb, selectAuthState as ɵc, RootNgsFrontendAuthenticationModule as ɵd, UserReducer as ɵe, getLoggedIn as ɵf, getUser as ɵg, SigninContainerComponent as ɵh, FrontendAuthenticationConfigurationService as ɵi, MODULE_CONFIG_TOKEN as ɵj, SigninComponent as ɵm, FrontendAuthenticationContainerComponent as ɵn, FrontendAuthenticationModuleEffects as ɵo, FrontendSigninService as ɵp, SigninEffects as ɵq, FrontendAuthenticationRoutingModule as ɵr };
 //# sourceMappingURL=soushians-frontend-authentication.js.map

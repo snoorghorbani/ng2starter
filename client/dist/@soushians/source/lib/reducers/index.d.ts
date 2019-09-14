@@ -9,5 +9,5 @@ export declare const SourceReducers: {
 export interface FeatureState {
     'sources': SourceState;
 }
-export declare const selectSourceState: MemoizedSelector<object, SourceState>;
-export declare const getSourceList: MemoizedSelector<object, sourceList.State>;
+export declare const selectSourceState: MemoizedSelector<object, SourceState, import("@ngrx/store").DefaultProjectorFn<SourceState>>;
+export declare const getSourceList: MemoizedSelector<object, sourceList.State, import("@ngrx/store").DefaultProjectorFn<sourceList.State>>;

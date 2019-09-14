@@ -1,20 +1,20 @@
+import { Store } from '@ngrx/store';
 import { map, filter } from 'rxjs/operators';
 import { UserFacadeService, getAccountInfo } from '@soushians/user';
-import { Store } from '@ngrx/store';
 import { GwtStepTypes } from '@soushians/rule';
-import { BehaviorSubject, of } from 'rxjs';
 import { Component, NgModule } from '@angular/core';
+import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BehaviorSubject, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatRadioModule, MatSlideToggleModule, MatDividerModule, MatCheckboxModule, MatTableModule, MatAutocompleteModule } from '@angular/material';
+import { MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatCheckboxModule, MatTableModule, MatSelectModule, MatAutocompleteModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatDividerModule, MatRadioModule, MatSlideToggleModule } from '@angular/material';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GivenUserIsAuthenticatedStepComponent {
     constructor() {
@@ -44,10 +44,14 @@ GivenUserIsAuthenticatedStepComponent.decorators = [
 ];
 /** @nocollapse */
 GivenUserIsAuthenticatedStepComponent.ctorParameters = () => [];
+if (false) {
+    /** @type {?} */
+    GivenUserIsAuthenticatedStepComponent.prototype.formGroup;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class IfUserIsAuthenticatedGwtGivenStep {
     /**
@@ -70,16 +74,42 @@ class IfUserIsAuthenticatedGwtGivenStep {
      * @return {?}
      */
     interperator(params, elementRef) {
-        return this.userFacadeService.getDisplayName().pipe(map(userDispalyName => {
+        return this.userFacadeService.getDisplayName().pipe(map((/**
+         * @param {?} userDispalyName
+         * @return {?}
+         */
+        userDispalyName => {
             debugger;
             return !!userDispalyName;
-        }));
+        })));
     }
+}
+if (false) {
+    /** @type {?} */
+    IfUserIsAuthenticatedGwtGivenStep.prototype.id;
+    /** @type {?} */
+    IfUserIsAuthenticatedGwtGivenStep.prototype.name;
+    /** @type {?} */
+    IfUserIsAuthenticatedGwtGivenStep.prototype.opposite;
+    /** @type {?} */
+    IfUserIsAuthenticatedGwtGivenStep.prototype.description;
+    /** @type {?} */
+    IfUserIsAuthenticatedGwtGivenStep.prototype.type;
+    /** @type {?} */
+    IfUserIsAuthenticatedGwtGivenStep.prototype.params;
+    /** @type {?} */
+    IfUserIsAuthenticatedGwtGivenStep.prototype.stepComponent;
+    /** @type {?} */
+    IfUserIsAuthenticatedGwtGivenStep.prototype.store;
+    /** @type {?} */
+    IfUserIsAuthenticatedGwtGivenStep.prototype.userFacadeService;
+    /** @type {?} */
+    IfUserIsAuthenticatedGwtGivenStep.prototype.injector;
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class IfUserHaveRoleGwtGivenStepComponent {
     constructor() {
@@ -109,11 +139,23 @@ IfUserHaveRoleGwtGivenStepComponent.decorators = [
 ];
 /** @nocollapse */
 IfUserHaveRoleGwtGivenStepComponent.ctorParameters = () => [];
+if (false) {
+    /** @type {?} */
+    IfUserHaveRoleGwtGivenStepComponent.prototype.formGroup;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function IfUserHaveRoleGwtGivenStepParams() { }
+if (false) {
+    /** @type {?} */
+    IfUserHaveRoleGwtGivenStepParams.prototype.role;
+}
 class IfUserHaveRoleGwtGivenStep {
     /**
      * @param {?} injector
@@ -136,23 +178,63 @@ class IfUserHaveRoleGwtGivenStep {
         /** @type {?} */
         const user$ = this.store
             .select(getAccountInfo)
-            .pipe(filter(user => !!user.Roles), filter(user => user.Roles.length > 0));
-        return user$.pipe(map(user => {
+            .pipe(filter((/**
+         * @param {?} user
+         * @return {?}
+         */
+        user => !!user.Roles)), filter((/**
+         * @param {?} user
+         * @return {?}
+         */
+        user => user.Roles.length > 0)));
+        return user$.pipe(map((/**
+         * @param {?} user
+         * @return {?}
+         */
+        user => {
             debugger;
-            return !((/** @type {?} */ (user))).Roles.map(item => item.toLowerCase()).includes(params.role.toLowerCase());
-        }));
+            return !((/** @type {?} */ (user))).Roles.map((/**
+             * @param {?} item
+             * @return {?}
+             */
+            item => item.toLowerCase())).includes(params.role.toLowerCase());
+        })));
     }
+}
+if (false) {
+    /** @type {?} */
+    IfUserHaveRoleGwtGivenStep.prototype.id;
+    /** @type {?} */
+    IfUserHaveRoleGwtGivenStep.prototype.name;
+    /** @type {?} */
+    IfUserHaveRoleGwtGivenStep.prototype.opposite;
+    /** @type {?} */
+    IfUserHaveRoleGwtGivenStep.prototype.description;
+    /** @type {?} */
+    IfUserHaveRoleGwtGivenStep.prototype.type;
+    /** @type {?} */
+    IfUserHaveRoleGwtGivenStep.prototype.params;
+    /** @type {?} */
+    IfUserHaveRoleGwtGivenStep.prototype.stepComponent;
+    /** @type {?} */
+    IfUserHaveRoleGwtGivenStep.prototype.store;
+    /** @type {?} */
+    IfUserHaveRoleGwtGivenStep.prototype.injector;
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GwtThenAuthorizeStepComponent {
     constructor() {
         this.params$ = new BehaviorSubject((/** @type {?} */ ({})));
         this.formGroup = this._create_formGroup();
-        this.params$.subscribe(params => this.formGroup.patchValue(params));
+        this.params$.subscribe((/**
+         * @param {?} params
+         * @return {?}
+         */
+        params => this.formGroup.patchValue(params)));
     }
     /**
      * @param {?} params
@@ -188,11 +270,25 @@ GwtThenAuthorizeStepComponent.decorators = [
 ];
 /** @nocollapse */
 GwtThenAuthorizeStepComponent.ctorParameters = () => [];
+if (false) {
+    /** @type {?} */
+    GwtThenAuthorizeStepComponent.prototype.formGroup;
+    /** @type {?} */
+    GwtThenAuthorizeStepComponent.prototype.params$;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function ThenShowBlockGwtStepParams() { }
+if (false) {
+    /** @type {?} */
+    ThenShowBlockGwtStepParams.prototype.verb;
+}
 class GwtThenAuthorizeStep {
     /**
      * @param {?} injector
@@ -219,12 +315,39 @@ class GwtThenAuthorizeStep {
         return of(true);
     }
 }
+if (false) {
+    /** @type {?} */
+    GwtThenAuthorizeStep.prototype.id;
+    /** @type {?} */
+    GwtThenAuthorizeStep.prototype.name;
+    /** @type {?} */
+    GwtThenAuthorizeStep.prototype.opposite;
+    /** @type {?} */
+    GwtThenAuthorizeStep.prototype.description;
+    /** @type {?} */
+    GwtThenAuthorizeStep.prototype.type;
+    /** @type {?} */
+    GwtThenAuthorizeStep.prototype.params;
+    /** @type {?} */
+    GwtThenAuthorizeStep.prototype.stepComponent;
+    /** @type {?} */
+    GwtThenAuthorizeStep.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    GwtThenAuthorizeStep.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GwtStepsModule {
+    constructor() {
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.gwt_steps = "8.0.10";
+    }
 }
 GwtStepsModule.decorators = [
     { type: NgModule, args: [{
@@ -265,17 +388,18 @@ GwtStepsModule.decorators = [
                 exports: []
             },] }
 ];
+/** @nocollapse */
+GwtStepsModule.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { IfUserIsAuthenticatedGwtGivenStep, IfUserHaveRoleGwtGivenStep, GwtThenAuthorizeStep, GwtStepsModule, GivenUserIsAuthenticatedStepComponent as ɵc, IfUserHaveRoleGwtGivenStepComponent as ɵb, GwtThenAuthorizeStepComponent as ɵa };
-
+export { GwtStepsModule, GwtThenAuthorizeStep, IfUserHaveRoleGwtGivenStep, IfUserIsAuthenticatedGwtGivenStep, GwtThenAuthorizeStepComponent as ɵa, IfUserHaveRoleGwtGivenStepComponent as ɵb, GivenUserIsAuthenticatedStepComponent as ɵc };
 //# sourceMappingURL=soushians-gwt-steps.js.map

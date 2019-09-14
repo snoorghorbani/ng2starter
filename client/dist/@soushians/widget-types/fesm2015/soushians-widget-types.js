@@ -1,17 +1,17 @@
-import { getFrontendAuthenticationState } from '@soushians/frontend-authentication';
-import { Store } from '@ngrx/store';
-import { UpsertWidgetStartAction, WidgetModel } from '@soushians/widget';
 import { Component, Input, NgModule } from '@angular/core';
+import { FormGroup, FormControl, FormArray, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { WidgetModel, UpsertWidgetStartAction } from '@soushians/widget';
+import { getFrontendAuthenticationState } from '@soushians/frontend-authentication';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormControl, FormGroup, FormArray, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatRadioModule, MatSlideToggleModule, MatDividerModule, MatCheckboxModule, MatTableModule, MatListModule } from '@angular/material';
+import { MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatRadioModule, MatDividerModule, MatSlideToggleModule, MatCheckboxModule, MatTableModule, MatListModule } from '@angular/material';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ArticleUpsertComponent {
     /**
@@ -65,10 +65,23 @@ ArticleUpsertComponent.ctorParameters = () => [
 ArticleUpsertComponent.propDecorators = {
     widget: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    ArticleUpsertComponent.prototype.widget;
+    /** @type {?} */
+    ArticleUpsertComponent.prototype.widgetFormGroup;
+    /** @type {?} */
+    ArticleUpsertComponent.prototype.configFormGroup;
+    /**
+     * @type {?}
+     * @private
+     */
+    ArticleUpsertComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ArticleViewComponent {
     /**
@@ -95,10 +108,21 @@ ArticleViewComponent.decorators = [
 ArticleViewComponent.ctorParameters = () => [
     { type: Store }
 ];
+if (false) {
+    /** @type {?} */
+    ArticleViewComponent.prototype.widget;
+    /** @type {?} */
+    ArticleViewComponent.prototype.havePermission$;
+    /**
+     * @type {?}
+     * @private
+     */
+    ArticleViewComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LinksUpsertComponent {
     /**
@@ -177,12 +201,16 @@ class LinksUpsertComponent {
      */
     _update_links(links) {
         ((/** @type {?} */ (this.configFormGroup.get("links")))).reset();
-        links.forEach((link) => {
+        links.forEach((/**
+         * @param {?} link
+         * @return {?}
+         */
+        (link) => {
             /** @type {?} */
             const _link = this._get_new_empty_link_item();
             _link.patchValue(link);
             ((/** @type {?} */ (this.configFormGroup.get("links")))).push(_link);
-        });
+        }));
     }
 }
 LinksUpsertComponent.decorators = [
@@ -199,10 +227,23 @@ LinksUpsertComponent.ctorParameters = () => [
 LinksUpsertComponent.propDecorators = {
     widget: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    LinksUpsertComponent.prototype.widget;
+    /** @type {?} */
+    LinksUpsertComponent.prototype.widgetFormGroup;
+    /** @type {?} */
+    LinksUpsertComponent.prototype.configFormGroup;
+    /**
+     * @type {?}
+     * @private
+     */
+    LinksUpsertComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LinksViewComponent {
     /**
@@ -217,8 +258,16 @@ class LinksViewComponent {
      */
     set widget(widget) {
         debugger;
-        widget.Config.links.forEach(item => item.url = item.url.startsWith("www.") ? item.url = "http://" + item.url : item.url);
-        widget.Config.links.forEach(item => item.isExternal = item.url.startsWith("http"));
+        widget.Config.links.forEach((/**
+         * @param {?} item
+         * @return {?}
+         */
+        item => item.url = item.url.startsWith("www.") ? item.url = "http://" + item.url : item.url));
+        widget.Config.links.forEach((/**
+         * @param {?} item
+         * @return {?}
+         */
+        item => item.isExternal = item.url.startsWith("http")));
         this._widget = widget;
     }
     /**
@@ -245,10 +294,21 @@ LinksViewComponent.decorators = [
 LinksViewComponent.ctorParameters = () => [
     { type: Store }
 ];
+if (false) {
+    /** @type {?} */
+    LinksViewComponent.prototype._widget;
+    /** @type {?} */
+    LinksViewComponent.prototype.havePermission$;
+    /**
+     * @type {?}
+     * @private
+     */
+    LinksViewComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ListViewComponent {
     /**
@@ -275,10 +335,21 @@ ListViewComponent.decorators = [
 ListViewComponent.ctorParameters = () => [
     { type: Store }
 ];
+if (false) {
+    /** @type {?} */
+    ListViewComponent.prototype.widget;
+    /** @type {?} */
+    ListViewComponent.prototype.havePermission$;
+    /**
+     * @type {?}
+     * @private
+     */
+    ListViewComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ListUpsertComponent {
     /**
@@ -355,12 +426,16 @@ class ListUpsertComponent {
      */
     _update_list(list) {
         ((/** @type {?} */ (this.configFormGroup.get("list")))).reset();
-        list.forEach((item) => {
+        list.forEach((/**
+         * @param {?} item
+         * @return {?}
+         */
+        (item) => {
             /** @type {?} */
             const _list = this._get_new_empty_list_item();
             _list.patchValue(item);
             ((/** @type {?} */ (this.configFormGroup.get("list")))).push(_list);
-        });
+        }));
     }
 }
 ListUpsertComponent.decorators = [
@@ -377,12 +452,29 @@ ListUpsertComponent.ctorParameters = () => [
 ListUpsertComponent.propDecorators = {
     widget: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    ListUpsertComponent.prototype.widget;
+    /** @type {?} */
+    ListUpsertComponent.prototype.widgetFormGroup;
+    /** @type {?} */
+    ListUpsertComponent.prototype.configFormGroup;
+    /**
+     * @type {?}
+     * @private
+     */
+    ListUpsertComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NgsWidgetTypesModule {
+    constructor() {
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.widget_types = "8.0.10";
+    }
 }
 NgsWidgetTypesModule.decorators = [
     { type: NgModule, args: [{
@@ -430,17 +522,18 @@ NgsWidgetTypesModule.decorators = [
                 exports: [ArticleViewComponent]
             },] }
 ];
+/** @nocollapse */
+NgsWidgetTypesModule.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ArticleUpsertComponent, ArticleViewComponent, LinksUpsertComponent, LinksViewComponent, ListViewComponent, ListUpsertComponent, NgsWidgetTypesModule };
-
+export { ArticleUpsertComponent, ArticleViewComponent, LinksUpsertComponent, LinksViewComponent, ListUpsertComponent, ListViewComponent, NgsWidgetTypesModule };
 //# sourceMappingURL=soushians-widget-types.js.map

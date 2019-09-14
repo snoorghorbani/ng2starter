@@ -16,7 +16,7 @@ export declare class DynamicConfigComponentSelectorComponent implements AfterVie
         booleano: typeof BooleanoWidgetPartialConfigComponent;
     };
     dynamicComponentContainer: ViewContainerRef;
-    ConfigChanged: EventEmitter<{}>;
+    ConfigChanged: EventEmitter<any>;
     currentComponent: any;
     data: any;
     constructor(resolver: ComponentFactoryResolver);

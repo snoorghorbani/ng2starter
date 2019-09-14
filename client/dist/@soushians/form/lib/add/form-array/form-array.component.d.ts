@@ -2,7 +2,7 @@ import { EventEmitter } from "@angular/core";
 import { FieldConfig } from "../../models";
 export declare class FormArrayComponent {
     schema: FieldConfig;
-    changes: EventEmitter<{}>;
+    changes: EventEmitter<any>;
     constructor();
     changed(): void;
     addFormGroup(root: FieldConfig): FieldConfig;

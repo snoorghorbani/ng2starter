@@ -4,7 +4,7 @@ import { Store } from "@ngrx/store";
 import { Location } from "@angular/common";
 import { Observable } from "rxjs/Observable";
 import { from } from "rxjs/observable/from";
-import { DOCUMENT } from "@angular/platform-browser";
+import { DOCUMENT } from "@angular/common";
 import { fromEvent } from "rxjs/observable/fromEvent";
 import { of } from "rxjs/observable/of";
 import { trigger, state, transition, style, animate } from "@angular/animations";

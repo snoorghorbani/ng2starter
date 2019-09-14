@@ -4,4 +4,5 @@ export declare class NgsPageModule {
     static forRoot(config?: PageModuleConfig): ModuleWithProviders;
 }
 export declare class NgsPageRootModule {
+    constructor();
 }

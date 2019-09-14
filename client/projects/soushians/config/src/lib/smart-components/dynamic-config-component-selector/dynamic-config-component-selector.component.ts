@@ -22,7 +22,7 @@ import { LayoutModuleConfigComponent } from "../../dumb-components/layout-config
 @Component({
 	selector: "dynamic-config-component-selector",
 	templateUrl: "./dynamic-config-component-selector.component.html",
-	styleUrls: [ "./dynamic-config-component-selector.component.scss" ],
+	styleUrls: ["./dynamic-config-component-selector.component.scss"],
 	entryComponents: [
 		AuthenticationModuleConfigComponent,
 		ConfigAppConfigComponent,
@@ -37,7 +37,7 @@ export class DynamicConfigComponentSelectorComponent implements AfterViewInit {
 		user_module_config: UserModuleConfigComponent,
 		layout_config: LayoutModuleConfigComponent
 	};
-	@ViewChild("dynamicComponentContainer", { read: ViewContainerRef })
+	@ViewChild("dynamicComponentContainer", { read: ViewContainerRef, static: false })
 	dynamicComponentContainer: ViewContainerRef;
 	@Output() configChanged = new EventEmitter();
 	get config() {
@@ -76,6 +76,6 @@ export class DynamicConfigComponentSelectorComponent implements AfterViewInit {
 
 		this.currentComponent = component;
 	}
-	constructor(private resolver: ComponentFactoryResolver) {}
-	ngAfterViewInit() {}
+	constructor(private resolver: ComponentFactoryResolver) { }
+	ngAfterViewInit() { }
 }

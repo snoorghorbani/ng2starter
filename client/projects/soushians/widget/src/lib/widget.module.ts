@@ -74,14 +74,14 @@ import { DynamicWidgetViewComponent } from "./view/dynamic-widget-view.component
 		WidgetSelectorComponent,
 		DynamicWidgetViewComponent
 	],
-	entryComponents: [ WidgetSelectorComponent, DynamicWidgetViewComponent ],
-	exports: [ DynamicWidgetViewDirective, WidgetSelectorComponent, DynamicWidgetViewComponent ]
+	entryComponents: [WidgetSelectorComponent, DynamicWidgetViewComponent],
+	exports: [DynamicWidgetViewDirective, WidgetSelectorComponent, DynamicWidgetViewComponent]
 })
 export class NgsWidgetModule {
 	static forRoot(config?: WidgetModuleConfig): ModuleWithProviders {
 		return {
 			ngModule: NgsWidgetRootModule,
-			providers: [ { provide: MODULE_CONFIG_TOKEN, useValue: config }, WidgetConfigurationService, WidgetService ]
+			providers: [{ provide: MODULE_CONFIG_TOKEN, useValue: config }, WidgetConfigurationService, WidgetService]
 		};
 	}
 }
@@ -99,6 +99,11 @@ export class NgsWidgetModule {
 			DeleteWidgetApiEffects
 		])
 	],
-	exports: [ NgsWidgetModule ]
+	exports: [NgsWidgetModule]
 })
-export class NgsWidgetRootModule {}
+export class NgsWidgetRootModule {
+	constructor() {
+		(<any>window).___starter = (<any>window).___starter || {};
+		(<any>window).___starter.widget = "8.0.10";
+	}
+}

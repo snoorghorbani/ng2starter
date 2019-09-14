@@ -66,4 +66,10 @@ export class NgsPageModule {
 	],
 	exports: [NgsPageModule]
 })
-export class NgsPageRootModule { }
+export class NgsPageRootModule {
+	constructor() {
+		(<any>window).___starter = (<any>window).___starter || {};
+		(<any>window).___starter.page = "8.0.10";
+	}
+}
+

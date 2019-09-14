@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 export { GetPagesApiModel } from "./get-pages.model";
 export { GetPagesStartAction, GetPagesSucceedAction, GetPagesFailedAction } from "./get-pages.actions";

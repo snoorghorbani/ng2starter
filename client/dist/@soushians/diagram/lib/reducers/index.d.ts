@@ -15,5 +15,5 @@ export declare const DiagramReducers: {
 export interface FeatureState {
     "diagram": DiagramState;
 }
-export declare const selectFeatureState: MemoizedSelector<object, DiagramState>;
-export declare const selectEditDiagramState: MemoizedSelector<object, fromEditDiagram.State>;
+export declare const selectFeatureState: MemoizedSelector<object, DiagramState, import("@ngrx/store").DefaultProjectorFn<DiagramState>>;
+export declare const selectEditDiagramState: MemoizedSelector<object, fromEditDiagram.State, import("@ngrx/store").DefaultProjectorFn<fromEditDiagram.State>>;

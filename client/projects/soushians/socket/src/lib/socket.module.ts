@@ -8,20 +8,23 @@ import { SocketService } from "./services/socket.service";
 import { SocketReducer } from "./socket.reducer";
 
 @NgModule({
-	imports: [ CommonModule ]
+	imports: [CommonModule]
 })
 export class NgsSocketModule {
 	static forRoot(config?: SocketModuleConfig): ModuleWithProviders {
 		return {
 			ngModule: NgsSocketRootModule,
-			providers: [ { provide: MODULE_CONFIG_TOKEN, useValue: config }, SocketConfigurationService, SocketService ]
+			providers: [{ provide: MODULE_CONFIG_TOKEN, useValue: config }, SocketConfigurationService, SocketService]
 		};
 	}
 }
 
 @NgModule({
-	imports: [ NgsSocketModule, StoreModule.forFeature("socket", SocketReducer) ]
+	imports: [NgsSocketModule, StoreModule.forFeature("socket", SocketReducer)]
 })
 export class NgsSocketRootModule {
-	constructor(private socketService: SocketService) {}
+	constructor(private socketService: SocketService) {
+		(<any>window).___starter = (<any>window).___starter || {};
+		(<any>window).___starter.socket = "8.0.10";
+	}
 }

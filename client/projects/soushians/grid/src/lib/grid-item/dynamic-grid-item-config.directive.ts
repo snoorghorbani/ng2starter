@@ -36,7 +36,7 @@ export class DynamicGridItremConfigDirective implements OnInit {
 	) {
 		this.mapTypeToComponent = this.configurationService.config$.getValue().types;
 	}
-	ngOnInit() {}
+	ngOnInit() { }
 	_resolve_correct_component_base_on_widget_type(type) {
 		if (!this.mapTypeToComponent[type]) {
 			const supportedTypes = Object.keys(this.mapTypeToComponent).join(", ");
@@ -57,8 +57,8 @@ export class DynamicGridItremConfigDirective implements OnInit {
 	`
 })
 export class DynamicGridItemConfigComponent {
-	@ViewChild(DynamicGridItremConfigDirective) DynamicWidgetRef: DynamicGridItremConfigDirective;
-	constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any) {}
+	@ViewChild(DynamicGridItremConfigDirective, { static: false }) DynamicWidgetRef: DynamicGridItremConfigDirective;
+	constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any) { }
 	get config() {
 		return this.DynamicWidgetRef.config;
 	}

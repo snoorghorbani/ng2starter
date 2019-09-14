@@ -10,7 +10,7 @@ export declare class MainMenuComponent {
     private store;
     signinService: SigninService;
     configurationService: LayoutConfigurationService;
-    closeSidebar: EventEmitter<{}>;
+    closeSidebar: EventEmitter<any>;
     authenticated: Observable<boolean>;
     user$: Observable<UserModel>;
     customerStatus$: Observable<responseStatusTypes>;

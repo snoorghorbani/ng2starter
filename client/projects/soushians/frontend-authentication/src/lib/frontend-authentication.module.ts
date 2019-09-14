@@ -94,4 +94,9 @@ export class NgsFrontendAuthenticationModule {
 		NgsFrontendAuthenticationModule
 	]
 })
-export class RootNgsFrontendAuthenticationModule { }
+export class RootNgsFrontendAuthenticationModule {
+	constructor() {
+		(<any>window).___starter = (<any>window).___starter || {};
+		(<any>window).___starter.frontend_authentication = "8.0.10";
+	}
+}

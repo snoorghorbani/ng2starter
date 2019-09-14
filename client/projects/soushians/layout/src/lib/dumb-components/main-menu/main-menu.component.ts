@@ -14,7 +14,7 @@ import { getAccountInfo, UserModel } from "@soushians/user";
 @Component({
 	selector: "ngs-layout-main-menu",
 	templateUrl: "./main-menu.component.html",
-	styleUrls: [ "./main-menu.component.css" ],
+	styleUrls: ["./main-menu.component.css"],
 	animations: [
 		trigger("childMenu", [
 			state(
@@ -61,7 +61,7 @@ export class MainMenuComponent {
 	customerStatus$: Observable<responseStatusTypes>;
 	routes$: Observable<any>;
 
-	@ViewChild("customerMobileInput") customerMobileInput: ElementRef;
+	@ViewChild("customerMobileInput", { static: false }) customerMobileInput: ElementRef;
 	constructor(
 		private store: Store<FeatureState>,
 		public signinService: SigninService,

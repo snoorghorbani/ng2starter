@@ -6,4 +6,4 @@ export interface State {
     visibility: boolean;
 }
 export declare function Reducer(state: State, action: ToolbarActions): State;
-export declare const getToolbarMode: (state: State) => "comfortable" | "compact" | "summary" | "hide";
+export declare const getToolbarMode: (state: State) => "hide" | "summary" | "comfortable" | "compact";

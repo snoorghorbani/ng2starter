@@ -19,7 +19,7 @@ import { DiagramComponent } from "../../smart-components/diagram/diagram.compone
 @Component({
 	selector: "dynamic-component-selector",
 	templateUrl: "./dynamic-component-selector.component.html",
-	styleUrls: [ "./dynamic-component-selector.component.scss" ],
+	styleUrls: ["./dynamic-component-selector.component.scss"],
 	entryComponents: [
 		NumericDiagramComponent,
 		ServerConnectingTimeDiagramComponent,
@@ -40,9 +40,9 @@ export class DynamicComponentSelectorComponent implements AfterViewInit {
 		tempo: ServerConnectingTimeDiagramComponent,
 		booleano: ServerStatusDiagramComponent
 	};
-	@ViewChild("dynamicComponentContainer", { read: ViewContainerRef })
+	@ViewChild("dynamicComponentContainer", { read: ViewContainerRef, static: false })
 	dynamicComponentContainer: ViewContainerRef;
-	@ViewChild(DiagramComponent) widgetComponent: DiagramComponent;
+	@ViewChild(DiagramComponent, { static: false }) widgetComponent: DiagramComponent;
 	currentComponent: any = null;
 	_data: any;
 	@Input()
@@ -74,8 +74,8 @@ export class DynamicComponentSelectorComponent implements AfterViewInit {
 		this.currentComponent = component;
 	}
 	backgroundColor: String = "";
-	constructor(private resolver: ComponentFactoryResolver) {}
-	ngAfterViewInit() {}
+	constructor(private resolver: ComponentFactoryResolver) { }
+	ngAfterViewInit() { }
 	timeChange(e) {
 		this.currentComponent._component.timeChange(e);
 	}

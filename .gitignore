@@ -1,5 +1,7 @@
 #client/dist
 _node_modules
+__node_modules
+___node_modules
 
 lib-cov
 *.seed

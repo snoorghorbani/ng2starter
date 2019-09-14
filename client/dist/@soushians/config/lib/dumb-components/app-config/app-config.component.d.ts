@@ -4,6 +4,6 @@ export declare class ConfigAppConfigComponent {
     private injector;
     formGroup: FormGroup;
     configFormGroup: FormGroup;
-    configChanged: EventEmitter<{}>;
+    configChanged: EventEmitter<any>;
     constructor(injector: Injector);
 }

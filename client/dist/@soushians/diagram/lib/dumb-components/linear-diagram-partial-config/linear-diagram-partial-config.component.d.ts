@@ -9,7 +9,7 @@ export declare class LinearDiagramPartialConfigComponent implements OnInit, OnDe
     dataLoaded: BehaviorSubject<boolean>;
     _data: any;
     data: any;
-    ConfigChanged: EventEmitter<{}>;
+    ConfigChanged: EventEmitter<any>;
     diagramService: DiagramService;
     formGroup: FormGroup;
     constructor(injector: Injector);

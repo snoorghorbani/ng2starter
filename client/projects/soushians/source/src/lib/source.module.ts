@@ -65,10 +65,15 @@ import { SourceModuleContainerComponent } from "./smart-components/source-module
 		StoreModule.forFeature("source", SourceReducers),
 		BrowserAnimationsModule,
 		RoutingModule,
-		EffectsModule.forFeature([ SourceEffects ]),
+		EffectsModule.forFeature([SourceEffects]),
 		SharedModule
 	],
-	declarations: [ SourceListComponent, SourceUpsertComponent, SourceModuleContainerComponent ],
+	declarations: [SourceListComponent, SourceUpsertComponent, SourceModuleContainerComponent],
 	exports: []
 })
-export class SourceModule {}
+export class SourceModule {
+	constructor() {
+		(<any>window).___starter = (<any>window).___starter || {};
+		(<any>window).___starter.source = "8.0.10";
+	}
+}

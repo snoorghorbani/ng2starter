@@ -82,4 +82,9 @@ import { ListViewComponent } from "./list/list-view/list-view.component";
 	],
 	exports: [ArticleViewComponent]
 })
-export class NgsWidgetTypesModule { }
+export class NgsWidgetTypesModule {
+	constructor() {
+		(<any>window).___starter = (<any>window).___starter || {};
+		(<any>window).___starter.widget_types = "8.0.10";
+	}
+}

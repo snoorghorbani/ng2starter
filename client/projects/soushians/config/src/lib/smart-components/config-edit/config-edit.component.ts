@@ -16,7 +16,7 @@ export class ConfigEditComponent implements OnInit {
 	configInforamation: any;
 	formGroup: FormGroup = EditConfigApiModel.Request.formGroup;
 	partialConfigModel: PartialConfig;
-	@ViewChild("dynConfig") dynConfig: DynamicConfigComponentSelectorComponent;
+	@ViewChild("dynConfig", { static: false }) dynConfig: DynamicConfigComponentSelectorComponent;
 	constructor(private configService: ConfigService, private formBuilder: FormBuilder, private route: ActivatedRoute) {
 		this.route.params.subscribe(params => {
 			const configName: string = params["name"];

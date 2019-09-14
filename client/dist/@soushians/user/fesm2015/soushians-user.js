@@ -1,26 +1,26 @@
+import { InjectionToken, Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, Component, EventEmitter, Input, Output, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
+import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgsFormModule } from '@soushians/form';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { __decorate, __metadata } from 'tslib';
-import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
-import { getUser, SignInActionTypes } from '@soushians/authentication';
-import { Observable } from 'rxjs/Observable';
 import { MatSnackBar, MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatRadioModule } from '@angular/material';
-import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { stringTemplate, MatchValidator } from '@soushians/shared';
+import { Store, createFeatureSelector, createSelector, StoreModule } from '@ngrx/store';
+import { ofType, Actions, Effect, EffectsModule } from '@ngrx/effects';
+import { NgsFormModule } from '@soushians/form';
+import { map, filter, take, combineLatest, switchMap, catchError, pluck, takeWhile } from 'rxjs/operators';
+import { __decorate, __metadata } from 'tslib';
 import { of, BehaviorSubject as BehaviorSubject$1 } from 'rxjs';
-import { getUserModuleConfig, getAppConfig } from '@soushians/config';
-import { map, filter, take, switchMap, combineLatest, catchError, pluck, takeWhile } from 'rxjs/operators';
+import { stringTemplate, MatchValidator } from '@soushians/shared';
+import { getUser, SignInActionTypes } from '@soushians/authentication';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Router, ActivatedRoute, RouterModule } from '@angular/router';
-import { InjectionToken, Injectable, Inject, NgModule, Component, Input, Output, EventEmitter, defineInjectable, inject } from '@angular/core';
-import { Store, createSelector, createFeatureSelector, StoreModule } from '@ngrx/store';
+import { getUserModuleConfig, getAppConfig } from '@soushians/config';
+import { Observable } from 'rxjs/Observable';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class UserModel {
     constructor() {
@@ -28,11 +28,56 @@ class UserModel {
         this.Groups = [];
     }
 }
+if (false) {
+    /** @type {?} */
+    UserModel.prototype._id;
+    /** @type {?} */
+    UserModel.prototype.DisplayName;
+    /** @type {?} */
+    UserModel.prototype.Email;
+    /** @type {?} */
+    UserModel.prototype.Roles;
+    /** @type {?} */
+    UserModel.prototype.Groups;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function UserModuleConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    UserModuleConfig.prototype.server;
+    /** @type {?|undefined} */
+    UserModuleConfig.prototype.env;
+    /** @type {?|undefined} */
+    UserModuleConfig.prototype.endpoints;
+    /** @type {?|undefined} */
+    UserModuleConfig.prototype.forms;
+    /** @type {?|undefined} */
+    UserModuleConfig.prototype.dashboardLinks;
+    /** @type {?|undefined} */
+    UserModuleConfig.prototype.responseToUserInfo;
+    /** @type {?|undefined} */
+    UserModuleConfig.prototype.mapUserDisplayName;
+}
+const ɵ0 = /**
+ * @param {?} user$
+ * @return {?}
+ */
+user$ => user$, ɵ1 = /**
+ * @param {?} user$
+ * @return {?}
+ */
+user$ => user$.pipe(map((/**
+ * @param {?} user
+ * @return {?}
+ */
+user => user.Username)));
 /** @type {?} */
 const MODULE_DEFAULT_CONFIG = {
     server: "frontend_server",
@@ -53,15 +98,15 @@ const MODULE_DEFAULT_CONFIG = {
         profile_edit: ""
     },
     dashboardLinks: [],
-    responseToUserInfo: user$ => user$,
-    mapUserDisplayName: user$ => user$.pipe(map(user => user.Username))
+    responseToUserInfo: (ɵ0),
+    mapUserDisplayName: (ɵ1)
 };
 /** @type {?} */
 const MODULE_CONFIG_TOKEN = new InjectionToken("UserModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class UserConfigurationService {
     /**
@@ -73,12 +118,16 @@ class UserConfigurationService {
         this.config$ = new BehaviorSubject(this._config);
         this._config = Object.assign({}, MODULE_DEFAULT_CONFIG, configFile);
         this.config$.next(this._config);
-        this.store.select(getUserModuleConfig).subscribe(userConfig => {
+        this.store.select(getUserModuleConfig).subscribe((/**
+         * @param {?} userConfig
+         * @return {?}
+         */
+        userConfig => {
             if (!userConfig)
                 return;
             this._config = Object.assign({}, this._config, userConfig.Config);
             this.config$.next(this._config);
-        });
+        }));
     }
     /**
      * @return {?}
@@ -97,11 +146,25 @@ UserConfigurationService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [MODULE_CONFIG_TOKEN,] }] },
     { type: Store }
 ];
-/** @nocollapse */ UserConfigurationService.ngInjectableDef = defineInjectable({ factory: function UserConfigurationService_Factory() { return new UserConfigurationService(inject(MODULE_CONFIG_TOKEN), inject(Store)); }, token: UserConfigurationService, providedIn: "root" });
+/** @nocollapse */ UserConfigurationService.ngInjectableDef = ɵɵdefineInjectable({ factory: function UserConfigurationService_Factory() { return new UserConfigurationService(ɵɵinject(MODULE_CONFIG_TOKEN), ɵɵinject(Store)); }, token: UserConfigurationService, providedIn: "root" });
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UserConfigurationService.prototype._config;
+    /** @type {?} */
+    UserConfigurationService.prototype.config$;
+    /**
+     * @type {?}
+     * @private
+     */
+    UserConfigurationService.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const ProfileViewActionTypes = {
@@ -115,10 +178,18 @@ class GetProfile {
         this.type = ProfileViewActionTypes.GET_PROFILE;
     }
 }
+if (false) {
+    /** @type {?} */
+    GetProfile.prototype.type;
+}
 class GetProfileStart {
     constructor() {
         this.type = ProfileViewActionTypes.GET_PROFILE_START;
     }
+}
+if (false) {
+    /** @type {?} */
+    GetProfileStart.prototype.type;
 }
 class GetProfileSucceed {
     /**
@@ -129,21 +200,46 @@ class GetProfileSucceed {
         this.type = ProfileViewActionTypes.GET_PROFILE_SUCCEED;
     }
 }
+if (false) {
+    /** @type {?} */
+    GetProfileSucceed.prototype.type;
+    /** @type {?} */
+    GetProfileSucceed.prototype.payload;
+}
 class GetProfileFailed {
     constructor() {
         this.type = ProfileViewActionTypes.GET_PROFILE_FAILED;
     }
 }
+if (false) {
+    /** @type {?} */
+    GetProfileFailed.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const UserActionTypes = {
     USER_SELECTED: "[USER] USER_SELECTED",
     REFRESH_USER_INFO: "[USER] REFRESH_USER_INFO",
 };
+class UserSelectedAction {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = UserActionTypes.USER_SELECTED;
+    }
+}
+if (false) {
+    /** @type {?} */
+    UserSelectedAction.prototype.type;
+    /** @type {?} */
+    UserSelectedAction.prototype.payload;
+}
 class RefreshUserInfoAction {
     /**
      * @param {?} payload
@@ -153,15 +249,32 @@ class RefreshUserInfoAction {
         this.type = UserActionTypes.REFRESH_USER_INFO;
     }
 }
+if (false) {
+    /** @type {?} */
+    RefreshUserInfoAction.prototype.type;
+    /** @type {?} */
+    RefreshUserInfoAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State() { }
+if (false) {
+    /** @type {?} */
+    State.prototype.loaded;
+    /** @type {?} */
+    State.prototype.data;
+}
+const ɵ0$1 = new UserModel();
 /** @type {?} */
 const initialState = {
     loaded: false,
-    data: new UserModel()
+    data: ɵ0$1
 };
 /**
  * @param {?=} state
@@ -182,11 +295,15 @@ function userReducer(state = initialState, action) {
     }
 }
 /** @type {?} */
-const getAccountInfo = (state) => state.data;
+const getAccountInfo = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.data);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ProfileViewModel;
 (function (ProfileViewModel) {
@@ -195,7 +312,11 @@ var ProfileViewModel;
          * @param {?=} initValue
          */
         constructor(initValue) {
-            Object.keys(initValue).forEach(key => (this[key] = initValue[key]));
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            key => (this[key] = initValue[key])));
         }
         /**
          * @return {?}
@@ -213,6 +334,10 @@ var ProfileViewModel;
         }
     }
     ProfileViewModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype.Email;
+    }
     class Response extends UserModel {
         constructor() {
             super();
@@ -223,7 +348,7 @@ var ProfileViewModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var EditProfile_ApiModel;
 (function (EditProfile_ApiModel) {
@@ -232,7 +357,11 @@ var EditProfile_ApiModel;
          * @param {?=} initValue
          */
         constructor(initValue = (/** @type {?} */ ({}))) {
-            Object.keys(initValue).forEach(key => (this[key] = initValue[key]));
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            key => (this[key] = initValue[key])));
         }
         /**
          * @template THIS
@@ -254,12 +383,24 @@ var EditProfile_ApiModel;
         }
     }
     EditProfile_ApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype.Email;
+        /** @type {?} */
+        Request.prototype.Roles;
+        /** @type {?} */
+        Request.prototype.Groups;
+    }
     class Response {
         /**
          * @param {?=} initValue
          */
         constructor(initValue = (/** @type {?} */ ({}))) {
-            Object.keys(initValue).forEach(key => (this[key] = initValue[key]));
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            key => (this[key] = initValue[key])));
         }
         /**
          * @return {?}
@@ -269,11 +410,15 @@ var EditProfile_ApiModel;
         }
     }
     EditProfile_ApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(EditProfile_ApiModel || (EditProfile_ApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class UserService {
     /**
@@ -285,30 +430,57 @@ class UserService {
         this.http = http;
         this.store = store;
         this.configurationService = configurationService;
-        this.configurationService.config$.subscribe(config => (this.config = config));
-        setTimeout(() => {
+        this.configurationService.config$.subscribe((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => (this.config = config)));
+        setTimeout((/**
+         * @return {?}
+         */
+        () => {
             this.store.dispatch(new GetProfile());
-        }, 999);
+        }), 999);
     }
     /**
      * @return {?}
      */
     getAccountInfo() {
-        return this.configurationService.config$.pipe(filter(config => config.endpoints.profileInformation != ""), take(1), combineLatest(this.store.select(getUser)), filter(([config, user]) => user != undefined), switchMap(([config, user]) => {
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => config.endpoints.profileInformation != "")), take(1), combineLatest(this.store.select(getUser)), filter((/**
+         * @param {?} __0
+         * @return {?}
+         */
+        ([config, user]) => user != undefined)), switchMap((/**
+         * @param {?} __0
+         * @return {?}
+         */
+        ([config, user]) => {
             return this.http
                 .get(stringTemplate(config.env[config.server] + config.endpoints.profileInformation, {
                 user: user || {}
             }))
                 .let(config.responseToUserInfo)
-                .pipe(map((response) => {
+                .pipe(map((/**
+             * @param {?} response
+             * @return {?}
+             */
+            (response) => {
                 /** @type {?} */
                 const _user = Object.assign({}, response);
                 if (_user.Role) {
                     _user.Roles = [_user.Role];
                 }
                 return _user;
-            }), catchError(err => of(false)));
-        }));
+            })), catchError((/**
+             * @param {?} err
+             * @return {?}
+             */
+            err => of(false))));
+        })));
     }
     /**
      * @param {?} data
@@ -319,7 +491,11 @@ class UserService {
         const model = new EditProfile_ApiModel.Request(data);
         return this.http
             .put(stringTemplate(this.config.env[this.config.server] + this.config.endpoints.editProfile, model), model.getRequestBody())
-            .pipe(map(response => new EditProfile_ApiModel.Response(response).extractData()));
+            .pipe(map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        response => new EditProfile_ApiModel.Response(response).extractData())));
     }
     // TODO: remove
     /**
@@ -331,7 +507,11 @@ class UserService {
         const model = new ProfileViewModel.Request(data);
         return this.http
             .get(stringTemplate(this.config.env[this.config.server] + this.config.endpoints.getAccountInfo, model))
-            .pipe(map(response => response));
+            .pipe(map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        response => response)));
     }
     /**
      * @param {?} role
@@ -340,7 +520,15 @@ class UserService {
     is_role(role) {
         return this.store
             .select(getAccountInfo)
-            .pipe(filter(user => user && user.Roles != undefined), take(1), map(user => user.Roles.indexOf(role) > -1));
+            .pipe(filter((/**
+         * @param {?} user
+         * @return {?}
+         */
+        user => user && user.Roles != undefined)), take(1), map((/**
+         * @param {?} user
+         * @return {?}
+         */
+        user => user.Roles.indexOf(role) > -1)));
     }
 }
 UserService.decorators = [
@@ -354,11 +542,30 @@ UserService.ctorParameters = () => [
     { type: Store },
     { type: UserConfigurationService }
 ];
-/** @nocollapse */ UserService.ngInjectableDef = defineInjectable({ factory: function UserService_Factory() { return new UserService(inject(HttpClient), inject(Store), inject(UserConfigurationService)); }, token: UserService, providedIn: "root" });
+/** @nocollapse */ UserService.ngInjectableDef = ɵɵdefineInjectable({ factory: function UserService_Factory() { return new UserService(ɵɵinject(HttpClient), ɵɵinject(Store), ɵɵinject(UserConfigurationService)); }, token: UserService, providedIn: "root" });
+if (false) {
+    /** @type {?} */
+    UserService.prototype.config;
+    /**
+     * @type {?}
+     * @private
+     */
+    UserService.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    UserService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    UserService.prototype.configurationService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const EditProfileActionTypes = {
@@ -376,6 +583,12 @@ class EditProfile {
         this.type = EditProfileActionTypes.EDIT_PROFILE;
     }
 }
+if (false) {
+    /** @type {?} */
+    EditProfile.prototype.type;
+    /** @type {?} */
+    EditProfile.prototype.payload;
+}
 class EditProfileStart {
     /**
      * @param {?} payload
@@ -384,6 +597,12 @@ class EditProfileStart {
         this.payload = payload;
         this.type = EditProfileActionTypes.EDIT_PROFILE_START;
     }
+}
+if (false) {
+    /** @type {?} */
+    EditProfileStart.prototype.type;
+    /** @type {?} */
+    EditProfileStart.prototype.payload;
 }
 class EditProfileSucceed {
     /**
@@ -394,15 +613,25 @@ class EditProfileSucceed {
         this.type = EditProfileActionTypes.EDIT_PROFILE_SUCCEED;
     }
 }
+if (false) {
+    /** @type {?} */
+    EditProfileSucceed.prototype.type;
+    /** @type {?} */
+    EditProfileSucceed.prototype.payload;
+}
 class EditProfileFailed {
     constructor() {
         this.type = EditProfileActionTypes.EDIT_PROFILE_FAILED;
     }
 }
+if (false) {
+    /** @type {?} */
+    EditProfileFailed.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class EditProfileEffects {
     /**
@@ -414,18 +643,36 @@ class EditProfileEffects {
         this.actions$ = actions$;
         this.router = router;
         this.service = service;
-        this.EditProfileRequest$ = this.actions$.pipe(ofType(EditProfileActionTypes.EDIT_PROFILE), pluck("payload"), map((data) => new EditProfileStart(data)));
-        this.RequestEditProfileLink$ = this.actions$.pipe(ofType(EditProfileActionTypes.EDIT_PROFILE_START), pluck("payload"), switchMap((data) => this.service.editProfile(data)), map(res => new EditProfileSucceed(res)), catchError(() => of(new EditProfileFailed())));
+        this.EditProfileRequest$ = this.actions$.pipe(ofType(EditProfileActionTypes.EDIT_PROFILE), pluck("payload"), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        (data) => new EditProfileStart(data))));
+        this.RequestEditProfileLink$ = this.actions$.pipe(ofType(EditProfileActionTypes.EDIT_PROFILE_START), pluck("payload"), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        (data) => this.service.editProfile(data))), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => new EditProfileSucceed(res))), catchError((/**
+         * @return {?}
+         */
+        () => of(new EditProfileFailed()))));
         // .switchMap((data: EditProfile_ApiModel.Request) => {
         // 	return this.service
         // 		.editProfile(data)
         // 		.map((res) => new EditProfileSucceed(res))
         // 		.catch(() => of(new EditProfileFailed()));
         // });
-        this.goToView$ = this.actions$.pipe(ofType(EditProfileActionTypes.EDIT_PROFILE_SUCCEED), map(() => {
+        this.goToView$ = this.actions$.pipe(ofType(EditProfileActionTypes.EDIT_PROFILE_SUCCEED), map((/**
+         * @return {?}
+         */
+        () => {
             this.router.navigate(["/user/profile"]);
             return new GetProfile();
-        }));
+        })));
     }
 }
 EditProfileEffects.decorators = [
@@ -449,10 +696,33 @@ __decorate([
     Effect(),
     __metadata("design:type", Object)
 ], EditProfileEffects.prototype, "goToView$", void 0);
+if (false) {
+    /** @type {?} */
+    EditProfileEffects.prototype.EditProfileRequest$;
+    /** @type {?} */
+    EditProfileEffects.prototype.RequestEditProfileLink$;
+    /** @type {?} */
+    EditProfileEffects.prototype.goToView$;
+    /**
+     * @type {?}
+     * @private
+     */
+    EditProfileEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    EditProfileEffects.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    EditProfileEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ProfileViewEffects {
     /**
@@ -462,11 +732,30 @@ class ProfileViewEffects {
     constructor(actions$, userService) {
         this.actions$ = actions$;
         this.userService = userService;
-        this.ProfileRequest$ = this.actions$.pipe(ofType(ProfileViewActionTypes.GET_PROFILE), pluck("payload"), map(data => new GetProfileStart()));
-        this.getProfile$ = this.actions$.pipe(ofType(ProfileViewActionTypes.GET_PROFILE_START), pluck("payload"), switchMap((data) => this.userService
+        this.ProfileRequest$ = this.actions$.pipe(ofType(ProfileViewActionTypes.GET_PROFILE), pluck("payload"), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => new GetProfileStart())));
+        this.getProfile$ = this.actions$.pipe(ofType(ProfileViewActionTypes.GET_PROFILE_START), pluck("payload"), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        (data) => this.userService
             .getAccountInfo()
-            .pipe(map(res => new GetProfileSucceed(res)), catchError(() => of(new GetProfileFailed())))));
-        this.refreshUserInfo$ = this.actions$.pipe(ofType(ProfileViewActionTypes.GET_PROFILE_SUCCEED), pluck("payload"), map((data) => new RefreshUserInfoAction(data)));
+            .pipe(map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => new GetProfileSucceed(res))), catchError((/**
+         * @return {?}
+         */
+        () => of(new GetProfileFailed())))))));
+        this.refreshUserInfo$ = this.actions$.pipe(ofType(ProfileViewActionTypes.GET_PROFILE_SUCCEED), pluck("payload"), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        (data) => new RefreshUserInfoAction(data))));
     }
 }
 ProfileViewEffects.decorators = [
@@ -489,10 +778,28 @@ __decorate([
     Effect(),
     __metadata("design:type", Object)
 ], ProfileViewEffects.prototype, "refreshUserInfo$", void 0);
+if (false) {
+    /** @type {?} */
+    ProfileViewEffects.prototype.ProfileRequest$;
+    /** @type {?} */
+    ProfileViewEffects.prototype.getProfile$;
+    /** @type {?} */
+    ProfileViewEffects.prototype.refreshUserInfo$;
+    /**
+     * @type {?}
+     * @private
+     */
+    ProfileViewEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    ProfileViewEffects.prototype.userService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class UserEffects {
     /**
@@ -512,10 +819,16 @@ class UserEffects {
         // 		return new GetProfileSucceed(user);
         // 	})
         // );
-        this.getAccountInfo$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_SUCCEED), map(() => {
+        this.getAccountInfo$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNIN_SUCCEED), map((/**
+         * @return {?}
+         */
+        () => {
             return new GetProfile();
-        }));
-        this.signout$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNOUT), map(() => new RefreshUserInfoAction((/** @type {?} */ ({})))));
+        })));
+        this.signout$ = this.actions$.pipe(ofType(SignInActionTypes.SIGNOUT), map((/**
+         * @return {?}
+         */
+        () => new RefreshUserInfoAction((/** @type {?} */ ({}))))));
     }
 }
 UserEffects.decorators = [
@@ -535,10 +848,31 @@ __decorate([
     Effect(),
     __metadata("design:type", Object)
 ], UserEffects.prototype, "signout$", void 0);
+if (false) {
+    /** @type {?} */
+    UserEffects.prototype.getAccountInfo$;
+    /** @type {?} */
+    UserEffects.prototype.signout$;
+    /**
+     * @type {?}
+     * @private
+     */
+    UserEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    UserEffects.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    UserEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const ResetPasswordRequestActionTypes = {
@@ -552,11 +886,122 @@ const ResetPasswordRequestActionTypes = {
     PASSWORD_CHANGED_SUCCEED: "[USER][PASSWORD] PASSWORD_CHANGED_SUCCEED",
     PASSWORD_CHANGED_FAILED: "[USER][PASSWORD] PASSWORD_CHANGED_FAILED",
 };
+class GetResetPasswordLink {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = ResetPasswordRequestActionTypes.GET_RESET_PASSWORD_LINK;
+    }
+}
+if (false) {
+    /** @type {?} */
+    GetResetPasswordLink.prototype.type;
+    /** @type {?} */
+    GetResetPasswordLink.prototype.payload;
+}
+class ResetPasswordLinkRequestStart {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = ResetPasswordRequestActionTypes.RESET_PASSWORD_LINK_REQUEST_START;
+    }
+}
+if (false) {
+    /** @type {?} */
+    ResetPasswordLinkRequestStart.prototype.type;
+    /** @type {?} */
+    ResetPasswordLinkRequestStart.prototype.payload;
+}
+class ResetPasswordLinkRequestSucceed {
+    constructor() {
+        this.type = ResetPasswordRequestActionTypes.RESET_PASSWORD_LINK_REQUEST_SUCCEED;
+    }
+}
+if (false) {
+    /** @type {?} */
+    ResetPasswordLinkRequestSucceed.prototype.type;
+}
+class ResetPasswordLinkRequestFailed {
+    constructor() {
+        this.type = ResetPasswordRequestActionTypes.RESET_PASSWORD_LINK_REQUEST_FAILED;
+    }
+}
+if (false) {
+    /** @type {?} */
+    ResetPasswordLinkRequestFailed.prototype.type;
+}
+class DisableGetLink {
+    constructor() {
+        this.type = ResetPasswordRequestActionTypes.DISABLE_GET_LINK;
+    }
+}
+if (false) {
+    /** @type {?} */
+    DisableGetLink.prototype.type;
+}
+class EnableGetLink {
+    constructor() {
+        this.type = ResetPasswordRequestActionTypes.ENABLE_GET_LINK;
+    }
+}
+if (false) {
+    /** @type {?} */
+    EnableGetLink.prototype.type;
+}
+class MaximumTryHappend {
+    constructor() {
+        this.type = ResetPasswordRequestActionTypes.MAXIMUM_TRY_HAPPEND;
+    }
+}
+if (false) {
+    /** @type {?} */
+    MaximumTryHappend.prototype.type;
+}
+class PasswordChangedSucceed {
+    constructor() {
+        this.type = ResetPasswordRequestActionTypes.PASSWORD_CHANGED_SUCCEED;
+    }
+}
+if (false) {
+    /** @type {?} */
+    PasswordChangedSucceed.prototype.type;
+}
+class PasswordChangedFailed {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = ResetPasswordRequestActionTypes.PASSWORD_CHANGED_FAILED;
+    }
+}
+if (false) {
+    /** @type {?} */
+    PasswordChangedFailed.prototype.type;
+    /** @type {?} */
+    PasswordChangedFailed.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State$1() { }
+if (false) {
+    /** @type {?} */
+    State$1.prototype.numberOfRequested;
+    /** @type {?} */
+    State$1.prototype.lastRequestedTime;
+    /** @type {?} */
+    State$1.prototype.disable;
+}
 /** @type {?} */
 const initialState$1 = {
     numberOfRequested: 0,
@@ -591,13 +1036,21 @@ function reducer(state = initialState$1, action) {
     }
 }
 /** @type {?} */
-var getNumberOfRequeseted = (state) => state.numberOfRequested;
+var getNumberOfRequeseted = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.numberOfRequested);
 /** @type {?} */
-var getStatus = (state) => state.disable;
+var getStatus = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.disable);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const ChangePasswordActionTypes = {
@@ -615,11 +1068,64 @@ class ChangePassword {
         this.type = ChangePasswordActionTypes.CHANGE_PASSWORD;
     }
 }
+if (false) {
+    /** @type {?} */
+    ChangePassword.prototype.type;
+    /** @type {?} */
+    ChangePassword.prototype.payload;
+}
+class ChangePasswordStart {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = ChangePasswordActionTypes.PASSWORD_CHANGED_START;
+    }
+}
+if (false) {
+    /** @type {?} */
+    ChangePasswordStart.prototype.type;
+    /** @type {?} */
+    ChangePasswordStart.prototype.payload;
+}
+class ChangePasswordSucceed {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = ChangePasswordActionTypes.PASSWORD_CHANGED_SUCCEED;
+    }
+}
+if (false) {
+    /** @type {?} */
+    ChangePasswordSucceed.prototype.type;
+    /** @type {?} */
+    ChangePasswordSucceed.prototype.payload;
+}
+class ChangePasswordFailed {
+    constructor() {
+        this.type = ChangePasswordActionTypes.PASSWORD_CHANGED_FAILED;
+    }
+}
+if (false) {
+    /** @type {?} */
+    ChangePasswordFailed.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State$2() { }
+if (false) {
+    /** @type {?} */
+    State$2.prototype.status;
+}
 /** @type {?} */
 const initialState$2 = {
     status: "pristine"
@@ -656,11 +1162,25 @@ function reducer$1(state = initialState$2, action) {
         }
     }
 }
+/** @type {?} */
+var getStatus$1 = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.status);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State$3() { }
+if (false) {
+    /** @type {?} */
+    State$3.prototype.status;
+}
 /** @type {?} */
 const initialState$3 = {
     status: "pristine"
@@ -697,10 +1217,16 @@ function reducer$2(state = initialState$3, action) {
         }
     }
 }
+/** @type {?} */
+let getStatus$2 = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.status);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const SearchActionTypes = {
@@ -719,15 +1245,80 @@ class Search {
         this.type = SearchActionTypes.SEARCH;
     }
 }
+if (false) {
+    /** @type {?} */
+    Search.prototype.type;
+    /** @type {?} */
+    Search.prototype.payload;
+}
+class SearchStartAction {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = SearchActionTypes.SEARCH_START;
+    }
+}
+if (false) {
+    /** @type {?} */
+    SearchStartAction.prototype.type;
+    /** @type {?} */
+    SearchStartAction.prototype.payload;
+}
+class SearchSucceed {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = SearchActionTypes.SEARCH_SUCCEED;
+    }
+}
+if (false) {
+    /** @type {?} */
+    SearchSucceed.prototype.type;
+    /** @type {?} */
+    SearchSucceed.prototype.payload;
+}
+class SearchFailed {
+    constructor() {
+        this.type = SearchActionTypes.SEARCH_FAILED;
+    }
+}
+if (false) {
+    /** @type {?} */
+    SearchFailed.prototype.type;
+}
+class ClearSearchedUser {
+    constructor() {
+        this.type = SearchActionTypes.CLEAR_SEARCHED_USER;
+    }
+}
+if (false) {
+    /** @type {?} */
+    ClearSearchedUser.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State$4() { }
+if (false) {
+    /** @type {?} */
+    State$4.prototype.status;
+    /** @type {?} */
+    State$4.prototype.data;
+}
+const ɵ0$2 = ({});
 /** @type {?} */
 const initialState$4 = {
     status: "pristine",
-    data: (/** @type {?} */ ({}))
+    data: (/** @type {?} */ (ɵ0$2))
 };
 /**
  * @param {?=} state
@@ -757,12 +1348,38 @@ function reducer$3(state = initialState$4, action) {
     }
 }
 /** @type {?} */
-var getStatus$3 = (state) => state.status;
+var getStatus$3 = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.status);
+/** @type {?} */
+var getAccountInfo$1 = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.data);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function UserState() { }
+if (false) {
+    /** @type {?} */
+    UserState.prototype.user;
+    /** @type {?} */
+    UserState.prototype.resetPasswordRequest;
+    /** @type {?} */
+    UserState.prototype.searchView;
+    /** @type {?} */
+    UserState.prototype.changePassword;
+    /** @type {?} */
+    UserState.prototype.editProfile;
+}
 /** @type {?} */
 const UserReducers = {
     user: userReducer,
@@ -771,34 +1388,67 @@ const UserReducers = {
     searchView: reducer$3,
     editProfile: reducer$2
 };
+/**
+ * @record
+ */
+function AppState() { }
+if (false) {
+    /** @type {?} */
+    AppState.prototype.user;
+}
 //#region selectors
 /** @type {?} */
 const selectFeatureState = createFeatureSelector("user");
+const ɵ0$3 = /**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.user.loaded;
 /** @type {?} */
-const getUserInforamtionStatus = createSelector(selectFeatureState, (state) => state.user.loaded);
+const getUserInforamtionStatus = createSelector(selectFeatureState, (ɵ0$3));
+const ɵ1$1 = /**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.user.loaded;
 /** @type {?} */
-const isSignedIn = createSelector(selectFeatureState, (state) => state.user.loaded);
+const isSignedIn = createSelector(selectFeatureState, (ɵ1$1));
+const ɵ2 = /**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.resetPasswordRequest;
 /** @type {?} */
-const selectResetPasswordRequestState = createSelector(selectFeatureState, (state) => state.resetPasswordRequest);
+const selectResetPasswordRequestState = createSelector(selectFeatureState, (ɵ2));
 /** @type {?} */
 const getNumberOfRequeseted$1 = createSelector(selectResetPasswordRequestState, getNumberOfRequeseted);
 /** @type {?} */
 const getResetPasswordRequestStatus = createSelector(selectResetPasswordRequestState, getStatus);
 //#region user
+const ɵ3 = /**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.user;
 /** @type {?} */
-const selectUserInformaionState = createSelector(selectFeatureState, (state) => state.user);
+const selectUserInformaionState = createSelector(selectFeatureState, (ɵ3));
 /** @type {?} */
 const getAccountInfo$2 = createSelector(selectUserInformaionState, getAccountInfo);
 //#endregion
 //#region search
+const ɵ4 = /**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.searchView;
 /** @type {?} */
-const selectSearchState = createSelector(selectFeatureState, (state) => state.searchView);
+const selectSearchState = createSelector(selectFeatureState, (ɵ4));
 /** @type {?} */
 const getSearchStatus = createSelector(selectSearchState, getStatus$3);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SearchComponent {
     /**
@@ -816,7 +1466,11 @@ class SearchComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.userStatus$.subscribe(value => this.userDataLoaded$.next(!"pristine|dirty|pending".includes(value)));
+        this.userStatus$.subscribe((/**
+         * @param {?} value
+         * @return {?}
+         */
+        value => this.userDataLoaded$.next(!"pristine|dirty|pending".includes(value))));
     }
     /**
      * @return {?}
@@ -838,10 +1492,27 @@ SearchComponent.decorators = [
 SearchComponent.ctorParameters = () => [
     { type: Store }
 ];
+if (false) {
+    /** @type {?} */
+    SearchComponent.prototype.user;
+    /** @type {?} */
+    SearchComponent.prototype.userStatus$;
+    /** @type {?} */
+    SearchComponent.prototype.formGroup;
+    /** @type {?} */
+    SearchComponent.prototype.userDataLoaded$;
+    /** @type {?} */
+    SearchComponent.prototype.userNotFound$;
+    /**
+     * @type {?}
+     * @private
+     */
+    SearchComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ChangePasswordComponent {
     constructor() {
@@ -877,10 +1548,16 @@ ChangePasswordComponent.propDecorators = {
     formGroup: [{ type: Input }],
     submited: [{ type: Output }]
 };
+if (false) {
+    /** @type {?} */
+    ChangePasswordComponent.prototype.formGroup;
+    /** @type {?} */
+    ChangePasswordComponent.prototype.submited;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ProfileEditComponent {
     /**
@@ -927,10 +1604,27 @@ ProfileEditComponent.propDecorators = {
     roles$: [{ type: Input, args: ["roles",] }],
     groups: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    ProfileEditComponent.prototype.submited;
+    /** @type {?} */
+    ProfileEditComponent.prototype.userInfo;
+    /** @type {?} */
+    ProfileEditComponent.prototype.formId;
+    /** @type {?} */
+    ProfileEditComponent.prototype.roles$;
+    /** @type {?} */
+    ProfileEditComponent.prototype.groups;
+    /**
+     * @type {?}
+     * @private
+     */
+    ProfileEditComponent.prototype.router;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DashboardLinksComponent {
     /**
@@ -940,7 +1634,11 @@ class DashboardLinksComponent {
     constructor(userConfigurationService, store) {
         this.userConfigurationService = userConfigurationService;
         this.store = store;
-        this.links$ = this.userConfigurationService.config$.pipe(map(data => data.dashboardLinks));
+        this.links$ = this.userConfigurationService.config$.pipe(map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => data.dashboardLinks)));
         this.links = [
             {
                 title: "مشاهده حساب کاربری",
@@ -974,10 +1672,26 @@ DashboardLinksComponent.ctorParameters = () => [
     { type: UserConfigurationService },
     { type: Store }
 ];
+if (false) {
+    /** @type {?} */
+    DashboardLinksComponent.prototype.links;
+    /** @type {?} */
+    DashboardLinksComponent.prototype.links$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DashboardLinksComponent.prototype.userConfigurationService;
+    /**
+     * @type {?}
+     * @private
+     */
+    DashboardLinksComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ResetPasswordRequestComponent {
     /**
@@ -987,7 +1701,19 @@ class ResetPasswordRequestComponent {
         this.snackBar = snackBar;
         this.submitted = new EventEmitter();
         this.maximumResendingHappend$ = new BehaviorSubject(false);
-        this.timer$ = Observable.timer(0, 100).pipe(map(i => i + 1), takeWhile(i => i * 100 <= 3000), map(i => 3000 - i * 100));
+        this.timer$ = Observable.timer(0, 100).pipe(map((/**
+         * @param {?} i
+         * @return {?}
+         */
+        i => i + 1)), takeWhile((/**
+         * @param {?} i
+         * @return {?}
+         */
+        i => i * 100 <= 3000)), map((/**
+         * @param {?} i
+         * @return {?}
+         */
+        i => 3000 - i * 100)));
     }
     /**
      * @param {?} isPending
@@ -1003,11 +1729,15 @@ class ResetPasswordRequestComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.numberOfRequested.subscribe(data => {
+        this.numberOfRequested.subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => {
             if (data > 2) {
                 this.maximumResendingHappend$.next(true);
             }
-        });
+        }));
     }
     /**
      * @return {?}
@@ -1043,10 +1773,26 @@ ResetPasswordRequestComponent.propDecorators = {
     canRequestPin: [{ type: Input }],
     pending: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    ResetPasswordRequestComponent.prototype.submitted;
+    /** @type {?} */
+    ResetPasswordRequestComponent.prototype.formGroup;
+    /** @type {?} */
+    ResetPasswordRequestComponent.prototype.numberOfRequested;
+    /** @type {?} */
+    ResetPasswordRequestComponent.prototype.canRequestPin;
+    /** @type {?} */
+    ResetPasswordRequestComponent.prototype.timer$;
+    /** @type {?} */
+    ResetPasswordRequestComponent.prototype.maximumResendingHappend$;
+    /** @type {?} */
+    ResetPasswordRequestComponent.prototype.snackBar;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FeatureContainerComponent {
     /**
@@ -1056,11 +1802,15 @@ class FeatureContainerComponent {
     constructor(route, store) {
         this.route = route;
         this.store = store;
-        this.route.params.subscribe(params => {
+        this.route.params.subscribe((/**
+         * @param {?} params
+         * @return {?}
+         */
+        params => {
             /** @type {?} */
             let model = new ProfileViewModel.Request((/** @type {?} */ ({ Email: params.Email })));
             this.store.dispatch(new Search(model));
-        });
+        }));
     }
 }
 FeatureContainerComponent.decorators = [
@@ -1073,10 +1823,22 @@ FeatureContainerComponent.ctorParameters = () => [
     { type: ActivatedRoute },
     { type: Store }
 ];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FeatureContainerComponent.prototype.route;
+    /**
+     * @type {?}
+     * @private
+     */
+    FeatureContainerComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ChangePasswordModel;
 (function (ChangePasswordModel) {
@@ -1085,7 +1847,11 @@ var ChangePasswordModel;
          * @param {?=} initValue
          */
         constructor(initValue = (/** @type {?} */ ({}))) {
-            Object.keys(initValue).forEach(key => (this[key] = initValue[key]));
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            key => (this[key] = initValue[key])));
         }
         /**
          * @return {?}
@@ -1106,6 +1872,12 @@ var ChangePasswordModel;
         }
     }
     ChangePasswordModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype.Username;
+        /** @type {?} */
+        Request.prototype.Password;
+    }
     class Response {
         constructor() { }
     }
@@ -1114,7 +1886,7 @@ var ChangePasswordModel;
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ChangePasswordContainerComponent {
     /**
@@ -1131,12 +1903,16 @@ class ChangePasswordContainerComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.store.select(getAccountInfo$2).subscribe(userInfo => {
+        this.store.select(getAccountInfo$2).subscribe((/**
+         * @param {?} userInfo
+         * @return {?}
+         */
+        userInfo => {
             if (!userInfo)
                 return;
             // TODO:
             // this.ChangePasswordModel.Username = userInfo.Username;
-        });
+        }));
     }
     /**
      * @param {?} event
@@ -1160,10 +1936,26 @@ ChangePasswordContainerComponent.ctorParameters = () => [
     { type: ActivatedRoute },
     { type: Store }
 ];
+if (false) {
+    /** @type {?} */
+    ChangePasswordContainerComponent.prototype.formGroup;
+    /** @type {?} */
+    ChangePasswordContainerComponent.prototype.ChangePasswordModel;
+    /**
+     * @type {?}
+     * @private
+     */
+    ChangePasswordContainerComponent.prototype.route;
+    /**
+     * @type {?}
+     * @private
+     */
+    ChangePasswordContainerComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ProfileEditContainerComponent {
     /**
@@ -1176,7 +1968,15 @@ class ProfileEditContainerComponent {
         this.userInforamation$ = this.store.select(getAccountInfo$2);
         this.roles$ = this.store
             .select(getAppConfig)
-            .pipe(filter(config => config != undefined), map(config => config.Config.Roles));
+            .pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => config != undefined)), map((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => config.Config.Roles)));
         // TODO:
         // this.groups = this.diagramService.getGroups();
         this.groups = of(["test1", "test2"]);
@@ -1211,10 +2011,30 @@ ProfileEditContainerComponent.ctorParameters = () => [
     { type: Store },
     { type: UserConfigurationService }
 ];
+if (false) {
+    /** @type {?} */
+    ProfileEditContainerComponent.prototype.userInforamation$;
+    /** @type {?} */
+    ProfileEditContainerComponent.prototype.roles$;
+    /** @type {?} */
+    ProfileEditContainerComponent.prototype.groups;
+    /** @type {?} */
+    ProfileEditContainerComponent.prototype.config$;
+    /**
+     * @type {?}
+     * @private
+     */
+    ProfileEditContainerComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    ProfileEditContainerComponent.prototype.configService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DashboardContainerComponent {
     // is_agent : Observable<boolean>;
@@ -1242,10 +2062,19 @@ DashboardContainerComponent.decorators = [
 DashboardContainerComponent.ctorParameters = () => [
     { type: Store }
 ];
+if (false) {
+    /** @type {?} */
+    DashboardContainerComponent.prototype.user$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DashboardContainerComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ProfileComponent {
     constructor() {
@@ -1258,7 +2087,11 @@ class ProfileComponent {
     set information(information) {
         if (!information)
             return;
-        Object.keys(information).forEach(k => this.info.push([k, information[k]]));
+        Object.keys(information).forEach((/**
+         * @param {?} k
+         * @return {?}
+         */
+        k => this.info.push([k, information[k]])));
     }
     /**
      * @return {?}
@@ -1278,10 +2111,16 @@ ProfileComponent.propDecorators = {
     information: [{ type: Input }],
     dataStatus$: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    ProfileComponent.prototype.dataStatus$;
+    /** @type {?} */
+    ProfileComponent.prototype.info;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ProfileContainerComponent {
     /**
@@ -1309,10 +2148,21 @@ ProfileContainerComponent.decorators = [
 ProfileContainerComponent.ctorParameters = () => [
     { type: Store }
 ];
+if (false) {
+    /** @type {?} */
+    ProfileContainerComponent.prototype.data$;
+    /** @type {?} */
+    ProfileContainerComponent.prototype.dataStatus$;
+    /**
+     * @type {?}
+     * @private
+     */
+    ProfileContainerComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NgsUserModule {
     /**
@@ -1365,6 +2215,10 @@ NgsUserModule.decorators = [
             },] }
 ];
 class RootNgsUserModule {
+    constructor() {
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.user = "8.0.10";
+    }
 }
 RootNgsUserModule.decorators = [
     { type: NgModule, args: [{
@@ -1382,10 +2236,12 @@ RootNgsUserModule.decorators = [
                 ]
             },] }
 ];
+/** @nocollapse */
+RootNgsUserModule.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const routes = [
@@ -1437,7 +2293,7 @@ const NgsUserRoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const NgsUserModuleOutlets = {
@@ -1446,7 +2302,7 @@ const NgsUserModuleOutlets = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class UserFacadeService {
     /**
@@ -1481,18 +2337,29 @@ UserFacadeService.ctorParameters = () => [
     { type: Store },
     { type: UserConfigurationService }
 ];
-/** @nocollapse */ UserFacadeService.ngInjectableDef = defineInjectable({ factory: function UserFacadeService_Factory() { return new UserFacadeService(inject(Store), inject(UserConfigurationService)); }, token: UserFacadeService, providedIn: "root" });
+/** @nocollapse */ UserFacadeService.ngInjectableDef = ɵɵdefineInjectable({ factory: function UserFacadeService_Factory() { return new UserFacadeService(ɵɵinject(Store), ɵɵinject(UserConfigurationService)); }, token: UserFacadeService, providedIn: "root" });
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UserFacadeService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    UserFacadeService.prototype.configService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { UserModel, NgsUserModule, NgsUserRoutingModule, NgsUserModuleOutlets, UserService, UserFacadeService, getAccountInfo$2 as getAccountInfo, UserActionTypes, ChangePasswordContainerComponent as ɵr, reducer$1 as ɵw, ChangePasswordComponent as ɵj, getAccountInfo as ɵu, userReducer as ɵt, DashboardContainerComponent as ɵq, DashboardLinksComponent as ɵm, FeatureContainerComponent as ɵp, UserEffects as ɵbb, EditProfileEffects as ɵz, reducer$2 as ɵy, ProfileEditContainerComponent as ɵs, ProfileEditComponent as ɵk, ProfileContainerComponent as ɵl, ProfileViewEffects as ɵba, ProfileComponent as ɵi, reducer as ɵv, ResetPasswordRequestComponent as ɵo, reducer$3 as ɵx, SearchComponent as ɵh, UserConfigurationService as ɵn, MODULE_CONFIG_TOKEN as ɵa, RootNgsUserModule as ɵb, UserReducers as ɵd, selectFeatureState as ɵf, selectUserInformaionState as ɵg, routes as ɵc };
-
+export { NgsUserModule, NgsUserModuleOutlets, NgsUserRoutingModule, UserActionTypes, UserFacadeService, UserModel, UserService, getAccountInfo$2 as getAccountInfo, MODULE_CONFIG_TOKEN as ɵa, RootNgsUserModule as ɵb, ProfileViewEffects as ɵba, UserEffects as ɵbb, routes as ɵc, UserReducers as ɵd, selectFeatureState as ɵf, selectUserInformaionState as ɵg, SearchComponent as ɵh, ProfileComponent as ɵi, ChangePasswordComponent as ɵj, ProfileEditComponent as ɵk, ProfileContainerComponent as ɵl, DashboardLinksComponent as ɵm, UserConfigurationService as ɵn, ResetPasswordRequestComponent as ɵo, FeatureContainerComponent as ɵp, DashboardContainerComponent as ɵq, ChangePasswordContainerComponent as ɵr, ProfileEditContainerComponent as ɵs, userReducer as ɵt, getAccountInfo as ɵu, reducer as ɵv, reducer$1 as ɵw, reducer$3 as ɵx, reducer$2 as ɵy, EditProfileEffects as ɵz };
 //# sourceMappingURL=soushians-user.js.map

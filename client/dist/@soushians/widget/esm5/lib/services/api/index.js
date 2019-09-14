@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 export { GetWidgetsApiModel, GetWidgetsStartAction, GetWidgetsSucceedAction, GetWidgetsFailedAction } from "./get-widgets";
 export { GetWidgetApiModel, GetWidgetStartAction, GetWidgetSucceedAction, GetWidgetFailedAction } from "./get-widget";

@@ -34,13 +34,13 @@ import {
 @Component({
 	selector: "layout-main",
 	templateUrl: "./main.component.html",
-	styleUrls: [ "./main.component.scss" ],
+	styleUrls: ["./main.component.scss"],
 	animations: [
 		trigger("mode", [
 			state("visible", style({ transform: "scaleY(1) translateY(0)" })),
 			state("invisible", style({ height: "0", transform: "scaleY(0) translateY(100%)" })),
-			transition("visible => invisible", [ animate("1000ms") ]),
-			transition("invisible => visible", [ animate("1000ms") ])
+			transition("visible => invisible", [animate("1000ms")]),
+			transition("invisible => visible", [animate("1000ms")])
 		])
 	]
 })
@@ -61,7 +61,7 @@ export class NgsLayoutMainComponent {
 	showSecondSidenav: Observable<boolean>;
 	secondSidenavMode: Observable<"side" | "over" | "push">;
 	toolbarAnimationState: Observable<string>;
-	@ViewChild("mainSideNav") mainSideNav: ElementRef;
+	@ViewChild("mainSideNav", { static: false }) mainSideNav: ElementRef;
 	@HostBinding("class.theme_A") theme_A: boolean;
 	@HostBinding("class.theme_B") theme_B: boolean;
 	constructor(

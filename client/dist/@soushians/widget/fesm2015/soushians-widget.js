@@ -1,21 +1,27 @@
+import { InjectionToken, Injectable, Inject, Component, ComponentFactoryResolver, ViewContainerRef, Input, Directive, NgModule } from '@angular/core';
+import { Store, StoreModule } from '@ngrx/store';
+import { filter, take, switchMap, map, tap, startWith, pluck, catchError } from 'rxjs/operators';
+import { BehaviorSubject, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { stringTemplate } from '@soushians/shared';
 import { Location, CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatRadioModule, MatSlideToggleModule, MatDividerModule, MatMenuModule, MatCheckboxModule, MatTableModule } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { BehaviorSubject, of } from 'rxjs';
-import { __decorate, __metadata } from 'tslib';
-import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
-import { InjectionToken, Inject, Injectable, Component, ComponentFactoryResolver, ViewContainerRef, Input, Directive, NgModule } from '@angular/core';
-import { Store, StoreModule } from '@ngrx/store';
-import { map, filter, tap, take, switchMap, startWith, catchError, pluck } from 'rxjs/operators';
 import { RouterModule, ActivatedRoute } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatRadioModule, MatSlideToggleModule, MatDividerModule, MatCheckboxModule, MatTableModule, MatMenuModule } from '@angular/material';
+import { ofType, Actions, Effect, EffectsModule } from '@ngrx/effects';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { __decorate, __metadata } from 'tslib';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {string} */
+const UPSERT_WIDGET_ACTION_TYPES = {
+    START: "[UPSERT_WIDGET][API][UpsertWidget] start",
+    SUCCEED: "[UPSERT_WIDGET][API][UpsertWidget] succeed",
+    FAILED: "[UPSERT_WIDGET][API][UpsertWidget] failed",
+};
 class UpsertWidgetStartAction {
     /**
      * @param {?} payload
@@ -24,6 +30,12 @@ class UpsertWidgetStartAction {
         this.payload = payload;
         this.type = "[UPSERT_WIDGET][API][UpsertWidget] start" /* START */;
     }
+}
+if (false) {
+    /** @type {?} */
+    UpsertWidgetStartAction.prototype.type;
+    /** @type {?} */
+    UpsertWidgetStartAction.prototype.payload;
 }
 class UpsertWidgetSucceedAction {
     /**
@@ -34,6 +46,12 @@ class UpsertWidgetSucceedAction {
         this.type = "[UPSERT_WIDGET][API][UpsertWidget] succeed" /* SUCCEED */;
     }
 }
+if (false) {
+    /** @type {?} */
+    UpsertWidgetSucceedAction.prototype.type;
+    /** @type {?} */
+    UpsertWidgetSucceedAction.prototype.payload;
+}
 class UpsertWidgetFailedAction {
     /**
      * @param {?} payload
@@ -43,11 +61,33 @@ class UpsertWidgetFailedAction {
         this.type = "[UPSERT_WIDGET][API][UpsertWidget] failed" /* FAILED */;
     }
 }
+if (false) {
+    /** @type {?} */
+    UpsertWidgetFailedAction.prototype.type;
+    /** @type {?} */
+    UpsertWidgetFailedAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function WidgetModuleConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    WidgetModuleConfig.prototype.development_uri;
+    /** @type {?|undefined} */
+    WidgetModuleConfig.prototype.production_uri;
+    /** @type {?|undefined} */
+    WidgetModuleConfig.prototype.env;
+    /** @type {?|undefined} */
+    WidgetModuleConfig.prototype.endpoints;
+    /** @type {?|undefined} */
+    WidgetModuleConfig.prototype.types;
+}
 /** @type {?} */
 const MODULE_DEFAULT_CONFIG = {
     env: {
@@ -67,7 +107,7 @@ const MODULE_CONFIG_TOKEN = new InjectionToken("WidgetModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class WidgetConfigurationService {
     /**
@@ -102,10 +142,24 @@ WidgetConfigurationService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [MODULE_CONFIG_TOKEN,] }] },
     { type: Store }
 ];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    WidgetConfigurationService.prototype._config;
+    /** @type {?} */
+    WidgetConfigurationService.prototype.config$;
+    /**
+     * @type {?}
+     * @private
+     */
+    WidgetConfigurationService.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetWidgetsApiModel;
 (function (GetWidgetsApiModel) {
@@ -114,7 +168,11 @@ var GetWidgetsApiModel;
          * @param {?=} initValue
          */
         constructor(initValue = {}) {
-            Object.keys(initValue).forEach(key => (this[key] = initValue[key]));
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            key => (this[key] = initValue[key])));
         }
         /**
          * @return {?}
@@ -128,16 +186,30 @@ var GetWidgetsApiModel;
         constructor() { }
     }
     GetWidgetsApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(GetWidgetsApiModel || (GetWidgetsApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {string} */
+const GET_WIDGETS_ACTION_TYPES = {
+    START: "[GET_WIDGETS][API][GetWidgets] start",
+    SUCCEED: "[GET_WIDGETS][API][GetWidgets] succeed",
+    FAILED: "[GET_WIDGETS][API][GetWidgets] failed",
+};
 class GetWidgetsStartAction {
     constructor() {
         this.type = "[GET_WIDGETS][API][GetWidgets] start" /* START */;
     }
+}
+if (false) {
+    /** @type {?} */
+    GetWidgetsStartAction.prototype.type;
 }
 class GetWidgetsSucceedAction {
     /**
@@ -148,6 +220,12 @@ class GetWidgetsSucceedAction {
         this.type = "[GET_WIDGETS][API][GetWidgets] succeed" /* SUCCEED */;
     }
 }
+if (false) {
+    /** @type {?} */
+    GetWidgetsSucceedAction.prototype.type;
+    /** @type {?} */
+    GetWidgetsSucceedAction.prototype.payload;
+}
 class GetWidgetsFailedAction {
     /**
      * @param {?} payload
@@ -157,15 +235,21 @@ class GetWidgetsFailedAction {
         this.type = "[GET_WIDGETS][API][GetWidgets] failed" /* FAILED */;
     }
 }
+if (false) {
+    /** @type {?} */
+    GetWidgetsFailedAction.prototype.type;
+    /** @type {?} */
+    GetWidgetsFailedAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetWidgetApiModel;
 (function (GetWidgetApiModel) {
@@ -174,7 +258,11 @@ var GetWidgetApiModel;
          * @param {?=} initValue
          */
         constructor(initValue = {}) {
-            Object.keys(initValue).forEach(key => (this[key] = initValue[key]));
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            key => (this[key] = initValue[key])));
         }
         /**
          * @return {?}
@@ -184,16 +272,30 @@ var GetWidgetApiModel;
         }
     }
     GetWidgetApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype._id;
+    }
     class Response {
         constructor() { }
     }
     GetWidgetApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(GetWidgetApiModel || (GetWidgetApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {string} */
+const GET_WIDGET_ACTION_TYPES = {
+    START: "[WIDGET][API][GetWidget] start",
+    SUCCEED: "[WIDGET][API][GetWidget] succeed",
+    FAILED: "[WIDGET][API][GetWidget] failed",
+};
 class GetWidgetStartAction {
     /**
      * @param {?} payload
@@ -202,6 +304,12 @@ class GetWidgetStartAction {
         this.payload = payload;
         this.type = "[WIDGET][API][GetWidget] start" /* START */;
     }
+}
+if (false) {
+    /** @type {?} */
+    GetWidgetStartAction.prototype.type;
+    /** @type {?} */
+    GetWidgetStartAction.prototype.payload;
 }
 class GetWidgetSucceedAction {
     /**
@@ -212,6 +320,12 @@ class GetWidgetSucceedAction {
         this.type = "[WIDGET][API][GetWidget] succeed" /* SUCCEED */;
     }
 }
+if (false) {
+    /** @type {?} */
+    GetWidgetSucceedAction.prototype.type;
+    /** @type {?} */
+    GetWidgetSucceedAction.prototype.payload;
+}
 class GetWidgetFailedAction {
     /**
      * @param {?} payload
@@ -221,15 +335,21 @@ class GetWidgetFailedAction {
         this.type = "[WIDGET][API][GetWidget] failed" /* FAILED */;
     }
 }
+if (false) {
+    /** @type {?} */
+    GetWidgetFailedAction.prototype.type;
+    /** @type {?} */
+    GetWidgetFailedAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @template T
@@ -245,10 +365,20 @@ class WidgetModel {
         this.Config = Config || ((/** @type {?} */ ({})));
     }
 }
+if (false) {
+    /** @type {?} */
+    WidgetModel.prototype._id;
+    /** @type {?} */
+    WidgetModel.prototype.name;
+    /** @type {?} */
+    WidgetModel.prototype.type;
+    /** @type {?} */
+    WidgetModel.prototype.Config;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UpsertWidgetApiModel;
 (function (UpsertWidgetApiModel) {
@@ -268,20 +398,28 @@ var UpsertWidgetApiModel;
         }
     }
     UpsertWidgetApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype.widget;
+    }
     class Response {
         constructor() { }
     }
     UpsertWidgetApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(UpsertWidgetApiModel || (UpsertWidgetApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DeleteWidgetApiModel;
 (function (DeleteWidgetApiModel) {
@@ -301,16 +439,30 @@ var DeleteWidgetApiModel;
         }
     }
     DeleteWidgetApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype.widget;
+    }
     class Response {
         constructor() { }
     }
     DeleteWidgetApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(DeleteWidgetApiModel || (DeleteWidgetApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {string} */
+const DELETE_WIDGET_ACTION_TYPES = {
+    START: "[DELETE_WIDGET][API][DeleteWidget] start",
+    SUCCEED: "[DELETE_WIDGET][API][DeleteWidget] succeed",
+    FAILED: "[DELETE_WIDGET][API][DeleteWidget] failed",
+};
 class DeleteWidgetStartAction {
     /**
      * @param {?} payload
@@ -319,6 +471,12 @@ class DeleteWidgetStartAction {
         this.payload = payload;
         this.type = "[DELETE_WIDGET][API][DeleteWidget] start" /* START */;
     }
+}
+if (false) {
+    /** @type {?} */
+    DeleteWidgetStartAction.prototype.type;
+    /** @type {?} */
+    DeleteWidgetStartAction.prototype.payload;
 }
 class DeleteWidgetSucceedAction {
     /**
@@ -329,6 +487,12 @@ class DeleteWidgetSucceedAction {
         this.type = "[DELETE_WIDGET][API][DeleteWidget] succeed" /* SUCCEED */;
     }
 }
+if (false) {
+    /** @type {?} */
+    DeleteWidgetSucceedAction.prototype.type;
+    /** @type {?} */
+    DeleteWidgetSucceedAction.prototype.payload;
+}
 class DeleteWidgetFailedAction {
     /**
      * @param {?} payload
@@ -338,20 +502,26 @@ class DeleteWidgetFailedAction {
         this.type = "[DELETE_WIDGET][API][DeleteWidget] failed" /* FAILED */;
     }
 }
+if (false) {
+    /** @type {?} */
+    DeleteWidgetFailedAction.prototype.type;
+    /** @type {?} */
+    DeleteWidgetFailedAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class WidgetService {
     /**
@@ -372,13 +542,37 @@ class WidgetService {
      * @return {?}
      */
     get(_id) {
-        return this.configurationService.config$.pipe(filter((config) => config.endpoints.get !== ""), take(1), switchMap((config) => this.http.get(stringTemplate(config.env.frontend_server + config.endpoints.get, { _id }))), map((response) => response.Result));
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        (config) => config.endpoints.get !== "")), take(1), switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        (config) => this.http.get(stringTemplate(config.env.frontend_server + config.endpoints.get, { _id })))), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        (response) => response.Result)));
     }
     /**
      * @return {?}
      */
     getWidgets() {
-        return this.configurationService.config$.pipe(filter((config) => config.endpoints.find != ""), switchMap((config) => this.http.get(config.env.frontend_server + config.endpoints.find)), map((response) => response.Result));
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        (config) => config.endpoints.find != "")), switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        (config) => this.http.get(config.env.frontend_server + config.endpoints.find))), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        (response) => response.Result)));
     }
     /**
      * @template T
@@ -388,7 +582,22 @@ class WidgetService {
     upsert(widget) {
         /** @type {?} */
         const model = new UpsertWidgetApiModel.Request(widget);
-        return this.configurationService.config$.pipe(filter((config) => config.endpoints.upsert != ""), take(1), switchMap((config) => this.http.post(config.env.frontend_server + config.endpoints.upsert, model.getRequestBody())), map((response) => response.Result), tap(() => this._location.back()));
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        (config) => config.endpoints.upsert != "")), take(1), switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        (config) => this.http.post(config.env.frontend_server + config.endpoints.upsert, model.getRequestBody()))), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        (response) => response.Result)), tap((/**
+         * @return {?}
+         */
+        () => this._location.back())));
     }
     /**
      * @param {?} widget
@@ -398,7 +607,19 @@ class WidgetService {
         debugger;
         /** @type {?} */
         const widgetId = widget._id;
-        return this.configurationService.config$.pipe(filter((config) => config.endpoints.deleteItem != ""), switchMap((config) => this.http.delete(stringTemplate(config.env.frontend_server + config.endpoints.deleteItem, { widgetId })).pipe(map((response) => response.Result))));
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        (config) => config.endpoints.deleteItem != "")), switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        (config) => this.http.delete(stringTemplate(config.env.frontend_server + config.endpoints.deleteItem, { widgetId })).pipe(map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        (response) => response.Result))))));
     }
     /**
      * @template T
@@ -409,13 +630,37 @@ class WidgetService {
         /** @type {?} */
         const subject = new BehaviorSubject(undefined);
         this.store
-            .select((state) => state.widgets.db.data)
-            .pipe(filter((widgets) => widgets != null), map((widgets) => widgets.find((widget) => widget._id == _id)), tap((widget) => {
+            .select((/**
+         * @param {?} state
+         * @return {?}
+         */
+        (state) => state.widgets.db.data))
+            .pipe(filter((/**
+         * @param {?} widgets
+         * @return {?}
+         */
+        (widgets) => widgets != null)), map((/**
+         * @param {?} widgets
+         * @return {?}
+         */
+        (widgets) => widgets.find((/**
+         * @param {?} widget
+         * @return {?}
+         */
+        (widget) => widget._id == _id)))), tap((/**
+         * @param {?} widget
+         * @return {?}
+         */
+        (widget) => {
             if (widget == null) {
                 this.store.dispatch(new GetWidgetStartAction(_id));
             }
-        }))
-            .subscribe((widget) => subject.next(widget));
+        })))
+            .subscribe((/**
+         * @param {?} widget
+         * @return {?}
+         */
+        (widget) => subject.next(widget)));
         return subject.asObservable();
     }
 }
@@ -429,10 +674,32 @@ WidgetService.ctorParameters = () => [
     { type: WidgetConfigurationService },
     { type: Location }
 ];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    WidgetService.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    WidgetService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    WidgetService.prototype.configurationService;
+    /**
+     * @type {?}
+     * @private
+     */
+    WidgetService.prototype._location;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DynamicWidgetViewComponent {
     /**
@@ -461,18 +728,34 @@ class DynamicWidgetViewComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.widget$.pipe(filter(widget => widget != undefined)).subscribe(widget => {
+        this.widget$.pipe(filter((/**
+         * @param {?} widget
+         * @return {?}
+         */
+        widget => widget != undefined))).subscribe((/**
+         * @param {?} widget
+         * @return {?}
+         */
+        widget => {
             this._resolve_correct_component_base_on_widget_type(widget);
-        });
+        }));
     }
     /**
      * @return {?}
      */
     _fill_component_map() {
-        this.configurationService.config$.pipe(map(config => config.types), startWith({})).subscribe(types => {
+        this.configurationService.config$.pipe(map((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => config.types)), startWith({})).subscribe((/**
+         * @param {?} types
+         * @return {?}
+         */
+        types => {
             debugger;
             this.mapTypeToComponent = types;
-        });
+        }));
     }
     /**
      * @param {?} id
@@ -496,7 +779,11 @@ class DynamicWidgetViewComponent {
         /** @type {?} */
         const component = this.resolver.resolveComponentFactory(this.mapTypeToComponent[widget.type].view);
         this.component = this.container.createComponent(component);
-        this.widget$.subscribe(w => (this.component.instance.widget = w));
+        this.widget$.subscribe((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => (this.component.instance.widget = w)));
     }
 }
 DynamicWidgetViewComponent.decorators = [
@@ -516,10 +803,40 @@ DynamicWidgetViewComponent.ctorParameters = () => [
 DynamicWidgetViewComponent.propDecorators = {
     oid: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    DynamicWidgetViewComponent.prototype.widget$;
+    /** @type {?} */
+    DynamicWidgetViewComponent.prototype.component;
+    /** @type {?} */
+    DynamicWidgetViewComponent.prototype.mapTypeToComponent;
+    /** @type {?} */
+    DynamicWidgetViewComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetViewComponent.prototype.service;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetViewComponent.prototype.configurationService;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetViewComponent.prototype.resolver;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetViewComponent.prototype.container;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class WidgetSelectorComponent {
     /**
@@ -527,7 +844,11 @@ class WidgetSelectorComponent {
      */
     constructor(store) {
         this.store = store;
-        this.widgets$ = this.store.select(state => state.widgets.db.data);
+        this.widgets$ = this.store.select((/**
+         * @param {?} state
+         * @return {?}
+         */
+        state => state.widgets.db.data));
     }
     /**
      * @return {?}
@@ -559,10 +880,18 @@ WidgetSelectorComponent.decorators = [
 WidgetSelectorComponent.ctorParameters = () => [
     { type: Store }
 ];
+if (false) {
+    /** @type {?} */
+    WidgetSelectorComponent.prototype.widgets$;
+    /** @type {?} */
+    WidgetSelectorComponent.prototype.selectedWidgetId;
+    /** @type {?} */
+    WidgetSelectorComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class RootComponent {
 }
@@ -575,7 +904,7 @@ RootComponent.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class WidgetsManagementComponent {
     /**
@@ -583,7 +912,11 @@ class WidgetsManagementComponent {
      */
     constructor(store) {
         this.store = store;
-        this.widgets$ = this.store.select((state) => state.widgets.db.data);
+        this.widgets$ = this.store.select((/**
+         * @param {?} state
+         * @return {?}
+         */
+        (state) => state.widgets.db.data));
         this._fill_anghazi();
     }
     /**
@@ -630,10 +963,18 @@ WidgetsManagementComponent.decorators = [
 WidgetsManagementComponent.ctorParameters = () => [
     { type: Store }
 ];
+if (false) {
+    /** @type {?} */
+    WidgetsManagementComponent.prototype.anghazi;
+    /** @type {?} */
+    WidgetsManagementComponent.prototype.widgets$;
+    /** @type {?} */
+    WidgetsManagementComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class UpsertComponent {
 }
@@ -645,7 +986,7 @@ UpsertComponent.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const routes = [
@@ -673,7 +1014,7 @@ const WidgetRoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GetWidgetApiEffects {
     /**
@@ -683,7 +1024,19 @@ class GetWidgetApiEffects {
     constructor(actions$, service) {
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$.pipe(ofType("[WIDGET][API][GetWidget] start" /* START */), pluck("payload"), switchMap(payload => this.service.get(payload)), map(res => new GetWidgetSucceedAction(res)), catchError(err => of(new GetWidgetFailedAction(err))));
+        this.start$ = this.actions$.pipe(ofType("[WIDGET][API][GetWidget] start" /* START */), pluck("payload"), switchMap((/**
+         * @param {?} payload
+         * @return {?}
+         */
+        payload => this.service.get(payload))), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => new GetWidgetSucceedAction(res))), catchError((/**
+         * @param {?} err
+         * @return {?}
+         */
+        err => of(new GetWidgetFailedAction(err)))));
     }
 }
 GetWidgetApiEffects.decorators = [
@@ -698,10 +1051,24 @@ __decorate([
     Effect(),
     __metadata("design:type", Object)
 ], GetWidgetApiEffects.prototype, "start$", void 0);
+if (false) {
+    /** @type {?} */
+    GetWidgetApiEffects.prototype.start$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GetWidgetApiEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GetWidgetApiEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class UpsertWidgetApiEffects {
     /**
@@ -711,7 +1078,19 @@ class UpsertWidgetApiEffects {
     constructor(actions$, service) {
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$.pipe(ofType("[UPSERT_WIDGET][API][UpsertWidget] start" /* START */), pluck("payload"), switchMap(payload => this.service.upsert(payload)), map(res => new UpsertWidgetSucceedAction(res)), catchError(err => of(new UpsertWidgetFailedAction(err))));
+        this.start$ = this.actions$.pipe(ofType("[UPSERT_WIDGET][API][UpsertWidget] start" /* START */), pluck("payload"), switchMap((/**
+         * @param {?} payload
+         * @return {?}
+         */
+        payload => this.service.upsert(payload))), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => new UpsertWidgetSucceedAction(res))), catchError((/**
+         * @param {?} err
+         * @return {?}
+         */
+        err => of(new UpsertWidgetFailedAction(err)))));
     }
 }
 UpsertWidgetApiEffects.decorators = [
@@ -726,10 +1105,24 @@ __decorate([
     Effect(),
     __metadata("design:type", Object)
 ], UpsertWidgetApiEffects.prototype, "start$", void 0);
+if (false) {
+    /** @type {?} */
+    UpsertWidgetApiEffects.prototype.start$;
+    /**
+     * @type {?}
+     * @private
+     */
+    UpsertWidgetApiEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    UpsertWidgetApiEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GetWidgetsApiEffects {
     /**
@@ -739,9 +1132,20 @@ class GetWidgetsApiEffects {
     constructor(actions$, service) {
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$.pipe(ofType("[GET_WIDGETS][API][GetWidgets] start" /* START */), switchMap(() => this.service
+        this.start$ = this.actions$.pipe(ofType("[GET_WIDGETS][API][GetWidgets] start" /* START */), switchMap((/**
+         * @return {?}
+         */
+        () => this.service
             .getWidgets()
-            .pipe(map(res => new GetWidgetsSucceedAction(res)), catchError(err => of(new GetWidgetsFailedAction(err))))));
+            .pipe(map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => new GetWidgetsSucceedAction(res))), catchError((/**
+         * @param {?} err
+         * @return {?}
+         */
+        err => of(new GetWidgetsFailedAction(err))))))));
     }
 }
 GetWidgetsApiEffects.decorators = [
@@ -756,10 +1160,24 @@ __decorate([
     Effect(),
     __metadata("design:type", Object)
 ], GetWidgetsApiEffects.prototype, "start$", void 0);
+if (false) {
+    /** @type {?} */
+    GetWidgetsApiEffects.prototype.start$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GetWidgetsApiEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GetWidgetsApiEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DeleteWidgetApiEffects {
     /**
@@ -769,9 +1187,21 @@ class DeleteWidgetApiEffects {
     constructor(actions$, service) {
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$.pipe(ofType("[DELETE_WIDGET][API][DeleteWidget] start" /* START */), pluck("payload"), switchMap((payload) => this.service
+        this.start$ = this.actions$.pipe(ofType("[DELETE_WIDGET][API][DeleteWidget] start" /* START */), pluck("payload"), switchMap((/**
+         * @param {?} payload
+         * @return {?}
+         */
+        (payload) => this.service
             .delete(payload)
-            .pipe(map(res => new DeleteWidgetSucceedAction(res)), catchError(err => of(new DeleteWidgetFailedAction(err))))));
+            .pipe(map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => new DeleteWidgetSucceedAction(res))), catchError((/**
+         * @param {?} err
+         * @return {?}
+         */
+        err => of(new DeleteWidgetFailedAction(err))))))));
     }
 }
 DeleteWidgetApiEffects.decorators = [
@@ -786,10 +1216,24 @@ __decorate([
     Effect(),
     __metadata("design:type", Object)
 ], DeleteWidgetApiEffects.prototype, "start$", void 0);
+if (false) {
+    /** @type {?} */
+    DeleteWidgetApiEffects.prototype.start$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DeleteWidgetApiEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DeleteWidgetApiEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const WidgetsActionTypes = {
@@ -805,6 +1249,12 @@ class UpsertWidgetAction {
         this.type = WidgetsActionTypes.UPSERT;
     }
 }
+if (false) {
+    /** @type {?} */
+    UpsertWidgetAction.prototype.type;
+    /** @type {?} */
+    UpsertWidgetAction.prototype.payload;
+}
 class DeleteWidgetAction {
     /**
      * @param {?} payload
@@ -814,11 +1264,25 @@ class DeleteWidgetAction {
         this.type = WidgetsActionTypes.DELETE;
     }
 }
+if (false) {
+    /** @type {?} */
+    DeleteWidgetAction.prototype.type;
+    /** @type {?} */
+    DeleteWidgetAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State() { }
+if (false) {
+    /** @type {?} */
+    State.prototype.data;
+}
 const ɵ0 = [];
 /** @type {?} */
 const initialState = {
@@ -841,22 +1305,34 @@ function Reducer(state = initialState, action) {
                 newWidgets = [newWidgets];
                 console.error("'WidgetsActionTypes.UPSERT' does not get array payload");
             }
-            newWidgets.forEach((newWidget) => {
+            newWidgets.forEach((/**
+             * @param {?} newWidget
+             * @return {?}
+             */
+            (newWidget) => {
                 /** @type {?} */
-                const existedWidgetIndex = _data.findIndex((w) => w._id == newWidget._id);
+                const existedWidgetIndex = _data.findIndex((/**
+                 * @param {?} w
+                 * @return {?}
+                 */
+                (w) => w._id == newWidget._id));
                 if (existedWidgetIndex > -1) {
                     _data.splice(existedWidgetIndex, 1, newWidget);
                 }
                 else {
                     _data.push(newWidget);
                 }
-            });
+            }));
             return Object.assign({}, state, { data: _data });
         case WidgetsActionTypes.DELETE:
             debugger;
             _data = state.data.concat();
             /** @type {?} */
-            const widgetIndex = state.data.findIndex((w) => w._id == action.payload._id);
+            const widgetIndex = state.data.findIndex((/**
+             * @param {?} w
+             * @return {?}
+             */
+            (w) => w._id == action.payload._id));
             if (widgetIndex > -1) {
                 _data.splice(widgetIndex, 1);
             }
@@ -865,19 +1341,41 @@ function Reducer(state = initialState, action) {
             return state;
     }
 }
+/** @type {?} */
+const getWidgets = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.data);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function WidgetState() { }
+if (false) {
+    /** @type {?} */
+    WidgetState.prototype.db;
+}
 /** @type {?} */
 const WidgetReducer = {
     db: Reducer
 };
+/**
+ * @record
+ */
+function AppState() { }
+if (false) {
+    /** @type {?} */
+    AppState.prototype.widgets;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class WidgetDbEffects {
     /**
@@ -885,9 +1383,21 @@ class WidgetDbEffects {
      */
     constructor(actions$) {
         this.actions$ = actions$;
-        this.Upsert$ = this.actions$.pipe(ofType("[WIDGET][API][GetWidget] succeed" /* SUCCEED */), pluck("payload"), map((widget) => new UpsertWidgetAction([widget])));
-        this.UpsertMany$ = this.actions$.pipe(ofType("[GET_WIDGETS][API][GetWidgets] succeed" /* SUCCEED */), pluck("payload"), map((widgets) => new UpsertWidgetAction(widgets)));
-        this.Delete$ = this.actions$.pipe(ofType("[DELETE_WIDGET][API][DeleteWidget] succeed" /* SUCCEED */), pluck("payload"), map((widget) => new DeleteWidgetAction(widget)));
+        this.Upsert$ = this.actions$.pipe(ofType("[WIDGET][API][GetWidget] succeed" /* SUCCEED */), pluck("payload"), map((/**
+         * @param {?} widget
+         * @return {?}
+         */
+        (widget) => new UpsertWidgetAction([widget]))));
+        this.UpsertMany$ = this.actions$.pipe(ofType("[GET_WIDGETS][API][GetWidgets] succeed" /* SUCCEED */), pluck("payload"), map((/**
+         * @param {?} widgets
+         * @return {?}
+         */
+        (widgets) => new UpsertWidgetAction(widgets))));
+        this.Delete$ = this.actions$.pipe(ofType("[DELETE_WIDGET][API][DeleteWidget] succeed" /* SUCCEED */), pluck("payload"), map((/**
+         * @param {?} widget
+         * @return {?}
+         */
+        (widget) => new DeleteWidgetAction(widget))));
     }
 }
 WidgetDbEffects.decorators = [
@@ -909,10 +1419,23 @@ __decorate([
     Effect(),
     __metadata("design:type", Object)
 ], WidgetDbEffects.prototype, "Delete$", void 0);
+if (false) {
+    /** @type {?} */
+    WidgetDbEffects.prototype.Upsert$;
+    /** @type {?} */
+    WidgetDbEffects.prototype.UpsertMany$;
+    /** @type {?} */
+    WidgetDbEffects.prototype.Delete$;
+    /**
+     * @type {?}
+     * @private
+     */
+    WidgetDbEffects.prototype.actions$;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DynamicWidgetConfigDirective {
     /**
@@ -942,25 +1465,41 @@ class DynamicWidgetConfigDirective {
      * @return {?}
      */
     _fill_component_map() {
-        this.configurationService.config$.pipe(map((config) => config.types), startWith({})).subscribe((types) => {
+        this.configurationService.config$.pipe(map((/**
+         * @param {?} config
+         * @return {?}
+         */
+        (config) => config.types)), startWith({})).subscribe((/**
+         * @param {?} types
+         * @return {?}
+         */
+        (types) => {
             debugger;
             this.mapTypeToComponent = types;
-        });
+        }));
     }
     /**
      * @return {?}
      */
     _react_base_on_params() {
-        this.route.params.subscribe(({ type, _id }) => {
+        this.route.params.subscribe((/**
+         * @param {?} __0
+         * @return {?}
+         */
+        ({ type, _id }) => {
             if (_id) {
-                this.service.selectById(_id).subscribe((widget) => {
+                this.service.selectById(_id).subscribe((/**
+                 * @param {?} widget
+                 * @return {?}
+                 */
+                (widget) => {
                     this._resolve_correct_component_base_on_widget_type(type, widget);
-                });
+                }));
             }
             else {
                 this._resolve_correct_component_base_on_widget_type(type);
             }
-        });
+        }));
     }
     /**
      * @param {?} type
@@ -999,10 +1538,43 @@ DynamicWidgetConfigDirective.ctorParameters = () => [
     { type: ComponentFactoryResolver },
     { type: ViewContainerRef }
 ];
+if (false) {
+    /** @type {?} */
+    DynamicWidgetConfigDirective.prototype.component;
+    /** @type {?} */
+    DynamicWidgetConfigDirective.prototype.mapTypeToComponent;
+    /** @type {?} */
+    DynamicWidgetConfigDirective.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetConfigDirective.prototype.route;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetConfigDirective.prototype.service;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetConfigDirective.prototype.configurationService;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetConfigDirective.prototype.resolver;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetConfigDirective.prototype.container;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DynamicWidgetViewDirective {
     /**
@@ -1033,18 +1605,34 @@ class DynamicWidgetViewDirective {
      * @return {?}
      */
     ngOnInit() {
-        this.widget$.pipe(filter(widget => widget != undefined)).subscribe(widget => {
+        this.widget$.pipe(filter((/**
+         * @param {?} widget
+         * @return {?}
+         */
+        widget => widget != undefined))).subscribe((/**
+         * @param {?} widget
+         * @return {?}
+         */
+        widget => {
             this._resolve_correct_component_base_on_widget_type(widget);
-        });
+        }));
     }
     /**
      * @return {?}
      */
     _fill_component_map() {
-        this.configurationService.config$.pipe(map(config => config.types), startWith({})).subscribe(types => {
+        this.configurationService.config$.pipe(map((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => config.types)), startWith({})).subscribe((/**
+         * @param {?} types
+         * @return {?}
+         */
+        types => {
             debugger;
             this.mapTypeToComponent = types;
-        });
+        }));
     }
     /**
      * @param {?} id
@@ -1067,7 +1655,11 @@ class DynamicWidgetViewDirective {
         /** @type {?} */
         const component = this.resolver.resolveComponentFactory(this.mapTypeToComponent[widget.type].view);
         this.component = this.container.createComponent(component);
-        this.widget$.subscribe(w => (this.component.instance.widget = w));
+        this.widget$.subscribe((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => (this.component.instance.widget = w)));
     }
 }
 DynamicWidgetViewDirective.decorators = [
@@ -1087,10 +1679,45 @@ DynamicWidgetViewDirective.ctorParameters = () => [
 DynamicWidgetViewDirective.propDecorators = {
     oid: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    DynamicWidgetViewDirective.prototype.widget$;
+    /** @type {?} */
+    DynamicWidgetViewDirective.prototype.component;
+    /** @type {?} */
+    DynamicWidgetViewDirective.prototype.mapTypeToComponent;
+    /** @type {?} */
+    DynamicWidgetViewDirective.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetViewDirective.prototype.route;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetViewDirective.prototype.service;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetViewDirective.prototype.configurationService;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetViewDirective.prototype.resolver;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicWidgetViewDirective.prototype.container;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NgsWidgetModule {
     /**
@@ -1142,6 +1769,10 @@ NgsWidgetModule.decorators = [
             },] }
 ];
 class NgsWidgetRootModule {
+    constructor() {
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.widget = "8.0.10";
+    }
 }
 NgsWidgetRootModule.decorators = [
     { type: NgModule, args: [{
@@ -1160,37 +1791,48 @@ NgsWidgetRootModule.decorators = [
                 exports: [NgsWidgetModule]
             },] }
 ];
+/** @nocollapse */
+NgsWidgetRootModule.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @template T
  */
 class IWidgetView {
 }
+if (false) {
+    /** @type {?} */
+    IWidgetView.prototype.widget;
+    /** @type {?} */
+    IWidgetView.prototype.goToEdit;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @template T
  */
 class IWidgetUpsert {
 }
+if (false) {
+    /** @type {?} */
+    IWidgetUpsert.prototype.widget;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { UpsertWidgetStartAction, DynamicWidgetViewComponent, WidgetSelectorComponent, NgsWidgetModule, WidgetModel, IWidgetView, IWidgetUpsert, WidgetsManagementComponent as ɵi, RootComponent as ɵh, WidgetDbEffects as ɵo, Reducer as ɵn, DeleteWidgetApiEffects as ɵu, GetWidgetApiEffects as ɵp, GetWidgetsApiEffects as ɵr, UpsertWidgetApiEffects as ɵt, WidgetConfigurationService as ɵg, WidgetService as ɵf, DynamicWidgetConfigDirective as ɵk, UpsertComponent as ɵj, DynamicWidgetViewDirective as ɵl, WidgetRoutingModule as ɵm, MODULE_CONFIG_TOKEN as ɵc, NgsWidgetRootModule as ɵb, WidgetReducer as ɵd };
-
+export { DynamicWidgetViewComponent, IWidgetUpsert, IWidgetView, NgsWidgetModule, UpsertWidgetStartAction, WidgetModel, WidgetSelectorComponent, NgsWidgetRootModule as ɵb, MODULE_CONFIG_TOKEN as ɵc, WidgetReducer as ɵd, WidgetService as ɵf, WidgetConfigurationService as ɵg, RootComponent as ɵh, WidgetsManagementComponent as ɵi, UpsertComponent as ɵj, DynamicWidgetConfigDirective as ɵk, DynamicWidgetViewDirective as ɵl, WidgetRoutingModule as ɵm, Reducer as ɵn, WidgetDbEffects as ɵo, GetWidgetApiEffects as ɵp, GetWidgetsApiEffects as ɵr, UpsertWidgetApiEffects as ɵt, DeleteWidgetApiEffects as ɵu };
 //# sourceMappingURL=soushians-widget.js.map

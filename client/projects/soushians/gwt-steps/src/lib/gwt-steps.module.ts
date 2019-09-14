@@ -66,4 +66,9 @@ import {
 	],
 	exports: []
 })
-export class GwtStepsModule { }
+export class GwtStepsModule {
+	constructor() {
+		(<any>window).___starter = (<any>window).___starter || {};
+		(<any>window).___starter.gwt_steps = "8.0.10";
+	}
+}

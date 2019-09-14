@@ -4,4 +4,5 @@ export declare class NgsGridModule {
     static forRoot(config?: GridModuleConfig): ModuleWithProviders;
 }
 export declare class NgsGridRootModule {
+    constructor();
 }

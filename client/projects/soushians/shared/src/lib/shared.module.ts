@@ -7,7 +7,12 @@ import { PersianNumberPipe } from "./pipes/persian-number.pipe";
 import { TimeCounterPipe } from "./pipes/time-counter.pipe";
 
 @NgModule({
-	declarations: [ DataUnitPipe, TimeUnitPipe, PersianDatePipe, CurrencyUnitPipe, PersianNumberPipe, TimeCounterPipe ],
-	exports: [ DataUnitPipe, TimeUnitPipe, PersianDatePipe, CurrencyUnitPipe, PersianNumberPipe, TimeCounterPipe ]
+	declarations: [DataUnitPipe, TimeUnitPipe, PersianDatePipe, CurrencyUnitPipe, PersianNumberPipe, TimeCounterPipe],
+	exports: [DataUnitPipe, TimeUnitPipe, PersianDatePipe, CurrencyUnitPipe, PersianNumberPipe, TimeCounterPipe]
 })
-export class SharedModule {}
+export class SharedModule {
+	constructor() {
+		(<any>window).___starter = (<any>window).___starter || {};
+		(<any>window).___starter.shared = "8.0.10";
+	}
+}

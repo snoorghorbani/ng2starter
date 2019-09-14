@@ -1,15 +1,23 @@
+import { InjectionToken, Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { getSocketModuleConfig } from '@soushians/config';
-import { InjectionToken, Inject, Injectable, NgModule, defineInjectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Store, StoreModule } from '@ngrx/store';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { getSocketModuleConfig } from '@soushians/config';
+import { map } from 'rxjs/operators';
 import * as _io from 'socket.io-client';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function SocketModuleConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    SocketModuleConfig.prototype.env;
+}
 /** @type {?} */
 const MODULE_DEFAULT_CONFIG = {
     env: {
@@ -22,7 +30,7 @@ const MODULE_CONFIG_TOKEN = new InjectionToken("SocketModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SocketConfigurationService {
     /**
@@ -34,13 +42,17 @@ class SocketConfigurationService {
         this.config$ = new BehaviorSubject(MODULE_DEFAULT_CONFIG);
         this._config = Object.assign({}, MODULE_DEFAULT_CONFIG, configFile);
         this.config$.next(this._config);
-        this.store.select(getSocketModuleConfig).subscribe(userConfig => {
+        this.store.select(getSocketModuleConfig).subscribe((/**
+         * @param {?} userConfig
+         * @return {?}
+         */
+        userConfig => {
             if (!userConfig) {
                 return;
             }
             this._config = Object.assign({}, this._config, userConfig.Config);
             this.config$.next(this._config);
-        });
+        }));
     }
     /**
      * @return {?}
@@ -57,10 +69,24 @@ SocketConfigurationService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [MODULE_CONFIG_TOKEN,] }] },
     { type: Store }
 ];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SocketConfigurationService.prototype._config;
+    /** @type {?} */
+    SocketConfigurationService.prototype.config$;
+    /**
+     * @type {?}
+     * @private
+     */
+    SocketConfigurationService.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const SocketActionTypes = {
@@ -72,10 +98,23 @@ class SocketRunSuccessfullyAction {
         this.type = SocketActionTypes.SOCKET_RUN_SUCCESSFULLY;
     }
 }
+if (false) {
+    /** @type {?} */
+    SocketRunSuccessfullyAction.prototype.type;
+}
+class SocketInitialazationFailedAction {
+    constructor() {
+        this.type = SocketActionTypes.SOCKET_INITIALAZATION_FAILD;
+    }
+}
+if (false) {
+    /** @type {?} */
+    SocketInitialazationFailedAction.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const io = _io;
@@ -88,19 +127,34 @@ class SocketService {
         this.configService = configService;
         this.store = store;
         this.configService.config$
-            .pipe(map(config => config.env.frontend_server), map(uri => {
+            .pipe(map((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => config.env.frontend_server)), map((/**
+         * @param {?} uri
+         * @return {?}
+         */
+        uri => {
             // console.log(uri, this.configService.config);
             this.socket = io(uri);
             return this.store.dispatch(new SocketRunSuccessfullyAction());
-        }))
-            .subscribe(() => {
-            this.socket.on("DISPATCH_ACTION", data => {
+        })))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => {
+            this.socket.on("DISPATCH_ACTION", (/**
+             * @param {?} data
+             * @return {?}
+             */
+            data => {
                 this.store.dispatch({
                     type: data.type,
                     payload: data.payload
                 });
-            });
-        });
+            }));
+        }));
     }
     /**
      * \@example
@@ -112,11 +166,19 @@ class SocketService {
      */
     on(message) {
         /** @type {?} */
-        const observer$ = new Observable(observer => {
-            this.socket.on(message, (data) => {
+        const observer$ = new Observable((/**
+         * @param {?} observer
+         * @return {?}
+         */
+        observer => {
+            this.socket.on(message, (/**
+             * @param {?} data
+             * @return {?}
+             */
+            (data) => {
                 observer.next(data);
-            });
-        });
+            }));
+        }));
         return observer$;
     }
     /**
@@ -141,12 +203,36 @@ SocketService.ctorParameters = () => [
     { type: SocketConfigurationService },
     { type: Store }
 ];
-/** @nocollapse */ SocketService.ngInjectableDef = defineInjectable({ factory: function SocketService_Factory() { return new SocketService(inject(SocketConfigurationService), inject(Store)); }, token: SocketService, providedIn: "root" });
+/** @nocollapse */ SocketService.ngInjectableDef = ɵɵdefineInjectable({ factory: function SocketService_Factory() { return new SocketService(ɵɵinject(SocketConfigurationService), ɵɵinject(Store)); }, token: SocketService, providedIn: "root" });
+if (false) {
+    /** @type {?} */
+    SocketService.prototype.socket;
+    /** @type {?} */
+    SocketService.prototype.uri;
+    /**
+     * @type {?}
+     * @private
+     */
+    SocketService.prototype.configService;
+    /**
+     * @type {?}
+     * @private
+     */
+    SocketService.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State() { }
+if (false) {
+    /** @type {?} */
+    State.prototype.number;
+}
 /** @type {?} */
 const initialState = {
     number: 0
@@ -163,14 +249,30 @@ function Reducer(state = initialState, action) {
         }
     }
 }
+/**
+ * @record
+ */
+function SocketState() { }
+if (false) {
+    /** @type {?} */
+    SocketState.prototype.change;
+}
 /** @type {?} */
 const SocketReducer = {
     change: Reducer
 };
+/**
+ * @record
+ */
+function AppState() { }
+if (false) {
+    /** @type {?} */
+    AppState.prototype.socket;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NgsSocketModule {
     /**
@@ -195,6 +297,8 @@ class NgsSocketRootModule {
      */
     constructor(socketService) {
         this.socketService = socketService;
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.socket = "8.0.10";
     }
 }
 NgsSocketRootModule.decorators = [
@@ -206,17 +310,23 @@ NgsSocketRootModule.decorators = [
 NgsSocketRootModule.ctorParameters = () => [
     { type: SocketService }
 ];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    NgsSocketRootModule.prototype.socketService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { NgsSocketModule, SocketService, SocketConfigurationService as ɵe, MODULE_CONFIG_TOKEN as ɵf, NgsSocketRootModule as ɵa, Reducer as ɵb, SocketReducer as ɵc };
-
+export { NgsSocketModule, SocketService, NgsSocketRootModule as ɵa, Reducer as ɵb, SocketReducer as ɵc, SocketConfigurationService as ɵe, MODULE_CONFIG_TOKEN as ɵf };
 //# sourceMappingURL=soushians-socket.js.map

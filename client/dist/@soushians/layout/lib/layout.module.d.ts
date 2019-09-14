@@ -4,4 +4,5 @@ export declare class NgsLayoutModule {
     static forRoot(config?: LayoutModuleConfigModel): ModuleWithProviders;
 }
 export declare class RootNgsLayoutModule {
+    constructor();
 }

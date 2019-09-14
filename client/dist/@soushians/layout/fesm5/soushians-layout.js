@@ -1,34 +1,34 @@
+import { InjectionToken, Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, EventEmitter, Component, Output, Input, ViewChild, HostListener, HostBinding, LOCALE_ID, NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { createFeatureSelector, createSelector, Store, StoreModule } from '@ngrx/store';
+import { DOCUMENT, Location, CommonModule } from '@angular/common';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ofType, Actions, Effect, EffectsModule } from '@ngrx/effects';
 import { MatIconModule, MatButtonModule, MatCardModule, MatSnackBarModule, MatSidenavModule, MatExpansionModule, MatSelectModule, MatFormFieldModule, MatListModule, MatMenuModule, MatRadioModule, MatInputModule, MatToolbarModule, MatDatepickerModule, MatProgressBarModule } from '@angular/material';
-import 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { BehaviorSubject as BehaviorSubject$1 } from 'rxjs';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { getConfigs, NgsConfigModule } from '@soushians/config';
-import { __read, __decorate, __metadata, __assign } from 'tslib';
-import { Router, NavigationEnd, RouterModule } from '@angular/router';
+import { __assign, __read, __decorate, __metadata } from 'tslib';
+import 'rxjs/Observable';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+import { SigninService, DoSignoutAction as DoSignoutAction$1 } from '@soushians/authentication';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { map, combineLatest, withLatestFrom } from 'rxjs/operators';
+import { getAccountInfo, UserFacadeService } from '@soushians/user';
+import { fromEvent } from 'rxjs/observable/fromEvent';
+import { BehaviorSubject as BehaviorSubject$1 } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/empty';
-import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
-import { SigninService, DoSignoutAction } from '@soushians/authentication';
 import { RuleModule } from '@soushians/rule';
-import { InjectionToken, Injectable, Inject, Component, Input, Output, EventEmitter, ViewChild, HostListener, NgModule, LOCALE_ID, HostBinding, defineInjectable, inject } from '@angular/core';
-import { createSelector, createFeatureSelector, Store, StoreModule } from '@ngrx/store';
-import { Location, CommonModule } from '@angular/common';
-import { DOCUMENT, BrowserModule } from '@angular/platform-browser';
-import { fromEvent } from 'rxjs/observable/fromEvent';
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import { TranslateService, TranslateModule } from '@ngx-translate/core';
-import { getAccountInfo, UserFacadeService } from '@soushians/user';
-import { map, combineLatest, withLatestFrom } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var OPEN_SIDENAV = "[Layout] Open Sidenav";
@@ -55,18 +55,32 @@ var UpdateLayoutConfigAction = /** @class */ (function () {
     }
     return UpdateLayoutConfigAction;
 }());
+if (false) {
+    /** @type {?} */
+    UpdateLayoutConfigAction.prototype.type;
+    /** @type {?} */
+    UpdateLayoutConfigAction.prototype.payload;
+}
 var OpenSidenavAction = /** @class */ (function () {
     function OpenSidenavAction() {
         this.type = OPEN_SIDENAV;
     }
     return OpenSidenavAction;
 }());
+if (false) {
+    /** @type {?} */
+    OpenSidenavAction.prototype.type;
+}
 var CloseSidenavAction = /** @class */ (function () {
     function CloseSidenavAction() {
         this.type = CLOSE_SIDENAV;
     }
     return CloseSidenavAction;
 }());
+if (false) {
+    /** @type {?} */
+    CloseSidenavAction.prototype.type;
+}
 var ChangeLayout = /** @class */ (function () {
     function ChangeLayout(name) {
         this.name = name;
@@ -74,6 +88,12 @@ var ChangeLayout = /** @class */ (function () {
     }
     return ChangeLayout;
 }());
+if (false) {
+    /** @type {?} */
+    ChangeLayout.prototype.type;
+    /** @type {?} */
+    ChangeLayout.prototype.name;
+}
 var ChangeSideNavMode = /** @class */ (function () {
     function ChangeSideNavMode(mode) {
         this.mode = mode;
@@ -81,6 +101,12 @@ var ChangeSideNavMode = /** @class */ (function () {
     }
     return ChangeSideNavMode;
 }());
+if (false) {
+    /** @type {?} */
+    ChangeSideNavMode.prototype.type;
+    /** @type {?} */
+    ChangeSideNavMode.prototype.mode;
+}
 var ChangeSecondSidenavMode = /** @class */ (function () {
     function ChangeSecondSidenavMode(mode) {
         this.mode = mode;
@@ -88,12 +114,22 @@ var ChangeSecondSidenavMode = /** @class */ (function () {
     }
     return ChangeSecondSidenavMode;
 }());
-var DoSignoutAction$1 = /** @class */ (function () {
-    function DoSignoutAction$$1() {
+if (false) {
+    /** @type {?} */
+    ChangeSecondSidenavMode.prototype.type;
+    /** @type {?} */
+    ChangeSecondSidenavMode.prototype.mode;
+}
+var DoSignoutAction = /** @class */ (function () {
+    function DoSignoutAction() {
         this.type = LayoutActionTypes.DO_SIGNOUT;
     }
-    return DoSignoutAction$$1;
+    return DoSignoutAction;
 }());
+if (false) {
+    /** @type {?} */
+    DoSignoutAction.prototype.type;
+}
 var TitleChangedAction = /** @class */ (function () {
     function TitleChangedAction(title) {
         this.title = title;
@@ -101,41 +137,95 @@ var TitleChangedAction = /** @class */ (function () {
     }
     return TitleChangedAction;
 }());
+if (false) {
+    /** @type {?} */
+    TitleChangedAction.prototype.type;
+    /** @type {?} */
+    TitleChangedAction.prototype.title;
+}
 var OpenSecondSidenavAction = /** @class */ (function () {
     function OpenSecondSidenavAction() {
         this.type = LayoutActionTypes.OPEN_SECOND_SIDEBAR;
     }
     return OpenSecondSidenavAction;
 }());
+if (false) {
+    /** @type {?} */
+    OpenSecondSidenavAction.prototype.type;
+}
 var CloseSecondSidenavAction = /** @class */ (function () {
     function CloseSecondSidenavAction() {
         this.type = LayoutActionTypes.CLOSE_SECOND_SIDEBAR;
     }
     return CloseSecondSidenavAction;
 }());
+if (false) {
+    /** @type {?} */
+    CloseSecondSidenavAction.prototype.type;
+}
 var FullscreenAction = /** @class */ (function () {
     function FullscreenAction() {
         this.type = LayoutActionTypes.FULLSCREEN;
     }
     return FullscreenAction;
 }());
+if (false) {
+    /** @type {?} */
+    FullscreenAction.prototype.type;
+}
 var ExitFullscreenAction = /** @class */ (function () {
     function ExitFullscreenAction() {
         this.type = LayoutActionTypes.EXIT_FULLSCREEN;
     }
     return ExitFullscreenAction;
 }());
+if (false) {
+    /** @type {?} */
+    ExitFullscreenAction.prototype.type;
+}
 var ToggleFullscreenAction = /** @class */ (function () {
     function ToggleFullscreenAction() {
         this.type = LayoutActionTypes.TOGGLE_FULLSCREEN;
     }
     return ToggleFullscreenAction;
 }());
+if (false) {
+    /** @type {?} */
+    ToggleFullscreenAction.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State() { }
+if (false) {
+    /** @type {?|undefined} */
+    State.prototype.showMainSidenav;
+    /** @type {?|undefined} */
+    State.prototype.showSecondSideNav;
+    /** @type {?|undefined} */
+    State.prototype.secondSideNavMode;
+    /** @type {?|undefined} */
+    State.prototype.mainSideNavMode;
+    /** @type {?|undefined} */
+    State.prototype.menuItems;
+    /** @type {?|undefined} */
+    State.prototype.showLeftNavBar;
+    /** @type {?|undefined} */
+    State.prototype.stickyLeftNavBar;
+    /** @type {?|undefined} */
+    State.prototype.layoutMode;
+    /** @type {?|undefined} */
+    State.prototype.title;
+    /** @type {?} */
+    State.prototype.signoutAction;
+    /** @type {?} */
+    State.prototype.fullscreen;
+}
 /** @type {?} */
 var initialState = {
     showMainSidenav: false,
@@ -155,64 +245,102 @@ var initialState = {
  * @param {?=} action
  * @return {?}
  */
-function Reducer(state$$1, action) {
-    if (state$$1 === void 0) { state$$1 = initialState; }
+function Reducer(state, action) {
+    if (state === void 0) { state = initialState; }
     switch (action.type) {
         case LayoutActionTypes.UPDATE_LAYOUT_CONFIG:
             /** @type {?} */
             var _state_1 = {};
-            Object.keys(action.payload).forEach(function (k) {
-                if (k in state$$1)
+            Object.keys(action.payload).forEach((/**
+             * @param {?} k
+             * @return {?}
+             */
+            function (k) {
+                if (k in state)
                     _state_1[k] = action.payload[k];
-            });
-            return __assign({}, state$$1, _state_1);
+            }));
+            return __assign({}, state, _state_1);
         case CLOSE_SIDENAV:
-            return __assign({}, state$$1, { showMainSidenav: false });
+            return __assign({}, state, { showMainSidenav: false });
         case OPEN_SIDENAV:
-            return __assign({}, state$$1, { showMainSidenav: true });
+            return __assign({}, state, { showMainSidenav: true });
         case LayoutActionTypes.TITLE_CHANGED:
-            return __assign({}, state$$1, { title: action.title });
+            return __assign({}, state, { title: action.title });
         case LayoutActionTypes.CHANGE_LAYOUT:
-            return __assign({}, state$$1, { layoutMode: action.name });
+            return __assign({}, state, { layoutMode: action.name });
         case LayoutActionTypes.CHANGE_MAIN_SIDENAVE_MODE:
-            return __assign({}, state$$1, { mainSideNavMode: action.mode });
+            return __assign({}, state, { mainSideNavMode: action.mode });
         case LayoutActionTypes.CLOSE_SECOND_SIDEBAR:
-            return __assign({}, state$$1, { showSecondSideNav: false });
+            return __assign({}, state, { showSecondSideNav: false });
         case LayoutActionTypes.OPEN_SECOND_SIDEBAR:
-            return __assign({}, state$$1, { showSecondSideNav: true });
+            return __assign({}, state, { showSecondSideNav: true });
         case LayoutActionTypes.CHANGE_SECOND_SIDENAV_MODE:
-            return __assign({}, state$$1, { secondSideNavMode: action.mode });
+            return __assign({}, state, { secondSideNavMode: action.mode });
         case LayoutActionTypes.FULLSCREEN:
-            return __assign({}, state$$1, { fullscreen: true });
+            return __assign({}, state, { fullscreen: true });
         case LayoutActionTypes.EXIT_FULLSCREEN:
-            return __assign({}, state$$1, { fullscreen: false });
+            return __assign({}, state, { fullscreen: false });
         // case layout.LayoutActionTypes.TOGGLE_FULLSCREEN:
         // 	return {
         // 		...state,
         // 		fullscreen: state.fullscreen === true ? false : true
         // 	};
         default:
-            return state$$1;
+            return state;
     }
 }
 /** @type {?} */
-var getTitle = function (state$$1) { return state$$1.title; };
+var getShowSidenav = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.showMainSidenav; });
 /** @type {?} */
-var getShowMainSidenav = function (state$$1) { return state$$1.showMainSidenav; };
+var getTitle = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.title; });
 /** @type {?} */
-var getMainSideNavMode = function (state$$1) { return state$$1.mainSideNavMode; };
+var getShowMainSidenav = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.showMainSidenav; });
 /** @type {?} */
-var getLayoutMode = function (state$$1) { return state$$1.layoutMode; };
+var getMainSideNavMode = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.mainSideNavMode; });
 /** @type {?} */
-var getShowSecondSidebarStatus = function (state$$1) { return state$$1.showSecondSideNav; };
+var getLayoutMode = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.layoutMode; });
 /** @type {?} */
-var getSecondSidebarMode = function (state$$1) { return state$$1.secondSideNavMode; };
+var getShowSecondSidebarStatus = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.showSecondSideNav; });
 /** @type {?} */
-var getFullscreenMode = function (state$$1) { return state$$1.fullscreen; };
+var getSecondSidebarMode = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.secondSideNavMode; });
+/** @type {?} */
+var getFullscreenMode = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.fullscreen; });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var ToolbarActionTypes = {
@@ -230,52 +358,94 @@ var ChangeToolbatToComfortableModeAction = /** @class */ (function () {
     }
     return ChangeToolbatToComfortableModeAction;
 }());
+if (false) {
+    /** @type {?} */
+    ChangeToolbatToComfortableModeAction.prototype.type;
+}
 var ChangeToolbatToCompactModeAction = /** @class */ (function () {
     function ChangeToolbatToCompactModeAction() {
         this.type = ToolbarActionTypes.COMPACT;
     }
     return ChangeToolbatToCompactModeAction;
 }());
+if (false) {
+    /** @type {?} */
+    ChangeToolbatToCompactModeAction.prototype.type;
+}
 var ChangeToolbatToSummaryModeAction = /** @class */ (function () {
     function ChangeToolbatToSummaryModeAction() {
         this.type = ToolbarActionTypes.SUMMARY;
     }
     return ChangeToolbatToSummaryModeAction;
 }());
+if (false) {
+    /** @type {?} */
+    ChangeToolbatToSummaryModeAction.prototype.type;
+}
 var EnableComfortableModeAction = /** @class */ (function () {
     function EnableComfortableModeAction() {
         this.type = ToolbarActionTypes.ENABLE_COMFORTABLE_MODE;
     }
     return EnableComfortableModeAction;
 }());
+if (false) {
+    /** @type {?} */
+    EnableComfortableModeAction.prototype.type;
+}
 var DisableComfortableModeAction = /** @class */ (function () {
     function DisableComfortableModeAction() {
         this.type = ToolbarActionTypes.DISBALE_COMFORTABLE_MODE;
     }
     return DisableComfortableModeAction;
 }());
+if (false) {
+    /** @type {?} */
+    DisableComfortableModeAction.prototype.type;
+}
 var VisibleToolbarAction = /** @class */ (function () {
     function VisibleToolbarAction() {
         this.type = ToolbarActionTypes.VISIBLE;
     }
     return VisibleToolbarAction;
 }());
+if (false) {
+    /** @type {?} */
+    VisibleToolbarAction.prototype.type;
+}
 var InvisibleToolbarAction = /** @class */ (function () {
     function InvisibleToolbarAction() {
         this.type = ToolbarActionTypes.INVISIBLE;
     }
     return InvisibleToolbarAction;
 }());
+if (false) {
+    /** @type {?} */
+    InvisibleToolbarAction.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State$1() { }
+if (false) {
+    /** @type {?} */
+    State$1.prototype.mode;
+    /** @type {?} */
+    State$1.prototype.enableComfortableMode;
+    /** @type {?} */
+    State$1.prototype.comfortableModeHaveBeenDone;
+    /** @type {?} */
+    State$1.prototype.visibility;
+}
 /** @type {?} */
 var initialState$1 = {
     mode: "compact",
@@ -288,55 +458,84 @@ var initialState$1 = {
  * @param {?=} action
  * @return {?}
  */
-function Reducer$1(state$$1, action) {
-    if (state$$1 === void 0) { state$$1 = initialState$1; }
+function Reducer$1(state, action) {
+    if (state === void 0) { state = initialState$1; }
     switch (action.type) {
         case ToolbarActionTypes.COMPACT:
-            if (!state$$1.visibility)
-                return __assign({}, state$$1, { mode: "hide" });
-            return __assign({}, state$$1, { mode: "compact" });
+            if (!state.visibility)
+                return __assign({}, state, { mode: "hide" });
+            return __assign({}, state, { mode: "compact" });
         case ToolbarActionTypes.COMPORTABLE:
-            if (!state$$1.visibility)
-                return __assign({}, state$$1, { mode: "hide" });
-            return __assign({}, state$$1, { mode: state$$1.enableComfortableMode ? "comfortable" : "compact" });
+            if (!state.visibility)
+                return __assign({}, state, { mode: "hide" });
+            return __assign({}, state, { mode: state.enableComfortableMode ? "comfortable" : "compact" });
         case ToolbarActionTypes.SUMMARY:
-            if (!state$$1.visibility)
-                return __assign({}, state$$1, { mode: "hide" });
-            return __assign({}, state$$1, { mode: "summary" });
+            if (!state.visibility)
+                return __assign({}, state, { mode: "hide" });
+            return __assign({}, state, { mode: "summary" });
         case ToolbarActionTypes.ENABLE_COMFORTABLE_MODE:
-            if (!state$$1.visibility)
-                return __assign({}, state$$1, { mode: "hide" });
-            return __assign({}, state$$1, { enableComfortableMode: true });
+            if (!state.visibility)
+                return __assign({}, state, { mode: "hide" });
+            return __assign({}, state, { enableComfortableMode: true });
         case ToolbarActionTypes.DISBALE_COMFORTABLE_MODE:
-            if (!state$$1.visibility)
-                return __assign({}, state$$1, { mode: "hide" });
-            return __assign({}, state$$1, { mode: "compact", enableComfortableMode: false });
+            if (!state.visibility)
+                return __assign({}, state, { mode: "hide" });
+            return __assign({}, state, { mode: "compact", enableComfortableMode: false });
         case ToolbarActionTypes.VISIBLE:
-            return __assign({}, state$$1, { mode: "compact", visibility: true });
+            return __assign({}, state, { mode: "compact", visibility: true });
         case ToolbarActionTypes.INVISIBLE:
-            return __assign({}, state$$1, { mode: "hide", visibility: false });
+            return __assign({}, state, { mode: "hide", visibility: false });
         default:
-            return state$$1;
+            return state;
     }
 }
 /** @type {?} */
-var getToolbarMode = function (state$$1) { return state$$1.mode; };
+var getToolbarMode = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.mode; });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function LayoutState() { }
+if (false) {
+    /** @type {?} */
+    LayoutState.prototype.layout;
+    /** @type {?} */
+    LayoutState.prototype.toolbar;
+}
 /** @type {?} */
 var LayoutReducers = {
     layout: Reducer,
     toolbar: Reducer$1
 };
+/**
+ * @record
+ */
+function FeatureState() { }
+if (false) {
+    /** @type {?} */
+    FeatureState.prototype.layout;
+    /** @type {?} */
+    FeatureState.prototype.toolbar;
+}
 //#region selectors
 /** @type {?} */
 var selectLayoutState = createFeatureSelector("layout");
 //#endregion
+var ɵ0 = /**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.layout; };
 /** @type {?} */
-var getLayout = createSelector(selectLayoutState, function (state$$1) { return state$$1.layout; });
+var getLayout = createSelector(selectLayoutState, (ɵ0));
 /** @type {?} */
 var getTitle$1 = createSelector(getLayout, getTitle);
 /** @type {?} */
@@ -352,17 +551,56 @@ var getSecondSidebarMode$1 = createSelector(getLayout, getSecondSidebarMode);
 /** @type {?} */
 var getFullscreenMode$1 = createSelector(getLayout, getFullscreenMode);
 //#region toolbar
+var ɵ1 = /**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.toolbar; };
 /** @type {?} */
-var getLayoutToolbar = createSelector(selectLayoutState, function (state$$1) { return state$$1.toolbar; });
+var getLayoutToolbar = createSelector(selectLayoutState, (ɵ1));
 /** @type {?} */
 var getLayoutToolbarMode = createSelector(getLayoutToolbar, getToolbarMode);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function LayoutModuleConfigModel() { }
+if (false) {
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.showMainSidenav;
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.showSecondSideNav;
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.secondSideNavMode;
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.mainSideNavMode;
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.menuItems;
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.showLeftNavBar;
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.stickyLeftNavBar;
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.layoutMode;
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.title;
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.signoutAction;
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.menu_item_authorization_operator;
+    /** @type {?|undefined} */
+    LayoutModuleConfigModel.prototype.theme;
+}
 /** @type {?} */
-var menu_item_authorization_operator = function (_a) {
+var menu_item_authorization_operator = (/**
+ * @param {?} __0
+ * @return {?}
+ */
+function (_a) {
     var _b = __read(_a, 2), routes = _b[0], user = _b[1];
     if (!user.Roles)
         return [];
@@ -370,9 +608,18 @@ var menu_item_authorization_operator = function (_a) {
         return [];
     }
     else {
-        return routes.filter(function (route) { return user.Roles.some(function (userRole) { return route.roles.indexOf(userRole) > -1; }); });
+        return routes.filter((/**
+         * @param {?} route
+         * @return {?}
+         */
+        function (route) { return user.Roles.some((/**
+         * @param {?} userRole
+         * @return {?}
+         */
+        function (userRole) { return route.roles.indexOf(userRole) > -1; })); }));
     }
-};
+});
+var ɵ0$1 = menu_item_authorization_operator;
 /** @type {?} */
 var MODULE_DEFAULT_CONFIG = {
     theme: "theme_B",
@@ -396,7 +643,7 @@ var MODULE_CONFIG_TOKEN = new InjectionToken("LayoutModuleConfigModel");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var LayoutConfigurationService = /** @class */ (function () {
     function LayoutConfigurationService(configFile, store) {
@@ -407,14 +654,26 @@ var LayoutConfigurationService = /** @class */ (function () {
         this.config$.next(this._config);
         this.store
             .select(getConfigs)
-            .map(function (configs) { return configs.find(function (config) { return config.Name == "layout_config"; }); })
-            .subscribe(function (config) {
+            .map((/**
+         * @param {?} configs
+         * @return {?}
+         */
+        function (configs) { return configs.find((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.Name == "layout_config"; })); }))
+            .subscribe((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) {
             if (!config)
                 return;
             _this.store.dispatch(new UpdateLayoutConfigAction(config.Config));
             _this._config = Object.assign({}, _this._config, config.Config);
             _this.config$.next(_this._config);
-        });
+        }));
     }
     Object.defineProperty(LayoutConfigurationService.prototype, "config", {
         get: /**
@@ -436,13 +695,27 @@ var LayoutConfigurationService = /** @class */ (function () {
         { type: undefined, decorators: [{ type: Inject, args: [MODULE_CONFIG_TOKEN,] }] },
         { type: Store }
     ]; };
-    /** @nocollapse */ LayoutConfigurationService.ngInjectableDef = defineInjectable({ factory: function LayoutConfigurationService_Factory() { return new LayoutConfigurationService(inject(MODULE_CONFIG_TOKEN), inject(Store)); }, token: LayoutConfigurationService, providedIn: "root" });
+    /** @nocollapse */ LayoutConfigurationService.ngInjectableDef = ɵɵdefineInjectable({ factory: function LayoutConfigurationService_Factory() { return new LayoutConfigurationService(ɵɵinject(MODULE_CONFIG_TOKEN), ɵɵinject(Store)); }, token: LayoutConfigurationService, providedIn: "root" });
     return LayoutConfigurationService;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    LayoutConfigurationService.prototype._config;
+    /** @type {?} */
+    LayoutConfigurationService.prototype.config$;
+    /**
+     * @type {?}
+     * @private
+     */
+    LayoutConfigurationService.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var MainMenuComponent = /** @class */ (function () {
     function MainMenuComponent(store, signinService, configurationService) {
@@ -460,7 +733,11 @@ var MainMenuComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.routes$ = this.configurationService.config$.pipe(map(function (config) { return config.menuItems; }), combineLatest(this.user$), map(this.configurationService.config$.getValue().menu_item_authorization_operator));
+        this.routes$ = this.configurationService.config$.pipe(map((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.menuItems; })), combineLatest(this.user$), map(this.configurationService.config$.getValue().menu_item_authorization_operator));
     };
     MainMenuComponent.decorators = [
         { type: Component, args: [{
@@ -504,14 +781,37 @@ var MainMenuComponent = /** @class */ (function () {
     MainMenuComponent.propDecorators = {
         closeSidebar: [{ type: Output }],
         authenticated: [{ type: Input }],
-        customerMobileInput: [{ type: ViewChild, args: ["customerMobileInput",] }]
+        customerMobileInput: [{ type: ViewChild, args: ["customerMobileInput", { static: false },] }]
     };
     return MainMenuComponent;
 }());
+if (false) {
+    /** @type {?} */
+    MainMenuComponent.prototype.closeSidebar;
+    /** @type {?} */
+    MainMenuComponent.prototype.authenticated;
+    /** @type {?} */
+    MainMenuComponent.prototype.user$;
+    /** @type {?} */
+    MainMenuComponent.prototype.customerStatus$;
+    /** @type {?} */
+    MainMenuComponent.prototype.routes$;
+    /** @type {?} */
+    MainMenuComponent.prototype.customerMobileInput;
+    /**
+     * @type {?}
+     * @private
+     */
+    MainMenuComponent.prototype.store;
+    /** @type {?} */
+    MainMenuComponent.prototype.signinService;
+    /** @type {?} */
+    MainMenuComponent.prototype.configurationService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SearchBoxComponent = /** @class */ (function () {
     function SearchBoxComponent() {
@@ -538,7 +838,7 @@ var SearchBoxComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var LogoContainerComponent = /** @class */ (function () {
     function LogoContainerComponent(sdf) {
@@ -557,10 +857,19 @@ var LogoContainerComponent = /** @class */ (function () {
     ]; };
     return LogoContainerComponent;
 }());
+if (false) {
+    /** @type {?} */
+    LogoContainerComponent.prototype.toolbarAnimationState;
+    /**
+     * @type {?}
+     * @private
+     */
+    LogoContainerComponent.prototype.sdf;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ToolbarMenuComponent = /** @class */ (function () {
     function ToolbarMenuComponent(document, _location, store, configurationService) {
@@ -577,18 +886,41 @@ var ToolbarMenuComponent = /** @class */ (function () {
         this.user$ = this.store.select(getAccountInfo);
         this.store.dispatch(new ChangeToolbatToComfortableModeAction());
         this.config$ = this.store.select(getLayoutToolbar);
-        this.config$.subscribe(function (config) { return (_this.config = config); });
+        this.config$.subscribe((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return (_this.config = config); }));
         this.lastScroll = this.document.body.scrollTop;
         this.showSecondSidenav = this.store.select(getShowSecondSidebarStatus$1);
         this.showMainSidenav = this.store.select(getShowMainSidenav$1);
-        this.store.select(getLayoutToolbarMode).subscribe(function (state$$1) {
-            setTimeout(function () { return (_this.menuAnimationState = state$$1); }, 1);
-            setTimeout(function () { return (_this.logoAnimationState = state$$1); }, 1);
-            setTimeout(function () { return (_this.titleAnimationState = state$$1); }, 1);
-            setTimeout(function () { return (_this.toolbarAnimationState = state$$1); }, 1);
-        });
+        this.store.select(getLayoutToolbarMode).subscribe((/**
+         * @param {?} state
+         * @return {?}
+         */
+        function (state) {
+            setTimeout((/**
+             * @return {?}
+             */
+            function () { return (_this.menuAnimationState = state); }), 1);
+            setTimeout((/**
+             * @return {?}
+             */
+            function () { return (_this.logoAnimationState = state); }), 1);
+            setTimeout((/**
+             * @return {?}
+             */
+            function () { return (_this.titleAnimationState = state); }), 1);
+            setTimeout((/**
+             * @return {?}
+             */
+            function () { return (_this.toolbarAnimationState = state); }), 1);
+        }));
         this._observe_on_layout_config_and_filter_routes();
-        fromEvent(this.document.body, "scroll").subscribe(function () {
+        fromEvent(this.document.body, "scroll").subscribe((/**
+         * @return {?}
+         */
+        function () {
             /** @type {?} */
             var scrolledAmount = _this.document.body.scrollTop;
             /** @type {?} */
@@ -612,7 +944,7 @@ var ToolbarMenuComponent = /** @class */ (function () {
                     return;
                 _this.store.dispatch(new ChangeToolbatToSummaryModeAction());
             }
-        });
+        }));
     }
     /**
      * @return {?}
@@ -630,7 +962,7 @@ var ToolbarMenuComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.store.dispatch(new DoSignoutAction$1());
+        this.store.dispatch(new DoSignoutAction());
     };
     /**
      * @return {?}
@@ -650,9 +982,13 @@ var ToolbarMenuComponent = /** @class */ (function () {
     function () {
         /** @type {?} */
         var action;
-        this.showSecondSidenav.subscribe(function (state$$1) {
-            action = state$$1 ? new CloseSecondSidenavAction() : new OpenSecondSidenavAction();
-        });
+        this.showSecondSidenav.subscribe((/**
+         * @param {?} state
+         * @return {?}
+         */
+        function (state) {
+            action = state ? new CloseSecondSidenavAction() : new OpenSecondSidenavAction();
+        }));
         this.store.dispatch(action);
     };
     /**
@@ -664,9 +1000,13 @@ var ToolbarMenuComponent = /** @class */ (function () {
     function () {
         /** @type {?} */
         var action;
-        this.showMainSidenav.subscribe(function (state$$1) {
-            action = state$$1 ? new CloseSidenavAction() : new OpenSidenavAction();
-        });
+        this.showMainSidenav.subscribe((/**
+         * @param {?} state
+         * @return {?}
+         */
+        function (state) {
+            action = state ? new CloseSidenavAction() : new OpenSidenavAction();
+        }));
         this.store.dispatch(action);
     };
     /**
@@ -676,7 +1016,11 @@ var ToolbarMenuComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.menuItems$ = this.configurationService.config$.pipe(map(function (config) { return config.menuItems; }), combineLatest(this.user$), map(this.configurationService.config$.getValue().menu_item_authorization_operator));
+        this.menuItems$ = this.configurationService.config$.pipe(map((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.menuItems; })), combineLatest(this.user$), map(this.configurationService.config$.getValue().menu_item_authorization_operator));
     };
     ToolbarMenuComponent.decorators = [
         { type: Component, args: [{
@@ -869,10 +1213,61 @@ var ToolbarMenuComponent = /** @class */ (function () {
     };
     return ToolbarMenuComponent;
 }());
+if (false) {
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.showSecondSidenav;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.showSidebarMenu;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.app_config;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.user;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.displayName;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.user$;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.showMainSidenav;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.toolbarAnimationState;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.menuAnimationState;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.logoAnimationState;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.titleAnimationState;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.menuItems$;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.lastScroll;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.config;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.config$;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.anchorsMode;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToolbarMenuComponent.prototype.document;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToolbarMenuComponent.prototype._location;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToolbarMenuComponent.prototype.store;
+    /** @type {?} */
+    ToolbarMenuComponent.prototype.configurationService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FooterComponent = /** @class */ (function () {
     function FooterComponent() {
@@ -898,10 +1293,14 @@ var FooterComponent = /** @class */ (function () {
     };
     return FooterComponent;
 }());
+if (false) {
+    /** @type {?} */
+    FooterComponent.prototype.app_config;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var TitleComponent = /** @class */ (function () {
     function TitleComponent(store, router) {
@@ -937,11 +1336,19 @@ var TitleComponent = /** @class */ (function () {
         //     return (event.url.endsWith('/change-password')) ? 'تغییر کلمه عبور' : null;
         // });
         this.title$ = this.store.select(getTitle$1);
-        this.router.events.subscribe(function (event) {
+        this.router.events.subscribe((/**
+         * @param {?} event
+         * @return {?}
+         */
+        function (event) {
             if (event instanceof NavigationEnd) {
                 /** @type {?} */
                 var title = "";
-                _this.mapper.forEach(function (mapper) {
+                _this.mapper.forEach((/**
+                 * @param {?} mapper
+                 * @return {?}
+                 */
+                function (mapper) {
                     /** @type {?} */
                     var res = mapper(event);
                     if (res) {
@@ -951,10 +1358,10 @@ var TitleComponent = /** @class */ (function () {
                     else {
                         return false;
                     }
-                });
+                }));
                 _this.store.dispatch(new TitleChangedAction("" + title || ""));
             }
-        });
+        }));
     }
     TitleComponent.decorators = [
         { type: Component, args: [{
@@ -970,10 +1377,26 @@ var TitleComponent = /** @class */ (function () {
     ]; };
     return TitleComponent;
 }());
+if (false) {
+    /** @type {?} */
+    TitleComponent.prototype.title$;
+    /** @type {?} */
+    TitleComponent.prototype.mapper;
+    /**
+     * @type {?}
+     * @private
+     */
+    TitleComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    TitleComponent.prototype.router;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NgsLayoutMainComponent = /** @class */ (function () {
     function NgsLayoutMainComponent(store, router, configService, translateService, userFacadeService) {
@@ -986,26 +1409,46 @@ var NgsLayoutMainComponent = /** @class */ (function () {
         this.showSidebarMenu = new BehaviorSubject$1(true);
         this.width = 100;
         this._set_i18n_resource();
-        this.configService.config$.subscribe(function (config) {
+        this.configService.config$.subscribe((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) {
             _this.theme = config.theme;
             _this.theme_A = config.theme == "theme_A";
             _this.theme_B = config.theme == "theme_B";
-        });
+        }));
         this.store.dispatch(new ChangeSideNavMode("push"));
-        this.user$ = this.store.select(function (s) { return ((/** @type {?} */ (s))).user.user.data; });
+        this.user$ = this.store.select((/**
+         * @param {?} s
+         * @return {?}
+         */
+        function (s) { return ((/** @type {?} */ (s))).user.user.data; }));
         this.displayName$ = this.userFacadeService.getDisplayName();
         this.showMainSidenav = this.store.select(getShowMainSidenav$1);
         this.mainSidenavMode = this.store.select(getMainSideNavMode$1);
         this.toolbarAnimationState = this.store.select(getLayoutToolbarMode);
         this.isFullscreen$ = this.store.select(getFullscreenMode$1);
-        this.mode$ = this.isFullscreen$.map(function (mode) { return (mode ? "invisible" : "visible"); });
+        this.mode$ = this.isFullscreen$.map((/**
+         * @param {?} mode
+         * @return {?}
+         */
+        function (mode) { return (mode ? "invisible" : "visible"); }));
         //#region manage second sidebar
         this.store.dispatch(new ChangeSecondSidenavMode("push"));
         this.showSecondSidenav = this.store.select(getShowSecondSidebarStatus$1);
         this.secondSidenavMode = this.store.select(getSecondSidebarMode$1);
         //#endregion manage second sidebar
         this.layoutMode = this.store.select(getLayoutMode$1);
-        this.router.events.filter(function (data) { return data instanceof NavigationEnd; }).subscribe(function (event) {
+        this.router.events.filter((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return data instanceof NavigationEnd; })).subscribe((/**
+         * @param {?} event
+         * @return {?}
+         */
+        function (event) {
             /** @type {?} */
             var hideSituations = [
                 ((/** @type {?} */ (event))).urlAfterRedirects == "/auth/signin",
@@ -1013,11 +1456,15 @@ var NgsLayoutMainComponent = /** @class */ (function () {
                 ((/** @type {?} */ (event))).urlAfterRedirects == "/auth/signup/verification",
                 ((/** @type {?} */ (event))).urlAfterRedirects == "/user/password/reset"
             ];
-            if (hideSituations.some(function (i) { return i; }))
+            if (hideSituations.some((/**
+             * @param {?} i
+             * @return {?}
+             */
+            function (i) { return i; })))
                 _this.showSidebarMenu.next(false);
             else
                 _this.showSidebarMenu.next(true);
-        });
+        }));
     }
     // ngAfterViewInit() {
     // 	this.store.dispatch(new ChangeLayout("with-margin"));
@@ -1097,32 +1544,108 @@ var NgsLayoutMainComponent = /** @class */ (function () {
     ]; };
     NgsLayoutMainComponent.propDecorators = {
         app_config: [{ type: Input, args: ["app-config",] }],
-        mainSideNav: [{ type: ViewChild, args: ["mainSideNav",] }],
+        mainSideNav: [{ type: ViewChild, args: ["mainSideNav", { static: false },] }],
         theme_A: [{ type: HostBinding, args: ["class.theme_A",] }],
         theme_B: [{ type: HostBinding, args: ["class.theme_B",] }]
     };
     return NgsLayoutMainComponent;
 }());
+if (false) {
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.app_config;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.mode$;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.theme;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.user$;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.displayName$;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.isFullscreen$;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.progressStatus$;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.showSidebarMenu;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.showMainSidenav;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.mainSidenavMode;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.layoutMode;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.width;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.showSecondSidenav;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.secondSidenavMode;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.toolbarAnimationState;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.mainSideNav;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.theme_A;
+    /** @type {?} */
+    NgsLayoutMainComponent.prototype.theme_B;
+    /**
+     * @type {?}
+     * @private
+     */
+    NgsLayoutMainComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    NgsLayoutMainComponent.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    NgsLayoutMainComponent.prototype.configService;
+    /**
+     * @type {?}
+     * @private
+     */
+    NgsLayoutMainComponent.prototype.translateService;
+    /**
+     * @type {?}
+     * @private
+     */
+    NgsLayoutMainComponent.prototype.userFacadeService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var LayoutEffects = /** @class */ (function () {
     function LayoutEffects(actions$, router, store) {
         this.actions$ = actions$;
         this.router = router;
         this.store = store;
-        this.DoSignout$ = this.actions$.pipe(ofType(LayoutActionTypes.DO_SIGNOUT), map(function () { return new DoSignoutAction(); }));
-        this.fullscreen$ = this.actions$.pipe(ofType(LayoutActionTypes.FULLSCREEN), map(function () { return new InvisibleToolbarAction(); }));
-        this.exit_fullscreen$ = this.actions$.pipe(ofType(LayoutActionTypes.EXIT_FULLSCREEN), map(function () { return new VisibleToolbarAction(); }));
-        this.fullscren_toolbar$ = this.actions$.pipe(ofType(LayoutActionTypes.TOGGLE_FULLSCREEN), withLatestFrom(this.store.select(getFullscreenMode$1)), map(function (_a) {
+        this.DoSignout$ = this.actions$.pipe(ofType(LayoutActionTypes.DO_SIGNOUT), map((/**
+         * @return {?}
+         */
+        function () { return new DoSignoutAction$1(); })));
+        this.fullscreen$ = this.actions$.pipe(ofType(LayoutActionTypes.FULLSCREEN), map((/**
+         * @return {?}
+         */
+        function () { return new InvisibleToolbarAction(); })));
+        this.exit_fullscreen$ = this.actions$.pipe(ofType(LayoutActionTypes.EXIT_FULLSCREEN), map((/**
+         * @return {?}
+         */
+        function () { return new VisibleToolbarAction(); })));
+        this.fullscren_toolbar$ = this.actions$.pipe(ofType(LayoutActionTypes.TOGGLE_FULLSCREEN), withLatestFrom(this.store.select(getFullscreenMode$1)), map((/**
+         * @param {?} __0
+         * @return {?}
+         */
+        function (_a) {
             var _b = __read(_a, 2), action = _b[0], toolbarMode = _b[1];
             if (toolbarMode)
                 return new ExitFullscreenAction();
             else
                 return new FullscreenAction();
-        }));
+        })));
     }
     LayoutEffects.decorators = [
         { type: Injectable }
@@ -1151,10 +1674,35 @@ var LayoutEffects = /** @class */ (function () {
     ], LayoutEffects.prototype, "fullscren_toolbar$", void 0);
     return LayoutEffects;
 }());
+if (false) {
+    /** @type {?} */
+    LayoutEffects.prototype.DoSignout$;
+    /** @type {?} */
+    LayoutEffects.prototype.fullscreen$;
+    /** @type {?} */
+    LayoutEffects.prototype.exit_fullscreen$;
+    /** @type {?} */
+    LayoutEffects.prototype.fullscren_toolbar$;
+    /**
+     * @type {?}
+     * @private
+     */
+    LayoutEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    LayoutEffects.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    LayoutEffects.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ToolbarMenuThemeBComponent = /** @class */ (function () {
     function ToolbarMenuThemeBComponent(document, _location, store, translateService, configurationService) {
@@ -1172,18 +1720,41 @@ var ToolbarMenuThemeBComponent = /** @class */ (function () {
         this.user$ = this.store.select(getAccountInfo);
         this.store.dispatch(new ChangeToolbatToComfortableModeAction());
         this.config$ = this.store.select(getLayoutToolbar);
-        this.config$.subscribe(function (config) { return (_this.config = config); });
+        this.config$.subscribe((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return (_this.config = config); }));
         this.lastScroll = this.document.body.scrollTop;
         this.showSecondSidenav = this.store.select(getShowSecondSidebarStatus$1);
         this.showMainSidenav = this.store.select(getShowMainSidenav$1);
-        this.store.select(getLayoutToolbarMode).subscribe(function (state$$1) {
-            setTimeout(function () { return (_this.menuAnimationState = state$$1); }, 1);
-            setTimeout(function () { return (_this.logoAnimationState = state$$1); }, 1);
-            setTimeout(function () { return (_this.titleAnimationState = state$$1); }, 1);
-            setTimeout(function () { return (_this.toolbarAnimationState = state$$1); }, 1);
-        });
+        this.store.select(getLayoutToolbarMode).subscribe((/**
+         * @param {?} state
+         * @return {?}
+         */
+        function (state) {
+            setTimeout((/**
+             * @return {?}
+             */
+            function () { return (_this.menuAnimationState = state); }), 1);
+            setTimeout((/**
+             * @return {?}
+             */
+            function () { return (_this.logoAnimationState = state); }), 1);
+            setTimeout((/**
+             * @return {?}
+             */
+            function () { return (_this.titleAnimationState = state); }), 1);
+            setTimeout((/**
+             * @return {?}
+             */
+            function () { return (_this.toolbarAnimationState = state); }), 1);
+        }));
         this._observe_on_layout_config_and_filter_routes();
-        fromEvent(this.document.body, "scroll").subscribe(function () {
+        fromEvent(this.document.body, "scroll").subscribe((/**
+         * @return {?}
+         */
+        function () {
             /** @type {?} */
             var scrolledAmount = _this.document.body.scrollTop;
             /** @type {?} */
@@ -1208,7 +1779,7 @@ var ToolbarMenuThemeBComponent = /** @class */ (function () {
                     return;
                 _this.store.dispatch(new ChangeToolbatToSummaryModeAction());
             }
-        });
+        }));
     }
     /**
      * @return {?}
@@ -1226,7 +1797,7 @@ var ToolbarMenuThemeBComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.store.dispatch(new DoSignoutAction$1());
+        this.store.dispatch(new DoSignoutAction());
     };
     /**
      * @return {?}
@@ -1246,9 +1817,13 @@ var ToolbarMenuThemeBComponent = /** @class */ (function () {
     function () {
         /** @type {?} */
         var action;
-        this.showSecondSidenav.subscribe(function (state$$1) {
-            action = state$$1 ? new CloseSecondSidenavAction() : new OpenSecondSidenavAction();
-        });
+        this.showSecondSidenav.subscribe((/**
+         * @param {?} state
+         * @return {?}
+         */
+        function (state) {
+            action = state ? new CloseSecondSidenavAction() : new OpenSecondSidenavAction();
+        }));
         this.store.dispatch(action);
     };
     /**
@@ -1260,9 +1835,13 @@ var ToolbarMenuThemeBComponent = /** @class */ (function () {
     function () {
         /** @type {?} */
         var action;
-        this.showMainSidenav.subscribe(function (state$$1) {
-            action = state$$1 ? new CloseSidenavAction() : new OpenSidenavAction();
-        });
+        this.showMainSidenav.subscribe((/**
+         * @param {?} state
+         * @return {?}
+         */
+        function (state) {
+            action = state ? new CloseSidenavAction() : new OpenSidenavAction();
+        }));
         this.store.dispatch(action);
     };
     /**
@@ -1272,7 +1851,11 @@ var ToolbarMenuThemeBComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.menuItems$ = this.configurationService.config$.pipe(map(function (config) { return config.menuItems; }), combineLatest(this.user$), map(this.configurationService.config$.getValue().menu_item_authorization_operator));
+        this.menuItems$ = this.configurationService.config$.pipe(map((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.menuItems; })), combineLatest(this.user$), map(this.configurationService.config$.getValue().menu_item_authorization_operator));
     };
     ToolbarMenuThemeBComponent.decorators = [
         { type: Component, args: [{
@@ -1459,10 +2042,66 @@ var ToolbarMenuThemeBComponent = /** @class */ (function () {
     };
     return ToolbarMenuThemeBComponent;
 }());
+if (false) {
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.showSecondSidenav;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.showSidebarMenu;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.app_config;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.user;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.displayName;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.user$;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.showMainSidenav;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.toolbarAnimationState;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.menuAnimationState;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.logoAnimationState;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.titleAnimationState;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.menuItems$;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.lastScroll;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.config;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.config$;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.anchorsMode;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToolbarMenuThemeBComponent.prototype.document;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToolbarMenuThemeBComponent.prototype._location;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToolbarMenuThemeBComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToolbarMenuThemeBComponent.prototype.translateService;
+    /** @type {?} */
+    ToolbarMenuThemeBComponent.prototype.configurationService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NgsLayoutModule = /** @class */ (function () {
     function NgsLayoutModule() {
@@ -1539,6 +2178,8 @@ var NgsLayoutModule = /** @class */ (function () {
 }());
 var RootNgsLayoutModule = /** @class */ (function () {
     function RootNgsLayoutModule() {
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.layout = "8.0.10";
     }
     RootNgsLayoutModule.decorators = [
         { type: NgModule, args: [{
@@ -1550,12 +2191,14 @@ var RootNgsLayoutModule = /** @class */ (function () {
                     exports: [NgsLayoutModule]
                 },] }
     ];
+    /** @nocollapse */
+    RootNgsLayoutModule.ctorParameters = function () { return []; };
     return RootNgsLayoutModule;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var LayoutOutlets = {
@@ -1569,14 +2212,13 @@ var LayoutOutlets = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { LayoutActionTypes, TitleChangedAction, OpenSidenavAction, CloseSidenavAction, ChangeSideNavMode, ChangeLayout, CloseSecondSidenavAction, ChangeSecondSidenavMode, OpenSecondSidenavAction, ChangeToolbatToComfortableModeAction, ChangeToolbatToCompactModeAction, DisableComfortableModeAction, EnableComfortableModeAction, VisibleToolbarAction, FullscreenAction, ExitFullscreenAction, InvisibleToolbarAction, ToggleFullscreenAction, NgsLayoutMainComponent, LayoutOutlets, NgsLayoutModule, RootNgsLayoutModule, MODULE_DEFAULT_CONFIG, MODULE_CONFIG_TOKEN, FooterComponent as ɵh, LogoContainerComponent as ɵe, MainMenuComponent as ɵa, SearchBoxComponent as ɵd, TitleComponent as ɵi, ToolbarMenuThemeBComponent as ɵg, ToolbarMenuComponent as ɵf, LayoutEffects as ɵn, LayoutReducers as ɵj, Reducer as ɵl, Reducer$1 as ɵm, LayoutConfigurationService as ɵc };
-
+export { ChangeLayout, ChangeSecondSidenavMode, ChangeSideNavMode, ChangeToolbatToComfortableModeAction, ChangeToolbatToCompactModeAction, CloseSecondSidenavAction, CloseSidenavAction, DisableComfortableModeAction, EnableComfortableModeAction, ExitFullscreenAction, FullscreenAction, InvisibleToolbarAction, LayoutActionTypes, LayoutOutlets, MODULE_CONFIG_TOKEN, MODULE_DEFAULT_CONFIG, NgsLayoutMainComponent, NgsLayoutModule, OpenSecondSidenavAction, OpenSidenavAction, RootNgsLayoutModule, TitleChangedAction, ToggleFullscreenAction, VisibleToolbarAction, MainMenuComponent as ɵa, LayoutConfigurationService as ɵc, SearchBoxComponent as ɵd, LogoContainerComponent as ɵe, ToolbarMenuComponent as ɵf, ToolbarMenuThemeBComponent as ɵg, FooterComponent as ɵh, TitleComponent as ɵi, LayoutReducers as ɵj, Reducer as ɵl, Reducer$1 as ɵm, LayoutEffects as ɵn };
 //# sourceMappingURL=soushians-layout.js.map

@@ -1,32 +1,40 @@
+import { FormGroup, FormControl, Validators, FormArray, FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InjectionToken, Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, Component, EventEmitter, Injector, Input, Output, ReflectiveInjector, ComponentFactoryResolver, ViewChild, ViewContainerRef, NgModule } from '@angular/core';
+import { createFeatureSelector, createSelector, Store, StoreModule } from '@ngrx/store';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { take, map, catchError, filter, switchMap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule, MatButtonModule, MatCardModule, MatSnackBarModule, MatSidenavModule, MatExpansionModule, MatSelectModule, MatFormFieldModule, MatListModule, MatMenuModule, MatRadioModule, MatInputModule, MatToolbarModule, MatDatepickerModule, MatProgressBarModule, MatSlideToggleModule } from '@angular/material';
-import { FormGroup, FormControl, Validators, FormArray, FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { createSelector, createFeatureSelector, Store, StoreModule } from '@ngrx/store';
+import { MatIconModule, MatButtonModule, MatCardModule, MatSnackBarModule, MatSidenavModule, MatExpansionModule, MatSelectModule, MatFormFieldModule, MatListModule, MatMenuModule, MatRadioModule, MatInputModule, MatSlideToggleModule, MatToolbarModule, MatDatepickerModule, MatProgressBarModule } from '@angular/material';
+import { ofType, Actions, Effect, EffectsModule } from '@ngrx/effects';
 import { __decorate, __metadata } from 'tslib';
-import { InjectionToken, Injectable, Inject, Component, Output, EventEmitter, Input, Injector, ViewChild, ComponentFactoryResolver, ViewContainerRef, ReflectiveInjector, NgModule, defineInjectable, inject } from '@angular/core';
-import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
 import { of } from 'rxjs/observable/of';
-import { take, map, catchError, filter, switchMap } from 'rxjs/operators';
-import { ActivatedRoute, RouterModule } from '@angular/router';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @template T
  */
 class ConfigModel {
 }
+if (false) {
+    /** @type {?} */
+    ConfigModel.prototype._id;
+    /** @type {?} */
+    ConfigModel.prototype.Name;
+    /** @type {?} */
+    ConfigModel.prototype.Config;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetConfigsApiModel;
 (function (GetConfigsApiModel) {
@@ -35,7 +43,11 @@ var GetConfigsApiModel;
          * @param {?=} initValue
          */
         constructor(initValue = (/** @type {?} */ ({}))) {
-            Object.keys(initValue).forEach(key => (((/** @type {?} */ (this)))[key] = ((/** @type {?} */ (initValue)))[key]));
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            key => (((/** @type {?} */ (this)))[key] = ((/** @type {?} */ (initValue)))[key])));
         }
         /**
          * @return {?}
@@ -49,11 +61,15 @@ var GetConfigsApiModel;
         constructor() { }
     }
     GetConfigsApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(GetConfigsApiModel || (GetConfigsApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var EditConfigApiModel;
 (function (EditConfigApiModel) {
@@ -62,7 +78,11 @@ var EditConfigApiModel;
          * @param {?=} initValue
          */
         constructor(initValue = (/** @type {?} */ ({}))) {
-            Object.keys(initValue).forEach(key => (((/** @type {?} */ (this)))[key] = ((/** @type {?} */ (initValue)))[key]));
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            key => (((/** @type {?} */ (this)))[key] = ((/** @type {?} */ (initValue)))[key])));
         }
         /**
          * @return {?}
@@ -84,26 +104,54 @@ var EditConfigApiModel;
         }
     }
     EditConfigApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype.Name;
+        /** @type {?} */
+        Request.prototype.Config;
+    }
     class Response {
         constructor() { }
     }
     EditConfigApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(EditConfigApiModel || (EditConfigApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function PartialConfig() { }
+if (false) {
+    /** @type {?} */
+    PartialConfig.prototype.type;
+    /** @type {?} */
+    PartialConfig.prototype.inputs;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-
 /**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @record
  */
+function ConfigModuleConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    ConfigModuleConfig.prototype.env;
+}
 /** @type {?} */
 const MODULE_DEFAULT_CONFIG = {
     env: {
@@ -116,7 +164,7 @@ const MODULE_CONFIG_TOKEN = new InjectionToken("UserModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const ConfigActionTypes = {
@@ -130,6 +178,10 @@ class GetConfigAction {
         this.type = ConfigActionTypes.GET_CONFIGS;
     }
 }
+if (false) {
+    /** @type {?} */
+    GetConfigAction.prototype.type;
+}
 class ConfigLoadedSucceedAction {
     /**
      * @param {?} payload
@@ -139,16 +191,49 @@ class ConfigLoadedSucceedAction {
         this.type = ConfigActionTypes.CONFIG_LOADED_SUCCEED;
     }
 }
+if (false) {
+    /** @type {?} */
+    ConfigLoadedSucceedAction.prototype.type;
+    /** @type {?} */
+    ConfigLoadedSucceedAction.prototype.payload;
+}
+class UpdateConfigAction {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = ConfigActionTypes.UPDATE_CONFIG;
+    }
+}
+if (false) {
+    /** @type {?} */
+    UpdateConfigAction.prototype.type;
+    /** @type {?} */
+    UpdateConfigAction.prototype.payload;
+}
 class ConfigLoadedFailedAction {
     constructor() {
         this.type = ConfigActionTypes.CONFIG_LOADED_FAILED;
     }
 }
+if (false) {
+    /** @type {?} */
+    ConfigLoadedFailedAction.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State() { }
+if (false) {
+    /** @type {?} */
+    State.prototype.data;
+}
 const ɵ0 = [];
 /** @type {?} */
 const initialState = {
@@ -164,44 +249,121 @@ function Reducer(state = initialState, action) {
         case ConfigActionTypes.CONFIG_LOADED_SUCCEED:
             return Object.assign({}, state, { data: action.payload });
         case ConfigActionTypes.UPDATE_CONFIG:
-            return Object.assign({}, state, { data: state.data.map(config => {
+            return Object.assign({}, state, { data: state.data.map((/**
+                 * @param {?} config
+                 * @return {?}
+                 */
+                config => {
                     if (config._id == action.payload._id)
                         config.Config = action.payload.Config;
                     return config;
-                }) });
+                })) });
         default:
             return state;
     }
 }
 /** @type {?} */
-const getConfigs = (state) => state.data;
+const getConfigs = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.data);
 /** @type {?} */
-const getAppConfig = (state) => state.data.find(config => config.Name == "app_config");
+const getAppConfig = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.data.find((/**
+ * @param {?} config
+ * @return {?}
+ */
+config => config.Name == "app_config")));
 /** @type {?} */
-const getAuthenticationModuleConfig = (state) => state.data.find(config => config.Name == "authentication_module_config");
+const getAuthenticationModuleConfig = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.data.find((/**
+ * @param {?} config
+ * @return {?}
+ */
+config => config.Name == "authentication_module_config")));
 /** @type {?} */
-const getUserModuleConfig = (state) => state.data.find(config => config.Name == "user_module_config");
+const getUserModuleConfig = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.data.find((/**
+ * @param {?} config
+ * @return {?}
+ */
+config => config.Name == "user_module_config")));
 /** @type {?} */
-const getConfigModuleConfig = (state) => (/** @type {?} */ (state.data.find(config => config.Name == "config_module_config")));
+const getConfigModuleConfig = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => (/** @type {?} */ (state.data.find((/**
+ * @param {?} config
+ * @return {?}
+ */
+config => config.Name == "config_module_config")))));
 /** @type {?} */
-const getFormModuleConfig = (state) => (/** @type {?} */ (state.data.find(config => config.Name == "form_module_config")));
+const getFormModuleConfig = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => (/** @type {?} */ (state.data.find((/**
+ * @param {?} config
+ * @return {?}
+ */
+config => config.Name == "form_module_config")))));
 /** @type {?} */
-const getSocketModuleConfig = (state) => (/** @type {?} */ (state.data.find(config => config.Name == "socket_module_config")));
+const getSocketModuleConfig = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => (/** @type {?} */ (state.data.find((/**
+ * @param {?} config
+ * @return {?}
+ */
+config => config.Name == "socket_module_config")))));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function ConfigState() { }
+if (false) {
+    /** @type {?} */
+    ConfigState.prototype.list;
+}
 /** @type {?} */
 const ConfigReducers = {
     list: Reducer
 };
+/**
+ * @record
+ */
+function FeatureState() { }
+if (false) {
+    /** @type {?} */
+    FeatureState.prototype.configs;
+}
 //#region selectors
 /** @type {?} */
 const selectConfigState = createFeatureSelector("config");
 //#endregion
+const ɵ0$1 = /**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.list;
 /** @type {?} */
-const getConfigListState = createSelector(selectConfigState, (state) => state.list);
+const getConfigListState = createSelector(selectConfigState, (ɵ0$1));
 /** @type {?} */
 const getConfigs$1 = createSelector(getConfigListState, getConfigs);
 /** @type {?} */
@@ -219,12 +381,12 @@ const getSocketModuleConfig$1 = createSelector(getConfigListState, getSocketModu
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ConfigurationService {
     /**
@@ -236,12 +398,16 @@ class ConfigurationService {
         this.config$ = new BehaviorSubject(this._config);
         this._config = Object.assign({}, MODULE_DEFAULT_CONFIG, configFile);
         this.config$.next(this._config);
-        this.store.select(getConfigModuleConfig$1).subscribe(configConfig => {
+        this.store.select(getConfigModuleConfig$1).subscribe((/**
+         * @param {?} configConfig
+         * @return {?}
+         */
+        configConfig => {
             if (!configConfig)
                 return;
             this._config = Object.assign({}, this._config, configConfig.Config);
             this.config$.next(this._config);
-        });
+        }));
     }
     /**
      * @return {?}
@@ -260,11 +426,25 @@ ConfigurationService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [MODULE_CONFIG_TOKEN,] }] },
     { type: Store }
 ];
-/** @nocollapse */ ConfigurationService.ngInjectableDef = defineInjectable({ factory: function ConfigurationService_Factory() { return new ConfigurationService(inject(MODULE_CONFIG_TOKEN), inject(Store)); }, token: ConfigurationService, providedIn: "root" });
+/** @nocollapse */ ConfigurationService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ConfigurationService_Factory() { return new ConfigurationService(ɵɵinject(MODULE_CONFIG_TOKEN), ɵɵinject(Store)); }, token: ConfigurationService, providedIn: "root" });
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ConfigurationService.prototype._config;
+    /** @type {?} */
+    ConfigurationService.prototype.config$;
+    /**
+     * @type {?}
+     * @private
+     */
+    ConfigurationService.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ConfigService {
     /**
@@ -276,9 +456,12 @@ class ConfigService {
         this.http = http;
         this.store = store;
         this.configurationService = configurationService;
-        setTimeout(() => {
+        setTimeout((/**
+         * @return {?}
+         */
+        () => {
             this.store.dispatch(new GetConfigAction());
-        }, 999);
+        }), 999);
     }
     /**
      * @return {?}
@@ -286,16 +469,32 @@ class ConfigService {
     getConfigs() {
         return this.http
             .get(`${this.configurationService.config.env.frontend_server}/api/config`)
-            .pipe(take(1), map((response) => response.Result), catchError(err => Observable.throw(err)));
+            .pipe(take(1), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        (response) => response.Result)), catchError((/**
+         * @param {?} err
+         * @return {?}
+         */
+        err => Observable.throw(err))));
     }
     /**
      * @param {?} name
      * @return {?}
      */
     getConfigByName(name) {
-        return this.http.get(`${this.configurationService.config.env.frontend_server}/api/config/${name}`).pipe(map(response => response), catchError(err => {
+        return this.http.get(`${this.configurationService.config.env.frontend_server}/api/config/${name}`).pipe(map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        response => response)), catchError((/**
+         * @param {?} err
+         * @return {?}
+         */
+        err => {
             return Observable.throw(err);
-        }));
+        })));
     }
     /**
      * @param {?} body
@@ -306,17 +505,33 @@ class ConfigService {
         const model = new EditConfigApiModel.Request(body);
         return this.http
             .put(`${this.configurationService.config.env.frontend_server}/api/config/${model.Name}`, model.getRequestBody())
-            .pipe(map(response => response), catchError(err => {
+            .pipe(map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        response => response)), catchError((/**
+         * @param {?} err
+         * @return {?}
+         */
+        err => {
             return Observable.throw(err);
-        }));
+        })));
     }
     /**
      * @return {?}
      */
     getLayoutConfigs() {
-        return this.http.get(`${this.configurationService.config.env.frontend_server}/api/layout-config`).pipe(map((response) => response), catchError(err => {
+        return this.http.get(`${this.configurationService.config.env.frontend_server}/api/layout-config`).pipe(map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        (response) => response)), catchError((/**
+         * @param {?} err
+         * @return {?}
+         */
+        err => {
             return Observable.throw(err);
-        }));
+        })));
     }
 }
 ConfigService.decorators = [
@@ -330,11 +545,30 @@ ConfigService.ctorParameters = () => [
     { type: Store },
     { type: ConfigurationService }
 ];
-/** @nocollapse */ ConfigService.ngInjectableDef = defineInjectable({ factory: function ConfigService_Factory() { return new ConfigService(inject(HttpClient), inject(Store), inject(ConfigurationService)); }, token: ConfigService, providedIn: "root" });
+/** @nocollapse */ ConfigService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ConfigService_Factory() { return new ConfigService(ɵɵinject(HttpClient), ɵɵinject(Store), ɵɵinject(ConfigurationService)); }, token: ConfigService, providedIn: "root" });
+if (false) {
+    /** @type {?} */
+    ConfigService.prototype.responseCache;
+    /**
+     * @type {?}
+     * @private
+     */
+    ConfigService.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    ConfigService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    ConfigService.prototype.configurationService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ConfigsComponent {
     /**
@@ -356,10 +590,19 @@ ConfigsComponent.decorators = [
 ConfigsComponent.ctorParameters = () => [
     { type: Store }
 ];
+if (false) {
+    /** @type {?} */
+    ConfigsComponent.prototype.configs;
+    /**
+     * @type {?}
+     * @private
+     */
+    ConfigsComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class AuthenticationModuleConfigComponent {
     /**
@@ -387,9 +630,13 @@ class AuthenticationModuleConfigComponent {
      */
     set configFormGroup(configFormGroup) {
         this.formGroup.patchValue(configFormGroup.value);
-        configFormGroup.valueChanges.subscribe(data => {
+        configFormGroup.valueChanges.subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => {
             this.formGroup.patchValue(data);
-        });
+        }));
     }
     /**
      * @param {?} formId
@@ -414,10 +661,21 @@ AuthenticationModuleConfigComponent.propDecorators = {
     configFormGroup: [{ type: Input }],
     configChanged: [{ type: Output }]
 };
+if (false) {
+    /** @type {?} */
+    AuthenticationModuleConfigComponent.prototype.formGroup;
+    /** @type {?} */
+    AuthenticationModuleConfigComponent.prototype.configChanged;
+    /**
+     * @type {?}
+     * @private
+     */
+    AuthenticationModuleConfigComponent.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ConfigAppConfigComponent {
     /**
@@ -435,9 +693,13 @@ class ConfigAppConfigComponent {
      */
     set configFormGroup(configFormGroup) {
         this.formGroup.patchValue(configFormGroup.value);
-        configFormGroup.valueChanges.subscribe(data => {
+        configFormGroup.valueChanges.subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => {
             this.formGroup.patchValue(data);
-        });
+        }));
     }
 }
 ConfigAppConfigComponent.decorators = [
@@ -454,10 +716,21 @@ ConfigAppConfigComponent.propDecorators = {
     configFormGroup: [{ type: Input }],
     configChanged: [{ type: Output }]
 };
+if (false) {
+    /** @type {?} */
+    ConfigAppConfigComponent.prototype.formGroup;
+    /** @type {?} */
+    ConfigAppConfigComponent.prototype.configChanged;
+    /**
+     * @type {?}
+     * @private
+     */
+    ConfigAppConfigComponent.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class UserModuleConfigComponent {
     /**
@@ -486,17 +759,25 @@ class UserModuleConfigComponent {
      */
     set configFormGroup(configFormGroup) {
         this._configFormGroup = configFormGroup;
-        ((/** @type {?} */ (configFormGroup.controls.dashboardLinks))).controls.forEach(control => {
+        ((/** @type {?} */ (configFormGroup.controls.dashboardLinks))).controls.forEach((/**
+         * @param {?} control
+         * @return {?}
+         */
+        control => {
             ((/** @type {?} */ (this.formGroup.controls.dashboardLinks))).push(new FormGroup({
                 route: new FormControl("", [Validators.required]),
                 icon: new FormControl("", [Validators.required]),
                 title: new FormControl("", [Validators.required])
             }));
-        });
+        }));
         this.formGroup.patchValue(configFormGroup.value);
-        configFormGroup.valueChanges.subscribe(data => {
+        configFormGroup.valueChanges.subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => {
             this.formGroup.patchValue(data);
-        });
+        }));
     }
     /**
      * @return {?}
@@ -532,10 +813,23 @@ UserModuleConfigComponent.propDecorators = {
     configFormGroup: [{ type: Input }],
     configChanged: [{ type: Output }]
 };
+if (false) {
+    /** @type {?} */
+    UserModuleConfigComponent.prototype.formGroup;
+    /** @type {?} */
+    UserModuleConfigComponent.prototype._configFormGroup;
+    /** @type {?} */
+    UserModuleConfigComponent.prototype.configChanged;
+    /**
+     * @type {?}
+     * @private
+     */
+    UserModuleConfigComponent.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LayoutModuleConfigComponent {
     /**
@@ -561,7 +855,15 @@ class LayoutModuleConfigComponent {
         this.configFormGroup = this.injector.get("configFormGroup");
         this.roleItems$ = this.store
             .select(getAppConfig$1)
-            .pipe(filter(config => config != null), map(appconfig => appconfig.Config.Roles));
+            .pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => config != null)), map((/**
+         * @param {?} appconfig
+         * @return {?}
+         */
+        appconfig => appconfig.Config.Roles)));
         // this.configChanged.
         // this.formGroup.valueChanges.subscribe(value => {
         // 	debugger;
@@ -574,7 +876,11 @@ class LayoutModuleConfigComponent {
      */
     set configFormGroup(configFormGroup) {
         this._configFormGroup = configFormGroup;
-        ((/** @type {?} */ (configFormGroup.controls.menuItems))).controls.forEach(control => {
+        ((/** @type {?} */ (configFormGroup.controls.menuItems))).controls.forEach((/**
+         * @param {?} control
+         * @return {?}
+         */
+        control => {
             ((/** @type {?} */ (this.formGroup.controls.menuItems))).push(new FormGroup({
                 route: new FormControl("", [Validators.required]),
                 icon: new FormControl("", [Validators.required]),
@@ -582,9 +888,13 @@ class LayoutModuleConfigComponent {
                 roles: new FormControl(),
                 title: new FormControl("", [Validators.required])
             }));
-        });
+        }));
         this.formGroup.patchValue(configFormGroup.value);
-        configFormGroup.valueChanges.subscribe(data => this.formGroup.patchValue(data));
+        configFormGroup.valueChanges.subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => this.formGroup.patchValue(data)));
     }
     /**
      * @return {?}
@@ -631,10 +941,34 @@ LayoutModuleConfigComponent.propDecorators = {
     configChanged: [{ type: Output, args: ["configChanged",] }],
     configFormGroup: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    LayoutModuleConfigComponent.prototype.configChanged;
+    /** @type {?} */
+    LayoutModuleConfigComponent.prototype._configFormGroup;
+    /** @type {?} */
+    LayoutModuleConfigComponent.prototype.sideNavModes;
+    /** @type {?} */
+    LayoutModuleConfigComponent.prototype.layoutModes;
+    /** @type {?} */
+    LayoutModuleConfigComponent.prototype.formGroup;
+    /** @type {?} */
+    LayoutModuleConfigComponent.prototype.roleItems$;
+    /**
+     * @type {?}
+     * @private
+     */
+    LayoutModuleConfigComponent.prototype.injector;
+    /**
+     * @type {?}
+     * @private
+     */
+    LayoutModuleConfigComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DynamicConfigComponentSelectorComponent {
     /**
@@ -674,9 +1008,13 @@ class DynamicConfigComponentSelectorComponent {
         /** @type {?} */
         let _component = this.typeMapToDiagram[data.type];
         /** @type {?} */
-        let inputProviders = Object.keys(data.inputs).map(inputName => {
+        let inputProviders = Object.keys(data.inputs).map((/**
+         * @param {?} inputName
+         * @return {?}
+         */
+        inputName => {
             return { provide: inputName, useValue: ((/** @type {?} */ (data.inputs)))[inputName] };
-        });
+        }));
         /** @type {?} */
         let resolvedInputs = ReflectiveInjector.resolve(inputProviders);
         /** @type {?} */
@@ -717,19 +1055,34 @@ DynamicConfigComponentSelectorComponent.ctorParameters = () => [
     { type: ComponentFactoryResolver }
 ];
 DynamicConfigComponentSelectorComponent.propDecorators = {
-    dynamicComponentContainer: [{ type: ViewChild, args: ["dynamicComponentContainer", { read: ViewContainerRef },] }],
+    dynamicComponentContainer: [{ type: ViewChild, args: ["dynamicComponentContainer", { read: ViewContainerRef, static: false },] }],
     configChanged: [{ type: Output }],
     data: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    DynamicConfigComponentSelectorComponent.prototype.typeMapToDiagram;
+    /** @type {?} */
+    DynamicConfigComponentSelectorComponent.prototype.dynamicComponentContainer;
+    /** @type {?} */
+    DynamicConfigComponentSelectorComponent.prototype.configChanged;
+    /** @type {?} */
+    DynamicConfigComponentSelectorComponent.prototype.currentComponent;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicConfigComponentSelectorComponent.prototype.resolver;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ConfigEditComponent {
     /**
@@ -742,10 +1095,18 @@ class ConfigEditComponent {
         this.formBuilder = formBuilder;
         this.route = route;
         this.formGroup = EditConfigApiModel.Request.formGroup;
-        this.route.params.subscribe(params => {
+        this.route.params.subscribe((/**
+         * @param {?} params
+         * @return {?}
+         */
+        params => {
             /** @type {?} */
             const configName = params["name"];
-            this.configService.getConfigByName(configName).subscribe(data => {
+            this.configService.getConfigByName(configName).subscribe((/**
+             * @param {?} data
+             * @return {?}
+             */
+            data => {
                 debugger;
                 this.partialConfigModel = {
                     type: data.Result.Name,
@@ -757,11 +1118,15 @@ class ConfigEditComponent {
                     _id: data.Result._id,
                     Name: data.Result.Name
                 });
-                Object.keys(data.Result.Config).forEach(key => {
+                Object.keys(data.Result.Config).forEach((/**
+                 * @param {?} key
+                 * @return {?}
+                 */
+                key => {
                     this.addControl((/** @type {?} */ (this.formGroup.controls.Config)), key, data.Result.Config[key]);
-                });
-            });
-        });
+                }));
+            }));
+        }));
     }
     /**
      * @param {?} formGroup
@@ -798,7 +1163,11 @@ class ConfigEditComponent {
         this.formGroup.controls.Config.patchValue(this.dynConfig.config);
         if (!this.formGroup.valid)
             return;
-        this.configService.editConfig(this.formGroup.value).subscribe(config => { });
+        this.configService.editConfig(this.formGroup.value).subscribe((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => { }));
     }
 }
 ConfigEditComponent.decorators = [
@@ -815,12 +1184,37 @@ ConfigEditComponent.ctorParameters = () => [
     { type: ActivatedRoute }
 ];
 ConfigEditComponent.propDecorators = {
-    dynConfig: [{ type: ViewChild, args: ["dynConfig",] }]
+    dynConfig: [{ type: ViewChild, args: ["dynConfig", { static: false },] }]
 };
+if (false) {
+    /** @type {?} */
+    ConfigEditComponent.prototype.configInforamation;
+    /** @type {?} */
+    ConfigEditComponent.prototype.formGroup;
+    /** @type {?} */
+    ConfigEditComponent.prototype.partialConfigModel;
+    /** @type {?} */
+    ConfigEditComponent.prototype.dynConfig;
+    /**
+     * @type {?}
+     * @private
+     */
+    ConfigEditComponent.prototype.configService;
+    /**
+     * @type {?}
+     * @private
+     */
+    ConfigEditComponent.prototype.formBuilder;
+    /**
+     * @type {?}
+     * @private
+     */
+    ConfigEditComponent.prototype.route;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ConfigModuleContainerComponent {
     constructor() { }
@@ -840,7 +1234,7 @@ ConfigModuleContainerComponent.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LoadConfigEffects {
     /**
@@ -850,7 +1244,22 @@ class LoadConfigEffects {
     constructor(actions$, configService) {
         this.actions$ = actions$;
         this.configService = configService;
-        this.getConfigs$ = this.actions$.pipe(ofType(ConfigActionTypes.GET_CONFIGS), map(action => action.payload), switchMap((data) => this.configService.getConfigs()), map(configs => new ConfigLoadedSucceedAction(configs)), catchError(() => of(new ConfigLoadedFailedAction())));
+        this.getConfigs$ = this.actions$.pipe(ofType(ConfigActionTypes.GET_CONFIGS), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        action => action.payload)), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        (data) => this.configService.getConfigs())), map((/**
+         * @param {?} configs
+         * @return {?}
+         */
+        configs => new ConfigLoadedSucceedAction(configs))), catchError((/**
+         * @return {?}
+         */
+        () => of(new ConfigLoadedFailedAction()))));
     }
 }
 LoadConfigEffects.decorators = [
@@ -865,10 +1274,24 @@ __decorate([
     Effect(),
     __metadata("design:type", Object)
 ], LoadConfigEffects.prototype, "getConfigs$", void 0);
+if (false) {
+    /** @type {?} */
+    LoadConfigEffects.prototype.getConfigs$;
+    /**
+     * @type {?}
+     * @private
+     */
+    LoadConfigEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    LoadConfigEffects.prototype.configService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const routes = [
@@ -892,7 +1315,7 @@ const RoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NgsConfigModule {
     /**
@@ -947,6 +1370,10 @@ NgsConfigModule.decorators = [
             },] }
 ];
 class RootNgsConfigModule {
+    constructor() {
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.config = "8.0.10";
+    }
 }
 RootNgsConfigModule.decorators = [
     { type: NgModule, args: [{
@@ -959,17 +1386,18 @@ RootNgsConfigModule.decorators = [
                 exports: [NgsConfigModule]
             },] }
 ];
+/** @nocollapse */
+RootNgsConfigModule.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ConfigService, ConfigModel, GetConfigsApiModel, EditConfigApiModel, MODULE_DEFAULT_CONFIG, MODULE_CONFIG_TOKEN, ConfigReducers, selectConfigState, getConfigListState, getConfigs$1 as getConfigs, getAppConfig$1 as getAppConfig, getAuthenticationModuleConfig$1 as getAuthenticationModuleConfig, getUserModuleConfig$1 as getUserModuleConfig, getConfigModuleConfig$1 as getConfigModuleConfig, getFormModuleConfig$1 as getFormModuleConfig, getSocketModuleConfig$1 as getSocketModuleConfig, NgsConfigModule, RootNgsConfigModule, RoutingModule as ɵu, ConfigAppConfigComponent as ɵn, AuthenticationModuleConfigComponent as ɵr, LayoutModuleConfigComponent as ɵp, UserModuleConfigComponent as ɵo, LoadConfigEffects as ɵt, Reducer as ɵa, getAppConfig as ɵc, getAuthenticationModuleConfig as ɵd, getConfigModuleConfig as ɵf, getConfigs as ɵb, getFormModuleConfig as ɵg, getSocketModuleConfig as ɵh, getUserModuleConfig as ɵe, ConfigurationService as ɵk, ConfigEditComponent as ɵm, ConfigModuleContainerComponent as ɵq, ConfigsComponent as ɵl, DynamicConfigComponentSelectorComponent as ɵs };
-
+export { ConfigModel, ConfigReducers, ConfigService, EditConfigApiModel, GetConfigsApiModel, MODULE_CONFIG_TOKEN, MODULE_DEFAULT_CONFIG, NgsConfigModule, RootNgsConfigModule, getAppConfig$1 as getAppConfig, getAuthenticationModuleConfig$1 as getAuthenticationModuleConfig, getConfigListState, getConfigModuleConfig$1 as getConfigModuleConfig, getConfigs$1 as getConfigs, getFormModuleConfig$1 as getFormModuleConfig, getSocketModuleConfig$1 as getSocketModuleConfig, getUserModuleConfig$1 as getUserModuleConfig, selectConfigState, Reducer as ɵa, getConfigs as ɵb, getAppConfig as ɵc, getAuthenticationModuleConfig as ɵd, getUserModuleConfig as ɵe, getConfigModuleConfig as ɵf, getFormModuleConfig as ɵg, getSocketModuleConfig as ɵh, ConfigurationService as ɵk, ConfigsComponent as ɵl, ConfigEditComponent as ɵm, ConfigAppConfigComponent as ɵn, UserModuleConfigComponent as ɵo, LayoutModuleConfigComponent as ɵp, ConfigModuleContainerComponent as ɵq, AuthenticationModuleConfigComponent as ɵr, DynamicConfigComponentSelectorComponent as ɵs, LoadConfigEffects as ɵt, RoutingModule as ɵu };
 //# sourceMappingURL=soushians-config.js.map

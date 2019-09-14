@@ -78,14 +78,14 @@ import { DynamicGridItemViewDirective } from "./grid-item/dynamic-grid-item-view
 		DynamicGridItemConfigComponent,
 		DynamicGridItemViewDirective
 	],
-	entryComponents: [ GridConfigComponent, DynamicGridItemConfigComponent ],
-	exports: [ GridComponent ]
+	entryComponents: [GridConfigComponent, DynamicGridItemConfigComponent],
+	exports: [GridComponent]
 })
 export class NgsGridModule {
 	static forRoot(config?: GridModuleConfig): ModuleWithProviders {
 		return {
 			ngModule: NgsGridRootModule,
-			providers: [ { provide: MODULE_CONFIG_TOKEN, useValue: config }, GridConfigurationService, GridService ]
+			providers: [{ provide: MODULE_CONFIG_TOKEN, useValue: config }, GridConfigurationService, GridService]
 		};
 	}
 }
@@ -95,8 +95,13 @@ export class NgsGridModule {
 		NgsGridModule,
 		GridRoutingModule,
 		StoreModule.forFeature("grids", GridReducer),
-		EffectsModule.forFeature([ GridDbEffects, GetGridApiEffects, GetGridsApiEffects, UpsertGridApiEffects ])
+		EffectsModule.forFeature([GridDbEffects, GetGridApiEffects, GetGridsApiEffects, UpsertGridApiEffects])
 	],
-	exports: [ NgsGridModule ]
+	exports: [NgsGridModule]
 })
-export class NgsGridRootModule {}
+export class NgsGridRootModule {
+	constructor() {
+		(<any>window).___starter = (<any>window).___starter || {};
+		(<any>window).___starter.grid = "8.0.10";
+	}
+}

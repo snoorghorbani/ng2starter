@@ -1,25 +1,39 @@
+import { InjectionToken, Component, Injectable, Inject, Injector, Directive, ComponentFactoryResolver, ViewContainerRef, Input, ViewChild, ViewChildren, ElementRef, Renderer2, HostListener, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
-import { BehaviorSubject as BehaviorSubject$2, Subject, of, combineLatest } from 'rxjs';
-import { MAT_BOTTOM_SHEET_DATA, MatBottomSheet, MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatRadioModule, MatSlideToggleModule, MatDividerModule, MatCheckboxModule, MatTableModule } from '@angular/material';
-import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MAT_BOTTOM_SHEET_DATA, MatBottomSheet, MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatCheckboxModule, MatTableModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatDividerModule, MatRadioModule, MatSlideToggleModule } from '@angular/material';
+import { Store, StoreModule } from '@ngrx/store';
+import { ofType, Actions, Effect, EffectsModule } from '@ngrx/effects';
+import { Subject, BehaviorSubject as BehaviorSubject$2, combineLatest, of } from 'rxjs';
+import { map, share, filter, startWith, takeUntil, switchMap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { BehaviorSubject as BehaviorSubject$1 } from 'rxjs/Rx';
 import { stringTemplate } from '@soushians/shared';
 import { __decorate, __metadata } from 'tslib';
-import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
-import { filter, map, startWith, share, takeUntil, switchMap } from 'rxjs/operators';
 import { getFrontendAuthenticationState } from '@soushians/frontend-authentication';
-import { InjectionToken, Component, Injectable, Inject, Injector, Input, ViewContainerRef, ComponentFactoryResolver, ViewChild, Directive, ViewChildren, HostListener, ElementRef, Renderer2, NgModule } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Store, StoreModule } from '@ngrx/store';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function RuleModuleConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    RuleModuleConfig.prototype.endpoints;
+    /** @type {?|undefined} */
+    RuleModuleConfig.prototype.stepClasses;
+    /** @type {?|undefined} */
+    RuleModuleConfig.prototype.steps;
+    /** @type {?|undefined} */
+    RuleModuleConfig.prototype.env;
+}
 /** @type {?} */
 const MODULE_DEFAULT_CONFIG = {
     endpoints: {
@@ -37,7 +51,7 @@ const MODULE_CONFIG_TOKEN = new InjectionToken("RuleModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class RuleComponent {
     constructor() { }
@@ -57,7 +71,7 @@ RuleComponent.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const routes = [
@@ -72,7 +86,7 @@ const RoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const RuleAnchorsActionTypes = {
@@ -84,16 +98,32 @@ class ShowAnchorsAction {
         this.type = RuleAnchorsActionTypes.SHOW_ANCHORS;
     }
 }
+if (false) {
+    /** @type {?} */
+    ShowAnchorsAction.prototype.type;
+}
 class HideAnchorsAction {
     constructor() {
         this.type = RuleAnchorsActionTypes.HIDE_ANCHORS;
     }
 }
+if (false) {
+    /** @type {?} */
+    HideAnchorsAction.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State() { }
+if (false) {
+    /** @type {?} */
+    State.prototype.active;
+}
 /** @type {?} */
 const initialState = {
     active: false
@@ -116,10 +146,17 @@ function Reducer(state = initialState, action) {
         }
     }
 }
+//#region  selectors
+/** @type {?} */
+const getAnchorsActivityState = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.active);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const RulesListActionTypes = {
@@ -131,20 +168,113 @@ const RulesListActionTypes = {
     GET_RULE: "[RULE][DB] GET_RULE",
     RULE_FETCHED: "[RULE][DB] RULE_FETCHED",
 };
+class RulesListAction {
+    constructor() {
+        this.type = RulesListActionTypes.RULES_LIST;
+    }
+}
+if (false) {
+    /** @type {?} */
+    RulesListAction.prototype.type;
+}
 class RulesListStartAction {
     constructor() {
         this.type = RulesListActionTypes.RULES_LIST_START;
     }
 }
+if (false) {
+    /** @type {?} */
+    RulesListStartAction.prototype.type;
+}
+class RulesListSucceedAction {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = RulesListActionTypes.RULES_LIST_SUCCEED;
+    }
+}
+if (false) {
+    /** @type {?} */
+    RulesListSucceedAction.prototype.type;
+    /** @type {?} */
+    RulesListSucceedAction.prototype.payload;
+}
+class RulesListFailedAction {
+    constructor() {
+        this.type = RulesListActionTypes.RULES_LIST_FAILED;
+    }
+}
+if (false) {
+    /** @type {?} */
+    RulesListFailedAction.prototype.type;
+}
+class UpsertRuleAction {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = RulesListActionTypes.RULE_UPSERT;
+    }
+}
+if (false) {
+    /** @type {?} */
+    UpsertRuleAction.prototype.type;
+    /** @type {?} */
+    UpsertRuleAction.prototype.payload;
+}
+class GetRuleAction {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = RulesListActionTypes.GET_RULE;
+    }
+}
+if (false) {
+    /** @type {?} */
+    GetRuleAction.prototype.type;
+    /** @type {?} */
+    GetRuleAction.prototype.payload;
+}
+class RuleFechedAction {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = RulesListActionTypes.RULE_FETCHED;
+    }
+}
+if (false) {
+    /** @type {?} */
+    RuleFechedAction.prototype.type;
+    /** @type {?} */
+    RuleFechedAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State$1() { }
+if (false) {
+    /** @type {?} */
+    State$1.prototype.status;
+    /** @type {?} */
+    State$1.prototype.data;
+}
+const ɵ0 = [];
 /** @type {?} */
 const initialState$1 = {
     status: "pristine",
-    data: []
+    data: ɵ0
 };
 /**
  * @param {?=} state
@@ -169,7 +299,11 @@ function reducer(state = initialState$1, action) {
             /** @type {?} */
             const data = state.data.concat();
             /** @type {?} */
-            var entityIdx = state.data.findIndex(form => form._id == action.payload._id);
+            var entityIdx = state.data.findIndex((/**
+             * @param {?} form
+             * @return {?}
+             */
+            form => form._id == action.payload._id));
             if (entityIdx > -1) {
                 data[entityIdx] = Object.assign({}, data[entityIdx], action.payload);
             }
@@ -182,7 +316,11 @@ function reducer(state = initialState$1, action) {
             /** @type {?} */
             const data = state.data.concat();
             /** @type {?} */
-            var entityIdx = state.data.findIndex(form => form._id == action.payload._id);
+            var entityIdx = state.data.findIndex((/**
+             * @param {?} form
+             * @return {?}
+             */
+            form => form._id == action.payload._id));
             if (entityIdx > -1) {
                 data[entityIdx] = Object.assign({}, data[entityIdx], action.payload);
             }
@@ -196,10 +334,16 @@ function reducer(state = initialState$1, action) {
         }
     }
 }
+/** @type {?} */
+var getStatus = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.status);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const ScenariosListActionTypes = {
@@ -213,10 +357,47 @@ const ScenariosListActionTypes = {
     /// new vision
     UPDATE_DB: "[GWT][SCENARIO][DB] UPDATE_DB",
 };
+class ScenariosListAction {
+    constructor() {
+        this.type = ScenariosListActionTypes.SCENARIOS_LIST;
+    }
+}
+if (false) {
+    /** @type {?} */
+    ScenariosListAction.prototype.type;
+}
 class ScenariosListStartAction {
     constructor() {
         this.type = ScenariosListActionTypes.SCENARIOS_LIST_START;
     }
+}
+if (false) {
+    /** @type {?} */
+    ScenariosListStartAction.prototype.type;
+}
+class ScenariosListSucceedAction {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = ScenariosListActionTypes.SCENARIOS_LIST_SUCCEED;
+    }
+}
+if (false) {
+    /** @type {?} */
+    ScenariosListSucceedAction.prototype.type;
+    /** @type {?} */
+    ScenariosListSucceedAction.prototype.payload;
+}
+class ScenariosListFailedAction {
+    constructor() {
+        this.type = ScenariosListActionTypes.SCENARIOS_LIST_FAILED;
+    }
+}
+if (false) {
+    /** @type {?} */
+    ScenariosListFailedAction.prototype.type;
 }
 class UpsertScenarioAction {
     /**
@@ -227,6 +408,27 @@ class UpsertScenarioAction {
         this.type = ScenariosListActionTypes.UPSERT;
     }
 }
+if (false) {
+    /** @type {?} */
+    UpsertScenarioAction.prototype.type;
+    /** @type {?} */
+    UpsertScenarioAction.prototype.payload;
+}
+class GetScenarioAction {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = ScenariosListActionTypes.GET_SCENARIO;
+    }
+}
+if (false) {
+    /** @type {?} */
+    GetScenarioAction.prototype.type;
+    /** @type {?} */
+    GetScenarioAction.prototype.payload;
+}
 class ScenarioFechedAction {
     /**
      * @param {?} payload
@@ -236,15 +438,47 @@ class ScenarioFechedAction {
         this.type = ScenariosListActionTypes.SCENARIO_FETCHED;
     }
 }
+if (false) {
+    /** @type {?} */
+    ScenarioFechedAction.prototype.type;
+    /** @type {?} */
+    ScenarioFechedAction.prototype.payload;
+}
+class UpdateDbAction {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = ScenariosListActionTypes.UPDATE_DB;
+    }
+}
+if (false) {
+    /** @type {?} */
+    UpdateDbAction.prototype.type;
+    /** @type {?} */
+    UpdateDbAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State$2() { }
+if (false) {
+    /** @type {?} */
+    State$2.prototype.status;
+    /** @type {?} */
+    State$2.prototype.data;
+}
+const ɵ0$1 = [];
 /** @type {?} */
 const initialState$2 = {
     status: "pristine",
-    data: []
+    data: ɵ0$1
 };
 /**
  * @param {?=} state
@@ -269,7 +503,11 @@ function reducer$1(state = initialState$2, action) {
             /** @type {?} */
             const data = state.data.concat();
             /** @type {?} */
-            var entityIdx = state.data.findIndex(form => form._id == action.payload._id);
+            var entityIdx = state.data.findIndex((/**
+             * @param {?} form
+             * @return {?}
+             */
+            form => form._id == action.payload._id));
             if (entityIdx > -1) {
                 data[entityIdx] = Object.assign({}, data[entityIdx], action.payload);
             }
@@ -282,7 +520,11 @@ function reducer$1(state = initialState$2, action) {
             /** @type {?} */
             const data = state.data.concat();
             /** @type {?} */
-            var entityIdx = state.data.findIndex(form => form._id == action.payload._id);
+            var entityIdx = state.data.findIndex((/**
+             * @param {?} form
+             * @return {?}
+             */
+            form => form._id == action.payload._id));
             if (entityIdx > -1) {
                 data[entityIdx] = Object.assign({}, data[entityIdx], action.payload);
             }
@@ -296,16 +538,24 @@ function reducer$1(state = initialState$2, action) {
             const data = state.data.concat();
             /** @type {?} */
             const scenarios = action.payload;
-            scenarios.forEach(scenario => {
+            scenarios.forEach((/**
+             * @param {?} scenario
+             * @return {?}
+             */
+            scenario => {
                 /** @type {?} */
-                var entityIdx = state.data.findIndex(form => form._id == scenario._id);
+                var entityIdx = state.data.findIndex((/**
+                 * @param {?} form
+                 * @return {?}
+                 */
+                form => form._id == scenario._id));
                 if (entityIdx > -1) {
                     data[entityIdx] = Object.assign({}, data[entityIdx], scenario);
                 }
                 else {
                     data.push(scenario);
                 }
-            });
+            }));
             return Object.assign({}, state, { data: data });
         }
         default: {
@@ -313,21 +563,47 @@ function reducer$1(state = initialState$2, action) {
         }
     }
 }
+/** @type {?} */
+var getStatus$1 = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.status);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function RuleState() { }
+if (false) {
+    /** @type {?} */
+    RuleState.prototype.ruleAnchors;
+    /** @type {?} */
+    RuleState.prototype.rules;
+    /** @type {?} */
+    RuleState.prototype.scenarios;
+}
 /** @type {?} */
 const RuleReducers = {
     ruleAnchors: Reducer,
     rules: reducer,
     scenarios: reducer$1
 };
+/**
+ * @record
+ */
+function AppState() { }
+if (false) {
+    /** @type {?} */
+    AppState.prototype.rule;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class RuleConfigurationService {
     /**
@@ -340,7 +616,11 @@ class RuleConfigurationService {
         this.injector = injector;
         this.config$ = new BehaviorSubject(MODULE_DEFAULT_CONFIG);
         // instantiate steps and used them
-        configFile.steps = configFile.stepClasses.map(step => new step(this.injector));
+        configFile.steps = configFile.stepClasses.map((/**
+         * @param {?} step
+         * @return {?}
+         */
+        step => new step(this.injector)));
         this._config = Object.assign({}, MODULE_DEFAULT_CONFIG, configFile);
         this.config$.next(this._config);
         // this.store.select(getRuleModuleConfig).subscribe(userConfig => {
@@ -365,10 +645,29 @@ RuleConfigurationService.ctorParameters = () => [
     { type: Store },
     { type: Injector }
 ];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleConfigurationService.prototype._config;
+    /** @type {?} */
+    RuleConfigurationService.prototype.config$;
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleConfigurationService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleConfigurationService.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GwtScenarioModel {
     /**
@@ -391,18 +690,34 @@ class GwtScenarioModel {
             anchorId: this.anchorId,
             name: this.name,
             featureId: this.featureId,
-            steps: this.steps.map((step) => ({
+            steps: this.steps.map((/**
+             * @param {?} step
+             * @return {?}
+             */
+            (step) => ({
                 id: step.id,
                 opposite: step.opposite,
                 params: step.params
-            }))
+            })))
         };
     }
+}
+if (false) {
+    /** @type {?} */
+    GwtScenarioModel.prototype._id;
+    /** @type {?} */
+    GwtScenarioModel.prototype.name;
+    /** @type {?} */
+    GwtScenarioModel.prototype.anchorId;
+    /** @type {?} */
+    GwtScenarioModel.prototype.featureId;
+    /** @type {?} */
+    GwtScenarioModel.prototype.steps;
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class StepLoaderDirective {
     /**
@@ -423,7 +738,10 @@ class StepLoaderDirective {
      * @return {?}
      */
     ngOnChanges() {
-        if (this.component) ;
+        if (this.component) {
+            // this.component.instance.config = this.config;
+            // this.component.instance.group = this.group;
+        }
     }
     /**
      * @return {?}
@@ -456,12 +774,28 @@ StepLoaderDirective.ctorParameters = () => [
 ];
 StepLoaderDirective.propDecorators = {
     step: [{ type: Input }],
-    component: [{ type: ViewChild, args: ["container", { read: ViewContainerRef },] }]
+    component: [{ type: ViewChild, args: ["container", { read: ViewContainerRef, static: false },] }]
 };
+if (false) {
+    /** @type {?} */
+    StepLoaderDirective.prototype.step;
+    /** @type {?} */
+    StepLoaderDirective.prototype.component;
+    /**
+     * @type {?}
+     * @private
+     */
+    StepLoaderDirective.prototype.resolver;
+    /**
+     * @type {?}
+     * @private
+     */
+    StepLoaderDirective.prototype.container;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ScenarioService {
     /**
@@ -475,7 +809,11 @@ class ScenarioService {
         this.configService = configService;
         this.scenarios = {};
         this.config$ = this.configService.config$;
-        this.config$.subscribe(config => (this.config = config));
+        this.config$.subscribe((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => (this.config = config)));
     }
     /**
      * @param {?} scenario
@@ -486,7 +824,11 @@ class ScenarioService {
         const model = new GwtScenarioModel(scenario);
         return this.http
             .post(this.config.env.frontend_server + this.config.endpoints.upsert, model.getRequsetBody())
-            .pipe(map(response => (/** @type {?} */ (response))), share());
+            .pipe(map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        response => (/** @type {?} */ (response)))), share());
     }
     /**
      * @param {?} anchorId
@@ -497,8 +839,16 @@ class ScenarioService {
             this.scenarios[anchorId] = new BehaviorSubject$1([]);
             this.http
                 .get(this.config.env.frontend_server + stringTemplate(this.config.endpoints.get, { anchorId }))
-                .pipe(map(response => (/** @type {?} */ (response.Result))))
-                .subscribe(scenarios => this.scenarios[anchorId].next(scenarios));
+                .pipe(map((/**
+             * @param {?} response
+             * @return {?}
+             */
+            response => (/** @type {?} */ (response.Result)))))
+                .subscribe((/**
+             * @param {?} scenarios
+             * @return {?}
+             */
+            scenarios => this.scenarios[anchorId].next(scenarios)));
         }
         return this.scenarios[anchorId];
     }
@@ -510,13 +860,37 @@ class ScenarioService {
         /** @type {?} */
         const subject = new BehaviorSubject$1(undefined);
         this.store
-            .select(state => state.rule.scenarios.data)
-            .pipe(filter(scenarios => scenarios != null), map(scenarios => {
-            return scenarios.find(scenario => scenario._id == _id);
-        }), filter(scenario => scenario != undefined))
-            .subscribe(scenario => {
+            .select((/**
+         * @param {?} state
+         * @return {?}
+         */
+        state => state.rule.scenarios.data))
+            .pipe(filter((/**
+         * @param {?} scenarios
+         * @return {?}
+         */
+        scenarios => scenarios != null)), map((/**
+         * @param {?} scenarios
+         * @return {?}
+         */
+        scenarios => {
+            return scenarios.find((/**
+             * @param {?} scenario
+             * @return {?}
+             */
+            scenario => scenario._id == _id));
+        })), filter((/**
+         * @param {?} scenario
+         * @return {?}
+         */
+        scenario => scenario != undefined)))
+            .subscribe((/**
+         * @param {?} scenario
+         * @return {?}
+         */
+        scenario => {
             subject.next(scenario);
-        });
+        }));
         return subject.asObservable();
     }
     /**
@@ -527,13 +901,33 @@ class ScenarioService {
         /** @type {?} */
         const subject = new BehaviorSubject$1(undefined);
         this.store
-            .select(state => state.rule.scenarios.data)
-            .pipe(startWith([]), filter(scenarios => scenarios != null), map(scenarios => {
-            return scenarios.filter(scenario => scenario._id == anchorId);
-        }))
-            .subscribe(scenarios => {
+            .select((/**
+         * @param {?} state
+         * @return {?}
+         */
+        state => state.rule.scenarios.data))
+            .pipe(startWith([]), filter((/**
+         * @param {?} scenarios
+         * @return {?}
+         */
+        scenarios => scenarios != null)), map((/**
+         * @param {?} scenarios
+         * @return {?}
+         */
+        scenarios => {
+            return scenarios.filter((/**
+             * @param {?} scenario
+             * @return {?}
+             */
+            scenario => scenario._id == anchorId));
+        })))
+            .subscribe((/**
+         * @param {?} scenarios
+         * @return {?}
+         */
+        scenarios => {
             subject.next(scenarios);
-        });
+        }));
         return subject.asObservable();
     }
 }
@@ -546,10 +940,33 @@ ScenarioService.ctorParameters = () => [
     { type: Store },
     { type: RuleConfigurationService }
 ];
+if (false) {
+    /** @type {?} */
+    ScenarioService.prototype.config$;
+    /** @type {?} */
+    ScenarioService.prototype.config;
+    /** @type {?} */
+    ScenarioService.prototype.scenarios;
+    /**
+     * @type {?}
+     * @private
+     */
+    ScenarioService.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    ScenarioService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    ScenarioService.prototype.configService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GwtViewComponent {
     /**
@@ -575,12 +992,24 @@ class GwtViewComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.steps$ = this.configService.config$.pipe(map(config => config.steps), takeUntil(this.unsubscribe));
-        this.steps$.subscribe(steps => (this.steps = steps));
+        this.steps$ = this.configService.config$.pipe(map((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => config.steps)), takeUntil(this.unsubscribe));
+        this.steps$.subscribe((/**
+         * @param {?} steps
+         * @return {?}
+         */
+        steps => (this.steps = steps)));
         this._load_scenario_and_map_scenario_step_to_steps_class();
-        this.scenario$.subscribe(s => {
+        this.scenario$.subscribe((/**
+         * @param {?} s
+         * @return {?}
+         */
+        s => {
             debugger;
-        });
+        }));
     }
     /**
      * @return {?}
@@ -595,9 +1024,17 @@ class GwtViewComponent {
     save() {
         /** @type {?} */
         const scenario = this.scenario$.getValue();
-        this.stepLoaders.forEach(stepLoader => {
-            scenario.steps.find(step => step.name === stepLoader.step.name).params = stepLoader.params;
-        });
+        this.stepLoaders.forEach((/**
+         * @param {?} stepLoader
+         * @return {?}
+         */
+        stepLoader => {
+            scenario.steps.find((/**
+             * @param {?} step
+             * @return {?}
+             */
+            step => step.name === stepLoader.step.name)).params = stepLoader.params;
+        }));
         scenario.featureId = this.scenarioFormGroup.value.featureId;
         scenario.name = this.scenarioFormGroup.value.name;
         this.store.dispatch(new UpsertScenarioAction(scenario));
@@ -619,7 +1056,11 @@ class GwtViewComponent {
     deleteStepFromScenario(step) {
         /** @type {?} */
         const scenario = this.scenario$.getValue();
-        scenario.steps.splice(scenario.steps.findIndex(item => item.name === step.name), 1);
+        scenario.steps.splice(scenario.steps.findIndex((/**
+         * @param {?} item
+         * @return {?}
+         */
+        item => item.name === step.name)), 1);
         this.scenario$.next(scenario);
     }
     /**
@@ -649,14 +1090,22 @@ class GwtViewComponent {
      */
     activeScenario(scenario) {
         debugger;
-        scenario.steps = scenario.steps.map(scenarioStep => {
+        scenario.steps = scenario.steps.map((/**
+         * @param {?} scenarioStep
+         * @return {?}
+         */
+        scenarioStep => {
             /** @type {?} */
-            const _step = this.steps.find(step => step.id === scenarioStep.id);
+            const _step = this.steps.find((/**
+             * @param {?} step
+             * @return {?}
+             */
+            step => step.id === scenarioStep.id));
             /** @type {?} */
             const step = Object.create(_step);
             step.params = scenarioStep.params;
             return step;
-        });
+        }));
         this.scenarioFormGroup.patchValue(scenario);
         scenario.anchorId = this.data.anchorId;
         this.scenario$.next(scenario);
@@ -668,10 +1117,14 @@ class GwtViewComponent {
         this.scenarioService
             .getAnchorScenarios(this.data.anchorId)
             .pipe(takeUntil(this.unsubscribe))
-            .subscribe(scenarios => {
+            .subscribe((/**
+         * @param {?} scenarios
+         * @return {?}
+         */
+        scenarios => {
             this.scenarios$.next(scenarios);
             this.activeScenario(scenarios[0] || new GwtScenarioModel());
-        });
+        }));
     }
     /**
      * @return {?}
@@ -714,10 +1167,53 @@ GwtViewComponent.ctorParameters = () => [
 GwtViewComponent.propDecorators = {
     stepLoaders: [{ type: ViewChildren, args: [StepLoaderDirective,] }]
 };
+if (false) {
+    /** @type {?} */
+    GwtViewComponent.prototype.unsubscribe;
+    /** @type {?} */
+    GwtViewComponent.prototype.steps$;
+    /** @type {?} */
+    GwtViewComponent.prototype.steps;
+    /** @type {?} */
+    GwtViewComponent.prototype.scenario$;
+    /** @type {?} */
+    GwtViewComponent.prototype.scenarios$;
+    /** @type {?} */
+    GwtViewComponent.prototype.scenarioFormGroup;
+    /** @type {?} */
+    GwtViewComponent.prototype.features$;
+    /** @type {?} */
+    GwtViewComponent.prototype.stepLoaders;
+    /**
+     * @type {?}
+     * @private
+     */
+    GwtViewComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    GwtViewComponent.prototype.configService;
+    /**
+     * @type {?}
+     * @private
+     */
+    GwtViewComponent.prototype.scenarioService;
+    /**
+     * @type {?}
+     * @private
+     */
+    GwtViewComponent.prototype.injector;
+    /**
+     * @type {?}
+     * @private
+     */
+    GwtViewComponent.prototype.data;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const GwtStepTypes = {
@@ -730,7 +1226,7 @@ const GwtStepTypes = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class RuleAnchorDirective {
     /**
@@ -749,8 +1245,16 @@ class RuleAnchorDirective {
         this.renderer = renderer;
         this.bottomSheet = bottomSheet;
         this.unsubscribe = new Subject();
-        this.active$ = this.store.select(s => s.rule.ruleAnchors.active).pipe(takeUntil(this.unsubscribe));
-        this.active$.subscribe(active => (this.active = active));
+        this.active$ = this.store.select((/**
+         * @param {?} s
+         * @return {?}
+         */
+        s => s.rule.ruleAnchors.active)).pipe(takeUntil(this.unsubscribe));
+        this.active$.subscribe((/**
+         * @param {?} active
+         * @return {?}
+         */
+        active => (this.active = active)));
         this.el.nativeElement.classList.add("ngs-rule-anchor");
         this.steps = this.configService.config$.getValue().steps;
     }
@@ -772,9 +1276,12 @@ class RuleAnchorDirective {
         if (!this.active) {
             return;
         }
-        setTimeout(() => {
+        setTimeout((/**
+         * @return {?}
+         */
+        () => {
             this.hideAnchor();
-        }, 999);
+        }), 999);
     }
     /**
      * @private
@@ -798,28 +1305,52 @@ class RuleAnchorDirective {
         // this.store.dispatch(new ShowAnchorsAction());
         this.anchorScenarios$ = this.scenarioService
             .getAnchorScenarios(this.anchorId) // TODO: replace service call with ngrx action
-            .pipe(takeUntil(this.unsubscribe), filter(scenario => scenario !== undefined));
-        this.active$.subscribe(active => {
+            .pipe(takeUntil(this.unsubscribe), filter((/**
+         * @param {?} scenario
+         * @return {?}
+         */
+        scenario => scenario !== undefined)));
+        this.active$.subscribe((/**
+         * @param {?} active
+         * @return {?}
+         */
+        active => {
             if (active) {
                 this._activate_anchor();
             }
             else {
                 this._deactivate_anchor();
             }
-        });
-        this.anchorScenarios$.subscribe(scenarios => {
-            scenarios.forEach(scenario => {
-                scenario.steps = scenario.steps.map(scenarioStep => {
+        }));
+        this.anchorScenarios$.subscribe((/**
+         * @param {?} scenarios
+         * @return {?}
+         */
+        scenarios => {
+            scenarios.forEach((/**
+             * @param {?} scenario
+             * @return {?}
+             */
+            scenario => {
+                scenario.steps = scenario.steps.map((/**
+                 * @param {?} scenarioStep
+                 * @return {?}
+                 */
+                scenarioStep => {
                     /** @type {?} */
-                    const step = this.steps.find(step => step.id === scenarioStep.id);
+                    const step = this.steps.find((/**
+                     * @param {?} step
+                     * @return {?}
+                     */
+                    step => step.id === scenarioStep.id));
                     /** @type {?} */
                     const _step = Object.create(step);
                     _step.params = scenarioStep.params;
                     return _step;
-                });
+                }));
                 this._do_scenario(scenario);
-            });
-        });
+            }));
+        }));
     }
     /**
      * @return {?}
@@ -861,7 +1392,11 @@ class RuleAnchorDirective {
         this.button = this.renderer.createElement("button");
         this.button.classList.add("ngs-rule-anchor-button", "mat-icon-button");
         this.button.setAttribute("mat-icon-button", "");
-        this.button.addEventListener("click", e => {
+        this.button.addEventListener("click", (/**
+         * @param {?} e
+         * @return {?}
+         */
+        e => {
             e.preventDefault();
             e.stopPropagation();
             this.bottomSheet.open(GwtViewComponent, {
@@ -870,7 +1405,7 @@ class RuleAnchorDirective {
                 },
                 panelClass: "magenta-theme"
             });
-        });
+        }));
         /** @type {?} */
         const maticon = this.renderer.createElement("mat-icon");
         maticon.classList.add("mat-icon", "material-icons");
@@ -899,26 +1434,65 @@ class RuleAnchorDirective {
         const scenario = _scenario;
         /** @type {?} */
         const givenStepInterpretors = scenario.steps
-            .filter(step => step.type === GwtStepTypes.Given)
-            .map(step => step.interperator(step.params));
+            .filter((/**
+         * @param {?} step
+         * @return {?}
+         */
+        step => step.type === GwtStepTypes.Given))
+            .map((/**
+         * @param {?} step
+         * @return {?}
+         */
+        step => step.interperator(step.params)));
         debugger;
         combineLatest(givenStepInterpretors)
-            .pipe(takeUntil(this.unsubscribe), map((values) => values.every(value => value === true)), switchMap(givenResult => {
+            .pipe(takeUntil(this.unsubscribe), map((/**
+         * @param {?} values
+         * @return {?}
+         */
+        (values) => values.every((/**
+         * @param {?} value
+         * @return {?}
+         */
+        value => value === true)))), switchMap((/**
+         * @param {?} givenResult
+         * @return {?}
+         */
+        givenResult => {
             debugger;
             if (givenResult) {
                 /** @type {?} */
                 const thenStepInterpretors = scenario.steps
-                    .filter(step => step.type === GwtStepTypes.Then)
-                    .map(step => step.interperator(step.params, this.el));
+                    .filter((/**
+                 * @param {?} step
+                 * @return {?}
+                 */
+                step => step.type === GwtStepTypes.Then))
+                    .map((/**
+                 * @param {?} step
+                 * @return {?}
+                 */
+                step => step.interperator(step.params, this.el)));
                 return combineLatest
                     .apply(null, thenStepInterpretors)
-                    .pipe(map((values) => values.every(value => value === true)));
+                    .pipe(map((/**
+                 * @param {?} values
+                 * @return {?}
+                 */
+                (values) => values.every((/**
+                 * @param {?} value
+                 * @return {?}
+                 */
+                value => value === true)))));
             }
             else {
                 return of(false);
             }
-        }))
-            .subscribe(() => { });
+        })))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => { }));
     }
 }
 RuleAnchorDirective.decorators = [
@@ -940,10 +1514,56 @@ RuleAnchorDirective.propDecorators = {
     onMouseEnter: [{ type: HostListener, args: ["mouseenter",] }],
     onMouseLeave: [{ type: HostListener, args: ["mouseleave",] }]
 };
+if (false) {
+    /** @type {?} */
+    RuleAnchorDirective.prototype.unsubscribe;
+    /** @type {?} */
+    RuleAnchorDirective.prototype.anchorId;
+    /** @type {?} */
+    RuleAnchorDirective.prototype.steps;
+    /** @type {?} */
+    RuleAnchorDirective.prototype.active$;
+    /** @type {?} */
+    RuleAnchorDirective.prototype.active;
+    /** @type {?} */
+    RuleAnchorDirective.prototype.button;
+    /** @type {?} */
+    RuleAnchorDirective.prototype.anchorScenarios$;
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleAnchorDirective.prototype.scenarioService;
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleAnchorDirective.prototype.configService;
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleAnchorDirective.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleAnchorDirective.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleAnchorDirective.prototype.renderer;
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleAnchorDirective.prototype.bottomSheet;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ScenariosDbEffects {
     /**
@@ -953,8 +1573,23 @@ class ScenariosDbEffects {
     constructor(actions$, service) {
         this.actions$ = actions$;
         this.service = service;
-        this.EditProfileRequest$ = this.actions$.pipe(ofType(ScenariosListActionTypes.SCENARIOS_LIST), map(() => new ScenariosListStartAction()));
-        this.UpsertScenario$ = this.actions$.pipe(ofType(ScenariosListActionTypes.UPSERT), map(action => action.payload), switchMap(scenario => this.service.upsert(scenario)), map(scenario => new ScenarioFechedAction(scenario)));
+        this.EditProfileRequest$ = this.actions$.pipe(ofType(ScenariosListActionTypes.SCENARIOS_LIST), map((/**
+         * @return {?}
+         */
+        () => new ScenariosListStartAction())));
+        this.UpsertScenario$ = this.actions$.pipe(ofType(ScenariosListActionTypes.UPSERT), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        action => action.payload)), switchMap((/**
+         * @param {?} scenario
+         * @return {?}
+         */
+        scenario => this.service.upsert(scenario))), map((/**
+         * @param {?} scenario
+         * @return {?}
+         */
+        scenario => new ScenarioFechedAction(scenario))));
     }
 }
 ScenariosDbEffects.decorators = [
@@ -973,10 +1608,26 @@ __decorate([
     Effect(),
     __metadata("design:type", Object)
 ], ScenariosDbEffects.prototype, "UpsertScenario$", void 0);
+if (false) {
+    /** @type {?} */
+    ScenariosDbEffects.prototype.EditProfileRequest$;
+    /** @type {?} */
+    ScenariosDbEffects.prototype.UpsertScenario$;
+    /**
+     * @type {?}
+     * @private
+     */
+    ScenariosDbEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    ScenariosDbEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class RulesListEffects {
     /**
@@ -984,7 +1635,10 @@ class RulesListEffects {
      */
     constructor(actions$) {
         this.actions$ = actions$;
-        this.EditProfileRequest$ = this.actions$.pipe(ofType(RulesListActionTypes.RULES_LIST), map(() => new RulesListStartAction()));
+        this.EditProfileRequest$ = this.actions$.pipe(ofType(RulesListActionTypes.RULES_LIST), map((/**
+         * @return {?}
+         */
+        () => new RulesListStartAction())));
     }
 }
 RulesListEffects.decorators = [
@@ -998,10 +1652,19 @@ __decorate([
     Effect(),
     __metadata("design:type", Object)
 ], RulesListEffects.prototype, "EditProfileRequest$", void 0);
+if (false) {
+    /** @type {?} */
+    RulesListEffects.prototype.EditProfileRequest$;
+    /**
+     * @type {?}
+     * @private
+     */
+    RulesListEffects.prototype.actions$;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GwtModeButtonComponent {
     /**
@@ -1037,10 +1700,21 @@ GwtModeButtonComponent.decorators = [
 GwtModeButtonComponent.ctorParameters = () => [
     { type: Store }
 ];
+if (false) {
+    /** @type {?} */
+    GwtModeButtonComponent.prototype.anchorsMode;
+    /** @type {?} */
+    GwtModeButtonComponent.prototype.havePermission$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GwtModeButtonComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class RuleService {
     /**
@@ -1063,10 +1737,27 @@ RuleService.ctorParameters = () => [
     { type: Store },
     { type: RuleConfigurationService }
 ];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleService.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleService.prototype.configurationService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class RuleModule {
     /**
@@ -1116,6 +1807,10 @@ RuleModule.decorators = [
             },] }
 ];
 class RootRuleModule {
+    constructor() {
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.rule = "8.0.10";
+    }
 }
 RootRuleModule.decorators = [
     { type: NgModule, args: [{
@@ -1128,17 +1823,18 @@ RootRuleModule.decorators = [
                 exports: [RuleModule]
             },] }
 ];
+/** @nocollapse */
+RootRuleModule.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { RuleModule, GwtStepTypes, ShowAnchorsAction, HideAnchorsAction, RulesListEffects as ɵp, reducer as ɵn, ScenariosDbEffects as ɵq, reducer$1 as ɵo, GwtViewComponent as ɵj, GwtModeButtonComponent as ɵl, RuleAnchorDirective as ɵd, Reducer as ɵm, RoutingModule as ɵr, RuleComponent as ɵc, MODULE_CONFIG_TOKEN as ɵb, RootRuleModule as ɵa, RuleReducers as ɵg, RuleConfigurationService as ɵi, RuleService as ɵs, ScenarioService as ɵe, StepLoaderDirective as ɵk };
-
+export { GwtStepTypes, HideAnchorsAction, RuleModule, ShowAnchorsAction, RootRuleModule as ɵa, MODULE_CONFIG_TOKEN as ɵb, RuleComponent as ɵc, RuleAnchorDirective as ɵd, ScenarioService as ɵe, RuleReducers as ɵg, RuleConfigurationService as ɵi, GwtViewComponent as ɵj, StepLoaderDirective as ɵk, GwtModeButtonComponent as ɵl, Reducer as ɵm, reducer as ɵn, reducer$1 as ɵo, RulesListEffects as ɵp, ScenariosDbEffects as ɵq, RoutingModule as ɵr, RuleService as ɵs };
 //# sourceMappingURL=soushians-rule.js.map

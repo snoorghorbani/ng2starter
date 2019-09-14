@@ -19,7 +19,7 @@ import { GwtStep } from "../models/gwt-step.model";
 })
 export class StepLoaderDirective implements OnChanges, OnInit {
 	@Input() step: GwtStep<any>;
-	@ViewChild("container", { read: ViewContainerRef })
+	@ViewChild("container", { read: ViewContainerRef, static: false })
 	// TODO: fix generic type
 	component: ComponentRef<any>;
 	get params() {

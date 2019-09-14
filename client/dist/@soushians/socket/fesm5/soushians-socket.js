@@ -1,15 +1,23 @@
+import { InjectionToken, Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { getSocketModuleConfig } from '@soushians/config';
-import { InjectionToken, Inject, Injectable, NgModule, defineInjectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Store, StoreModule } from '@ngrx/store';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { getSocketModuleConfig } from '@soushians/config';
+import { map } from 'rxjs/operators';
 import * as _io from 'socket.io-client';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function SocketModuleConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    SocketModuleConfig.prototype.env;
+}
 /** @type {?} */
 var MODULE_DEFAULT_CONFIG = {
     env: {
@@ -22,7 +30,7 @@ var MODULE_CONFIG_TOKEN = new InjectionToken("SocketModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SocketConfigurationService = /** @class */ (function () {
     function SocketConfigurationService(configFile, store) {
@@ -31,13 +39,17 @@ var SocketConfigurationService = /** @class */ (function () {
         this.config$ = new BehaviorSubject(MODULE_DEFAULT_CONFIG);
         this._config = Object.assign({}, MODULE_DEFAULT_CONFIG, configFile);
         this.config$.next(this._config);
-        this.store.select(getSocketModuleConfig).subscribe(function (userConfig) {
+        this.store.select(getSocketModuleConfig).subscribe((/**
+         * @param {?} userConfig
+         * @return {?}
+         */
+        function (userConfig) {
             if (!userConfig) {
                 return;
             }
             _this._config = Object.assign({}, _this._config, userConfig.Config);
             _this.config$.next(_this._config);
-        });
+        }));
     }
     Object.defineProperty(SocketConfigurationService.prototype, "config", {
         get: /**
@@ -59,10 +71,24 @@ var SocketConfigurationService = /** @class */ (function () {
     ]; };
     return SocketConfigurationService;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SocketConfigurationService.prototype._config;
+    /** @type {?} */
+    SocketConfigurationService.prototype.config$;
+    /**
+     * @type {?}
+     * @private
+     */
+    SocketConfigurationService.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var SocketActionTypes = {
@@ -75,10 +101,24 @@ var SocketRunSuccessfullyAction = /** @class */ (function () {
     }
     return SocketRunSuccessfullyAction;
 }());
+if (false) {
+    /** @type {?} */
+    SocketRunSuccessfullyAction.prototype.type;
+}
+var SocketInitialazationFailedAction = /** @class */ (function () {
+    function SocketInitialazationFailedAction() {
+        this.type = SocketActionTypes.SOCKET_INITIALAZATION_FAILD;
+    }
+    return SocketInitialazationFailedAction;
+}());
+if (false) {
+    /** @type {?} */
+    SocketInitialazationFailedAction.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var io = _io;
@@ -88,19 +128,34 @@ var SocketService = /** @class */ (function () {
         this.configService = configService;
         this.store = store;
         this.configService.config$
-            .pipe(map(function (config) { return config.env.frontend_server; }), map(function (uri) {
+            .pipe(map((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.env.frontend_server; })), map((/**
+         * @param {?} uri
+         * @return {?}
+         */
+        function (uri) {
             // console.log(uri, this.configService.config);
             _this.socket = io(uri);
             return _this.store.dispatch(new SocketRunSuccessfullyAction());
-        }))
-            .subscribe(function () {
-            _this.socket.on("DISPATCH_ACTION", function (data) {
+        })))
+            .subscribe((/**
+         * @return {?}
+         */
+        function () {
+            _this.socket.on("DISPATCH_ACTION", (/**
+             * @param {?} data
+             * @return {?}
+             */
+            function (data) {
                 _this.store.dispatch({
                     type: data.type,
                     payload: data.payload
                 });
-            });
-        });
+            }));
+        }));
     }
     /**
      * @example
@@ -127,11 +182,19 @@ var SocketService = /** @class */ (function () {
     function (message) {
         var _this = this;
         /** @type {?} */
-        var observer$ = new Observable(function (observer) {
-            _this.socket.on(message, function (data) {
+        var observer$ = new Observable((/**
+         * @param {?} observer
+         * @return {?}
+         */
+        function (observer) {
+            _this.socket.on(message, (/**
+             * @param {?} data
+             * @return {?}
+             */
+            function (data) {
                 observer.next(data);
-            });
-        });
+            }));
+        }));
         return observer$;
     };
     /**
@@ -169,14 +232,38 @@ var SocketService = /** @class */ (function () {
         { type: SocketConfigurationService },
         { type: Store }
     ]; };
-    /** @nocollapse */ SocketService.ngInjectableDef = defineInjectable({ factory: function SocketService_Factory() { return new SocketService(inject(SocketConfigurationService), inject(Store)); }, token: SocketService, providedIn: "root" });
+    /** @nocollapse */ SocketService.ngInjectableDef = ɵɵdefineInjectable({ factory: function SocketService_Factory() { return new SocketService(ɵɵinject(SocketConfigurationService), ɵɵinject(Store)); }, token: SocketService, providedIn: "root" });
     return SocketService;
 }());
+if (false) {
+    /** @type {?} */
+    SocketService.prototype.socket;
+    /** @type {?} */
+    SocketService.prototype.uri;
+    /**
+     * @type {?}
+     * @private
+     */
+    SocketService.prototype.configService;
+    /**
+     * @type {?}
+     * @private
+     */
+    SocketService.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State() { }
+if (false) {
+    /** @type {?} */
+    State.prototype.number;
+}
 /** @type {?} */
 var initialState = {
     number: 0
@@ -194,14 +281,30 @@ function Reducer(state, action) {
         }
     }
 }
+/**
+ * @record
+ */
+function SocketState() { }
+if (false) {
+    /** @type {?} */
+    SocketState.prototype.change;
+}
 /** @type {?} */
 var SocketReducer = {
     change: Reducer
 };
+/**
+ * @record
+ */
+function AppState() { }
+if (false) {
+    /** @type {?} */
+    AppState.prototype.socket;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NgsSocketModule = /** @class */ (function () {
     function NgsSocketModule() {
@@ -230,6 +333,8 @@ var NgsSocketModule = /** @class */ (function () {
 var NgsSocketRootModule = /** @class */ (function () {
     function NgsSocketRootModule(socketService) {
         this.socketService = socketService;
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.socket = "8.0.10";
     }
     NgsSocketRootModule.decorators = [
         { type: NgModule, args: [{
@@ -242,17 +347,23 @@ var NgsSocketRootModule = /** @class */ (function () {
     ]; };
     return NgsSocketRootModule;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    NgsSocketRootModule.prototype.socketService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { NgsSocketModule, SocketService, SocketConfigurationService as ɵe, MODULE_CONFIG_TOKEN as ɵf, NgsSocketRootModule as ɵa, Reducer as ɵb, SocketReducer as ɵc };
-
+export { NgsSocketModule, SocketService, NgsSocketRootModule as ɵa, Reducer as ɵb, SocketReducer as ɵc, SocketConfigurationService as ɵe, MODULE_CONFIG_TOKEN as ɵf };
 //# sourceMappingURL=soushians-socket.js.map

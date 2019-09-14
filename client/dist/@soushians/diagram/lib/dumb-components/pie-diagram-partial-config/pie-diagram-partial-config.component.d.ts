@@ -5,7 +5,7 @@ import { Subscription } from "rxjs";
 import { DiagramService } from "../../services/diagram.service";
 export declare class PieDiagramPartialConfigComponent implements OnInit, OnDestroy {
     private injector;
-    ConfigChanged: EventEmitter<{}>;
+    ConfigChanged: EventEmitter<any>;
     dataSubscribtion: Subscription;
     dataLoaded: BehaviorSubject<boolean>;
     _dataLoaded: any;

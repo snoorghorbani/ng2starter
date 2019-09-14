@@ -1,0 +1,38 @@
+import { ElementRef, Renderer2, OnInit, OnDestroy } from "@angular/core";
+import { Store } from "@ngrx/store";
+import { Observable, Subject } from "rxjs";
+import { MatBottomSheet } from "@angular/material";
+import { AppState } from "../rule.reducers";
+import { GwtScenarioModel } from "../models/gwt-scenario.model";
+import { ScenarioService } from "../services/scenario.service";
+import { GwtStep } from "../models/gwt-step.model";
+import { RuleConfigurationService } from "../services/rule-configuration.service";
+export declare class RuleAnchorDirective implements OnInit, OnDestroy {
+    private scenarioService;
+    private configService;
+    private store;
+    private el;
+    private renderer;
+    private bottomSheet;
+    unsubscribe: Subject<void>;
+    anchorId: any;
+    steps: GwtStep[];
+    active$: Observable<boolean>;
+    active: boolean;
+    button: HTMLButtonElement;
+    anchorScenarios$: Observable<GwtScenarioModel[]>;
+    constructor(scenarioService: ScenarioService, configService: RuleConfigurationService, store: Store<AppState>, el: ElementRef, renderer: Renderer2, bottomSheet: MatBottomSheet);
+    onMouseEnter(): void;
+    onMouseLeave(): void;
+    private showAnchor;
+    private hideAnchor;
+    ngOnInit(): void;
+    ngOnDestroy(): void;
+    _activate_anchor(): void;
+    _deactivate_anchor(): void;
+    _set_active_class_to_host(): void;
+    _remove_active_class_to_host(): void;
+    _create_anchor(): void;
+    _remove_anchor(): void;
+    _do_scenario(_scenario: GwtScenarioModel): void;
+}

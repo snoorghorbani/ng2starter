@@ -3,8 +3,8 @@ import { FormGroup, FormArray } from "@angular/forms";
 import { FieldConfig } from "../../models";
 export declare class FormControlComponent {
     schema: FieldConfig;
-    changes: EventEmitter<{}>;
-    delete: EventEmitter<{}>;
+    changes: EventEmitter<any>;
+    delete: EventEmitter<any>;
     width: number[];
     options: FormArray;
     tableOptions: FormGroup;

@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/forms'), require('@angular/common/http'), require('@angular/flex-layout'), require('@angular/material'), require('rxjs/BehaviorSubject'), require('@soushians/config'), require('rxjs'), require('@angular/router'), require('rxjs/add/operator/map'), require('rxjs/add/operator/mergeMap'), require('rxjs/add/operator/do'), require('rxjs/add/operator/catch'), require('rxjs/add/observable/empty'), require('@ngrx/effects'), require('@soushians/authentication'), require('@soushians/rule'), require('@angular/core'), require('@ngrx/store'), require('@angular/common'), require('@angular/platform-browser'), require('rxjs/observable/fromEvent'), require('@angular/animations'), require('@ngx-translate/core'), require('@soushians/user'), require('rxjs/operators')) :
-    typeof define === 'function' && define.amd ? define('@soushians/layout', ['exports', '@angular/forms', '@angular/common/http', '@angular/flex-layout', '@angular/material', 'rxjs/BehaviorSubject', '@soushians/config', 'rxjs', '@angular/router', 'rxjs/add/operator/map', 'rxjs/add/operator/mergeMap', 'rxjs/add/operator/do', 'rxjs/add/operator/catch', 'rxjs/add/observable/empty', '@ngrx/effects', '@soushians/authentication', '@soushians/rule', '@angular/core', '@ngrx/store', '@angular/common', '@angular/platform-browser', 'rxjs/observable/fromEvent', '@angular/animations', '@ngx-translate/core', '@soushians/user', 'rxjs/operators'], factory) :
-    (factory((global.soushians = global.soushians || {}, global.soushians.layout = {}),global.ng.forms,global.ng.common.http,global.ng['flex-layout'],global.ng.material,global.rxjs.BehaviorSubject,global.config,global.rxjs,global.ng.router,global.rxjs['add/operator/map'],global.rxjs['add/operator/mergeMap'],global.rxjs['add/operator/do'],global.rxjs['add/operator/catch'],global.rxjs['add/observable/empty'],global.effects,global.authentication,global.rule,global.ng.core,global.i2,global.ng.common,global.ng.platformBrowser,global.rxjs['observable/fromEvent'],global.ng.animations,global.core,global.user,global.rxjs.operators));
-}(this, (function (exports,forms,http,flexLayout,material,BehaviorSubject,config,rxjs,router,map,mergeMap,_do,_catch,empty,effects,authentication,rule,i0,i2,common,platformBrowser,fromEvent,animations,core,user,operators) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@ngrx/store'), require('@angular/common'), require('@angular/router'), require('@angular/forms'), require('@angular/common/http'), require('@angular/flex-layout'), require('@ngrx/effects'), require('@angular/material'), require('@ngx-translate/core'), require('@soushians/config'), require('rxjs/Observable'), require('@angular/animations'), require('@soushians/authentication'), require('rxjs/BehaviorSubject'), require('rxjs/operators'), require('@soushians/user'), require('rxjs/observable/fromEvent'), require('rxjs'), require('rxjs/add/operator/map'), require('rxjs/add/operator/mergeMap'), require('rxjs/add/operator/do'), require('rxjs/add/operator/catch'), require('rxjs/add/observable/empty'), require('@soushians/rule')) :
+    typeof define === 'function' && define.amd ? define('@soushians/layout', ['exports', '@angular/core', '@angular/platform-browser', '@ngrx/store', '@angular/common', '@angular/router', '@angular/forms', '@angular/common/http', '@angular/flex-layout', '@ngrx/effects', '@angular/material', '@ngx-translate/core', '@soushians/config', 'rxjs/Observable', '@angular/animations', '@soushians/authentication', 'rxjs/BehaviorSubject', 'rxjs/operators', '@soushians/user', 'rxjs/observable/fromEvent', 'rxjs', 'rxjs/add/operator/map', 'rxjs/add/operator/mergeMap', 'rxjs/add/operator/do', 'rxjs/add/operator/catch', 'rxjs/add/observable/empty', '@soushians/rule'], factory) :
+    (global = global || self, factory((global.soushians = global.soushians || {}, global.soushians.layout = {}), global.ng.core, global.ng.platformBrowser, global.store, global.ng.common, global.ng.router, global.ng.forms, global.ng.common.http, global.ng['flex-layout'], global.effects, global.ng.material, global.core$1, global.config, global.rxjs.Observable, global.ng.animations, global.authentication, global.rxjs.BehaviorSubject, global.rxjs.operators, global.user, global.rxjs['observable/fromEvent'], global.rxjs, global.rxjs['add/operator/map'], global.rxjs['add/operator/mergeMap'], global.rxjs['add/operator/do'], global.rxjs['add/operator/catch'], global.rxjs['add/observable/empty'], global.rule));
+}(this, function (exports, core, platformBrowser, store, common, router, forms, http, flexLayout, effects, material, core$1, config, Observable, animations, authentication, BehaviorSubject, operators, user, fromEvent, rxjs, map, mergeMap, _do, _catch, empty, rule) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -18,60 +18,192 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
-    var __assign = function () {
+    /* global Reflect, Promise */
+
+    var extendStatics = function(d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+
+    function __extends(d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    }
+
+    var __assign = function() {
         __assign = Object.assign || function __assign(t) {
             for (var s, i = 1, n = arguments.length; i < n; i++) {
                 s = arguments[i];
-                for (var p in s)
-                    if (Object.prototype.hasOwnProperty.call(s, p))
-                        t[p] = s[p];
+                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
             }
             return t;
         };
         return __assign.apply(this, arguments);
     };
+
+    function __rest(s, e) {
+        var t = {};
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+            t[p] = s[p];
+        if (s != null && typeof Object.getOwnPropertySymbols === "function")
+            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+                if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                    t[p[i]] = s[p[i]];
+            }
+        return t;
+    }
+
     function __decorate(decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-            r = Reflect.decorate(decorators, target, key, desc);
-        else
-            for (var i = decorators.length - 1; i >= 0; i--)
-                if (d = decorators[i])
-                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     }
-    function __metadata(metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-            return Reflect.metadata(metadataKey, metadataValue);
+
+    function __param(paramIndex, decorator) {
+        return function (target, key) { decorator(target, key, paramIndex); }
     }
+
+    function __metadata(metadataKey, metadataValue) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+    }
+
+    function __awaiter(thisArg, _arguments, P, generator) {
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+            function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+            function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+    }
+
+    function __generator(thisArg, body) {
+        var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+        return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+        function verb(n) { return function (v) { return step([n, v]); }; }
+        function step(op) {
+            if (f) throw new TypeError("Generator is already executing.");
+            while (_) try {
+                if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+                if (y = 0, t) op = [op[0] & 2, t.value];
+                switch (op[0]) {
+                    case 0: case 1: t = op; break;
+                    case 4: _.label++; return { value: op[1], done: false };
+                    case 5: _.label++; y = op[1]; op = [0]; continue;
+                    case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                    default:
+                        if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                        if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                        if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                        if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                        if (t[2]) _.ops.pop();
+                        _.trys.pop(); continue;
+                }
+                op = body.call(thisArg, _);
+            } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+            if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+        }
+    }
+
+    function __exportStar(m, exports) {
+        for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+    }
+
+    function __values(o) {
+        var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+        if (m) return m.call(o);
+        return {
+            next: function () {
+                if (o && i >= o.length) o = void 0;
+                return { value: o && o[i++], done: !o };
+            }
+        };
+    }
+
     function __read(o, n) {
         var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m)
-            return o;
+        if (!m) return o;
         var i = m.call(o), r, ar = [], e;
         try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-                ar.push(r.value);
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
         }
-        catch (error) {
-            e = { error: error };
-        }
+        catch (error) { e = { error: error }; }
         finally {
             try {
-                if (r && !r.done && (m = i["return"]))
-                    m.call(i);
+                if (r && !r.done && (m = i["return"])) m.call(i);
             }
-            finally {
-                if (e)
-                    throw e.error;
-            }
+            finally { if (e) throw e.error; }
         }
         return ar;
     }
 
+    function __spread() {
+        for (var ar = [], i = 0; i < arguments.length; i++)
+            ar = ar.concat(__read(arguments[i]));
+        return ar;
+    }
+
+    function __spreadArrays() {
+        for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+        for (var r = Array(s), k = 0, i = 0; i < il; i++)
+            for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+                r[k] = a[j];
+        return r;
+    };
+
+    function __await(v) {
+        return this instanceof __await ? (this.v = v, this) : new __await(v);
+    }
+
+    function __asyncGenerator(thisArg, _arguments, generator) {
+        if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+        var g = generator.apply(thisArg, _arguments || []), i, q = [];
+        return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+        function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+        function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+        function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+        function fulfill(value) { resume("next", value); }
+        function reject(value) { resume("throw", value); }
+        function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+    }
+
+    function __asyncDelegator(o) {
+        var i, p;
+        return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+        function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+    }
+
+    function __asyncValues(o) {
+        if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+        var m = o[Symbol.asyncIterator], i;
+        return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+        function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+        function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+    }
+
+    function __makeTemplateObject(cooked, raw) {
+        if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+        return cooked;
+    };
+
+    function __importStar(mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+        result.default = mod;
+        return result;
+    }
+
+    function __importDefault(mod) {
+        return (mod && mod.__esModule) ? mod : { default: mod };
+    }
+
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var OPEN_SIDENAV = "[Layout] Open Sidenav";
@@ -98,18 +230,32 @@
         }
         return UpdateLayoutConfigAction;
     }());
+    if (false) {
+        /** @type {?} */
+        UpdateLayoutConfigAction.prototype.type;
+        /** @type {?} */
+        UpdateLayoutConfigAction.prototype.payload;
+    }
     var OpenSidenavAction = /** @class */ (function () {
         function OpenSidenavAction() {
             this.type = OPEN_SIDENAV;
         }
         return OpenSidenavAction;
     }());
+    if (false) {
+        /** @type {?} */
+        OpenSidenavAction.prototype.type;
+    }
     var CloseSidenavAction = /** @class */ (function () {
         function CloseSidenavAction() {
             this.type = CLOSE_SIDENAV;
         }
         return CloseSidenavAction;
     }());
+    if (false) {
+        /** @type {?} */
+        CloseSidenavAction.prototype.type;
+    }
     var ChangeLayout = /** @class */ (function () {
         function ChangeLayout(name) {
             this.name = name;
@@ -117,6 +263,12 @@
         }
         return ChangeLayout;
     }());
+    if (false) {
+        /** @type {?} */
+        ChangeLayout.prototype.type;
+        /** @type {?} */
+        ChangeLayout.prototype.name;
+    }
     var ChangeSideNavMode = /** @class */ (function () {
         function ChangeSideNavMode(mode) {
             this.mode = mode;
@@ -124,6 +276,12 @@
         }
         return ChangeSideNavMode;
     }());
+    if (false) {
+        /** @type {?} */
+        ChangeSideNavMode.prototype.type;
+        /** @type {?} */
+        ChangeSideNavMode.prototype.mode;
+    }
     var ChangeSecondSidenavMode = /** @class */ (function () {
         function ChangeSecondSidenavMode(mode) {
             this.mode = mode;
@@ -131,12 +289,22 @@
         }
         return ChangeSecondSidenavMode;
     }());
+    if (false) {
+        /** @type {?} */
+        ChangeSecondSidenavMode.prototype.type;
+        /** @type {?} */
+        ChangeSecondSidenavMode.prototype.mode;
+    }
     var DoSignoutAction = /** @class */ (function () {
         function DoSignoutAction() {
             this.type = LayoutActionTypes.DO_SIGNOUT;
         }
         return DoSignoutAction;
     }());
+    if (false) {
+        /** @type {?} */
+        DoSignoutAction.prototype.type;
+    }
     var TitleChangedAction = /** @class */ (function () {
         function TitleChangedAction(title) {
             this.title = title;
@@ -144,41 +312,95 @@
         }
         return TitleChangedAction;
     }());
+    if (false) {
+        /** @type {?} */
+        TitleChangedAction.prototype.type;
+        /** @type {?} */
+        TitleChangedAction.prototype.title;
+    }
     var OpenSecondSidenavAction = /** @class */ (function () {
         function OpenSecondSidenavAction() {
             this.type = LayoutActionTypes.OPEN_SECOND_SIDEBAR;
         }
         return OpenSecondSidenavAction;
     }());
+    if (false) {
+        /** @type {?} */
+        OpenSecondSidenavAction.prototype.type;
+    }
     var CloseSecondSidenavAction = /** @class */ (function () {
         function CloseSecondSidenavAction() {
             this.type = LayoutActionTypes.CLOSE_SECOND_SIDEBAR;
         }
         return CloseSecondSidenavAction;
     }());
+    if (false) {
+        /** @type {?} */
+        CloseSecondSidenavAction.prototype.type;
+    }
     var FullscreenAction = /** @class */ (function () {
         function FullscreenAction() {
             this.type = LayoutActionTypes.FULLSCREEN;
         }
         return FullscreenAction;
     }());
+    if (false) {
+        /** @type {?} */
+        FullscreenAction.prototype.type;
+    }
     var ExitFullscreenAction = /** @class */ (function () {
         function ExitFullscreenAction() {
             this.type = LayoutActionTypes.EXIT_FULLSCREEN;
         }
         return ExitFullscreenAction;
     }());
+    if (false) {
+        /** @type {?} */
+        ExitFullscreenAction.prototype.type;
+    }
     var ToggleFullscreenAction = /** @class */ (function () {
         function ToggleFullscreenAction() {
             this.type = LayoutActionTypes.TOGGLE_FULLSCREEN;
         }
         return ToggleFullscreenAction;
     }());
+    if (false) {
+        /** @type {?} */
+        ToggleFullscreenAction.prototype.type;
+    }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /**
+     * @record
+     */
+    function State() { }
+    if (false) {
+        /** @type {?|undefined} */
+        State.prototype.showMainSidenav;
+        /** @type {?|undefined} */
+        State.prototype.showSecondSideNav;
+        /** @type {?|undefined} */
+        State.prototype.secondSideNavMode;
+        /** @type {?|undefined} */
+        State.prototype.mainSideNavMode;
+        /** @type {?|undefined} */
+        State.prototype.menuItems;
+        /** @type {?|undefined} */
+        State.prototype.showLeftNavBar;
+        /** @type {?|undefined} */
+        State.prototype.stickyLeftNavBar;
+        /** @type {?|undefined} */
+        State.prototype.layoutMode;
+        /** @type {?|undefined} */
+        State.prototype.title;
+        /** @type {?} */
+        State.prototype.signoutAction;
+        /** @type {?} */
+        State.prototype.fullscreen;
+    }
     /** @type {?} */
     var initialState = {
         showMainSidenav: false,
@@ -190,7 +412,7 @@
         layoutMode: "default",
         title: "",
         menuItems: [],
-        signoutAction: ( /** @type {?} */({})),
+        signoutAction: (/** @type {?} */ ({})),
         fullscreen: false
     };
     /**
@@ -199,17 +421,19 @@
      * @return {?}
      */
     function Reducer(state, action) {
-        if (state === void 0) {
-            state = initialState;
-        }
+        if (state === void 0) { state = initialState; }
         switch (action.type) {
             case LayoutActionTypes.UPDATE_LAYOUT_CONFIG:
                 /** @type {?} */
                 var _state_1 = {};
-                Object.keys(action.payload).forEach(function (k) {
+                Object.keys(action.payload).forEach((/**
+                 * @param {?} k
+                 * @return {?}
+                 */
+                function (k) {
                     if (k in state)
                         _state_1[k] = action.payload[k];
-                });
+                }));
                 return __assign({}, state, _state_1);
             case CLOSE_SIDENAV:
                 return __assign({}, state, { showMainSidenav: false });
@@ -241,23 +465,57 @@
         }
     }
     /** @type {?} */
-    var getTitle = function (state) { return state.title; };
+    var getShowSidenav = (/**
+     * @param {?} state
+     * @return {?}
+     */
+    function (state) { return state.showMainSidenav; });
     /** @type {?} */
-    var getShowMainSidenav = function (state) { return state.showMainSidenav; };
+    var getTitle = (/**
+     * @param {?} state
+     * @return {?}
+     */
+    function (state) { return state.title; });
     /** @type {?} */
-    var getMainSideNavMode = function (state) { return state.mainSideNavMode; };
+    var getShowMainSidenav = (/**
+     * @param {?} state
+     * @return {?}
+     */
+    function (state) { return state.showMainSidenav; });
     /** @type {?} */
-    var getLayoutMode = function (state) { return state.layoutMode; };
+    var getMainSideNavMode = (/**
+     * @param {?} state
+     * @return {?}
+     */
+    function (state) { return state.mainSideNavMode; });
     /** @type {?} */
-    var getShowSecondSidebarStatus = function (state) { return state.showSecondSideNav; };
+    var getLayoutMode = (/**
+     * @param {?} state
+     * @return {?}
+     */
+    function (state) { return state.layoutMode; });
     /** @type {?} */
-    var getSecondSidebarMode = function (state) { return state.secondSideNavMode; };
+    var getShowSecondSidebarStatus = (/**
+     * @param {?} state
+     * @return {?}
+     */
+    function (state) { return state.showSecondSideNav; });
     /** @type {?} */
-    var getFullscreenMode = function (state) { return state.fullscreen; };
+    var getSecondSidebarMode = (/**
+     * @param {?} state
+     * @return {?}
+     */
+    function (state) { return state.secondSideNavMode; });
+    /** @type {?} */
+    var getFullscreenMode = (/**
+     * @param {?} state
+     * @return {?}
+     */
+    function (state) { return state.fullscreen; });
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @enum {string} */
     var ToolbarActionTypes = {
@@ -275,52 +533,94 @@
         }
         return ChangeToolbatToComfortableModeAction;
     }());
+    if (false) {
+        /** @type {?} */
+        ChangeToolbatToComfortableModeAction.prototype.type;
+    }
     var ChangeToolbatToCompactModeAction = /** @class */ (function () {
         function ChangeToolbatToCompactModeAction() {
             this.type = ToolbarActionTypes.COMPACT;
         }
         return ChangeToolbatToCompactModeAction;
     }());
+    if (false) {
+        /** @type {?} */
+        ChangeToolbatToCompactModeAction.prototype.type;
+    }
     var ChangeToolbatToSummaryModeAction = /** @class */ (function () {
         function ChangeToolbatToSummaryModeAction() {
             this.type = ToolbarActionTypes.SUMMARY;
         }
         return ChangeToolbatToSummaryModeAction;
     }());
+    if (false) {
+        /** @type {?} */
+        ChangeToolbatToSummaryModeAction.prototype.type;
+    }
     var EnableComfortableModeAction = /** @class */ (function () {
         function EnableComfortableModeAction() {
             this.type = ToolbarActionTypes.ENABLE_COMFORTABLE_MODE;
         }
         return EnableComfortableModeAction;
     }());
+    if (false) {
+        /** @type {?} */
+        EnableComfortableModeAction.prototype.type;
+    }
     var DisableComfortableModeAction = /** @class */ (function () {
         function DisableComfortableModeAction() {
             this.type = ToolbarActionTypes.DISBALE_COMFORTABLE_MODE;
         }
         return DisableComfortableModeAction;
     }());
+    if (false) {
+        /** @type {?} */
+        DisableComfortableModeAction.prototype.type;
+    }
     var VisibleToolbarAction = /** @class */ (function () {
         function VisibleToolbarAction() {
             this.type = ToolbarActionTypes.VISIBLE;
         }
         return VisibleToolbarAction;
     }());
+    if (false) {
+        /** @type {?} */
+        VisibleToolbarAction.prototype.type;
+    }
     var InvisibleToolbarAction = /** @class */ (function () {
         function InvisibleToolbarAction() {
             this.type = ToolbarActionTypes.INVISIBLE;
         }
         return InvisibleToolbarAction;
     }());
+    if (false) {
+        /** @type {?} */
+        InvisibleToolbarAction.prototype.type;
+    }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /**
+     * @record
+     */
+    function State$1() { }
+    if (false) {
+        /** @type {?} */
+        State$1.prototype.mode;
+        /** @type {?} */
+        State$1.prototype.enableComfortableMode;
+        /** @type {?} */
+        State$1.prototype.comfortableModeHaveBeenDone;
+        /** @type {?} */
+        State$1.prototype.visibility;
+    }
     /** @type {?} */
     var initialState$1 = {
         mode: "compact",
@@ -334,9 +634,7 @@
      * @return {?}
      */
     function Reducer$1(state, action) {
-        if (state === void 0) {
-            state = initialState$1;
-        }
+        if (state === void 0) { state = initialState$1; }
         switch (action.type) {
             case ToolbarActionTypes.COMPACT:
                 if (!state.visibility)
@@ -367,59 +665,136 @@
         }
     }
     /** @type {?} */
-    var getToolbarMode = function (state) { return state.mode; };
+    var getToolbarMode = (/**
+     * @param {?} state
+     * @return {?}
+     */
+    function (state) { return state.mode; });
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /**
+     * @record
+     */
+    function LayoutState() { }
+    if (false) {
+        /** @type {?} */
+        LayoutState.prototype.layout;
+        /** @type {?} */
+        LayoutState.prototype.toolbar;
+    }
     /** @type {?} */
     var LayoutReducers = {
         layout: Reducer,
         toolbar: Reducer$1
     };
+    /**
+     * @record
+     */
+    function FeatureState() { }
+    if (false) {
+        /** @type {?} */
+        FeatureState.prototype.layout;
+        /** @type {?} */
+        FeatureState.prototype.toolbar;
+    }
     //#region selectors
     /** @type {?} */
-    var selectLayoutState = i2.createFeatureSelector("layout");
+    var selectLayoutState = store.createFeatureSelector("layout");
     //#endregion
+    var ɵ0 = /**
+     * @param {?} state
+     * @return {?}
+     */
+    function (state) { return state.layout; };
     /** @type {?} */
-    var getLayout = i2.createSelector(selectLayoutState, function (state) { return state.layout; });
+    var getLayout = store.createSelector(selectLayoutState, (ɵ0));
     /** @type {?} */
-    var getTitle$1 = i2.createSelector(getLayout, getTitle);
+    var getTitle$1 = store.createSelector(getLayout, getTitle);
     /** @type {?} */
-    var getShowMainSidenav$1 = i2.createSelector(getLayout, getShowMainSidenav);
+    var getShowMainSidenav$1 = store.createSelector(getLayout, getShowMainSidenav);
     /** @type {?} */
-    var getMainSideNavMode$1 = i2.createSelector(getLayout, getMainSideNavMode);
+    var getMainSideNavMode$1 = store.createSelector(getLayout, getMainSideNavMode);
     /** @type {?} */
-    var getLayoutMode$1 = i2.createSelector(getLayout, getLayoutMode);
+    var getLayoutMode$1 = store.createSelector(getLayout, getLayoutMode);
     /** @type {?} */
-    var getShowSecondSidebarStatus$1 = i2.createSelector(getLayout, getShowSecondSidebarStatus);
+    var getShowSecondSidebarStatus$1 = store.createSelector(getLayout, getShowSecondSidebarStatus);
     /** @type {?} */
-    var getSecondSidebarMode$1 = i2.createSelector(getLayout, getSecondSidebarMode);
+    var getSecondSidebarMode$1 = store.createSelector(getLayout, getSecondSidebarMode);
     /** @type {?} */
-    var getFullscreenMode$1 = i2.createSelector(getLayout, getFullscreenMode);
+    var getFullscreenMode$1 = store.createSelector(getLayout, getFullscreenMode);
     //#region toolbar
+    var ɵ1 = /**
+     * @param {?} state
+     * @return {?}
+     */
+    function (state) { return state.toolbar; };
     /** @type {?} */
-    var getLayoutToolbar = i2.createSelector(selectLayoutState, function (state) { return state.toolbar; });
+    var getLayoutToolbar = store.createSelector(selectLayoutState, (ɵ1));
     /** @type {?} */
-    var getLayoutToolbarMode = i2.createSelector(getLayoutToolbar, getToolbarMode);
+    var getLayoutToolbarMode = store.createSelector(getLayoutToolbar, getToolbarMode);
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /**
+     * @record
+     */
+    function LayoutModuleConfigModel() { }
+    if (false) {
+        /** @type {?|undefined} */
+        LayoutModuleConfigModel.prototype.showMainSidenav;
+        /** @type {?|undefined} */
+        LayoutModuleConfigModel.prototype.showSecondSideNav;
+        /** @type {?|undefined} */
+        LayoutModuleConfigModel.prototype.secondSideNavMode;
+        /** @type {?|undefined} */
+        LayoutModuleConfigModel.prototype.mainSideNavMode;
+        /** @type {?|undefined} */
+        LayoutModuleConfigModel.prototype.menuItems;
+        /** @type {?|undefined} */
+        LayoutModuleConfigModel.prototype.showLeftNavBar;
+        /** @type {?|undefined} */
+        LayoutModuleConfigModel.prototype.stickyLeftNavBar;
+        /** @type {?|undefined} */
+        LayoutModuleConfigModel.prototype.layoutMode;
+        /** @type {?|undefined} */
+        LayoutModuleConfigModel.prototype.title;
+        /** @type {?|undefined} */
+        LayoutModuleConfigModel.prototype.signoutAction;
+        /** @type {?|undefined} */
+        LayoutModuleConfigModel.prototype.menu_item_authorization_operator;
+        /** @type {?|undefined} */
+        LayoutModuleConfigModel.prototype.theme;
+    }
     /** @type {?} */
-    var menu_item_authorization_operator = function (_a) {
-        var _b = __read(_a, 2), routes = _b[0], user$$1 = _b[1];
-        if (!user$$1.Roles)
+    var menu_item_authorization_operator = (/**
+     * @param {?} __0
+     * @return {?}
+     */
+    function (_a) {
+        var _b = __read(_a, 2), routes = _b[0], user = _b[1];
+        if (!user.Roles)
             return [];
-        if (user$$1.Roles.length == 0) {
+        if (user.Roles.length == 0) {
             return [];
         }
         else {
-            return routes.filter(function (route) { return user$$1.Roles.some(function (userRole) { return route.roles.indexOf(userRole) > -1; }); });
+            return routes.filter((/**
+             * @param {?} route
+             * @return {?}
+             */
+            function (route) { return user.Roles.some((/**
+             * @param {?} userRole
+             * @return {?}
+             */
+            function (userRole) { return route.roles.indexOf(userRole) > -1; })); }));
         }
-    };
+    });
+    var ɵ0$1 = menu_item_authorization_operator;
     /** @type {?} */
     var MODULE_DEFAULT_CONFIG = {
         theme: "theme_B",
@@ -435,15 +810,15 @@
         // | "without-margin" | "default",
         title: "",
         menuItems: [],
-        signoutAction: ( /** @type {?} */({})),
+        signoutAction: (/** @type {?} */ ({})),
         menu_item_authorization_operator: menu_item_authorization_operator
     };
     /** @type {?} */
-    var MODULE_CONFIG_TOKEN = new i0.InjectionToken("LayoutModuleConfigModel");
+    var MODULE_CONFIG_TOKEN = new core.InjectionToken("LayoutModuleConfigModel");
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LayoutConfigurationService = /** @class */ (function () {
         function LayoutConfigurationService(configFile, store) {
@@ -454,50 +829,75 @@
             this.config$.next(this._config);
             this.store
                 .select(config.getConfigs)
-                .map(function (configs) { return configs.find(function (config$$1) { return config$$1.Name == "layout_config"; }); })
-                .subscribe(function (config$$1) {
-                if (!config$$1)
+                .map((/**
+             * @param {?} configs
+             * @return {?}
+             */
+            function (configs) { return configs.find((/**
+             * @param {?} config
+             * @return {?}
+             */
+            function (config) { return config.Name == "layout_config"; })); }))
+                .subscribe((/**
+             * @param {?} config
+             * @return {?}
+             */
+            function (config) {
+                if (!config)
                     return;
-                _this.store.dispatch(new UpdateLayoutConfigAction(config$$1.Config));
-                _this._config = Object.assign({}, _this._config, config$$1.Config);
+                _this.store.dispatch(new UpdateLayoutConfigAction(config.Config));
+                _this._config = Object.assign({}, _this._config, config.Config);
                 _this.config$.next(_this._config);
-            });
+            }));
         }
         Object.defineProperty(LayoutConfigurationService.prototype, "config", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this._config;
             },
             enumerable: true,
             configurable: true
         });
         LayoutConfigurationService.decorators = [
-            { type: i0.Injectable, args: [{
+            { type: core.Injectable, args: [{
                         providedIn: "root"
                     },] }
         ];
         /** @nocollapse */
-        LayoutConfigurationService.ctorParameters = function () {
-            return [
-                { type: undefined, decorators: [{ type: i0.Inject, args: [MODULE_CONFIG_TOKEN,] }] },
-                { type: i2.Store }
-            ];
-        };
-        /** @nocollapse */ LayoutConfigurationService.ngInjectableDef = i0.defineInjectable({ factory: function LayoutConfigurationService_Factory() { return new LayoutConfigurationService(i0.inject(MODULE_CONFIG_TOKEN), i0.inject(i2.Store)); }, token: LayoutConfigurationService, providedIn: "root" });
+        LayoutConfigurationService.ctorParameters = function () { return [
+            { type: undefined, decorators: [{ type: core.Inject, args: [MODULE_CONFIG_TOKEN,] }] },
+            { type: store.Store }
+        ]; };
+        /** @nocollapse */ LayoutConfigurationService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function LayoutConfigurationService_Factory() { return new LayoutConfigurationService(core.ɵɵinject(MODULE_CONFIG_TOKEN), core.ɵɵinject(store.Store)); }, token: LayoutConfigurationService, providedIn: "root" });
         return LayoutConfigurationService;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        LayoutConfigurationService.prototype._config;
+        /** @type {?} */
+        LayoutConfigurationService.prototype.config$;
+        /**
+         * @type {?}
+         * @private
+         */
+        LayoutConfigurationService.prototype.store;
+    }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var MainMenuComponent = /** @class */ (function () {
         function MainMenuComponent(store, signinService, configurationService) {
             this.store = store;
             this.signinService = signinService;
             this.configurationService = configurationService;
-            this.closeSidebar = new i0.EventEmitter();
+            this.closeSidebar = new core.EventEmitter();
             this.user$ = this.store.select(user.getAccountInfo);
             this._observe_on_layout_config_and_filter_routes();
         }
@@ -507,11 +907,15 @@
         MainMenuComponent.prototype._observe_on_layout_config_and_filter_routes = /**
          * @return {?}
          */
-            function () {
-                this.routes$ = this.configurationService.config$.pipe(operators.map(function (config$$1) { return config$$1.menuItems; }), operators.combineLatest(this.user$), operators.map(this.configurationService.config$.getValue().menu_item_authorization_operator));
-            };
+        function () {
+            this.routes$ = this.configurationService.config$.pipe(operators.map((/**
+             * @param {?} config
+             * @return {?}
+             */
+            function (config) { return config.menuItems; })), operators.combineLatest(this.user$), operators.map(this.configurationService.config$.getValue().menu_item_authorization_operator));
+        };
         MainMenuComponent.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: "ngs-layout-main-menu",
                         template: "<mat-list class=\"main-menu-container\">\r\n  <div *ngIf=\"authenticated | async\">\r\n    <a *ngFor=\"let item of routes$ | async\" (click)=\"closeSidebar.emit()\" routerLinkActive=\"active\" mat-list-item [routerLink]=\"[item.route]\">\r\n      <mat-icon mat-list-icon>{{item.icon}}</mat-icon>\r\n      <span mdLine>{{item.title}}</span>\r\n    </a>\r\n  </div>\r\n</mat-list>",
                         animations: [
@@ -544,24 +948,45 @@
                     }] }
         ];
         /** @nocollapse */
-        MainMenuComponent.ctorParameters = function () {
-            return [
-                { type: i2.Store },
-                { type: authentication.SigninService },
-                { type: LayoutConfigurationService }
-            ];
-        };
+        MainMenuComponent.ctorParameters = function () { return [
+            { type: store.Store },
+            { type: authentication.SigninService },
+            { type: LayoutConfigurationService }
+        ]; };
         MainMenuComponent.propDecorators = {
-            closeSidebar: [{ type: i0.Output }],
-            authenticated: [{ type: i0.Input }],
-            customerMobileInput: [{ type: i0.ViewChild, args: ["customerMobileInput",] }]
+            closeSidebar: [{ type: core.Output }],
+            authenticated: [{ type: core.Input }],
+            customerMobileInput: [{ type: core.ViewChild, args: ["customerMobileInput", { static: false },] }]
         };
         return MainMenuComponent;
     }());
+    if (false) {
+        /** @type {?} */
+        MainMenuComponent.prototype.closeSidebar;
+        /** @type {?} */
+        MainMenuComponent.prototype.authenticated;
+        /** @type {?} */
+        MainMenuComponent.prototype.user$;
+        /** @type {?} */
+        MainMenuComponent.prototype.customerStatus$;
+        /** @type {?} */
+        MainMenuComponent.prototype.routes$;
+        /** @type {?} */
+        MainMenuComponent.prototype.customerMobileInput;
+        /**
+         * @type {?}
+         * @private
+         */
+        MainMenuComponent.prototype.store;
+        /** @type {?} */
+        MainMenuComponent.prototype.signinService;
+        /** @type {?} */
+        MainMenuComponent.prototype.configurationService;
+    }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SearchBoxComponent = /** @class */ (function () {
         function SearchBoxComponent() {
@@ -572,10 +997,10 @@
         SearchBoxComponent.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-            };
+        function () {
+        };
         SearchBoxComponent.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'app-search-box',
                         template: "<div class=\"search-box\">\r\n  <!--<td-search-box class=\"search-box-container\" backIcon=\"arrow_back\" placeholder=\"\u062C\u0633\u062A\u062C\u0648\" [showUnderline]=\"false\" [debounce]=\"500\" [alwaysVisible]=\"false\"\r\n                 (searchDebounce)=\"searchInputTerm = $event\" (search)=\"searchInputTerm = $event\" (clear)=\"searchInputTerm = ''\">\r\n  </td-search-box>-->\r\n</div>",
                         styles: [""]
@@ -588,31 +1013,38 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LogoContainerComponent = /** @class */ (function () {
         function LogoContainerComponent(sdf) {
             this.sdf = sdf;
         }
         LogoContainerComponent.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: "app-logo-container",
                         template: "\r\n<!--<img class=\"logoTypeAnimation\" src='../../../assets/images/logo-type.png' />-->",
                         styles: [".logoAnimation{height:36px;cursor:pointer;z-index:2}#background{position:absolute;top:0;right:0;width:300px;height:70px}"]
                     }] }
         ];
         /** @nocollapse */
-        LogoContainerComponent.ctorParameters = function () {
-            return [
-                { type: LayoutConfigurationService }
-            ];
-        };
+        LogoContainerComponent.ctorParameters = function () { return [
+            { type: LayoutConfigurationService }
+        ]; };
         return LogoContainerComponent;
     }());
+    if (false) {
+        /** @type {?} */
+        LogoContainerComponent.prototype.toolbarAnimationState;
+        /**
+         * @type {?}
+         * @private
+         */
+        LogoContainerComponent.prototype.sdf;
+    }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ToolbarMenuComponent = /** @class */ (function () {
         function ToolbarMenuComponent(document, _location, store, configurationService) {
@@ -629,18 +1061,41 @@
             this.user$ = this.store.select(user.getAccountInfo);
             this.store.dispatch(new ChangeToolbatToComfortableModeAction());
             this.config$ = this.store.select(getLayoutToolbar);
-            this.config$.subscribe(function (config$$1) { return (_this.config = config$$1); });
+            this.config$.subscribe((/**
+             * @param {?} config
+             * @return {?}
+             */
+            function (config) { return (_this.config = config); }));
             this.lastScroll = this.document.body.scrollTop;
             this.showSecondSidenav = this.store.select(getShowSecondSidebarStatus$1);
             this.showMainSidenav = this.store.select(getShowMainSidenav$1);
-            this.store.select(getLayoutToolbarMode).subscribe(function (state) {
-                setTimeout(function () { return (_this.menuAnimationState = state); }, 1);
-                setTimeout(function () { return (_this.logoAnimationState = state); }, 1);
-                setTimeout(function () { return (_this.titleAnimationState = state); }, 1);
-                setTimeout(function () { return (_this.toolbarAnimationState = state); }, 1);
-            });
+            this.store.select(getLayoutToolbarMode).subscribe((/**
+             * @param {?} state
+             * @return {?}
+             */
+            function (state) {
+                setTimeout((/**
+                 * @return {?}
+                 */
+                function () { return (_this.menuAnimationState = state); }), 1);
+                setTimeout((/**
+                 * @return {?}
+                 */
+                function () { return (_this.logoAnimationState = state); }), 1);
+                setTimeout((/**
+                 * @return {?}
+                 */
+                function () { return (_this.titleAnimationState = state); }), 1);
+                setTimeout((/**
+                 * @return {?}
+                 */
+                function () { return (_this.toolbarAnimationState = state); }), 1);
+            }));
             this._observe_on_layout_config_and_filter_routes();
-            fromEvent.fromEvent(this.document.body, "scroll").subscribe(function () {
+            fromEvent.fromEvent(this.document.body, "scroll").subscribe((/**
+             * @return {?}
+             */
+            function () {
                 /** @type {?} */
                 var scrolledAmount = _this.document.body.scrollTop;
                 /** @type {?} */
@@ -664,7 +1119,7 @@
                         return;
                     _this.store.dispatch(new ChangeToolbatToSummaryModeAction());
                 }
-            });
+            }));
         }
         /**
          * @return {?}
@@ -672,66 +1127,78 @@
         ToolbarMenuComponent.prototype.onWindowScroll = /**
          * @return {?}
          */
-            function () {
-                // of(1)
-            };
+        function () {
+            // of(1)
+        };
         /**
          * @return {?}
          */
         ToolbarMenuComponent.prototype.signout = /**
          * @return {?}
          */
-            function () {
-                this.store.dispatch(new DoSignoutAction());
-            };
+        function () {
+            this.store.dispatch(new DoSignoutAction());
+        };
         /**
          * @return {?}
          */
         ToolbarMenuComponent.prototype.goback = /**
          * @return {?}
          */
-            function () {
-                this._location.back();
-            };
+        function () {
+            this._location.back();
+        };
         /**
          * @return {?}
          */
         ToolbarMenuComponent.prototype.toggleSecondSidebar = /**
          * @return {?}
          */
-            function () {
-                /** @type {?} */
-                var action;
-                this.showSecondSidenav.subscribe(function (state) {
-                    action = state ? new CloseSecondSidenavAction() : new OpenSecondSidenavAction();
-                });
-                this.store.dispatch(action);
-            };
+        function () {
+            /** @type {?} */
+            var action;
+            this.showSecondSidenav.subscribe((/**
+             * @param {?} state
+             * @return {?}
+             */
+            function (state) {
+                action = state ? new CloseSecondSidenavAction() : new OpenSecondSidenavAction();
+            }));
+            this.store.dispatch(action);
+        };
         /**
          * @return {?}
          */
         ToolbarMenuComponent.prototype.toggleMainSidebar = /**
          * @return {?}
          */
-            function () {
-                /** @type {?} */
-                var action;
-                this.showMainSidenav.subscribe(function (state) {
-                    action = state ? new CloseSidenavAction() : new OpenSidenavAction();
-                });
-                this.store.dispatch(action);
-            };
+        function () {
+            /** @type {?} */
+            var action;
+            this.showMainSidenav.subscribe((/**
+             * @param {?} state
+             * @return {?}
+             */
+            function (state) {
+                action = state ? new CloseSidenavAction() : new OpenSidenavAction();
+            }));
+            this.store.dispatch(action);
+        };
         /**
          * @return {?}
          */
         ToolbarMenuComponent.prototype._observe_on_layout_config_and_filter_routes = /**
          * @return {?}
          */
-            function () {
-                this.menuItems$ = this.configurationService.config$.pipe(operators.map(function (config$$1) { return config$$1.menuItems; }), operators.combineLatest(this.user$), operators.map(this.configurationService.config$.getValue().menu_item_authorization_operator));
-            };
+        function () {
+            this.menuItems$ = this.configurationService.config$.pipe(operators.map((/**
+             * @param {?} config
+             * @return {?}
+             */
+            function (config) { return config.menuItems; })), operators.combineLatest(this.user$), operators.map(this.configurationService.config$.getValue().menu_item_authorization_operator));
+        };
         ToolbarMenuComponent.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: "layout-toolbar",
                         template: "<mat-toolbar [@toolbarAnimation]=\"toolbarAnimationState\">\r\n  <mat-toolbar-row id=\"firstToolbar\">\r\n    <!-- <div id=\"background\"></div> -->\r\n    <img [@logoAnimation]=\"logoAnimationState\" id=\"logo\" routerLink='/' src='assets/images/shatel-logo.png' />\r\n\r\n    <button type=\"button\" *ngIf='showSidebarMenu && false' (click)=\"toggleMainSidebar()\" mat-icon-button fxFlex=\"nogrow\" fxLayoutAlign=\"center center\">\r\n      <mat-icon>menu</mat-icon>\r\n    </button>\r\n    <span [@titleAnimation]=\"titleAnimationState\" id='app-name'>\r\n      {{app_config?.Config.AppTitle}}\r\n    </span>\r\n    <app-title fxFlex fxLayoutAlign=\"start center\"></app-title>\r\n    <app-search-box fxFlex fxLayoutAlign=\"end center\"></app-search-box>\r\n\r\n\r\n    <button *ngIf=\"!displayName\" mat-button routerLink=\"auth/signin\">\r\n      \u0648\u0631\u0648\u062F\r\n    </button>\r\n    <button *ngIf=\"!displayName\" mat-button routerLink=\"auth/signup\">\r\n      \u062B\u0628\u062A \u0646\u0627\u0645\r\n    </button>\r\n    <button *ngIf=\"displayName\" mat-icon-button [matMenuTriggerFor]=\"toolbarMenu1\">\r\n      <mat-icon>account_circle</mat-icon>\r\n    </button>\r\n    <mat-menu #toolbarMenu1 class=\"rtl-dir\">\r\n      <div id=\"acccountName\">\r\n        {{displayName}}\r\n      </div>\r\n      <button routerLink='/user/panel' mat-menu-item class=\"rtl-dir\">\r\n        <mat-icon>fingerprint</mat-icon>\r\n        <span>\r\n          \u0645\u062F\u06CC\u0631\u06CC\u062A \u06A9\u0627\u0631\u0628\u0631\u06CC\r\n        </span>\r\n      </button>\r\n      <button (click)='signout()' mat-menu-item class=\"rtl-dir\">\r\n        <mat-icon>exit_to_app</mat-icon>\r\n        <span>\u062E\u0631\u0648\u062C</span>\r\n      </button>\r\n    </mat-menu>\r\n    <button mat-icon-button type=\"button\" (click)=\"toggleSecondSidebar()\" fxFlex=\"nogrow\" fxLayoutAlign=\"center center\">\r\n      <mat-icon>notifications</mat-icon>\r\n    </button>\r\n    <button mat-icon-button (click)='goback()'>\r\n      <mat-icon>arrow_back</mat-icon>\r\n    </button>\r\n\r\n  </mat-toolbar-row>\r\n  <mat-toolbar-row>\r\n    <div id=\"secondToolbar\" [@menuAnimation]=\"menuAnimationState\">\r\n      <router-outlet name=\"ngs-layout-before-toolbar-menu\"></router-outlet>\r\n      <button mat-button *ngFor=\"let menu of menuItems$ | async\" routerLinkActive=\"active\" [routerLink]=\"[menu.route]\">\r\n        <!-- <mat-icon mat-list-icon>{{menu.icon}}</mat-icon> -->\r\n        <span>{{menu.title}}</span>\r\n      </button>\r\n      <router-outlet name=\"ngs-layout-after-toolbar-menu\"></router-outlet>\r\n    </div>\r\n  </mat-toolbar-row>\r\n</mat-toolbar>",
                         animations: [
@@ -906,27 +1373,76 @@
                     }] }
         ];
         /** @nocollapse */
-        ToolbarMenuComponent.ctorParameters = function () {
-            return [
-                { type: undefined, decorators: [{ type: i0.Inject, args: [platformBrowser.DOCUMENT,] }] },
-                { type: common.Location },
-                { type: i2.Store },
-                { type: LayoutConfigurationService }
-            ];
-        };
+        ToolbarMenuComponent.ctorParameters = function () { return [
+            { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
+            { type: common.Location },
+            { type: store.Store },
+            { type: LayoutConfigurationService }
+        ]; };
         ToolbarMenuComponent.propDecorators = {
-            showSidebarMenu: [{ type: i0.Input }],
-            app_config: [{ type: i0.Input, args: ["app-config",] }],
-            user: [{ type: i0.Input }],
-            displayName: [{ type: i0.Input }],
-            onWindowScroll: [{ type: i0.HostListener, args: ["body:scroll", [],] }]
+            showSidebarMenu: [{ type: core.Input }],
+            app_config: [{ type: core.Input, args: ["app-config",] }],
+            user: [{ type: core.Input }],
+            displayName: [{ type: core.Input }],
+            onWindowScroll: [{ type: core.HostListener, args: ["body:scroll", [],] }]
         };
         return ToolbarMenuComponent;
     }());
+    if (false) {
+        /** @type {?} */
+        ToolbarMenuComponent.prototype.showSecondSidenav;
+        /** @type {?} */
+        ToolbarMenuComponent.prototype.showSidebarMenu;
+        /** @type {?} */
+        ToolbarMenuComponent.prototype.app_config;
+        /** @type {?} */
+        ToolbarMenuComponent.prototype.user;
+        /** @type {?} */
+        ToolbarMenuComponent.prototype.displayName;
+        /** @type {?} */
+        ToolbarMenuComponent.prototype.user$;
+        /** @type {?} */
+        ToolbarMenuComponent.prototype.showMainSidenav;
+        /** @type {?} */
+        ToolbarMenuComponent.prototype.toolbarAnimationState;
+        /** @type {?} */
+        ToolbarMenuComponent.prototype.menuAnimationState;
+        /** @type {?} */
+        ToolbarMenuComponent.prototype.logoAnimationState;
+        /** @type {?} */
+        ToolbarMenuComponent.prototype.titleAnimationState;
+        /** @type {?} */
+        ToolbarMenuComponent.prototype.menuItems$;
+        /** @type {?} */
+        ToolbarMenuComponent.prototype.lastScroll;
+        /** @type {?} */
+        ToolbarMenuComponent.prototype.config;
+        /** @type {?} */
+        ToolbarMenuComponent.prototype.config$;
+        /** @type {?} */
+        ToolbarMenuComponent.prototype.anchorsMode;
+        /**
+         * @type {?}
+         * @private
+         */
+        ToolbarMenuComponent.prototype.document;
+        /**
+         * @type {?}
+         * @private
+         */
+        ToolbarMenuComponent.prototype._location;
+        /**
+         * @type {?}
+         * @private
+         */
+        ToolbarMenuComponent.prototype.store;
+        /** @type {?} */
+        ToolbarMenuComponent.prototype.configurationService;
+    }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FooterComponent = /** @class */ (function () {
         function FooterComponent() {
@@ -937,9 +1453,9 @@
         FooterComponent.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () { };
+        function () { };
         FooterComponent.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: "app-footer",
                         template: "<div fxLayoutAlign=\"center center\" class=\"footer-text\">\r\n    {{app_config?.Config.FooterCopyright}}\r\n</div>",
                         styles: [":host{border-top:1px solid #e5e5e5;padding:8px;overflow:hidden}.footer-text{position:relative;top:12px}"]
@@ -948,20 +1464,24 @@
         /** @nocollapse */
         FooterComponent.ctorParameters = function () { return []; };
         FooterComponent.propDecorators = {
-            app_config: [{ type: i0.Input, args: ["app-config",] }]
+            app_config: [{ type: core.Input, args: ["app-config",] }]
         };
         return FooterComponent;
     }());
+    if (false) {
+        /** @type {?} */
+        FooterComponent.prototype.app_config;
+    }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var TitleComponent = /** @class */ (function () {
-        function TitleComponent(store, router$$1) {
+        function TitleComponent(store, router$1) {
             var _this = this;
             this.store = store;
-            this.router = router$$1;
+            this.router = router$1;
             this.mapper = [];
             // this.mapper.push((event: NavigationEnd) => {
             //     return (event.url.endsWith('profile-edit')) ? 'ویرایش اطلاعات کاربری' : null;
@@ -991,11 +1511,19 @@
             //     return (event.url.endsWith('/change-password')) ? 'تغییر کلمه عبور' : null;
             // });
             this.title$ = this.store.select(getTitle$1);
-            this.router.events.subscribe(function (event) {
+            this.router.events.subscribe((/**
+             * @param {?} event
+             * @return {?}
+             */
+            function (event) {
                 if (event instanceof router.NavigationEnd) {
                     /** @type {?} */
                     var title = "";
-                    _this.mapper.forEach(function (mapper) {
+                    _this.mapper.forEach((/**
+                     * @param {?} mapper
+                     * @return {?}
+                     */
+                    function (mapper) {
                         /** @type {?} */
                         var res = mapper(event);
                         if (res) {
@@ -1005,75 +1533,113 @@
                         else {
                             return false;
                         }
-                    });
+                    }));
                     _this.store.dispatch(new TitleChangedAction("" + title || ""));
                 }
-            });
+            }));
         }
         TitleComponent.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: "app-title",
                         template: "<div id=\"title\">\r\n    {{title$ | async}}\r\n</div>",
                         styles: ["#title{margin-right:-30px;font-weight:bolder;font-size:13px;padding:18px 40px}"]
                     }] }
         ];
         /** @nocollapse */
-        TitleComponent.ctorParameters = function () {
-            return [
-                { type: i2.Store },
-                { type: router.Router }
-            ];
-        };
+        TitleComponent.ctorParameters = function () { return [
+            { type: store.Store },
+            { type: router.Router }
+        ]; };
         return TitleComponent;
     }());
+    if (false) {
+        /** @type {?} */
+        TitleComponent.prototype.title$;
+        /** @type {?} */
+        TitleComponent.prototype.mapper;
+        /**
+         * @type {?}
+         * @private
+         */
+        TitleComponent.prototype.store;
+        /**
+         * @type {?}
+         * @private
+         */
+        TitleComponent.prototype.router;
+    }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var NgsLayoutMainComponent = /** @class */ (function () {
-        function NgsLayoutMainComponent(store, router$$1, configService, translateService, userFacadeService) {
+        function NgsLayoutMainComponent(store, router$1, configService, translateService, userFacadeService) {
             var _this = this;
             this.store = store;
-            this.router = router$$1;
+            this.router = router$1;
             this.configService = configService;
             this.translateService = translateService;
             this.userFacadeService = userFacadeService;
             this.showSidebarMenu = new rxjs.BehaviorSubject(true);
             this.width = 100;
             this._set_i18n_resource();
-            this.configService.config$.subscribe(function (config$$1) {
-                _this.theme = config$$1.theme;
-                _this.theme_A = config$$1.theme == "theme_A";
-                _this.theme_B = config$$1.theme == "theme_B";
-            });
+            this.configService.config$.subscribe((/**
+             * @param {?} config
+             * @return {?}
+             */
+            function (config) {
+                _this.theme = config.theme;
+                _this.theme_A = config.theme == "theme_A";
+                _this.theme_B = config.theme == "theme_B";
+            }));
             this.store.dispatch(new ChangeSideNavMode("push"));
-            this.user$ = this.store.select(function (s) { return (( /** @type {?} */(s))).user.user.data; });
+            this.user$ = this.store.select((/**
+             * @param {?} s
+             * @return {?}
+             */
+            function (s) { return ((/** @type {?} */ (s))).user.user.data; }));
             this.displayName$ = this.userFacadeService.getDisplayName();
             this.showMainSidenav = this.store.select(getShowMainSidenav$1);
             this.mainSidenavMode = this.store.select(getMainSideNavMode$1);
             this.toolbarAnimationState = this.store.select(getLayoutToolbarMode);
             this.isFullscreen$ = this.store.select(getFullscreenMode$1);
-            this.mode$ = this.isFullscreen$.map(function (mode) { return (mode ? "invisible" : "visible"); });
+            this.mode$ = this.isFullscreen$.map((/**
+             * @param {?} mode
+             * @return {?}
+             */
+            function (mode) { return (mode ? "invisible" : "visible"); }));
             //#region manage second sidebar
             this.store.dispatch(new ChangeSecondSidenavMode("push"));
             this.showSecondSidenav = this.store.select(getShowSecondSidebarStatus$1);
             this.secondSidenavMode = this.store.select(getSecondSidebarMode$1);
             //#endregion manage second sidebar
             this.layoutMode = this.store.select(getLayoutMode$1);
-            this.router.events.filter(function (data) { return data instanceof router.NavigationEnd; }).subscribe(function (event) {
+            this.router.events.filter((/**
+             * @param {?} data
+             * @return {?}
+             */
+            function (data) { return data instanceof router.NavigationEnd; })).subscribe((/**
+             * @param {?} event
+             * @return {?}
+             */
+            function (event) {
                 /** @type {?} */
                 var hideSituations = [
-                    (( /** @type {?} */(event))).urlAfterRedirects == "/auth/signin",
-                    (( /** @type {?} */(event))).urlAfterRedirects == "/auth/signup/register",
-                    (( /** @type {?} */(event))).urlAfterRedirects == "/auth/signup/verification",
-                    (( /** @type {?} */(event))).urlAfterRedirects == "/user/password/reset"
+                    ((/** @type {?} */ (event))).urlAfterRedirects == "/auth/signin",
+                    ((/** @type {?} */ (event))).urlAfterRedirects == "/auth/signup/register",
+                    ((/** @type {?} */ (event))).urlAfterRedirects == "/auth/signup/verification",
+                    ((/** @type {?} */ (event))).urlAfterRedirects == "/user/password/reset"
                 ];
-                if (hideSituations.some(function (i) { return i; }))
+                if (hideSituations.some((/**
+                 * @param {?} i
+                 * @return {?}
+                 */
+                function (i) { return i; })))
                     _this.showSidebarMenu.next(false);
                 else
                     _this.showSidebarMenu.next(true);
-            });
+            }));
         }
         // ngAfterViewInit() {
         // 	this.store.dispatch(new ChangeLayout("with-margin"));
@@ -1084,25 +1650,25 @@
         /**
          * @return {?}
          */
-        NgsLayoutMainComponent.prototype.onSecondSidebarClosedStart =
-            // ngAfterViewInit() {
-            // 	this.store.dispatch(new ChangeLayout("with-margin"));
-            // }
-            /**
-             * @return {?}
-             */
-            function () {
-                this.store.dispatch(new CloseSecondSidenavAction());
-            };
+        NgsLayoutMainComponent.prototype.onSecondSidebarClosedStart = 
+        // ngAfterViewInit() {
+        // 	this.store.dispatch(new ChangeLayout("with-margin"));
+        // }
+        /**
+         * @return {?}
+         */
+        function () {
+            this.store.dispatch(new CloseSecondSidenavAction());
+        };
         /**
          * @return {?}
          */
         NgsLayoutMainComponent.prototype.onSidebarClosedStart = /**
          * @return {?}
          */
-            function () {
-                this.store.dispatch(new CloseSidenavAction());
-            };
+        function () {
+            this.store.dispatch(new CloseSidenavAction());
+        };
         /**
          * private methods
          */
@@ -1114,22 +1680,22 @@
          * private methods
          * @return {?}
          */
-            function () {
-                this.translateService.setTranslation("en", {
-                    __signin: "Signin",
-                    __signup: "Signup",
-                    __account_mangement: "Account",
-                    __signout: "Signout"
-                });
-                this.translateService.setTranslation("fa", {
-                    __signin: "ورود",
-                    __signup: "ثبت نام",
-                    __account_mangement: "مدیریت کاربری",
-                    __signout: "خروج"
-                });
-            };
+        function () {
+            this.translateService.setTranslation("en", {
+                __signin: "Signin",
+                __signup: "Signup",
+                __account_mangement: "Account",
+                __signout: "Signout"
+            });
+            this.translateService.setTranslation("fa", {
+                __signin: "ورود",
+                __signup: "ثبت نام",
+                __account_mangement: "مدیریت کاربری",
+                __signout: "خروج"
+            });
+        };
         NgsLayoutMainComponent.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: "layout-main",
                         template: "<div #mainSideNav [ngClass]=\"toolbarAnimationState | async\" [class.fullscreen]=\"isFullscreen$ | async\">\r\n  <!-- <mat-progress-bar *ngIf='progressStatus$ | async' color=\"primary\" mode=\"query\"></mat-progress-bar> -->\r\n  <layout-toolbar  *ngIf=\"theme == 'theme_A'\" [user]=\"user$ | async\" [displayName]=\"displayName$ | async\" [showSidebarMenu]='showSidebarMenu | async' [app-config]=\"app_config\"></layout-toolbar>\r\n  <layout-toolbar-b *ngIf=\"theme == 'theme_B'\" [user]=\"user$ | async\" [displayName]=\"displayName$ | async\" [showSidebarMenu]='showSidebarMenu | async' [app-config]=\"app_config\"></layout-toolbar-b>\r\n  \r\n  <mat-sidenav-container id=\"layout-sidnav\" [className]=\"layoutMode | async\">\r\n    <mat-sidenav [mode]=\"mainSidenavMode | async\" [opened]='showMainSidenav | async' #sidebar (closedStart)=\"onSidebarClosedStart()\">\r\n      <mat-nav-list>\r\n        <ngs-layout-main-menu [authenticated]='showSidebarMenu' (closeSidebar)=\"sidebar.close()\" (click)=\"onSecondSidebarClosedStart()\"></ngs-layout-main-menu>\r\n      </mat-nav-list>\r\n    </mat-sidenav>\r\n    <!-- <mat-sidenav [mode]=\"secondSidenavMode | async\" [opened]='showSecondSidenav | async' (closedStart)=\"onSecondSidebarClosedStart()\"\r\n      position=\"end\" #second_sidebar class=\"second_sidebar\">\r\n      <mat-nav-list fxLayout='column'>\r\n      </mat-nav-list>\r\n    </mat-sidenav> -->\r\n    <div fxFlexLayout='column' id=\"app-main-container\" fxLayoutAlign='center center'>\r\n      <div fxFlex='0 0 100'>\r\n        <router-outlet></router-outlet>\r\n        <footer [@mode]=\"mode$ | async\" ruleAnchor=\"layout_footer\">\r\n          <router-outlet name=\"footer_A\"></router-outlet>\r\n          <router-outlet name=\"footer_B\"></router-outlet>\r\n          <app-footer [app-config]=\"app_config\"></app-footer>\r\n        </footer>\r\n      </div>\r\n    </div>\r\n  </mat-sidenav-container>\r\n</div>",
                         animations: [
@@ -1144,55 +1710,127 @@
                     }] }
         ];
         /** @nocollapse */
-        NgsLayoutMainComponent.ctorParameters = function () {
-            return [
-                { type: i2.Store },
-                { type: router.Router },
-                { type: LayoutConfigurationService },
-                { type: core.TranslateService },
-                { type: user.UserFacadeService }
-            ];
-        };
+        NgsLayoutMainComponent.ctorParameters = function () { return [
+            { type: store.Store },
+            { type: router.Router },
+            { type: LayoutConfigurationService },
+            { type: core$1.TranslateService },
+            { type: user.UserFacadeService }
+        ]; };
         NgsLayoutMainComponent.propDecorators = {
-            app_config: [{ type: i0.Input, args: ["app-config",] }],
-            mainSideNav: [{ type: i0.ViewChild, args: ["mainSideNav",] }],
-            theme_A: [{ type: i0.HostBinding, args: ["class.theme_A",] }],
-            theme_B: [{ type: i0.HostBinding, args: ["class.theme_B",] }]
+            app_config: [{ type: core.Input, args: ["app-config",] }],
+            mainSideNav: [{ type: core.ViewChild, args: ["mainSideNav", { static: false },] }],
+            theme_A: [{ type: core.HostBinding, args: ["class.theme_A",] }],
+            theme_B: [{ type: core.HostBinding, args: ["class.theme_B",] }]
         };
         return NgsLayoutMainComponent;
     }());
+    if (false) {
+        /** @type {?} */
+        NgsLayoutMainComponent.prototype.app_config;
+        /** @type {?} */
+        NgsLayoutMainComponent.prototype.mode$;
+        /** @type {?} */
+        NgsLayoutMainComponent.prototype.theme;
+        /** @type {?} */
+        NgsLayoutMainComponent.prototype.user$;
+        /** @type {?} */
+        NgsLayoutMainComponent.prototype.displayName$;
+        /** @type {?} */
+        NgsLayoutMainComponent.prototype.isFullscreen$;
+        /** @type {?} */
+        NgsLayoutMainComponent.prototype.progressStatus$;
+        /** @type {?} */
+        NgsLayoutMainComponent.prototype.showSidebarMenu;
+        /** @type {?} */
+        NgsLayoutMainComponent.prototype.showMainSidenav;
+        /** @type {?} */
+        NgsLayoutMainComponent.prototype.mainSidenavMode;
+        /** @type {?} */
+        NgsLayoutMainComponent.prototype.layoutMode;
+        /** @type {?} */
+        NgsLayoutMainComponent.prototype.width;
+        /** @type {?} */
+        NgsLayoutMainComponent.prototype.showSecondSidenav;
+        /** @type {?} */
+        NgsLayoutMainComponent.prototype.secondSidenavMode;
+        /** @type {?} */
+        NgsLayoutMainComponent.prototype.toolbarAnimationState;
+        /** @type {?} */
+        NgsLayoutMainComponent.prototype.mainSideNav;
+        /** @type {?} */
+        NgsLayoutMainComponent.prototype.theme_A;
+        /** @type {?} */
+        NgsLayoutMainComponent.prototype.theme_B;
+        /**
+         * @type {?}
+         * @private
+         */
+        NgsLayoutMainComponent.prototype.store;
+        /**
+         * @type {?}
+         * @private
+         */
+        NgsLayoutMainComponent.prototype.router;
+        /**
+         * @type {?}
+         * @private
+         */
+        NgsLayoutMainComponent.prototype.configService;
+        /**
+         * @type {?}
+         * @private
+         */
+        NgsLayoutMainComponent.prototype.translateService;
+        /**
+         * @type {?}
+         * @private
+         */
+        NgsLayoutMainComponent.prototype.userFacadeService;
+    }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LayoutEffects = /** @class */ (function () {
-        function LayoutEffects(actions$, router$$1, store) {
+        function LayoutEffects(actions$, router, store) {
             this.actions$ = actions$;
-            this.router = router$$1;
+            this.router = router;
             this.store = store;
-            this.DoSignout$ = this.actions$.pipe(effects.ofType(LayoutActionTypes.DO_SIGNOUT), operators.map(function () { return new authentication.DoSignoutAction(); }));
-            this.fullscreen$ = this.actions$.pipe(effects.ofType(LayoutActionTypes.FULLSCREEN), operators.map(function () { return new InvisibleToolbarAction(); }));
-            this.exit_fullscreen$ = this.actions$.pipe(effects.ofType(LayoutActionTypes.EXIT_FULLSCREEN), operators.map(function () { return new VisibleToolbarAction(); }));
-            this.fullscren_toolbar$ = this.actions$.pipe(effects.ofType(LayoutActionTypes.TOGGLE_FULLSCREEN), operators.withLatestFrom(this.store.select(getFullscreenMode$1)), operators.map(function (_a) {
+            this.DoSignout$ = this.actions$.pipe(effects.ofType(LayoutActionTypes.DO_SIGNOUT), operators.map((/**
+             * @return {?}
+             */
+            function () { return new authentication.DoSignoutAction(); })));
+            this.fullscreen$ = this.actions$.pipe(effects.ofType(LayoutActionTypes.FULLSCREEN), operators.map((/**
+             * @return {?}
+             */
+            function () { return new InvisibleToolbarAction(); })));
+            this.exit_fullscreen$ = this.actions$.pipe(effects.ofType(LayoutActionTypes.EXIT_FULLSCREEN), operators.map((/**
+             * @return {?}
+             */
+            function () { return new VisibleToolbarAction(); })));
+            this.fullscren_toolbar$ = this.actions$.pipe(effects.ofType(LayoutActionTypes.TOGGLE_FULLSCREEN), operators.withLatestFrom(this.store.select(getFullscreenMode$1)), operators.map((/**
+             * @param {?} __0
+             * @return {?}
+             */
+            function (_a) {
                 var _b = __read(_a, 2), action = _b[0], toolbarMode = _b[1];
                 if (toolbarMode)
                     return new ExitFullscreenAction();
                 else
                     return new FullscreenAction();
-            }));
+            })));
         }
         LayoutEffects.decorators = [
-            { type: i0.Injectable }
+            { type: core.Injectable }
         ];
         /** @nocollapse */
-        LayoutEffects.ctorParameters = function () {
-            return [
-                { type: effects.Actions },
-                { type: router.Router },
-                { type: i2.Store }
-            ];
-        };
+        LayoutEffects.ctorParameters = function () { return [
+            { type: effects.Actions },
+            { type: router.Router },
+            { type: store.Store }
+        ]; };
         __decorate([
             effects.Effect(),
             __metadata("design:type", Object)
@@ -1211,10 +1849,35 @@
         ], LayoutEffects.prototype, "fullscren_toolbar$", void 0);
         return LayoutEffects;
     }());
+    if (false) {
+        /** @type {?} */
+        LayoutEffects.prototype.DoSignout$;
+        /** @type {?} */
+        LayoutEffects.prototype.fullscreen$;
+        /** @type {?} */
+        LayoutEffects.prototype.exit_fullscreen$;
+        /** @type {?} */
+        LayoutEffects.prototype.fullscren_toolbar$;
+        /**
+         * @type {?}
+         * @private
+         */
+        LayoutEffects.prototype.actions$;
+        /**
+         * @type {?}
+         * @private
+         */
+        LayoutEffects.prototype.router;
+        /**
+         * @type {?}
+         * @private
+         */
+        LayoutEffects.prototype.store;
+    }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ToolbarMenuThemeBComponent = /** @class */ (function () {
         function ToolbarMenuThemeBComponent(document, _location, store, translateService, configurationService) {
@@ -1232,18 +1895,41 @@
             this.user$ = this.store.select(user.getAccountInfo);
             this.store.dispatch(new ChangeToolbatToComfortableModeAction());
             this.config$ = this.store.select(getLayoutToolbar);
-            this.config$.subscribe(function (config$$1) { return (_this.config = config$$1); });
+            this.config$.subscribe((/**
+             * @param {?} config
+             * @return {?}
+             */
+            function (config) { return (_this.config = config); }));
             this.lastScroll = this.document.body.scrollTop;
             this.showSecondSidenav = this.store.select(getShowSecondSidebarStatus$1);
             this.showMainSidenav = this.store.select(getShowMainSidenav$1);
-            this.store.select(getLayoutToolbarMode).subscribe(function (state) {
-                setTimeout(function () { return (_this.menuAnimationState = state); }, 1);
-                setTimeout(function () { return (_this.logoAnimationState = state); }, 1);
-                setTimeout(function () { return (_this.titleAnimationState = state); }, 1);
-                setTimeout(function () { return (_this.toolbarAnimationState = state); }, 1);
-            });
+            this.store.select(getLayoutToolbarMode).subscribe((/**
+             * @param {?} state
+             * @return {?}
+             */
+            function (state) {
+                setTimeout((/**
+                 * @return {?}
+                 */
+                function () { return (_this.menuAnimationState = state); }), 1);
+                setTimeout((/**
+                 * @return {?}
+                 */
+                function () { return (_this.logoAnimationState = state); }), 1);
+                setTimeout((/**
+                 * @return {?}
+                 */
+                function () { return (_this.titleAnimationState = state); }), 1);
+                setTimeout((/**
+                 * @return {?}
+                 */
+                function () { return (_this.toolbarAnimationState = state); }), 1);
+            }));
             this._observe_on_layout_config_and_filter_routes();
-            fromEvent.fromEvent(this.document.body, "scroll").subscribe(function () {
+            fromEvent.fromEvent(this.document.body, "scroll").subscribe((/**
+             * @return {?}
+             */
+            function () {
                 /** @type {?} */
                 var scrolledAmount = _this.document.body.scrollTop;
                 /** @type {?} */
@@ -1268,7 +1954,7 @@
                         return;
                     _this.store.dispatch(new ChangeToolbatToSummaryModeAction());
                 }
-            });
+            }));
         }
         /**
          * @return {?}
@@ -1276,66 +1962,78 @@
         ToolbarMenuThemeBComponent.prototype.onWindowScroll = /**
          * @return {?}
          */
-            function () {
-                // of(1)
-            };
+        function () {
+            // of(1)
+        };
         /**
          * @return {?}
          */
         ToolbarMenuThemeBComponent.prototype.signout = /**
          * @return {?}
          */
-            function () {
-                this.store.dispatch(new DoSignoutAction());
-            };
+        function () {
+            this.store.dispatch(new DoSignoutAction());
+        };
         /**
          * @return {?}
          */
         ToolbarMenuThemeBComponent.prototype.goback = /**
          * @return {?}
          */
-            function () {
-                this._location.back();
-            };
+        function () {
+            this._location.back();
+        };
         /**
          * @return {?}
          */
         ToolbarMenuThemeBComponent.prototype.toggleSecondSidebar = /**
          * @return {?}
          */
-            function () {
-                /** @type {?} */
-                var action;
-                this.showSecondSidenav.subscribe(function (state) {
-                    action = state ? new CloseSecondSidenavAction() : new OpenSecondSidenavAction();
-                });
-                this.store.dispatch(action);
-            };
+        function () {
+            /** @type {?} */
+            var action;
+            this.showSecondSidenav.subscribe((/**
+             * @param {?} state
+             * @return {?}
+             */
+            function (state) {
+                action = state ? new CloseSecondSidenavAction() : new OpenSecondSidenavAction();
+            }));
+            this.store.dispatch(action);
+        };
         /**
          * @return {?}
          */
         ToolbarMenuThemeBComponent.prototype.toggleMainSidebar = /**
          * @return {?}
          */
-            function () {
-                /** @type {?} */
-                var action;
-                this.showMainSidenav.subscribe(function (state) {
-                    action = state ? new CloseSidenavAction() : new OpenSidenavAction();
-                });
-                this.store.dispatch(action);
-            };
+        function () {
+            /** @type {?} */
+            var action;
+            this.showMainSidenav.subscribe((/**
+             * @param {?} state
+             * @return {?}
+             */
+            function (state) {
+                action = state ? new CloseSidenavAction() : new OpenSidenavAction();
+            }));
+            this.store.dispatch(action);
+        };
         /**
          * @return {?}
          */
         ToolbarMenuThemeBComponent.prototype._observe_on_layout_config_and_filter_routes = /**
          * @return {?}
          */
-            function () {
-                this.menuItems$ = this.configurationService.config$.pipe(operators.map(function (config$$1) { return config$$1.menuItems; }), operators.combineLatest(this.user$), operators.map(this.configurationService.config$.getValue().menu_item_authorization_operator));
-            };
+        function () {
+            this.menuItems$ = this.configurationService.config$.pipe(operators.map((/**
+             * @param {?} config
+             * @return {?}
+             */
+            function (config) { return config.menuItems; })), operators.combineLatest(this.user$), operators.map(this.configurationService.config$.getValue().menu_item_authorization_operator));
+        };
         ToolbarMenuThemeBComponent.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: "layout-toolbar-b",
                         template: "<mat-toolbar dir=\"rtl\" color=\"primary\" [@toolbarAnimation]=\"toolbarAnimationState\">\r\n  <mat-toolbar-row dir=\"rtl\" id=\"firstToolbar\">\r\n    <!-- <div id=\"background\"></div> -->\r\n    <img [@logoAnimation]=\"logoAnimationState\" id=\"logo\" routerLink='/' src='assets/logos/logo-type.png' />\r\n\r\n    <button type=\"button\" *ngIf='showSidebarMenu && false' (click)=\"toggleMainSidebar()\" mat-icon-button fxFlex=\"nogrow\"\r\n      fxLayoutAlign=\"center center\">\r\n      <mat-icon>menu</mat-icon>\r\n    </button>\r\n    <span [@titleAnimation]=\"titleAnimationState\" id='app-name'>\r\n      {{app_config?.Config.AppTitle}}\r\n    </span>\r\n    <app-title fxFlex fxLayoutAlign=\"start center\"></app-title>\r\n    <app-search-box fxFlex fxLayoutAlign=\"end center\"></app-search-box>\r\n\r\n\r\n    <button *ngIf=\"!displayName\" mat-button routerLink=\"auth/signin\">\r\n      <span [translate]=\"'__signin'\"></span>\r\n    </button>\r\n    <button translate *ngIf=\"!displayName\" mat-button routerLink=\"auth/signup\">\r\n      {{'__signup' | translate}}\r\n    </button>\r\n    <button *ngIf=\"displayName\" mat-icon-button [matMenuTriggerFor]=\"toolbarMenu1\">\r\n      <mat-icon>account_circle</mat-icon>\r\n    </button>\r\n    <mat-menu #toolbarMenu1 class=\"rtl-dir\">\r\n      <div id=\"acccountName\">\r\n        {{displayName}}\r\n      </div>\r\n      <button routerLink='/user/panel' mat-menu-item class=\"rtl-dir\">\r\n        <mat-icon>fingerprint</mat-icon>\r\n        <span translate=\"__account_mangement\">\r\n        </span>\r\n      </button>\r\n      <button (click)='signout()' mat-menu-item class=\"rtl-dir\">\r\n        <mat-icon>exit_to_app</mat-icon>\r\n        <span translate>__signout</span>\r\n      </button>\r\n    </mat-menu>\r\n    <button mat-icon-button type=\"button\" (click)=\"toggleSecondSidebar()\" fxFlex=\"nogrow\" fxLayoutAlign=\"center center\">\r\n      <mat-icon>notifications</mat-icon>\r\n    </button>\r\n    <button mat-icon-button (click)='goback()'>\r\n      <mat-icon>arrow_back</mat-icon>\r\n    </button>\r\n\r\n  </mat-toolbar-row>\r\n  <mat-toolbar-row>\r\n    <div id=\"secondToolbar\" [@menuAnimation]=\"menuAnimationState\">\r\n      <router-outlet name=\"ngs-layout-before-toolbar-menu\"></router-outlet>\r\n      <button mat-button *ngFor=\"let menu of menuItems$ | async\" [routerLink]=\"menu.route\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact:true}\">\r\n        <!-- <mat-icon mat-list-icon>{{menu.icon}}</mat-icon> -->\r\n        <span>{{menu.title}}</span>\r\n      </button>\r\n      <router-outlet name=\"ngs-layout-after-toolbar-menu\"></router-outlet>\r\n    </div>\r\n  </mat-toolbar-row>\r\n</mat-toolbar>",
                         animations: [
@@ -1503,28 +2201,82 @@
                     }] }
         ];
         /** @nocollapse */
-        ToolbarMenuThemeBComponent.ctorParameters = function () {
-            return [
-                { type: undefined, decorators: [{ type: i0.Inject, args: [platformBrowser.DOCUMENT,] }] },
-                { type: common.Location },
-                { type: i2.Store },
-                { type: core.TranslateService },
-                { type: LayoutConfigurationService }
-            ];
-        };
+        ToolbarMenuThemeBComponent.ctorParameters = function () { return [
+            { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
+            { type: common.Location },
+            { type: store.Store },
+            { type: core$1.TranslateService },
+            { type: LayoutConfigurationService }
+        ]; };
         ToolbarMenuThemeBComponent.propDecorators = {
-            showSidebarMenu: [{ type: i0.Input }],
-            app_config: [{ type: i0.Input, args: ["app-config",] }],
-            user: [{ type: i0.Input }],
-            displayName: [{ type: i0.Input }],
-            onWindowScroll: [{ type: i0.HostListener, args: ["body:scroll", [],] }]
+            showSidebarMenu: [{ type: core.Input }],
+            app_config: [{ type: core.Input, args: ["app-config",] }],
+            user: [{ type: core.Input }],
+            displayName: [{ type: core.Input }],
+            onWindowScroll: [{ type: core.HostListener, args: ["body:scroll", [],] }]
         };
         return ToolbarMenuThemeBComponent;
     }());
+    if (false) {
+        /** @type {?} */
+        ToolbarMenuThemeBComponent.prototype.showSecondSidenav;
+        /** @type {?} */
+        ToolbarMenuThemeBComponent.prototype.showSidebarMenu;
+        /** @type {?} */
+        ToolbarMenuThemeBComponent.prototype.app_config;
+        /** @type {?} */
+        ToolbarMenuThemeBComponent.prototype.user;
+        /** @type {?} */
+        ToolbarMenuThemeBComponent.prototype.displayName;
+        /** @type {?} */
+        ToolbarMenuThemeBComponent.prototype.user$;
+        /** @type {?} */
+        ToolbarMenuThemeBComponent.prototype.showMainSidenav;
+        /** @type {?} */
+        ToolbarMenuThemeBComponent.prototype.toolbarAnimationState;
+        /** @type {?} */
+        ToolbarMenuThemeBComponent.prototype.menuAnimationState;
+        /** @type {?} */
+        ToolbarMenuThemeBComponent.prototype.logoAnimationState;
+        /** @type {?} */
+        ToolbarMenuThemeBComponent.prototype.titleAnimationState;
+        /** @type {?} */
+        ToolbarMenuThemeBComponent.prototype.menuItems$;
+        /** @type {?} */
+        ToolbarMenuThemeBComponent.prototype.lastScroll;
+        /** @type {?} */
+        ToolbarMenuThemeBComponent.prototype.config;
+        /** @type {?} */
+        ToolbarMenuThemeBComponent.prototype.config$;
+        /** @type {?} */
+        ToolbarMenuThemeBComponent.prototype.anchorsMode;
+        /**
+         * @type {?}
+         * @private
+         */
+        ToolbarMenuThemeBComponent.prototype.document;
+        /**
+         * @type {?}
+         * @private
+         */
+        ToolbarMenuThemeBComponent.prototype._location;
+        /**
+         * @type {?}
+         * @private
+         */
+        ToolbarMenuThemeBComponent.prototype.store;
+        /**
+         * @type {?}
+         * @private
+         */
+        ToolbarMenuThemeBComponent.prototype.translateService;
+        /** @type {?} */
+        ToolbarMenuThemeBComponent.prototype.configurationService;
+    }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var NgsLayoutModule = /** @class */ (function () {
         function NgsLayoutModule() {
@@ -1537,17 +2289,17 @@
          * @param {?=} config
          * @return {?}
          */
-            function (config$$1) {
-                return {
-                    ngModule: RootNgsLayoutModule,
-                    providers: [
-                        { provide: i0.LOCALE_ID, useValue: "en en-US" },
-                        { provide: MODULE_CONFIG_TOKEN, useValue: config$$1 }
-                    ]
-                };
+        function (config) {
+            return {
+                ngModule: RootNgsLayoutModule,
+                providers: [
+                    { provide: core.LOCALE_ID, useValue: "en en-US" },
+                    { provide: MODULE_CONFIG_TOKEN, useValue: config }
+                ]
             };
+        };
         NgsLayoutModule.decorators = [
-            { type: i0.NgModule, args: [{
+            { type: core.NgModule, args: [{
                         imports: [
                             common.CommonModule,
                             platformBrowser.BrowserModule,
@@ -1571,7 +2323,7 @@
                             material.MatDatepickerModule,
                             material.MatProgressBarModule,
                             router.RouterModule,
-                            core.TranslateModule,
+                            core$1.TranslateModule,
                             config.NgsConfigModule,
                             rule.RuleModule
                         ],
@@ -1601,23 +2353,27 @@
     }());
     var RootNgsLayoutModule = /** @class */ (function () {
         function RootNgsLayoutModule() {
+            ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+            ((/** @type {?} */ (window))).___starter.layout = "8.0.10";
         }
         RootNgsLayoutModule.decorators = [
-            { type: i0.NgModule, args: [{
+            { type: core.NgModule, args: [{
                         imports: [
                             NgsLayoutModule,
-                            i2.StoreModule.forFeature("layout", LayoutReducers),
+                            store.StoreModule.forFeature("layout", LayoutReducers),
                             effects.EffectsModule.forFeature([LayoutEffects])
                         ],
                         exports: [NgsLayoutModule]
                     },] }
         ];
+        /** @nocollapse */
+        RootNgsLayoutModule.ctorParameters = function () { return []; };
         return RootNgsLayoutModule;
     }());
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @enum {string} */
     var LayoutOutlets = {
@@ -1629,55 +2385,44 @@
         footer_A: "footer_A",
     };
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    exports.LayoutActionTypes = LayoutActionTypes;
-    exports.TitleChangedAction = TitleChangedAction;
-    exports.OpenSidenavAction = OpenSidenavAction;
-    exports.CloseSidenavAction = CloseSidenavAction;
-    exports.ChangeSideNavMode = ChangeSideNavMode;
     exports.ChangeLayout = ChangeLayout;
-    exports.CloseSecondSidenavAction = CloseSecondSidenavAction;
     exports.ChangeSecondSidenavMode = ChangeSecondSidenavMode;
-    exports.OpenSecondSidenavAction = OpenSecondSidenavAction;
+    exports.ChangeSideNavMode = ChangeSideNavMode;
     exports.ChangeToolbatToComfortableModeAction = ChangeToolbatToComfortableModeAction;
     exports.ChangeToolbatToCompactModeAction = ChangeToolbatToCompactModeAction;
+    exports.CloseSecondSidenavAction = CloseSecondSidenavAction;
+    exports.CloseSidenavAction = CloseSidenavAction;
     exports.DisableComfortableModeAction = DisableComfortableModeAction;
     exports.EnableComfortableModeAction = EnableComfortableModeAction;
-    exports.VisibleToolbarAction = VisibleToolbarAction;
-    exports.FullscreenAction = FullscreenAction;
     exports.ExitFullscreenAction = ExitFullscreenAction;
+    exports.FullscreenAction = FullscreenAction;
     exports.InvisibleToolbarAction = InvisibleToolbarAction;
-    exports.ToggleFullscreenAction = ToggleFullscreenAction;
-    exports.NgsLayoutMainComponent = NgsLayoutMainComponent;
+    exports.LayoutActionTypes = LayoutActionTypes;
     exports.LayoutOutlets = LayoutOutlets;
-    exports.NgsLayoutModule = NgsLayoutModule;
-    exports.RootNgsLayoutModule = RootNgsLayoutModule;
-    exports.MODULE_DEFAULT_CONFIG = MODULE_DEFAULT_CONFIG;
     exports.MODULE_CONFIG_TOKEN = MODULE_CONFIG_TOKEN;
-    exports.ɵh = FooterComponent;
-    exports.ɵe = LogoContainerComponent;
+    exports.MODULE_DEFAULT_CONFIG = MODULE_DEFAULT_CONFIG;
+    exports.NgsLayoutMainComponent = NgsLayoutMainComponent;
+    exports.NgsLayoutModule = NgsLayoutModule;
+    exports.OpenSecondSidenavAction = OpenSecondSidenavAction;
+    exports.OpenSidenavAction = OpenSidenavAction;
+    exports.RootNgsLayoutModule = RootNgsLayoutModule;
+    exports.TitleChangedAction = TitleChangedAction;
+    exports.ToggleFullscreenAction = ToggleFullscreenAction;
+    exports.VisibleToolbarAction = VisibleToolbarAction;
     exports.ɵa = MainMenuComponent;
+    exports.ɵc = LayoutConfigurationService;
     exports.ɵd = SearchBoxComponent;
-    exports.ɵi = TitleComponent;
-    exports.ɵg = ToolbarMenuThemeBComponent;
+    exports.ɵe = LogoContainerComponent;
     exports.ɵf = ToolbarMenuComponent;
-    exports.ɵn = LayoutEffects;
+    exports.ɵg = ToolbarMenuThemeBComponent;
+    exports.ɵh = FooterComponent;
+    exports.ɵi = TitleComponent;
     exports.ɵj = LayoutReducers;
     exports.ɵl = Reducer;
     exports.ɵm = Reducer$1;
-    exports.ɵc = LayoutConfigurationService;
+    exports.ɵn = LayoutEffects;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
-
+}));
 //# sourceMappingURL=soushians-layout.umd.js.map

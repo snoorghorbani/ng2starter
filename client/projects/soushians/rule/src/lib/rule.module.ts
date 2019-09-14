@@ -62,9 +62,9 @@ import { ScenarioService } from "./services/scenario.service";
 		ReactiveFormsModule,
 		BrowserAnimationsModule
 	],
-	declarations: [ RuleComponent, RuleAnchorDirective, GwtViewComponent, StepLoaderDirective, GwtModeButtonComponent ],
-	entryComponents: [ GwtViewComponent ],
-	exports: [ RuleAnchorDirective, GwtModeButtonComponent ]
+	declarations: [RuleComponent, RuleAnchorDirective, GwtViewComponent, StepLoaderDirective, GwtModeButtonComponent],
+	entryComponents: [GwtViewComponent],
+	exports: [RuleAnchorDirective, GwtModeButtonComponent]
 })
 export class RuleModule {
 	static forRoot(config?: RuleModuleConfig): ModuleWithProviders {
@@ -84,9 +84,14 @@ export class RuleModule {
 	imports: [
 		RuleModule,
 		StoreModule.forFeature("rule", RuleReducers),
-		EffectsModule.forFeature([ RulesListEffects, ScenariosDbEffects ]),
+		EffectsModule.forFeature([RulesListEffects, ScenariosDbEffects]),
 		RoutingModule
 	],
-	exports: [ RuleModule ]
+	exports: [RuleModule]
 })
-export class RootRuleModule {}
+export class RootRuleModule {
+	constructor() {
+		(<any>window).___starter = (<any>window).___starter || {};
+		(<any>window).___starter.rule = "8.0.10";
+	}
+}

@@ -115,14 +115,14 @@ import { FormConfigurationService } from "./services/form-configuration.service"
 		TableComponent,
 		FormCaptchaComponent
 	],
-	exports: [ FormViewComponent ]
+	exports: [FormViewComponent]
 	// exports: [ FormViewComponent, NgsFormSelectorComponent ]
 })
 export class NgsFormModule {
 	static forRoot(config?: FormModuleConfig): ModuleWithProviders {
 		return {
 			ngModule: RootNgsFormModule,
-			providers: [ { provide: MODULE_CONFIG_TOKEN, useValue: config }, FormConfigurationService ]
+			providers: [{ provide: MODULE_CONFIG_TOKEN, useValue: config }, FormConfigurationService]
 		};
 	}
 }
@@ -131,9 +131,14 @@ export class NgsFormModule {
 	imports: [
 		NgsFormModule,
 		StoreModule.forFeature("form", FormReducers),
-		EffectsModule.forFeature([ AddFormEffects, EditFormEffects, FormsListEffects, CaptchaEffects ]),
+		EffectsModule.forFeature([AddFormEffects, EditFormEffects, FormsListEffects, CaptchaEffects]),
 		RoutingModule
 	],
-	exports: [ NgsFormModule ]
+	exports: [NgsFormModule]
 })
-export class RootNgsFormModule {}
+export class RootNgsFormModule {
+	constructor() {
+		(<any>window).___starter = (<any>window).___starter || {};
+		(<any>window).___starter.form = "8.0.10";
+	}
+}

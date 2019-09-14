@@ -1,23 +1,33 @@
-import { MatCardModule, MatIconModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatDividerModule } from '@angular/material';
+import { InjectionToken, Injectable, Inject, Component, ComponentFactoryResolver, ViewContainerRef, NgModule } from '@angular/core';
+import { Location, CommonModule } from '@angular/common';
+import { MatInputModule, MatFormFieldModule, MatCardModule, MatButtonModule, MatIconModule, MatDividerModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { Store, StoreModule } from '@ngrx/store';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ofType, Actions, Effect, EffectsModule } from '@ngrx/effects';
 import { NgsGridModule } from '@soushians/grid';
+import { filter, take, combineLatest, switchMap, map, tap, pluck, catchError } from 'rxjs/operators';
+import { __read, __assign, __decorate, __metadata } from 'tslib';
+import { BehaviorSubject, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { UserFacadeService } from '@soushians/user';
 import { stringTemplate } from '@soushians/shared';
-import { Location, CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Store, StoreModule } from '@ngrx/store';
 import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { __read, __assign, __decorate, __metadata } from 'tslib';
-import { InjectionToken, Inject, Injectable, Component, ComponentFactoryResolver, ViewContainerRef, NgModule } from '@angular/core';
-import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
-import { map, filter, tap, take, switchMap, combineLatest, pluck, catchError } from 'rxjs/operators';
-import { BehaviorSubject, of } from 'rxjs';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function PageModuleConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    PageModuleConfig.prototype.env;
+    /** @type {?|undefined} */
+    PageModuleConfig.prototype.endpoints;
+}
 /** @type {?} */
 var MODULE_DEFAULT_CONFIG = {
     env: {
@@ -36,7 +46,7 @@ var MODULE_CONFIG_TOKEN = new InjectionToken("PageModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var PageConfigurationService = /** @class */ (function () {
     function PageConfigurationService(configFile, store) {
@@ -72,18 +82,36 @@ var PageConfigurationService = /** @class */ (function () {
     ]; };
     return PageConfigurationService;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    PageConfigurationService.prototype._config;
+    /** @type {?} */
+    PageConfigurationService.prototype.config$;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageConfigurationService.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetPagesApiModel;
 (function (GetPagesApiModel) {
     var Request = /** @class */ (function () {
         function Request(initValue) {
-            if (initValue === void 0) { initValue = {}; }
             var _this = this;
-            Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
+            if (initValue === void 0) { initValue = {}; }
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) { return (_this[key] = initValue[key]); }));
         }
         /**
          * @return {?}
@@ -103,18 +131,32 @@ var GetPagesApiModel;
         return Response;
     }());
     GetPagesApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(GetPagesApiModel || (GetPagesApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {string} */
+var GET_PAGES_ACTION_TYPES = {
+    START: "[GET_PAGES][API][GetPages] start",
+    SUCCEED: "[GET_PAGES][API][GetPages] succeed",
+    FAILED: "[GET_PAGES][API][GetPages] failed",
+};
 var GetPagesStartAction = /** @class */ (function () {
     function GetPagesStartAction() {
         this.type = "[GET_PAGES][API][GetPages] start" /* START */;
     }
     return GetPagesStartAction;
 }());
+if (false) {
+    /** @type {?} */
+    GetPagesStartAction.prototype.type;
+}
 var GetPagesSucceedAction = /** @class */ (function () {
     function GetPagesSucceedAction(payload) {
         this.payload = payload;
@@ -122,6 +164,12 @@ var GetPagesSucceedAction = /** @class */ (function () {
     }
     return GetPagesSucceedAction;
 }());
+if (false) {
+    /** @type {?} */
+    GetPagesSucceedAction.prototype.type;
+    /** @type {?} */
+    GetPagesSucceedAction.prototype.payload;
+}
 var GetPagesFailedAction = /** @class */ (function () {
     function GetPagesFailedAction(payload) {
         this.payload = payload;
@@ -129,23 +177,33 @@ var GetPagesFailedAction = /** @class */ (function () {
     }
     return GetPagesFailedAction;
 }());
+if (false) {
+    /** @type {?} */
+    GetPagesFailedAction.prototype.type;
+    /** @type {?} */
+    GetPagesFailedAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetPageApiModel;
 (function (GetPageApiModel) {
     var Request = /** @class */ (function () {
         function Request(initValue) {
-            if (initValue === void 0) { initValue = {}; }
             var _this = this;
-            Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
+            if (initValue === void 0) { initValue = {}; }
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) { return (_this[key] = initValue[key]); }));
         }
         /**
          * @return {?}
@@ -159,18 +217,32 @@ var GetPageApiModel;
         return Request;
     }());
     GetPageApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype.name;
+    }
     var Response = /** @class */ (function () {
         function Response() {
         }
         return Response;
     }());
     GetPageApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(GetPageApiModel || (GetPageApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {string} */
+var GET_PAGE_ACTION_TYPES = {
+    START: "[PAGE][API][GetPage] start",
+    SUCCEED: "[PAGE][API][GetPage] succeed",
+    FAILED: "[PAGE][API][GetPage] failed",
+};
 var GetPageStartAction = /** @class */ (function () {
     function GetPageStartAction(payload) {
         this.payload = payload;
@@ -178,6 +250,12 @@ var GetPageStartAction = /** @class */ (function () {
     }
     return GetPageStartAction;
 }());
+if (false) {
+    /** @type {?} */
+    GetPageStartAction.prototype.type;
+    /** @type {?} */
+    GetPageStartAction.prototype.payload;
+}
 var GetPageSucceedAction = /** @class */ (function () {
     function GetPageSucceedAction(payload) {
         this.payload = payload;
@@ -185,6 +263,12 @@ var GetPageSucceedAction = /** @class */ (function () {
     }
     return GetPageSucceedAction;
 }());
+if (false) {
+    /** @type {?} */
+    GetPageSucceedAction.prototype.type;
+    /** @type {?} */
+    GetPageSucceedAction.prototype.payload;
+}
 var GetPageFailedAction = /** @class */ (function () {
     function GetPageFailedAction(payload) {
         this.payload = payload;
@@ -192,23 +276,33 @@ var GetPageFailedAction = /** @class */ (function () {
     }
     return GetPageFailedAction;
 }());
+if (false) {
+    /** @type {?} */
+    GetPageFailedAction.prototype.type;
+    /** @type {?} */
+    GetPageFailedAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DeletePageApiModel;
 (function (DeletePageApiModel) {
     var Request = /** @class */ (function () {
         function Request(initValue) {
-            if (initValue === void 0) { initValue = {}; }
             var _this = this;
-            Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
+            if (initValue === void 0) { initValue = {}; }
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) { return (_this[key] = initValue[key]); }));
         }
         /**
          * @return {?}
@@ -228,12 +322,22 @@ var DeletePageApiModel;
         return Response;
     }());
     DeletePageApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(DeletePageApiModel || (DeletePageApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {string} */
+var DELETE_PAGE_ACTION_TYPES = {
+    START: "[PAGE][API][DELETE] start",
+    SUCCEED: "[PAGE][API][DELETE] succeed",
+    FAILED: "[PAGE][API][DELETE] failed",
+};
 var DeletePageStartAction = /** @class */ (function () {
     function DeletePageStartAction(payload) {
         this.payload = payload;
@@ -241,6 +345,12 @@ var DeletePageStartAction = /** @class */ (function () {
     }
     return DeletePageStartAction;
 }());
+if (false) {
+    /** @type {?} */
+    DeletePageStartAction.prototype.type;
+    /** @type {?} */
+    DeletePageStartAction.prototype.payload;
+}
 var DeletePageSucceedAction = /** @class */ (function () {
     function DeletePageSucceedAction(payload) {
         this.payload = payload;
@@ -248,6 +358,12 @@ var DeletePageSucceedAction = /** @class */ (function () {
     }
     return DeletePageSucceedAction;
 }());
+if (false) {
+    /** @type {?} */
+    DeletePageSucceedAction.prototype.type;
+    /** @type {?} */
+    DeletePageSucceedAction.prototype.payload;
+}
 var DeletePageFailedAction = /** @class */ (function () {
     function DeletePageFailedAction(payload) {
         this.payload = payload;
@@ -255,15 +371,21 @@ var DeletePageFailedAction = /** @class */ (function () {
     }
     return DeletePageFailedAction;
 }());
+if (false) {
+    /** @type {?} */
+    DeletePageFailedAction.prototype.type;
+    /** @type {?} */
+    DeletePageFailedAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var PageModel = /** @class */ (function () {
     function PageModel(_a) {
@@ -274,10 +396,18 @@ var PageModel = /** @class */ (function () {
     }
     return PageModel;
 }());
+if (false) {
+    /** @type {?} */
+    PageModel.prototype._id;
+    /** @type {?} */
+    PageModel.prototype.name;
+    /** @type {?} */
+    PageModel.prototype.grid;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UpsertPageApiModel;
 (function (UpsertPageApiModel) {
@@ -299,18 +429,32 @@ var UpsertPageApiModel;
         return Request;
     }());
     UpsertPageApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype.page;
+    }
     var Response = /** @class */ (function () {
         function Response() {
         }
         return Response;
     }());
     UpsertPageApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(UpsertPageApiModel || (UpsertPageApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {string} */
+var UPSERT_PAGE_ACTION_TYPES = {
+    START: "[UPSERT_PAGE][API][UpsertPage] start",
+    SUCCEED: "[UPSERT_PAGE][API][UpsertPage] succeed",
+    FAILED: "[UPSERT_PAGE][API][UpsertPage] failed",
+};
 var UpsertPageStartAction = /** @class */ (function () {
     function UpsertPageStartAction(payload) {
         this.payload = payload;
@@ -318,6 +462,12 @@ var UpsertPageStartAction = /** @class */ (function () {
     }
     return UpsertPageStartAction;
 }());
+if (false) {
+    /** @type {?} */
+    UpsertPageStartAction.prototype.type;
+    /** @type {?} */
+    UpsertPageStartAction.prototype.payload;
+}
 var UpsertPageSucceedAction = /** @class */ (function () {
     function UpsertPageSucceedAction(payload) {
         this.payload = payload;
@@ -325,6 +475,12 @@ var UpsertPageSucceedAction = /** @class */ (function () {
     }
     return UpsertPageSucceedAction;
 }());
+if (false) {
+    /** @type {?} */
+    UpsertPageSucceedAction.prototype.type;
+    /** @type {?} */
+    UpsertPageSucceedAction.prototype.payload;
+}
 var UpsertPageFailedAction = /** @class */ (function () {
     function UpsertPageFailedAction(payload) {
         this.payload = payload;
@@ -332,20 +488,26 @@ var UpsertPageFailedAction = /** @class */ (function () {
     }
     return UpsertPageFailedAction;
 }());
+if (false) {
+    /** @type {?} */
+    UpsertPageFailedAction.prototype.type;
+    /** @type {?} */
+    UpsertPageFailedAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var PageService = /** @class */ (function () {
     function PageService(http, store, configurationService, _location, userFacadeService) {
@@ -354,7 +516,11 @@ var PageService = /** @class */ (function () {
         this.configurationService = configurationService;
         this._location = _location;
         this.userFacadeService = userFacadeService;
-        this.userId$ = this.userFacadeService.getDisplayName().pipe(filter(function (i) { return i != undefined; }));
+        this.userId$ = this.userFacadeService.getDisplayName().pipe(filter((/**
+         * @param {?} i
+         * @return {?}
+         */
+        function (i) { return i != undefined; })));
     }
     /**
      * @param {?} name
@@ -366,10 +532,22 @@ var PageService = /** @class */ (function () {
      */
     function (name) {
         var _this = this;
-        return this.configurationService.config$.pipe(filter(function (config) { return config.endpoints.get !== ""; }), take(1), combineLatest(this.userId$), switchMap(function (_a) {
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.endpoints.get !== ""; })), take(1), combineLatest(this.userId$), switchMap((/**
+         * @param {?} __0
+         * @return {?}
+         */
+        function (_a) {
             var _b = __read(_a, 2), config = _b[0], userId = _b[1];
             return _this.http.get(stringTemplate(config.env.frontend_server + config.endpoints.get, { name: name }));
-        }), map(function (response) { return response.Result; }));
+        })), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response.Result; })));
     };
     /**
      * @param {?} _id
@@ -381,9 +559,21 @@ var PageService = /** @class */ (function () {
      */
     function (_id) {
         var _this = this;
-        return this.configurationService.config$.pipe(filter(function (config) { return config.endpoints.delete !== ""; }), take(1), switchMap(function (config) {
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.endpoints.delete !== ""; })), take(1), switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) {
             return _this.http.delete(stringTemplate(config.env.frontend_server + config.endpoints.delete, { _id: _id }));
-        }), map(function (response) { return response.Result; }));
+        })), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response.Result; })));
     };
     /**
      * @return {?}
@@ -393,10 +583,22 @@ var PageService = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        return this.configurationService.config$.pipe(filter(function (config) { return config.endpoints.find != ""; }), combineLatest(this.userId$), switchMap(function (_a) {
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.endpoints.find != ""; })), combineLatest(this.userId$), switchMap((/**
+         * @param {?} __0
+         * @return {?}
+         */
+        function (_a) {
             var _b = __read(_a, 2), config = _b[0], userId = _b[1];
             return _this.http.get(config.env.frontend_server + config.endpoints.find);
-        }), map(function (response) { return response.Result; }));
+        })), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response.Result; })));
     };
     /**
      * @template T
@@ -412,10 +614,25 @@ var PageService = /** @class */ (function () {
         var _this = this;
         /** @type {?} */
         var model = new UpsertPageApiModel.Request(page);
-        return this.configurationService.config$.pipe(filter(function (config) { return config.endpoints.upsert != ""; }), take(1), combineLatest(this.userId$), switchMap(function (_a) {
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.endpoints.upsert != ""; })), take(1), combineLatest(this.userId$), switchMap((/**
+         * @param {?} __0
+         * @return {?}
+         */
+        function (_a) {
             var _b = __read(_a, 2), config = _b[0], userId = _b[1];
             return _this.http.post(config.env.frontend_server + config.endpoints.upsert, model.getRequestBody());
-        }), map(function (response) { return response.Result; }), tap(function () { return _this._location.back(); }));
+        })), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response.Result; })), tap((/**
+         * @return {?}
+         */
+        function () { return _this._location.back(); })));
     };
     // delete(name: string) {
     // 	return this.configurationService.config$
@@ -446,14 +663,38 @@ var PageService = /** @class */ (function () {
         /** @type {?} */
         var subject = new BehaviorSubject(undefined);
         this.store
-            .select(function (state) { return state.pages.db.data; })
-            .pipe(filter(function (pages) { return pages != null; }), map(function (pages) { return pages.find(function (page) { return page.name == name; }); }), tap(function (page) {
+            .select((/**
+         * @param {?} state
+         * @return {?}
+         */
+        function (state) { return state.pages.db.data; }))
+            .pipe(filter((/**
+         * @param {?} pages
+         * @return {?}
+         */
+        function (pages) { return pages != null; })), map((/**
+         * @param {?} pages
+         * @return {?}
+         */
+        function (pages) { return pages.find((/**
+         * @param {?} page
+         * @return {?}
+         */
+        function (page) { return page.name == name; })); })), tap((/**
+         * @param {?} page
+         * @return {?}
+         */
+        function (page) {
             if (page == null) {
                 debugger;
                 _this.store.dispatch(new GetPageStartAction(name));
             }
-        }))
-            .subscribe(function (page) { return subject.next(page); });
+        })))
+            .subscribe((/**
+         * @param {?} page
+         * @return {?}
+         */
+        function (page) { return subject.next(page); }));
         return subject.asObservable();
     };
     PageService.decorators = [
@@ -469,10 +710,39 @@ var PageService = /** @class */ (function () {
     ]; };
     return PageService;
 }());
+if (false) {
+    /** @type {?} */
+    PageService.prototype.userId$;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageService.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageService.prototype.configurationService;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageService.prototype._location;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageService.prototype.userFacadeService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var PageViewComponent = /** @class */ (function () {
     function PageViewComponent(store, service, route, resolver, container) {
@@ -499,7 +769,15 @@ var PageViewComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.page$ = this.route.params.pipe(pluck("name"), switchMap(function (name) { return _this.service.selectByName(name); }), filter(function (page) { return page != undefined; }));
+        this.page$ = this.route.params.pipe(pluck("name"), switchMap((/**
+         * @param {?} name
+         * @return {?}
+         */
+        function (name) { return _this.service.selectByName(name); })), filter((/**
+         * @param {?} page
+         * @return {?}
+         */
+        function (page) { return page != undefined; })));
     };
     PageViewComponent.decorators = [
         { type: Component, args: [{
@@ -516,10 +794,36 @@ var PageViewComponent = /** @class */ (function () {
     ]; };
     return PageViewComponent;
 }());
+if (false) {
+    /** @type {?} */
+    PageViewComponent.prototype.page$;
+    /** @type {?} */
+    PageViewComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageViewComponent.prototype.service;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageViewComponent.prototype.route;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageViewComponent.prototype.resolver;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageViewComponent.prototype.container;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var RootComponent = /** @class */ (function () {
     function RootComponent() {
@@ -535,7 +839,7 @@ var RootComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UpsertComponent = /** @class */ (function () {
     function UpsertComponent(store, route, service) {
@@ -597,7 +901,19 @@ var UpsertComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.page$ = this.route.params.pipe(pluck("name"), filter(function (name) { return name != undefined; }), switchMap(function (name) { return _this.service.selectByName(name); }), filter(function (page) { return page != undefined; }));
+        this.page$ = this.route.params.pipe(pluck("name"), filter((/**
+         * @param {?} name
+         * @return {?}
+         */
+        function (name) { return name != undefined; })), switchMap((/**
+         * @param {?} name
+         * @return {?}
+         */
+        function (name) { return _this.service.selectByName(name); })), filter((/**
+         * @param {?} page
+         * @return {?}
+         */
+        function (page) { return page != undefined; })));
     };
     /**
      * @return {?}
@@ -607,9 +923,13 @@ var UpsertComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.page$.subscribe(function (page) {
+        this.page$.subscribe((/**
+         * @param {?} page
+         * @return {?}
+         */
+        function (page) {
             _this.formGroup.patchValue(page);
-        });
+        }));
     };
     UpsertComponent.decorators = [
         { type: Component, args: [{
@@ -624,15 +944,40 @@ var UpsertComponent = /** @class */ (function () {
     ]; };
     return UpsertComponent;
 }());
+if (false) {
+    /** @type {?} */
+    UpsertComponent.prototype.formGroup;
+    /** @type {?} */
+    UpsertComponent.prototype.page$;
+    /**
+     * @type {?}
+     * @private
+     */
+    UpsertComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    UpsertComponent.prototype.route;
+    /**
+     * @type {?}
+     * @private
+     */
+    UpsertComponent.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var PagesManagementComponent = /** @class */ (function () {
     function PagesManagementComponent(store) {
         this.store = store;
-        this.pages$ = this.store.select(function (state) { return state.pages.db.data; });
+        this.pages$ = this.store.select((/**
+         * @param {?} state
+         * @return {?}
+         */
+        function (state) { return state.pages.db.data; }));
     }
     /**
      * @return {?}
@@ -671,10 +1016,16 @@ var PagesManagementComponent = /** @class */ (function () {
     ]; };
     return PagesManagementComponent;
 }());
+if (false) {
+    /** @type {?} */
+    PagesManagementComponent.prototype.pages$;
+    /** @type {?} */
+    PagesManagementComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var routes = [
@@ -706,7 +1057,7 @@ var RoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var PagesActionTypes = {
@@ -720,6 +1071,12 @@ var UpsertPageAction = /** @class */ (function () {
     }
     return UpsertPageAction;
 }());
+if (false) {
+    /** @type {?} */
+    UpsertPageAction.prototype.type;
+    /** @type {?} */
+    UpsertPageAction.prototype.payload;
+}
 var DeletePageAction = /** @class */ (function () {
     function DeletePageAction(payload) {
         this.payload = payload;
@@ -727,17 +1084,35 @@ var DeletePageAction = /** @class */ (function () {
     }
     return DeletePageAction;
 }());
+if (false) {
+    /** @type {?} */
+    DeletePageAction.prototype.type;
+    /** @type {?} */
+    DeletePageAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var PageDbEffects = /** @class */ (function () {
     function PageDbEffects(actions$) {
         this.actions$ = actions$;
-        this.Upsert$ = this.actions$.pipe(ofType("[PAGE][API][GetPage] succeed" /* SUCCEED */), pluck("payload"), map(function (page) { return new UpsertPageAction([page]); }));
-        this.UpsertMany$ = this.actions$.pipe(ofType("[GET_PAGES][API][GetPages] succeed" /* SUCCEED */), pluck("payload"), map(function (pages) { return new UpsertPageAction(pages); }));
-        this.delete$ = this.actions$.pipe(ofType("[PAGE][API][DELETE] succeed" /* SUCCEED */), pluck("payload"), map(function (page) { return new DeletePageAction(page); }));
+        this.Upsert$ = this.actions$.pipe(ofType("[PAGE][API][GetPage] succeed" /* SUCCEED */), pluck("payload"), map((/**
+         * @param {?} page
+         * @return {?}
+         */
+        function (page) { return new UpsertPageAction([page]); })));
+        this.UpsertMany$ = this.actions$.pipe(ofType("[GET_PAGES][API][GetPages] succeed" /* SUCCEED */), pluck("payload"), map((/**
+         * @param {?} pages
+         * @return {?}
+         */
+        function (pages) { return new UpsertPageAction(pages); })));
+        this.delete$ = this.actions$.pipe(ofType("[PAGE][API][DELETE] succeed" /* SUCCEED */), pluck("payload"), map((/**
+         * @param {?} page
+         * @return {?}
+         */
+        function (page) { return new DeletePageAction(page); })));
     }
     PageDbEffects.decorators = [
         { type: Injectable }
@@ -760,11 +1135,32 @@ var PageDbEffects = /** @class */ (function () {
     ], PageDbEffects.prototype, "delete$", void 0);
     return PageDbEffects;
 }());
+if (false) {
+    /** @type {?} */
+    PageDbEffects.prototype.Upsert$;
+    /** @type {?} */
+    PageDbEffects.prototype.UpsertMany$;
+    /** @type {?} */
+    PageDbEffects.prototype.delete$;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageDbEffects.prototype.actions$;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State() { }
+if (false) {
+    /** @type {?} */
+    State.prototype.data;
+}
 var ɵ0 = [];
 /** @type {?} */
 var initialState = {
@@ -789,48 +1185,98 @@ function Reducer(state, action) {
                 newPages = [newPages];
                 console.error("'PagesActionTypes.UPSERT' does not get array payload");
             }
-            newPages.forEach(function (newPage) {
+            newPages.forEach((/**
+             * @param {?} newPage
+             * @return {?}
+             */
+            function (newPage) {
                 /** @type {?} */
-                var existedPageIndex = _data.findIndex(function (w) { return w._id == newPage._id; });
+                var existedPageIndex = _data.findIndex((/**
+                 * @param {?} w
+                 * @return {?}
+                 */
+                function (w) { return w._id == newPage._id; }));
                 if (existedPageIndex > -1) {
                     _data.splice(existedPageIndex, 1, newPage);
                 }
                 else {
                     _data.push(newPage);
                 }
-            });
+            }));
             return __assign({}, state, { data: _data });
         case PagesActionTypes.DELETE:
             debugger;
             _data = state.data.concat();
             /** @type {?} */
-            var pageIndex = state.data.findIndex(function (w) { return w._id == action.payload._id; });
+            var pageIndex = state.data.findIndex((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return w._id == action.payload._id; }));
             _data.splice(pageIndex, 1);
             return __assign({}, state, { data: _data });
         default:
             return state;
     }
 }
+/** @type {?} */
+var getPages = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.data; });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function PageState() { }
+if (false) {
+    /** @type {?} */
+    PageState.prototype.db;
+}
 /** @type {?} */
 var PageReducer = {
     db: Reducer
 };
+/**
+ * @record
+ */
+function AppState() { }
+if (false) {
+    /** @type {?} */
+    AppState.prototype.pages;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetPageApiEffects = /** @class */ (function () {
     function GetPageApiEffects(actions$, service) {
         var _this = this;
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$.pipe(ofType("[PAGE][API][GetPage] start" /* START */), map(function (action) { return action.payload; }), switchMap(function (payload) { return _this.service.get(payload); }), map(function (res) { return new GetPageSucceedAction(res); }), catchError(function (err) { return of(new GetPageFailedAction(err)); }));
+        this.start$ = this.actions$.pipe(ofType("[PAGE][API][GetPage] start" /* START */), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        function (action) { return action.payload; })), switchMap((/**
+         * @param {?} payload
+         * @return {?}
+         */
+        function (payload) { return _this.service.get(payload); })), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) { return new GetPageSucceedAction(res); })), catchError((/**
+         * @param {?} err
+         * @return {?}
+         */
+        function (err) { return of(new GetPageFailedAction(err)); })));
     }
     GetPageApiEffects.decorators = [
         { type: Injectable }
@@ -846,21 +1292,46 @@ var GetPageApiEffects = /** @class */ (function () {
     ], GetPageApiEffects.prototype, "start$", void 0);
     return GetPageApiEffects;
 }());
+if (false) {
+    /** @type {?} */
+    GetPageApiEffects.prototype.start$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GetPageApiEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GetPageApiEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetPagesApiEffects = /** @class */ (function () {
     function GetPagesApiEffects(actions$, service) {
         var _this = this;
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$.pipe(ofType("[GET_PAGES][API][GetPages] start" /* START */), switchMap(function () {
+        this.start$ = this.actions$.pipe(ofType("[GET_PAGES][API][GetPages] start" /* START */), switchMap((/**
+         * @return {?}
+         */
+        function () {
             return _this.service
                 .getPages()
-                .pipe(map(function (res) { return new GetPagesSucceedAction(res); }), catchError(function (err) { return of(new GetPagesFailedAction(err)); }));
-        }));
+                .pipe(map((/**
+             * @param {?} res
+             * @return {?}
+             */
+            function (res) { return new GetPagesSucceedAction(res); })), catchError((/**
+             * @param {?} err
+             * @return {?}
+             */
+            function (err) { return of(new GetPagesFailedAction(err)); })));
+        })));
     }
     GetPagesApiEffects.decorators = [
         { type: Injectable }
@@ -876,17 +1347,47 @@ var GetPagesApiEffects = /** @class */ (function () {
     ], GetPagesApiEffects.prototype, "start$", void 0);
     return GetPagesApiEffects;
 }());
+if (false) {
+    /** @type {?} */
+    GetPagesApiEffects.prototype.start$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GetPagesApiEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GetPagesApiEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UpsertPageApiEffects = /** @class */ (function () {
     function UpsertPageApiEffects(actions$, service) {
         var _this = this;
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$.pipe(ofType("[UPSERT_PAGE][API][UpsertPage] start" /* START */), map(function (action) { return action.payload; }), switchMap(function (payload) { return _this.service.upsert(payload); }), map(function (res) { return new UpsertPageSucceedAction(res); }), catchError(function (err) { return of(new UpsertPageFailedAction(err)); }));
+        this.start$ = this.actions$.pipe(ofType("[UPSERT_PAGE][API][UpsertPage] start" /* START */), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        function (action) { return action.payload; })), switchMap((/**
+         * @param {?} payload
+         * @return {?}
+         */
+        function (payload) { return _this.service.upsert(payload); })), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) { return new UpsertPageSucceedAction(res); })), catchError((/**
+         * @param {?} err
+         * @return {?}
+         */
+        function (err) { return of(new UpsertPageFailedAction(err)); })));
     }
     UpsertPageApiEffects.decorators = [
         { type: Injectable }
@@ -902,17 +1403,47 @@ var UpsertPageApiEffects = /** @class */ (function () {
     ], UpsertPageApiEffects.prototype, "start$", void 0);
     return UpsertPageApiEffects;
 }());
+if (false) {
+    /** @type {?} */
+    UpsertPageApiEffects.prototype.start$;
+    /**
+     * @type {?}
+     * @private
+     */
+    UpsertPageApiEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    UpsertPageApiEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DeletePageApiEffects = /** @class */ (function () {
     function DeletePageApiEffects(actions$, service) {
         var _this = this;
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$.pipe(ofType("[PAGE][API][DELETE] start" /* START */), map(function (action) { return action.payload; }), switchMap(function (payload) { return _this.service.delete(payload); }), map(function (res) { return new DeletePageSucceedAction(res); }), catchError(function (err) { return of(new DeletePageFailedAction(err)); }));
+        this.start$ = this.actions$.pipe(ofType("[PAGE][API][DELETE] start" /* START */), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        function (action) { return action.payload; })), switchMap((/**
+         * @param {?} payload
+         * @return {?}
+         */
+        function (payload) { return _this.service.delete(payload); })), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) { return new DeletePageSucceedAction(res); })), catchError((/**
+         * @param {?} err
+         * @return {?}
+         */
+        function (err) { return of(new DeletePageFailedAction(err)); })));
     }
     DeletePageApiEffects.decorators = [
         { type: Injectable }
@@ -928,10 +1459,24 @@ var DeletePageApiEffects = /** @class */ (function () {
     ], DeletePageApiEffects.prototype, "start$", void 0);
     return DeletePageApiEffects;
 }());
+if (false) {
+    /** @type {?} */
+    DeletePageApiEffects.prototype.start$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DeletePageApiEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DeletePageApiEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NgsPageModule = /** @class */ (function () {
     function NgsPageModule() {
@@ -974,6 +1519,8 @@ var NgsPageModule = /** @class */ (function () {
 }());
 var NgsPageRootModule = /** @class */ (function () {
     function NgsPageRootModule() {
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.page = "8.0.10";
     }
     NgsPageRootModule.decorators = [
         { type: NgModule, args: [{
@@ -992,19 +1539,20 @@ var NgsPageRootModule = /** @class */ (function () {
                     exports: [NgsPageModule]
                 },] }
     ];
+    /** @nocollapse */
+    NgsPageRootModule.ctorParameters = function () { return []; };
     return NgsPageRootModule;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { NgsPageModule, NgsPageRootModule, MODULE_DEFAULT_CONFIG, MODULE_CONFIG_TOKEN, PagesManagementComponent as ɵf, RoutingModule as ɵi, PageReducer as ɵb, PageDbEffects as ɵk, Reducer as ɵj, RootComponent as ɵg, DeletePageApiEffects as ɵr, GetPageApiEffects as ɵl, GetPagesApiEffects as ɵn, UpsertPageApiEffects as ɵp, PageConfigurationService as ɵe, PageService as ɵd, UpsertComponent as ɵh, PageViewComponent as ɵa };
-
+export { MODULE_CONFIG_TOKEN, MODULE_DEFAULT_CONFIG, NgsPageModule, NgsPageRootModule, PageViewComponent as ɵa, PageReducer as ɵb, PageService as ɵd, PageConfigurationService as ɵe, PagesManagementComponent as ɵf, RootComponent as ɵg, UpsertComponent as ɵh, RoutingModule as ɵi, Reducer as ɵj, PageDbEffects as ɵk, GetPageApiEffects as ɵl, GetPagesApiEffects as ɵn, UpsertPageApiEffects as ɵp, DeletePageApiEffects as ɵr };
 //# sourceMappingURL=soushians-page.js.map

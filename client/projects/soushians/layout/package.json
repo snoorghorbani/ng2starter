@@ -1,7 +1,7 @@
 {
-    "name": "@soushians/layout",
-    "version": "7.7.0",
-    "peerDependencies": {},
-    "dependencies": {},
-    "optionalDependencies": {}
+	"name": "@soushians/layout",
+	"version": "8.0.10",
+	"peerDependencies": {},
+	"dependencies": {},
+	"optionalDependencies": {}
 }

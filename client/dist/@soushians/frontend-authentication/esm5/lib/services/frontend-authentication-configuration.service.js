@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { Injectable, Inject } from "@angular/core";
 import { Store } from "@ngrx/store";
@@ -41,7 +41,7 @@ var FrontendAuthenticationConfigurationService = /** @class */ (function () {
         { type: undefined, decorators: [{ type: Inject, args: [MODULE_CONFIG_TOKEN,] }] },
         { type: Store }
     ]; };
-    /** @nocollapse */ FrontendAuthenticationConfigurationService.ngInjectableDef = i0.defineInjectable({ factory: function FrontendAuthenticationConfigurationService_Factory() { return new FrontendAuthenticationConfigurationService(i0.inject(i1.MODULE_CONFIG_TOKEN), i0.inject(i2.Store)); }, token: FrontendAuthenticationConfigurationService, providedIn: "root" });
+    /** @nocollapse */ FrontendAuthenticationConfigurationService.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function FrontendAuthenticationConfigurationService_Factory() { return new FrontendAuthenticationConfigurationService(i0.ɵɵinject(i1.MODULE_CONFIG_TOKEN), i0.ɵɵinject(i2.Store)); }, token: FrontendAuthenticationConfigurationService, providedIn: "root" });
     return FrontendAuthenticationConfigurationService;
 }());
 export { FrontendAuthenticationConfigurationService };

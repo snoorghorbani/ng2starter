@@ -1,23 +1,33 @@
-import { MatCardModule, MatIconModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatDividerModule } from '@angular/material';
+import { InjectionToken, Injectable, Inject, Component, ComponentFactoryResolver, ViewContainerRef, NgModule } from '@angular/core';
+import { Location, CommonModule } from '@angular/common';
+import { MatInputModule, MatFormFieldModule, MatCardModule, MatButtonModule, MatIconModule, MatDividerModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { Store, StoreModule } from '@ngrx/store';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ofType, Actions, Effect, EffectsModule } from '@ngrx/effects';
 import { NgsGridModule } from '@soushians/grid';
+import { filter, take, combineLatest, switchMap, map, tap, pluck, catchError } from 'rxjs/operators';
+import { BehaviorSubject, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { UserFacadeService } from '@soushians/user';
 import { stringTemplate } from '@soushians/shared';
-import { Location, CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Store, StoreModule } from '@ngrx/store';
 import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { __decorate, __metadata } from 'tslib';
-import { InjectionToken, Inject, Injectable, Component, ComponentFactoryResolver, ViewContainerRef, NgModule } from '@angular/core';
-import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
-import { map, filter, tap, take, switchMap, combineLatest, pluck, catchError } from 'rxjs/operators';
-import { BehaviorSubject, of } from 'rxjs';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function PageModuleConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    PageModuleConfig.prototype.env;
+    /** @type {?|undefined} */
+    PageModuleConfig.prototype.endpoints;
+}
 /** @type {?} */
 const MODULE_DEFAULT_CONFIG = {
     env: {
@@ -36,7 +46,7 @@ const MODULE_CONFIG_TOKEN = new InjectionToken("PageModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class PageConfigurationService {
     /**
@@ -71,10 +81,24 @@ PageConfigurationService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [MODULE_CONFIG_TOKEN,] }] },
     { type: Store }
 ];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    PageConfigurationService.prototype._config;
+    /** @type {?} */
+    PageConfigurationService.prototype.config$;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageConfigurationService.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetPagesApiModel;
 (function (GetPagesApiModel) {
@@ -83,7 +107,11 @@ var GetPagesApiModel;
          * @param {?=} initValue
          */
         constructor(initValue = {}) {
-            Object.keys(initValue).forEach((key) => (this[key] = initValue[key]));
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            (key) => (this[key] = initValue[key])));
         }
         /**
          * @return {?}
@@ -97,16 +125,30 @@ var GetPagesApiModel;
         constructor() { }
     }
     GetPagesApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(GetPagesApiModel || (GetPagesApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {string} */
+const GET_PAGES_ACTION_TYPES = {
+    START: "[GET_PAGES][API][GetPages] start",
+    SUCCEED: "[GET_PAGES][API][GetPages] succeed",
+    FAILED: "[GET_PAGES][API][GetPages] failed",
+};
 class GetPagesStartAction {
     constructor() {
         this.type = "[GET_PAGES][API][GetPages] start" /* START */;
     }
+}
+if (false) {
+    /** @type {?} */
+    GetPagesStartAction.prototype.type;
 }
 class GetPagesSucceedAction {
     /**
@@ -117,6 +159,12 @@ class GetPagesSucceedAction {
         this.type = "[GET_PAGES][API][GetPages] succeed" /* SUCCEED */;
     }
 }
+if (false) {
+    /** @type {?} */
+    GetPagesSucceedAction.prototype.type;
+    /** @type {?} */
+    GetPagesSucceedAction.prototype.payload;
+}
 class GetPagesFailedAction {
     /**
      * @param {?} payload
@@ -126,15 +174,21 @@ class GetPagesFailedAction {
         this.type = "[GET_PAGES][API][GetPages] failed" /* FAILED */;
     }
 }
+if (false) {
+    /** @type {?} */
+    GetPagesFailedAction.prototype.type;
+    /** @type {?} */
+    GetPagesFailedAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetPageApiModel;
 (function (GetPageApiModel) {
@@ -143,7 +197,11 @@ var GetPageApiModel;
          * @param {?=} initValue
          */
         constructor(initValue = {}) {
-            Object.keys(initValue).forEach((key) => (this[key] = initValue[key]));
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            (key) => (this[key] = initValue[key])));
         }
         /**
          * @return {?}
@@ -153,16 +211,30 @@ var GetPageApiModel;
         }
     }
     GetPageApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype.name;
+    }
     class Response {
         constructor() { }
     }
     GetPageApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(GetPageApiModel || (GetPageApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {string} */
+const GET_PAGE_ACTION_TYPES = {
+    START: "[PAGE][API][GetPage] start",
+    SUCCEED: "[PAGE][API][GetPage] succeed",
+    FAILED: "[PAGE][API][GetPage] failed",
+};
 class GetPageStartAction {
     /**
      * @param {?} payload
@@ -171,6 +243,12 @@ class GetPageStartAction {
         this.payload = payload;
         this.type = "[PAGE][API][GetPage] start" /* START */;
     }
+}
+if (false) {
+    /** @type {?} */
+    GetPageStartAction.prototype.type;
+    /** @type {?} */
+    GetPageStartAction.prototype.payload;
 }
 class GetPageSucceedAction {
     /**
@@ -181,6 +259,12 @@ class GetPageSucceedAction {
         this.type = "[PAGE][API][GetPage] succeed" /* SUCCEED */;
     }
 }
+if (false) {
+    /** @type {?} */
+    GetPageSucceedAction.prototype.type;
+    /** @type {?} */
+    GetPageSucceedAction.prototype.payload;
+}
 class GetPageFailedAction {
     /**
      * @param {?} payload
@@ -190,15 +274,21 @@ class GetPageFailedAction {
         this.type = "[PAGE][API][GetPage] failed" /* FAILED */;
     }
 }
+if (false) {
+    /** @type {?} */
+    GetPageFailedAction.prototype.type;
+    /** @type {?} */
+    GetPageFailedAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DeletePageApiModel;
 (function (DeletePageApiModel) {
@@ -207,7 +297,11 @@ var DeletePageApiModel;
          * @param {?=} initValue
          */
         constructor(initValue = {}) {
-            Object.keys(initValue).forEach((key) => (this[key] = initValue[key]));
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            (key) => (this[key] = initValue[key])));
         }
         /**
          * @return {?}
@@ -221,12 +315,22 @@ var DeletePageApiModel;
         constructor() { }
     }
     DeletePageApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(DeletePageApiModel || (DeletePageApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {string} */
+const DELETE_PAGE_ACTION_TYPES = {
+    START: "[PAGE][API][DELETE] start",
+    SUCCEED: "[PAGE][API][DELETE] succeed",
+    FAILED: "[PAGE][API][DELETE] failed",
+};
 class DeletePageStartAction {
     /**
      * @param {?} payload
@@ -235,6 +339,12 @@ class DeletePageStartAction {
         this.payload = payload;
         this.type = "[PAGE][API][DELETE] start" /* START */;
     }
+}
+if (false) {
+    /** @type {?} */
+    DeletePageStartAction.prototype.type;
+    /** @type {?} */
+    DeletePageStartAction.prototype.payload;
 }
 class DeletePageSucceedAction {
     /**
@@ -245,6 +355,12 @@ class DeletePageSucceedAction {
         this.type = "[PAGE][API][DELETE] succeed" /* SUCCEED */;
     }
 }
+if (false) {
+    /** @type {?} */
+    DeletePageSucceedAction.prototype.type;
+    /** @type {?} */
+    DeletePageSucceedAction.prototype.payload;
+}
 class DeletePageFailedAction {
     /**
      * @param {?} payload
@@ -254,15 +370,21 @@ class DeletePageFailedAction {
         this.type = "[PAGE][API][DELETE] failed" /* FAILED */;
     }
 }
+if (false) {
+    /** @type {?} */
+    DeletePageFailedAction.prototype.type;
+    /** @type {?} */
+    DeletePageFailedAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class PageModel {
     /**
@@ -274,10 +396,18 @@ class PageModel {
         this.grid = grid || "";
     }
 }
+if (false) {
+    /** @type {?} */
+    PageModel.prototype._id;
+    /** @type {?} */
+    PageModel.prototype.name;
+    /** @type {?} */
+    PageModel.prototype.grid;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UpsertPageApiModel;
 (function (UpsertPageApiModel) {
@@ -297,16 +427,30 @@ var UpsertPageApiModel;
         }
     }
     UpsertPageApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype.page;
+    }
     class Response {
         constructor() { }
     }
     UpsertPageApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(UpsertPageApiModel || (UpsertPageApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {string} */
+const UPSERT_PAGE_ACTION_TYPES = {
+    START: "[UPSERT_PAGE][API][UpsertPage] start",
+    SUCCEED: "[UPSERT_PAGE][API][UpsertPage] succeed",
+    FAILED: "[UPSERT_PAGE][API][UpsertPage] failed",
+};
 class UpsertPageStartAction {
     /**
      * @param {?} payload
@@ -315,6 +459,12 @@ class UpsertPageStartAction {
         this.payload = payload;
         this.type = "[UPSERT_PAGE][API][UpsertPage] start" /* START */;
     }
+}
+if (false) {
+    /** @type {?} */
+    UpsertPageStartAction.prototype.type;
+    /** @type {?} */
+    UpsertPageStartAction.prototype.payload;
 }
 class UpsertPageSucceedAction {
     /**
@@ -325,6 +475,12 @@ class UpsertPageSucceedAction {
         this.type = "[UPSERT_PAGE][API][UpsertPage] succeed" /* SUCCEED */;
     }
 }
+if (false) {
+    /** @type {?} */
+    UpsertPageSucceedAction.prototype.type;
+    /** @type {?} */
+    UpsertPageSucceedAction.prototype.payload;
+}
 class UpsertPageFailedAction {
     /**
      * @param {?} payload
@@ -334,20 +490,26 @@ class UpsertPageFailedAction {
         this.type = "[UPSERT_PAGE][API][UpsertPage] failed" /* FAILED */;
     }
 }
+if (false) {
+    /** @type {?} */
+    UpsertPageFailedAction.prototype.type;
+    /** @type {?} */
+    UpsertPageFailedAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class PageService {
     /**
@@ -363,27 +525,67 @@ class PageService {
         this.configurationService = configurationService;
         this._location = _location;
         this.userFacadeService = userFacadeService;
-        this.userId$ = this.userFacadeService.getDisplayName().pipe(filter(i => i != undefined));
+        this.userId$ = this.userFacadeService.getDisplayName().pipe(filter((/**
+         * @param {?} i
+         * @return {?}
+         */
+        i => i != undefined)));
     }
     /**
      * @param {?} name
      * @return {?}
      */
     get(name) {
-        return this.configurationService.config$.pipe(filter(config => config.endpoints.get !== ""), take(1), combineLatest(this.userId$), switchMap(([config, userId]) => this.http.get(stringTemplate(config.env.frontend_server + config.endpoints.get, { name }))), map((response) => response.Result));
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => config.endpoints.get !== "")), take(1), combineLatest(this.userId$), switchMap((/**
+         * @param {?} __0
+         * @return {?}
+         */
+        ([config, userId]) => this.http.get(stringTemplate(config.env.frontend_server + config.endpoints.get, { name })))), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        (response) => response.Result)));
     }
     /**
      * @param {?} _id
      * @return {?}
      */
     delete(_id) {
-        return this.configurationService.config$.pipe(filter(config => config.endpoints.delete !== ""), take(1), switchMap(config => this.http.delete(stringTemplate(config.env.frontend_server + config.endpoints.delete, { _id }))), map((response) => response.Result));
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => config.endpoints.delete !== "")), take(1), switchMap((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => this.http.delete(stringTemplate(config.env.frontend_server + config.endpoints.delete, { _id })))), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        (response) => response.Result)));
     }
     /**
      * @return {?}
      */
     getPages() {
-        return this.configurationService.config$.pipe(filter(config => config.endpoints.find != ""), combineLatest(this.userId$), switchMap(([config, userId]) => this.http.get(config.env.frontend_server + config.endpoints.find)), map((response) => response.Result));
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => config.endpoints.find != "")), combineLatest(this.userId$), switchMap((/**
+         * @param {?} __0
+         * @return {?}
+         */
+        ([config, userId]) => this.http.get(config.env.frontend_server + config.endpoints.find))), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        (response) => response.Result)));
     }
     /**
      * @template T
@@ -393,7 +595,22 @@ class PageService {
     upsert(page) {
         /** @type {?} */
         const model = new UpsertPageApiModel.Request(page);
-        return this.configurationService.config$.pipe(filter(config => config.endpoints.upsert != ""), take(1), combineLatest(this.userId$), switchMap(([config, userId]) => this.http.post(config.env.frontend_server + config.endpoints.upsert, model.getRequestBody())), map((response) => response.Result), tap(() => this._location.back()));
+        return this.configurationService.config$.pipe(filter((/**
+         * @param {?} config
+         * @return {?}
+         */
+        config => config.endpoints.upsert != "")), take(1), combineLatest(this.userId$), switchMap((/**
+         * @param {?} __0
+         * @return {?}
+         */
+        ([config, userId]) => this.http.post(config.env.frontend_server + config.endpoints.upsert, model.getRequestBody()))), map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        (response) => response.Result)), tap((/**
+         * @return {?}
+         */
+        () => this._location.back())));
     }
     // delete(name: string) {
     // 	return this.configurationService.config$
@@ -408,14 +625,38 @@ class PageService {
         /** @type {?} */
         const subject = new BehaviorSubject(undefined);
         this.store
-            .select(state => state.pages.db.data)
-            .pipe(filter(pages => pages != null), map(pages => pages.find(page => page.name == name)), tap(page => {
+            .select((/**
+         * @param {?} state
+         * @return {?}
+         */
+        state => state.pages.db.data))
+            .pipe(filter((/**
+         * @param {?} pages
+         * @return {?}
+         */
+        pages => pages != null)), map((/**
+         * @param {?} pages
+         * @return {?}
+         */
+        pages => pages.find((/**
+         * @param {?} page
+         * @return {?}
+         */
+        page => page.name == name)))), tap((/**
+         * @param {?} page
+         * @return {?}
+         */
+        page => {
             if (page == null) {
                 debugger;
                 this.store.dispatch(new GetPageStartAction(name));
             }
-        }))
-            .subscribe(page => subject.next(page));
+        })))
+            .subscribe((/**
+         * @param {?} page
+         * @return {?}
+         */
+        page => subject.next(page)));
         return subject.asObservable();
     }
 }
@@ -430,10 +671,39 @@ PageService.ctorParameters = () => [
     { type: Location },
     { type: UserFacadeService }
 ];
+if (false) {
+    /** @type {?} */
+    PageService.prototype.userId$;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageService.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageService.prototype.configurationService;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageService.prototype._location;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageService.prototype.userFacadeService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class PageViewComponent {
     /**
@@ -460,7 +730,15 @@ class PageViewComponent {
      * @return {?}
      */
     _selectPage() {
-        this.page$ = this.route.params.pipe(pluck("name"), switchMap((name) => this.service.selectByName(name)), filter((page) => page != undefined));
+        this.page$ = this.route.params.pipe(pluck("name"), switchMap((/**
+         * @param {?} name
+         * @return {?}
+         */
+        (name) => this.service.selectByName(name))), filter((/**
+         * @param {?} page
+         * @return {?}
+         */
+        (page) => page != undefined)));
     }
 }
 PageViewComponent.decorators = [
@@ -476,10 +754,36 @@ PageViewComponent.ctorParameters = () => [
     { type: ComponentFactoryResolver },
     { type: ViewContainerRef }
 ];
+if (false) {
+    /** @type {?} */
+    PageViewComponent.prototype.page$;
+    /** @type {?} */
+    PageViewComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageViewComponent.prototype.service;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageViewComponent.prototype.route;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageViewComponent.prototype.resolver;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageViewComponent.prototype.container;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class RootComponent {
 }
@@ -492,7 +796,7 @@ RootComponent.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class UpsertComponent {
     /**
@@ -538,15 +842,31 @@ class UpsertComponent {
      * @return {?}
      */
     _select_page() {
-        this.page$ = this.route.params.pipe(pluck("name"), filter((name) => name != undefined), switchMap((name) => this.service.selectByName(name)), filter((page) => page != undefined));
+        this.page$ = this.route.params.pipe(pluck("name"), filter((/**
+         * @param {?} name
+         * @return {?}
+         */
+        (name) => name != undefined)), switchMap((/**
+         * @param {?} name
+         * @return {?}
+         */
+        (name) => this.service.selectByName(name))), filter((/**
+         * @param {?} page
+         * @return {?}
+         */
+        (page) => page != undefined)));
     }
     /**
      * @return {?}
      */
     _update_formgroup_base_on_page() {
-        this.page$.subscribe((page) => {
+        this.page$.subscribe((/**
+         * @param {?} page
+         * @return {?}
+         */
+        (page) => {
             this.formGroup.patchValue(page);
-        });
+        }));
     }
 }
 UpsertComponent.decorators = [
@@ -560,10 +880,31 @@ UpsertComponent.ctorParameters = () => [
     { type: ActivatedRoute },
     { type: PageService }
 ];
+if (false) {
+    /** @type {?} */
+    UpsertComponent.prototype.formGroup;
+    /** @type {?} */
+    UpsertComponent.prototype.page$;
+    /**
+     * @type {?}
+     * @private
+     */
+    UpsertComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    UpsertComponent.prototype.route;
+    /**
+     * @type {?}
+     * @private
+     */
+    UpsertComponent.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class PagesManagementComponent {
     /**
@@ -571,7 +912,11 @@ class PagesManagementComponent {
      */
     constructor(store) {
         this.store = store;
-        this.pages$ = this.store.select((state) => state.pages.db.data);
+        this.pages$ = this.store.select((/**
+         * @param {?} state
+         * @return {?}
+         */
+        (state) => state.pages.db.data));
     }
     /**
      * @return {?}
@@ -598,10 +943,16 @@ PagesManagementComponent.decorators = [
 PagesManagementComponent.ctorParameters = () => [
     { type: Store }
 ];
+if (false) {
+    /** @type {?} */
+    PagesManagementComponent.prototype.pages$;
+    /** @type {?} */
+    PagesManagementComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const routes = [
@@ -633,7 +984,7 @@ const RoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const PagesActionTypes = {
@@ -649,6 +1000,12 @@ class UpsertPageAction {
         this.type = PagesActionTypes.UPSERT;
     }
 }
+if (false) {
+    /** @type {?} */
+    UpsertPageAction.prototype.type;
+    /** @type {?} */
+    UpsertPageAction.prototype.payload;
+}
 class DeletePageAction {
     /**
      * @param {?} payload
@@ -658,10 +1015,16 @@ class DeletePageAction {
         this.type = PagesActionTypes.DELETE;
     }
 }
+if (false) {
+    /** @type {?} */
+    DeletePageAction.prototype.type;
+    /** @type {?} */
+    DeletePageAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class PageDbEffects {
     /**
@@ -669,9 +1032,21 @@ class PageDbEffects {
      */
     constructor(actions$) {
         this.actions$ = actions$;
-        this.Upsert$ = this.actions$.pipe(ofType("[PAGE][API][GetPage] succeed" /* SUCCEED */), pluck("payload"), map((page) => new UpsertPageAction([page])));
-        this.UpsertMany$ = this.actions$.pipe(ofType("[GET_PAGES][API][GetPages] succeed" /* SUCCEED */), pluck("payload"), map((pages) => new UpsertPageAction(pages)));
-        this.delete$ = this.actions$.pipe(ofType("[PAGE][API][DELETE] succeed" /* SUCCEED */), pluck("payload"), map((page) => new DeletePageAction(page)));
+        this.Upsert$ = this.actions$.pipe(ofType("[PAGE][API][GetPage] succeed" /* SUCCEED */), pluck("payload"), map((/**
+         * @param {?} page
+         * @return {?}
+         */
+        (page) => new UpsertPageAction([page]))));
+        this.UpsertMany$ = this.actions$.pipe(ofType("[GET_PAGES][API][GetPages] succeed" /* SUCCEED */), pluck("payload"), map((/**
+         * @param {?} pages
+         * @return {?}
+         */
+        (pages) => new UpsertPageAction(pages))));
+        this.delete$ = this.actions$.pipe(ofType("[PAGE][API][DELETE] succeed" /* SUCCEED */), pluck("payload"), map((/**
+         * @param {?} page
+         * @return {?}
+         */
+        (page) => new DeletePageAction(page))));
     }
 }
 PageDbEffects.decorators = [
@@ -693,11 +1068,32 @@ __decorate([
     Effect(),
     __metadata("design:type", Object)
 ], PageDbEffects.prototype, "delete$", void 0);
+if (false) {
+    /** @type {?} */
+    PageDbEffects.prototype.Upsert$;
+    /** @type {?} */
+    PageDbEffects.prototype.UpsertMany$;
+    /** @type {?} */
+    PageDbEffects.prototype.delete$;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageDbEffects.prototype.actions$;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State() { }
+if (false) {
+    /** @type {?} */
+    State.prototype.data;
+}
 const ɵ0 = [];
 /** @type {?} */
 const initialState = {
@@ -721,41 +1117,75 @@ function Reducer(state = initialState, action) {
                 newPages = [newPages];
                 console.error("'PagesActionTypes.UPSERT' does not get array payload");
             }
-            newPages.forEach((newPage) => {
+            newPages.forEach((/**
+             * @param {?} newPage
+             * @return {?}
+             */
+            (newPage) => {
                 /** @type {?} */
-                const existedPageIndex = _data.findIndex((w) => w._id == newPage._id);
+                const existedPageIndex = _data.findIndex((/**
+                 * @param {?} w
+                 * @return {?}
+                 */
+                (w) => w._id == newPage._id));
                 if (existedPageIndex > -1) {
                     _data.splice(existedPageIndex, 1, newPage);
                 }
                 else {
                     _data.push(newPage);
                 }
-            });
+            }));
             return Object.assign({}, state, { data: _data });
         case PagesActionTypes.DELETE:
             debugger;
             _data = state.data.concat();
             /** @type {?} */
-            const pageIndex = state.data.findIndex((w) => w._id == action.payload._id);
+            const pageIndex = state.data.findIndex((/**
+             * @param {?} w
+             * @return {?}
+             */
+            (w) => w._id == action.payload._id));
             _data.splice(pageIndex, 1);
             return Object.assign({}, state, { data: _data });
         default:
             return state;
     }
 }
+/** @type {?} */
+const getPages = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.data);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function PageState() { }
+if (false) {
+    /** @type {?} */
+    PageState.prototype.db;
+}
 /** @type {?} */
 const PageReducer = {
     db: Reducer
 };
+/**
+ * @record
+ */
+function AppState() { }
+if (false) {
+    /** @type {?} */
+    AppState.prototype.pages;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GetPageApiEffects {
     /**
@@ -765,7 +1195,23 @@ class GetPageApiEffects {
     constructor(actions$, service) {
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$.pipe(ofType("[PAGE][API][GetPage] start" /* START */), map(action => action.payload), switchMap(payload => this.service.get(payload)), map(res => new GetPageSucceedAction(res)), catchError(err => of(new GetPageFailedAction(err))));
+        this.start$ = this.actions$.pipe(ofType("[PAGE][API][GetPage] start" /* START */), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        action => action.payload)), switchMap((/**
+         * @param {?} payload
+         * @return {?}
+         */
+        payload => this.service.get(payload))), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => new GetPageSucceedAction(res))), catchError((/**
+         * @param {?} err
+         * @return {?}
+         */
+        err => of(new GetPageFailedAction(err)))));
     }
 }
 GetPageApiEffects.decorators = [
@@ -780,10 +1226,24 @@ __decorate([
     Effect(),
     __metadata("design:type", Object)
 ], GetPageApiEffects.prototype, "start$", void 0);
+if (false) {
+    /** @type {?} */
+    GetPageApiEffects.prototype.start$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GetPageApiEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GetPageApiEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GetPagesApiEffects {
     /**
@@ -793,9 +1253,20 @@ class GetPagesApiEffects {
     constructor(actions$, service) {
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$.pipe(ofType("[GET_PAGES][API][GetPages] start" /* START */), switchMap(() => this.service
+        this.start$ = this.actions$.pipe(ofType("[GET_PAGES][API][GetPages] start" /* START */), switchMap((/**
+         * @return {?}
+         */
+        () => this.service
             .getPages()
-            .pipe(map(res => new GetPagesSucceedAction(res)), catchError(err => of(new GetPagesFailedAction(err))))));
+            .pipe(map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => new GetPagesSucceedAction(res))), catchError((/**
+         * @param {?} err
+         * @return {?}
+         */
+        err => of(new GetPagesFailedAction(err))))))));
     }
 }
 GetPagesApiEffects.decorators = [
@@ -810,10 +1281,24 @@ __decorate([
     Effect(),
     __metadata("design:type", Object)
 ], GetPagesApiEffects.prototype, "start$", void 0);
+if (false) {
+    /** @type {?} */
+    GetPagesApiEffects.prototype.start$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GetPagesApiEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GetPagesApiEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class UpsertPageApiEffects {
     /**
@@ -823,7 +1308,23 @@ class UpsertPageApiEffects {
     constructor(actions$, service) {
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$.pipe(ofType("[UPSERT_PAGE][API][UpsertPage] start" /* START */), map(action => action.payload), switchMap(payload => this.service.upsert(payload)), map(res => new UpsertPageSucceedAction(res)), catchError(err => of(new UpsertPageFailedAction(err))));
+        this.start$ = this.actions$.pipe(ofType("[UPSERT_PAGE][API][UpsertPage] start" /* START */), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        action => action.payload)), switchMap((/**
+         * @param {?} payload
+         * @return {?}
+         */
+        payload => this.service.upsert(payload))), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => new UpsertPageSucceedAction(res))), catchError((/**
+         * @param {?} err
+         * @return {?}
+         */
+        err => of(new UpsertPageFailedAction(err)))));
     }
 }
 UpsertPageApiEffects.decorators = [
@@ -838,10 +1339,24 @@ __decorate([
     Effect(),
     __metadata("design:type", Object)
 ], UpsertPageApiEffects.prototype, "start$", void 0);
+if (false) {
+    /** @type {?} */
+    UpsertPageApiEffects.prototype.start$;
+    /**
+     * @type {?}
+     * @private
+     */
+    UpsertPageApiEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    UpsertPageApiEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DeletePageApiEffects {
     /**
@@ -851,7 +1366,23 @@ class DeletePageApiEffects {
     constructor(actions$, service) {
         this.actions$ = actions$;
         this.service = service;
-        this.start$ = this.actions$.pipe(ofType("[PAGE][API][DELETE] start" /* START */), map(action => action.payload), switchMap(payload => this.service.delete(payload)), map(res => new DeletePageSucceedAction(res)), catchError(err => of(new DeletePageFailedAction(err))));
+        this.start$ = this.actions$.pipe(ofType("[PAGE][API][DELETE] start" /* START */), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        action => action.payload)), switchMap((/**
+         * @param {?} payload
+         * @return {?}
+         */
+        payload => this.service.delete(payload))), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => new DeletePageSucceedAction(res))), catchError((/**
+         * @param {?} err
+         * @return {?}
+         */
+        err => of(new DeletePageFailedAction(err)))));
     }
 }
 DeletePageApiEffects.decorators = [
@@ -866,10 +1397,24 @@ __decorate([
     Effect(),
     __metadata("design:type", Object)
 ], DeletePageApiEffects.prototype, "start$", void 0);
+if (false) {
+    /** @type {?} */
+    DeletePageApiEffects.prototype.start$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DeletePageApiEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DeletePageApiEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NgsPageModule {
     /**
@@ -904,6 +1449,10 @@ NgsPageModule.decorators = [
             },] }
 ];
 class NgsPageRootModule {
+    constructor() {
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.page = "8.0.10";
+    }
 }
 NgsPageRootModule.decorators = [
     { type: NgModule, args: [{
@@ -922,17 +1471,18 @@ NgsPageRootModule.decorators = [
                 exports: [NgsPageModule]
             },] }
 ];
+/** @nocollapse */
+NgsPageRootModule.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { NgsPageModule, NgsPageRootModule, MODULE_DEFAULT_CONFIG, MODULE_CONFIG_TOKEN, PagesManagementComponent as ɵf, RoutingModule as ɵi, PageReducer as ɵb, PageDbEffects as ɵk, Reducer as ɵj, RootComponent as ɵg, DeletePageApiEffects as ɵr, GetPageApiEffects as ɵl, GetPagesApiEffects as ɵn, UpsertPageApiEffects as ɵp, PageConfigurationService as ɵe, PageService as ɵd, UpsertComponent as ɵh, PageViewComponent as ɵa };
-
+export { MODULE_CONFIG_TOKEN, MODULE_DEFAULT_CONFIG, NgsPageModule, NgsPageRootModule, PageViewComponent as ɵa, PageReducer as ɵb, PageService as ɵd, PageConfigurationService as ɵe, PagesManagementComponent as ɵf, RootComponent as ɵg, UpsertComponent as ɵh, RoutingModule as ɵi, Reducer as ɵj, PageDbEffects as ɵk, GetPageApiEffects as ɵl, GetPagesApiEffects as ɵn, UpsertPageApiEffects as ɵp, DeletePageApiEffects as ɵr };
 //# sourceMappingURL=soushians-page.js.map

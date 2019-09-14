@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
@@ -42,7 +42,7 @@ UserFacadeService.ctorParameters = () => [
     { type: Store },
     { type: UserConfigurationService }
 ];
-/** @nocollapse */ UserFacadeService.ngInjectableDef = i0.defineInjectable({ factory: function UserFacadeService_Factory() { return new UserFacadeService(i0.inject(i1.Store), i0.inject(i2.UserConfigurationService)); }, token: UserFacadeService, providedIn: "root" });
+/** @nocollapse */ UserFacadeService.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function UserFacadeService_Factory() { return new UserFacadeService(i0.ɵɵinject(i1.Store), i0.ɵɵinject(i2.UserConfigurationService)); }, token: UserFacadeService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}

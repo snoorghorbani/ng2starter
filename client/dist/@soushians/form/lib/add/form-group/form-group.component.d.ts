@@ -3,8 +3,8 @@ import { FieldConfig } from "../../models";
 export declare class FormGroupComponent {
     schema: FieldConfig;
     noHeader: boolean;
-    changes: EventEmitter<{}>;
-    delete: EventEmitter<{}>;
+    changes: EventEmitter<any>;
+    delete: EventEmitter<any>;
     constructor();
     changed(): void;
     addFormGroup(root: FieldConfig): FieldConfig;

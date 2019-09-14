@@ -26,7 +26,7 @@ declare var c3: any;
 @Component({
 	selector: "dynamic-config-component-selector",
 	templateUrl: "./dynamic-config-component-selector.component.html",
-	styleUrls: [ "./dynamic-config-component-selector.component.scss" ],
+	styleUrls: ["./dynamic-config-component-selector.component.scss"],
 	entryComponents: [
 		DiagramPartialConfigEditComponent,
 		PieDiagramPartialConfigComponent,
@@ -45,7 +45,7 @@ export class DynamicConfigComponentSelectorComponent implements AfterViewInit {
 		line: LinearDiagramPartialConfigComponent,
 		booleano: BooleanoWidgetPartialConfigComponent
 	};
-	@ViewChild("dynamicComponentContainer", { read: ViewContainerRef })
+	@ViewChild("dynamicComponentContainer", { read: ViewContainerRef, static: false })
 	dynamicComponentContainer: ViewContainerRef;
 	@Output() ConfigChanged = new EventEmitter();
 	currentComponent: any = null;
@@ -81,6 +81,6 @@ export class DynamicConfigComponentSelectorComponent implements AfterViewInit {
 
 		this.currentComponent = component;
 	}
-	constructor(private resolver: ComponentFactoryResolver) {}
-	ngAfterViewInit() {}
+	constructor(private resolver: ComponentFactoryResolver) { }
+	ngAfterViewInit() { }
 }

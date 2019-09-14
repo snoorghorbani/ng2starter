@@ -1,24 +1,24 @@
+import { Injectable, ɵɵdefineInjectable, ɵɵinject, Component, NgModule } from '@angular/core';
+import { createFeatureSelector, createSelector, Store, StoreModule } from '@ngrx/store';
+import { ofType, Actions, Effect, EffectsModule } from '@ngrx/effects';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute, RouterModule, Router } from '@angular/router';
+import { FormGroup, FormControl, Validators, FormArray, FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatIconModule, MatButtonModule, MatCardModule, MatSnackBarModule, MatSidenavModule, MatExpansionModule, MatSelectModule, MatFormFieldModule, MatListModule, MatMenuModule, MatRadioModule, MatInputModule, MatCheckboxModule, MatToolbarModule, MatDatepickerModule, MatProgressBarModule } from '@angular/material';
+import { MatIconModule, MatButtonModule, MatCardModule, MatSnackBarModule, MatSidenavModule, MatExpansionModule, MatSelectModule, MatFormFieldModule, MatListModule, MatMenuModule, MatCheckboxModule, MatRadioModule, MatInputModule, MatToolbarModule, MatDatepickerModule, MatProgressBarModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from '@soushians/shared';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { __assign, __decorate, __metadata } from 'tslib';
 import { Observable } from 'rxjs/Rx';
-import { FormGroup, FormControl, Validators, FormArray, FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { createSelector, createFeatureSelector, Store, StoreModule } from '@ngrx/store';
-import { __decorate, __metadata, __assign } from 'tslib';
-import { Injectable, Component, NgModule, defineInjectable, inject } from '@angular/core';
 import { Observable as Observable$1 } from 'rxjs/Observable';
-import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
 import { of } from 'rxjs/observable/of';
-import { map, switchMap, catchError, pluck } from 'rxjs/operators';
-import { ActivatedRoute, RouterModule, Router } from '@angular/router';
+import { pluck, switchMap, map, catchError } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var SourceActionTypes = {
@@ -33,23 +33,45 @@ var SourceSubmit = /** @class */ (function () {
     }
     return SourceSubmit;
 }());
+if (false) {
+    /** @type {?} */
+    SourceSubmit.prototype.type;
+    /** @type {?} */
+    SourceSubmit.prototype.payload;
+}
 var SourceSubmitSucceed = /** @class */ (function () {
     function SourceSubmitSucceed() {
         this.type = SourceActionTypes.SOURCE_SUBMIT_SUCCEED;
     }
     return SourceSubmitSucceed;
 }());
+if (false) {
+    /** @type {?} */
+    SourceSubmitSucceed.prototype.type;
+}
 var SourceSubmitFailed = /** @class */ (function () {
     function SourceSubmitFailed() {
         this.type = SourceActionTypes.SOURCE_SUBMIT_FAILED;
     }
     return SourceSubmitFailed;
 }());
+if (false) {
+    /** @type {?} */
+    SourceSubmitFailed.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State() { }
+if (false) {
+    /** @type {?} */
+    State.prototype.data;
+}
 var ɵ0 = [];
 /** @type {?} */
 var initialState = {
@@ -73,30 +95,81 @@ function Reducer(state, action) {
             return state;
     }
 }
+/** @type {?} */
+var getSourceListData = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.data; });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function SourceState() { }
+if (false) {
+    /** @type {?} */
+    SourceState.prototype.list;
+}
 /** @type {?} */
 var SourceReducers = {
     sources: Reducer
 };
+/**
+ * @record
+ */
+function FeatureState() { }
+if (false) {
+    /** @type {?} */
+    FeatureState.prototype.sources;
+}
 //#region selectors
 /** @type {?} */
 var selectSourceState = createFeatureSelector("source");
 //#endregion
-/** @type {?} */
-var getSourceList = createSelector(selectSourceState, function (state) { return state.list; });
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+var ɵ0$1 = /**
+ * @param {?} state
+ * @return {?}
  */
+function (state) { return state.list; };
+/** @type {?} */
+var getSourceList = createSelector(selectSourceState, (ɵ0$1));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var SourceModel = /** @class */ (function () {
+    function SourceModel(initValue) {
+        var _this = this;
+        if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
+        Object.keys(initValue).forEach((/**
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) { return _this[key] = initValue[key]; }));
+    }
+    return SourceModel;
+}());
+if (false) {
+    /** @type {?} */
+    SourceModel.prototype._id;
+    /** @type {?} */
+    SourceModel.prototype.Endpoint;
+    /** @type {?} */
+    SourceModel.prototype.Interval;
+    /** @type {?} */
+    SourceModel.prototype.IsActive;
+    /** @type {?} */
+    SourceModel.prototype.Thresholds;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetSourcesApiModel;
 (function (GetSourcesApiModel) {
@@ -105,9 +178,13 @@ var GetSourcesApiModel;
     // export class Request implements HttpRequestBaseModel<Request> {
     Request = /** @class */ (function () {
         function Request(initValue) {
-            if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
             var _this = this;
-            Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
+            if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) { return (_this[key] = initValue[key]); }));
         }
         /**
          * @return {?}
@@ -127,11 +204,15 @@ var GetSourcesApiModel;
         return Response;
     }());
     GetSourcesApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(GetSourcesApiModel || (GetSourcesApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UpsertSourceApiModel;
 (function (UpsertSourceApiModel) {
@@ -140,9 +221,13 @@ var UpsertSourceApiModel;
     // export class Request implements HttpRequestBaseModel<Request> {
     Request = /** @class */ (function () {
         function Request(initValue) {
-            if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
             var _this = this;
-            Object.keys(initValue).forEach(function (key) { return (_this[key] = initValue[key]); });
+            if (initValue === void 0) { initValue = (/** @type {?} */ ({})); }
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) { return (_this[key] = initValue[key]); }));
         }
         /**
          * @return {?}
@@ -178,22 +263,38 @@ var UpsertSourceApiModel;
         return Request;
     }());
     UpsertSourceApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype._id;
+        /** @type {?} */
+        Request.prototype.Endpoint;
+        /** @type {?} */
+        Request.prototype.Interval;
+        /** @type {?} */
+        Request.prototype.IsActive;
+        /** @type {?} */
+        Request.prototype.Thresholds;
+    }
     var Response = /** @class */ (function () {
         function Response() {
         }
         return Response;
     }());
     UpsertSourceApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(UpsertSourceApiModel || (UpsertSourceApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SourceService = /** @class */ (function () {
     function SourceService(http) {
@@ -208,12 +309,20 @@ var SourceService = /** @class */ (function () {
     function () {
         return this.http
             .get("http://localhost:3000/api/source")
-            .map(function (response) {
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) {
             return response;
-        })
-            .catch(function (err) {
+        }))
+            .catch((/**
+         * @param {?} err
+         * @return {?}
+         */
+        function (err) {
             return Observable.throw(err);
-        });
+        }));
     };
     /**
      * @param {?} id
@@ -226,10 +335,18 @@ var SourceService = /** @class */ (function () {
     function (id) {
         return this.http
             .get("http://localhost:3000/api/source/" + id)
-            .map(function (response) { return response.Result; })
-            .catch(function (err) {
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response.Result; }))
+            .catch((/**
+         * @param {?} err
+         * @return {?}
+         */
+        function (err) {
             return Observable.throw(err);
-        });
+        }));
     };
     /**
      * @param {?} body
@@ -244,10 +361,18 @@ var SourceService = /** @class */ (function () {
         var model = new UpsertSourceApiModel.Request(body);
         return this.http
             .put("http://localhost:3000/api/source", model.getRequestBody(), { withCredentials: false })
-            .map(function (response) { return response; })
-            .catch(function (err) {
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return response; }))
+            .catch((/**
+         * @param {?} err
+         * @return {?}
+         */
+        function (err) {
             return Observable.throw(err);
-        });
+        }));
     };
     /**
      * @param {?} source
@@ -268,7 +393,11 @@ var SourceService = /** @class */ (function () {
                 time: null
             }
         })
-            .map(function (res) { return res.Result; });
+            .map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) { return res.Result; }));
     };
     SourceService.decorators = [
         { type: Injectable, args: [{
@@ -279,13 +408,22 @@ var SourceService = /** @class */ (function () {
     SourceService.ctorParameters = function () { return [
         { type: HttpClient }
     ]; };
-    /** @nocollapse */ SourceService.ngInjectableDef = defineInjectable({ factory: function SourceService_Factory() { return new SourceService(inject(HttpClient)); }, token: SourceService, providedIn: "root" });
+    /** @nocollapse */ SourceService.ngInjectableDef = ɵɵdefineInjectable({ factory: function SourceService_Factory() { return new SourceService(ɵɵinject(HttpClient)); }, token: SourceService, providedIn: "root" });
     return SourceService;
 }());
+if (false) {
+    /** @type {?} */
+    SourceService.prototype.responseCache;
+    /**
+     * @type {?}
+     * @private
+     */
+    SourceService.prototype.http;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SourceModuleContainerComponent = /** @class */ (function () {
     function SourceModuleContainerComponent(service) {
@@ -310,10 +448,17 @@ var SourceModuleContainerComponent = /** @class */ (function () {
     ]; };
     return SourceModuleContainerComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SourceModuleContainerComponent.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 //import { SourceUpsertAction } from 'app/actions';
 var SourceListComponent = /** @class */ (function () {
@@ -347,15 +492,24 @@ var SourceListComponent = /** @class */ (function () {
     ]; };
     return SourceListComponent;
 }());
+if (false) {
+    /** @type {?} */
+    SourceListComponent.prototype.sources;
+    /**
+     * @type {?}
+     * @private
+     */
+    SourceListComponent.prototype.sourceService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SourceUpsertComponent = /** @class */ (function () {
     function SourceUpsertComponent(sourceService, formBuilder, route, store) {
@@ -369,11 +523,19 @@ var SourceUpsertComponent = /** @class */ (function () {
         this.types = ["critical", "goal"];
         // this.sources = this.sourceService.getSources();
         this.thresholds = ((/** @type {?} */ (this.formGroup.controls.Thresholds))).controls;
-        this.route.params.subscribe(function (params) {
+        this.route.params.subscribe((/**
+         * @param {?} params
+         * @return {?}
+         */
+        function (params) {
             /** @type {?} */
             var sourceId = params["id"];
             sourceId &&
-                _this.sourceService.getSourceById(sourceId).subscribe(function (data) {
+                _this.sourceService.getSourceById(sourceId).subscribe((/**
+                 * @param {?} data
+                 * @return {?}
+                 */
+                function (data) {
                     _this.formGroup.patchValue({
                         _id: data._id,
                         Endpoint: data.Endpoint,
@@ -381,11 +543,15 @@ var SourceUpsertComponent = /** @class */ (function () {
                         IsActive: data.IsActive || false,
                         Thresholds: data.Thresholds
                     });
-                    data.Thresholds.forEach(function (mapping) {
+                    data.Thresholds.forEach((/**
+                     * @param {?} mapping
+                     * @return {?}
+                     */
+                    function (mapping) {
                         return _this.addItem(mapping.Name, mapping.Formula, mapping.Message, mapping.Type);
-                    });
-                });
-        });
+                    }));
+                }));
+        }));
     }
     /**
      * @return {?}
@@ -450,9 +616,13 @@ var SourceUpsertComponent = /** @class */ (function () {
         var _this = this;
         /** @type {?} */
         var o$ = this.sourceService.getData(this.formGroup.value);
-        o$.subscribe(function (data) {
+        o$.subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) {
             _this.data = data.Data;
-        });
+        }));
         return o$;
     };
     /**
@@ -483,10 +653,42 @@ var SourceUpsertComponent = /** @class */ (function () {
     ]; };
     return SourceUpsertComponent;
 }());
+if (false) {
+    /** @type {?} */
+    SourceUpsertComponent.prototype.formGroup;
+    /** @type {?} */
+    SourceUpsertComponent.prototype.sources;
+    /** @type {?} */
+    SourceUpsertComponent.prototype.thresholds;
+    /** @type {?} */
+    SourceUpsertComponent.prototype.data;
+    /** @type {?} */
+    SourceUpsertComponent.prototype.types;
+    /**
+     * @type {?}
+     * @private
+     */
+    SourceUpsertComponent.prototype.sourceService;
+    /**
+     * @type {?}
+     * @private
+     */
+    SourceUpsertComponent.prototype.formBuilder;
+    /**
+     * @type {?}
+     * @private
+     */
+    SourceUpsertComponent.prototype.route;
+    /**
+     * @type {?}
+     * @private
+     */
+    SourceUpsertComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var routes = [
@@ -514,7 +716,7 @@ var RoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SourceEffects = /** @class */ (function () {
     function SourceEffects(actions$, router, sourceService) {
@@ -522,15 +724,29 @@ var SourceEffects = /** @class */ (function () {
         this.actions$ = actions$;
         this.router = router;
         this.sourceService = sourceService;
-        this.afterSubmitSource$ = this.actions$.pipe(ofType(SourceActionTypes.SOURCE_SUBMIT), pluck("payload"), switchMap(function (data) {
+        this.afterSubmitSource$ = this.actions$.pipe(ofType(SourceActionTypes.SOURCE_SUBMIT), pluck("payload"), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) {
             return _this.sourceService
                 .upsertSource(data)
-                .pipe(map(function (res) { return new SourceSubmitSucceed(); }), catchError(function () { return of(new SourceSubmitFailed()); }));
-        }));
-        this.SigninSucceed$ = this.actions$.pipe(ofType(SourceActionTypes.SOURCE_SUBMIT_SUCCEED), switchMap(function () {
+                .pipe(map((/**
+             * @param {?} res
+             * @return {?}
+             */
+            function (res) { return new SourceSubmitSucceed(); })), catchError((/**
+             * @return {?}
+             */
+            function () { return of(new SourceSubmitFailed()); })));
+        })));
+        this.SigninSucceed$ = this.actions$.pipe(ofType(SourceActionTypes.SOURCE_SUBMIT_SUCCEED), switchMap((/**
+         * @return {?}
+         */
+        function () {
             _this.router.navigate(["source"]);
             return Observable$1.empty();
-        }));
+        })));
     }
     SourceEffects.decorators = [
         { type: Injectable }
@@ -551,13 +767,36 @@ var SourceEffects = /** @class */ (function () {
     ], SourceEffects.prototype, "SigninSucceed$", void 0);
     return SourceEffects;
 }());
+if (false) {
+    /** @type {?} */
+    SourceEffects.prototype.afterSubmitSource$;
+    /** @type {?} */
+    SourceEffects.prototype.SigninSucceed$;
+    /**
+     * @type {?}
+     * @private
+     */
+    SourceEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    SourceEffects.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    SourceEffects.prototype.sourceService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SourceModule = /** @class */ (function () {
     function SourceModule() {
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.source = "8.0.10";
     }
     SourceModule.decorators = [
         { type: NgModule, args: [{
@@ -595,19 +834,20 @@ var SourceModule = /** @class */ (function () {
                     exports: []
                 },] }
     ];
+    /** @nocollapse */
+    SourceModule.ctorParameters = function () { return []; };
     return SourceModule;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { SourceModule, SourceEffects as ɵi, SourceReducers as ɵa, Reducer as ɵb, SourceService as ɵe, SourceListComponent as ɵf, SourceModuleContainerComponent as ɵd, SourceUpsertComponent as ɵg, RoutingModule as ɵc };
-
+export { SourceModule, SourceReducers as ɵa, Reducer as ɵb, RoutingModule as ɵc, SourceModuleContainerComponent as ɵd, SourceService as ɵe, SourceListComponent as ɵf, SourceUpsertComponent as ɵg, SourceEffects as ɵi };
 //# sourceMappingURL=soushians-source.js.map

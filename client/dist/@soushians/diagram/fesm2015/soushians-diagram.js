@@ -1,25 +1,35 @@
+import { InjectionToken, Component, Injector, Input, EventEmitter, Output, Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, ReflectiveInjector, ComponentFactoryResolver, ViewChild, ViewContainerRef, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatTooltipModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatRadioModule, MatCheckboxModule, MatGridListModule, MatSliderModule, MatAutocompleteModule } from '@angular/material';
-import { Observable, Subject } from 'rxjs/Rx';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { BehaviorSubject as BehaviorSubject$1 } from 'rxjs/BehaviorSubject';
-import { createSelector, createFeatureSelector, Store, StoreModule } from '@ngrx/store';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatSelectModule, MatSliderModule, MatInputModule, MatCheckboxModule, MatFormFieldModule, MatTabsModule, MatRadioModule, MatTooltipModule, MatGridListModule, MatAutocompleteModule } from '@angular/material';
+import { createFeatureSelector, createSelector, Store, StoreModule } from '@ngrx/store';
+import { ofType, Actions, Effect, EffectsModule } from '@ngrx/effects';
 import { BehaviorSubject, Subject as Subject$1, of } from 'rxjs';
-import { __decorate, __metadata } from 'tslib';
+import { BehaviorSubject as BehaviorSubject$1 } from 'rxjs/BehaviorSubject';
+import { Observable, Subject } from 'rxjs/Rx';
+import { takeUntil, switchMap, map, filter, catchError, pluck } from 'rxjs/operators';
 import { Observable as Observable$1 } from 'rxjs/Observable';
-import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
+import { __decorate, __metadata } from 'tslib';
 import { of as of$1 } from 'rxjs/observable/of';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { InjectionToken, Component, Input, Injector, Output, EventEmitter, Injectable, Inject, NgModule, ComponentFactoryResolver, ViewChild, ViewContainerRef, ReflectiveInjector, defineInjectable, inject } from '@angular/core';
-import { switchMap, map, takeUntil, filter, catchError, pluck } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function DiagramModuleConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    DiagramModuleConfig.prototype.endpoints;
+    /** @type {?|undefined} */
+    DiagramModuleConfig.prototype.env;
+}
 /** @type {?} */
 const MODULE_DEFAULT_CONFIG = {
     endpoints: {},
@@ -33,7 +43,7 @@ const MODULE_CONFIG_TOKEN = new InjectionToken("DiagramModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GetDiagramsApiModel;
 (function (GetDiagramsApiModel) {
@@ -42,7 +52,11 @@ var GetDiagramsApiModel;
          * @param {?=} initValue
          */
         constructor(initValue = (/** @type {?} */ ({}))) {
-            Object.keys(initValue).forEach(key => (this[key] = initValue[key]));
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            key => (this[key] = initValue[key])));
         }
         /**
          * @return {?}
@@ -52,15 +66,23 @@ var GetDiagramsApiModel;
         }
     }
     GetDiagramsApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype.diagram;
+    }
     class Response {
         constructor() { }
     }
     GetDiagramsApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(GetDiagramsApiModel || (GetDiagramsApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const DiagramsActionTypes = {
@@ -69,10 +91,23 @@ const DiagramsActionTypes = {
     GET_DIAGRAM_SUCCEED: "[DIAGRAM] GET_DIAGRAM_SUCCEED",
     GET_DIAGRAM_FAILED: "[DIAGRAM] GET_DIAGRAM_FAILED",
 };
+class GetDiagrams {
+    constructor() {
+        this.type = DiagramsActionTypes.GET_DIAGRAM;
+    }
+}
+if (false) {
+    /** @type {?} */
+    GetDiagrams.prototype.type;
+}
 class GetDiagramsStart {
     constructor() {
         this.type = DiagramsActionTypes.GET_DIAGRAM_START;
     }
+}
+if (false) {
+    /** @type {?} */
+    GetDiagramsStart.prototype.type;
 }
 class GetDiagramsSucceed {
     /**
@@ -83,17 +118,37 @@ class GetDiagramsSucceed {
         this.type = DiagramsActionTypes.GET_DIAGRAM_SUCCEED;
     }
 }
+if (false) {
+    /** @type {?} */
+    GetDiagramsSucceed.prototype.type;
+    /** @type {?} */
+    GetDiagramsSucceed.prototype.payload;
+}
 class GetDiagramsFailed {
     constructor() {
         this.type = DiagramsActionTypes.GET_DIAGRAM_FAILED;
     }
 }
+if (false) {
+    /** @type {?} */
+    GetDiagramsFailed.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 console.log(GetDiagramsApiModel);
+/**
+ * @record
+ */
+function State() { }
+if (false) {
+    /** @type {?} */
+    State.prototype.loaded;
+    /** @type {?} */
+    State.prototype.diagram;
+}
 /** @type {?} */
 const initialState = {
     loaded: false,
@@ -119,10 +174,16 @@ function diagramReducer(state = initialState, action) {
         }
     }
 }
+/** @type {?} */
+const DiagramInfo = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.diagram);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var EditDiagramApiModel;
 (function (EditDiagramApiModel) {
@@ -154,11 +215,15 @@ var EditDiagramApiModel;
         constructor() { }
     }
     EditDiagramApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(EditDiagramApiModel || (EditDiagramApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const EditDiagramActionTypes = {
@@ -176,16 +241,72 @@ class EditDiagramAction {
         this.type = EditDiagramActionTypes.EDIT_DIAGRAM;
     }
 }
+if (false) {
+    /** @type {?} */
+    EditDiagramAction.prototype.type;
+    /** @type {?} */
+    EditDiagramAction.prototype.payload;
+}
+class EditDiagramActionStart {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = EditDiagramActionTypes.EDIT_DIAGRAM_START;
+    }
+}
+if (false) {
+    /** @type {?} */
+    EditDiagramActionStart.prototype.type;
+    /** @type {?} */
+    EditDiagramActionStart.prototype.payload;
+}
+class EditDiagramActionSucceed {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = EditDiagramActionTypes.EDIT_DIAGRAM_SUCCEED;
+    }
+}
+if (false) {
+    /** @type {?} */
+    EditDiagramActionSucceed.prototype.type;
+    /** @type {?} */
+    EditDiagramActionSucceed.prototype.payload;
+}
+class EditDiagramActionFailed {
+    constructor() {
+        this.type = EditDiagramActionTypes.EDIT_DIAGRAM_FAILED;
+    }
+}
+if (false) {
+    /** @type {?} */
+    EditDiagramActionFailed.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 console.log(EditDiagramApiModel);
+/**
+ * @record
+ */
+function State$1() { }
+if (false) {
+    /** @type {?} */
+    State$1.prototype.status;
+    /** @type {?} */
+    State$1.prototype.data;
+}
+const ɵ0 = ({ Result: {} });
 /** @type {?} */
 const initialState$1 = {
     status: "pristine",
-    data: (/** @type {?} */ ({ Result: {} }))
+    data: (/** @type {?} */ (ɵ0))
 };
 /**
  * @param {?=} state
@@ -211,11 +332,27 @@ function Reducer(state = initialState$1, action) {
         }
     }
 }
+/** @type {?} */
+const EditDiagramInfo = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.data);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State$2() { }
+if (false) {
+    /** @type {?} */
+    State$2.prototype.route;
+    /** @type {?} */
+    State$2.prototype.result;
+}
 /** @type {?} */
 const initialState$2 = {
     route: "",
@@ -233,17 +370,43 @@ function ParentGuardReducer(state = initialState$2, action) {
         }
     }
 }
+/** @type {?} */
+var getParentRoutingGuard = (/**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function DiagramState() { }
+if (false) {
+    /** @type {?} */
+    DiagramState.prototype.diagrams;
+    /** @type {?} */
+    DiagramState.prototype.editDiagram;
+    /** @type {?} */
+    DiagramState.prototype.parentGuard;
+}
 /** @type {?} */
 const DiagramReducers = {
     diagrams: diagramReducer,
     editDiagram: Reducer,
     parentGuard: ParentGuardReducer
 };
+/**
+ * @record
+ */
+function FeatureState() { }
+if (false) {
+    /** @type {?} */
+    FeatureState.prototype.diagram;
+}
 //#region selectors
 /** @type {?} */
 const selectFeatureState = createFeatureSelector("diagram");
@@ -252,12 +415,17 @@ const selectFeatureState = createFeatureSelector("diagram");
 //   (state: DiagramState) => state.diagram
 // );
 //#region edit diagram
+const ɵ0$1 = /**
+ * @param {?} state
+ * @return {?}
+ */
+(state) => state.editDiagram;
 /** @type {?} */
-const selectEditDiagramState = createSelector(selectFeatureState, (state) => state.editDiagram);
+const selectEditDiagramState = createSelector(selectFeatureState, (ɵ0$1));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ServerStatusDiagramComponent {
     /**
@@ -315,10 +483,23 @@ ServerStatusDiagramComponent.ctorParameters = () => [
 ServerStatusDiagramComponent.propDecorators = {
     data: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    ServerStatusDiagramComponent.prototype.dataSubscribtion;
+    /** @type {?} */
+    ServerStatusDiagramComponent.prototype.dataLoaded;
+    /** @type {?} */
+    ServerStatusDiagramComponent.prototype._data;
+    /**
+     * @type {?}
+     * @private
+     */
+    ServerStatusDiagramComponent.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DiagramPartialConfigEditComponent {
     /**
@@ -378,10 +559,27 @@ DiagramPartialConfigEditComponent.ctorParameters = () => [
 DiagramPartialConfigEditComponent.propDecorators = {
     data: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    DiagramPartialConfigEditComponent.prototype.dataSubscribtion;
+    /** @type {?} */
+    DiagramPartialConfigEditComponent.prototype.dataLoaded;
+    /** @type {?} */
+    DiagramPartialConfigEditComponent.prototype._data;
+    /** @type {?} */
+    DiagramPartialConfigEditComponent.prototype.diagramService;
+    /** @type {?} */
+    DiagramPartialConfigEditComponent.prototype.formGroup;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramPartialConfigEditComponent.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class PieDiagramPartialConfigComponent {
     /**
@@ -448,10 +646,29 @@ PieDiagramPartialConfigComponent.propDecorators = {
     ConfigChanged: [{ type: Output }],
     formGroup: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    PieDiagramPartialConfigComponent.prototype.ConfigChanged;
+    /** @type {?} */
+    PieDiagramPartialConfigComponent.prototype.dataSubscribtion;
+    /** @type {?} */
+    PieDiagramPartialConfigComponent.prototype.dataLoaded;
+    /** @type {?} */
+    PieDiagramPartialConfigComponent.prototype._dataLoaded;
+    /** @type {?} */
+    PieDiagramPartialConfigComponent.prototype.donutFormGroup;
+    /** @type {?} */
+    PieDiagramPartialConfigComponent.prototype.diagramService;
+    /**
+     * @type {?}
+     * @private
+     */
+    PieDiagramPartialConfigComponent.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class BooleanoWidgetPartialConfigComponent {
     /**
@@ -510,10 +727,27 @@ BooleanoWidgetPartialConfigComponent.ctorParameters = () => [
 BooleanoWidgetPartialConfigComponent.propDecorators = {
     formGroup: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    BooleanoWidgetPartialConfigComponent.prototype.dataSubscribtion;
+    /** @type {?} */
+    BooleanoWidgetPartialConfigComponent.prototype.dataLoaded;
+    /** @type {?} */
+    BooleanoWidgetPartialConfigComponent.prototype._dataLoaded;
+    /** @type {?} */
+    BooleanoWidgetPartialConfigComponent.prototype.booleanoFormGroup;
+    /** @type {?} */
+    BooleanoWidgetPartialConfigComponent.prototype.diagramService;
+    /**
+     * @type {?}
+     * @private
+     */
+    BooleanoWidgetPartialConfigComponent.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NumericWidgetPartialConfigComponent {
     /**
@@ -572,10 +806,27 @@ NumericWidgetPartialConfigComponent.ctorParameters = () => [
 NumericWidgetPartialConfigComponent.propDecorators = {
     formGroup: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    NumericWidgetPartialConfigComponent.prototype.dataSubscribtion;
+    /** @type {?} */
+    NumericWidgetPartialConfigComponent.prototype.dataLoaded;
+    /** @type {?} */
+    NumericWidgetPartialConfigComponent.prototype._dataLoaded;
+    /** @type {?} */
+    NumericWidgetPartialConfigComponent.prototype.donutFormGroup;
+    /** @type {?} */
+    NumericWidgetPartialConfigComponent.prototype.diagramService;
+    /**
+     * @type {?}
+     * @private
+     */
+    NumericWidgetPartialConfigComponent.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LinearDiagramPartialConfigComponent {
     /**
@@ -639,10 +890,29 @@ LinearDiagramPartialConfigComponent.propDecorators = {
     data: [{ type: Input }],
     ConfigChanged: [{ type: Output }]
 };
+if (false) {
+    /** @type {?} */
+    LinearDiagramPartialConfigComponent.prototype.dataSubscribtion;
+    /** @type {?} */
+    LinearDiagramPartialConfigComponent.prototype.dataLoaded;
+    /** @type {?} */
+    LinearDiagramPartialConfigComponent.prototype._data;
+    /** @type {?} */
+    LinearDiagramPartialConfigComponent.prototype.ConfigChanged;
+    /** @type {?} */
+    LinearDiagramPartialConfigComponent.prototype.diagramService;
+    /** @type {?} */
+    LinearDiagramPartialConfigComponent.prototype.formGroup;
+    /**
+     * @type {?}
+     * @private
+     */
+    LinearDiagramPartialConfigComponent.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ServerConnectingTimeDiagramComponent {
     /**
@@ -653,9 +923,12 @@ class ServerConnectingTimeDiagramComponent {
         this.time = 0;
         this.dataLoaded = new BehaviorSubject(false);
         this.data = this.injector.get("data");
-        setInterval(() => {
+        setInterval((/**
+         * @return {?}
+         */
+        () => {
             this.time = this.time + 1;
-        }, 1000);
+        }), 1000);
     }
     /**
      * @param {?} data
@@ -704,10 +977,23 @@ ServerConnectingTimeDiagramComponent.propDecorators = {
     time: [{ type: Input }],
     data: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    ServerConnectingTimeDiagramComponent.prototype.time;
+    /** @type {?} */
+    ServerConnectingTimeDiagramComponent.prototype.dataLoaded;
+    /** @type {?} */
+    ServerConnectingTimeDiagramComponent.prototype._data;
+    /**
+     * @type {?}
+     * @private
+     */
+    ServerConnectingTimeDiagramComponent.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DiagramConfigurationService {
     /**
@@ -732,11 +1018,18 @@ DiagramConfigurationService.decorators = [
 DiagramConfigurationService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [MODULE_CONFIG_TOKEN,] }] }
 ];
-/** @nocollapse */ DiagramConfigurationService.ngInjectableDef = defineInjectable({ factory: function DiagramConfigurationService_Factory() { return new DiagramConfigurationService(inject(MODULE_CONFIG_TOKEN)); }, token: DiagramConfigurationService, providedIn: "root" });
+/** @nocollapse */ DiagramConfigurationService.ngInjectableDef = ɵɵdefineInjectable({ factory: function DiagramConfigurationService_Factory() { return new DiagramConfigurationService(ɵɵinject(MODULE_CONFIG_TOKEN)); }, token: DiagramConfigurationService, providedIn: "root" });
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramConfigurationService.prototype._config;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var AddDiagramApiModel;
 (function (AddDiagramApiModel) {
@@ -745,7 +1038,11 @@ var AddDiagramApiModel;
          * @param {?=} initValue
          */
         constructor(initValue = (/** @type {?} */ ({}))) {
-            Object.keys(initValue).forEach(key => (this[key] = initValue[key]));
+            Object.keys(initValue).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            key => (this[key] = initValue[key])));
         }
         /**
          * @return {?}
@@ -828,15 +1125,65 @@ var AddDiagramApiModel;
         }
     }
     AddDiagramApiModel.Request = Request;
+    if (false) {
+        /** @type {?} */
+        Request.prototype._id;
+        /** @type {?} */
+        Request.prototype.Name;
+        /** @type {?} */
+        Request.prototype.IsActive;
+        /** @type {?} */
+        Request.prototype.Type;
+        /** @type {?} */
+        Request.prototype.Types;
+        /** @type {?} */
+        Request.prototype.Legend;
+        /** @type {?} */
+        Request.prototype.Subchart;
+        /** @type {?} */
+        Request.prototype.Zoom;
+        /** @type {?} */
+        Request.prototype.Tooltip;
+        /** @type {?} */
+        Request.prototype.Route;
+        /** @type {?} */
+        Request.prototype.Sync;
+        /** @type {?} */
+        Request.prototype.Colors;
+        /** @type {?} */
+        Request.prototype.ColumnMappings;
+        /** @type {?} */
+        Request.prototype.Flow;
+        /** @type {?} */
+        Request.prototype.columns;
+        /** @type {?} */
+        Request.prototype.Cols;
+        /** @type {?} */
+        Request.prototype.Rows;
+        /** @type {?} */
+        Request.prototype.TextColor;
+        /** @type {?} */
+        Request.prototype.BackgroundColor;
+        /** @type {?} */
+        Request.prototype.booleano;
+        /** @type {?} */
+        Request.prototype.Source;
+        /** @type {?} */
+        Request.prototype.Groups;
+    }
     class Response {
         constructor() { }
     }
     AddDiagramApiModel.Response = Response;
+    if (false) {
+        /** @type {?} */
+        Response.prototype.Result;
+    }
 })(AddDiagramApiModel || (AddDiagramApiModel = {}));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DiagramService {
     /**
@@ -858,10 +1205,18 @@ class DiagramService {
     getDiagrams() {
         return this.http
             .get(this.config.env.frontend_server + "/api/diagram")
-            .map((response) => response)
-            .catch((err) => {
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        (response) => response))
+            .catch((/**
+         * @param {?} err
+         * @return {?}
+         */
+        (err) => {
             return Observable.throw(err);
-        });
+        }));
     }
     /**
      * @return {?}
@@ -869,10 +1224,18 @@ class DiagramService {
     getSources() {
         return this.http
             .get(this.config.env.frontend_server + "/api/source")
-            .map((response) => ((/** @type {?} */ (response))).Result)
-            .catch((err) => {
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        (response) => ((/** @type {?} */ (response))).Result))
+            .catch((/**
+         * @param {?} err
+         * @return {?}
+         */
+        (err) => {
             return Observable.throw(err);
-        });
+        }));
     }
     /**
      * @return {?}
@@ -880,10 +1243,18 @@ class DiagramService {
     getGroups() {
         return this.http
             .get(this.config.env.frontend_server + "/api/diagram/groups")
-            .map((response) => ((/** @type {?} */ (response))).Result)
-            .catch((err) => {
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        (response) => ((/** @type {?} */ (response))).Result))
+            .catch((/**
+         * @param {?} err
+         * @return {?}
+         */
+        (err) => {
             return Observable.throw(err);
-        });
+        }));
     }
     /**
      * @param {?} id
@@ -894,10 +1265,18 @@ class DiagramService {
             debugger;
         return this.http
             .get(this.config.env.frontend_server + `/api/diagram/${id}`)
-            .map((response) => response)
-            .catch((err) => {
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        (response) => response))
+            .catch((/**
+         * @param {?} err
+         * @return {?}
+         */
+        (err) => {
             return Observable.throw(err);
-        });
+        }));
     }
     /**
      * @param {?} data
@@ -908,10 +1287,18 @@ class DiagramService {
         const model = new AddDiagramApiModel.Request(data);
         return this.http
             .post(this.config.env.frontend_server + "/api/diagram", model.getRequestBody())
-            .map((response) => response)
-            .catch((err) => {
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        (response) => response))
+            .catch((/**
+         * @param {?} err
+         * @return {?}
+         */
+        (err) => {
             return Observable.throw(err);
-        });
+        }));
     }
     /**
      * @param {?} body
@@ -920,10 +1307,18 @@ class DiagramService {
     updateDiagram(body) {
         return this.http
             .put(this.config.env.frontend_server + "/api/diagram", body)
-            .map((response) => response)
-            .catch((err) => {
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        (response) => response))
+            .catch((/**
+         * @param {?} err
+         * @return {?}
+         */
+        (err) => {
             return Observable.throw(err);
-        });
+        }));
     }
     /**
      * @param {?} id
@@ -932,10 +1327,18 @@ class DiagramService {
     deleteDiagram(id) {
         return this.http
             .delete(`${this.config.env.frontend_server}/api/diagram/${id}`)
-            .map((response) => response)
-            .catch((err) => {
+            .map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        (response) => response))
+            .catch((/**
+         * @param {?} err
+         * @return {?}
+         */
+        (err) => {
             return Observable.throw(err);
-        });
+        }));
     }
     /**
      * @param {?} source
@@ -953,7 +1356,11 @@ class DiagramService {
                     time: this.getFloorTime(source.Interval, time).toString()
                 }
             })
-                .map((res) => res.Result);
+                .map((/**
+             * @param {?} res
+             * @return {?}
+             */
+            (res) => res.Result));
         }
         else if (source.Interval == 0) {
             return this.http
@@ -963,17 +1370,29 @@ class DiagramService {
                     time: null
                 }
             })
-                .map((res) => res.Result);
+                .map((/**
+             * @param {?} res
+             * @return {?}
+             */
+            (res) => res.Result));
         }
         else {
             time = time || Date.now();
-            return Observable.timer(0, source.Interval).pipe(takeUntil(unsubscribe), switchMap((i) => this.http
+            return Observable.timer(0, source.Interval).pipe(takeUntil(unsubscribe), switchMap((/**
+             * @param {?} i
+             * @return {?}
+             */
+            (i) => this.http
                 .get(`${this.config.env.frontend_server}/api/data`, {
                 params: {
                     sourceId: source._id,
                     time: this.getFloorTime(source.Interval, time).toString()
                 }
-            }).pipe(map((res) => res.Result))));
+            }).pipe(map((/**
+             * @param {?} res
+             * @return {?}
+             */
+            (res) => res.Result))))));
         }
     }
     /**
@@ -984,7 +1403,11 @@ class DiagramService {
     extract_columns_from_data(data, columnsMappings) {
         /** @type {?} */
         let res = [];
-        columnsMappings.forEach((item) => {
+        columnsMappings.forEach((/**
+         * @param {?} item
+         * @return {?}
+         */
+        (item) => {
             /** @type {?} */
             const ValueData = _.getValue(data, item.ValuePath);
             if (!item.NamePath) {
@@ -993,12 +1416,17 @@ class DiagramService {
             /** @type {?} */
             const NameData = _.getValue(data, item.NamePath);
             if (_.is.array(NameData)) {
-                return (res = res.concat(NameData.map((_item, i) => [_item].concat(ValueData[i]))));
+                return (res = res.concat(NameData.map((/**
+                 * @param {?} _item
+                 * @param {?} i
+                 * @return {?}
+                 */
+                (_item, i) => [_item].concat(ValueData[i])))));
             }
             else {
                 return res.push([NameData].concat(ValueData));
             }
-        });
+        }));
         return res;
     }
     /**
@@ -1013,7 +1441,11 @@ class DiagramService {
      * @return {?}
      */
     get_last_node_of_data(data) {
-        return ((/** @type {?} */ (_.report(data)))).filter((item) => item.isLastNode);
+        return ((/** @type {?} */ (_.report(data)))).filter((/**
+         * @param {?} item
+         * @return {?}
+         */
+        (item) => item.isLastNode));
     }
     /**
      * @param {?} columns
@@ -1038,11 +1470,15 @@ class DiagramService {
      */
     generateDiagram(config, id, route, sync) {
         this.charts[id] = c3.generate(Object.assign({}, config, { bindto: `#diagram_${id}` }));
-        return this.getData((/** @type {?} */ ({})), new Subject(), sync).subscribe((data) => {
+        return this.getData((/** @type {?} */ ({})), new Subject(), sync).subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        (data) => {
             this.charts[id].load({
                 columns: this.extract_columns_from_data(data.Data, config.ColumnMappings)
             });
-        });
+        }));
     }
     /**
      * @param {?=} precision
@@ -1064,11 +1500,32 @@ DiagramService.ctorParameters = () => [
     { type: Store },
     { type: DiagramConfigurationService }
 ];
-/** @nocollapse */ DiagramService.ngInjectableDef = defineInjectable({ factory: function DiagramService_Factory() { return new DiagramService(inject(HttpClient), inject(Store), inject(DiagramConfigurationService)); }, token: DiagramService, providedIn: "root" });
+/** @nocollapse */ DiagramService.ngInjectableDef = ɵɵdefineInjectable({ factory: function DiagramService_Factory() { return new DiagramService(ɵɵinject(HttpClient), ɵɵinject(Store), ɵɵinject(DiagramConfigurationService)); }, token: DiagramService, providedIn: "root" });
+if (false) {
+    /** @type {?} */
+    DiagramService.prototype.config;
+    /** @type {?} */
+    DiagramService.prototype.charts;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramService.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramService.prototype.configurationService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NumericEditDiagramComponent {
     /**
@@ -1101,9 +1558,17 @@ class NumericEditDiagramComponent {
      */
     ngOnInit() {
         // this.dataSubscribtion = this.diagramService.getData(this.data.Source.Route)
-        this.diagramService.getData(this.data.Source, this.unsubscribe).pipe(filter(data => data != undefined), takeUntil(this.unsubscribe)).subscribe(data => {
+        this.diagramService.getData(this.data.Source, this.unsubscribe).pipe(filter((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => data != undefined)), takeUntil(this.unsubscribe)).subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => {
             debugger;
-        });
+        }));
     }
     /**
      * @return {?}
@@ -1130,10 +1595,28 @@ NumericEditDiagramComponent.ctorParameters = () => [
 NumericEditDiagramComponent.propDecorators = {
     data: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    NumericEditDiagramComponent.prototype.unsubscribe;
+    /** @type {?} */
+    NumericEditDiagramComponent.prototype.dataLoaded;
+    /** @type {?} */
+    NumericEditDiagramComponent.prototype._data;
+    /**
+     * @type {?}
+     * @private
+     */
+    NumericEditDiagramComponent.prototype.injector;
+    /**
+     * @type {?}
+     * @private
+     */
+    NumericEditDiagramComponent.prototype.diagramService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NumericDiagramComponent {
     /**
@@ -1166,11 +1649,15 @@ class NumericDiagramComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.dataSubscribtion = this.diagramService.getData(this.data.Source, this.unsubscribe).pipe(takeUntil(this.unsubscribe)).subscribe(data => {
+        this.dataSubscribtion = this.diagramService.getData(this.data.Source, this.unsubscribe).pipe(takeUntil(this.unsubscribe)).subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => {
             /** @type {?} */
             const counter = this.diagramService.extract_columns_from_data(data.Data, this.data.Chart.ColumnMappings);
             this.counter = counter[0][1];
-        });
+        }));
     }
     /**
      * @return {?}
@@ -1196,10 +1683,32 @@ NumericDiagramComponent.ctorParameters = () => [
 NumericDiagramComponent.propDecorators = {
     data: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    NumericDiagramComponent.prototype.unsubscribe;
+    /** @type {?} */
+    NumericDiagramComponent.prototype.dataLoaded;
+    /** @type {?} */
+    NumericDiagramComponent.prototype._data;
+    /** @type {?} */
+    NumericDiagramComponent.prototype.counter;
+    /** @type {?} */
+    NumericDiagramComponent.prototype.dataSubscribtion;
+    /**
+     * @type {?}
+     * @private
+     */
+    NumericDiagramComponent.prototype.injector;
+    /**
+     * @type {?}
+     * @private
+     */
+    NumericDiagramComponent.prototype.diagramService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 // import * as appReducer from 'app/reducers';
 class DiagramModuleContainerComponent {
@@ -1224,10 +1733,17 @@ DiagramModuleContainerComponent.decorators = [
 DiagramModuleContainerComponent.ctorParameters = () => [
     { type: DiagramService }
 ];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramModuleContainerComponent.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DataMapperComponent {
     /**
@@ -1270,17 +1786,55 @@ DataMapperComponent.propDecorators = {
     destination: [{ type: Input }],
     data: [{ type: Input }]
 };
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class DiagramModel {
+if (false) {
+    /** @type {?} */
+    DataMapperComponent.prototype.destination;
+    /** @type {?} */
+    DataMapperComponent.prototype._data;
+    /** @type {?} */
+    DataMapperComponent.prototype.dataReport;
+    /**
+     * @type {?}
+     * @private
+     */
+    DataMapperComponent.prototype.diagramService;
+    /**
+     * @type {?}
+     * @private
+     */
+    DataMapperComponent.prototype.store;
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class DiagramModel {
+}
+if (false) {
+    /** @type {?} */
+    DiagramModel.prototype._id;
+    /** @type {?} */
+    DiagramModel.prototype.Name;
+    /** @type {?} */
+    DiagramModel.prototype.IsActive;
+    /** @type {?} */
+    DiagramModel.prototype.Description;
+    /** @type {?} */
+    DiagramModel.prototype.Groups;
+    /** @type {?} */
+    DiagramModel.prototype.Box;
+    /** @type {?} */
+    DiagramModel.prototype.Source;
+    /** @type {?} */
+    DiagramModel.prototype.Widget;
+    /** @type {?} */
+    DiagramModel.prototype.Chart;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const AddDiagramActionTypes = {
@@ -1307,6 +1861,12 @@ class AddDiagramAction {
         this.type = AddDiagramActionTypes.ADD_DIAGRAM;
     }
 }
+if (false) {
+    /** @type {?} */
+    AddDiagramAction.prototype.type;
+    /** @type {?} */
+    AddDiagramAction.prototype.payload;
+}
 class AddDiagramActionStart {
     /**
      * @param {?} payload
@@ -1315,6 +1875,12 @@ class AddDiagramActionStart {
         this.payload = payload;
         this.type = AddDiagramActionTypes.ADD_DIAGRAM_START;
     }
+}
+if (false) {
+    /** @type {?} */
+    AddDiagramActionStart.prototype.type;
+    /** @type {?} */
+    AddDiagramActionStart.prototype.payload;
 }
 class AddDiagramActionSucceed {
     /**
@@ -1325,10 +1891,20 @@ class AddDiagramActionSucceed {
         this.type = AddDiagramActionTypes.ADD_DIAGRAM_SUCCEED;
     }
 }
+if (false) {
+    /** @type {?} */
+    AddDiagramActionSucceed.prototype.type;
+    /** @type {?} */
+    AddDiagramActionSucceed.prototype.payload;
+}
 class AddDiagramActionFailed {
     constructor() {
         this.type = AddDiagramActionTypes.ADD_DIAGRAM_FAILED;
     }
+}
+if (false) {
+    /** @type {?} */
+    AddDiagramActionFailed.prototype.type;
 }
 class DiagramConfigChangedAction {
     /**
@@ -1339,6 +1915,12 @@ class DiagramConfigChangedAction {
         this.type = AddDiagramActionTypes.DIAGRAM_CONFIG_CHANGED;
     }
 }
+if (false) {
+    /** @type {?} */
+    DiagramConfigChangedAction.prototype.type;
+    /** @type {?} */
+    DiagramConfigChangedAction.prototype.payload;
+}
 class HaveEndpointAction {
     /**
      * @param {?} payload
@@ -1347,6 +1929,12 @@ class HaveEndpointAction {
         this.payload = payload;
         this.type = AddDiagramActionTypes.HAVE_ENDPOINT;
     }
+}
+if (false) {
+    /** @type {?} */
+    HaveEndpointAction.prototype.type;
+    /** @type {?} */
+    HaveEndpointAction.prototype.payload;
 }
 class DataLoadedAction {
     /**
@@ -1357,6 +1945,12 @@ class DataLoadedAction {
         this.type = AddDiagramActionTypes.DATA_LOADED;
     }
 }
+if (false) {
+    /** @type {?} */
+    DataLoadedAction.prototype.type;
+    /** @type {?} */
+    DataLoadedAction.prototype.payload;
+}
 class StructureDefinitionStartAction {
     /**
      * @param {?} payload
@@ -1365,6 +1959,12 @@ class StructureDefinitionStartAction {
         this.payload = payload;
         this.type = AddDiagramActionTypes.STRUCTURE_DEFINITION_START;
     }
+}
+if (false) {
+    /** @type {?} */
+    StructureDefinitionStartAction.prototype.type;
+    /** @type {?} */
+    StructureDefinitionStartAction.prototype.payload;
 }
 class StructureDefinitionFinishedAction {
     /**
@@ -1375,6 +1975,12 @@ class StructureDefinitionFinishedAction {
         this.type = AddDiagramActionTypes.STRUCTURE_DEFINITION_END;
     }
 }
+if (false) {
+    /** @type {?} */
+    StructureDefinitionFinishedAction.prototype.type;
+    /** @type {?} */
+    StructureDefinitionFinishedAction.prototype.payload;
+}
 class ColumnsMappingChangedAction {
     /**
      * @param {?} payload
@@ -1383,6 +1989,27 @@ class ColumnsMappingChangedAction {
         this.payload = payload;
         this.type = AddDiagramActionTypes.COLUMNS_MAPPING_CHANGED;
     }
+}
+if (false) {
+    /** @type {?} */
+    ColumnsMappingChangedAction.prototype.type;
+    /** @type {?} */
+    ColumnsMappingChangedAction.prototype.payload;
+}
+class DataCalculatedAction {
+    /**
+     * @param {?} payload
+     */
+    constructor(payload) {
+        this.payload = payload;
+        this.type = AddDiagramActionTypes.DATA_CALCULATED;
+    }
+}
+if (false) {
+    /** @type {?} */
+    DataCalculatedAction.prototype.type;
+    /** @type {?} */
+    DataCalculatedAction.prototype.payload;
 }
 class GenerateDiagramAction {
     /**
@@ -1393,10 +2020,25 @@ class GenerateDiagramAction {
         this.type = AddDiagramActionTypes.GENERATE_DIAGRAM;
     }
 }
+if (false) {
+    /** @type {?} */
+    GenerateDiagramAction.prototype.type;
+    /** @type {?} */
+    GenerateDiagramAction.prototype.payload;
+}
+class ColumnAdded {
+    constructor() {
+        this.type = AddDiagramActionTypes.COLUMN_ADDED;
+    }
+}
+if (false) {
+    /** @type {?} */
+    ColumnAdded.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class AddDiagramComponent {
     /**
@@ -1416,12 +2058,20 @@ class AddDiagramComponent {
         this.groups = this.diagramService.getGroups();
         // this.diagramModel = new DiagramModel();
         this.columnsMappings = ((/** @type {?} */ (this.formGroup.controls.ColumnMappings))).controls;
-        this.route.params.subscribe(params => {
+        this.route.params.subscribe((/**
+         * @param {?} params
+         * @return {?}
+         */
+        params => {
             /** @type {?} */
             const diagramId = params["id"];
             // tslint:disable-next-line:no-unused-expression
             diagramId &&
-                this.diagramService.getDiagram(diagramId).subscribe(data => {
+                this.diagramService.getDiagram(diagramId).subscribe((/**
+                 * @param {?} data
+                 * @return {?}
+                 */
+                data => {
                     this.formGroup.patchValue({
                         _id: data._id,
                         Name: data.Name,
@@ -1444,17 +2094,29 @@ class AddDiagramComponent {
                     });
                     /** @type {?} */
                     const colorsControl = (/** @type {?} */ (this.formGroup.controls["Colors"]));
-                    Object.keys(data.Chart.data.colors || {}).forEach(columnKey => {
+                    Object.keys(data.Chart.data.colors || {}).forEach((/**
+                     * @param {?} columnKey
+                     * @return {?}
+                     */
+                    columnKey => {
                         if (!(columnKey in colorsControl.controls))
                             colorsControl.addControl(columnKey, new FormControl(data.Chart.data.colors[columnKey]));
-                    });
+                    }));
                     /** @type {?} */
                     const typesControl = (/** @type {?} */ (this.formGroup.controls["Types"]));
-                    Object.keys(data.Chart.data.types || {}).forEach(key => {
+                    Object.keys(data.Chart.data.types || {}).forEach((/**
+                     * @param {?} key
+                     * @return {?}
+                     */
+                    key => {
                         if (!(key in typesControl.controls))
                             typesControl.addControl(key, new FormControl(data.Chart.data.types[key]));
-                    });
-                    data.Chart.ColumnMappings.forEach(mapping => this.addColumn(mapping.NamePath, mapping.ValuePath));
+                    }));
+                    data.Chart.ColumnMappings.forEach((/**
+                     * @param {?} mapping
+                     * @return {?}
+                     */
+                    mapping => this.addColumn(mapping.NamePath, mapping.ValuePath)));
                     this.source = data.Source;
                     this.store.dispatch(new HaveEndpointAction(this));
                     this.diagramPartialConfig = {
@@ -1464,7 +2126,7 @@ class AddDiagramComponent {
                             diagramService: this.diagramService
                         }
                     };
-                });
+                }));
             this.diagramPartialConfig = {
                 type: this.formGroup.value.Type,
                 inputs: {
@@ -1472,7 +2134,7 @@ class AddDiagramComponent {
                     diagramService: this.diagramService
                 }
             };
-        });
+        }));
         this.diagramTypes = [
             "bar",
             "donut",
@@ -1490,12 +2152,16 @@ class AddDiagramComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.formGroup.controls.ColumnMappings.statusChanges.subscribe(status => {
+        this.formGroup.controls.ColumnMappings.statusChanges.subscribe((/**
+         * @param {?} status
+         * @return {?}
+         */
+        status => {
             if (status == "VALID" &&
                 ((/** @type {?} */ (this.formGroup.controls.ColumnMappings))).controls.length > 0 &&
                 this.data)
                 this.store.dispatch(new ColumnsMappingChangedAction(this));
-        });
+        }));
     }
     /**
      * @return {?}
@@ -1518,10 +2184,14 @@ class AddDiagramComponent {
         debugger;
         /** @type {?} */
         const observer = this.diagramService.getData(Object.assign({}, this.source, { Interval: 0 }), this.unsubscribe, Date.now() - 10000);
-        this.dataSubscription = observer.subscribe(data => {
+        this.dataSubscription = observer.subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => {
             this.data = data.Data;
             this.pathOptions = this.diagramService.get_data_report(data.Data);
-        });
+        }));
         return observer;
     }
     /**
@@ -1585,29 +2255,45 @@ class AddDiagramComponent {
      * @return {?}
      */
     calculateColumns() {
-        return Observable$1.create(obser => {
+        return Observable$1.create((/**
+         * @param {?} obser
+         * @return {?}
+         */
+        obser => {
+            /** @type {?} */
+            const columnsMApping = {
+            // NameVAlue:  (this.formGroup.controls.ColumnMappings as FormArray).controls.values
+            };
             /** @type {?} */
             const columns = this.diagramService.extract_columns_from_data(this.data, ((/** @type {?} */ (this.formGroup.controls.ColumnMappings))).value);
             this.formGroup.controls.columns.setValue(columns);
             // add new item to this.formGroup.controls.colors form control
             /** @type {?} */
             const colorsControl = (/** @type {?} */ (this.formGroup.controls["Colors"]));
-            columns.forEach(column => {
+            columns.forEach((/**
+             * @param {?} column
+             * @return {?}
+             */
+            column => {
                 /** @type {?} */
                 const columnKey = column[0];
                 if (!(columnKey in colorsControl.controls))
                     colorsControl.addControl(columnKey, new FormControl("#123456"));
-            });
+            }));
             /** @type {?} */
             const typesControl = (/** @type {?} */ (this.formGroup.controls["Types"]));
-            columns.forEach(column => {
+            columns.forEach((/**
+             * @param {?} column
+             * @return {?}
+             */
+            column => {
                 /** @type {?} */
                 const key = column[0];
                 if (!(key in typesControl.controls))
                     typesControl.addControl(key, new FormControl(this.formGroup.value.Type));
-            });
+            }));
             obser.next();
-        });
+        }));
     }
     /**
      * @return {?}
@@ -1692,10 +2378,64 @@ AddDiagramComponent.ctorParameters = () => [
     { type: Store },
     { type: ActivatedRoute }
 ];
+if (false) {
+    /** @type {?} */
+    AddDiagramComponent.prototype.unsubscribe;
+    /** @type {?} */
+    AddDiagramComponent.prototype.formGroup;
+    /** @type {?} */
+    AddDiagramComponent.prototype.data;
+    /** @type {?} */
+    AddDiagramComponent.prototype.columns;
+    /** @type {?} */
+    AddDiagramComponent.prototype.chart;
+    /** @type {?} */
+    AddDiagramComponent.prototype.diagramTypes;
+    /** @type {?} */
+    AddDiagramComponent.prototype.pathOptions;
+    /** @type {?} */
+    AddDiagramComponent.prototype.columnsMappings;
+    /** @type {?} */
+    AddDiagramComponent.prototype.dataSubscription;
+    /** @type {?} */
+    AddDiagramComponent.prototype.diagramModel;
+    /** @type {?} */
+    AddDiagramComponent.prototype.componentModel;
+    /** @type {?} */
+    AddDiagramComponent.prototype.typeMapToDiagram;
+    /** @type {?} */
+    AddDiagramComponent.prototype.diagramPartialConfig;
+    /** @type {?} */
+    AddDiagramComponent.prototype.sources;
+    /** @type {?} */
+    AddDiagramComponent.prototype.groups;
+    /** @type {?} */
+    AddDiagramComponent.prototype.source;
+    /**
+     * @type {?}
+     * @private
+     */
+    AddDiagramComponent.prototype.diagramService;
+    /**
+     * @type {?}
+     * @private
+     */
+    AddDiagramComponent.prototype.formBuilder;
+    /**
+     * @type {?}
+     * @private
+     */
+    AddDiagramComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    AddDiagramComponent.prototype.route;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class diagramViewComponent {
     /**
@@ -1727,10 +2467,25 @@ diagramViewComponent.ctorParameters = () => [
 diagramViewComponent.propDecorators = {
     diagramId: [{ type: Input, args: ["id",] }]
 };
+if (false) {
+    /** @type {?} */
+    diagramViewComponent.prototype.diagrams;
+    /** @type {?} */
+    diagramViewComponent.prototype.width;
+    /** @type {?} */
+    diagramViewComponent.prototype.diagramData$;
+    /** @type {?} */
+    diagramViewComponent.prototype.diagramId;
+    /**
+     * @type {?}
+     * @private
+     */
+    diagramViewComponent.prototype.diagramService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DiagramsComponent {
     /**
@@ -1768,10 +2523,21 @@ DiagramsComponent.decorators = [
 DiagramsComponent.ctorParameters = () => [
     { type: DiagramService }
 ];
+if (false) {
+    /** @type {?} */
+    DiagramsComponent.prototype.diagrams;
+    /** @type {?} */
+    DiagramsComponent.prototype.width;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramsComponent.prototype.diagramService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class EditDiagramComponent {
     /**
@@ -1785,11 +2551,19 @@ class EditDiagramComponent {
         this.store = store;
         this.formGroup = EditDiagramApiModel.Request.formGroup;
         /** @type {?} */
-        let Route = this.route.params.subscribe(params => {
+        let Route = this.route.params.subscribe((/**
+         * @param {?} params
+         * @return {?}
+         */
+        params => {
             /** @type {?} */
             const diagramId = params["id"];
-            this.diagramService.getDiagram(diagramId).subscribe(data => this.formGroup.patchValue(data));
-        });
+            this.diagramService.getDiagram(diagramId).subscribe((/**
+             * @param {?} data
+             * @return {?}
+             */
+            data => this.formGroup.patchValue(data)));
+        }));
     }
     /**
      * @return {?}
@@ -1816,10 +2590,29 @@ EditDiagramComponent.ctorParameters = () => [
     { type: ActivatedRoute },
     { type: Store }
 ];
+if (false) {
+    /** @type {?} */
+    EditDiagramComponent.prototype.formGroup;
+    /**
+     * @type {?}
+     * @private
+     */
+    EditDiagramComponent.prototype.diagramService;
+    /**
+     * @type {?}
+     * @private
+     */
+    EditDiagramComponent.prototype.route;
+    /**
+     * @type {?}
+     * @private
+     */
+    EditDiagramComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DiagramComponent {
     /**
@@ -1840,15 +2633,23 @@ class DiagramComponent {
         this.now = Date.now();
         debugger;
         this.data = this.injector.get("data");
-        this.route.params.subscribe(params => {
+        this.route.params.subscribe((/**
+         * @param {?} params
+         * @return {?}
+         */
+        params => {
             /** @type {?} */
             const diagramId = params["id"];
             // tslint:disable-next-line:no-unused-expression
             diagramId &&
-                this.diagramService.getDiagram(diagramId).subscribe(data => {
+                this.diagramService.getDiagram(diagramId).subscribe((/**
+                 * @param {?} data
+                 * @return {?}
+                 */
+                data => {
                     console.log(data);
-                });
-        });
+                }));
+        }));
     }
     /**
      * @param {?} value
@@ -1883,12 +2684,28 @@ class DiagramComponent {
         //         )
         //         // .switchMap((res: any) => of(res.Result.Data))
         //         .map((res: any) => res.Result.Data)
-        this.modelIsCorrect.delay(300).filter(data => data).subscribe(state => {
+        this.modelIsCorrect.delay(300).filter((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => data)).subscribe((/**
+         * @param {?} state
+         * @return {?}
+         */
+        state => {
             this.chart = c3.generate(Object.assign({}, this.data.Chart, { bindto: `#diagram_${this.data._id}` }));
             this.dataSubscribtion = this.diagramService
                 .getData(this.data.Source, this.unsubscribe)
-                .pipe(filter(data => data != undefined), takeUntil(this.unsubscribe))
-                .subscribe(data => {
+                .pipe(filter((/**
+             * @param {?} data
+             * @return {?}
+             */
+            data => data != undefined)), takeUntil(this.unsubscribe))
+                .subscribe((/**
+             * @param {?} data
+             * @return {?}
+             */
+            data => {
                 this.now = Date.now();
                 this.time = data.Time;
                 if (this.data.Chart.Flow) {
@@ -1902,8 +2719,8 @@ class DiagramComponent {
                         columns: this.diagramService.extract_columns_from_data(data.Data, this.data.Chart.ColumnMappings)
                     });
                 }
-            });
-        });
+            }));
+        }));
         // this.dataSubscribtion = this.diagramService.generateDiagram(
         //         this.model.Chart,
         //         this.model._id,
@@ -1929,7 +2746,11 @@ class DiagramComponent {
         // this.diagramService.getData(this.data.Source, Date.now() - ((1000 - e.value) * this.data.Source.Interval), true)
         this.dataSubscribtion = this.diagramService
             .getData(this.data.Source, this.unsubscribe, Date.now() - (1000 - e.value) * this.data.Source.Interval, true)
-            .subscribe(data => {
+            .subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => {
             this.time = data.Time;
             this.now = Date.now();
             // const columns = this.diagramService
@@ -1942,7 +2763,7 @@ class DiagramComponent {
             this.chart.load({
                 columns: this.diagramService.extract_columns_from_data(data.Data, this.data.Chart.ColumnMappings)
             });
-        });
+        }));
     }
 }
 DiagramComponent.decorators = [
@@ -1963,10 +2784,51 @@ DiagramComponent.ctorParameters = () => [
 DiagramComponent.propDecorators = {
     data: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    DiagramComponent.prototype.unsubscribe;
+    /** @type {?} */
+    DiagramComponent.prototype.modelIsCorrect;
+    /** @type {?} */
+    DiagramComponent.prototype._model;
+    /** @type {?} */
+    DiagramComponent.prototype.dataSubscribtion;
+    /** @type {?} */
+    DiagramComponent.prototype.chart;
+    /** @type {?} */
+    DiagramComponent.prototype.time;
+    /** @type {?} */
+    DiagramComponent.prototype.now;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramComponent.prototype.diagramService;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramComponent.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramComponent.prototype.injector;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramComponent.prototype.route;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DynamicComponentSelectorComponent {
     /**
@@ -2003,9 +2865,13 @@ class DynamicComponentSelectorComponent {
         /** @type {?} */
         let _component = this.typeMapToDiagram[data.Chart.data.type];
         /** @type {?} */
-        let inputProviders = Object.keys(raw).map(inputName => {
+        let inputProviders = Object.keys(raw).map((/**
+         * @param {?} inputName
+         * @return {?}
+         */
+        inputName => {
             return { provide: inputName, useValue: raw[inputName] };
-        });
+        }));
         /** @type {?} */
         let resolvedInputs = ReflectiveInjector.resolve(inputProviders);
         /** @type {?} */
@@ -2050,14 +2916,33 @@ DynamicComponentSelectorComponent.ctorParameters = () => [
     { type: ComponentFactoryResolver }
 ];
 DynamicComponentSelectorComponent.propDecorators = {
-    dynamicComponentContainer: [{ type: ViewChild, args: ["dynamicComponentContainer", { read: ViewContainerRef },] }],
-    widgetComponent: [{ type: ViewChild, args: [DiagramComponent,] }],
+    dynamicComponentContainer: [{ type: ViewChild, args: ["dynamicComponentContainer", { read: ViewContainerRef, static: false },] }],
+    widgetComponent: [{ type: ViewChild, args: [DiagramComponent, { static: false },] }],
     data: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    DynamicComponentSelectorComponent.prototype.typeMapToDiagram;
+    /** @type {?} */
+    DynamicComponentSelectorComponent.prototype.dynamicComponentContainer;
+    /** @type {?} */
+    DynamicComponentSelectorComponent.prototype.widgetComponent;
+    /** @type {?} */
+    DynamicComponentSelectorComponent.prototype.currentComponent;
+    /** @type {?} */
+    DynamicComponentSelectorComponent.prototype._data;
+    /** @type {?} */
+    DynamicComponentSelectorComponent.prototype.backgroundColor;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicComponentSelectorComponent.prototype.resolver;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DynamicConfigComponentSelectorComponent {
     /**
@@ -2093,9 +2978,13 @@ class DynamicConfigComponentSelectorComponent {
         /** @type {?} */
         let _component = this.typeMapToDiagram[data.type];
         /** @type {?} */
-        let inputProviders = Object.keys(data.inputs).map(inputName => {
+        let inputProviders = Object.keys(data.inputs).map((/**
+         * @param {?} inputName
+         * @return {?}
+         */
+        inputName => {
             return { provide: inputName, useValue: data.inputs[inputName] };
-        });
+        }));
         /** @type {?} */
         let resolvedInputs = ReflectiveInjector.resolve(inputProviders);
         /** @type {?} */
@@ -2105,9 +2994,12 @@ class DynamicConfigComponentSelectorComponent {
         /** @type {?} */
         let component = factory.create(injector);
         if (((/** @type {?} */ (component.instance))).ConfigChanged)
-            ((/** @type {?} */ (component.instance))).ConfigChanged.subscribe(() => {
+            ((/** @type {?} */ (component.instance))).ConfigChanged.subscribe((/**
+             * @return {?}
+             */
+            () => {
                 this.ConfigChanged.emit();
-            });
+            }));
         this.dynamicComponentContainer.insert(component.hostView);
         if (this.currentComponent) {
             this.currentComponent.destroy();
@@ -2137,14 +3029,29 @@ DynamicConfigComponentSelectorComponent.ctorParameters = () => [
     { type: ComponentFactoryResolver }
 ];
 DynamicConfigComponentSelectorComponent.propDecorators = {
-    dynamicComponentContainer: [{ type: ViewChild, args: ["dynamicComponentContainer", { read: ViewContainerRef },] }],
+    dynamicComponentContainer: [{ type: ViewChild, args: ["dynamicComponentContainer", { read: ViewContainerRef, static: false },] }],
     ConfigChanged: [{ type: Output }],
     data: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    DynamicConfigComponentSelectorComponent.prototype.typeMapToDiagram;
+    /** @type {?} */
+    DynamicConfigComponentSelectorComponent.prototype.dynamicComponentContainer;
+    /** @type {?} */
+    DynamicConfigComponentSelectorComponent.prototype.ConfigChanged;
+    /** @type {?} */
+    DynamicConfigComponentSelectorComponent.prototype.currentComponent;
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicConfigComponentSelectorComponent.prototype.resolver;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DiagramEffects {
     /**
@@ -2156,10 +3063,33 @@ class DiagramEffects {
         this.actions$ = actions$;
         this.router = router;
         this.diagramService = diagramService;
-        this.DiagramRequest$ = this.actions$.pipe(ofType(), map(action => action.payload), map(data => new GetDiagramsStart()));
-        this.getDiagram$ = this.actions$.pipe(ofType(), map(action => action.payload), switchMap((data) => this.diagramService
+        this.DiagramRequest$ = this.actions$.pipe(ofType(), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        action => action.payload)), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => new GetDiagramsStart())));
+        this.getDiagram$ = this.actions$.pipe(ofType(), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        action => action.payload)), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        (data) => this.diagramService
             .getDiagrams()
-            .pipe(map(res => new GetDiagramsSucceed(res)), catchError(() => of(new GetDiagramsFailed())))));
+            .pipe(map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => new GetDiagramsSucceed(res))), catchError((/**
+         * @return {?}
+         */
+        () => of(new GetDiagramsFailed())))))));
     }
 }
 DiagramEffects.decorators = [
@@ -2179,10 +3109,31 @@ __decorate([
     Effect(),
     __metadata("design:type", Object)
 ], DiagramEffects.prototype, "getDiagram$", void 0);
+if (false) {
+    /** @type {?} */
+    DiagramEffects.prototype.DiagramRequest$;
+    /** @type {?} */
+    DiagramEffects.prototype.getDiagram$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramEffects.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramEffects.prototype.diagramService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class AddDiagramEffects {
     /**
@@ -2194,23 +3145,79 @@ class AddDiagramEffects {
         this.actions$ = actions$;
         this.router = router;
         this.diagramService = diagramService;
-        this.addDiagramRequest$ = this.actions$.pipe(ofType(AddDiagramActionTypes.ADD_DIAGRAM), pluck("payload"), map(data => new AddDiagramActionStart(data)));
-        this.addDiagram$ = this.actions$.pipe(ofType(AddDiagramActionTypes.ADD_DIAGRAM_START), pluck("payload"), switchMap((data) => this.diagramService
+        this.addDiagramRequest$ = this.actions$.pipe(ofType(AddDiagramActionTypes.ADD_DIAGRAM), pluck("payload"), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => new AddDiagramActionStart(data))));
+        this.addDiagram$ = this.actions$.pipe(ofType(AddDiagramActionTypes.ADD_DIAGRAM_START), pluck("payload"), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        (data) => this.diagramService
             .addDiagram(data)
-            .pipe(map(res => new AddDiagramActionSucceed(res)), catchError(() => of$1(new AddDiagramActionFailed())))));
-        this.ADD_DIAGRAM_SUCCEED$ = this.actions$.pipe(ofType(AddDiagramActionTypes.ADD_DIAGRAM_SUCCEED), pluck("payload"), map(data => {
+            .pipe(map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => new AddDiagramActionSucceed(res))), catchError((/**
+         * @return {?}
+         */
+        () => of$1(new AddDiagramActionFailed())))))));
+        this.ADD_DIAGRAM_SUCCEED$ = this.actions$.pipe(ofType(AddDiagramActionTypes.ADD_DIAGRAM_SUCCEED), pluck("payload"), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => {
             this.router.navigate(["diagrams"]);
             return Observable$1.empty();
-        }));
-        this.HAVE_ENDPOINT$ = this.actions$.pipe(ofType(AddDiagramActionTypes.HAVE_ENDPOINT), pluck("payload"), map(data => new DataLoadedAction(data)));
-        this.DATA_LOADED$ = this.actions$.pipe(ofType(AddDiagramActionTypes.DATA_LOADED), pluck("payload"), map(data => new StructureDefinitionStartAction(data)));
-        this.DIAGRAM_CONFIG_CHANGED$ = this.actions$.pipe(ofType(AddDiagramActionTypes.DIAGRAM_CONFIG_CHANGED), pluck("payload"), map(data => new GenerateDiagramAction(data)));
-        this.STRUCTURE_DEFINITION_START$ = this.actions$.pipe(ofType(AddDiagramActionTypes.STRUCTURE_DEFINITION_START), pluck("payload"), switchMap(data => data.getDataStructure().map(() => new StructureDefinitionFinishedAction(data))));
-        this.COLUMNS_MAPPING_CHANGED$ = this.actions$.pipe(ofType(AddDiagramActionTypes.COLUMNS_MAPPING_CHANGED), pluck("payload"), switchMap(data => data.calculateColumns().map(() => new StructureDefinitionFinishedAction(data))));
+        })));
+        this.HAVE_ENDPOINT$ = this.actions$.pipe(ofType(AddDiagramActionTypes.HAVE_ENDPOINT), pluck("payload"), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => new DataLoadedAction(data))));
+        this.DATA_LOADED$ = this.actions$.pipe(ofType(AddDiagramActionTypes.DATA_LOADED), pluck("payload"), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => new StructureDefinitionStartAction(data))));
+        this.DIAGRAM_CONFIG_CHANGED$ = this.actions$.pipe(ofType(AddDiagramActionTypes.DIAGRAM_CONFIG_CHANGED), pluck("payload"), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => new GenerateDiagramAction(data))));
+        this.STRUCTURE_DEFINITION_START$ = this.actions$.pipe(ofType(AddDiagramActionTypes.STRUCTURE_DEFINITION_START), pluck("payload"), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => data.getDataStructure().map((/**
+         * @return {?}
+         */
+        () => new StructureDefinitionFinishedAction(data))))));
+        this.COLUMNS_MAPPING_CHANGED$ = this.actions$.pipe(ofType(AddDiagramActionTypes.COLUMNS_MAPPING_CHANGED), pluck("payload"), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => data.calculateColumns().map((/**
+         * @return {?}
+         */
+        () => new StructureDefinitionFinishedAction(data))))));
         this.STRUCTURE_DEFINITION_END$ = this.actions$
             // .skipUntil(this.actions$.ofType(AddDiagramActionTypes.DATA_LOADED))
-            .pipe(ofType(AddDiagramActionTypes.STRUCTURE_DEFINITION_END), pluck("payload"), switchMap(data => data.calculateColumns().map(() => new GenerateDiagramAction(data))));
-        this.GenerateDiagram$ = this.actions$.pipe(ofType(AddDiagramActionTypes.GENERATE_DIAGRAM), pluck("payload"), map(data => data.generateDiagram()));
+            .pipe(ofType(AddDiagramActionTypes.STRUCTURE_DEFINITION_END), pluck("payload"), switchMap((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => data.calculateColumns().map((/**
+         * @return {?}
+         */
+        () => new GenerateDiagramAction(data))))));
+        this.GenerateDiagram$ = this.actions$.pipe(ofType(AddDiagramActionTypes.GENERATE_DIAGRAM), pluck("payload"), map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        data => data.generateDiagram())));
     }
 }
 AddDiagramEffects.decorators = [
@@ -2262,10 +3269,47 @@ __decorate([
     Effect({ dispatch: false }),
     __metadata("design:type", Object)
 ], AddDiagramEffects.prototype, "GenerateDiagram$", void 0);
+if (false) {
+    /** @type {?} */
+    AddDiagramEffects.prototype.addDiagramRequest$;
+    /** @type {?} */
+    AddDiagramEffects.prototype.addDiagram$;
+    /** @type {?} */
+    AddDiagramEffects.prototype.ADD_DIAGRAM_SUCCEED$;
+    /** @type {?} */
+    AddDiagramEffects.prototype.HAVE_ENDPOINT$;
+    /** @type {?} */
+    AddDiagramEffects.prototype.DATA_LOADED$;
+    /** @type {?} */
+    AddDiagramEffects.prototype.DIAGRAM_CONFIG_CHANGED$;
+    /** @type {?} */
+    AddDiagramEffects.prototype.STRUCTURE_DEFINITION_START$;
+    /** @type {?} */
+    AddDiagramEffects.prototype.COLUMNS_MAPPING_CHANGED$;
+    /** @type {?} */
+    AddDiagramEffects.prototype.STRUCTURE_DEFINITION_END$;
+    /** @type {?} */
+    AddDiagramEffects.prototype.GenerateDiagram$;
+    /**
+     * @type {?}
+     * @private
+     */
+    AddDiagramEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    AddDiagramEffects.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    AddDiagramEffects.prototype.diagramService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const routes = [
@@ -2305,7 +3349,7 @@ const RoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DiagramSelectorComponent {
     /**
@@ -2313,7 +3357,11 @@ class DiagramSelectorComponent {
      */
     constructor(diagramService) {
         this.diagramService = diagramService;
-        this.diagrams$ = this.diagramService.getDiagrams().pipe(map(res => res.Result));
+        this.diagrams$ = this.diagramService.getDiagrams().pipe(map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => res.Result)));
     }
     /**
      * @return {?}
@@ -2343,10 +3391,21 @@ DiagramSelectorComponent.decorators = [
 DiagramSelectorComponent.ctorParameters = () => [
     { type: DiagramService }
 ];
+if (false) {
+    /** @type {?} */
+    DiagramSelectorComponent.prototype.diagrams$;
+    /** @type {?} */
+    DiagramSelectorComponent.prototype.selectedDiagramId;
+    /**
+     * @type {?}
+     * @private
+     */
+    DiagramSelectorComponent.prototype.diagramService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NgsDiagramModule {
     /**
@@ -2413,6 +3472,10 @@ NgsDiagramModule.decorators = [
             },] }
 ];
 class RootNgsDiagramModule {
+    constructor() {
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.diagram = "8.0.10";
+    }
 }
 RootNgsDiagramModule.decorators = [
     { type: NgModule, args: [{
@@ -2425,17 +3488,18 @@ RootNgsDiagramModule.decorators = [
                 exports: [NgsDiagramModule]
             },] }
 ];
+/** @nocollapse */
+RootNgsDiagramModule.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { NgsDiagramModule, DiagramSelectorComponent, diagramViewComponent, RoutingModule as ɵbc, MODULE_CONFIG_TOKEN as ɵb, RootNgsDiagramModule as ɵa, BooleanoWidgetPartialConfigComponent as ɵm, DiagramPartialConfigEditComponent as ɵj, LinearDiagramPartialConfigComponent as ɵl, NumericDiagramComponent as ɵp, NumericEditDiagramComponent as ɵv, NumericWidgetPartialConfigComponent as ɵu, PieDiagramPartialConfigComponent as ɵk, ServerConnectingTimeDiagramComponent as ɵq, ServerStatusDiagramComponent as ɵr, AddDiagramEffects as ɵbb, DiagramEffects as ɵba, diagramReducer as ɵx, Reducer as ɵy, DiagramReducers as ɵw, ParentGuardReducer as ɵz, DiagramConfigurationService as ɵf, DiagramService as ɵd, AddDiagramComponent as ɵc, DataMapperComponent as ɵt, DiagramModuleContainerComponent as ɵs, DiagramComponent as ɵn, DiagramsComponent as ɵg, DynamicComponentSelectorComponent as ɵo, DynamicConfigComponentSelectorComponent as ɵi, EditDiagramComponent as ɵh };
-
+export { DiagramSelectorComponent, NgsDiagramModule, diagramViewComponent, RootNgsDiagramModule as ɵa, MODULE_CONFIG_TOKEN as ɵb, DiagramEffects as ɵba, AddDiagramEffects as ɵbb, RoutingModule as ɵbc, AddDiagramComponent as ɵc, DiagramService as ɵd, DiagramConfigurationService as ɵf, DiagramsComponent as ɵg, EditDiagramComponent as ɵh, DynamicConfigComponentSelectorComponent as ɵi, DiagramPartialConfigEditComponent as ɵj, PieDiagramPartialConfigComponent as ɵk, LinearDiagramPartialConfigComponent as ɵl, BooleanoWidgetPartialConfigComponent as ɵm, DiagramComponent as ɵn, DynamicComponentSelectorComponent as ɵo, NumericDiagramComponent as ɵp, ServerConnectingTimeDiagramComponent as ɵq, ServerStatusDiagramComponent as ɵr, DiagramModuleContainerComponent as ɵs, DataMapperComponent as ɵt, NumericWidgetPartialConfigComponent as ɵu, NumericEditDiagramComponent as ɵv, DiagramReducers as ɵw, diagramReducer as ɵx, Reducer as ɵy, ParentGuardReducer as ɵz };
 //# sourceMappingURL=soushians-diagram.js.map

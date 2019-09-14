@@ -4,4 +4,5 @@ export declare class NgsDiagramModule {
     static forRoot(config?: DiagramModuleConfig): ModuleWithProviders;
 }
 export declare class RootNgsDiagramModule {
+    constructor();
 }

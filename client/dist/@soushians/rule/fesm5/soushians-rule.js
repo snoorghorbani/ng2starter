@@ -1,25 +1,39 @@
+import { InjectionToken, Component, Injectable, Inject, Injector, Directive, ComponentFactoryResolver, ViewContainerRef, Input, ViewChild, ViewChildren, ElementRef, Renderer2, HostListener, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
-import { BehaviorSubject as BehaviorSubject$2, Subject, of, combineLatest } from 'rxjs';
-import { MAT_BOTTOM_SHEET_DATA, MatBottomSheet, MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatRadioModule, MatSlideToggleModule, MatDividerModule, MatCheckboxModule, MatTableModule } from '@angular/material';
-import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MAT_BOTTOM_SHEET_DATA, MatBottomSheet, MatExpansionModule, MatSnackBarModule, MatIconModule, MatButtonModule, MatCardModule, MatCheckboxModule, MatTableModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatDividerModule, MatRadioModule, MatSlideToggleModule } from '@angular/material';
+import { Store, StoreModule } from '@ngrx/store';
+import { ofType, Actions, Effect, EffectsModule } from '@ngrx/effects';
+import { __assign, __decorate, __metadata } from 'tslib';
+import { Subject, BehaviorSubject as BehaviorSubject$2, combineLatest, of } from 'rxjs';
+import { map, share, filter, startWith, takeUntil, switchMap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { BehaviorSubject as BehaviorSubject$1 } from 'rxjs/Rx';
 import { stringTemplate } from '@soushians/shared';
-import { __decorate, __metadata, __assign } from 'tslib';
-import { Actions, Effect, ofType, EffectsModule } from '@ngrx/effects';
-import { filter, map, startWith, share, takeUntil, switchMap } from 'rxjs/operators';
 import { getFrontendAuthenticationState } from '@soushians/frontend-authentication';
-import { InjectionToken, Component, Injectable, Inject, Injector, Input, ViewContainerRef, ComponentFactoryResolver, ViewChild, Directive, ViewChildren, HostListener, ElementRef, Renderer2, NgModule } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Store, StoreModule } from '@ngrx/store';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function RuleModuleConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    RuleModuleConfig.prototype.endpoints;
+    /** @type {?|undefined} */
+    RuleModuleConfig.prototype.stepClasses;
+    /** @type {?|undefined} */
+    RuleModuleConfig.prototype.steps;
+    /** @type {?|undefined} */
+    RuleModuleConfig.prototype.env;
+}
 /** @type {?} */
 var MODULE_DEFAULT_CONFIG = {
     endpoints: {
@@ -37,7 +51,7 @@ var MODULE_CONFIG_TOKEN = new InjectionToken("RuleModuleConfig");
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var RuleComponent = /** @class */ (function () {
     function RuleComponent() {
@@ -62,7 +76,7 @@ var RuleComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var routes = [
@@ -77,7 +91,7 @@ var RoutingModule = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var RuleAnchorsActionTypes = {
@@ -90,17 +104,33 @@ var ShowAnchorsAction = /** @class */ (function () {
     }
     return ShowAnchorsAction;
 }());
+if (false) {
+    /** @type {?} */
+    ShowAnchorsAction.prototype.type;
+}
 var HideAnchorsAction = /** @class */ (function () {
     function HideAnchorsAction() {
         this.type = RuleAnchorsActionTypes.HIDE_ANCHORS;
     }
     return HideAnchorsAction;
 }());
+if (false) {
+    /** @type {?} */
+    HideAnchorsAction.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State() { }
+if (false) {
+    /** @type {?} */
+    State.prototype.active;
+}
 /** @type {?} */
 var initialState = {
     active: false
@@ -124,10 +154,17 @@ function Reducer(state, action) {
         }
     }
 }
+//#region  selectors
+/** @type {?} */
+var getAnchorsActivityState = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.active; });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var RulesListActionTypes = {
@@ -139,21 +176,108 @@ var RulesListActionTypes = {
     GET_RULE: "[RULE][DB] GET_RULE",
     RULE_FETCHED: "[RULE][DB] RULE_FETCHED",
 };
+var RulesListAction = /** @class */ (function () {
+    function RulesListAction() {
+        this.type = RulesListActionTypes.RULES_LIST;
+    }
+    return RulesListAction;
+}());
+if (false) {
+    /** @type {?} */
+    RulesListAction.prototype.type;
+}
 var RulesListStartAction = /** @class */ (function () {
     function RulesListStartAction() {
         this.type = RulesListActionTypes.RULES_LIST_START;
     }
     return RulesListStartAction;
 }());
+if (false) {
+    /** @type {?} */
+    RulesListStartAction.prototype.type;
+}
+var RulesListSucceedAction = /** @class */ (function () {
+    function RulesListSucceedAction(payload) {
+        this.payload = payload;
+        this.type = RulesListActionTypes.RULES_LIST_SUCCEED;
+    }
+    return RulesListSucceedAction;
+}());
+if (false) {
+    /** @type {?} */
+    RulesListSucceedAction.prototype.type;
+    /** @type {?} */
+    RulesListSucceedAction.prototype.payload;
+}
+var RulesListFailedAction = /** @class */ (function () {
+    function RulesListFailedAction() {
+        this.type = RulesListActionTypes.RULES_LIST_FAILED;
+    }
+    return RulesListFailedAction;
+}());
+if (false) {
+    /** @type {?} */
+    RulesListFailedAction.prototype.type;
+}
+var UpsertRuleAction = /** @class */ (function () {
+    function UpsertRuleAction(payload) {
+        this.payload = payload;
+        this.type = RulesListActionTypes.RULE_UPSERT;
+    }
+    return UpsertRuleAction;
+}());
+if (false) {
+    /** @type {?} */
+    UpsertRuleAction.prototype.type;
+    /** @type {?} */
+    UpsertRuleAction.prototype.payload;
+}
+var GetRuleAction = /** @class */ (function () {
+    function GetRuleAction(payload) {
+        this.payload = payload;
+        this.type = RulesListActionTypes.GET_RULE;
+    }
+    return GetRuleAction;
+}());
+if (false) {
+    /** @type {?} */
+    GetRuleAction.prototype.type;
+    /** @type {?} */
+    GetRuleAction.prototype.payload;
+}
+var RuleFechedAction = /** @class */ (function () {
+    function RuleFechedAction(payload) {
+        this.payload = payload;
+        this.type = RulesListActionTypes.RULE_FETCHED;
+    }
+    return RuleFechedAction;
+}());
+if (false) {
+    /** @type {?} */
+    RuleFechedAction.prototype.type;
+    /** @type {?} */
+    RuleFechedAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State$1() { }
+if (false) {
+    /** @type {?} */
+    State$1.prototype.status;
+    /** @type {?} */
+    State$1.prototype.data;
+}
+var ɵ0 = [];
 /** @type {?} */
 var initialState$1 = {
     status: "pristine",
-    data: []
+    data: ɵ0
 };
 /**
  * @param {?=} state
@@ -179,7 +303,11 @@ function reducer(state, action) {
             /** @type {?} */
             var data = state.data.concat();
             /** @type {?} */
-            var entityIdx = state.data.findIndex(function (form) { return form._id == action.payload._id; });
+            var entityIdx = state.data.findIndex((/**
+             * @param {?} form
+             * @return {?}
+             */
+            function (form) { return form._id == action.payload._id; }));
             if (entityIdx > -1) {
                 data[entityIdx] = Object.assign({}, data[entityIdx], action.payload);
             }
@@ -192,7 +320,11 @@ function reducer(state, action) {
             /** @type {?} */
             var data = state.data.concat();
             /** @type {?} */
-            var entityIdx = state.data.findIndex(function (form) { return form._id == action.payload._id; });
+            var entityIdx = state.data.findIndex((/**
+             * @param {?} form
+             * @return {?}
+             */
+            function (form) { return form._id == action.payload._id; }));
             if (entityIdx > -1) {
                 data[entityIdx] = Object.assign({}, data[entityIdx], action.payload);
             }
@@ -206,10 +338,16 @@ function reducer(state, action) {
         }
     }
 }
+/** @type {?} */
+var getStatus = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.status; });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var ScenariosListActionTypes = {
@@ -223,12 +361,49 @@ var ScenariosListActionTypes = {
     /// new vision
     UPDATE_DB: "[GWT][SCENARIO][DB] UPDATE_DB",
 };
+var ScenariosListAction = /** @class */ (function () {
+    function ScenariosListAction() {
+        this.type = ScenariosListActionTypes.SCENARIOS_LIST;
+    }
+    return ScenariosListAction;
+}());
+if (false) {
+    /** @type {?} */
+    ScenariosListAction.prototype.type;
+}
 var ScenariosListStartAction = /** @class */ (function () {
     function ScenariosListStartAction() {
         this.type = ScenariosListActionTypes.SCENARIOS_LIST_START;
     }
     return ScenariosListStartAction;
 }());
+if (false) {
+    /** @type {?} */
+    ScenariosListStartAction.prototype.type;
+}
+var ScenariosListSucceedAction = /** @class */ (function () {
+    function ScenariosListSucceedAction(payload) {
+        this.payload = payload;
+        this.type = ScenariosListActionTypes.SCENARIOS_LIST_SUCCEED;
+    }
+    return ScenariosListSucceedAction;
+}());
+if (false) {
+    /** @type {?} */
+    ScenariosListSucceedAction.prototype.type;
+    /** @type {?} */
+    ScenariosListSucceedAction.prototype.payload;
+}
+var ScenariosListFailedAction = /** @class */ (function () {
+    function ScenariosListFailedAction() {
+        this.type = ScenariosListActionTypes.SCENARIOS_LIST_FAILED;
+    }
+    return ScenariosListFailedAction;
+}());
+if (false) {
+    /** @type {?} */
+    ScenariosListFailedAction.prototype.type;
+}
 var UpsertScenarioAction = /** @class */ (function () {
     function UpsertScenarioAction(payload) {
         this.payload = payload;
@@ -236,6 +411,25 @@ var UpsertScenarioAction = /** @class */ (function () {
     }
     return UpsertScenarioAction;
 }());
+if (false) {
+    /** @type {?} */
+    UpsertScenarioAction.prototype.type;
+    /** @type {?} */
+    UpsertScenarioAction.prototype.payload;
+}
+var GetScenarioAction = /** @class */ (function () {
+    function GetScenarioAction(payload) {
+        this.payload = payload;
+        this.type = ScenariosListActionTypes.GET_SCENARIO;
+    }
+    return GetScenarioAction;
+}());
+if (false) {
+    /** @type {?} */
+    GetScenarioAction.prototype.type;
+    /** @type {?} */
+    GetScenarioAction.prototype.payload;
+}
 var ScenarioFechedAction = /** @class */ (function () {
     function ScenarioFechedAction(payload) {
         this.payload = payload;
@@ -243,15 +437,45 @@ var ScenarioFechedAction = /** @class */ (function () {
     }
     return ScenarioFechedAction;
 }());
+if (false) {
+    /** @type {?} */
+    ScenarioFechedAction.prototype.type;
+    /** @type {?} */
+    ScenarioFechedAction.prototype.payload;
+}
+var UpdateDbAction = /** @class */ (function () {
+    function UpdateDbAction(payload) {
+        this.payload = payload;
+        this.type = ScenariosListActionTypes.UPDATE_DB;
+    }
+    return UpdateDbAction;
+}());
+if (false) {
+    /** @type {?} */
+    UpdateDbAction.prototype.type;
+    /** @type {?} */
+    UpdateDbAction.prototype.payload;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function State$2() { }
+if (false) {
+    /** @type {?} */
+    State$2.prototype.status;
+    /** @type {?} */
+    State$2.prototype.data;
+}
+var ɵ0$1 = [];
 /** @type {?} */
 var initialState$2 = {
     status: "pristine",
-    data: []
+    data: ɵ0$1
 };
 /**
  * @param {?=} state
@@ -277,7 +501,11 @@ function reducer$1(state, action) {
             /** @type {?} */
             var data = state.data.concat();
             /** @type {?} */
-            var entityIdx = state.data.findIndex(function (form) { return form._id == action.payload._id; });
+            var entityIdx = state.data.findIndex((/**
+             * @param {?} form
+             * @return {?}
+             */
+            function (form) { return form._id == action.payload._id; }));
             if (entityIdx > -1) {
                 data[entityIdx] = Object.assign({}, data[entityIdx], action.payload);
             }
@@ -290,7 +518,11 @@ function reducer$1(state, action) {
             /** @type {?} */
             var data = state.data.concat();
             /** @type {?} */
-            var entityIdx = state.data.findIndex(function (form) { return form._id == action.payload._id; });
+            var entityIdx = state.data.findIndex((/**
+             * @param {?} form
+             * @return {?}
+             */
+            function (form) { return form._id == action.payload._id; }));
             if (entityIdx > -1) {
                 data[entityIdx] = Object.assign({}, data[entityIdx], action.payload);
             }
@@ -304,16 +536,24 @@ function reducer$1(state, action) {
             var data_1 = state.data.concat();
             /** @type {?} */
             var scenarios = action.payload;
-            scenarios.forEach(function (scenario) {
+            scenarios.forEach((/**
+             * @param {?} scenario
+             * @return {?}
+             */
+            function (scenario) {
                 /** @type {?} */
-                var entityIdx = state.data.findIndex(function (form) { return form._id == scenario._id; });
+                var entityIdx = state.data.findIndex((/**
+                 * @param {?} form
+                 * @return {?}
+                 */
+                function (form) { return form._id == scenario._id; }));
                 if (entityIdx > -1) {
                     data_1[entityIdx] = Object.assign({}, data_1[entityIdx], scenario);
                 }
                 else {
                     data_1.push(scenario);
                 }
-            });
+            }));
             return __assign({}, state, { data: data_1 });
         }
         default: {
@@ -321,21 +561,47 @@ function reducer$1(state, action) {
         }
     }
 }
+/** @type {?} */
+var getStatus$1 = (/**
+ * @param {?} state
+ * @return {?}
+ */
+function (state) { return state.status; });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function RuleState() { }
+if (false) {
+    /** @type {?} */
+    RuleState.prototype.ruleAnchors;
+    /** @type {?} */
+    RuleState.prototype.rules;
+    /** @type {?} */
+    RuleState.prototype.scenarios;
+}
 /** @type {?} */
 var RuleReducers = {
     ruleAnchors: Reducer,
     rules: reducer,
     scenarios: reducer$1
 };
+/**
+ * @record
+ */
+function AppState() { }
+if (false) {
+    /** @type {?} */
+    AppState.prototype.rule;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var RuleConfigurationService = /** @class */ (function () {
     function RuleConfigurationService(configFile, store, injector) {
@@ -344,7 +610,11 @@ var RuleConfigurationService = /** @class */ (function () {
         this.injector = injector;
         this.config$ = new BehaviorSubject(MODULE_DEFAULT_CONFIG);
         // instantiate steps and used them
-        configFile.steps = configFile.stepClasses.map(function (step) { return new step(_this.injector); });
+        configFile.steps = configFile.stepClasses.map((/**
+         * @param {?} step
+         * @return {?}
+         */
+        function (step) { return new step(_this.injector); }));
         this._config = Object.assign({}, MODULE_DEFAULT_CONFIG, configFile);
         this.config$.next(this._config);
         // this.store.select(getRuleModuleConfig).subscribe(userConfig => {
@@ -374,10 +644,29 @@ var RuleConfigurationService = /** @class */ (function () {
     ]; };
     return RuleConfigurationService;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleConfigurationService.prototype._config;
+    /** @type {?} */
+    RuleConfigurationService.prototype.config$;
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleConfigurationService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleConfigurationService.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GwtScenarioModel = /** @class */ (function () {
     function GwtScenarioModel(_a) {
@@ -401,19 +690,35 @@ var GwtScenarioModel = /** @class */ (function () {
             anchorId: this.anchorId,
             name: this.name,
             featureId: this.featureId,
-            steps: this.steps.map(function (step) { return ({
+            steps: this.steps.map((/**
+             * @param {?} step
+             * @return {?}
+             */
+            function (step) { return ({
                 id: step.id,
                 opposite: step.opposite,
                 params: step.params
-            }); })
+            }); }))
         };
     };
     return GwtScenarioModel;
 }());
+if (false) {
+    /** @type {?} */
+    GwtScenarioModel.prototype._id;
+    /** @type {?} */
+    GwtScenarioModel.prototype.name;
+    /** @type {?} */
+    GwtScenarioModel.prototype.anchorId;
+    /** @type {?} */
+    GwtScenarioModel.prototype.featureId;
+    /** @type {?} */
+    GwtScenarioModel.prototype.steps;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var StepLoaderDirective = /** @class */ (function () {
     function StepLoaderDirective(resolver, container) {
@@ -437,7 +742,10 @@ var StepLoaderDirective = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        if (this.component) ;
+        if (this.component) {
+            // this.component.instance.config = this.config;
+            // this.component.instance.group = this.group;
+        }
     };
     /**
      * @return {?}
@@ -471,14 +779,30 @@ var StepLoaderDirective = /** @class */ (function () {
     ]; };
     StepLoaderDirective.propDecorators = {
         step: [{ type: Input }],
-        component: [{ type: ViewChild, args: ["container", { read: ViewContainerRef },] }]
+        component: [{ type: ViewChild, args: ["container", { read: ViewContainerRef, static: false },] }]
     };
     return StepLoaderDirective;
 }());
+if (false) {
+    /** @type {?} */
+    StepLoaderDirective.prototype.step;
+    /** @type {?} */
+    StepLoaderDirective.prototype.component;
+    /**
+     * @type {?}
+     * @private
+     */
+    StepLoaderDirective.prototype.resolver;
+    /**
+     * @type {?}
+     * @private
+     */
+    StepLoaderDirective.prototype.container;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ScenarioService = /** @class */ (function () {
     function ScenarioService(http, store, configService) {
@@ -488,7 +812,11 @@ var ScenarioService = /** @class */ (function () {
         this.configService = configService;
         this.scenarios = {};
         this.config$ = this.configService.config$;
-        this.config$.subscribe(function (config) { return (_this.config = config); });
+        this.config$.subscribe((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return (_this.config = config); }));
     }
     /**
      * @param {?} scenario
@@ -503,7 +831,11 @@ var ScenarioService = /** @class */ (function () {
         var model = new GwtScenarioModel(scenario);
         return this.http
             .post(this.config.env.frontend_server + this.config.endpoints.upsert, model.getRequsetBody())
-            .pipe(map(function (response) { return (/** @type {?} */ (response)); }), share());
+            .pipe(map((/**
+         * @param {?} response
+         * @return {?}
+         */
+        function (response) { return (/** @type {?} */ (response)); })), share());
     };
     /**
      * @param {?} anchorId
@@ -519,8 +851,16 @@ var ScenarioService = /** @class */ (function () {
             this.scenarios[anchorId] = new BehaviorSubject$1([]);
             this.http
                 .get(this.config.env.frontend_server + stringTemplate(this.config.endpoints.get, { anchorId: anchorId }))
-                .pipe(map(function (response) { return (/** @type {?} */ (response.Result)); }))
-                .subscribe(function (scenarios) { return _this.scenarios[anchorId].next(scenarios); });
+                .pipe(map((/**
+             * @param {?} response
+             * @return {?}
+             */
+            function (response) { return (/** @type {?} */ (response.Result)); })))
+                .subscribe((/**
+             * @param {?} scenarios
+             * @return {?}
+             */
+            function (scenarios) { return _this.scenarios[anchorId].next(scenarios); }));
         }
         return this.scenarios[anchorId];
     };
@@ -536,13 +876,37 @@ var ScenarioService = /** @class */ (function () {
         /** @type {?} */
         var subject = new BehaviorSubject$1(undefined);
         this.store
-            .select(function (state) { return state.rule.scenarios.data; })
-            .pipe(filter(function (scenarios) { return scenarios != null; }), map(function (scenarios) {
-            return scenarios.find(function (scenario) { return scenario._id == _id; });
-        }), filter(function (scenario) { return scenario != undefined; }))
-            .subscribe(function (scenario) {
+            .select((/**
+         * @param {?} state
+         * @return {?}
+         */
+        function (state) { return state.rule.scenarios.data; }))
+            .pipe(filter((/**
+         * @param {?} scenarios
+         * @return {?}
+         */
+        function (scenarios) { return scenarios != null; })), map((/**
+         * @param {?} scenarios
+         * @return {?}
+         */
+        function (scenarios) {
+            return scenarios.find((/**
+             * @param {?} scenario
+             * @return {?}
+             */
+            function (scenario) { return scenario._id == _id; }));
+        })), filter((/**
+         * @param {?} scenario
+         * @return {?}
+         */
+        function (scenario) { return scenario != undefined; })))
+            .subscribe((/**
+         * @param {?} scenario
+         * @return {?}
+         */
+        function (scenario) {
             subject.next(scenario);
-        });
+        }));
         return subject.asObservable();
     };
     /**
@@ -557,13 +921,33 @@ var ScenarioService = /** @class */ (function () {
         /** @type {?} */
         var subject = new BehaviorSubject$1(undefined);
         this.store
-            .select(function (state) { return state.rule.scenarios.data; })
-            .pipe(startWith([]), filter(function (scenarios) { return scenarios != null; }), map(function (scenarios) {
-            return scenarios.filter(function (scenario) { return scenario._id == anchorId; });
-        }))
-            .subscribe(function (scenarios) {
+            .select((/**
+         * @param {?} state
+         * @return {?}
+         */
+        function (state) { return state.rule.scenarios.data; }))
+            .pipe(startWith([]), filter((/**
+         * @param {?} scenarios
+         * @return {?}
+         */
+        function (scenarios) { return scenarios != null; })), map((/**
+         * @param {?} scenarios
+         * @return {?}
+         */
+        function (scenarios) {
+            return scenarios.filter((/**
+             * @param {?} scenario
+             * @return {?}
+             */
+            function (scenario) { return scenario._id == anchorId; }));
+        })))
+            .subscribe((/**
+         * @param {?} scenarios
+         * @return {?}
+         */
+        function (scenarios) {
             subject.next(scenarios);
-        });
+        }));
         return subject.asObservable();
     };
     ScenarioService.decorators = [
@@ -577,10 +961,33 @@ var ScenarioService = /** @class */ (function () {
     ]; };
     return ScenarioService;
 }());
+if (false) {
+    /** @type {?} */
+    ScenarioService.prototype.config$;
+    /** @type {?} */
+    ScenarioService.prototype.config;
+    /** @type {?} */
+    ScenarioService.prototype.scenarios;
+    /**
+     * @type {?}
+     * @private
+     */
+    ScenarioService.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    ScenarioService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    ScenarioService.prototype.configService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GwtViewComponent = /** @class */ (function () {
     function GwtViewComponent(store, configService, scenarioService, injector, data) {
@@ -603,12 +1010,24 @@ var GwtViewComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.steps$ = this.configService.config$.pipe(map(function (config) { return config.steps; }), takeUntil(this.unsubscribe));
-        this.steps$.subscribe(function (steps) { return (_this.steps = steps); });
+        this.steps$ = this.configService.config$.pipe(map((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) { return config.steps; })), takeUntil(this.unsubscribe));
+        this.steps$.subscribe((/**
+         * @param {?} steps
+         * @return {?}
+         */
+        function (steps) { return (_this.steps = steps); }));
         this._load_scenario_and_map_scenario_step_to_steps_class();
-        this.scenario$.subscribe(function (s) {
+        this.scenario$.subscribe((/**
+         * @param {?} s
+         * @return {?}
+         */
+        function (s) {
             debugger;
-        });
+        }));
     };
     /**
      * @return {?}
@@ -629,9 +1048,17 @@ var GwtViewComponent = /** @class */ (function () {
     function () {
         /** @type {?} */
         var scenario = this.scenario$.getValue();
-        this.stepLoaders.forEach(function (stepLoader) {
-            scenario.steps.find(function (step) { return step.name === stepLoader.step.name; }).params = stepLoader.params;
-        });
+        this.stepLoaders.forEach((/**
+         * @param {?} stepLoader
+         * @return {?}
+         */
+        function (stepLoader) {
+            scenario.steps.find((/**
+             * @param {?} step
+             * @return {?}
+             */
+            function (step) { return step.name === stepLoader.step.name; })).params = stepLoader.params;
+        }));
         scenario.featureId = this.scenarioFormGroup.value.featureId;
         scenario.name = this.scenarioFormGroup.value.name;
         this.store.dispatch(new UpsertScenarioAction(scenario));
@@ -661,7 +1088,11 @@ var GwtViewComponent = /** @class */ (function () {
     function (step) {
         /** @type {?} */
         var scenario = this.scenario$.getValue();
-        scenario.steps.splice(scenario.steps.findIndex(function (item) { return item.name === step.name; }), 1);
+        scenario.steps.splice(scenario.steps.findIndex((/**
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) { return item.name === step.name; })), 1);
         this.scenario$.next(scenario);
     };
     /**
@@ -707,14 +1138,22 @@ var GwtViewComponent = /** @class */ (function () {
     function (scenario) {
         var _this = this;
         debugger;
-        scenario.steps = scenario.steps.map(function (scenarioStep) {
+        scenario.steps = scenario.steps.map((/**
+         * @param {?} scenarioStep
+         * @return {?}
+         */
+        function (scenarioStep) {
             /** @type {?} */
-            var _step = _this.steps.find(function (step) { return step.id === scenarioStep.id; });
+            var _step = _this.steps.find((/**
+             * @param {?} step
+             * @return {?}
+             */
+            function (step) { return step.id === scenarioStep.id; }));
             /** @type {?} */
             var step = Object.create(_step);
             step.params = scenarioStep.params;
             return step;
-        });
+        }));
         this.scenarioFormGroup.patchValue(scenario);
         scenario.anchorId = this.data.anchorId;
         this.scenario$.next(scenario);
@@ -730,10 +1169,14 @@ var GwtViewComponent = /** @class */ (function () {
         this.scenarioService
             .getAnchorScenarios(this.data.anchorId)
             .pipe(takeUntil(this.unsubscribe))
-            .subscribe(function (scenarios) {
+            .subscribe((/**
+         * @param {?} scenarios
+         * @return {?}
+         */
+        function (scenarios) {
             _this.scenarios$.next(scenarios);
             _this.activeScenario(scenarios[0] || new GwtScenarioModel());
-        });
+        }));
     };
     /**
      * @return {?}
@@ -786,10 +1229,53 @@ var GwtViewComponent = /** @class */ (function () {
     };
     return GwtViewComponent;
 }());
+if (false) {
+    /** @type {?} */
+    GwtViewComponent.prototype.unsubscribe;
+    /** @type {?} */
+    GwtViewComponent.prototype.steps$;
+    /** @type {?} */
+    GwtViewComponent.prototype.steps;
+    /** @type {?} */
+    GwtViewComponent.prototype.scenario$;
+    /** @type {?} */
+    GwtViewComponent.prototype.scenarios$;
+    /** @type {?} */
+    GwtViewComponent.prototype.scenarioFormGroup;
+    /** @type {?} */
+    GwtViewComponent.prototype.features$;
+    /** @type {?} */
+    GwtViewComponent.prototype.stepLoaders;
+    /**
+     * @type {?}
+     * @private
+     */
+    GwtViewComponent.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    GwtViewComponent.prototype.configService;
+    /**
+     * @type {?}
+     * @private
+     */
+    GwtViewComponent.prototype.scenarioService;
+    /**
+     * @type {?}
+     * @private
+     */
+    GwtViewComponent.prototype.injector;
+    /**
+     * @type {?}
+     * @private
+     */
+    GwtViewComponent.prototype.data;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 var GwtStepTypes = {
@@ -802,7 +1288,7 @@ var GwtStepTypes = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var RuleAnchorDirective = /** @class */ (function () {
     function RuleAnchorDirective(scenarioService, configService, store, el, renderer, bottomSheet) {
@@ -814,8 +1300,16 @@ var RuleAnchorDirective = /** @class */ (function () {
         this.renderer = renderer;
         this.bottomSheet = bottomSheet;
         this.unsubscribe = new Subject();
-        this.active$ = this.store.select(function (s) { return s.rule.ruleAnchors.active; }).pipe(takeUntil(this.unsubscribe));
-        this.active$.subscribe(function (active) { return (_this.active = active); });
+        this.active$ = this.store.select((/**
+         * @param {?} s
+         * @return {?}
+         */
+        function (s) { return s.rule.ruleAnchors.active; })).pipe(takeUntil(this.unsubscribe));
+        this.active$.subscribe((/**
+         * @param {?} active
+         * @return {?}
+         */
+        function (active) { return (_this.active = active); }));
         this.el.nativeElement.classList.add("ngs-rule-anchor");
         this.steps = this.configService.config$.getValue().steps;
     }
@@ -844,9 +1338,12 @@ var RuleAnchorDirective = /** @class */ (function () {
         if (!this.active) {
             return;
         }
-        setTimeout(function () {
+        setTimeout((/**
+         * @return {?}
+         */
+        function () {
             _this.hideAnchor();
-        }, 999);
+        }), 999);
     };
     /**
      * @private
@@ -882,28 +1379,52 @@ var RuleAnchorDirective = /** @class */ (function () {
         var _this = this;
         this.anchorScenarios$ = this.scenarioService
             .getAnchorScenarios(this.anchorId) // TODO: replace service call with ngrx action
-            .pipe(takeUntil(this.unsubscribe), filter(function (scenario) { return scenario !== undefined; }));
-        this.active$.subscribe(function (active) {
+            .pipe(takeUntil(this.unsubscribe), filter((/**
+         * @param {?} scenario
+         * @return {?}
+         */
+        function (scenario) { return scenario !== undefined; })));
+        this.active$.subscribe((/**
+         * @param {?} active
+         * @return {?}
+         */
+        function (active) {
             if (active) {
                 _this._activate_anchor();
             }
             else {
                 _this._deactivate_anchor();
             }
-        });
-        this.anchorScenarios$.subscribe(function (scenarios) {
-            scenarios.forEach(function (scenario) {
-                scenario.steps = scenario.steps.map(function (scenarioStep) {
+        }));
+        this.anchorScenarios$.subscribe((/**
+         * @param {?} scenarios
+         * @return {?}
+         */
+        function (scenarios) {
+            scenarios.forEach((/**
+             * @param {?} scenario
+             * @return {?}
+             */
+            function (scenario) {
+                scenario.steps = scenario.steps.map((/**
+                 * @param {?} scenarioStep
+                 * @return {?}
+                 */
+                function (scenarioStep) {
                     /** @type {?} */
-                    var step = _this.steps.find(function (step) { return step.id === scenarioStep.id; });
+                    var step = _this.steps.find((/**
+                     * @param {?} step
+                     * @return {?}
+                     */
+                    function (step) { return step.id === scenarioStep.id; }));
                     /** @type {?} */
                     var _step = Object.create(step);
                     _step.params = scenarioStep.params;
                     return _step;
-                });
+                }));
                 _this._do_scenario(scenario);
-            });
-        });
+            }));
+        }));
     };
     /**
      * @return {?}
@@ -964,7 +1485,11 @@ var RuleAnchorDirective = /** @class */ (function () {
         this.button = this.renderer.createElement("button");
         this.button.classList.add("ngs-rule-anchor-button", "mat-icon-button");
         this.button.setAttribute("mat-icon-button", "");
-        this.button.addEventListener("click", function (e) {
+        this.button.addEventListener("click", (/**
+         * @param {?} e
+         * @return {?}
+         */
+        function (e) {
             e.preventDefault();
             e.stopPropagation();
             _this.bottomSheet.open(GwtViewComponent, {
@@ -973,7 +1498,7 @@ var RuleAnchorDirective = /** @class */ (function () {
                 },
                 panelClass: "magenta-theme"
             });
-        });
+        }));
         /** @type {?} */
         var maticon = this.renderer.createElement("mat-icon");
         maticon.classList.add("mat-icon", "material-icons");
@@ -1010,26 +1535,65 @@ var RuleAnchorDirective = /** @class */ (function () {
         var scenario = _scenario;
         /** @type {?} */
         var givenStepInterpretors = scenario.steps
-            .filter(function (step) { return step.type === GwtStepTypes.Given; })
-            .map(function (step) { return step.interperator(step.params); });
+            .filter((/**
+         * @param {?} step
+         * @return {?}
+         */
+        function (step) { return step.type === GwtStepTypes.Given; }))
+            .map((/**
+         * @param {?} step
+         * @return {?}
+         */
+        function (step) { return step.interperator(step.params); }));
         debugger;
         combineLatest(givenStepInterpretors)
-            .pipe(takeUntil(this.unsubscribe), map(function (values) { return values.every(function (value) { return value === true; }); }), switchMap(function (givenResult) {
+            .pipe(takeUntil(this.unsubscribe), map((/**
+         * @param {?} values
+         * @return {?}
+         */
+        function (values) { return values.every((/**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) { return value === true; })); })), switchMap((/**
+         * @param {?} givenResult
+         * @return {?}
+         */
+        function (givenResult) {
             debugger;
             if (givenResult) {
                 /** @type {?} */
                 var thenStepInterpretors = scenario.steps
-                    .filter(function (step) { return step.type === GwtStepTypes.Then; })
-                    .map(function (step) { return step.interperator(step.params, _this.el); });
+                    .filter((/**
+                 * @param {?} step
+                 * @return {?}
+                 */
+                function (step) { return step.type === GwtStepTypes.Then; }))
+                    .map((/**
+                 * @param {?} step
+                 * @return {?}
+                 */
+                function (step) { return step.interperator(step.params, _this.el); }));
                 return combineLatest
                     .apply(null, thenStepInterpretors)
-                    .pipe(map(function (values) { return values.every(function (value) { return value === true; }); }));
+                    .pipe(map((/**
+                 * @param {?} values
+                 * @return {?}
+                 */
+                function (values) { return values.every((/**
+                 * @param {?} value
+                 * @return {?}
+                 */
+                function (value) { return value === true; })); })));
             }
             else {
                 return of(false);
             }
-        }))
-            .subscribe(function () { });
+        })))
+            .subscribe((/**
+         * @return {?}
+         */
+        function () { }));
     };
     RuleAnchorDirective.decorators = [
         { type: Directive, args: [{
@@ -1052,18 +1616,79 @@ var RuleAnchorDirective = /** @class */ (function () {
     };
     return RuleAnchorDirective;
 }());
+if (false) {
+    /** @type {?} */
+    RuleAnchorDirective.prototype.unsubscribe;
+    /** @type {?} */
+    RuleAnchorDirective.prototype.anchorId;
+    /** @type {?} */
+    RuleAnchorDirective.prototype.steps;
+    /** @type {?} */
+    RuleAnchorDirective.prototype.active$;
+    /** @type {?} */
+    RuleAnchorDirective.prototype.active;
+    /** @type {?} */
+    RuleAnchorDirective.prototype.button;
+    /** @type {?} */
+    RuleAnchorDirective.prototype.anchorScenarios$;
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleAnchorDirective.prototype.scenarioService;
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleAnchorDirective.prototype.configService;
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleAnchorDirective.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleAnchorDirective.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleAnchorDirective.prototype.renderer;
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleAnchorDirective.prototype.bottomSheet;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ScenariosDbEffects = /** @class */ (function () {
     function ScenariosDbEffects(actions$, service) {
         var _this = this;
         this.actions$ = actions$;
         this.service = service;
-        this.EditProfileRequest$ = this.actions$.pipe(ofType(ScenariosListActionTypes.SCENARIOS_LIST), map(function () { return new ScenariosListStartAction(); }));
-        this.UpsertScenario$ = this.actions$.pipe(ofType(ScenariosListActionTypes.UPSERT), map(function (action) { return action.payload; }), switchMap(function (scenario) { return _this.service.upsert(scenario); }), map(function (scenario) { return new ScenarioFechedAction(scenario); }));
+        this.EditProfileRequest$ = this.actions$.pipe(ofType(ScenariosListActionTypes.SCENARIOS_LIST), map((/**
+         * @return {?}
+         */
+        function () { return new ScenariosListStartAction(); })));
+        this.UpsertScenario$ = this.actions$.pipe(ofType(ScenariosListActionTypes.UPSERT), map((/**
+         * @param {?} action
+         * @return {?}
+         */
+        function (action) { return action.payload; })), switchMap((/**
+         * @param {?} scenario
+         * @return {?}
+         */
+        function (scenario) { return _this.service.upsert(scenario); })), map((/**
+         * @param {?} scenario
+         * @return {?}
+         */
+        function (scenario) { return new ScenarioFechedAction(scenario); })));
     }
     ScenariosDbEffects.decorators = [
         { type: Injectable }
@@ -1083,15 +1708,34 @@ var ScenariosDbEffects = /** @class */ (function () {
     ], ScenariosDbEffects.prototype, "UpsertScenario$", void 0);
     return ScenariosDbEffects;
 }());
+if (false) {
+    /** @type {?} */
+    ScenariosDbEffects.prototype.EditProfileRequest$;
+    /** @type {?} */
+    ScenariosDbEffects.prototype.UpsertScenario$;
+    /**
+     * @type {?}
+     * @private
+     */
+    ScenariosDbEffects.prototype.actions$;
+    /**
+     * @type {?}
+     * @private
+     */
+    ScenariosDbEffects.prototype.service;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var RulesListEffects = /** @class */ (function () {
     function RulesListEffects(actions$) {
         this.actions$ = actions$;
-        this.EditProfileRequest$ = this.actions$.pipe(ofType(RulesListActionTypes.RULES_LIST), map(function () { return new RulesListStartAction(); }));
+        this.EditProfileRequest$ = this.actions$.pipe(ofType(RulesListActionTypes.RULES_LIST), map((/**
+         * @return {?}
+         */
+        function () { return new RulesListStartAction(); })));
     }
     RulesListEffects.decorators = [
         { type: Injectable }
@@ -1106,10 +1750,19 @@ var RulesListEffects = /** @class */ (function () {
     ], RulesListEffects.prototype, "EditProfileRequest$", void 0);
     return RulesListEffects;
 }());
+if (false) {
+    /** @type {?} */
+    RulesListEffects.prototype.EditProfileRequest$;
+    /**
+     * @type {?}
+     * @private
+     */
+    RulesListEffects.prototype.actions$;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GwtModeButtonComponent = /** @class */ (function () {
     function GwtModeButtonComponent(store) {
@@ -1146,10 +1799,21 @@ var GwtModeButtonComponent = /** @class */ (function () {
     ]; };
     return GwtModeButtonComponent;
 }());
+if (false) {
+    /** @type {?} */
+    GwtModeButtonComponent.prototype.anchorsMode;
+    /** @type {?} */
+    GwtModeButtonComponent.prototype.havePermission$;
+    /**
+     * @type {?}
+     * @private
+     */
+    GwtModeButtonComponent.prototype.store;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var RuleService = /** @class */ (function () {
     function RuleService(http, store, configurationService) {
@@ -1168,10 +1832,27 @@ var RuleService = /** @class */ (function () {
     ]; };
     return RuleService;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleService.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    RuleService.prototype.configurationService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var RuleModule = /** @class */ (function () {
     function RuleModule() {
@@ -1229,6 +1910,8 @@ var RuleModule = /** @class */ (function () {
 }());
 var RootRuleModule = /** @class */ (function () {
     function RootRuleModule() {
+        ((/** @type {?} */ (window))).___starter = ((/** @type {?} */ (window))).___starter || {};
+        ((/** @type {?} */ (window))).___starter.rule = "8.0.10";
     }
     RootRuleModule.decorators = [
         { type: NgModule, args: [{
@@ -1241,19 +1924,20 @@ var RootRuleModule = /** @class */ (function () {
                     exports: [RuleModule]
                 },] }
     ];
+    /** @nocollapse */
+    RootRuleModule.ctorParameters = function () { return []; };
     return RootRuleModule;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { RuleModule, GwtStepTypes, ShowAnchorsAction, HideAnchorsAction, RulesListEffects as ɵp, reducer as ɵn, ScenariosDbEffects as ɵq, reducer$1 as ɵo, GwtViewComponent as ɵj, GwtModeButtonComponent as ɵl, RuleAnchorDirective as ɵd, Reducer as ɵm, RoutingModule as ɵr, RuleComponent as ɵc, MODULE_CONFIG_TOKEN as ɵb, RootRuleModule as ɵa, RuleReducers as ɵg, RuleConfigurationService as ɵi, RuleService as ɵs, ScenarioService as ɵe, StepLoaderDirective as ɵk };
-
+export { GwtStepTypes, HideAnchorsAction, RuleModule, ShowAnchorsAction, RootRuleModule as ɵa, MODULE_CONFIG_TOKEN as ɵb, RuleComponent as ɵc, RuleAnchorDirective as ɵd, ScenarioService as ɵe, RuleReducers as ɵg, RuleConfigurationService as ɵi, GwtViewComponent as ɵj, StepLoaderDirective as ɵk, GwtModeButtonComponent as ɵl, Reducer as ɵm, reducer as ɵn, reducer$1 as ɵo, RulesListEffects as ɵp, ScenariosDbEffects as ɵq, RoutingModule as ɵr, RuleService as ɵs };
 //# sourceMappingURL=soushians-rule.js.map
