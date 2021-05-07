@@ -60,7 +60,7 @@
         "express-validator": "^5.0.1",
         "gulp": "^3.9.1",
         "gulp-copy": "^1.1.0",
-        "lodash": "^4.17.4",
+        "lodash": "^4.17.21",
         "mongodb": "^3.1.1",
         "mongodb-migrate": "^2.0.2",
         "mongoose": "^5.0.17",
