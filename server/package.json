@@ -93,6 +93,6 @@
     },
     "license": "MIT",
     "devDependencies": {
-        "@angular-devkit/build-angular": "~0.5.0"
+        "@angular-devkit/build-angular": "~14.2.8"
     }
 }
