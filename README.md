@@ -24,7 +24,7 @@ This architecture allows developers to dynamically generate pages, forms, data v
 * **Highly Modular Frontend:** The Angular client is broken down into logical sub-libraries for common enterprise needs, such as `authentication`, `forms`, `grids`, `diagrams`, `layout`, and more.
 * **Dynamic UI Generation:** The `page` and `form` modules work together to create entire user interfaces dynamically based on JSON configurations retrieved from the database.
 * **Configurable Data Visualization:** A unique `source` module allows you to define API endpoints on the fly and connect the resulting data to a `diagram` module for powerful, runtime-configured visualizations.
-* **BDD-Based Authorization:** Utilizes a custom `rule` module where you can define authorization and access-control logic using a Behavior-Driven Development (BDD) style.
+* **GWT-Based Authorization:** Utilizes a custom `rule` module where you can define authorization and access-control logic using a GWT style.
 
 ## Core Technologies
 
