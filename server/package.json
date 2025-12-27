@@ -63,7 +63,7 @@
         "lodash": "^4.17.4",
         "mongodb": "^3.1.1",
         "mongodb-migrate": "^2.0.2",
-        "mongoose": "^5.0.17",
+        "mongoose": "^5.7.5",
         "mongoose-connection": "0.0.2",
         "node-gcm": "^0.14.9",
         "nodemon": "^1.17.3",
