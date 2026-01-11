@@ -98,7 +98,7 @@
 		"karma-coverage-istanbul-reporter": "~2.1.0",
 		"lodash": "^4.17.15",
 		"material-design-icons": "^3.0.1",
-		"ng-packagr": "^5.5.1",
+		"ng-packagr": "^10.1.1",
 		"node-gcm": "^1.0.2",
 		"node-sass": "^4.11.0",
 		"npm-ls-scripts": "^0.1.2",
